@@ -2227,42 +2227,51 @@ text-animated-form
   white-space: nowrap;
 }
 
-/*Porthole*/
-.portal-content {
+/* ============================
+   Porthole (Clean, No Extra Padding)
+   ============================ */
+
+/* Reset figure + caption margins */
+.porthole,
+.porthole-wrap,
+.porthole-caption,
+.porthole-wrap figure,
+.porthole-wrap figcaption {
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper (no gap unless you add it back) */
+.porthole-wrap {
   align-items: center;
   display: grid;
-  height: 100%;
+  gap: 0; /* no spacing between circle + caption */
   justify-items: center;
+  margin: 0 auto;
   width: 100%;
 }
 
+/* Porthole outer container */
 .porthole {
   --glass-shadow-blur: 16px;
   --glass-shadow-color: rgba(0, 0, 0, 0.35);
   --ring-color-1: goldenrod;
   --ring-color-2: gold;
   --ring-color-3: peru;
-  --ring-size: 18px;
+  --ring-size: 0px;    /* 👈 Tight fit (no padding/border) */
+  /* --ring-size: 6px; 👈 Use this instead for slim brass border */
   --size: 260px;
   background: transparent;
   border-radius: 50%;
   display: inline-block;
   height: var(--size);
-  margin: 0 auto;
   position: relative;
   width: var(--size);
 }
 
-.porthole-caption {
-  color: white;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  text-align: center;
-}
-
+/* Frame (tight to glass unless --ring-size > 0) */
 .porthole-frame {
   background:
-    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 50%) padding-box,
     conic-gradient(from 0deg,
       var(--ring-color-1) 0deg,
       var(--ring-color-2) 60deg,
@@ -2279,11 +2288,12 @@ text-animated-form
     inset 0 -12px 24px rgba(0, 0, 0, 0.25),
     0 6px 18px rgba(0, 0, 0, 0.35);
   height: 100%;
-  padding: var(--ring-size);
-  position: relative;
   width: 100%;
+  position: relative;
+  padding: var(--ring-size);
 }
 
+/* Glass (sits inside frame) */
 .porthole-glass {
   background:
     radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 55%),
@@ -2298,6 +2308,7 @@ text-animated-form
   width: 100%;
 }
 
+/* Image inside */
 .porthole-image {
   display: block;
   height: 100%;
@@ -2305,6 +2316,7 @@ text-animated-form
   width: 100%;
 }
 
+/* Rivets */
 .porthole-rivet {
   background:
     radial-gradient(circle at 35% 35%, wheat 0%, burlywood 40%, peru 70%, sienna 100%);
@@ -2322,6 +2334,7 @@ text-animated-form
 .porthole-rivet--tl { left: 10%; top: 10%; }
 .porthole-rivet--tr { right: 10%; top: 10%; }
 
+/* Shine effect */
 .porthole-shine {
   animation: porthole-shine-sweep 6s linear infinite;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
@@ -2341,22 +2354,23 @@ text-animated-form
   100% { left: 120%; }
 }
 
-.porthole-wrap {
-  align-items: center;
-  display: grid;
-  gap: 0.75rem;
-  justify-items: center;
-  margin: 0 auto;
-  width: 100%;
+/* Caption */
+.porthole-caption {
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-align: center;
 }
 
-/* Responsive helpers */
+/* Responsive sizes */
 @media (max-width: 480px) {
   .porthole { --size: 220px; }
 }
 @media (min-width: 992px) {
   .porthole { --size: 300px; }
 }
+
+
 /* Pricing */
 .pricing-media-lentax {
   border-radius: 12px;
@@ -2689,6 +2703,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
