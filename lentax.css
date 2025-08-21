@@ -250,12 +250,8 @@
   animation: featureFadeSlideIn 1.5s ease-in-out both;
 }
 
-.feature-name h2 {
+.feature-name {
   color: #d4a017; /* Solid "gold-ish" tone — swap as needed */
-  font-size: 35px;
-  line-height: 1;
-  text-align: center;
-  transition: color 0.3s ease;
 }
 
 .feature-name:hover,
@@ -2762,6 +2758,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
