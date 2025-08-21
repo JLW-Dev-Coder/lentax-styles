@@ -326,6 +326,7 @@
 #statusFilters .filter-future { background: #ffa500; }
 #statusFilters .filter-inactive { background: #ff003f; }
 #statusFilters .filter-limited { background: #ffa500; }
+
 /*Flows*/
 .flow-button-cta {
   background-color: #E67300;
@@ -414,7 +415,7 @@
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
   flex: 1 1 65%;
-  padding: 30px;
+  /*padding: 30px;*/
 }
 
 .flow-right-sidebar a {
@@ -2562,6 +2563,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
