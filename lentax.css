@@ -363,6 +363,22 @@
   color: rgb(255, 255, 255);
 }
 
+/* Elegant FLOW Item Name */
+.flow-item-name {
+  background: linear-gradient(90deg, gold, goldenrod, peru);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  margin: 0.5rem 0 0;
+  text-align: center;
+  text-transform: capitalize;
+}
+
 /*✅ Top Nav*/
 .flow-nav-bar {
   display: flex;
@@ -2714,6 +2730,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
