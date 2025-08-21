@@ -364,20 +364,52 @@
 }
 
 /* Elegant FLOW Item Name */
-.flow-item-name {
-  background: linear-gradient(90deg, gold, goldenrod, peru);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  line-height: 1.4;
-  margin: 0.5rem 0 0;
-  text-align: center;
-  text-transform: capitalize;
-}
+ .flow-item-name {
+      background: linear-gradient(90deg, orange, gold, turquoise, gold, orange);
+      background-clip: text;
+      background-size: 300% 100%;
+      color: transparent;
+      display: inline-block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      line-height: 1.15;
+      margin: 0.25rem 0 0;
+      position: relative;
+      text-align: center;
+      text-transform: none;
+      will-change: transform;
+      /* Slow, subtle hue drift so letters remain the star; remove if you want static color */
+      animation: flow-item-name-gradient 12s linear infinite;
+    }
+    @keyframes flow-item-name-gradient {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Each letter gets its own bobbing motion */
+    .flow-item-name .letter {
+      display: inline-block;
+      will-change: transform;
+      animation: flow-letter-bob 1.8s ease-in-out infinite;
+      /* Stagger by index provided via inline style or CSS variable */
+      animation-delay: calc(var(--i, 0) * 120ms);
+    }
+    @keyframes flow-letter-bob {
+      0%   { transform: translateY(0); }
+      25%  { transform: translateY(-2px); }
+      50%  { transform: translateY(0); }
+      75%  { transform: translateY(2px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Accessibility: reduce motion when requested */
+    @media (prefers-reduced-motion: reduce) {
+      .flow-item-name { animation: none; }
+      .flow-item-name .letter { animation: none; }
+    }
 
 /*✅ Top Nav*/
 .flow-nav-bar {
@@ -2730,6 +2762,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
