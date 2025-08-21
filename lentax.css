@@ -2011,7 +2011,7 @@ text-animated-form
 
 /* Text column */
 .mint-block-description {
-  color: #ffffff;
+  /*color: #ffffff;*/
   flex-grow: 1;
   font-size: 16px;
   /*line-height: 1.6;*/
@@ -2564,6 +2564,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
