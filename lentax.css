@@ -465,10 +465,10 @@
 }
 
 .flow-step-content {
-  max-width: 1100px;
-  margin: 0 auto;
+  /*max-width: 1100px;
+  margin: 0 auto;*/
   background-color: #1a1a1a;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
   /*padding: 30px;*/
 }
@@ -2563,6 +2563,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
