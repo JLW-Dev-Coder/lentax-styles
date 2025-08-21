@@ -2422,7 +2422,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
   inset: 0;
   padding: 2px; /* thickness of the border */
   border-radius: 20px;
-  background: linear-gradient(135deg, #FFD700, #40E0D0, #FF8C00, #FFD700);
+  background: linear-gradient(135deg, #FF0000, #FFFFFF, #0000FF, #FF0000);
   background-size: 300% 300%;
   animation: nautical-border 8s linear infinite;
   -webkit-mask:
@@ -2567,5 +2567,6 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
