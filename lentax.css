@@ -2172,6 +2172,7 @@ text-animated-form
     background-position: 0% 0%;
   }
 }
+
 /*Pricing*/
 :root {
   --accent-purple: #8c52ff;
@@ -2270,6 +2271,13 @@ text-animated-form
   margin: 0;
   position: relative;
   width: var(--size);
+}
+.porthole-backdrop {
+  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
+  border-radius: 8px;
+  /*margin: 0;*/
+  /*min-height: 100vh;*/
+  /*padding: 2rem 1rem;*/
 }
 
 .porthole-caption {
@@ -2388,13 +2396,6 @@ text-animated-form
 
 @media (min-width: 992px) {
   .porthole { --size: 320px; }
-}
-
-  .porthole-backdrop {
-  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
-  /*margin: 0;*/
-  /*min-height: 100vh;*/
-  /*padding: 2rem 1rem;*/
 }
 
 /* Pricing */
@@ -2729,6 +2730,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
