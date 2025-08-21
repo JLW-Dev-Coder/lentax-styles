@@ -2483,7 +2483,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
 }
 
 .cbe-block-checklist .checklist-header .checklist-title {
-  background: linear-gradient(90deg, #FFD700, #40E0D0, #FFD700);
+  background: linear-gradient(90deg, red, white, blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2497,12 +2497,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
 }
 
 .cbe-block-checklist .checklist-header .checklist-title:hover {
-  background: linear-gradient(
-    90deg,
-    #FFD700,   /* gold */
-    #FFA500,   /* orange-gold */
-    #FFD700    /* gold again */
-  );
+  background: linear-gradient(90deg, blue, white, red);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2567,6 +2562,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
