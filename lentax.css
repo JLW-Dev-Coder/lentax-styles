@@ -2231,7 +2231,7 @@ text-animated-form
    Porthole
    ============================ */
 
-.porthole-content {
+    .porthole-content {
       align-items: center;
       display: grid;
       height: 100%;
@@ -2714,6 +2714,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
