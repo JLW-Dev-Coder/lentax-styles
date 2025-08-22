@@ -2244,7 +2244,6 @@ text-animated-form
   transform: rotateY(-70deg);
 }
 
-
 /*Pricing*/
 :root {
   --accent-purple: #8c52ff;
@@ -2647,6 +2646,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
