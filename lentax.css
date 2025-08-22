@@ -18,7 +18,6 @@
 .account-card-status-limited { background-color: #ffa500; }
 .account-card-status-future { background-color: #ffa500; }/* Slate gray for 'future' tone */
 
-
 .account-card-subtitle {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -324,111 +323,90 @@
 #statusFilters .filter-limited { background: #ffa500; }
 
 /*Flows*/
+/* Flows */
 .flow-button-cta {
   background-color: #E67300;
-  color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-
-  display: block;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-
-  padding: 10px 32px;
-  font-weight: bold;
-  font-size: 16px;
-  text-decoration: none;
-
   border: none;
-  border-right: 2px solid black;
   border-bottom: 2px solid black;
   border-radius: 6px;
-
+  border-right: 2px solid black;
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
-
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  width: fit-content;
 }
 
 .flow-button-cta:hover {
-  transform: translateY(-2px);
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 4px 8px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
   color: rgb(255, 255, 255);
+  transform: translateY(-2px);
 }
 
-/* Elegant FLOW Item Name */
- .flow-item-name {
-      background: linear-gradient(90deg, orange, gold, turquoise, gold, orange);
-      background-clip: text;
-      background-size: 300% 100%;
-      color: transparent;
-      display: inline-block;
-      font-size: 35px;
-      /*font-weight: 700;*/
-      /*letter-spacing: 0.6px;*/
-      /*line-height: 1.15;*/
-      /*margin: 0.25rem 0 0;*/
-      /*position: relative;*/
-      text-align: center;
-      text-transform: none;
-      /*will-change: transform;*/
-      /* Slow, subtle hue drift so letters remain the star; remove if you want static color */
-      animation: flow-item-name-gradient 12s linear infinite;
-    }
-    @keyframes flow-item-name-gradient {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.flow-center-text {
+  color: #ddd;
+  text-align: center;
+}
 
-    /* Each letter gets its own bobbing motion */
-    .flow-item-name .letter {
-      display: inline-block;
-      will-change: transform;
-      animation: flow-letter-bob 1.8s ease-in-out infinite;
-      /* Stagger by index provided via inline style or CSS variable */
-      animation-delay: calc(var(--i, 0) * 120ms);
-    }
-    @keyframes flow-letter-bob {
-      0%   { transform: translateY(0); }
-      25%  { transform: translateY(-2px); }
-      50%  { transform: translateY(0); }
-      75%  { transform: translateY(2px); }
-      100% { transform: translateY(0); }
-    }
-
-    /* Accessibility: reduce motion when requested */
-    @media (prefers-reduced-motion: reduce) {
-      .flow-item-name { animation: none; }
-      .flow-item-name .letter { animation: none; }
-    }
-
-/*✅ Top Nav*/
-.flow-nav-bar {
+.flow-grid {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.flow-item-name {
+  color: goldenrod;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 12px 0 20px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.flow-main {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  flex: 1 1 65%;
+  padding: 30px;
+}
+
+.flow-nav-bar {
   background-color: #1a1a1a;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: space-around;
   margin-bottom: 30px;
+  overflow: hidden;
 }
 
 .flow-nav-btn {
+  border-right: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
   flex: 1;
   padding: 14px 0;
   text-align: center;
-  color: rgba(255,255,255,0.7);
   text-decoration: none;
   transition: background 0.3s, transform 0.2s;
-  border-right: 1px solid rgba(255,255,255,0.15);
 }
 
-.flow-nav-btn:last-child {
-  border-right: none;
+.flow-nav-btn.active {
+  background-color: #444;
 }
 
 .flow-nav-btn div:first-child {
@@ -441,90 +419,86 @@
   transform: translateY(-2px);
 }
 
-.flow-nav-btn.active {
-  background-color: #444;
-}
-
-/*✅ Layout */
-.flow-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 30px;
-}
-
-.flow-main {
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  flex: 1 1 65%;
-  padding: 30px;
+.flow-nav-btn:last-child {
+  border-right: none;
 }
 
 .flow-right-sidebar a {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 4px solid rgba(255, 140, 0, 0.3);
+  border-radius: 8px;
+  color: #fff;
   display: block;
+  font-weight: 500;
   margin: 12px 0;
   padding: 8px 16px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  color: #fff;
   text-decoration: none;
-  font-weight: 500;
   transition: background 0.3s, transform 0.2s, border-left 0.3s ease;
-  border-left: 4px solid rgba(255, 140, 0, 0.3); /* subtle orange accent */
 }
 
 .flow-right-sidebar a:hover {
   background: rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #ff8c00;
   transform: translateX(4px);
-  border-left: 4px solid #ff8c00; /* bright orange on hover */
-}
-
-/*✅ FLOW Spacers*/
-.flow-spacer-xs {
-  margin-top: 8px;
-}
-
-.flow-spacer-sm {
-  margin-top: 12px;
-}
-
-.flow-spacer-md {
-  margin-top: 24px;
 }
 
 .flow-spacer-lg {
   margin-top: 36px;
 }
 
-.flow-center-text {
-  text-align: center;
-  color: #ddd;
+.flow-spacer-md {
+  margin-top: 24px;
 }
 
-/*✅ FLOW Container */
+.flow-spacer-sm {
+  margin-top: 12px;
+}
+
+.flow-spacer-xs {
+  margin-top: 8px;
+}
+
 .flow-step-container {
   padding: 40px 20px;
 }
 
 .flow-step-content {
-  max-width: 1100px;
-  margin: 0 auto;
   background-color: #1a1a1a;
   border-radius: 8px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  margin: 0 auto;
+  max-width: 1100px;
   padding: 30px;
 }
 
-/* ✅ Responsive */
+.flow-voyage-progress {
+  background: linear-gradient(90deg, #003366, #005f99, #003366);
+  border: 2px solid goldenrod;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  margin: 0 auto 16px;
+  max-width: 360px;
+  padding: 12px 18px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.flow-voyage-progress h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
   .flow-nav-bar {
     display: none;
   }
 
   .flow-nav-btn {
-    border-right: none;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-right: none;
   }
 
   .flow-nav-btn:last-child {
@@ -533,7 +507,6 @@
 }
 
 /*Forms*/
-/* Form Border Box */
 .forms-border {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2610,6 +2583,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
