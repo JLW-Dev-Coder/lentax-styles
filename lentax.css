@@ -251,13 +251,13 @@
 }
 
 .feature-name {
-  color: #e6b800; /* Solid "gold-ish" tone — swap as needed */
+  color: rgba(230, 184, 0, 0.9); /* Solid "gold-ish" tone — swap as needed */
 }
 
 .feature-name:hover,
 .feature-name:focus,
 .feature-name.active {
-  color: #fff; /* Bright white on hover/focus/active */
+  color: rgb(230, 184, 0); /* Bright white on hover/focus/active */
 }
 
 .feature-name-v2 h2 {
@@ -2782,6 +2782,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
