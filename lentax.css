@@ -367,21 +367,31 @@
 }
 
 .flow-item-name h2 {
-  background: linear-gradient(90deg, #4dd0e1, #7e57c2, #ff8a65);
+  background: linear-gradient(90deg, #00ffcc, #33ccff, #ff33cc, #ff9933, #ffff33);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;      /* now centers text within full width */
+  animation: vibrant-shift 6s infinite linear;
   font-size: 35px;
   letter-spacing: -1px;
   overflow: hidden;
-  transition: -webkit-text-fill-color 0.3s ease;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-/* Hover/active overrides the gradient mask with solid white */
-.flow-item-name h2:hover,
-.flow-item-name h2:focus,
-.flow-item-name h2.active {
-  /*-webkit-text-fill-color: #fff;*/
+.flow-item-name h2:hover {
+  transform: scale(1.05);
+}
+
+@keyframes vibrant-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .flow-main {
@@ -2518,6 +2528,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
   background-color: #1a1a1a;
   border: 1px solid #00cc00;
   border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 255, 0, 0.2);
   color: #00ff00;
   display: flex;
   flex-direction: column;
@@ -2528,16 +2539,33 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
   max-width: 360px;
   padding: 16px;
   text-align: center;
-  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease,
+              box-shadow 0.4s ease, color 0.3s ease;
 }
 
 .btn.btn-primary.btn-block:hover {
   background-color: #262626;
-  border-color: #009900;
+  border-color: #00ff00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4);
   color: #33ff33;
   transform: translateY(-2px);
 }
 
+@keyframes button-glow {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 35px rgba(0, 255, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
+  }
+}
+
+.btn.btn-primary.btn-block {
+  animation: button-glow 2.5s infinite ease-in-out;
+}
 
 .btn.btn-link.btn-block {
   align-items: center;
@@ -2690,5 +2718,6 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
 .cbe-block-checklist .checklist-header svg {
   display: none !important;
 }
+
 
 
