@@ -2006,7 +2006,7 @@ text-animated-form
 
 .mint-block-container {
   align-items: center;
-  /*background: rgba(17, 17, 17, 0.85);  /* was #111; translucency reveals backdrop */
+  background: rgba(17, 17, 17, 0.55);  /* was #111; translucency reveals backdrop */
   border: 1px solid #333;
   border-radius: 8px;
   display: flex;
@@ -2727,6 +2727,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
