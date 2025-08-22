@@ -2149,10 +2149,14 @@ text-animated-form
   .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
 }
 
-/*Porthole*/
-/* Porthole — fix: background only visible inside the viewport hole */
+/*Porthole*/ 
+.porthole-backdrop { 
+  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
+  border-radius: 8px; 
+  padding-bottom: 100px; 
+  padding-top: 30px; 
+}
 
-/* Scene (unchanged, just showing vars you can tune) */
 .porthole-scene {
   align-items: center;
   display: grid;
@@ -2636,6 +2640,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
