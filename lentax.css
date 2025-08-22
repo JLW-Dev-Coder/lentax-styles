@@ -2252,7 +2252,7 @@ text-animated-form
 
 /* Brass rim overlay with a real transparent hole (mask) */
 .porthole-door {
-  background-image: url("https://secure.lentax.co/file/6526feeab3c3f97fc98d002516d7cb09/88786a77-fe85-47b3-b00e-752373a8c677/PNG_Porthole.png?original=1");
+  background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2644,6 +2644,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
