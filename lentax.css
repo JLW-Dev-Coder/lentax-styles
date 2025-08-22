@@ -2077,7 +2077,7 @@ text-animated-form
 }
 
 .mint-block-description h3 {
-  margin: 0 0 8px;
+  /*margin: 0 0 8px;*/
 }
 
 .mint-block-lottie {
@@ -2710,6 +2710,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
