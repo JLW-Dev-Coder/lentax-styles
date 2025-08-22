@@ -367,20 +367,13 @@
 }
 
 .flow-item-name h2 {
-  text-align: center;
-  /*line-height: 1;*/
   background: linear-gradient(90deg, #4dd0e1, #7e57c2, #ff8a65);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /*position: relative;
-  display: block;          /* inline-block won’t fill width */
   text-align: center;      /* now centers text within full width */
   font-size: 35px;
   letter-spacing: -1px;
   overflow: hidden;
-  /*border-radius: 35px;*/
-  /*padding: 8px;*/
-  /*margin-bottom: 20px;*/
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
@@ -2648,6 +2641,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
