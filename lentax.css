@@ -2143,77 +2143,96 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/* 1. Scene wrapper */
-.porthole-scene {
-  position: relative;
-  width: 320px;          /* adjust size */
-  height: 320px;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;      /* ensures BG is clipped exactly */
+/*Porthole*/ 
+.porthole-backdrop { 
+  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
+  border-radius: 8px;
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
-/* 2. Background image inside the rim */
+/* Inner background image (inside the porthole) */
 .porthole-bg {
-  position: absolute;
+  background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  height: 100%;
   inset: 0;
-  background: url("your-bg-image.png") center/cover no-repeat;
-  border-radius: 50%;     /* matches rim */
+  position: absolute;
+  width: 100%;
   z-index: 1;
 }
 
-/* 3. Brass rim door */
+/* Brass rim overlay with a real transparent hole (mask) */
 .porthole-door {
-  position: absolute;
-  inset: 0;
-  background: url("your-porthole-rim.png") center/contain no-repeat;
+  background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  pointer-events: none;
+  position: relative;
+  transform: rotateY(0deg);
+  transform-origin: left center;
+  transition: transform 1s cubic-bezier(.2,.75,.2,1);
+  width: 100%;
   z-index: 2;
-  transition: transform 1s ease;
-  transform-origin: right center;  /* swings like a door */
+
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
 }
 
-/* When open (toggle applied) */
-.porthole-toggle:checked ~ .porthole-scene .porthole-door {
-  transform: rotateY(140deg);  /* adjust angle */
-}
-
-/* 4. Click overlay */
+/* Ring-only click target (center is click-through) */
 .porthole-hit {
-  position: absolute;
   inset: 0;
-  cursor: pointer;
+  position: absolute;
   z-index: 3;
+
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
 }
 
-/* 5. Caption / CTA message */
+/* Center the unit and give 3D perspective */
+.porthole-scene {
+  align-items: center;
+  display: grid;
+  height: var(--porthole-size, 320px);
+  justify-items: center;
+  margin: 6px auto !important;
+  perspective: 1200px;
+  position: relative;
+  width: var(--porthole-size, 320px);
+}
+
+/* Fully hide the checkbox */
+.porthole-toggle {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Open/close */
+.porthole-toggle:checked + .porthole-scene .porthole-door {
+  transform: rotateY(-70deg);
+}
+
+/* Caption under the porthole */
 .porthole-caption {
-  margin-top: 10px;
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 6px 0 8px !important;
+  opacity: 0.85;
   text-align: center;
-  font-size: 1rem;
-  color: #ddd;
-  font-style: italic;
 }
-
-/* Refined CTA message */
-.porthole-msg-brand {
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 600;
-  background: linear-gradient(90deg, #ff8c00, #ffd700, #ff4500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shineText 5s linear infinite;
-  line-height: 1.4;
-  word-spacing: 0.3rem;
-}
-
-@keyframes shineText {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-
 
 /*Pricing*/
 :root {
@@ -2617,6 +2636,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
