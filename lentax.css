@@ -472,11 +472,11 @@
 }
 
 .flow-voyage-progress {
-  background: linear-gradient(90deg, #003366, #005f99, #003366);
+  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
   border: 2px solid goldenrod;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  color: #fff;
+  /*color: #fff;*/
   font-family: 'Raleway', sans-serif;
   margin: 0 auto 16px;
   max-width: 360px;
@@ -2583,6 +2583,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
