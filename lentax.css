@@ -2224,135 +2224,58 @@ text-animated-form
 }
 
 /*Porthole*/
-/* 1) Scene */
-.porthole-scene {
-  align-items: center;
-  display: grid;
-  height: var(--porthole-size, 320px);
-  justify-items: center;
-  perspective: 1200px;
-  position: relative;
-  width: var(--porthole-size, 320px);
-}
-
-/* 2) Background (island view through the glass) */
 .porthole-bg {
-  background-image: var(--porthole-image, url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"));
+  background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop"); /* swap with your island */
   background-position: center;
-  background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
-  filter: saturate(1.05) contrast(1.05);
   height: 100%;
-  overflow: hidden;
   position: absolute;
   width: 100%;
   z-index: 1;
 }
 
-/* Water drift (very subtle movement for realism) */
-.porthole-bg::after {
-  animation: portholeWater 22s linear infinite;
-  background: radial-gradient(120% 120% at 50% 20%, rgba(255,255,255,0.12) 0 30%, rgba(255,255,255,0) 55%),
-              radial-gradient(150% 150% at 60% 130%, rgba(0,60,120,0.10), rgba(0,0,0,0) 60%);
-  content: "";
-  inset: 0;
-  position: absolute;
+.porthole-caption {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-top: 12px;
+  opacity: 0.85;
+  text-align: center;
 }
 
-/* 3) Door (gold ring image with hinge/handle baked into the artwork) */
 .porthole-door {
-  animation: portholeBob 6s ease-in-out infinite;
-  background-image: var(--porthole-gold, url("https://assets.example.com/lentax/porthole-gold.png"));
+  background-image: url("https://secure.lentax.co/file/6526feeab3c3f97fc98d002516d7cb09/88786a77-fe85-47b3-b00e-752373a8c677/PNG_Porthole.png?original=1");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  border-radius: 50%;
-  box-shadow:
-    0 8px 22px rgba(0,0,0,0.45);
   height: 100%;
   position: relative;
   transform: rotateY(0deg);
   transform-origin: left center;
-  transition: transform 0.9s cubic-bezier(.2,.75,.2,1);
+  transition: transform 1s cubic-bezier(.2,.75,.2,1);
   width: 100%;
   z-index: 2;
 }
 
-/* Door highlight sweep */
-.porthole-door::after {
-  animation: portholeShine 7s linear infinite;
-  background: linear-gradient(100deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 65%);
-  border-radius: 50%;
-  content: "";
-  filter: blur(2px);
-  height: 160%;
-  left: -60%;
-  pointer-events: none;
-  position: absolute;
-  top: -30%;
-  transform: rotate(18deg);
-  width: 36%;
-}
-
-/* 4) Toggle (checkbox hack for open/close) */
-.porthole-toggle {
-  appearance: none;
-  border: 0;
-  height: 1px;
-  margin: 0;
-  outline: 0;
-  position: absolute;
-  width: 1px;
-  z-index: -1;
-}
-
-.porthole-toggle:checked + .porthole-scene .porthole-door {
-  transform: rotateY(-70deg);
-}
-
-/* 5) Click target over the gold door */
 .porthole-hit {
   inset: 0;
   position: absolute;
   z-index: 3;
 }
 
-/* 6) Caption (optional) */
-.porthole-caption {
-  color: #fff;
-  font-size: 0.9rem;
-  margin-top: 10px;
-  opacity: 0.85;
-  text-align: center;
+.porthole-scene {
+  --porthole-size: 340px;
+  align-items: center;
+  display: grid;
+  height: var(--porthole-size);
+  justify-items: center;
+  perspective: 1200px;
+  position: relative;
+  width: var(--porthole-size);
 }
 
-/* Keyframes (placed after their related classes) */
-@keyframes portholeWater {
-  0%   { transform: translate3d(0, 0, 0) }
-  50%  { transform: translate3d(-1.2%, 0.4%, 0) }
-  100% { transform: translate3d(0, 0, 0) }
-}
-
-@keyframes portholeBob {
-  0%   { transform: translateY(0) rotateY(0deg) }
-  50%  { transform: translateY(-2px) rotateY(0deg) }
-  100% { transform: translateY(0) rotateY(0deg) }
-}
-
-@keyframes portholeShine {
-  0%   { left: -60% }
-  55%  { left: 15% }
-  100% { left: 120% }
-}
-
-/* 7) Responsive */
-@media (max-width: 480px) {
-  .porthole-scene { width: 240px; height: 240px; }
-}
-
-@media (min-width: 992px) {
-  .porthole-scene { width: 360px; height: 360px; }
+.porthole-toggle:checked + .porthole-scene .porthole-door {
+  transform: rotateY(-70deg);
 }
 
 /* Pricing */
@@ -2687,6 +2610,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
