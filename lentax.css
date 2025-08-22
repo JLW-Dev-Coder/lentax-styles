@@ -2149,6 +2149,91 @@ text-animated-form
   .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
 }
 
+/*Porthole*/
+/* Porthole — fix: background only visible inside the viewport hole */
+
+/* Scene (unchanged, just showing vars you can tune) */
+.porthole-scene {
+  align-items: center;
+  display: grid;
+  height: var(--porthole-size, 340px);
+  justify-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  perspective: 1200px;
+  position: relative;
+  width: var(--porthole-size, 340px);
+}
+
+/* Background INSIDE the glass only */
+.porthole-bg {
+  background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  /* show only the inner circle (the glass aperture) */
+  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
+
+  /* clip-path fallback for older browsers */
+  clip-path: circle(var(--hole) at 50% 50%);
+}
+
+/* Brass rim overlay (door) – keeps center cut so bg is visible only through hole */
+.porthole-door {
+  background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  pointer-events: none;
+  position: relative;
+  transform: rotateY(0deg);
+  transform-origin: left center;
+  transition: transform 1s cubic-bezier(.2,.75,.2,1);
+  width: 100%;
+  z-index: 2;
+
+  /* ensure the door itself doesn’t paint the glass area */
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 calc(var(--hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 calc(var(--hole) + 1px) 100%);
+}
+
+/* Ring-only click target so the center remains click‑through */
+.porthole-hit {
+  inset: 0;
+  position: absolute;
+  z-index: 3;
+
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+}
+
+/* Hidden toggle + open animation (unchanged) */
+.porthole-toggle {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.porthole-toggle:checked + .porthole-scene .porthole-door {
+  transform: rotateY(-70deg);
+}
+
+
 /*Pricing*/
 :root {
   --accent-purple: #8c52ff;
@@ -2218,98 +2303,6 @@ text-animated-form
   top: -12px;
   transform: translateX(-50%);
   white-space: nowrap;
-}
-
-/*Porthole*/
-.porthole-backdrop { 
-  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
-  border-radius: 8px;
-  padding-bottom: 100px;
-  padding-top: 30px;
-}
-
-.porthole-bg {
-  background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 50%;
-  height: 100%;
-  inset: 0;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-}
-
-/* Caption */
-.porthole-caption {
-  color: #fff;
-  font-size: 0.9rem;
-  margin-top: 12px;
-  opacity: 0.85;
-  text-align: center;
-}
-
-/* Brass rim overlay with a real transparent hole (mask) */
-.porthole-door {
-  background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 100%;
-  pointer-events: none; /* clicks handled by .porthole-hit */
-  position: relative;
-  transform: rotateY(0deg);
-  transform-origin: left center;
-  transition: transform 1s cubic-bezier(.2,.75,.2,1);
-  width: 100%;
-  z-index: 2;
-
-  /* force inner viewport to be transparent even if PNG isn't cut out */
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
-          mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
-}
-
-/* Ring-only click target (center is click-through) */
-.porthole-hit {
-  inset: 0;
-  position: absolute;
-  z-index: 3;
-
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
-          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
-}
-
-/* Center the unit and give 3D perspective */
-.porthole-scene {
-  align-items: center;
-  display: grid;
-  height: var(--porthole-size, 320px);
-  justify-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  perspective: 1200px;
-  position: relative;
-  width: var(--porthole-size, 320px);
-}
-
-/* Fully hide the checkbox; no space, no visual */
-.porthole-toggle {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-/* Open/close */
-.porthole-toggle:checked + .porthole-scene .porthole-door {
-  transform: rotateY(-70deg);
 }
 
 /* Pricing */
@@ -2383,7 +2376,6 @@ text-animated-form
   transform: translateY(-1px);
 }
 
-/* ===== Overlay (full-width) ===== */
 .pricing-overlay-lentax {
   margin: 0 auto;
   margin-bottom: 56px;
@@ -2644,6 +2636,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
