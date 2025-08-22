@@ -2071,9 +2071,9 @@ text-animated-form
 
 .mint-block-description {
   flex-grow: 1;
-  font-size: 16px;
-  padding: 0 15px;
-  text-align: left;
+  /*font-size: 16px;*/
+  /*padding: 0 15px;*/
+  /*text-align: left;*/
 }
 
 .mint-block-description h3 {
@@ -2091,7 +2091,7 @@ text-animated-form
 }
 
 .mint-block-pad {
-  padding: 0 15px;
+  /*padding: 0 15px;*/
 }
 
 .mint-name {
@@ -2710,6 +2710,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
