@@ -2143,17 +2143,34 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/*Porthole Backdrop */
+/* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
+
 .porthole-backdrop {
   background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
   border-radius: 8px;
-  padding: 30px 0 50px;
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
-/* Inner background image (inside the porthole) */
+/* Size + shared geometry for the hole and tap ring */
+.porthole-scene {
+  --porthole-size: 320px;   /* tweak if you want it bigger/smaller */
+  --hole: 42%;              /* radius of the clear opening */
+  --tap: 10%;               /* ring thickness for the click target */
+  align-items: center;
+  display: grid;
+  height: var(--porthole-size);
+  justify-items: center;
+  margin: 6px auto !important;
+  perspective: 1200px;
+  position: relative;
+  width: var(--porthole-size);
+}
+
+/* Inner background image – now clipped to the circular hole */
 .porthole-bg {
   background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
-  background-position: center;
+  background-position: center;           /* adjust e.g., center 45% if needed */
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
@@ -2162,70 +2179,64 @@ text-animated-form
   width: 100%;
   height: 100%;
   z-index: 1;
+
+  /* ⬇️ Only show the part inside the hole */
+  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
 }
 
-/* Brass rim overlay */
+/* Brass rim overlay (PNG has transparent center) */
 .porthole-door {
   background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 100%;
   height: 100%;
+  width: 100%;
   position: relative;
   z-index: 2;
+  pointer-events: none;
   transform: rotateY(0deg);
   transform-origin: left center;
   transition: transform 1s cubic-bezier(.2,.75,.2,1);
-  pointer-events: none;
 }
 
-/* Clickable rim (center is click-through) */
+/* Clickable rim-only area (center remains click-through) */
 .porthole-hit {
   position: absolute;
   inset: 0;
   z-index: 3;
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
 }
 
-/* Wrapper with perspective */
-.porthole-scene {
-  display: grid;
-  place-items: center;
-  width: var(--porthole-size, 320px);
-  height: var(--porthole-size, 320px);
-  margin: 6px auto !important;
-  perspective: 1200px;
-  position: relative;
-}
-
-/* Hide the checkbox */
+/* Hidden checkbox toggle */
 .porthole-toggle {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+  border: 0;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
-  border: 0;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
   white-space: nowrap;
+  width: 1px;
 }
 
-/* Open state (door rotates) */
+/* Open state */
 .porthole-toggle:checked + .porthole-scene .porthole-door {
   transform: rotateY(-70deg);
 }
 
-/* Caption below */
+/* Caption */
 .porthole-caption {
-  font-size: 0.9rem;
-  text-align: center;
   color: #fff;
-  opacity: 0.85;
+  font-size: 0.9rem;
   margin: 6px 0 8px !important;
+  opacity: 0.85;
+  text-align: center;
 }
-
 
 
 /*Pricing*/
@@ -2630,4 +2641,5 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
