@@ -376,6 +376,7 @@
   display: block;          /* inline-block won’t fill width */
   text-align: center;      /* now centers text within full width */
   font-size: 35px;
+  letter-spacing: -1px;
   overflow: hidden;
   /*border-radius: 35px;*/
   /*padding: 8px;*/
@@ -2642,6 +2643,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
