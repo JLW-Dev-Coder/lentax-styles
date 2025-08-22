@@ -2143,115 +2143,38 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/* ---- Shared geometry / sizing ---- */
-.porthole-scene {
-  --porthole-size: 320px;  /* overall size */
-  --hole: 42%;             /* radius of the clear opening */
-  --tap: 10%;              /* ring thickness for the click target */
-
-  align-items: center;
-  display: grid;
-  height: var(--porthole-size);
-  justify-items: center;
-  margin: 6px auto !important;
-  perspective: 1200px;
-  position: relative;
-  width: var(--porthole-size);
-}
-
-/* The masked "window" — only area visible through door */
-.porthole-window {
-  display: grid;
-  inset: 0;
-  place-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-
-  /* show ONLY the circular opening */
-  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
-          mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
-}
-
-/* Inner background (now lives inside the masked window) */
-.porthole-bg {
-  background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
-  background-position: center;          /* tweak e.g., center 45% */
-  background-repeat: no-repeat;
-  background-size: cover;               /* can use 120%/140% to zoom */
-  border-radius: 50%;
-  inset: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;                           /* behind the CTA text */
-}
-
-/* CTA text that appears "through" the door */
-.porthole-cta-text {
-  color: #FFD700;                       /* gold */
+/* ===== Porthole CTA ===== */
+.porthole-cta {
+  margin: 12px auto 0;
+  display: inline-block;
+  padding: 10px 22px;
   font-size: 1rem;
   font-weight: 700;
-  line-height: 1.25;
-  margin: 0;
-  padding: 0 10px;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,.55);  /* legibility over BG */
-  z-index: 1;                           /* above BG, still masked */
-}
-
-/* Brass rim overlay (sits above the window) */
-.porthole-door {
-  background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 100%;
-  pointer-events: none;
-  position: relative;
-  transform: rotateY(0deg);
-  transform-origin: left center;
-  transition: transform 1s cubic-bezier(.2,.75,.2,1);
-  width: 100%;
-  z-index: 2;
-}
-
-/* Rim-only click target (center is click-through) */
-.porthole-hit {
-  inset: 0;
-  position: absolute;
-  z-index: 3;
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
-          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
-}
-
-/* Hidden checkbox */
-.porthole-toggle {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-/* Open state */
-.porthole-toggle:checked + .porthole-scene .porthole-door {
-  transform: rotateY(-70deg);
-}
-
-/* (Optional) caption below the porthole */
-.porthole-caption {
   color: #fff;
-  font-size: 0.9rem;
-  margin: 6px 0 8px !important;
-  opacity: 0.85;
+  background: linear-gradient(135deg, #FFA500, #E67300); /* orange-gold */
+  border: none;
+  border-radius: 8px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+}
+
+.porthole-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+}
+
+.porthole-cta:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 3px 7px #d6d6e7;
 }
 
 
@@ -2657,6 +2580,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
