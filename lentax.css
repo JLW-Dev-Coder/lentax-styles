@@ -2143,141 +2143,76 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/* Backdrop spacing (unchanged except tight) */
-.porthole-backdrop{
-  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
-  border-radius: 8px;
-  padding-top: 18px;
-  padding-bottom: 28px;
+/* 1. Scene wrapper */
+.porthole-scene {
+  position: relative;
+  width: 320px;          /* adjust size */
+  height: 320px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;      /* ensures BG is clipped exactly */
 }
 
-/* Centered container */
-.porthole-scene{
-  align-items:center;
-  display:grid;
-  height:var(--porthole-size,320px);
-  justify-items:center;
-  margin:8px auto;
-  perspective:1200px;
-  position:relative;
-  width:var(--porthole-size,320px);
-
-  /* tunables:
-     --rim = thickness from outside circle to inner glass rim
-     --bg-zoom = background-size percentage for the inner image */
+/* 2. Background image inside the rim */
+.porthole-bg {
+  position: absolute;
+  inset: 0;
+  background: url("your-bg-image.png") center/cover no-repeat;
+  border-radius: 50%;     /* matches rim */
+  z-index: 1;
 }
 
-/* Clip background to the *inner* rim so it reaches the very edge of the glass */
-.porthole-bg{
-  background-image:url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
-  background-position:center;
-  background-repeat:no-repeat;
-  background-size:var(--bg-zoom,110%) var(--bg-zoom,110%);  /* zoom control */
-  height:100%;
-  inset:0;
-  position:absolute;
-  width:100%;
-  z-index:1;
-
-  /* Circle radius = 50% minus the rim thickness */
-  clip-path:circle(calc(50% - var(--rim, 6%)) at 50% 50%);
+/* 3. Brass rim door */
+.porthole-door {
+  position: absolute;
+  inset: 0;
+  background: url("your-porthole-rim.png") center/contain no-repeat;
+  z-index: 2;
+  transition: transform 1s ease;
+  transform-origin: right center;  /* swings like a door */
 }
 
-/* Brass door (no mask, stays visible) */
-.porthole-door{
-  background-image:url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
-  background-position:center;
-  background-repeat:no-repeat;
-  background-size:contain;
-  height:100%;
-  position:relative;
-  transform:rotateY(0deg);
-  transform-origin:left center;
-  transition:transform 900ms cubic-bezier(.2,.75,.2,1);
-  width:100%;
-  z-index:3;
-  pointer-events:none;
+/* When open (toggle applied) */
+.porthole-toggle:checked ~ .porthole-scene .porthole-door {
+  transform: rotateY(140deg);  /* adjust angle */
 }
 
-/* Ring-only click target */
-.porthole-hit{
-  inset:0;
-  position:absolute;
-  z-index:4;
-  cursor:pointer;
-  -webkit-mask: radial-gradient(circle at 50% 50%,
-      transparent 0 calc(50% - var(--rim, 6%)),
-      #000      calc(50% - var(--rim, 6%)) calc(50% - var(--rim, 6%) + var(--tap, 5%)),
-      transparent calc(50% - var(--rim, 6%) + var(--tap, 5%)) 100%);
-          mask: radial-gradient(circle at 50% 50%,
-      transparent 0 calc(50% - var(--rim, 6%)),
-      #000      calc(50% - var(--rim, 6%)) calc(50% - var(--rim, 6%) + var(--tap, 5%)),
-      transparent calc(50% - var(--rim, 6%) + var(--tap, 5%)) 100%);
+/* 4. Click overlay */
+.porthole-hit {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  z-index: 3;
 }
 
-/* Hidden checkbox */
-.porthole-toggle{
-  border:0; clip:rect(0 0 0 0); clip-path:inset(50%);
-  height:1px; margin:0; overflow:hidden; padding:0;
-  position:absolute; white-space:nowrap; width:1px;
+/* 5. Caption / CTA message */
+.porthole-caption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1rem;
+  color: #ddd;
+  font-style: italic;
 }
 
-/* Open animation */
-.porthole-toggle:checked + .porthole-scene .porthole-door{ transform:rotateY(-70deg); }
-
-/* CTA message (revealed on open) */
-.porthole-message{
-  align-items:center;
-  display:flex;
-  inset:0;
-  justify-content:center;
-  opacity:0;
-  position:absolute;
-  transform:translateY(8px) scale(.98);
-  transition:opacity .45s ease .35s, transform .45s ease .35s;
-  z-index:2;            /* between bg and closed door */
-  pointer-events:none;
+/* Refined CTA message */
+.porthole-msg-brand {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ff8c00, #ffd700, #ff4500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineText 5s linear infinite;
+  line-height: 1.4;
+  word-spacing: 0.3rem;
 }
 
-.porthole-toggle:checked + .porthole-scene .porthole-message{
-  opacity:1;
-  transform:translateY(0) scale(1);
+@keyframes shineText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.porthole-message-inner{
-  /* glassy pill */
-  background: radial-gradient(ellipse at center,
-              rgba(0,0,0,.55), rgba(0,0,0,.25) 60%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(255,215,0,.5);
-  border-radius:14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.35), inset 0 0 18px rgba(255,215,0,.12);
-  padding:12px 16px;
-  text-align:center;
-  color:#fff;
-  font-weight:800;
-  line-height:1.2;
-  text-shadow:0 1px 2px rgba(0,0,0,.6);
-  letter-spacing:.2px;
-
-  /* responsive sizing inside the circle */
-  font-size: clamp(14px, 2.3vw, 20px);
-}
-
-/* Brand line pop */
-.porthole-message-inner .portal-msg-brand{
-  display:inline-block;
-  margin-top:4px;
-  background: linear-gradient(90deg,#FFD700,#FFA500,#FFD700);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  text-shadow:none;
-}
-
-/* Caption under the porthole */
-.porthole-caption{
-  color:#fff; font-size:.9rem; margin:6px 0 6px; opacity:.85; text-align:center;
-}
 
 
 /*Pricing*/
@@ -2682,6 +2617,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
