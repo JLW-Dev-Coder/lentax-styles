@@ -2561,7 +2561,6 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
   transform: translateY(-2px);
 }
 
-
 .card.checklist-card {
   border: 2px solid transparent;
   border-radius: 20px;
@@ -2688,3 +2687,4 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
 .cbe-block-checklist .checklist-header svg {
   display: none !important;
 }
+
