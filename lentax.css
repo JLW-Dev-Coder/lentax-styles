@@ -2199,6 +2199,26 @@ text-animated-form
     background-position: 0% 0%;
   }
 }
+.mint-map-wrapper {
+  position: relative;
+  display: inline-block; /* or block, depending on layout */
+}
+
+.mint-map-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;   /* adjust size as needed */
+  height: 300px;  /* adjust size as needed */
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 0.7;   /* softer behind Mint */
+}
+
+.mint-block-container {
+  position: relative;
+  z-index: 1; /* ensures Mint is above the map */
+}
 
 /*Pricing*/
 :root {
@@ -2757,6 +2777,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
