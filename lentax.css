@@ -2156,17 +2156,12 @@ text-animated-form
   padding-bottom: 100px; 
   padding-top: 30px; 
 }
-
-.porthole-scene {
-  align-items: center;
-  display: grid;
-  height: var(--porthole-size, 340px);
-  justify-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  perspective: 1200px;
-  position: relative;
-  width: var(--porthole-size, 340px);
+.porthole-caption { 
+  color: #fff; 
+  font-size: 0.9rem; 
+  margin-top: 12px; 
+  opacity: 0.85; 
+  text-align: center; 
 }
 
 /* Background INSIDE the glass only */
@@ -2217,6 +2212,18 @@ text-animated-form
 
   -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
           mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+}
+
+.porthole-scene {
+  align-items: center;
+  display: grid;
+  height: var(--porthole-size, 340px);
+  justify-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  perspective: 1200px;
+  position: relative;
+  width: var(--porthole-size, 340px);
 }
 
 /* Hidden toggle + open animation (unchanged) */
@@ -2640,6 +2647,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
