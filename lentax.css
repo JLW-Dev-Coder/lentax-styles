@@ -2618,7 +2618,6 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   background: rgba(0, 128, 0, 0.15);
   border: 1px solid #00cc00;
   border-radius: 8px;
-  color: #00ff00;
   display: flex;
   flex-direction: column;
   font-size: 1.2rem;
@@ -2636,7 +2635,6 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   border-color: #009900;
   transform: translateY(-2px);
 }
-
 
 
 /*Voyage*/
@@ -2667,6 +2665,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
