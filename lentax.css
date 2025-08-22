@@ -2143,83 +2143,40 @@ text-animated-form
 }
 
 /*Porthole*/ 
-.porthole-backdrop {
-margin: 0 auto;
-max-width: 520px;
-position: relative;
-width: 100%;
-}
-
 .porthole-bg {
-background-image: url("/path/to/your/background.jpg");
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-bottom: 0;
-left: 0;
-position: absolute;
-right: 0;
-top: 0;
-z-index: 1;
-}
-
-.porthole-caption {
-font-size: 0.95rem;
-margin: 8px auto 0;
-max-width: 520px;
-opacity: 0.9;
-text-align: center;
+  background-image: url('/path/to/your/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .porthole-door {
-background-image: url("/path/to/your/brass-rim.png");
-background-position: center;
-background-repeat: no-repeat;
-background-size: contain;
-bottom: 0;
-left: 0;
-opacity: 1;
-position: absolute;
-right: 0;
-top: 0;
-transition: opacity 300ms ease, transform 300ms ease;
-z-index: 2;
-}
-
-.porthole-hit {
-bottom: 0;
-cursor: pointer;
-left: 0;
-position: absolute;
-right: 0;
-top: 0;
-z-index: 3;
+  background-image: url('/path/to/brass-rim.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 .porthole-scene {
-aspect-ratio: 1 / 1;
-border-radius: 50%;
-inset: 0;
-margin: 0 auto;
-max-width: 320px;
-overflow: hidden;
-position: relative;
-width: 100%;
+  height: 250px; /* adjust size as needed */
+  margin: 0 auto;
+  position: relative;
+  width: 250px;
 }
-
-.porthole-scene\:hover .porthole-door {
-transform: scale(1.02);
-}
-
-.porthole-toggle {
-display: none;
-}
-
-.porthole-toggle\:checked \~ .porthole-scene .porthole-door {
-opacity: 0;
-transform: scale(0.98);
-}
-
 
 
 /*Pricing*/
@@ -2624,33 +2581,3 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
