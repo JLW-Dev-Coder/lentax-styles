@@ -2143,16 +2143,11 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/************************************************************
- * Porthole Component (full set with spacing fixes)
- ************************************************************/
-
-/* Backdrop panel */
 .porthole-backdrop { 
   background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
   border-radius: 8px;
-  padding-top: 6px !important;   /* tightened */
-  padding-bottom: 8px !important; /* tightened */
+  padding-top: 30px;
+  padding-bottom: 80px;
 }
 
 /* Inner background image (inside the porthole) */
@@ -2641,6 +2636,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
