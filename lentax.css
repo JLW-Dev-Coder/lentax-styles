@@ -112,6 +112,7 @@
     rgba(45, 35, 66, 0.4) 0 4px 8px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
 }
+
 /*Client*/
 .client-name {
   background: linear-gradient(270deg, #ff0000, #ffffff, #0000ff); /* Red → White → Blue */
@@ -2197,17 +2198,21 @@ text-animated-form
 }
 
 /*Porthole*/
+/* Background inside the hole */
 .porthole-bg {
-  background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop"); /* swap with your island */
+  background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
   height: 100%;
+  inset: 0;
   position: absolute;
   width: 100%;
   z-index: 1;
 }
 
+/* Caption */
 .porthole-caption {
   color: #fff;
   font-size: 0.9rem;
@@ -2216,37 +2221,64 @@ text-animated-form
   text-align: center;
 }
 
+/* Brass rim overlay with a real transparent hole (mask) */
 .porthole-door {
   background-image: url("https://secure.lentax.co/file/6526feeab3c3f97fc98d002516d7cb09/88786a77-fe85-47b3-b00e-752373a8c677/PNG_Porthole.png?original=1");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
+  pointer-events: none; /* clicks handled by .porthole-hit */
   position: relative;
   transform: rotateY(0deg);
   transform-origin: left center;
   transition: transform 1s cubic-bezier(.2,.75,.2,1);
   width: 100%;
   z-index: 2;
+
+  /* force inner viewport to be transparent even if PNG isn't cut out */
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
 }
 
+/* Ring-only click target (center is click-through) */
 .porthole-hit {
   inset: 0;
   position: absolute;
   z-index: 3;
+
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
 }
 
+/* Center the unit and give 3D perspective */
 .porthole-scene {
-  --porthole-size: 340px;
   align-items: center;
   display: grid;
-  height: var(--porthole-size);
+  height: var(--porthole-size, 320px);
   justify-items: center;
+  margin-left: auto;
+  margin-right: auto;
   perspective: 1200px;
   position: relative;
-  width: var(--porthole-size);
+  width: var(--porthole-size, 320px);
 }
 
+/* Fully hide the checkbox; no space, no visual */
+.porthole-toggle {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Open/close */
 .porthole-toggle:checked + .porthole-scene .porthole-door {
   transform: rotateY(-70deg);
 }
@@ -2583,6 +2615,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
