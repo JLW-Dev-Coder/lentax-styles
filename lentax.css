@@ -1983,79 +1983,28 @@ text-animated-form
 }
 
 /*Mint*/
+/*Mint*/
 
 .mint-backdrop-wrap {
-  position: relative;
   display: block;
+  position: relative;
 }
 
 .mint-backdrop {
-  position: absolute;
-  inset: 0;                     /* cover the whole card area */
   display: block;
-  width: 100%;
   height: 100%;
-  pointer-events: none;         /* never block clicks */
-  z-index: 0;                   /* sit under card content */
-  opacity: 0.85;                /* make it visible */
-  transform: none;              /* reset any inherited transforms */
+  inset: 0;
+  opacity: 0.85;
+  pointer-events: none;
+  position: absolute;
+  transform: none;
+  width: 100%;
+  z-index: 0;
 }
 
-.mint-backdrop[data-fit="cover"]  { object-fit: cover; }
-.mint-backdrop[data-fit="contain"]{ object-fit: contain; }
+.mint-backdrop[data-fit="contain"] { object-fit: contain; }
+.mint-backdrop[data-fit="cover"] { object-fit: cover; }
 
-.mint-block-container {
-  align-items: center;
-  background: rgba(17, 17, 17, 0.75);  /* was #111; translucency reveals backdrop */
-  border: 1px solid #333;
-  border-radius: 8px;
-  display: flex;
-  gap: 15px;
-  padding: 15px;
-  position: relative;                 /* create stacking context for children */
-  transition: background 0.3s ease, border-color 0.3s ease;
-  z-index: 1;                         /* keep card above backdrop */
-}
-
-.mint-block-container:hover {
-  background: rgba(26, 26, 26, 0.9);
-  border-color: #444;
-}
-
-/* Text area tint on hover */
-.mint-block-container:hover .mint-block-border {
-  background-color: rgba(0, 206, 201, 0.06);
-}
-
-/* Entrance */
-.mint-block-container.ease-in {
-  animation: mintEaseIn 0.8s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-@keyframes mintEaseIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.mint-block-lottie {
-  align-items: center;
-  display: flex;
-  flex: 0 0 160px;
-  justify-content: center;
-  min-width: 160px;
-  text-align: center;
-  width: 160px;
-}
-
-/* --- Text column --- */
-.mint-block-description {
-  flex-grow: 1;
-  font-size: 16px;
-  text-align: left;
-}
-
-/* --- Decorative left strip/bg for text area --- */
 .mint-block-border {
   background-color: transparent;
   border-radius: 6px;
@@ -2079,46 +2028,82 @@ text-animated-form
 }
 
 @keyframes mintBorderSweep {
-  0% { background-position: 0% 0%; }
-  50%{ background-position: 100% 100%; }
-  100%{ background-position: 0% 0%; }
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
-/* --- Utilities --- */
 .mint-block-click-option { color: #00ff00; }
+
+.mint-block-container {
+  align-items: center;
+  background: rgba(17, 17, 17, 0.75);
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  position: relative;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
+}
+
+.mint-block-container.ease-in {
+  animation: mintEaseIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes mintEaseIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mint-block-container:hover {
+  background: rgba(26, 26, 26, 0.9);
+  border-color: #444;
+}
+
+.mint-block-container:hover .mint-block-border {
+  background-color: rgba(0, 206, 201, 0.06);
+}
+
+.mint-block-description {
+  flex-grow: 1;
+  font-size: 16px;
+  text-align: left;
+}
+
+.mint-block-lottie {
+  align-items: center;
+  display: flex;
+  flex: 0 0 160px;
+  justify-content: center;
+  min-width: 160px;
+  text-align: center;
+  width: 160px;
+}
+
 .mint-block-pad { padding: 15px; }
 
 .mint-name {
   animation: gradientSweep 8s ease-in-out infinite;
   background: linear-gradient(270deg, #00b894, #00cec9, #0984e3);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 300% 300%;
   color: transparent;
   display: inline-block;
   font-size: inherit;
   font-weight: 700;
   letter-spacing: 0.5px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-transform: capitalize;
 }
 
 @keyframes gradientSweep {
-  0% { background-position: 0% 0%; }
-  50%{ background-position: 100% 100%; }
-  100%{ background-position: 0% 0%; }
-}
-
-/* --- Responsive --- */
-@media screen and (max-width: 768px) {
-  .mint-block-container { flex-direction: column; text-align: center; }
-  .mint-block-lottie { flex: 0 0 120px; min-width: 120px; width: 120px; }
-}
-
-/* --- Motion safety --- */
-@media (prefers-reduced-motion: reduce) {
-  .mint-backdrop { opacity: 0.6; }
-  .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 .mint-action-box {
@@ -2126,7 +2111,6 @@ text-animated-form
   background: rgba(0, 255, 0, 0.08);
   border: 1px solid #00ff00;
   border-radius: 8px;
-  /*cursor: pointer;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2150,25 +2134,15 @@ text-animated-form
   margin: 8px 0;
 }
 
-/* Default styling for #testing1 */
-#testing1 {
-  border: 2px solid #444;
-  border-radius: 6px;
-  margin: 20px auto;
-  max-width: 360px;
-  padding: 16px;
-  text-align: center;
+@media screen and (max-width: 768px) {
+  .mint-block-container { flex-direction: column; text-align: center; }
+  .mint-block-lottie { flex: 0 0 120px; min-width: 120px; width: 120px; }
 }
 
-/* When action box (checkbox) is clicked, style #testing1 the same */
-#mint-action-toggle:checked + .mint-action-box + #testing1 {
-  background: rgba(0, 255, 0, 0.08);
-  border: 1px solid #00ff00;
-  border-radius: 8px;
-  transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+@media (prefers-reduced-motion: reduce) {
+  .mint-backdrop { opacity: 0.6; }
+  .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
 }
-
-
 
 /*Pricing*/
 :root {
@@ -2727,6 +2701,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
