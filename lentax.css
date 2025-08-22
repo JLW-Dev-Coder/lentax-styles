@@ -485,23 +485,32 @@
   padding: 30px;
 }
 
-.flow-voyage-progress {
-  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
-  border: 2px solid goldenrod;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  /*color: #fff;*/
-  font-family: 'Raleway', sans-serif;
-  margin: 0 auto 16px;
-  max-width: 360px;
-  padding: 12px 18px;
+.flow-voyage-progress h2 {
+  background: linear-gradient(
+    90deg,
+    #FFD700,   /* gold */
+    #FFA500,   /* orange-gold */
+    #FFD700    /* gold again */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
   text-align: center;
-  /*text-transform: uppercase;*/
+  font-size: 30px;
+  transition: background 0.5s ease; /* switch to background for gradient animation */
 }
 
-.flow-voyage-progress h3 {
-  font-size: 1.1rem;
-  margin: 0;
+.flow-voyage-progress h2:hover {
+  background: linear-gradient(
+    90deg,
+    #FFD700,   /* gold */
+    #00ff00,   /* bright green */
+    #FFD700    /* gold again */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Responsive */
@@ -929,6 +938,7 @@
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.25);
 }
+
 /*Item Grid*/
 /*Grid*/
 .item-grid {
@@ -2633,56 +2643,3 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
