@@ -484,7 +484,7 @@
   padding: 30px;
 }
 
-.flow-voyage-progress h3 {
+.flow-voyage-progress {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -500,7 +500,7 @@
   transition: background 0.5s ease; /* switch to background for gradient animation */
 }
 
-.flow-voyage-progress h3:hover {
+.flow-voyage-progress:hover {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -2642,4 +2642,5 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
