@@ -1981,18 +1981,14 @@ text-animated-form
   text-transform: capitalize;
   font-size: inherit;
 }
-/*Mint*/
-/* =========================
-   Universal Backdrop + Mint
-   ========================= */
 
-/* --- Universal backdrop wrapper (sits around Mint block) --- */
+/*Mint*/
+
 .mint-backdrop-wrap {
   position: relative;
   display: block;
 }
 
-/* The Lottie backdrop (ANY url). Scales/centers behind Mint block */
 .mint-backdrop {
   position: absolute;
   inset: 0;                     /* cover the whole card area */
@@ -2005,14 +2001,12 @@ text-animated-form
   transform: none;              /* reset any inherited transforms */
 }
 
-/* Optional sizing tunables (override as needed) */
 .mint-backdrop[data-fit="cover"]  { object-fit: cover; }
 .mint-backdrop[data-fit="contain"]{ object-fit: contain; }
 
-/* --- Mint card container: make background translucent so backdrop shows --- */
 .mint-block-container {
   align-items: center;
-  background: rgba(17, 17, 17, 0.85);  /* was #111; translucency reveals backdrop */
+  /*background: rgba(17, 17, 17, 0.85);  /* was #111; translucency reveals backdrop */
   border: 1px solid #333;
   border-radius: 8px;
   display: flex;
@@ -2044,7 +2038,6 @@ text-animated-form
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Left Lottie column (unchanged behavior) --- */
 .mint-block-lottie {
   align-items: center;
   display: flex;
@@ -2095,7 +2088,6 @@ text-animated-form
 .mint-block-click-option { color: #00ff00; }
 .mint-block-pad { padding: 15px; }
 
-/* --- Name gradient (unchanged) --- */
 .mint-name {
   animation: gradientSweep 8s ease-in-out infinite;
   background: linear-gradient(270deg, #00b894, #00cec9, #0984e3);
@@ -2134,7 +2126,7 @@ text-animated-form
   background: rgba(0, 255, 0, 0.08);
   border: 1px solid #00ff00;
   border-radius: 8px;
-  cursor: pointer;
+  /*cursor: pointer;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2735,6 +2727,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
