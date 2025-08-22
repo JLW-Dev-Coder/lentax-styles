@@ -2224,7 +2224,7 @@ text-animated-form
 .porthole-backdrop { 
   background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
   border-radius: 8px;
-  padding-bottom: 50px;
+  padding-bottom: 90px;
   padding-top: 30px;
 }
 
@@ -2644,6 +2644,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
