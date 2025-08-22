@@ -2150,108 +2150,115 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/* Container (keep or remove the gradient as you like) */
-.porthole-backdrop{
-  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
+/************************************************************
+ * Porthole Component (full set with spacing fixes)
+ ************************************************************/
+
+/* Backdrop panel */
+.porthole-backdrop { 
+  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
   border-radius: 8px;
-  padding: 0;                 /* no extra space around the porthole */
+  padding-top: 6px !important;   /* tightened */
+  padding-bottom: 8px !important; /* tightened */
 }
 
-/* Center the unit, control size with --porthole-size */
-.porthole-scene{
-  align-items: center;
-  display: grid;
-  height: var(--porthole-size, 420px);
-  justify-items: center;
-  margin: 0 auto;             /* center horizontally */
-  perspective: 1200px;
-  position: relative;
-  width: var(--porthole-size, 420px);
-}
-
-/* Fully hide the checkbox (door starts CLOSED) */
-.porthole-toggle{
-  border: 0; clip: rect(0 0 0 0);
-  clip-path: inset(50%); height:1px; margin:0; overflow:hidden;
-  padding:0; position:absolute; white-space:nowrap; width:1px;
-}
-
-/* Background INSIDE the glass only (centered perfectly) */
-.porthole-bg{
+/* Inner background image (inside the porthole) */
+.porthole-bg {
   background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;     /* or 'contain' if you prefer full logo within */
-  position: absolute; inset: 0;
+  background-size: cover;
+  border-radius: 50%;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
   z-index: 1;
-
-  /* show only the inner circle (glass aperture) */
-  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
-          mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
-  clip-path: circle(var(--hole) at 50% 50%); /* fallback */
 }
 
-/* Reveal text (sits over bg, below the door; fades in when opened) */
-.porthole-reveal{
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-  text-align: center;
-  padding: 0 18px;
-  z-index: 1;                 /* over BG, under door */
-  opacity: 0;                 /* hidden until open */
-  transition: opacity .45s ease .35s; /* slight delay for nice timing */
-
-  /* readable over any BG */
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,.5);
-  font-weight: 800;
-  line-height: 1.2;
-}
-.porthole-reveal span{ color: #FFD700; }
-
-/* Brass door overlay (PNG); center stays cut out so BG shows only in hole) */
-.porthole-door{
+/* Brass rim overlay with a real transparent hole (mask) */
+.porthole-door {
   background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  height: 100%;
+  pointer-events: none; /* clicks handled by .porthole-hit */
   position: relative;
-  width: 100%; height: 100%;
-  transform-origin: left center;
   transform: rotateY(0deg);
+  transform-origin: left center;
   transition: transform 1s cubic-bezier(.2,.75,.2,1);
+  width: 100%;
   z-index: 2;
 
-  /* ensure the center is transparent even if PNG isn’t fully cut */
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 calc(var(--hole) + 1px) 100%);
-          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 calc(var(--hole) + 1px) 100%);
+  /* force inner viewport to be transparent even if PNG isn't cut out */
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 calc(var(--hole)), #000 calc(var(--hole) + 1px) 100%);
 }
 
-/* Ring-only click target so inputs under the glass remain usable */
-.porthole-hit{
-  position: absolute; inset: 0; z-index: 3;
-  -webkit-mask: radial-gradient(circle at 50% 50%,
-    transparent 0 var(--hole),
-    #000 var(--hole) calc(var(--hole) + var(--tap)),
-    transparent calc(var(--hole) + var(--tap)) 100%);
-          mask: radial-gradient(circle at 50% 50%,
-    transparent 0 var(--hole),
-    #000 var(--hole) calc(var(--hole) + var(--tap)),
-    transparent calc(var(--hole) + var(--tap)) 100%);
+/* Ring-only click target (center is click-through) */
+.porthole-hit {
+  inset: 0;
+  position: absolute;
+  z-index: 3;
+
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
 }
 
-/* Open interaction */
-.porthole-toggle:checked + .porthole-scene .porthole-door{
+/* Center the unit and give 3D perspective */
+.porthole-scene {
+  align-items: center;
+  display: grid;
+  height: var(--porthole-size, 320px);
+  justify-items: center;
+  margin: 6px auto !important;  /* tightened */
+  perspective: 1200px;
+  position: relative;
+  width: var(--porthole-size, 320px);
+}
+
+/* Fully hide the checkbox; no space, no visual */
+.porthole-toggle {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Open/close */
+.porthole-toggle:checked + .porthole-scene .porthole-door {
   transform: rotateY(-70deg);
 }
-.porthole-toggle:checked + .porthole-scene .porthole-reveal{
-  opacity: 1;
+
+/* Caption under the porthole */
+.porthole-caption {
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 6px 0 8px !important; /* tightened */
+  opacity: 0.85;
+  text-align: center;
 }
 
-/* Caption */
-.porthole-caption{
-  color:#fff; font-size:.9rem; opacity:.85; text-align:center; margin-top:12px;
+/* ====== Headings inside the backdrop ====== */
+.porthole-backdrop .flow-voyage-progress,
+.porthole-backdrop .flow-item-name {
+  margin: 0 !important;
 }
+
+.porthole-backdrop .flow-voyage-progress strong,
+.porthole-backdrop .flow-item-name h2 {
+  display: block;
+  margin: 0 !important;
+  line-height: 1.05;
+}
+
 
 
 /*Pricing*/
@@ -2656,6 +2663,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
