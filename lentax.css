@@ -1981,244 +1981,154 @@ text-animated-form
   text-transform: capitalize;
   font-size: inherit;
 }
-/*Mint Block*/
+/*Mint*/
+/* =========================
+   Universal Backdrop + Mint
+   ========================= */
+
+/* --- Universal backdrop wrapper (sits around Mint block) --- */
+.mint-backdrop-wrap {
+  position: relative;
+  display: block;
+}
+
+/* The Lottie backdrop (ANY url). Scales/centers behind Mint block */
+.mint-backdrop {
+  position: absolute;
+  inset: 0;                     /* cover the whole card area */
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;         /* never block clicks */
+  z-index: 0;                   /* sit under card content */
+  opacity: 0.85;                /* make it visible */
+  transform: none;              /* reset any inherited transforms */
+}
+
+/* Optional sizing tunables (override as needed) */
+.mint-backdrop[data-fit="cover"]  { object-fit: cover; }
+.mint-backdrop[data-fit="contain"]{ object-fit: contain; }
+
+/* --- Mint card container: make background translucent so backdrop shows --- */
+.mint-block-container {
+  align-items: center;
+  background: rgba(17, 17, 17, 0.85);  /* was #111; translucency reveals backdrop */
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  position: relative;                 /* create stacking context for children */
+  transition: background 0.3s ease, border-color 0.3s ease;
+  z-index: 1;                         /* keep card above backdrop */
+}
+
+.mint-block-container:hover {
+  background: rgba(26, 26, 26, 0.9);
+  border-color: #444;
+}
+
+/* Text area tint on hover */
+.mint-block-container:hover .mint-block-border {
+  background-color: rgba(0, 206, 201, 0.06);
+}
+
+/* Entrance */
+.mint-block-container.ease-in {
+  animation: mintEaseIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes mintEaseIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Left Lottie column (unchanged behavior) --- */
+.mint-block-lottie {
+  align-items: center;
+  display: flex;
+  flex: 0 0 160px;
+  justify-content: center;
+  min-width: 160px;
+  text-align: center;
+  width: 160px;
+}
+
+/* --- Text column --- */
+.mint-block-description {
+  flex-grow: 1;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* --- Decorative left strip/bg for text area --- */
 .mint-block-border {
   background-color: transparent;
   border-radius: 6px;
-  overflow: hidden; /* lets the ::before strip clip to the 6px radius */
+  overflow: hidden;
   padding-left: 16px;
   position: relative;
   transition: background-color 0.3s ease;
 }
 
 .mint-block-border::before {
+  animation: mintBorderSweep 6s ease-in-out infinite;
   background: linear-gradient(180deg, #00b894, #00cec9, #0984e3);
   background-size: 300% 300%;
   border-radius: 2px;
+  bottom: 0;
   content: "";
   left: 0;
   position: absolute;
   top: 0;
-  bottom: 0;
   width: 4px;
-  animation: mintBorderSweep 6s ease-in-out infinite;
 }
 
-/* Keyframes tied to .mint-block-border */
 @keyframes mintBorderSweep {
-  0%   { background-position: 0% 0%; }
-  50%  { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+  0% { background-position: 0% 0%; }
+  50%{ background-position: 100% 100%; }
+  100%{ background-position: 0% 0%; }
 }
 
-.mint-block-click-option {
-  color: #00ff00;
-}
+/* --- Utilities --- */
+.mint-block-click-option { color: #00ff00; }
+.mint-block-pad { padding: 15px; }
 
-/* Container with hover background effect */
-.mint-block-container {
-  align-items: center;
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 8px;
-  display: flex;
-  gap: 15px;
-  /*margin-bottom: 30px;
-  margin-top: 30px;*/
-  padding: 15px;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-.mint-block-container:hover {
-  background: #1a1a1a;
-  border-color: #444;
-}
-
-/* On hover, lightly tint the text area to match Mint */
-.mint-block-container:hover .mint-block-border {
-  background-color: rgba(0, 206, 201, 0.06);
-}
-
-.mint-block-container.ease-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: mintEaseIn 0.8s ease-out forwards;
-}
-
-@keyframes mintEaseIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Text column */
-.mint-block-description {
-  /*color: #ffffff;*/
-  flex-grow: 1;
-  font-size: 16px;
-  /*line-height: 1.6;*/
-  text-align: left;
-}
-
-/* Left column (Lottie) — prevent squish */
-.mint-block-lottie {
-  align-items: center;
-  display: flex;
-  flex: 0 0 160px;   /* fixed flex-basis */
-  justify-content: center;
-  min-width: 160px;  /* don’t shrink below this */
-  text-align: center;
-  width: 160px;
-}
-
-/* Responsive stack */
-@media screen and (max-width: 768px) {
-  .mint-block-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .mint-block-description {
-    /*padding-top: 12px;*/
-  }
-/* Optional: smaller square on mobile */
-  .mint-block-lottie {
-    flex: 0 0 120px;
-    min-width: 120px;
-    width: 120px;
-  }
-}
-
-/* Padding utility for Mint block text */
-.mint-block-pad {
-  padding: 15px;
-}
-/*Mint Flag*/
-/* Tunables */
-:root {
-  --mint-flag-left: 16px;
-  --mint-flag-size: 150px;
-  --mint-flag-scale: 0.96;
-  --mint-flag-scale-hover: 1.05;
-  --mint-flag-tilt-hover: -1deg;
-  --mint-flag-opacity: 0.85;
-}
-
-/* Flag-as-border wrapper */
-.mint-flag-border {
-  padding: 10px 10px 10px calc(var(--mint-flag-left) + var(--mint-flag-size) + 24px);
-  position: relative;
-}
-
-/* Keep text above the flag */
-.mint-flag-border .mint-block-pad,
-.mint-flag-border .tooltip-heading,
-.mint-flag-border h1,
-.mint-flag-border h2,
-.mint-flag-border h3,
-.mint-flag-border p {
-  position: relative;
-  z-index: 1;
-}
-
-/* Pirate flag behind text (acts like border) */
-.mint-flag {
-  height: var(--mint-flag-size);
-  left: var(--mint-flag-left);
-  opacity: var(--mint-flag-opacity);
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) scale(var(--mint-flag-scale));
-  transform-origin: center;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  width: var(--mint-flag-size);
-  will-change: transform, opacity;
-  z-index: 0;
-}
-
-/* Hover/focus activation on the text area */
-.mint-flag-border:hover .mint-flag,
-.mint-flag-border:focus-within .mint-flag {
-  opacity: 1;
-  transform: translateY(-50%) scale(var(--mint-flag-scale-hover)) rotate(var(--mint-flag-tilt-hover));
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  :root {
-    --mint-flag-size: 120px;
-  }
-  .mint-flag-border {
-    padding: 10px 10px 10px calc(var(--mint-flag-left) + var(--mint-flag-size) + 20px);
-  }
-}
-
-/* Motion safety */
-@media (prefers-reduced-motion: reduce) {
-  .mint-flag {
-    transition: none;
-  }
-  .mint-flag-border:hover .mint-flag,
-  .mint-flag-border:focus-within .mint-flag {
-    transform: translateY(-50%);
-  }
-}
-/*Mint Name*/
+/* --- Name gradient (unchanged) --- */
 .mint-name {
-  background: linear-gradient(
-    270deg,
-    #00b894, /* Teal Green */
-    #00cec9, /* Light Aqua */
-    #0984e3  /* Bold Blue */
-  );
+  animation: gradientSweep 8s ease-in-out infinite;
+  background: linear-gradient(270deg, #00b894, #00cec9, #0984e3);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   background-clip: text;
   color: transparent;
-
-  animation: gradientSweep 8s ease-in-out infinite;
   display: inline-block;
+  font-size: inherit;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: capitalize;
-  font-size: inherit;
 }
 
-/*Shared Aniamted with lenbot-name*/
-@keyframes gradientWave {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-.mint-map-wrapper {
-  position: relative;
-  display: inline-block; /* or block, depending on layout */
+@keyframes gradientSweep {
+  0% { background-position: 0% 0%; }
+  50%{ background-position: 100% 100%; }
+  100%{ background-position: 0% 0%; }
 }
 
-.mint-map-backdrop {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;   /* adjust size as needed */
-  height: 300px;  /* adjust size as needed */
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  opacity: 0.7;   /* softer behind Mint */
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .mint-block-container { flex-direction: column; text-align: center; }
+  .mint-block-lottie { flex: 0 0 120px; min-width: 120px; width: 120px; }
 }
 
-.mint-block-container {
-  position: relative;
-  z-index: 1; /* ensures Mint is above the map */
+/* --- Motion safety --- */
+@media (prefers-reduced-motion: reduce) {
+  .mint-backdrop { opacity: 0.6; }
+  .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
 }
+
 
 /*Pricing*/
 :root {
@@ -2777,6 +2687,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
