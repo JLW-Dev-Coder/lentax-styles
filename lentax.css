@@ -2072,8 +2072,12 @@ text-animated-form
 .mint-block-description {
   flex-grow: 1;
   font-size: 16px;
+  padding: 0 15px;
   text-align: left;
-  padding: 15px;
+}
+
+.mint-block-description h3 {
+  margin: 0 0 8px;
 }
 
 .mint-block-lottie {
@@ -2086,7 +2090,9 @@ text-animated-form
   width: 160px;
 }
 
-.mint-block-pad { padding: 15px; }
+.mint-block-pad {
+  padding: 0 15px;
+}
 
 .mint-name {
   animation: gradientSweep 8s ease-in-out infinite;
@@ -2704,6 +2710,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
