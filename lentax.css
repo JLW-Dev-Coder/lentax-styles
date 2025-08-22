@@ -371,10 +371,10 @@
       /*letter-spacing: 0.6px;*/
       /*line-height: 1.15;*/
       /*margin: 0.25rem 0 0;*/
-      position: relative;
+      /*position: relative;*/
       text-align: center;
       text-transform: none;
-      will-change: transform;
+      /*will-change: transform;*/
       /* Slow, subtle hue drift so letters remain the star; remove if you want static color */
       animation: flow-item-name-gradient 12s linear infinite;
     }
@@ -2782,6 +2782,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
