@@ -1588,6 +1588,8 @@ text-animated-form
 /* Explicitly exclude .info-content-title h2 */
 .text-default .info-content-title h2 {
   color: inherit; /* ignore .text-default color override */
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
 /* Hover/focus/active states (also exclude .info-content-title h2) */
@@ -2701,6 +2703,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
