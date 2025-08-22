@@ -324,7 +324,6 @@
 #statusFilters .filter-limited { background: #ffa500; }
 
 /*Flows*/
-/* Flows */
 .flow-button-cta {
   background-color: #E67300;
   border: none;
@@ -485,7 +484,7 @@
   padding: 30px;
 }
 
-.flow-voyage-progress h2 {
+.flow-voyage-progress h3 {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -501,7 +500,7 @@
   transition: background 0.5s ease; /* switch to background for gradient animation */
 }
 
-.flow-voyage-progress h2:hover {
+.flow-voyage-progress h3:hover {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -2643,3 +2642,4 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
