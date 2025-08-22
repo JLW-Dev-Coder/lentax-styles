@@ -2143,8 +2143,6 @@ text-animated-form
 }
 
 /*Porthole*/ 
-/* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
-
 .porthole-backdrop {
   background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%);
   border-radius: 8px;
@@ -2640,6 +2638,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
