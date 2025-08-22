@@ -367,15 +367,28 @@
   margin-top: 30px;
 }
 
-.flow-item-name {
-  color: goldenrod;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin: 12px 0 20px;
+.flow-item-name h2 {
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  line-height: 1;
+  background: linear-gradient(90deg, #4dd0e1, #7e57c2, #ff8a65);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: block;          /* inline-block won’t fill width */
+  text-align: center;      /* now centers text within full width */
+  font-size: 45px;
+  overflow: hidden;
+  border-radius: 35px;
+  padding: 8px;
+  margin-bottom: 20px;
+  transition: -webkit-text-fill-color 0.3s ease;
+}
+
+/* Hover/active overrides the gradient mask with solid white */
+.flow-item-name h2:hover,
+.flow-item-name h2:focus,
+.flow-item-name h2.active {
+  /*-webkit-text-fill-color: #fff;*/
 }
 
 .flow-main {
@@ -2201,6 +2214,7 @@ text-animated-form
 .porthole-backdrop { 
   background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
   border-radius: 8px;
+  padding: 15px;
 }
 
 .porthole-bg {
@@ -2619,6 +2633,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
