@@ -2198,7 +2198,11 @@ text-animated-form
 }
 
 /*Porthole*/
-/* Background inside the hole */
+.porthole-backdrop { 
+  background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
+  border-radius: 8px;
+}
+
 .porthole-bg {
   background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
   background-position: center;
@@ -2615,6 +2619,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
