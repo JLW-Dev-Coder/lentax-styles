@@ -2246,21 +2246,6 @@ text-animated-form
   text-align: center;
 }
 
-/* ====== Headings inside the backdrop ====== */
-.porthole-backdrop .flow-voyage-progress,
-.porthole-backdrop .flow-item-name {
-  margin: 0 !important;
-}
-
-.porthole-backdrop .flow-voyage-progress strong,
-.porthole-backdrop .flow-item-name h2 {
-  display: block;
-  margin: 0 !important;
-  line-height: 1.05;
-}
-
-
-
 /*Pricing*/
 :root {
   --accent-purple: #8c52ff;
@@ -2663,6 +2648,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
