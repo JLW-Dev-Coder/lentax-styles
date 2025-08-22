@@ -2182,6 +2182,22 @@ text-animated-form
           mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
 }
 
+/* ===== Porthole CTA Text ===== */
+.porthole-cta-text {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #FFD700; /* gold tone */
+  margin: 4px 0 0;
+  opacity: 0.9;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.porthole-cta-text:hover {
+  color: #FFA500; /* orange-gold on hover */
+  opacity: 1;
+}
+
 /* Brass rim overlay (PNG has transparent center) */
 .porthole-door {
   background-image: url("https://secure.lentax.co/file/bb21777391cc6822ea6e1a249db20cf2/04a86588-0c6f-41e5-a2c1-1147b2d8db17/PNG_Porthole+%281%29.png?original=1");
@@ -2638,6 +2654,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
