@@ -2169,10 +2169,10 @@ text-animated-form
 
 /* Inner background image – now clipped to the circular hole */
 .porthole-bg {
-  background-image: url("https://secure.lentax.co/file/24b4945b370b875dd0bc1d8f05844bb7/2e3f0231-1be9-40f0-8d24-f489ce9695e6/SVG_Membership+Perk_Active+Member+Account.svg?original=1");
-  background-position: center;           /* adjust e.g., center 45% if needed */
+  background-image: url("...your image...");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 140% 140%;   /* ⬅️ make image bigger than circle */
+  background-position: center; /* adjust focus inside */
   border-radius: 50%;
   position: absolute;
   inset: 0;
@@ -2180,7 +2180,6 @@ text-animated-form
   height: 100%;
   z-index: 1;
 
-  /* ⬇️ Only show the part inside the hole */
   -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
           mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
 }
@@ -2641,5 +2640,6 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
