@@ -2217,13 +2217,13 @@ text-animated-form
 .porthole-scene {
   align-items: center;
   display: grid;
-  height: var(--porthole-size, 340px);
+  height: var(--porthole-size, 360px);
   justify-items: center;
   margin-left: auto;
   margin-right: auto;
   perspective: 1200px;
   position: relative;
-  width: var(--porthole-size, 340px);
+  width: var(--porthole-size, 360px);
 }
 
 /* Hidden toggle + open animation (unchanged) */
@@ -2647,6 +2647,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
