@@ -2147,7 +2147,7 @@ text-animated-form
   background: radial-gradient(circle at 50% 0%, midnightblue, navy 40%, black 100%); 
   border-radius: 8px;
   padding-top: 30px;
-  padding-bottom: 80px;
+  padding-bottom: 30px;
 }
 
 /* Inner background image (inside the porthole) */
@@ -2636,6 +2636,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 
 
 
