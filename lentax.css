@@ -371,8 +371,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: vibrant-shift 6s infinite linear;
-  font-size: 35px;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 800;
   letter-spacing: -1px;
   overflow: hidden;
   text-align: center;
@@ -2680,6 +2680,7 @@ text-animated-form
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
 
