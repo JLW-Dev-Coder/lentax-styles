@@ -2719,36 +2719,3 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
   color: #cc0000;
   transform: translateY(-2px);
 }
-
-/* SD Primary Button*/
-.button-custom-lentax .cbe-block-button-element.btn.btn-primary {
-  background: linear-gradient(135deg, orange, orange-gold);
-  border: none;
-  border-bottom: 2px solid black;
-  border-radius: 6px;
-  border-right: 2px solid black;
-  box-shadow:
-    rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
-  color: rgba(255, 255, 255, 0.9);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s ease-in-out;
-  width: fit-content;
-  z-index: 3;
-}
-
-.button-custom-lentax .cbe-block-button-element.btn.btn-primary:active {
-  box-shadow: inset 0 3px 7px #d6d6e7;
-  transform: translateY(2px);
-}
-
-.button-custom-lentax .cbe-block-button-element.btn.btn-primary:hover {
-  box-shadow:
-    rgba(45, 35, 66, 0.4) 0 4px 8px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
-  color: #fff;
-  transform: translateY(-2px);
-}
