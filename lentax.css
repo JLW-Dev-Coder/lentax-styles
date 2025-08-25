@@ -2617,7 +2617,7 @@ text-animated-form
 }
 
 body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
-  color: #111111 !important;
+  background: transparent !important;
 }
 
 .cbe-block-checklist .checklist-header .checklist-title {
@@ -2627,6 +2627,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-header {
 .cbe-block-checklist .checklist-header svg {
   display: none !important;
 }
+
 body:not(.sd-dark-mode) .cbe-block-checklist .checklist-actions .button {
   background: #222 !important;
   transition: background 0.3s ease, border-color 0.3s ease;
@@ -2645,7 +2646,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-actions .button:hover {
 }
 
 body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
-  background: white !important;
+  background: transparent !important;
   border-radius: 35px !important;
   padding: 35px 10px;
 }
@@ -2729,4 +2730,5 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
