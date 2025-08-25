@@ -366,7 +366,7 @@
   margin-top: 30px;
 }
 
-.flow-item-name {
+.flow-item-name h2 {
   background: linear-gradient(90deg, #00ffcc, #33ccff, #ff33cc, #ff9933, #ffff33);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -379,7 +379,7 @@
   transition: transform 0.3s ease;
 }
 
-.flow-item-name:hover {
+.flow-item-name h2:hover {
   /*transform: scale(1.05);*/
 }
 
@@ -2680,6 +2680,7 @@ text-animated-form
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
 
