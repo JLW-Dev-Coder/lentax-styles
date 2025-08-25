@@ -372,6 +372,7 @@
   -webkit-text-fill-color: transparent;
   animation: vibrant-shift 6s infinite linear;
   font-size: 35px;
+  font-weight: 700;
   letter-spacing: -1px;
   overflow: hidden;
   text-align: center;
@@ -379,7 +380,7 @@
 }
 
 .flow-item-name h2:hover {
-  transform: scale(1.05);
+  /*transform: scale(1.05);*/
 }
 
 @keyframes vibrant-shift {
@@ -2679,5 +2680,6 @@ text-animated-form
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
