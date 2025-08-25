@@ -2722,11 +2722,11 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
 
 /* Dark Mode Primary Button */
 .sd-dark-mode .btn.btn-primary {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.9);
   transition: color 0.2s ease-in-out;
 }
 
 .sd-dark-mode .btn.btn-primary:hover {
-  color: #fff;
+  color: #000;
 }
 
