@@ -2646,7 +2646,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-actions .button:hover {
 }
 
 body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
-  background: transparent !important;
+  /*background: transparent !important;*/
   border-radius: 35px !important;
   padding: 35px 10px;
 }
@@ -2730,6 +2730,7 @@ body:not(.sd-dark-mode) .cbe-block-checklist .checklist-item-content {
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
 
