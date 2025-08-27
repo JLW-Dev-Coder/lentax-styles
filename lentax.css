@@ -1156,6 +1156,22 @@ z-index: 3;
     border-bottom: 8px solid transparent;
   }
 
+/*Lottie*/
+.lottie-backdrop {
+  position: relative;
+}
+
+.lottie-backdrop .mint-backdrop {
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.lottie-backdrop > div:last-child {
+  position: relative;
+  z-index: 1;
+}
+
 /*Row*/
 .row-default {
   /*background-color: rgba(0, 0, 0, 0.9);
@@ -2687,6 +2703,7 @@ text-animated-form
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
 
