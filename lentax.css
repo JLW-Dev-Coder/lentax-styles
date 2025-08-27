@@ -1161,13 +1161,13 @@ z-index: 3;
   position: relative;
 }
 
-.lottie-backdrop .mint-backdrop {
+.lottie-backdrop dotlottie-wc {
   inset: 0;
   position: absolute;
   z-index: 0;
 }
 
-.lottie-backdrop > div:last-child {
+.lottie-backdrop > div {
   position: relative;
   z-index: 1;
 }
@@ -2703,6 +2703,7 @@ text-animated-form
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
 
