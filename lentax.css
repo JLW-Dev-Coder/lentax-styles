@@ -603,17 +603,16 @@
   }
 }
 
-/* Subtitle (H2) */
 .form-subtitle {
   font-weight: normal;
   line-height: 1.4;
   margin: 0; /* Remove default top/bottom margin */
 }
 
-/* Title (H1) */
 .form-title {
   /*margin: 0;*/
 }
+
 /*Gold*/
 .gold-blue-light {
   box-shadow:
@@ -626,40 +625,6 @@
 .gold-border {
   box-shadow:
     0 0 10px rgb(255, 165, 0);
-}
-
-.gold-column-one {
-  background-color: rgba(0, 0, 0, 0.85);
-  border-radius: 8px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-  margin: 15px;
-  overflow: hidden;
-  padding: 30px;
-  position: relative;
-}
-
-.gold-column-one:hover .overlay-text {
-  opacity: 1;
-}
-
-/* Overlay backdrop */
-.gold-column-one::before {
-  background-color: rgba(0, 0, 0, 0.65);
-  border-radius: 8px;
-  content: "";
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  transition: opacity 0.3s ease;
-  width: 100%;
-  z-index: 1;
-}
-
-.gold-column-one:hover::before {
-  opacity: 1;
 }
 
 .gold-name {
@@ -689,7 +654,6 @@
 .gold-name-v2 h2.active {
   /*-webkit-text-fill-color: #fff;*/
 }
-
 
 /*Gold Light*/
 .gold-light-green {
@@ -742,6 +706,7 @@
     66% { color: blue; }
     100% { color: red; }
   }
+
 /*Iframe*/
 .iframe-background {
   position: relative; /* Creates positioning context for iframe */
@@ -757,8 +722,8 @@
   z-index: -1;        /* Puts iframe behind all other content */
   border: none;       /* Removes default border */
 }
+
 /*Image*/
-/*Image Block*/
 .image-block {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
@@ -767,12 +732,11 @@
   margin-bottom: 75px;
 }
 
-/*Image Style*/
 .image-style {
   border-radius: 50%;
 }
+
 /*Item*/
-/*Item Button CTA*/
 .item-btn-cta {
   background: linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255));
   box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
@@ -796,14 +760,82 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
-/*Item Column*/
+
 .item-column {
-  background-color: rgba(0, 0, 0, 0.9);
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  flex: 1 1 65%;
-  padding: 30px 30px 45px 30px;
-  margin: 15px;
+background-color: rgba(0, 0, 0, 0.9);
+border-radius: 8px;
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+flex: 1 1 65%;
+margin: 15px;
+overflow: hidden;
+padding: 30px 30px 45px 30px;
+position: relative;
+}
+
+.item-column::after {
+background-color: rgba(0, 0, 0, 0.65);
+border-radius: 8px;
+content: "";
+height: 100%;
+left: 0;
+opacity: 0;
+pointer-events: none;
+position: absolute;
+top: 0;
+transition: opacity 0.3s ease;
+width: 100%;
+z-index: 1;
+}
+
+.item-column::before {
+animation: feature-shine 3s infinite;
+background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+content: "";
+height: 100%;
+left: -75%;
+pointer-events: none;
+position: absolute;
+top: 0;
+transform: skewX(-20deg);
+width: 50%;
+z-index: 2;
+}
+
+@keyframes feature-shine {
+0% { left: -75%; }
+50% { left: 125%; }
+100% { left: 125%; }
+}
+
+.item-column:hover .item-column-overlay-text {
+opacity: 1;
+}
+
+.item-column:hover::after {
+opacity: 1;
+}
+
+.item-column-overlay-icon {
+}
+
+.item-column-overlay-line {
+display: block;
+letter-spacing: 0.5px;
+text-transform: capitalize;
+}
+
+.item-column-overlay-text {
+color: #FFD700;
+left: 50%;
+line-height: 1.6;
+opacity: 0;
+pointer-events: none;
+position: absolute;
+text-align: center;
+top: 36%;
+transform: translate(-50%, -50%);
+transition: opacity 0.3s ease;
+z-index: 3;
 }
 
 .item-column-v2 {
@@ -842,6 +874,7 @@
   50%  { left: 125%; }
   100% { left: 125%; }
 }
+
 /*Item Column Two*/
 .item-column-two {
   background-color: rgba(0, 0, 0, 0.9);
@@ -1122,33 +1155,7 @@
     border-left: 8px solid #00e676;
     border-bottom: 8px solid transparent;
   }
-/*Overlay*/
-.overlay-icon {
-  /*--fa-primary-color: rgba(255, 26, 26, 0.7);
-  /*--fa-secondary-color: rgba(255, 26, 26, 0.7);
-  --fa-primary-opacity: 1;
-  --fa-secondary-opacity: 1;*/
-}
 
-.overlay-line {
-  display: block;
-  text-transform: title;
-  letter-spacing: 0.5px;
-}
-
-.overlay-text {
-  position: absolute;
-  top: 36%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #FFD700;
-  line-height: 1.6;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
 /*Row*/
 .row-default {
   /*background-color: rgba(0, 0, 0, 0.9);
@@ -2680,6 +2687,7 @@ text-animated-form
 .sd-dark-mode .btn.btn-primary:hover {
   color: #fff !important;
 }
+
 
 
 
