@@ -2221,7 +2221,7 @@ text-animated-form
 
 .mint-block-container {
   align-items: center;
-  background: rgba(17, 17, 17, 0.75);
+  background: rgba(17, 17, 17, 0.9);
   border: 1px solid #333;
   border-radius: 8px;
   display: flex;
@@ -2912,6 +2912,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
