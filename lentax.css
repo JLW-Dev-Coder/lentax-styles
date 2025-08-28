@@ -1019,7 +1019,7 @@
   z-index: 0;
 }
 
-/* background layer */
+/* optional decorative background */
 .item-column-two-v3-bg {
   inset: 0;
   position: absolute;
@@ -1031,7 +1031,7 @@
   z-index: 1;
 }
 
-/* overlay (iframe/decoration between bg + content) */
+/* overlay (iframe / lottie, sits *behind content*) */
 .item-column-two-v3-overlay {
   inset: 0;
   position: absolute;
@@ -1040,16 +1040,16 @@
   object-fit: cover;
   opacity: 0.5;
   pointer-events: none;
-  z-index: 2;
+  z-index: 2;  /* behind content, above bg */
 }
 
-/* main content (Mint block, text, etc.) */
+/* main content (text, Mint, etc.) */
 .item-column-two-v3-content {
   position: relative;
-  z-index: 3;
+  z-index: 3;  /* above overlay */
 }
 
-/* CTA button (always on top, clickable) */
+/* CTA button always topmost */
 .item-column-two-v3-cta {
   position: relative;
   text-align: center;
@@ -2929,6 +2929,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
