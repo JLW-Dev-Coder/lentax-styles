@@ -1172,6 +1172,21 @@ z-index: 3;
   z-index: 1;
 }
 
+/*Position*/
+.position-behind {
+  background: lightblue;
+  position: relative;
+  z-index: 1;
+}
+
+.position-front {
+  background: coral;
+  margin-top: -50px; /* pulls it upward to overlap */
+  position: relative;
+  z-index: 2;
+}
+
+
 /*Row*/
 .row-default {
   /*background-color: rgba(0, 0, 0, 0.9);
@@ -2715,3 +2730,4 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
