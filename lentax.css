@@ -2171,7 +2171,7 @@ text-animated-form
 /*Mint*/
 .mint-action-box {
   align-items: center;
-  background: rgba(0, 255, 0, 0.2);
+  background: rgba(0, 255, 0, 0.3);
   border: 1px solid #00ff00;
   border-radius: 8px;
   display: flex;
@@ -2185,7 +2185,7 @@ text-animated-form
 }
 
 .mint-action-box:hover {
-  background: rgba(0, 255, 0, 0.15);  /* lighter green overlay */
+  background: rgba(0, 255, 0, 0.4);  /* lighter green overlay */
   border-color: #00cc00;              /* bright green */
   transform: translateY(-2px);
 }
@@ -2249,7 +2249,7 @@ text-animated-form
 
 .mint-block-container {
   align-items: center;
-  background: rgba(17, 17, 17, 0.9);  /* lighter dark gray */
+  background: rgba(17, 17, 17, 0.7);  /* lighter dark gray */
   border: 1px solid #333;             /* softer border */
   border-radius: 8px;
   display: flex;
@@ -2276,7 +2276,7 @@ text-animated-form
 }
 
 .mint-block-container:hover .mint-block-border {
-  background-color: rgba(0, 128, 128, 0.08); /* teal accent darkened */
+  background-color: rgba(0, 128, 128, 0.3); /* teal accent darkened */
 }
 
 .mint-block-description {
@@ -2912,6 +2912,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
