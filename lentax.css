@@ -1026,7 +1026,7 @@
 }
 
 /* overlay iframe layer (behind text) */
-.item-column-two-v3-lottie {
+.item-column-two-v3-iframe-background {
   inset: 0;
   position: absolute;
   width: 100%;
@@ -2909,6 +2909,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
