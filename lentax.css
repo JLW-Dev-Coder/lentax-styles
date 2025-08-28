@@ -612,7 +612,7 @@
 .form-title {
   /*margin: 0;*/
 }
-
+/*Memberships*/
 /*Gold*/
 .gold-blue-light {
   box-shadow:
@@ -706,6 +706,87 @@
     66% { color: blue; }
     100% { color: red; }
   }
+/* ===== Silver ===== */
+.silver-name {
+  color: #00c8ff; /* bright silver-blue */
+}
+
+.silver-name-v2 h2 {
+  background: linear-gradient(90deg, #e0f7fa, #00c8ff, #0088cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
+}
+
+.silver-name-v2 h2:hover,
+.silver-name-v2 h2:focus,
+.silver-name-v2 h2.active {
+  /* -webkit-text-fill-color: #fff; */
+}
+
+/* ===== Bronze ===== */
+.bronze-name {
+  color: #cd7f32; /* warm bronze tone */
+}
+
+.bronze-name-v2 h2 {
+  background: linear-gradient(90deg, #8b4513, #cd7f32, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
+}
+
+.bronze-name-v2 h2:hover,
+.bronze-name-v2 h2:focus,
+.bronze-name-v2 h2.active {
+  /* -webkit-text-fill-color: #fff; */
+}
+
+/* ===== Starter ===== */
+.starter-name {
+  color: #777; /* neutral starter gray */
+}
+
+.starter-name-v2 h2 {
+  background: linear-gradient(90deg, #aaa, #777, #555);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
+}
+
+.starter-name-v2 h2:hover,
+.starter-name-v2 h2:focus,
+.starter-name-v2 h2.active {
+  /* -webkit-text-fill-color: #fff; */
+}
+/*End of Memberships*/
 
 /*Iframe*/
 .iframe-background {
@@ -2730,6 +2811,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
