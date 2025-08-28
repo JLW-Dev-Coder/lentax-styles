@@ -968,34 +968,45 @@
 }
 
 /*Item Column Two*/
+/* Item Column Two */
 .item-column-two {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
-  padding: 30px 30px 45px 30px;
   margin: 15px;
+  overflow: hidden;      /* keeps child layers clipped */
+  padding: 30px 30px 45px 30px;
+  position: relative;    /* anchors absolute children */
+  isolation: isolate;    /* ensures clean stacking context */
+  z-index: 0;
 }
 
 .item-column-two-v2 {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  padding: 30px 30px 45px 30px;
-  margin: 15px;
-  text-align: center;
-  overflow: hidden;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+              0 15px 12px rgba(0, 0, 0, 0.22);
   display: flex;
+  margin: 15px;
+  overflow: hidden;
+  padding: 30px 30px 45px 30px;
+  position: relative;    /* same idea: clip layers */
+  text-align: center;
   vertical-align: top;
+  isolation: isolate;
+  z-index: 0;
 }
 
 .item-column-two-v2-image {
-  width: 100%;
-  height: auto;
   border-radius: 6px;
   display: block;
+  height: auto;
   margin: 0 auto;
+  width: 100%;
 }
+
 /*Item Column Three*/
 /* Three-Column Block with Lottie Background */
 .item-column-three {
@@ -1266,17 +1277,19 @@
 
 /*Position*/
 .position-front {
-  position: absolute;
-  pointer-events: none;
+  inset: 0;              /* pin to container edges */
   opacity: 0.5;
-  z-index: 2; /* Higher layer */
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;            /* higher than text bg */
 }
 
 .position-behind {
-  pointer-events: none;
+  inset: 0;
   opacity: 0.8;
-  position: relative;
-  z-index: 1; /* Lower layer */
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;            /* sits behind content */
 }
 
 /*Row*/
@@ -2860,6 +2873,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
