@@ -2143,7 +2143,8 @@ text-animated-form
   border: 1px solid rgba(255, 255, 255, 0.2);
   width: fit-content;
   margin: 0 auto;
-}  
+}
+
 /*LenBot Name*/
 .lenbot-name {
   background: linear-gradient(
@@ -2168,6 +2169,33 @@ text-animated-form
 }
 
 /*Mint*/
+.mint-action-box {
+  align-items: center;
+  background: rgba(0, 255, 0, 0.2);
+  border: 1px solid #00ff00;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 12px auto;
+  max-width: 360px;
+  padding: 16px;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+.mint-action-box:hover {
+  background: rgba(0, 255, 0, 0.15);  /* lighter green overlay */
+  border-color: #00cc00;              /* bright green */
+  transform: translateY(-2px);
+}
+
+.mint-action-text {
+  color: #00ff00;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 8px 0;
+}
 
 .mint-backdrop-wrap {
   display: block;
@@ -2221,8 +2249,8 @@ text-animated-form
 
 .mint-block-container {
   align-items: center;
-  background: rgba(10, 10, 10, 0.95); /* darker base background */
-  border: 1px solid #222;             /* darker border */
+  background: rgba(17, 17, 17, 0.9);  /* lighter dark gray */
+  border: 1px solid #333;             /* softer border */
   border-radius: 8px;
   display: flex;
   gap: 15px;
@@ -2250,7 +2278,6 @@ text-animated-form
 .mint-block-container:hover .mint-block-border {
   background-color: rgba(0, 128, 128, 0.08); /* teal accent darkened */
 }
-
 
 .mint-block-description {
   flex-grow: 1;
@@ -2296,34 +2323,6 @@ text-animated-form
   0%   { background-position: 0% 0%; }
   50%  { background-position: 100% 100%; }
   100% { background-position: 0% 0%; }
-}
-
-.mint-action-box {
-  align-items: center;
-  background: rgba(0, 255, 0, 0.2);
-  border: 1px solid #00ff00;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 12px auto;
-  max-width: 360px;
-  padding: 16px;
-  text-align: center;
-  transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-}
-
-.mint-action-box:hover {
-  background: rgba(0, 128, 0, 0.4);  /* darker green overlay */
-  border-color: #008000;              /* dark green */
-  transform: translateY(-2px);
-}
-
-.mint-action-text {
-  color: #00ff00;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 8px 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -2913,6 +2912,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
