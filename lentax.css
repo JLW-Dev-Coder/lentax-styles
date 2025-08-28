@@ -2513,7 +2513,7 @@ text-animated-form
   transform: translateY(-1px);
 }
 
-/*.pricing-overlay-lentax {
+.pricing-overlay-lentax {
   margin: 0 auto;
   margin-bottom: 56px;
   position: relative;
@@ -2590,7 +2590,7 @@ text-animated-form
   .pricing-overlay-lentax {
     margin-bottom: 40px;
   }
-}*/
+}
 
 /*Video*/
 .video {
@@ -2814,6 +2814,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
