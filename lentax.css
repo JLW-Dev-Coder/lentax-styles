@@ -613,7 +613,7 @@
   /*margin: 0;*/
 }
 /*Memberships*/
-/*Gold*/
+/* ===== Gold ===== */
 .gold-blue-light {
   box-shadow:
     0 0 6px rgb(0, 0, 255),
@@ -708,11 +708,11 @@
   }
 /* ===== Silver ===== */
 .silver-name {
-  color: #00c8ff; /* bright silver-blue */
+  color: #00c8ff; /* bright aqua blue */
 }
 
 .silver-name-v2 h2 {
-  background: linear-gradient(90deg, #e0f7fa, #00c8ff, #0088cc);
+  background: linear-gradient(90deg, #e0f7fa, #00c8ff, #0088cc); /* light aqua → bright aqua → deep teal-blue */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
@@ -733,13 +733,14 @@
   /* -webkit-text-fill-color: #fff; */
 }
 
+
 /* ===== Bronze ===== */
 .bronze-name {
-  color: #cd7f32; /* warm bronze tone */
+  color: #800020; /* burgundy red */
 }
 
 .bronze-name-v2 h2 {
-  background: linear-gradient(90deg, #8b4513, #cd7f32, #ff8c00);
+  background: linear-gradient(90deg, #4b000f, #800020, #a0522d); /* dark maroon → burgundy → rustic sienna/copper */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
@@ -760,13 +761,14 @@
   /* -webkit-text-fill-color: #fff; */
 }
 
+
 /* ===== Starter ===== */
 .starter-name {
-  color: #777; /* neutral starter gray */
+  color: #777; /* medium gray */
 }
 
 .starter-name-v2 h2 {
-  background: linear-gradient(90deg, #aaa, #777, #555);
+  background: linear-gradient(90deg, #bbb, #777, #444); /* light gray → medium gray → dark charcoal */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
@@ -786,6 +788,7 @@
 .starter-name-v2 h2.active {
   /* -webkit-text-fill-color: #fff; */
 }
+
 /*End of Memberships*/
 
 /*Iframe*/
@@ -2811,6 +2814,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
