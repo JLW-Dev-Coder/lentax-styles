@@ -2705,16 +2705,13 @@ text-animated-form
 }
 
 .sd-nav-bar-add-button {
-  font-size: 0 !important; /* hide text */
-  position: relative;
+font-size: 0 !important;
 }
 
 .sd-nav-bar-add-button::after {
-  content: "";
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  background: url("/cachedStatic/iconUrl1?file=%2Fthemes%2Fmpa%2Fassets%2Fsvg%2Fcommon-svg%2Fplus.svg&hash=mDvSQwVxTKWntEN7aFal") no-repeat center;
-  background-size: contain;
-  vertical-align: middle;
+content: "➕";
+display: inline-block;
+font-size: 16px;
+line-height: 1;
+vertical-align: middle;
 }
