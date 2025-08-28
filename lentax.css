@@ -943,7 +943,7 @@ z-index: 3;
 
 /*Higher Layer*/
 .item-column-three-iframe {
-  position: absolute;
+  /*position: absolute;
   pointer-events: none;
   opacity: 0.5;
   z-index: 2; /* Higher layer */
@@ -955,7 +955,7 @@ z-index: 3;
 
 /*Lower Layer*/
 .item-column-three-iframe-two {
-  pointer-events: none;
+  /*pointer-events: none;
   opacity: 0.8;
   position: relative;
   z-index: 1; /* Lower layer */
@@ -2730,5 +2730,6 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
