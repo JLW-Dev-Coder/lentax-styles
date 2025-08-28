@@ -953,11 +953,11 @@ z-index: 3;
   pointer-events: none;    /* let clicks pass through */
 }
 
-@keyframes feature-shine {
+/*@keyframes feature-shine {
   0%   { left: -75%; }
   50%  { left: 125%; }
   100% { left: 125%; }
-}
+}*/
 
 /*Item Column Two*/
 .item-column-two {
@@ -2852,6 +2852,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
