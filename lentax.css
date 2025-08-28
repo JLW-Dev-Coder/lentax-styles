@@ -2705,15 +2705,19 @@ text-animated-form
 }
 
 .sd-nav-bar-add-button {
-  font-size: 0 !important; /* hides original text */
+  font-size: 0 !important; /* hide the "Unlock & Set Sail" text */
+  position: relative;
 }
 
 .sd-nav-bar-add-button::after {
-  content: "\f067"; /* fa-plus unicode */
-  font-family: "Font Awesome 6 Free"; /* make sure FA6 is loaded */
-  font-weight: 900; /* solid weight */
-  font-size: 16px; /* size of icon */
-  color: white; /* adjust to match your button */
+  content: "";
   display: inline-block;
+  width: 16px;   /* adjust size */
+  height: 16px;
+  background-color: currentColor; /* uses button text color */
+  -webkit-mask: url("/cachedStatic/iconUrl1?file=%2Fthemes%2Fmpa%2Fassets%2Fsvg%2Fcommon-svg%2Ficons-sprite.svg#plus") no-repeat center;
+  -webkit-mask-size: contain;
+  mask: url("/cachedStatic/iconUrl1?file=%2Fthemes%2Fmpa%2Fassets%2Fsvg%2Fcommon-svg%2Ficons-sprite.svg#plus") no-repeat center;
+  mask-size: contain;
   vertical-align: middle;
 }
