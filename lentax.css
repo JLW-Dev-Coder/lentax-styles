@@ -2513,84 +2513,122 @@ text-animated-form
   transform: translateY(-1px);
 }
 
-.pricing-overlay-lentax {
-  margin: 0 auto;
-  margin-bottom: 56px;
-  position: relative;
-  width: 100%;
-}
-
-.pricing-overlay-text-lentax {
-  color: inherit;
-  padding: 0;
-  pointer-events: none;
-  position: relative;
-  text-align: center;
-  z-index: 1;
-}
-
-.pricing-overlay-text-lentax .text-default {
-  color: inherit !important;
-}
-
 .pricing-overlay-btn-lentax {
-  align-items: center;
-  display: flex;
-  inset: 0;
-  justify-content: center;
-  position: absolute;
-  z-index: 2;
+align-items: center;
+display: flex;
+inset: 0;
+justify-content: center;
+position: absolute;
+z-index: 2;
 }
 
-/* make SD/Bootstrap button invisible and fill overlay */
-.pricing-overlay-btn-lentax .cbe-block-button-element,
-.pricing-overlay-btn-lentax .btn,
+/\* Button: click-only (no visual hover/transition) \*/
+.pricing-overlay-btn-lentax .btn {
+align-items: center !important;
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+cursor: pointer !important;
+display: flex !important;
+height: 100% !important;
+justify-content: center !important;
+margin: 0 !important;
+outline: none !important;
+padding: 0 !important;
+text-align: center !important;
+text-decoration: none !important;
+transition: none !important;
+transform: none !important;
+width: 100% !important;
+}
+
 .pricing-overlay-btn-lentax .btn-primary {
-  align-items: center !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  display: flex !important;
-  height: 100% !important;
-  justify-content: center !important;
-  margin: 0 !important;
-  outline: none !important;
-  padding: 0 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  width: 100% !important;
+align-items: center !important;
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+cursor: pointer !important;
+display: flex !important;
+height: 100% !important;
+justify-content: center !important;
+margin: 0 !important;
+outline: none !important;
+padding: 0 !important;
+text-align: center !important;
+text-decoration: none !important;
+transition: none !important;
+transform: none !important;
+width: 100% !important;
 }
 
-.pricing-overlay-btn-lentax .cbe-block-button-element:hover,
-.pricing-overlay-btn-lentax .cbe-block-button-element:focus,
-.pricing-overlay-btn-lentax .cbe-block-button-element:focus-visible,
-.pricing-overlay-btn-lentax .cbe-block-button-element:active,
-.pricing-overlay-btn-lentax .btn:hover,
-.pricing-overlay-btn-lentax .btn:focus,
-.pricing-overlay-btn-lentax .btn:focus-visible,
-.pricing-overlay-btn-lentax .btn:active,
-.pricing-overlay-btn-lentax .btn-primary:hover,
-.pricing-overlay-btn-lentax .btn-primary:focus,
-.pricing-overlay-btn-lentax .btn-primary:focus-visible,
-.pricing-overlay-btn-lentax .btn-primary:active {
-  background-color: transparent !important;
-  background-image: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  outline: none !important;
+.pricing-overlay-btn-lentax .cbe-block-button-element {
+align-items: center !important;
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+cursor: pointer !important;
+display: flex !important;
+height: 100% !important;
+justify-content: center !important;
+margin: 0 !important;
+outline: none !important;
+padding: 0 !important;
+text-align: center !important;
+text-decoration: none !important;
+transition: none !important;
+transform: none !important;
+width: 100% !important;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .pricing-grid-lentax {
-    grid-template-columns: 1fr;
-  }
-
-  .pricing-overlay-lentax {
-    margin-bottom: 40px;
-  }
+/\* Remove all visual hover/focus/active effects from the button \*/
+.pricing-overlay-btn-lentax .btn\:active,
+.pricing-overlay-btn-lentax .btn\:focus,
+.pricing-overlay-btn-lentax .btn\:focus-visible,
+.pricing-overlay-btn-lentax .btn\:hover,
+.pricing-overlay-btn-lentax .btn-primary\:active,
+.pricing-overlay-btn-lentax .btn-primary\:focus,
+.pricing-overlay-btn-lentax .btn-primary\:focus-visible,
+.pricing-overlay-btn-lentax .btn-primary\:hover,
+.pricing-overlay-btn-lentax .cbe-block-button-element\:active,
+.pricing-overlay-btn-lentax .cbe-block-button-element\:focus,
+.pricing-overlay-btn-lentax .cbe-block-button-element\:focus-visible,
+.pricing-overlay-btn-lentax .cbe-block-button-element\:hover {
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+outline: none !important;
+transition: none !important;
+transform: none !important;
 }
+
+/\* Overlay: subtle lift on hover/focus \*/
+.pricing-overlay-lentax {
+margin: 0 auto;
+margin-bottom: 56px;
+position: relative;
+transition: box-shadow 0.25s ease, transform 0.25s ease;
+width: 100%;
+}
+
+.pricing-overlay-lentax\:focus-visible {
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+transform: translateY(-3px);
+}
+
+.pricing-overlay-lentax\:focus-within {
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+transform: translateY(-3px);
+}
+
+.pricing-overlay-lentax\:hover {
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+transform: translateY(-3px);
+}
+
 
 /*Video*/
 .video {
@@ -2814,6 +2852,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
