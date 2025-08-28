@@ -1019,15 +1019,17 @@
   z-index: 0;
 }
 
-/* optional decorative background */
+/*Lock/Key Image*/
 .item-column-two-v3-bg {
   inset: 0;
-  position: absolute;
-  width: 100%;
   height: 100%;
+  margin-bottom: 75px;
+  margin-top: 15px;
   object-fit: cover;
   opacity: 0.75;
   pointer-events: none;
+  position: absolute;
+  width: 100%;
   z-index: 1;
 }
 
@@ -2929,6 +2931,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
