@@ -2705,9 +2705,15 @@ text-animated-form
 }
 
 .sd-nav-bar-add-button {
-  font-size: 0 !important; /* visually removes the text */
+  font-size: 0 !important; /* hides original text */
 }
 
 .sd-nav-bar-add-button::after {
-  content: ""; /* nothing replaces it */
+  content: "\f067"; /* fa-plus unicode */
+  font-family: "Font Awesome 6 Free"; /* make sure FA6 is loaded */
+  font-weight: 900; /* solid weight */
+  font-size: 16px; /* size of icon */
+  color: white; /* adjust to match your button */
+  display: inline-block;
+  vertical-align: middle;
 }
