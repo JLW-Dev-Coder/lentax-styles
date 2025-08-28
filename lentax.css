@@ -737,11 +737,11 @@
 
 /* ===== Bronze ===== */
 .bronze-name {
-  color: #800020; /* burgundy red */
+  color: #a0522d; /* lighter bronze/copper */
 }
 
 .bronze-name-v2 h2 {
-  background: linear-gradient(90deg, #4b000f, #800020, #a0522d); /* dark maroon → burgundy → rustic sienna/copper */
+  background: linear-gradient(90deg, #a0522d, #b87333, #cd7f32); /* bronze → copper → metallic bronze */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
@@ -761,7 +761,6 @@
 .bronze-name-v2 h2.active {
   /* -webkit-text-fill-color: #fff; */
 }
-
 
 /* ===== Starter ===== */
 .starter-name {
@@ -2853,6 +2852,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
