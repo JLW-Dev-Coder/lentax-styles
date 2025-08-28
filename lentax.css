@@ -971,13 +971,14 @@
 .item-column-two {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
-  isolation: isolate;
   margin: 15px;
   overflow: hidden;
   padding: 30px 30px 45px 30px;
-  position: relative;
+  position: relative;   /* anchor absolute layers */
+  isolation: isolate;
   z-index: 0;
 }
 
@@ -1003,6 +1004,58 @@
   margin: 0 auto;
   width: 100%;
 }
+
+.item-column-two-v3 {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  isolation: isolate;
+  margin: 15px;
+  margin-bottom: 75px;
+  overflow: hidden;
+  padding: 30px 30px 45px 30px;
+  position: relative;
+  z-index: 0;
+}
+
+/* background layer */
+.item-column-two-v3-bg {
+  inset: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* overlay (iframe/decoration between bg + content) */
+.item-column-two-v3-overlay {
+  inset: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* main content (Mint block, text, etc.) */
+.item-column-two-v3-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* CTA button (always on top, clickable) */
+.item-column-two-v3-cta {
+  position: relative;
+  text-align: center;
+  z-index: 4;
+}
+
 
 /*Item Column Three*/
 .item-column-three {
@@ -2876,6 +2929,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
