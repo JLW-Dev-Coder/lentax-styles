@@ -1753,7 +1753,7 @@ text-animated-form
 }
 /*Text Default*/
 .text-default {
-  margin: 0px 15px;
+  margin: 0px 15px 30px 15px;
 }
 
 /* Apply to everything EXCEPT info-content titles */
@@ -2912,6 +2912,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
