@@ -144,7 +144,8 @@
 }
 
 /*Copy/Paste Block*/
-/* Center all text in the block */
+.copy-paste-block .copy-paste-block-btn { outline: 2px dashed magenta !important; }
+
 .copy-paste-block {
   text-align: center;
 }
@@ -3026,6 +3027,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
