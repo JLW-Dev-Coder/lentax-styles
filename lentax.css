@@ -3064,10 +3064,8 @@ transform: translateY(-3px);
 
 /*END CUSTOM CSS*/
 
+/*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
-/* ===== SuiteDash Checklist: Minimal, centered, elegant ===== */
-
-/* Block wrapper */
 .cbe-block-checklist {
   background: var(--dark-base);
   border: 1px solid var(--panel-border);
@@ -3228,19 +3226,6 @@ transform: translateY(-3px);
   transform: translateY(-1px);
 }
 
-/* Lentax content inside items */
-.checklist-custom-lentax-items {
-  margin: 6px 0 0 0;
-  padding: 0 0 0 18px;
-  text-align: left;
-}
-
-.checklist-custom-lentax-items li {
-  color: var(--muted-text);
-  line-height: 1.5;
-  margin: 4px 0;
-}
-
 /* SVG sizing normalization (icons) */
 .checklist-header svg,
 .checklist-item-completed-icon svg,
@@ -3348,17 +3333,3 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
