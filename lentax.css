@@ -3065,7 +3065,6 @@ transform: translateY(-3px);
 /*END CUSTOM CSS*/
 
 /*SuiteDash Default Classes*/
-/*SD CHECKLIST*/
 /*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
 
@@ -3129,6 +3128,7 @@ transform: translateY(-3px);
 /* Normalize SVG sizing */
 .checklist-header svg {
   display: inline-block;
+  fill: var(--light-text); /* ensure visibility */
   height: 18px;
   width: 18px;
 }
@@ -3164,6 +3164,7 @@ transform: translateY(-3px);
 
 .checklist-item-completed-icon svg {
   display: inline-block;
+  fill: var(--light-text); /* ensure visibility */
   height: 18px;
   width: 18px;
 }
@@ -3244,6 +3245,7 @@ transform: translateY(-3px);
 
 .see-more-btn svg {
   display: inline-block;
+  fill: var(--light-text); /* ensure visibility */
   height: 18px;
   width: 18px;
 }
@@ -3350,4 +3352,5 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
