@@ -148,54 +148,11 @@
   text-align: center;
 }
 
-.copy-paste-block-root {
-  --bg: #121212;
-  --bg-hover: #1d1d1d;
-  --text: rgba(255, 255, 255, 0.92);
-  --accent: #FF8C00;
-  --success: rgba(40,167,69,0.92);
-  --error: rgba(220,53,69,0.92);
-}
-
-.copy-paste-block-html,
-.copy-paste-block-body {
-  min-height: 300px;
-  min-width: 300px;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  border-radius: 8px;
-  background-color: transparent;
-  overflow: hidden;
-}
-
-.copy-paste-block-body {
-  font-family: 'Raleway', sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  border-radius: 8px;
-}
-
-@media (hover: hover) {
-  .copy-paste-block-body:hover {
-    background-color: var(--bg-hover);
-  }
-}
-
 .copy-paste-block-title {
   margin-bottom: 10px;
   font-weight: 700;
   font-size: 22px;
 }
-
 .copy-paste-block-subtitle {
   margin-bottom: 18px;
   font-size: 14px;
@@ -208,16 +165,16 @@
   background: rgba(255, 255, 255, 0.10);
   padding: 16px 20px;
   border-radius: 8px;
-  margin: 0 auto 16px auto;   /* auto left/right centers the box */
+  margin: 0 auto 16px auto;   /* center horizontally */
   font-size: 16px;
-  max-width: fit-content;     /* shrink-wrap around the code */
-  display: inline-block;      /* make it behave like text for centering */
+  max-width: fit-content;     /* shrink-wrap to content */
+  display: inline-block;
 }
 
 .copy-paste-block-btn {
   display: inline-block;
-  background: var(--accent);         /* same accent color you already set */
-  color: #000;                       /* dark text on orange-gold */
+  background: var(--accent);         /* orange-gold accent */
+  color: #000;
   font-weight: 700;
   font-size: 16px;
   border: none;
@@ -228,7 +185,6 @@
   text-align: center;
   text-decoration: none;
 }
-
 .copy-paste-block-btn:hover {
   filter: brightness(1.05);
 }
@@ -257,9 +213,10 @@
   box-sizing: border-box;
   text-align: center;
 }
+
 .copy-paste-block-toast.show { opacity: 1; }
-.copy-paste-block-toast.success { background: var(--success); }
-.copy-paste-block-toast.error { background: var(--error); }
+.copy-paste-block-toast.success { background: rgba(40,167,69,0.92); }
+.copy-paste-block-toast.error { background: rgba(220,53,69,0.92); }
 
 /*Feature*/
 .feature-block-border {
@@ -3060,6 +3017,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
