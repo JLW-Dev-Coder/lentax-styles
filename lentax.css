@@ -148,7 +148,7 @@
 .copy-paste-block { text-align: center; }
 
 /* Headings */
-.copy-paste-block .copy-paste-block-title { margin-bottom: 10px; font-weight: 700; font-size: 22px; letter-spacing: 1px;}
+.copy-paste-block .copy-paste-block-title { margin-bottom: 10px; font-weight: 700; font-size: 22px; }
 .copy-paste-block .copy-paste-block-subtitle { margin-bottom: 18px; font-size: 14px; opacity: 0.8; }
 
 /* Referral code box */
@@ -585,7 +585,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   text-align: center;
   font-size: 30px;
   transition: background 0.5s ease; /* switch to background for gradient animation */
@@ -3010,6 +3010,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
