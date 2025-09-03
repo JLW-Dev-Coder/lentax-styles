@@ -838,6 +838,7 @@
   display: block;
   margin: 20px auto;
   max-width: 250px;
+  min-width: 250px;
   height: auto;
   border: 2px solid #ccc;
   border-radius: 10px;
@@ -2942,6 +2943,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
