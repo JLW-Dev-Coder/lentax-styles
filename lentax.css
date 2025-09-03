@@ -3066,15 +3066,8 @@ transform: translateY(-3px);
 
 /*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
-.cbe-block-checklist {
-  background: var(--dark-base);
-  border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  margin: 16px auto;
-  max-width: 960px;
-  padding: 16px;
-  text-align: center;
-}
+/*SuiteDash Default Classes*/
+/*SD CHECKLIST*/
 
 /* Card container */
 .card.checklist-card {
@@ -3084,7 +3077,42 @@ transform: translateY(-3px);
   box-shadow: none;
   color: var(--light-text);
   margin: 0 auto;
+  overflow: hidden; /* Prevents internal scrollbars */
   padding: 0;
+}
+
+/* Wrapper */
+.cbe-block-checklist {
+  background: var(--dark-base);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  margin: 16px auto;
+  max-width: 960px;
+  overflow: hidden; /* Removes scrollbar */
+  padding: 16px;
+  text-align: center;
+}
+
+/* Primary action button (Layer / Start) */
+.checklist-actions .button {
+  background: var(--accent-purple);
+  border: 1px solid var(--accent-purple);
+  border-radius: 10px;
+  color: var(--light-text);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 8px 12px;
+  text-align: center;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.checklist-actions .button:hover {
+  background: var(--accent-purple-hover);
+  border-color: var(--accent-purple-hover);
+  transform: translateY(-1px);
 }
 
 /* Header row (icon + title) */
@@ -3098,23 +3126,26 @@ transform: translateY(-3px);
   padding: 12px 8px;
 }
 
-/* Main title */
-.checklist-title {
-  color: var(--light-text);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  margin: 0;
-  text-align: center;
+/* Normalize SVG sizing */
+.checklist-header svg {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
 }
 
-/* Each item container */
-.checklist-item-content {
-  align-items: center;
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 1fr auto;
-  padding: 12px 10px;
+/* Collapsing body */
+.checklist-item-collapsing-content {
+  animation: checklistFadeIn 300ms ease-out both;
+  border-left: 2px solid var(--panel-border);
+  margin: 6px 0 14px 14px;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+/* Subtle fade-in for expanded content (keyframes placed after class) */
+@keyframes checklistFadeIn {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Completed icon */
@@ -3131,12 +3162,20 @@ transform: translateY(-3px);
   width: 28px;
 }
 
-/* Item header: icon bubble + title */
-.checklist-item__header {
+.checklist-item-completed-icon svg {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+}
+
+/* Each item container */
+.checklist-item-content {
   align-items: center;
-  display: flex;
+  display: grid;
   gap: 8px;
-  justify-content: flex-start;
+  grid-template-columns: 1fr auto;
+  overflow: hidden; /* Prevent extra scrollbars */
+  padding: 12px 10px;
 }
 
 /* Item title */
@@ -3144,6 +3183,15 @@ transform: translateY(-3px);
   color: var(--light-text);
   font-size: 16px;
   font-weight: 600;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-align: left;
+}
+
+/* Subtitle text */
+.checklist-item-subtitle {
+  color: var(--muted-text);
+  font-size: 14px;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: left;
@@ -3157,13 +3205,12 @@ transform: translateY(-3px);
   justify-content: flex-start;
 }
 
-/* Subtitle text */
-.checklist-item-subtitle {
-  color: var(--muted-text);
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  margin: 0;
-  text-align: left;
+/* Item header: icon bubble + title */
+.checklist-item__header {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
 }
 
 /* Expand/collapse button */
@@ -3195,50 +3242,20 @@ transform: translateY(-3px);
   letter-spacing: 0.3px;
 }
 
-/* Collapsing body */
-.checklist-item-collapsing-content {
-  border-left: 2px solid var(--panel-border);
-  margin: 6px 0 14px 14px;
-  padding: 8px 12px;
-  text-align: left;
-  animation: checklistFadeIn 300ms ease-out both;
-}
-
-/* Primary action button (Layer / Start) */
-.checklist-actions .button {
-  background: var(--accent-purple);
-  border: 1px solid var(--accent-purple);
-  border-radius: 10px;
-  color: var(--light-text);
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  padding: 8px 12px;
-  text-align: center;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
-  white-space: nowrap;
-}
-
-.checklist-actions .button:hover {
-  background: var(--accent-purple-hover);
-  border-color: var(--accent-purple-hover);
-  transform: translateY(-1px);
-}
-
-/* SVG sizing normalization (icons) */
-.checklist-header svg,
-.checklist-item-completed-icon svg,
 .see-more-btn svg {
   display: inline-block;
   height: 18px;
   width: 18px;
 }
 
-/* Subtle fade-in for expanded content (keyframes placed after class) */
-@keyframes checklistFadeIn {
-  0% { opacity: 0; transform: translateY(4px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* Main title */
+.checklist-title {
+  color: var(--light-text);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-align: center;
 }
 
 
@@ -3333,3 +3350,4 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
