@@ -2896,7 +2896,7 @@ transform: translateY(-3px);
   margin: 16px auto;
   max-width: 960px;
   overflow: hidden !important;
-  padding: 16px;
+  padding: 0;
   text-align: center;
 }
 
@@ -2915,7 +2915,7 @@ transform: translateY(-3px);
   display: inline-block;
   font-weight: 700;
   letter-spacing: 0.2px;
-  padding: 8px 14px;
+  padding: 0;
   text-align: center;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background 0.2s ease-in-out;
   white-space: nowrap;
@@ -2942,7 +2942,7 @@ transform: translateY(-3px);
   gap: 10px;
   justify-content: center;
   margin: 0 0 12px 0;
-  padding: 12px 8px;
+  padding: 0;
   overflow: hidden !important;
 }
 
@@ -2958,8 +2958,8 @@ transform: translateY(-3px);
 .checklist-item-collapsing-content {
   animation: checklistFadeIn 300ms ease-out both;
   border-left: 2px solid var(--panel-border);
-  margin: 6px 0 14px 14px;
-  padding: 8px 12px;
+  margin: 0;
+  padding: 0;
   text-align: left;
   overflow: hidden !important;
 }
@@ -2992,48 +2992,48 @@ transform: translateY(-3px);
 }
 
 /* Each item container */
-/* Each item container */
 .checklist-item-content {
   align-items: center;
   display: grid;
   gap: 8px;
   grid-template-columns: 1fr auto;
-  overflow: hidden !important; /* prevent inner scrollbar */
-  padding: 12px 10px;
+  overflow: hidden !important;
+  padding: 0;
 }
 
 /* Container wrapper */
 .checklist-item-container {
   overflow: hidden !important;
+  padding: 0;
 }
 
-/* Info wrapper fix */
 /* Info wrapper fix */
 .checklist-item-info {
   height: auto !important;
   max-height: none !important;
-  overflow: hidden !important; /* prevent inner scrollbar */
+  overflow: hidden !important;
+  padding: 0;
 }
 
 /* Item title */
-/* Item title */
 .checklist-item-title {
-  color: inherit !important; /* follow page color */
+  color: inherit !important;
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 0;
   overflow: visible !important;
   text-align: left;
+  padding: 0;
 }
 
 /* Subtitle text */
-/* Subtitle text */
 .checklist-item-subtitle {
-  color: inherit !important; /* follow page color */
+  color: inherit !important;
   letter-spacing: 0.2px;
   margin: 0;
   overflow: visible !important;
   text-align: left;
+  padding: 0;
 }
 
 /* Subtitle + chevron row */
@@ -3043,6 +3043,7 @@ transform: translateY(-3px);
   gap: 6px;
   justify-content: flex-start;
   overflow: hidden !important;
+  padding: 0;
 }
 
 /* Item header: icon bubble + title */
@@ -3052,6 +3053,7 @@ transform: translateY(-3px);
   gap: 8px;
   justify-content: flex-start;
   overflow: hidden !important;
+  padding: 0;
 }
 
 /* Expand/collapse button */
@@ -3067,7 +3069,7 @@ transform: translateY(-3px);
   height: 30px;
   justify-content: center;
   line-height: 1;
-  padding: 0 8px;
+  padding: 0;
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   user-select: none;
   overflow: hidden !important;
@@ -3092,14 +3094,14 @@ transform: translateY(-3px);
 }
 
 /* Main title */
-/* Main title */
 .checklist-title {
-  color: inherit !important; /* follow container color */
+  color: inherit !important;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
   overflow: visible !important;
   text-align: center;
+  padding: 0;
 }
 
 /* Ensure list and li never create inner scrollbars */
@@ -3108,6 +3110,7 @@ transform: translateY(-3px);
 .chain-inner.ordering > ul.list-unstyled > li {
   max-height: none !important;
   overflow: hidden !important;
+  padding: 0;
 }
 
 
@@ -3202,19 +3205,3 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
