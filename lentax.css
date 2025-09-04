@@ -3134,7 +3134,6 @@ transform: translateY(-3px);
   justify-content: center;
   margin: 0 0 12px 0;
   padding: 12px 8px;
-  font-size: 20px;
 }
 
 /* Normalize SVG sizing */
@@ -3264,12 +3263,12 @@ transform: translateY(-3px);
 
 /* Main title */
 .checklist-title {
-  /*color: var(--light-text);
+  color: var(--light-text);
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
-  text-align: center;*/
+  text-align: center;
 }
 
 
@@ -3364,6 +3363,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
