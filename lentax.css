@@ -3111,9 +3111,10 @@ transform: translateY(-3px);
   -webkit-text-fill-color: transparent;
   background-clip: text;
   /*letter-spacing: -0.5px;*/
-  text-align: center;
-  font-size: 40px;
+  font-size: 2rem;
   font-weight: 900;
+  margin-bottom: 15px;
+  text-align: center;
   transition: background 0.5s ease; /* switch to background for gradient animation */
 }
 
@@ -3229,6 +3230,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
