@@ -2962,6 +2962,7 @@ transform: translateY(-3px);
   fill: var(--light-text);
   height: 18px;
   width: 18px;
+  padding-bottom: 15px;
 }
 
 .checklist-item-collapsing-content {
@@ -3230,6 +3231,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
