@@ -2952,8 +2952,8 @@ transform: translateY(-3px);
 .checklist-item-collapsing-content {
   animation: checklistFadeIn 300ms ease-out both;
   background: transparent !important;
-  /*border-left: 2px solid var(--panel-border);
-  margin: 0;
+  border: none;
+  /*margin: 0;
   overflow: hidden !important;
   padding: 0;
   text-align: left;*/
@@ -3200,6 +3200,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
