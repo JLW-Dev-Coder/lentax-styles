@@ -3054,8 +3054,6 @@ transform: translateY(-3px);
   height: 30px;
   justify-content: center;
   line-height: 1;
-  margin-left: 5px;
-  margin-right: 5px;
   padding: 0;
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   user-select: none;
@@ -3078,6 +3076,8 @@ transform: translateY(-3px);
   fill: var(--light-text);
   height: 18px;
   width: 18px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .checklist-title {
@@ -3097,7 +3097,6 @@ transform: translateY(-3px);
   overflow: hidden !important;
   padding: 0;
 }
-
 
 /*SD FLOW*/
 .btn.btn-primary.btn-block {
@@ -3190,3 +3189,4 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
