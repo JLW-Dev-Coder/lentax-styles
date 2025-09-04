@@ -3100,7 +3100,7 @@ transform: translateY(-3px);
   margin-left: 5px;
 }
 
-.checklist-title h2{
+.checklist-title {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -3118,7 +3118,7 @@ transform: translateY(-3px);
   transition: background 0.5s ease; /* switch to background for gradient animation */
 }
 
-.checklist-title h2:hover {
+.checklist-title:hover {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -3230,6 +3230,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
