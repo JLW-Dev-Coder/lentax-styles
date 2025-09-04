@@ -3115,7 +3115,7 @@ transform: translateY(-3px);
 
   align-items: center;
   display: inline-flex;
-  font-size: 30px !important;
+  font-size: 25px !important;
   font-weight: bold !important;
   line-height: 1.1;
   margin: 0;
@@ -3236,6 +3236,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
