@@ -2970,8 +2970,8 @@ transform: translateY(-3px);
   border: none;
   /*margin: 0;
   overflow: hidden !important;
-  padding: 0;
-  text-align: left;*/
+  padding: 0;*/
+  text-align: left;
 }
 
 @keyframes checklistFadeIn {
@@ -3228,6 +3228,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
