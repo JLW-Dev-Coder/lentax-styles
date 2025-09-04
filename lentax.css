@@ -3002,7 +3002,7 @@ transform: translateY(-3px);
 }
 
 .checklist-item-content {
-  align-items: center;
+  /*align-items: center;*/
   display: grid;
   gap: 8px;
   grid-template-columns: 1fr auto;
@@ -3228,6 +3228,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
