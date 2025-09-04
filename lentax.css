@@ -3113,7 +3113,7 @@ transform: translateY(-3px);
   /*letter-spacing: -0.5px;*/
   font-size: 2rem;
   font-weight: 900;
-  margin-bottom: 15px;
+  padding-bottom: 15px;
   text-align: center;
   transition: background 0.5s ease; /* switch to background for gradient animation */
 }
@@ -3230,6 +3230,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
