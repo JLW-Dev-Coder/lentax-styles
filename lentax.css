@@ -2960,8 +2960,8 @@ transform: translateY(-3px);
 .checklist-header svg {
   display: inline-block;
   fill: var(--light-text);
-  height: 18px;
-  width: 18px;
+  /*height: 18px;
+  width: 18px;*/
   padding-bottom: 15px;
 }
 
@@ -3231,6 +3231,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
