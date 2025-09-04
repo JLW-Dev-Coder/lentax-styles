@@ -3105,9 +3105,9 @@ transform: translateY(-3px);
 .checklist-title {
   background: linear-gradient(
     90deg,
-    #FFD700,   /* gold */
-    #FFA500,   /* orange-gold */
-    #FFD700    /* gold again */
+    #FFD700,
+    #FFA500,
+    #FFD700
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -3115,11 +3115,11 @@ transform: translateY(-3px);
 
   align-items: center;
   display: inline-flex;
-  font-size: 2rem;
+  font-size: 2.5rem;   /* increased from 2rem */
   font-weight: 900;
   line-height: 1.1;
   margin: 0;
-  padding: 0; /* remove bottom padding so it aligns with the icon */
+  padding: 0;
   text-align: center;
   transition: background 0.5s ease;
 }
@@ -3236,6 +3236,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
