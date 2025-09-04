@@ -3063,7 +3063,6 @@ transform: translateY(-3px);
 }
 
 /*END CUSTOM CSS*/
-
 /*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
 
@@ -3073,9 +3072,8 @@ transform: translateY(-3px);
   border: 1px solid var(--panel-border);
   border-radius: 12px;
   box-shadow: none;
-  color: var(--light-text);
   margin: 0 auto;
-  overflow: hidden; /* Prevents internal scrollbars */
+  overflow: visible;
   padding: 0;
 }
 
@@ -3086,7 +3084,7 @@ transform: translateY(-3px);
   border-radius: 14px;
   margin: 16px auto;
   max-width: 960px;
-  overflow: hidden; /* Removes scrollbar */
+  overflow: visible;
   padding: 16px;
   text-align: center;
 }
@@ -3101,7 +3099,7 @@ transform: translateY(-3px);
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
-  color: var(--light-text);
+  color: inherit;
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
@@ -3113,7 +3111,7 @@ transform: translateY(-3px);
 }
 
 .checklist-actions .button:hover {
-  background: linear-gradient(135deg, #FFB733, #FF8C1A); /* lighter orange tones */
+  background: linear-gradient(135deg, #FFB733, #FF8C1A);
   transform: translateY(-2px);
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 4px 8px,
@@ -3134,13 +3132,13 @@ transform: translateY(-3px);
   justify-content: center;
   margin: 0 0 12px 0;
   padding: 12px 8px;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 /* Normalize SVG sizing */
 .checklist-header svg {
   display: inline-block;
-  fill: var(--light-text); /* ensure visibility */
+  fill: var(--light-text);
   height: 18px;
   width: 18px;
 }
@@ -3152,10 +3150,9 @@ transform: translateY(-3px);
   margin: 6px 0 14px 14px;
   padding: 8px 12px;
   text-align: left;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
-/* Subtle fade-in for expanded content (keyframes placed after class) */
 @keyframes checklistFadeIn {
   0% { opacity: 0; transform: translateY(4px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -3173,12 +3170,12 @@ transform: translateY(-3px);
   margin-right: 8px;
   min-width: 28px;
   width: 28px;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 .checklist-item-completed-icon svg {
   display: inline-block;
-  fill: var(--light-text); /* ensure visibility */
+  fill: var(--light-text);
   height: 18px;
   width: 18px;
 }
@@ -3189,27 +3186,27 @@ transform: translateY(-3px);
   display: grid;
   gap: 8px;
   grid-template-columns: 1fr auto;
-  overflow: hidden; /* Prevent extra scrollbars */
+  overflow: visible;
   padding: 12px 10px;
 }
 
 /* Item title */
 .checklist-item-title {
-  color: var(--light-text);
+  color: inherit;
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: left;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 /* Subtitle text */
 .checklist-item-subtitle {
-  color: var(--muted-text);
+  color: inherit;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: left;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 /* Subtitle + chevron row */
@@ -3218,7 +3215,7 @@ transform: translateY(-3px);
   display: flex;
   gap: 6px;
   justify-content: flex-start;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 /* Item header: icon bubble + title */
@@ -3227,7 +3224,7 @@ transform: translateY(-3px);
   display: flex;
   gap: 8px;
   justify-content: flex-start;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 /* Expand/collapse button */
@@ -3245,7 +3242,7 @@ transform: translateY(-3px);
   padding: 0 8px;
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   user-select: none;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 .see-more-btn:hover {
@@ -3261,19 +3258,19 @@ transform: translateY(-3px);
 
 .see-more-btn svg {
   display: inline-block;
-  fill: var(--light-text); /* ensure visibility */
+  fill: var(--light-text);
   height: 18px;
   width: 18px;
 }
 
 /* Main title */
 .checklist-title {
-  color: inherit; /* no forced color */
+  color: inherit;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: center;
-  overflow: hidden; /* prevent scrollbars */
+  overflow: visible;
 }
 
 
@@ -3368,6 +3365,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
