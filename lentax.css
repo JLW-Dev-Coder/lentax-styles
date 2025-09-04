@@ -3077,7 +3077,7 @@ transform: translateY(-3px);
   height: 18px;
   width: 18px;
   margin-left: 5px;
-  margin-right: 5px;
+  /*margin-right: 5px;*/
 }
 
 .checklist-title {
@@ -3189,4 +3189,5 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
