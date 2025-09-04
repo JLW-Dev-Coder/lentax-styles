@@ -3073,7 +3073,7 @@ transform: translateY(-3px);
   border: 1px solid var(--panel-border);
   border-radius: 12px;
   box-shadow: none;
-  color: var(--light-text);
+  /*color: var(--light-text);*/
   margin: 0 auto;
   overflow: hidden; /* Prevents internal scrollbars */
   padding: 0;
@@ -3192,21 +3192,21 @@ transform: translateY(-3px);
 
 /* Item title */
 .checklist-item-title {
-  color: var(--light-text);
+  /*color: var(--light-text);
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 0;
-  text-align: left;
+  text-align: left;*/
 }
 
 /* Subtitle text */
 .checklist-item-subtitle {
-  color: var(--muted-text);
+  /*color: var(--muted-text);
   font-size: 14px;
   letter-spacing: 0.2px;
   margin: 0;
-  text-align: left;
+  text-align: left;*/
 }
 
 /* Subtitle + chevron row */
@@ -3250,7 +3250,7 @@ transform: translateY(-3px);
 
 .see-more-btn span {
   display: inline-block;
-  font-size: 12px;
+  /*font-size: 12px;*/
   letter-spacing: 0.3px;
 }
 
@@ -3263,12 +3263,12 @@ transform: translateY(-3px);
 
 /* Main title */
 .checklist-title {
-  color: var(--light-text);
+  /*color: var(--light-text);
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
-  text-align: center;
+  text-align: center;*/
 }
 
 
@@ -3363,6 +3363,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
