@@ -2959,10 +2959,13 @@ transform: translateY(-3px);
 
 .checklist-header svg {
   display: inline-block;
-  fill: var(--light-text);
-  height: 10px;
-  width: 10px;
-  padding-bottom: 15px;
+  flex-shrink: 0;
+  height: 18px;
+  margin: 0 6px 0 0;
+  padding: 0;
+  vertical-align: middle;
+  width: 18px;
+  fill: var(--light-text); /* or use 'currentColor' to inherit from header */
 }
 
 .checklist-item-collapsing-content {
@@ -3231,6 +3234,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
