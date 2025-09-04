@@ -3086,13 +3086,17 @@ transform: translateY(-3px);
 
 .checklist-title {
   background:
-    radial-gradient(#fff 1.5px, transparent 1.6px) 0 0/10px 10px,
-    radial-gradient(#fff 1.5px, transparent 1.6px) 5px 5px/10px 10px,
+    radial-gradient(#fff 2px, transparent 2.1px) 0 0/12px 12px,
+    radial-gradient(#fff 2px, transparent 2.1px) 6px 6px/12px 12px,
     linear-gradient(#3c3b6e, #3c3b6e) 0 0/40% 60% no-repeat,
-    repeating-linear-gradient(to bottom, #b22234 0 7px, #fff 7px 14px);
+    repeating-linear-gradient(to bottom, #b22234 0 9px, #fff 9px 18px);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-size: 2.5rem;   /* make it bigger */
+  font-weight: 900;    /* make it bold */
+  line-height: 1.2;    /* keep it neat */
+  text-transform: uppercase; /* optional, gives it more punch */
 }
 
 .chain-inner.ordering,
@@ -3195,6 +3199,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
