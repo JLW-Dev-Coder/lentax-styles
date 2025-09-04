@@ -3268,7 +3268,7 @@ transform: translateY(-3px);
 
 /* Main title */
 .checklist-title {
-  color: var(--light-text);
+  color: inherit; /* no forced color */
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
@@ -3368,6 +3368,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
