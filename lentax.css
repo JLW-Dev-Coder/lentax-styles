@@ -3147,7 +3147,7 @@ transform: translateY(-3px);
 }
 /*End of SD CHECKLIST*/
 
-/*SD FLOW*/
+/*SD Primary Button*/
 .btn.btn-primary.btn-block {
   align-items: center;
   background-color: #1a1a1a;
@@ -3238,46 +3238,4 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*End of SD Primary Button*/
