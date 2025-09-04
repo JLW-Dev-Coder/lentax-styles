@@ -2951,11 +2951,12 @@ transform: translateY(-3px);
 
 .checklist-item-collapsing-content {
   animation: checklistFadeIn 300ms ease-out both;
-  border-left: 2px solid var(--panel-border);
+  background: transparent !important;
+  /*border-left: 2px solid var(--panel-border);
   margin: 0;
-  padding: 0;
-  text-align: left;
   overflow: hidden !important;
+  padding: 0;
+  text-align: left;*/
 }
 
 @keyframes checklistFadeIn {
@@ -3199,6 +3200,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
