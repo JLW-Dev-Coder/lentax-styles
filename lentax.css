@@ -3065,7 +3065,6 @@ transform: translateY(-3px);
 /*END CUSTOM CSS*/
 
 /*SuiteDash Default Classes*/
-/*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
 
 /* Card container */
@@ -3094,24 +3093,36 @@ transform: translateY(-3px);
 
 /* Primary action button (Layer / Start) */
 .checklist-actions .button {
-  background: var(--accent-purple);
-  border: 1px solid var(--accent-purple);
-  border-radius: 10px;
+  background: linear-gradient(135deg, #FFA500, #E67300);
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 6px;
+  border-right: 2px solid black;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
   color: var(--light-text);
   cursor: pointer;
+  display: inline-block;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   text-align: center;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   white-space: nowrap;
 }
 
 .checklist-actions .button:hover {
-  background: var(--accent-purple-hover);
-  border-color: var(--accent-purple-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+}
+
+.checklist-actions .button:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 3px 7px #D6D6E7;
 }
 
 /* Header row (icon + title) */
@@ -3352,5 +3363,6 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
