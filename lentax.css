@@ -3134,6 +3134,7 @@ transform: translateY(-3px);
   justify-content: center;
   margin: 0 0 12px 0;
   padding: 12px 8px;
+  font-size: 20px;
 }
 
 /* Normalize SVG sizing */
@@ -3363,6 +3364,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
