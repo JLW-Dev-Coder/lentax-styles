@@ -3066,6 +3066,8 @@ transform: translateY(-3px);
 
 /*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
+/*SuiteDash Default Classes*/
+/*SD CHECKLIST*/
 
 /* Card container */
 .card.checklist-card {
@@ -3073,7 +3075,7 @@ transform: translateY(-3px);
   border: 1px solid var(--panel-border);
   border-radius: 12px;
   box-shadow: none;
-  /*color: var(--light-text);*/
+  color: var(--light-text);
   margin: 0 auto;
   overflow: hidden; /* Prevents internal scrollbars */
   padding: 0;
@@ -3104,16 +3106,16 @@ transform: translateY(-3px);
   color: var(--light-text);
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.2px;
   padding: 8px 14px;
   text-align: center;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background 0.2s ease-in-out;
   white-space: nowrap;
 }
 
 .checklist-actions .button:hover {
+  background: linear-gradient(135deg, #FFB733, #FF8C1A); /* lighter orange tones */
   transform: translateY(-2px);
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 4px 8px,
@@ -3134,6 +3136,7 @@ transform: translateY(-3px);
   justify-content: center;
   margin: 0 0 12px 0;
   padding: 12px 8px;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 /* Normalize SVG sizing */
@@ -3151,6 +3154,7 @@ transform: translateY(-3px);
   margin: 6px 0 14px 14px;
   padding: 8px 12px;
   text-align: left;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 /* Subtle fade-in for expanded content (keyframes placed after class) */
@@ -3171,6 +3175,7 @@ transform: translateY(-3px);
   margin-right: 8px;
   min-width: 28px;
   width: 28px;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 .checklist-item-completed-icon svg {
@@ -3192,21 +3197,21 @@ transform: translateY(-3px);
 
 /* Item title */
 .checklist-item-title {
-  /*color: var(--light-text);
-  font-size: 16px;
+  color: var(--light-text);
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 0;
-  text-align: left;*/
+  text-align: left;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 /* Subtitle text */
 .checklist-item-subtitle {
-  /*color: var(--muted-text);
-  font-size: 14px;
+  color: var(--muted-text);
   letter-spacing: 0.2px;
   margin: 0;
-  text-align: left;*/
+  text-align: left;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 /* Subtitle + chevron row */
@@ -3215,6 +3220,7 @@ transform: translateY(-3px);
   display: flex;
   gap: 6px;
   justify-content: flex-start;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 /* Item header: icon bubble + title */
@@ -3223,6 +3229,7 @@ transform: translateY(-3px);
   display: flex;
   gap: 8px;
   justify-content: flex-start;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 /* Expand/collapse button */
@@ -3240,6 +3247,7 @@ transform: translateY(-3px);
   padding: 0 8px;
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   user-select: none;
+  overflow: hidden; /* prevent scrollbars */
 }
 
 .see-more-btn:hover {
@@ -3250,7 +3258,6 @@ transform: translateY(-3px);
 
 .see-more-btn span {
   display: inline-block;
-  /*font-size: 12px;*/
   letter-spacing: 0.3px;
 }
 
@@ -3264,13 +3271,12 @@ transform: translateY(-3px);
 /* Main title */
 .checklist-title {
   color: var(--light-text);
-  font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: center;
+  overflow: hidden; /* prevent scrollbars */
 }
-
 
 /*SD FLOW*/
 .btn.btn-primary.btn-block {
@@ -3363,6 +3369,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
