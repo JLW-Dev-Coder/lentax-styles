@@ -2959,13 +2959,11 @@ transform: translateY(-3px);
 
 .checklist-header svg {
   display: inline-block;
-  flex-shrink: 0;
-  height: 18px;
+  fill: var(--light-text);
+  height: 1.1em;
   margin: 0 6px 0 0;
-  padding: 0;
   vertical-align: middle;
-  width: 18px;
-  fill: var(--light-text); /* or use 'currentColor' to inherit from header */
+  width: 1.1em;
 }
 
 .checklist-item-collapsing-content {
@@ -3114,12 +3112,16 @@ transform: translateY(-3px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  /*letter-spacing: -0.5px;*/
+
+  align-items: center;
+  display: inline-flex;
   font-size: 2rem;
   font-weight: 900;
-  padding-bottom: 15px;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0; /* remove bottom padding so it aligns with the icon */
   text-align: center;
-  transition: background 0.5s ease; /* switch to background for gradient animation */
+  transition: background 0.5s ease;
 }
 
 .checklist-title:hover {
@@ -3234,6 +3236,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
