@@ -3094,10 +3094,11 @@ transform: translateY(-3px);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: 2.5rem;   /* make it bigger */
-  font-weight: 900;    /* make it bold */
-  line-height: 1.2;    /* keep it neat */
-  text-transform: uppercase; /* optional, gives it more punch */
+  font-size: 3rem !important;    /* big and bold */
+  font-weight: 900 !important;   /* heaviest weight */
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;     /* optional: makes it even more prominent */
 }
 
 .chain-inner.ordering,
@@ -3200,6 +3201,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
