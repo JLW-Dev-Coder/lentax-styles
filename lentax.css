@@ -3074,7 +3074,7 @@ transform: translateY(-3px);
   border-radius: 12px;
   box-shadow: none;
   margin: 0 auto;
-  overflow: visible;
+  overflow: hidden !important;
   padding: 0;
 }
 
@@ -3085,7 +3085,7 @@ transform: translateY(-3px);
   border-radius: 14px;
   margin: 16px auto;
   max-width: 960px;
-  overflow: visible;
+  overflow: hidden !important;
   padding: 16px;
   text-align: center;
 }
@@ -3100,7 +3100,7 @@ transform: translateY(-3px);
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
-  color: inherit;
+  color: initial !important;
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
@@ -3133,7 +3133,7 @@ transform: translateY(-3px);
   justify-content: center;
   margin: 0 0 12px 0;
   padding: 12px 8px;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 /* Normalize SVG sizing */
@@ -3151,7 +3151,7 @@ transform: translateY(-3px);
   margin: 6px 0 14px 14px;
   padding: 8px 12px;
   text-align: left;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 @keyframes checklistFadeIn {
@@ -3171,7 +3171,7 @@ transform: translateY(-3px);
   margin-right: 8px;
   min-width: 28px;
   width: 28px;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 .checklist-item-completed-icon svg {
@@ -3187,27 +3187,34 @@ transform: translateY(-3px);
   display: grid;
   gap: 8px;
   grid-template-columns: 1fr auto;
-  overflow: visible;
+  overflow: hidden !important;
   padding: 12px 10px;
+}
+
+/* Info wrapper fix */
+.checklist-item-info {
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
 }
 
 /* Item title */
 .checklist-item-title {
-  color: inherit;
+  color: initial !important;
   font-weight: 600;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: left;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 /* Subtitle text */
 .checklist-item-subtitle {
-  color: inherit;
+  color: initial !important;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: left;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 /* Subtitle + chevron row */
@@ -3216,7 +3223,7 @@ transform: translateY(-3px);
   display: flex;
   gap: 6px;
   justify-content: flex-start;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 /* Item header: icon bubble + title */
@@ -3225,7 +3232,7 @@ transform: translateY(-3px);
   display: flex;
   gap: 8px;
   justify-content: flex-start;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 /* Expand/collapse button */
@@ -3244,7 +3251,7 @@ transform: translateY(-3px);
   padding: 0 8px;
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   user-select: none;
-  overflow: visible;
+  overflow: hidden !important;
 }
 
 .see-more-btn:hover {
@@ -3267,12 +3274,64 @@ transform: translateY(-3px);
 
 /* Main title */
 .checklist-title {
-  color: inherit;
+  color: initial !important;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
   text-align: center;
-  overflow: visible;
+  overflow: hidden !important;
+}
+
+/* Hide any residual scrollbars */
+.checklist-item-info::-webkit-scrollbar,
+.card.checklist-card::-webkit-scrollbar,
+.cbe-block-checklist::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.checklist-item-info,
+.card.checklist-card,
+.cbe-block-checklist {
+  scrollbar-width: none !important;
+}
+/* === Overrides: force neutral text color and remove stray scrollbars === */
+
+/* Neutralize forced white from SD skins */
+.checklist-item-subtitle,
+.checklist-item-title,
+.checklist-title {
+  color: unset !important;
+}
+
+/* Kill the tiny left scrollbar produced by the info wrapper */
+.checklist-item-info {
+  -ms-overflow-style: none !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  scrollbar-width: none !important;
+}
+
+.checklist-item-info::-webkit-scrollbar {
+  height: 0 !important;
+  width: 0 !important;
+}
+
+/* Extra safety: ensure these rows never create scrollbars */
+.checklist-item__header,
+.checklist-item-subtitle-wrap,
+.checklist-item-content {
+  -ms-overflow-style: none !important;
+  overflow: visible !important;
+  scrollbar-width: none !important;
+}
+
+.checklist-item__header::-webkit-scrollbar,
+.checklist-item-subtitle-wrap::-webkit-scrollbar,
+.checklist-item-content::-webkit-scrollbar {
+  height: 0 !important;
+  width: 0 !important;
 }
 
 
@@ -3367,6 +3426,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
