@@ -3066,8 +3066,6 @@ transform: translateY(-3px);
 
 /*SuiteDash Default Classes*/
 /*SD CHECKLIST*/
-/*SuiteDash Default Classes*/
-/*SD CHECKLIST*/
 
 /* Card container */
 .card.checklist-card {
@@ -3278,6 +3276,7 @@ transform: translateY(-3px);
   overflow: hidden; /* prevent scrollbars */
 }
 
+
 /*SD FLOW*/
 .btn.btn-primary.btn-block {
   align-items: center;
@@ -3369,6 +3368,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
