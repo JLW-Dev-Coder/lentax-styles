@@ -2999,6 +2999,10 @@ transform: translateY(-3px);
   padding: 0;
 }
 
+.checklist-item-description {
+  background: transparent !important;
+}
+
 .checklist-item-info {
   height: auto !important;
   max-height: none !important;
@@ -3191,6 +3195,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
