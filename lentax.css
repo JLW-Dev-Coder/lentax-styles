@@ -2952,8 +2952,8 @@ transform: translateY(-3px);
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin: 0 0 20px 0; /* increase bottom margin (was 12px) */
-  padding: 0;
+  margin: 0 0 20px 0;   /* controls space below the whole block */
+  padding: 0 0 10px 0;  /* adds space between the content and the border line */
   overflow: hidden !important;
 }
 
@@ -3237,6 +3237,7 @@ font-size: 16px;
 line-height: 1;
 vertical-align: middle;
 }
+
 
 
 
