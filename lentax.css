@@ -1027,6 +1027,10 @@
   z-index: 3;
 }
 
+.item-column::before,
+.item-column-v2::before {
+  display: none !important;
+}
 
 .item-column-v2 {
   position: relative;
@@ -3239,3 +3243,4 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
