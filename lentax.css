@@ -1092,12 +1092,12 @@
 
 .item-column-two-lottie {
   position: absolute;
-  top: 0%;
-  left: 0%;
+  /*top: 0%;
+  left: 0%;*/
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%) scale(1.8); /* scale up the lottie */
-  transform-origin: center center;
+  /*transform-origin: center center;*/
   z-index: 0;
   pointer-events: none;
   opacity: 0.4;
@@ -3263,6 +3263,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
