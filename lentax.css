@@ -1079,31 +1079,40 @@
   z-index: 0;
 }
 
+/* Container for the text + background Lottie */
 .item-column-two-bg {
   position: relative;
   z-index: 1;
-  min-height: 400px; /* ensure enough space for centering */
+  min-height: clamp(420px, 48vw, 680px); /* ensures we have vertical room */
+  overflow: visible; /* allow the bigger Lottie to show */
 }
 
+/* Keep headings above the animation */
 .item-column-two-bg h1,
 .item-column-two-bg h2 {
   position: relative;
   z-index: 2;
 }
 
+/* Background Lottie wrapper (behind the text) */
 .item-column-two-lottie {
   position: absolute;
-  top: 50%;
+  top: 55%;              /* drop it slightly below midpoint */
   left: 50%;
-  width: 200%;   /* make it big */
-  height: 200%;  /* make it tall enough */
-  transform: translate(-50%, -40%) scale(1.8); 
-  /* -40% instead of -50% pushes it down slightly */
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(2.25); /* larger + perfectly centered */
   transform-origin: center center;
   z-index: 0;
   pointer-events: none;
   opacity: 0.4;
 }
+
+/* If your card/checklist shells force clipping, this local override frees it */
+.item-column-two-bg * {
+  overflow: visible !important; /* scoped to this block only */
+}
+
 
 .item-column-two-v2 {
   background-color: rgba(0, 0, 0, 0.9);
@@ -3264,6 +3273,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
