@@ -1100,7 +1100,7 @@
   transform-origin: center center;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 
@@ -3263,6 +3263,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
