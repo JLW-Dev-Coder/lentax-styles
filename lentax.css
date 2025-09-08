@@ -2293,6 +2293,7 @@ text-animated-form
 .mint-backdrop-wrap {
   display: block;
   position: relative;
+  text-align: left;
 }
 
 .mint-backdrop {
@@ -3263,6 +3264,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
