@@ -1256,7 +1256,7 @@
 }
 /*Item Top Menu*/
 .item-top-menu {
-  display: flex;
+  /*display: flex;
   justify-content: space-around;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.4);
@@ -1282,7 +1282,8 @@
 
 .item-top-menu-btn:last-child {
   border-right: none;
-}
+}*/
+  
 /*Item Plan*/
 .item-plan-card {
   background-color: rgba(0, 0, 0, 0.8);
@@ -1342,6 +1343,7 @@
   font-weight: 700;
   font-size: 18px;
 }
+  
 /*LenBot*/
 /*LenBot Chat*/
 /* Chat Container */
@@ -3264,6 +3266,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
