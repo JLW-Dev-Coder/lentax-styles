@@ -1254,9 +1254,10 @@
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
   padding: 30px;
 }
+
 /*Item Top Menu*/
 .item-top-menu {
-  /*display: flex;
+  display: flex;
   justify-content: space-around;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.4);
@@ -1282,7 +1283,7 @@
 
 .item-top-menu-btn:last-child {
   border-right: none;
-}*/
+}
   
 /*Item Plan*/
 .item-plan-card {
@@ -3266,6 +3267,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
