@@ -2776,7 +2776,7 @@ background: var(--dark-base);
 border: 1px solid var(--panel-border);
 border-radius: 12px;
 padding: 15px;
-/*margin: 0 auto;*/
+margin: 15px;
 /*margin-bottom: 56px;*/
 position: relative;
 transition: box-shadow 0.25s ease, transform 0.25s ease;
@@ -3281,6 +3281,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
