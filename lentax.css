@@ -2545,7 +2545,7 @@ text-animated-form
 }
 
 /*Pricing*/
-:root {
+/*:root {
   --accent-purple: #8c52ff;
   --accent-purple-hover: #a178ff;
   --badge-purple: purple;
@@ -2791,7 +2791,7 @@ transform: translateY(-3px);
 .pricing-overlay-lentax:hover {
 box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
 transform: translateY(-3px);
-}
+}*/
 
 /*USA Flag*/
 .usa-flag-title {
@@ -3274,6 +3274,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
