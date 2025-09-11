@@ -2557,10 +2557,21 @@ text-animated-form
   --panel-border: #333;
 }
 
-/* ===== Card ===== */
+.pricing-grid-lentax {
+  align-items: stretch;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-content: center;
+  margin: 0;
+  margin-top: 24px;
+  padding: 0;
+}
+
 .pricing-card-lentax {
   align-items: center;
-  border: 1px solid var(--panel-border);
+  /*background: var(--dark-base);
+  border: 1px solid var(--panel-border);*/
   border-radius: 8px;
   box-shadow: none;
   color: var(--light-text);
@@ -2570,16 +2581,16 @@ text-animated-form
   padding: 24px;
   position: relative;
   text-align: center;
-  transition: border-color 0.3s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .pricing-card-lentax:focus-within,
 .pricing-card-lentax:hover {
-  border-color: #444;
+  /*background: var(--dark-hover);
+  border-color: #444;*/
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* recommended badge */
 .pricing-card-lentax.is-recommended {
   border-color: var(--badge-purple);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
@@ -2602,24 +2613,189 @@ text-animated-form
   white-space: nowrap;
 }
 
-/* Overlay with dark background */
-.pricing-overlay-lentax {
-  background: var(--dark-base);
-  border: 1px solid var(--panel-border);
-  border-radius: 8px;
-  margin: 0 auto;
-  margin-bottom: 56px;
-  position: relative;
-  transition: background 0.3s ease, box-shadow 0.25s ease, transform 0.25s ease;
+.pricing-media-lentax {
+  border-radius: 12px;
+  height: 120px;
+  margin-bottom: 8px;
+  overflow: hidden;
   width: 100%;
 }
 
-.pricing-overlay-lentax:focus-visible,
-.pricing-overlay-lentax:focus-within,
+.pricing-media-lentax img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.pricing-card-lentax dotlottie-wc {
+  height: 56px;
+  width: 56px;
+}
+
+.pricing-title-lentax {
+  color: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pricing-subtitle-lentax {
+  color: var(--muted-text);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.pricing-price-lentax {
+  color: inherit;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  margin: 6px 0 0 0;
+}
+
+.pricing-card-lentax .button {
+  background: var(--accent-purple);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  color: var(--light-text);
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  line-height: 1;
+  margin-top: 6px;
+  padding: 12px 18px;
+  text-decoration: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.pricing-card-lentax .button:hover {
+  background: var(--accent-purple-hover);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.pricing-overlay-btn-lentax {
+align-items: center;
+display: flex;
+inset: 0;
+justify-content: center;
+position: absolute;
+z-index: 2;
+}
+
+.pricing-overlay-btn-lentax .btn {
+align-items: center !important;
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+cursor: pointer !important;
+display: flex !important;
+height: 100% !important;
+justify-content: center !important;
+margin: 0 !important;
+outline: none !important;
+padding: 0 !important;
+text-align: center !important;
+text-decoration: none !important;
+transition: none !important;
+transform: none !important;
+width: 100% !important;
+}
+
+.pricing-overlay-btn-lentax .btn-primary {
+align-items: center !important;
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+cursor: pointer !important;
+display: flex !important;
+height: 100% !important;
+justify-content: center !important;
+margin: 0 !important;
+outline: none !important;
+padding: 0 !important;
+text-align: center !important;
+text-decoration: none !important;
+transition: none !important;
+transform: none !important;
+width: 100% !important;
+}
+
+.pricing-overlay-btn-lentax .cbe-block-button-element {
+align-items: center !important;
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+cursor: pointer !important;
+display: flex !important;
+height: 100% !important;
+justify-content: center !important;
+margin: 0 !important;
+outline: none !important;
+padding: 0 !important;
+text-align: center !important;
+text-decoration: none !important;
+transition: none !important;
+transform: none !important;
+width: 100% !important;
+}
+
+.pricing-overlay-btn-lentax .btn:active,
+.pricing-overlay-btn-lentax .btn:focus,
+.pricing-overlay-btn-lentax .btn:focus-visible,
+.pricing-overlay-btn-lentax .btn:hover,
+.pricing-overlay-btn-lentax .btn-primary:active,
+.pricing-overlay-btn-lentax .btn-primary:focus,
+.pricing-overlay-btn-lentax .btn-primary:focus-visible,
+.pricing-overlay-btn-lentax .btn-primary:hover,
+.pricing-overlay-btn-lentax .cbe-block-button-element:active,
+.pricing-overlay-btn-lentax .cbe-block-button-element:focus,
+.pricing-overlay-btn-lentax .cbe-block-button-element:focus-visible,
+.pricing-overlay-btn-lentax .cbe-block-button-element:hover {
+background-color: transparent !important;
+background-image: none !important;
+border: 0 !important;
+box-shadow: none !important;
+outline: none !important;
+transition: none !important;
+transform: none !important;
+}
+
+.pricing-overlay-lentax {
+background: var(--dark-base);
+border: 1px solid var(--panel-border);
+margin: 0 auto;
+margin-bottom: 56px;
+position: relative;
+transition: box-shadow 0.25s ease, transform 0.25s ease;
+width: 100%;
+}
+
+.pricing-overlay-lentax:focus-visible {
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+transform: translateY(-3px);
+}
+
+.pricing-overlay-lentax:focus-within {
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+transform: translateY(-3px);
+}
+
 .pricing-overlay-lentax:hover {
-  background: var(--dark-hover);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
-  transform: translateY(-3px);
+background: var(--dark-hover);
+border-color: #444;
+box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+transform: translateY(-3px);
 }
 
 /*USA Flag*/
@@ -3103,6 +3279,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
