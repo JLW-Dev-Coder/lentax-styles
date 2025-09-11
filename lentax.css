@@ -1480,7 +1480,6 @@
   margin: 15px;
 }
 /*Section*/
-/*Section Related Links*/
 .section-related-links {
   text-align: center;
   position: relative;
@@ -1525,8 +1524,8 @@
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
-    #40E0D0,   /* turquoise */
-    #FFD700
+    #FFA500,   /* orange-gold */
+    #FFD700    /* gold again */
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -3262,6 +3261,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
