@@ -2774,8 +2774,10 @@ transform: none !important;
 .pricing-overlay-lentax {
 background: var(--dark-base);
 border: 1px solid var(--panel-border);
-margin: 0 auto;
-margin-bottom: 56px;
+border-radius: 8px;
+margin: 15px;
+/*margin: 0 auto;*/
+/*margin-bottom: 56px;*/
 position: relative;
 transition: box-shadow 0.25s ease, transform 0.25s ease;
 width: 100%;
@@ -3279,6 +3281,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
