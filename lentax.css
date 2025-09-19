@@ -2435,6 +2435,22 @@ text-animated-form
   /*padding: 0 15px;*/
 }
 
+.mint-flag-backdrop {
+  inset: 0;
+  object-fit: contain;
+  opacity: 0.6;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 0; /* behind the text */
+}
+
+.mint-block-border {
+  position: relative; /* anchor text + backdrop layering */
+  z-index: 1;
+}
+
+
 .mint-name {
   animation: gradientSweep 8s ease-in-out infinite;
   background: linear-gradient(270deg, #00b894, #00cec9, #0984e3);
@@ -3298,6 +3314,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
