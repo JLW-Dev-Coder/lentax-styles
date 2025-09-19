@@ -1893,6 +1893,7 @@ text-animated-form
   flex-direction: column;
   text-align: center;
 }
+
 /*Text Default*/
 .text-default {
   margin: 0px 15px 30px 15px;
@@ -1905,7 +1906,9 @@ text-animated-form
 .text-default h4,
 .text-default h5,
 .text-default h6,
-.text-default p {
+.text-default p,
+.text-default ul,
+.text-default li {
   color: rgba(255, 255, 255, 0.9);
   transition: color 0.3s ease;
 }
@@ -3295,6 +3298,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
