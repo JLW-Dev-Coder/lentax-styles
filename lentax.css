@@ -1951,6 +1951,59 @@ text-animated-form
   color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
+.text-default-v2 {
+  margin: 0px 15px 0px 15px;
+}
+
+.text-default-v2 h1,
+.text-default-v2 h2,
+.text-default-v2 h3,
+.text-default-v2 h4,
+.text-default-v2 h5,
+.text-default-v2 h6,
+.text-default-v2 p,
+.text-default-v2 ul,
+.text-default-v2 li {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.3s ease;
+}
+
+.text-default-v2 .info-content-title h2 {
+  color: inherit;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.text-default-v2:hover h1,
+.text-default-v2:hover h2,
+.text-default-v2:hover h3,
+.text-default-v2:hover h4,
+.text-default-v2:hover h5,
+.text-default-v2:hover h6,
+.text-default-v2:hover p,
+.text-default-v2:focus h1,
+.text-default-v2:focus h2,
+.text-default-v2:focus h3,
+.text-default-v2:focus h4,
+.text-default-v2:focus h5,
+.text-default-v2:focus h6,
+.text-default-v2:focus p,
+.text-default-v2.active h1,
+.text-default-v2.active h2,
+.text-default-v2.active h3,
+.text-default-v2.active h4,
+.text-default-v2.active h5,
+.text-default-v2.active h6,
+.text-default-v2.active p {
+  color: #fff;
+}
+
+.text-default-v2:hover .info-content-title h2,
+.text-default-v2:focus .info-content-title h2,
+.text-default-v2.active .info-content-title h2 {
+  color: inherit;
+}
+
 
 /*Tooltip*/
 /* Tooltip container (baseline) */
@@ -3314,6 +3367,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
