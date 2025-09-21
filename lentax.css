@@ -1275,9 +1275,9 @@
 
 /*Item Top Menu*/
 .item-top-menu {
-  display: flex;
+  /*display: flex;
   justify-content: space-around;
-  overflow: hidden;
+  overflow: hidden;*/
   box-shadow: 0 2px 10px rgba(0,0,0,0.4);
   background-color: #333;
 }
@@ -3314,6 +3314,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
