@@ -344,7 +344,7 @@
   color: rgb(230, 184, 0); /* Bright white on hover/focus/active */
 }
 
-.feature-name-v2 {
+.feature-name-v2 h2 {
   background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33); /* gold → orange-gold → bright yellow */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -360,13 +360,13 @@
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-.feature-name-v2:hover,
-.feature-name-v2:focus,
-.feature-name-v2.active {
+.feature-name-v2 h2:hover,
+.feature-name-v2 h2:focus,
+.feature-name-v2 h2.active {
   /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
 }
 
-.feature-name-v3 h2 {
+.feature-name-v3 {
   text-align: center;
   line-height: 1;
   background: linear-gradient(90deg, #4dd0e1, #7e57c2, #ff8a65);
@@ -384,9 +384,9 @@
 }
 
 /* Hover/active overrides the gradient mask with solid white */
-.feature-name-v3 h2:hover,
-.feature-name-v3 h2:focus,
-.feature-name-v3 h2.active {
+.feature-name-v3:hover,
+.feature-name-v3:focus,
+.feature-name-v3.active {
   /*-webkit-text-fill-color: #fff;*/
 }
 
@@ -3387,6 +3387,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
