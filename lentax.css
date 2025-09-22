@@ -350,7 +350,7 @@
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
   display: block;
-  font-size: 45px;
+  /*font-size: 45px;*/
   line-height: 1;
   margin-bottom: 20px;
   overflow: hidden;
@@ -3387,6 +3387,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
