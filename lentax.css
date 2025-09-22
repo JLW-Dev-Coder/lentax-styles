@@ -2515,7 +2515,7 @@ text-animated-form
 }
 
 .mint-block-pad {
-  margin-bottom: 12px;
+  /*margin-bottom: 12px;*/
   position: relative;
   z-index: 1;
 }
@@ -3403,6 +3403,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
