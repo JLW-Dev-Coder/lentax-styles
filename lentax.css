@@ -2478,7 +2478,7 @@ text-animated-form
   to { opacity: 1; transform: translateY(0); }
 }
 
-.mint-block-container:hover {
+.mint-block-container:active {
   background: rgba(15, 15, 15, 0.95); /* even deeper on hover */
   border-color: #333;                 /* dark border contrast */
 }
@@ -3391,6 +3391,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
