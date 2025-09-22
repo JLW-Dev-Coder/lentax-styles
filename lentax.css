@@ -344,7 +344,7 @@
   color: rgb(230, 184, 0); /* Bright white on hover/focus/active */
 }
 
-.feature-name-v2 h2 {
+.feature-name-v2 {
   background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33); /* gold → orange-gold → bright yellow */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -360,9 +360,9 @@
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-.feature-name-v2 h2:hover,
-.feature-name-v2 h2:focus,
-.feature-name-v2 h2.active {
+.feature-name-v2:hover,
+.feature-name-v2:focus,
+.feature-name-v2.active {
   /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
 }
 
@@ -3387,6 +3387,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
