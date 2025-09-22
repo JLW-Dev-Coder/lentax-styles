@@ -939,6 +939,10 @@
   margin-bottom: 75px;
 }
 
+.image-block-v3 {
+  margin-bottom: 15px;
+}
+
 .image-style {
   display: block;
   margin: 20px auto;
@@ -3387,6 +3391,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
