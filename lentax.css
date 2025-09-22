@@ -366,29 +366,29 @@
   /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
 }
 
-.feature-name-v3 {
-  text-align: center;
-  line-height: 1;
-  background: linear-gradient(90deg, #4dd0e1, #7e57c2, #ff8a65);
+.feature-name-v3 h2 {
+  background: linear-gradient(90deg, rgb(255, 255, 0), rgb(230, 230, 0), rgb(200, 200, 0));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  position: relative;
-  display: block;          /* inline-block won’t fill width */
-  text-align: center;      /* now centers text within full width */
-  font-size: 45px;
-  overflow: hidden;
   border-radius: 35px;
-  padding: 8px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
   margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
 /* Hover/active overrides the gradient mask with solid white */
-.feature-name-v3:hover,
-.feature-name-v3:focus,
-.feature-name-v3.active {
-  /*-webkit-text-fill-color: #fff;*/
+.feature-name-v3 h2:hover,
+.feature-name-v3 h2:focus,
+.feature-name-v3 h2.active {
+  /* -webkit-text-fill-color: #fff; */
 }
+
 
 /*Filter*/
 .filter-badge {
@@ -3404,6 +3404,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
