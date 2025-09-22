@@ -367,7 +367,12 @@
 }
 
 .feature-name-v3 {
-  background: linear-gradient(90deg, rgb(255, 255, 0), rgb(230, 230, 0), rgb(200, 200, 0));
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 0),     /* bright yellow */
+    rgb(255, 215, 0),     /* gold */
+    rgb(255, 165, 0)      /* orange-gold */
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
@@ -3404,6 +3409,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
