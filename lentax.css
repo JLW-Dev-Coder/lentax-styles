@@ -300,6 +300,62 @@
   border-color: #444;
 }
 
+.feature-block-text-default {
+  margin: 0px 15px 15px 15px;
+}
+
+/* Apply to everything EXCEPT info-content titles */
+.feature-block-text-default h1,
+.feature-block-text-default h2,
+.feature-block-text-default h3,
+.feature-block-text-default h4,
+.feature-block-text-default h5,
+.feature-block-text-default h6,
+.feature-block-text-default p,
+.feature-block-text-default ul,
+.feature-block-text-default li {
+color: rgba(255, 255, 255, 0.9);
+transition: color 0.3s ease;
+}
+
+/* Explicitly exclude .info-content-title h2 */
+.feature-block-text-default .info-content-title h2 {
+color: inherit; /* ignore .feature-block-text-default color override */
+margin-left: 15px;
+margin-top: 15px;
+}
+
+/* Hover/focus/active states (also exclude .info-content-title h2) */
+.feature-block-text-default:hover h1,
+.feature-block-text-default:hover h2,
+.feature-block-text-default:hover h3,
+.feature-block-text-default:hover h4,
+.feature-block-text-default:hover h5,
+.feature-block-text-default:hover h6,
+.feature-block-text-default:hover p,
+.feature-block-text-default:focus h1,
+.feature-block-text-default:focus h2,
+.feature-block-text-default:focus h3,
+.feature-block-text-default:focus h4,
+.feature-block-text-default:focus h5,
+.feature-block-text-default:focus h6,
+.feature-block-text-default:focus p,
+.feature-block-text-default.active h1,
+.feature-block-text-default.active h2,
+.feature-block-text-default.active h3,
+.feature-block-text-default.active h4,
+.feature-block-text-default.active h5,
+.feature-block-text-default.active h6,
+.feature-block-text-default.active p {
+color: #fff;
+}
+
+.feature-block-text-default:hover .info-content-title h2,
+.feature-block-text-default:focus .info-content-title h2,
+.feature-block-text-default.active .info-content-title h2 {
+color: inherit; /* don't override the special gold/turquoise behavior */
+}
+
 .feature-block-description {
   flex-grow: 1;
   color: #ffffff;
@@ -3535,6 +3591,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
