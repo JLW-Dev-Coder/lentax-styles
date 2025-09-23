@@ -14,7 +14,7 @@
 
 .account-card-status-active { background-color: #00ff00; }
 .account-card-status-coming-soon { background-color: #ff1493; }
-.account-card-status-inactive { background-color: #ff003f; }
+.account-card-status-inactive { background-color: #ff003f; color: #fff}
 .account-card-status-limited { background-color: #ffa500; }
 .account-card-status-future { background-color: #ffa500; }/* Slate gray for 'future' tone */
 
@@ -3409,6 +3409,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
