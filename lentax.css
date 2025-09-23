@@ -134,6 +134,37 @@
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
 }
 
+.button-custom-reset {
+  background-color: #dc3545; /* red */
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 6px;
+  border-right: 2px solid black;
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+  color: #fff; /* white */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 10px 32px !important;
+  text-align: center;
+  transition: background-color 0.2s ease-in-out, 
+              transform 0.2s ease-in-out, 
+              box-shadow 0.2s ease-in-out;
+}
+
+.button-custom-reset:hover {
+  background-color: #a71d2a; /* darker red */
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+              rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+              #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-custom-reset:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
 /*Client*/
 .client-name {
   background: linear-gradient(270deg, #ff0000, #ffffff, #0000ff); /* Red → White → Blue */
@@ -3425,6 +3456,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
