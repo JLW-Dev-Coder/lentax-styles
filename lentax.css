@@ -2104,6 +2104,45 @@ text-animated-form
   color: inherit;
 }
 
+.text-default-v3 {
+  margin: 0px 15px 15px 15px;
+}
+
+.text-default-v3 .info-content-title h2 {
+  color: inherit;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.text-default-v3:hover h1,
+.text-default-v3:hover h2,
+.text-default-v3:hover h3,
+.text-default-v3:hover h4,
+.text-default-v3:hover h5,
+.text-default-v3:hover h6,
+.text-default-v3:hover p,
+.text-default-v3:focus h1,
+.text-default-v3:focus h2,
+.text-default-v3:focus h3,
+.text-default-v3:focus h4,
+.text-default-v3:focus h5,
+.text-default-v3:focus h6,
+.text-default-v3:focus p,
+.text-default-v3.active h1,
+.text-default-v3.active h2,
+.text-default-v3.active h3,
+.text-default-v3.active h4,
+.text-default-v3.active h5,
+.text-default-v3.active h6,
+.text-default-v3.active p {
+  color: #fff;
+}
+
+.text-default-v3:hover .info-content-title h2,
+.text-default-v3:focus .info-content-title h2,
+.text-default-v3.active .info-content-title h2 {
+  color: inherit;
+}
 
 /*Tooltip*/
 /* Tooltip container (baseline) */
@@ -3480,6 +3519,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
