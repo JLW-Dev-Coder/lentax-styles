@@ -1160,17 +1160,27 @@
 
 /*Item Column Two*/
 .item-column-two {
-  background-color: rgba(0, 0, 0, 0.9);
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-              rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  flex: 1 1 65%;
-  margin: 15px;
-  overflow: hidden;
-  padding: 30px 30px 45px 30px;
-  position: relative;   /* anchor absolute layers */
-  isolation: isolate;
-  z-index: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Mobile: stack buttons full-width */
+@media screen and (max-width: 768px) {
+  .item-column-two {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .item-column-two .button-custom-reset,
+  .item-column-two .item-btn-cta {
+    display: block;
+    width: 100%;
+  }
 }
 
 .item-column-two-bg {
@@ -3456,6 +3466,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
