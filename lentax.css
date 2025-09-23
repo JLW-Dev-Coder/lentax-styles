@@ -12,11 +12,27 @@
   z-index: 1;
 }
 
-.account-card-status-active { background-color: #00ff00; }
-.account-card-status-coming-soon { background-color: #ff1493; }
-.account-card-status-inactive { background-color: #ff003f; color: #fff}
-.account-card-status-limited { background-color: #ffa500; }
-.account-card-status-future { background-color: #ffa500; }/* Slate gray for 'future' tone */
+.account-card-status-active { 
+  background-color: #00ff00; /* bright green for active */ 
+}
+
+.account-card-status-coming-soon { 
+  background-color: #ff1493; /* deep pink for coming soon */ 
+}
+
+.account-card-status-inactive { 
+  background-color: #ff003f; /* vivid red for inactive */ 
+  color: #fff !important;   /* white text, forced */
+}
+
+.account-card-status-limited { 
+  background-color: #ffa500; /* orange for limited */ 
+}
+
+.account-card-status-future { 
+  background-color: #ffa500; /* orange (used as slate gray tone for future) */ 
+}
+
 
 .account-card-subtitle {
   margin: 0;
@@ -3409,6 +3425,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
