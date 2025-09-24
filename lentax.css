@@ -2281,7 +2281,60 @@ text-animated-form
 .text-default-v3:hover .info-content-title h2,
 .text-default-v3:focus .info-content-title h2,
 .text-default-v3.active .info-content-title h2 {
-  color: inherit; /* don't override the special gold/turquoise behavior */
+  color: inherit; 
+}
+
+.text-default-v4 {
+margin: 0px 15px -45px 15px;
+}
+
+.text-default-v4 h1,
+.text-default-v4 h2,
+.text-default-v4 h3,
+.text-default-v4 h4,
+.text-default-v4 h5,
+.text-default-v4 h6,
+.text-default-v4 p,
+.text-default-v4 ul,
+.text-default-v4 li {
+color: rgba(255, 255, 255, 0.9);
+transition: color 0.3s ease;
+}
+
+.text-default-v4 .info-content-title h2 {
+color: inherit; 
+margin-left: 15px;
+margin-top: 15px;
+}
+
+.text-default-v4:hover h1,
+.text-default-v4:hover h2,
+.text-default-v4:hover h3,
+.text-default-v4:hover h4,
+.text-default-v4:hover h5,
+.text-default-v4:hover h6,
+.text-default-v4:hover p,
+.text-default-v4:focus h1,
+.text-default-v4:focus h2,
+.text-default-v4:focus h3,
+.text-default-v4:focus h4,
+.text-default-v4:focus h5,
+.text-default-v4:focus h6,
+.text-default-v4:focus p,
+.text-default-v4.active h1,
+.text-default-v4.active h2,
+.text-default-v4.active h3,
+.text-default-v4.active h4,
+.text-default-v4.active h5,
+.text-default-v4.active h6,
+.text-default-v4.active p {
+color: #fff;
+}
+
+.text-default-v4:hover .info-content-title h2,
+.text-default-v4:focus .info-content-title h2,
+.text-default-v4.active .info-content-title h2 {
+color: inherit;
 }
 
 .text-default-bottom-px0 {
@@ -3715,6 +3768,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
