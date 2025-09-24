@@ -426,7 +426,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   font-size: 20px;
   font-weight: 700;
   color: #FFD700;
-  margin: 12px 0 18px;
+  /*margin: 12px 0 18px;*/
 }
 
 .feature-cta-wrapper {
@@ -3715,6 +3715,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
