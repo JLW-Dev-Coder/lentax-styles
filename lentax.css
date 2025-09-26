@@ -2296,7 +2296,7 @@ color: inherit;
 }
 
 .text-default-bottom-px0 {
-margin: 0px 15px 0px 15px;
+margin: 0px 15px -15px 15px;
 }
 
 /* Apply to everything EXCEPT info-content titles */
@@ -3733,6 +3733,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
