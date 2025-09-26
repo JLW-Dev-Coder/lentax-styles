@@ -806,7 +806,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  margin-top: 1.5rem;
+  /*margin-top: 1.5rem;*/
 }
 
 /* Animated List */
@@ -1841,9 +1841,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-text-animated-form
-───────────────────────────────────────────────────────────── */
+/*Text Animated Form*/
 
 /* Waterfall-from-left: cascade each text line from the left (safe for flex layout) */
 .text-animated-form { /* apply to the WRAPPER or the TEXT column */ }
@@ -3735,6 +3733,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
