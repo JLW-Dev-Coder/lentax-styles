@@ -840,10 +840,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .form-subtitle {
-  font-weight: normal;
+  /*font-weight: normal;
   line-height: 1.4;
   margin: 0; /* Remove default top/bottom margin */
-  padding-top: 10px;
+  padding-top: 10px;*/
 }
 
 .form-title {
@@ -3733,6 +3733,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
