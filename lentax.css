@@ -724,6 +724,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .flow-step-content {
+    margin: 0 12px;
+    max-width: 100%;
+    padding: 20px;
+    width: auto;
+  }
+
+  .flow-step-content .form-control,
+  .flow-step-content .select2-container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
 .flow-voyage-progress {
   background: linear-gradient(
     90deg,
@@ -3726,6 +3741,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
