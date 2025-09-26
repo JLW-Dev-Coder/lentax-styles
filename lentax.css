@@ -795,9 +795,9 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /* Flex child: flexible width (e.g., message content) */
 .form-flex-fluid {
-  /*flex: 1 1 300px;
+  flex: 1 1 300px;
   max-width: 100%;
-  min-width: 300px;*/
+  min-width: 300px;
 }
 
 /* Flex container for the entire section */
@@ -3733,6 +3733,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
