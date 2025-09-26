@@ -724,21 +724,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 30px;
 }
 
-@media screen and (max-width: 200px) {
-  .flow-step-content {
-    margin: 0 12px;
-    max-width: 100%;
-    padding: 20px;
-    width: auto;
-  }
-
-  .flow-step-content .form-control,
-  .flow-step-content .select2-container {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-}
-
 .flow-voyage-progress {
   background: linear-gradient(
     90deg,
@@ -2907,7 +2892,14 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     width: 120px;
   }
 }
+/*Mobile Only*/
 
+@media screen and (max-width: 768px) {
+  .mobile-only {
+    max-width: 400px !important;
+    width: 400px !important;
+  }
+}
 
 /*Porthole*/ 
 /* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
@@ -3741,6 +3733,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
