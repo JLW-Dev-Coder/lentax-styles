@@ -1053,7 +1053,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .image-block-v3 {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .image-block-v4 {
@@ -3735,6 +3735,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
