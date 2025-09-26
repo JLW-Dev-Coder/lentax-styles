@@ -813,6 +813,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .form-list-animated {
   margin-left: 30px; /* Indent the whole list */
   margin-top: 30px;
+  padding-top: 15px;
 }
 
 .form-list-animated li {
@@ -3733,6 +3734,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
