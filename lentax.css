@@ -843,6 +843,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   font-weight: normal;
   line-height: 1.4;
   margin: 0; /* Remove default top/bottom margin */
+  padding-top: 15px;
 }
 
 .form-title {
@@ -3734,6 +3735,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
