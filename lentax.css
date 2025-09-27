@@ -2919,7 +2919,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-description:active {
-  background-color: white;
+  background-color: red;
   border-radius: 6px;
 }
 
@@ -3835,6 +3835,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
