@@ -2888,31 +2888,31 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .mint-block-description {
   flex-grow: 1;
-  /*padding: 20px;*/
   position: relative;
   z-index: 1;
+  border-radius: 6px;
+  /* Add default background if you want */
+  background-color: rgba(255, 255, 255, 0); 
+  transition: background-color 0.3s ease;
 }
-
-.mint-block-description h3 { }
 
 .mint-block-description::after {
   border-radius: 6px;
   content: "";
   inset: 0;
   position: absolute;
-  z-index: 0;
+  z-index: -1; /* <- move it behind the element */
+  background-color: rgba(0, 255, 0, 0.2); /* whatever your mint-block-border color was */
 }
 
 .mint-block-description:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.7); /* now visible */
 }
 
 .mint-block-description:active {
   background-color: red;
-  border-radius: 6px;
 }
+
 
 .mint-block-lottie {
   align-items: center;
@@ -3826,6 +3826,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
