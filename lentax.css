@@ -2813,7 +2813,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   inset: 0;
   pointer-events: none;
   position: absolute;
-  transform: none;
   width: 100%;
   z-index: 0;
 }
@@ -2855,8 +2854,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   100% { background-position: 0% 0%; }
 }
 
-.mint-block-click-option { color: red; }
-
 .mint-block-container {
   align-items: center;
   border: 1px solid #333;
@@ -2879,17 +2876,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mint Block Description using text-default for readability */
 .mint-block-description {
-  background-color: rgba(255, 255, 255, 0.7); /* default white 70% */
+  background-color: transparent; /* default: no background */
   border-radius: 6px;
-  color: #000; /* black text */
+  color: #000;
   flex-grow: 1;
+  overflow: hidden;
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
   z-index: 1;
-  /* Inherit text-default styles */
-  font-weight: normal;
+}
+
+.mint-block-description.active {
+  background-color: #fff; /* white background */
+  color: #000;
 }
 
 .mint-block-description h1,
@@ -2898,22 +2898,19 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-block-description h4,
 .mint-block-description h5,
 .mint-block-description h6,
-.mint-block-description p,
-.mint-block-description ul,
-.mint-block-description li {
-  color: #000; /* black text default */
-  transition: color 0.3s ease;
+.mint-block-description p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: waterfallFade 0.6s forwards;
 }
 
-.mint-block-description:hover {
-  background-color: rgba(0, 0, 0, 0.7); /* black 70% */
-  color: #fff; /* white letters */
-}
-
-.mint-block-description.active {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #000;
-}
+.mint-block-description h1 { animation-delay: 0s; }
+.mint-block-description h2 { animation-delay: 0.1s; }
+.mint-block-description h3 { animation-delay: 0.2s; }
+.mint-block-description h4 { animation-delay: 0.3s; }
+.mint-block-description h5 { animation-delay: 0.4s; }
+.mint-block-description h6 { animation-delay: 0.5s; }
+.mint-block-description p  { animation-delay: 0.6s; }
 
 .mint-block-description::after {
   border-radius: 6px;
@@ -2921,7 +2918,13 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   inset: 0;
   position: absolute;
   z-index: -1;
-  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes waterfallFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mint-block-lottie {
@@ -2988,7 +2991,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     width: 400px !important;
   }
 }
-
 
 /*Porthole*/ 
 /* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
@@ -3828,6 +3830,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
