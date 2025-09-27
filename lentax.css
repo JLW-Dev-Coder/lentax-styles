@@ -2913,7 +2913,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-description:hover {
-  background-color: rgba(0, 128, 128, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
@@ -3835,6 +3835,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
