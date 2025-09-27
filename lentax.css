@@ -2833,8 +2833,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-block-border {
   border-radius: 6px;
   overflow: hidden;
-  /*padding-left: 16px;*/
-  /*padding: 15px;*/
+  padding-left: 16px;
+  padding: 15px;
   position: relative;
   transition: background-color 0.3s ease;
 }
@@ -3827,6 +3827,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
