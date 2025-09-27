@@ -2893,7 +2893,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.5); 
   transition: background-color 0.3s ease;
-  padding: 15px;
+  /*padding: 15px;*/
 }
 
 .mint-block-description::after {
@@ -3826,6 +3826,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
