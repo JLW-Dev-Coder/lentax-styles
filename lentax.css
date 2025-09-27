@@ -2879,14 +2879,35 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Mint Block Description using text-default for readability */
 .mint-block-description {
-  background-color: rgba(255, 255, 255, 0.7); /* 70% white */
+  background-color: rgba(255, 255, 255, 0.7); /* default white 70% */
   border-radius: 6px;
-  color: #000; /* black letters */
+  color: #000; /* black text */
   flex-grow: 1;
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
   z-index: 1;
+  /* Inherit text-default styles */
+  font-weight: normal;
+}
+
+.mint-block-description h1,
+.mint-block-description h2,
+.mint-block-description h3,
+.mint-block-description h4,
+.mint-block-description h5,
+.mint-block-description h6,
+.mint-block-description p,
+.mint-block-description ul,
+.mint-block-description li {
+  color: #000; /* black text default */
+  transition: color 0.3s ease;
+}
+
+.mint-block-description:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* black 70% */
+  color: #fff; /* white letters */
 }
 
 .mint-block-description.active {
@@ -2895,17 +2916,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-description::after {
-  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 6px;
   content: "";
   inset: 0;
   position: absolute;
   z-index: -1;
-}
-
-.mint-block-description:hover {
-  background-color: rgba(0, 0, 0, 0.7); /* 70% black */
-  color: #fff; /* white letters */
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .mint-block-lottie {
@@ -2972,6 +2988,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     width: 400px !important;
   }
 }
+
 
 /*Porthole*/ 
 /* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
@@ -3811,6 +3828,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
