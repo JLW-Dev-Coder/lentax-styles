@@ -2782,7 +2782,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Mint*/
-/*Mint*/
 .mint-action-box {
   align-items: center;
   border: 1px solid #00ff00;
@@ -2858,7 +2857,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   100% { background-position: 0% 0%; }
 }
 
-.mint-block-click-option { color: #00ff00; }
+.mint-block-click-option { color: red; }
 
 .mint-block-container {
   align-items: center;
@@ -2891,10 +2890,9 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   position: relative;
   z-index: 1;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.5); 
+  /*background-color: white;*/
   transition: background-color 0.3s ease;
-  /*padding: 15px;*/
-  /*padding-left: 16px;*/
+  color: #000;
 }
 
 .mint-block-description::after {
@@ -2903,11 +2901,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   inset: 0;
   position: absolute;
   z-index: -1; /* <- move it behind the element */
-  background-color: rgba(0, 255, 0, 0.2); /* whatever your mint-block-border color was */
+  background-color: white; /* whatever your mint-block-border color was */
 }
 
 .mint-block-description:hover {
-  background-color: rgba(255, 255, 255, 0.7); /* now visible */
+  background-color: #000; /* now visible */
+  color: white;
 }
 
 .mint-block-description:active {
@@ -3827,6 +3826,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
