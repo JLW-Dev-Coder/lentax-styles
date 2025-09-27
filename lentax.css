@@ -2811,7 +2811,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-backdrop {
   height: 100%;
   inset: 0;
-  /*opacity: 0.85;*/
   pointer-events: none;
   position: absolute;
   transform: none;
@@ -2833,7 +2832,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-radius: 6px;
   overflow: hidden;
   padding-left: 16px;
-  /*padding: 15px;*/
   position: relative;
   transition: background-color 0.3s ease;
 }
@@ -2881,38 +2879,34 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   to { opacity: 1; transform: translateY(0); }
 }
 
-.mint-block-container:hover { }
-
-.mint-block-container:hover .mint-block-border { }
-
 .mint-block-description {
+  background-color: rgba(255, 255, 255, 0.7); /* 70% white */
+  border-radius: 6px;
+  color: #000; /* black letters */
   flex-grow: 1;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
   z-index: 1;
-  border-radius: 6px;
-  /*background-color: white;*/
-  transition: background-color 0.3s ease;
+}
+
+.mint-block-description.active {
+  background-color: rgba(255, 255, 255, 0.7);
   color: #000;
 }
 
 .mint-block-description::after {
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 6px;
   content: "";
   inset: 0;
   position: absolute;
-  z-index: -1; /* <- move it behind the element */
-  background-color: white; /* whatever your mint-block-border color was */
+  z-index: -1;
 }
 
 .mint-block-description:hover {
-  background-color: #000; /* now visible */
-  color: white;
+  background-color: rgba(0, 0, 0, 0.7); /* 70% black */
+  color: #fff; /* white letters */
 }
-
-.mint-block-description:active {
-  background-color: red;
-}
-
 
 .mint-block-lottie {
   align-items: center;
@@ -2925,7 +2919,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-pad {
-  /*margin-bottom: 12px;*/
   position: relative;
   z-index: 1;
 }
@@ -2968,16 +2961,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 @media screen and (max-width: 768px) {
-  .mint-block-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .mint-block-lottie {
-    flex: 0 0 120px;
-    min-width: 120px;
-    width: 120px;
-  }
+  .mint-block-container { flex-direction: column; text-align: center; }
+  .mint-block-lottie { flex: 0 0 120px; min-width: 120px; width: 120px; }
 }
 
 /*Mobile Only*/
@@ -3826,6 +3811,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
