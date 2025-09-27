@@ -3478,12 +3478,6 @@ transform: translateY(-3px);
   overflow: hidden !important;
   padding: 0;
 }
-.
-cbe-control-title ng-binding {
-  text-align: center;
-  text-size: 28px;
-}
-
 
 .cbe-block-checklist {
   background: var(--dark-base);
@@ -3731,6 +3725,11 @@ cbe-control-title ng-binding {
 }
 /*End of SD CHECKLIST*/
 
+/*SD Progress Bar*/
+.cbe-block-progress-title ng-binding ng-scope {
+  background-color: #000;
+}
+
 /*SD Primary Button*/
 .btn.btn-primary.btn-block {
   align-items: center;
@@ -3823,3 +3822,4 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
