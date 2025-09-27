@@ -2782,6 +2782,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Mint*/
+/*Mint*/
 .mint-action-box {
   align-items: center;
   background: rgba(0, 255, 0, 0.3);
@@ -2909,6 +2910,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   inset: 0;
   position: absolute;
   z-index: 0;
+}
+
+.mint-block-description:hover {
+  background-color: rgba(0, 128, 128, 0.3);
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.mint-block-description:active {
+  background-color: white;
+  border-radius: 6px;
 }
 
 .mint-block-lottie {
@@ -3823,6 +3835,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
