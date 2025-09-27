@@ -2813,7 +2813,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-backdrop {
   height: 100%;
   inset: 0;
-  opacity: 0.85;
+  /*opacity: 0.85;*/
   pointer-events: none;
   position: absolute;
   transform: none;
@@ -2844,7 +2844,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   animation: mintBorderSweep 6s ease-in-out infinite;
   background: linear-gradient(180deg, #00b894, #00cec9, #0984e3);
   background-size: 300% 300%;
-  border-radius: 2px;
+  border-radius: 3px;
   bottom: 0;
   content: "";
   left: 0;
@@ -2863,7 +2863,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .mint-block-container {
   align-items: center;
-  background: rgba(17, 17, 17, 0.7);
+  /*background: rgba(17, 17, 17, 0.7);*/
   border: 1px solid #333;
   border-radius: 8px;
   display: flex;
@@ -2885,12 +2885,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-container:hover {
-  background: rgba(15, 15, 15, 0.95);
-  border-color: #333;
+  /*background: rgba(15, 15, 15, 0.95);
+  border-color: #333;*/
 }
 
 .mint-block-container:hover .mint-block-border {
-  background-color: rgba(0, 128, 128, 0.3);
+  /*background-color: rgba(0, 128, 128, 0.3);*/
 }
 
 .mint-block-description {
@@ -2903,7 +2903,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-block-description h3 { }
 
 .mint-block-description::after {
-  background: rgba(0, 0, 0, 0.55);
+  /*background: rgba(0, 0, 0, 0.55);*/
   border-radius: 6px;
   content: "";
   inset: 0;
@@ -2976,8 +2976,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     width: 120px;
   }
 }
-/*Mobile Only*/
 
+/*Mobile Only*/
 @media screen and (max-width: 768px) {
   .mobile-only {
     max-width: 400px !important;
@@ -3823,6 +3823,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
