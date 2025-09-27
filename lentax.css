@@ -3478,6 +3478,12 @@ transform: translateY(-3px);
   overflow: hidden !important;
   padding: 0;
 }
+.
+cbe-control-title ng-binding {
+  text-align: center;
+  text-size: 28px;
+}
+
 
 .cbe-block-checklist {
   background: var(--dark-base);
@@ -3817,103 +3823,3 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
