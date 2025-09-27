@@ -2876,7 +2876,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-description {
-  background-color: rgba(255, 255, 255, 0.7); /* dark backdrop */
+  background-color: rgba(255, 255, 255, 0.9); /* backdrop */
   border-radius: 6px;
   flex-grow: 1;
   overflow: hidden;
@@ -3822,6 +3822,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
