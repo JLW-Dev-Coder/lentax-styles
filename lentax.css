@@ -2891,8 +2891,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   position: relative;
   z-index: 1;
   border-radius: 6px;
-  /* Add default background if you want */
-  background-color: rgba(255, 255, 255, 0); 
+  background-color: rgba(255, 255, 255, 0.5); 
   transition: background-color 0.3s ease;
   padding: 15px;
 }
@@ -3827,6 +3826,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
