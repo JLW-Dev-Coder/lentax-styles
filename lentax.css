@@ -3727,7 +3727,8 @@ transform: translateY(-3px);
 
 /*SD Progress Bar*/
 .cbe-block-progress-title {
-  background-color: #000;
+  color: #fff;
+  font-size: 18px;
 }
 
 /*SD Primary Button*/
@@ -3822,5 +3823,6 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
