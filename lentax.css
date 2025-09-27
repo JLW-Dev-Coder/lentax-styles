@@ -3726,7 +3726,7 @@ transform: translateY(-3px);
 /*End of SD CHECKLIST*/
 
 /*SD Progress Bar*/
-.cbe-block-progress-title ng-binding ng-scope {
+.cbe-block-progress-title {
   background-color: #000;
 }
 
@@ -3822,4 +3822,5 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
