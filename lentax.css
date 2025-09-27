@@ -2782,85 +2782,211 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Mint*/
+/*Mint*/
+.mint-action-box {
+  align-items: center;
+  border: 1px solid #00ff00;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 12px auto;
+  max-width: 360px;
+  padding: 16px;
+  text-align: center;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.mint-action-box:hover {
+  border-color: #00cc00;
+  transform: translateY(-2px);
+}
+
+.mint-action-text {
+  color: #00ff00;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
 .mint-backdrop {
-}
-
-.mint-backdrop-wrap {
-}
-
-.mint-block-border {
-  border: solid 2.5px rgba(0, 0, 0, 0.1);
-  border-radius: 7px;
-  padding: 0 5px;
-  position: relative;
-  overflow: hidden;
-}
-
-.mint-block-border::before {
-  animation: mint-stripe-move 3s linear infinite;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(0, 128, 128, 0.2),
-    rgba(0, 128, 128, 0.2) 10px,
-    transparent 10px,
-    transparent 20px
-  );
-  content: '';
   height: 100%;
-  left: 0;
+  inset: 0;
+  /*opacity: 0.85;*/
+  pointer-events: none;
   position: absolute;
-  top: 0;
+  transform: none;
   width: 100%;
   z-index: 0;
 }
 
-@keyframes mint-stripe-move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 40px 40px;
-  }
+.mint-backdrop[data-fit="contain"] { object-fit: contain; }
+.mint-backdrop[data-fit="cover"] { object-fit: cover; }
+
+.mint-backdrop-wrap {
+  background-color: transparent;
+  display: block;
+  position: relative;
+  text-align: left;
 }
+
+.mint-block-border {
+  border-radius: 6px;
+  overflow: hidden;
+  /*padding-left: 16px;*/
+  padding: 15px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.mint-block-border::before {
+  animation: mintBorderSweep 6s ease-in-out infinite;
+  background: linear-gradient(180deg, #00b894, #00cec9, #0984e3);
+  background-size: 300% 300%;
+  border-radius: 3px;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 4px;
+}
+
+@keyframes mintBorderSweep {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.mint-block-click-option { color: #00ff00; }
 
 .mint-block-container {
+  align-items: center;
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  position: relative;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
 }
 
+.mint-block-container.ease-in {
+  animation: mintEaseIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes mintEaseIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mint-block-container:hover { }
+
+.mint-block-container:hover .mint-block-border { }
+
 .mint-block-description {
+  flex-grow: 1;
+  /*padding: 20px;*/
   position: relative;
   z-index: 1;
 }
 
+.mint-block-description h3 { }
+
+.mint-block-description::after {
+  border-radius: 6px;
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
 .mint-block-description:hover {
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(0, 128, 128, 0.2),
-    rgba(0, 128, 128, 0.2) 10px,
-    transparent 10px,
-    transparent 20px
-  );
-  border-radius: 7px;
-  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
 .mint-block-description:active {
-  background-color: white;
-  border-radius: 7px;
-  color: black;
+  background-color: red;
+  border-radius: 6px;
 }
 
 .mint-block-lottie {
+  align-items: center;
+  display: flex;
+  flex: 0 0 160px;
+  justify-content: center;
+  min-width: 160px;
+  text-align: center;
+  width: 160px;
 }
 
 .mint-block-pad {
+  /*margin-bottom: 12px;*/
+  position: relative;
+  z-index: 1;
+}
+
+.mint-flag-backdrop {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  opacity: 0.9;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
 }
 
 .mint-name {
+  animation: gradientSweep 8s ease-in-out infinite;
+  background: linear-gradient(270deg, #00b894, #00cec9, #0984e3);
+  background-clip: text;
+  background-size: 300% 300%;
+  color: transparent;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: capitalize;
 }
 
-.text-default {
+@keyframes gradientSweep {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .mint-backdrop { opacity: 0.6; }
+  .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
+}
+
+@media screen and (max-width: 768px) {
+  .mint-block-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mint-block-lottie {
+    flex: 0 0 120px;
+    min-width: 120px;
+    width: 120px;
+  }
+}
+
+/*Mobile Only*/
+@media screen and (max-width: 768px) {
+  .mobile-only {
+    max-width: 400px !important;
+    width: 400px !important;
+  }
+}
 
 /*Porthole*/ 
 /* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
@@ -3700,6 +3826,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
