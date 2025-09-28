@@ -2692,6 +2692,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 1;
 }
 
+/* Hover effect: solid white background */
+.mint-block-description:hover {
+  background-color: #ffffff;
+}
+
 .mint-block-description h1,
 .mint-block-description h2,
 .mint-block-description h3,
@@ -2790,6 +2795,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     width: 400px !important;
   }
 }
+
 
 /*Porthole*/ 
 /* ===== Porthole (fixed so BG cannot bleed outside the door) ===== */
@@ -3629,6 +3635,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
