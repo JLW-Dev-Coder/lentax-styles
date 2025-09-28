@@ -2163,14 +2163,57 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* ───────────────────────────────────────────────────────────── */
 /* Text Default: only controls color + hover/active/focus states  */
 /* ───────────────────────────────────────────────────────────── */
-.text-default {
+/* ───────────────────────────────────────────────────────────── */
+/* Text Default: color + hover/active/focus states               */
+/* ───────────────────────────────────────────────────────────── */
+.text-default,
+.text-default h1,
+.text-default h2,
+.text-default h3,
+.text-default h4,
+.text-default h5,
+.text-default h6,
+.text-default p,
+.text-default ul,
+.text-default li,
+.text-default div {
   color: rgba(255, 255, 255, 0.9);
   transition: color 0.3s ease;
 }
 
 .text-default:hover,
 .text-default:focus,
-.text-default.active {
+.text-default.active,
+.text-default:hover h1,
+.text-default:hover h2,
+.text-default:hover h3,
+.text-default:hover h4,
+.text-default:hover h5,
+.text-default:hover h6,
+.text-default:hover p,
+.text-default:hover ul,
+.text-default:hover li,
+.text-default:hover div,
+.text-default:focus h1,
+.text-default:focus h2,
+.text-default:focus h3,
+.text-default:focus h4,
+.text-default:focus h5,
+.text-default:focus h6,
+.text-default:focus p,
+.text-default:focus ul,
+.text-default:focus li,
+.text-default:focus div,
+.text-default.active h1,
+.text-default.active h2,
+.text-default.active h3,
+.text-default.active h4,
+.text-default.active h5,
+.text-default.active h6,
+.text-default.active p,
+.text-default.active ul,
+.text-default.active li,
+.text-default.active div {
   color: #ffffff;
 }
 
@@ -2178,6 +2221,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .text-default .info-content-title h2 {
   color: inherit;
 }
+
 
 /* ───────────────────────────────────────────────────────────── */
 /* Text Padding Bottom: top 15px, left/right 15px, variable bottom */
@@ -3585,6 +3629,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
