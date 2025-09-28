@@ -2925,6 +2925,69 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 }
 
+.mint-block-description {
+  background-color: #ffffff; /* solid white base */
+  border-radius: 6px;
+  flex-grow: 1;
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+  color: rgba(0, 0, 0, 0.95); /* default text black */
+}
+
+.mint-block-description:hover {
+  background-color: rgba(0, 255, 0, 0.3); /* same as mint-block-border hover color */
+}
+
+/* Mint Block Description Exception for text-default */
+.mint-block-description.text-default,
+.mint-block-description.text-default h1,
+.mint-block-description.text-default h2,
+.mint-block-description.text-default h3,
+.mint-block-description.text-default h4,
+.mint-block-description.text-default h5,
+.mint-block-description.text-default h6,
+.mint-block-description.text-default p,
+.mint-block-description.text-default ul,
+.mint-block-description.text-default li {
+  color: rgba(0, 0, 0, 0.95) !important; /* keep black text */
+}
+
+/* Prevent hover/active/focus from changing color */
+.mint-block-description.text-default:hover h1,
+.mint-block-description.text-default:hover h2,
+.mint-block-description.text-default:hover h3,
+.mint-block-description.text-default:hover h4,
+.mint-block-description.text-default:hover h5,
+.mint-block-description.text-default:hover h6,
+.mint-block-description.text-default:hover p,
+.mint-block-description.text-default:hover ul,
+.mint-block-description.text-default:hover li,
+.mint-block-description.text-default:focus h1,
+.mint-block-description.text-default:focus h2,
+.mint-block-description.text-default:focus h3,
+.mint-block-description.text-default:focus h4,
+.mint-block-description.text-default:focus h5,
+.mint-block-description.text-default:focus h6,
+.mint-block-description.text-default:focus p,
+.mint-block-description.text-default:focus ul,
+.mint-block-description.text-default:focus li,
+.mint-block-description.text-default.active h1,
+.mint-block-description.text-default.active h2,
+.mint-block-description.text-default.active h3,
+.mint-block-description.text-default.active h4,
+.mint-block-description.text-default.active h5,
+.mint-block-description.text-default.active h6,
+.mint-block-description.text-default.active p,
+.mint-block-description.text-default.active ul,
+.mint-block-description.text-default.active li {
+  color: rgba(0, 0, 0, 0.95) !important; /* override text-white rules */
+}
+
+
 .mint-block-lottie {
   align-items: center;
   display: flex;
@@ -3827,6 +3890,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
