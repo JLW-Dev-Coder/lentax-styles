@@ -2782,167 +2782,80 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Mint*/
-.mint-action-box {
-  align-items: center;
-  border: 1px solid #00ff00;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 12px auto;
-  max-width: 360px;
-  padding: 16px;
-  text-align: center;
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-}
-
-.mint-action-box:hover {
-  border-color: #00cc00;
-  transform: translateY(-2px);
-}
-
-.mint-action-text {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 8px 0;
-}
-
-.mint-backdrop {
-  height: 100%;
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-  z-index: 0;
-}
-
-.mint-backdrop[data-fit="contain"] { object-fit: contain; }
-.mint-backdrop[data-fit="cover"] { object-fit: cover; }
-
-.mint-backdrop-wrap {
-  background-color: transparent; /* keep this background */
-  display: block;
+/* Mint Block Description */
+.mint-block-description {
+  background-color: #ffffff; /* default white */
+  border-radius: 6px;
+  flex-grow: 1;
+  overflow: hidden;
+  padding: 15px;
   position: relative;
   text-align: left;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+  color: rgba(0, 0, 0, 0.95); /* default black text */
 }
 
+/* Hover state */
+.mint-block-description:hover {
+  background-color: #ffffff; /* remain white */
+  color: rgba(0, 0, 0, 0.95); /* text stays black */
+}
+
+/* Active state */
+.mint-block-description:active {
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+  color: rgba(0, 0, 0, 0.95); /* text stays black */
+}
+
+/* Mint Block Border */
 .mint-block-border {
   border-radius: 6px;
   overflow: hidden;
-  padding-left: 16px;
   position: relative;
-  transition: background-color 0.3s ease;
+  padding: 1px; /* optional inner spacing */
+  transition: all 0.3s ease;
 }
 
-.mint-block-border::before {
-  animation: mintBorderSweep 6s ease-in-out infinite;
-  background: linear-gradient(180deg, #00b894, #00cec9, #0984e3);
-  background-size: 300% 300%;
-  border-radius: 3px;
-  bottom: 0;
-  content: "";
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 4px;
-}
-
-@keyframes mintBorderSweep {
-  0%   { background-position: 0% 0%; }
-  50%  { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
+/* Mint Block Container */
 .mint-block-container {
-  align-items: center;
-  border: 1px solid #333;
-  border-radius: 8px;
   display: flex;
-  gap: 15px;
-  padding: 15px;
+  flex-direction: row;
+  gap: 16px;
+  padding: 20px;
   position: relative;
-  transition: background 0.3s ease, border-color 0.3s ease;
-  z-index: 1;
+  align-items: flex-start;
+  transition: all 0.3s ease;
 }
 
-.mint-block-container.ease-in {
-  animation: mintEaseIn 0.8s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
+/* Mint Block Lottie */
+.mint-block-lottie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 160px;
+  text-align: center;
 }
 
-@keyframes mintEaseIn {
-  to { opacity: 1; transform: translateY(0); }
+/* Mint Name */
+.mint-name {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  color: #000000; /* black by default */
 }
 
-.mint-block-description {
-  background-color: rgba(255, 255, 255, 0.95); /* backdrop */
-  border-radius: 6px;
-  flex-grow: 1;
-  overflow: hidden;
-  padding: 15px; /* added padding */
-  position: relative;
-  transition: background-color 0.3s ease;
-  z-index: 1;
+/* Mint Block Pad (small helper text under block) */
+.mint-block-pad {
+  font-size: 14px;
+  color: #666666;
+  margin-top: 12px;
+  text-align: center;
 }
 
-.mint-block-description:hover {
-  background-color: #fff; /* full white on hover */
-}
-
-.mint-block-description h1,
-.mint-block-description h2,
-.mint-block-description h3,
-.mint-block-description h4,
-.mint-block-description h5,
-.mint-block-description h6,
-.mint-block-description p {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: waterfallFade 0.6s forwards;
-}
-
-.mint-block-description h1 { animation-delay: 1s; }
-.mint-block-description h2 { animation-delay: 1.25s; }
-.mint-block-description h3 { animation-delay: 1.5s; }
-.mint-block-description h4 { animation-delay: 1.75s; }
-.mint-block-description h5 { animation-delay: 2s; }
-.mint-block-description h6 { animation-delay: 2.25s; }
-.mint-block-description p  { animation-delay: 2.5s; }
-
-.mint-block-description::after {
-  border-radius: 6px;
-  content: "";
-  inset: 0;
-  position: absolute;
-  z-index: -1;
-}
-
-@keyframes waterfallFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.mint-block-description {
-  background-color: #ffffff; /* solid white base */
-  border-radius: 6px;
-  flex-grow: 1;
-  overflow: hidden;
-  padding: 15px;
-  position: relative;
-  text-align: left;
-  transition: background-color 0.3s ease;
-  z-index: 1;
-  color: rgba(0, 0, 0, 0.95); /* default text black */
-}
-
-.mint-block-description:hover {
-  background-color: rgba(0, 255, 0, 0.3); /* same as mint-block-border hover color */
-}
-
-/* Mint Block Description Exception for text-default */
+/* Text Default Exception inside Mint Block Description */
 .mint-block-description.text-default,
 .mint-block-description.text-default h1,
 .mint-block-description.text-default h2,
@@ -2953,10 +2866,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-block-description.text-default p,
 .mint-block-description.text-default ul,
 .mint-block-description.text-default li {
-  color: rgba(0, 0, 0, 0.95) !important; /* keep black text */
+  color: rgba(0, 0, 0, 0.95) !important; /* always black */
 }
 
-/* Prevent hover/active/focus from changing color */
+/* Prevent hover/focus/active from changing text color */
 .mint-block-description.text-default:hover h1,
 .mint-block-description.text-default:hover h2,
 .mint-block-description.text-default:hover h3,
@@ -2984,71 +2897,22 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .mint-block-description.text-default.active p,
 .mint-block-description.text-default.active ul,
 .mint-block-description.text-default.active li {
-  color: rgba(0, 0, 0, 0.95) !important; /* override text-white rules */
+  color: rgba(0, 0, 0, 0.95) !important;
 }
 
-
-.mint-block-lottie {
-  align-items: center;
-  display: flex;
-  flex: 0 0 160px;
-  justify-content: center;
-  min-width: 160px;
-  text-align: center;
-  width: 160px;
-}
-
-.mint-block-pad {
-  position: relative;
-  z-index: 1;
-}
-
-.mint-flag-backdrop {
-  height: 100%;
-  inset: 0;
-  object-fit: cover;
-  opacity: 0.9;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
-}
-
-.mint-name {
-  animation: gradientSweep 8s ease-in-out infinite;
-  background: linear-gradient(270deg, #00b894, #00cec9, #0984e3);
-  background-clip: text;
-  background-size: 300% 300%;
-  display: inline-block;
-  font-size: inherit;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-transform: capitalize;
-}
-
-@keyframes gradientSweep {
-  0%   { background-position: 0% 0%; }
-  50%  { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mint-backdrop { opacity: 0.6; }
-  .mint-block-container.ease-in { animation: none; opacity: 1; transform: none; }
-}
-
+/* Responsive adjustments */
 @media screen and (max-width: 768px) {
-  .mint-block-container { flex-direction: column; text-align: center; }
-  .mint-block-lottie { flex: 0 0 120px; min-width: 120px; width: 120px; }
-}
+  .mint-block-container {
+    flex-direction: column;
+    text-align: center;
+  }
 
-/*Mobile Only*/
-@media screen and (max-width: 768px) {
-  .mobile-only {
-    max-width: 400px !important;
-    width: 400px !important;
+  .mint-block-lottie {
+    width: 100%;
+  }
+
+  .mint-block-description {
+    padding-top: 12px;
   }
 }
 
@@ -3890,6 +3754,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
