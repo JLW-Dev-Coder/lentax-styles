@@ -2160,280 +2160,41 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   text-align: center;
 }
 
-/*Text Default*/
+/* ───────────────────────────────────────────────────────────── */
+/* Text Default: only controls color + hover/active/focus states  */
+/* ───────────────────────────────────────────────────────────── */
 .text-default {
-  margin: 0px 15px 30px 15px;
-}
-
-/* Apply to everything EXCEPT info-content titles */
-.text-default h1,
-.text-default h2,
-.text-default h3,
-.text-default h4,
-.text-default h5,
-.text-default h6,
-.text-default p,
-.text-default ul,
-.text-default li {
   color: rgba(255, 255, 255, 0.9);
   transition: color 0.3s ease;
 }
 
-/* Explicitly exclude .info-content-title h2 */
+.text-default:hover,
+.text-default:focus,
+.text-default.active {
+  color: #ffffff;
+}
+
+/* Exclude info-content-title h2 from color override */
 .text-default .info-content-title h2 {
-  color: inherit; /* ignore .text-default color override */
-  margin-left: 15px;
-  margin-top: 15px;
-}
-
-/* Hover/focus/active states (also exclude .info-content-title h2) */
-.text-default:hover h1,
-.text-default:hover h2,
-.text-default:hover h3,
-.text-default:hover h4,
-.text-default:hover h5,
-.text-default:hover h6,
-.text-default:hover p,
-.text-default:focus h1,
-.text-default:focus h2,
-.text-default:focus h3,
-.text-default:focus h4,
-.text-default:focus h5,
-.text-default:focus h6,
-.text-default:focus p,
-.text-default.active h1,
-.text-default.active h2,
-.text-default.active h3,
-.text-default.active h4,
-.text-default.active h5,
-.text-default.active h6,
-.text-default.active p {
-  color: #fff;
-}
-
-.text-default:hover .info-content-title h2,
-.text-default:focus .info-content-title h2,
-.text-default.active .info-content-title h2 {
-  color: inherit; /* don't override the special gold/turquoise behavior */
-}
-
-.text-default-v2 {
-  margin: 0px 30px 0px 30px;
-}
-
-.text-default-v2 h1,
-.text-default-v2 h2,
-.text-default-v2 h3,
-.text-default-v2 h4,
-.text-default-v2 h5,
-.text-default-v2 h6,
-.text-default-v2 p,
-.text-default-v2 ul,
-.text-default-v2 li {
-  color: rgba(255, 255, 255, 0.9);
-  transition: color 0.3s ease;
-}
-
-.text-default-v2 .info-content-title h2 {
-  color: inherit;
-  margin-left: 15px;
-  margin-top: 15px;
-}
-
-.text-default-v2:hover h1,
-.text-default-v2:hover h2,
-.text-default-v2:hover h3,
-.text-default-v2:hover h4,
-.text-default-v2:hover h5,
-.text-default-v2:hover h6,
-.text-default-v2:hover p,
-.text-default-v2:focus h1,
-.text-default-v2:focus h2,
-.text-default-v2:focus h3,
-.text-default-v2:focus h4,
-.text-default-v2:focus h5,
-.text-default-v2:focus h6,
-.text-default-v2:focus p,
-.text-default-v2.active h1,
-.text-default-v2.active h2,
-.text-default-v2.active h3,
-.text-default-v2.active h4,
-.text-default-v2.active h5,
-.text-default-v2.active h6,
-.text-default-v2.active p {
-  color: #fff;
-}
-
-.text-default-v2:hover .info-content-title h2,
-.text-default-v2:focus .info-content-title h2,
-.text-default-v2.active .info-content-title h2 {
   color: inherit;
 }
 
-.text-default-v3 {
-  margin: 0px 15px 15px 15px;
-}
+/* ───────────────────────────────────────────────────────────── */
+/* Text Padding Bottom: top 15px, left/right 15px, variable bottom */
+/* ───────────────────────────────────────────────────────────── */
+.text-padding-bottom-15 { padding: 15px 15px 15px 15px; }
+.text-padding-bottom-20 { padding: 15px 15px 20px 15px; }
+.text-padding-bottom-25 { padding: 15px 15px 25px 15px; }
+.text-padding-bottom-30 { padding: 15px 15px 30px 15px; }
+.text-padding-bottom-35 { padding: 15px 15px 35px 15px; }
+.text-padding-bottom-40 { padding: 15px 15px 40px 15px; }
+.text-padding-bottom-45 { padding: 15px 15px 45px 15px; }
+.text-padding-bottom-50 { padding: 15px 15px 50px 15px; }
+.text-padding-bottom-55 { padding: 15px 15px 55px 15px; }
+.text-padding-bottom-60 { padding: 15px 15px 60px 15px; }
+.text-padding-bottom-65 { padding: 15px 15px 65px 15px; }
+.text-padding-bottom-70 { padding: 15px 15px 70px 15px; }
 
-/* Apply to everything EXCEPT info-content titles */
-.text-default-v3 h1,
-.text-default-v3 h2,
-.text-default-v3 h3,
-.text-default-v3 h4,
-.text-default-v3 h5,
-.text-default-v3 h6,
-.text-default-v3 p,
-.text-default-v3 ul,
-.text-default-v3 li {
-  color: rgba(255, 255, 255, 0.9);
-  transition: color 0.3s ease;
-}
-
-/* Explicitly exclude .info-content-title h2 */
-.text-default-v3 .info-content-title h2 {
-  color: inherit; /* ignore .text-default-v3 color override */
-  margin-left: 15px;
-  margin-top: 15px;
-}
-
-/* Hover/focus/active states (also exclude .info-content-title h2) */
-.text-default-v3:hover h1,
-.text-default-v3:hover h2,
-.text-default-v3:hover h3,
-.text-default-v3:hover h4,
-.text-default-v3:hover h5,
-.text-default-v3:hover h6,
-.text-default-v3:hover p,
-.text-default-v3:focus h1,
-.text-default-v3:focus h2,
-.text-default-v3:focus h3,
-.text-default-v3:focus h4,
-.text-default-v3:focus h5,
-.text-default-v3:focus h6,
-.text-default-v3:focus p,
-.text-default-v3.active h1,
-.text-default-v3.active h2,
-.text-default-v3.active h3,
-.text-default-v3.active h4,
-.text-default-v3.active h5,
-.text-default-v3.active h6,
-.text-default-v3.active p {
-  color: #fff;
-}
-
-.text-default-v3:hover .info-content-title h2,
-.text-default-v3:focus .info-content-title h2,
-.text-default-v3.active .info-content-title h2 {
-  color: inherit; 
-}
-
-.text-default-v4 {
-margin: 0px 15px -45px 15px;
-}
-
-.text-default-v4 h1,
-.text-default-v4 h2,
-.text-default-v4 h3,
-.text-default-v4 h4,
-.text-default-v4 h5,
-.text-default-v4 h6,
-.text-default-v4 p,
-.text-default-v4 ul,
-.text-default-v4 li {
-color: rgba(255, 255, 255, 0.9);
-transition: color 0.3s ease;
-}
-
-.text-default-v4 .info-content-title h2 {
-color: inherit; 
-margin-left: 15px;
-margin-top: 15px;
-}
-
-.text-default-v4:hover h1,
-.text-default-v4:hover h2,
-.text-default-v4:hover h3,
-.text-default-v4:hover h4,
-.text-default-v4:hover h5,
-.text-default-v4:hover h6,
-.text-default-v4:hover p,
-.text-default-v4:focus h1,
-.text-default-v4:focus h2,
-.text-default-v4:focus h3,
-.text-default-v4:focus h4,
-.text-default-v4:focus h5,
-.text-default-v4:focus h6,
-.text-default-v4:focus p,
-.text-default-v4.active h1,
-.text-default-v4.active h2,
-.text-default-v4.active h3,
-.text-default-v4.active h4,
-.text-default-v4.active h5,
-.text-default-v4.active h6,
-.text-default-v4.active p {
-color: #fff;
-}
-
-.text-default-v4:hover .info-content-title h2,
-.text-default-v4:focus .info-content-title h2,
-.text-default-v4.active .info-content-title h2 {
-color: inherit;
-}
-
-.text-default-bottom-px0 {
-margin: 0px 15px -15px 15px;
-}
-
-/* Apply to everything EXCEPT info-content titles */
-.text-default-bottom-px0 h1,
-.text-default-bottom-px0 h2,
-.text-default-bottom-px0 h3,
-.text-default-bottom-px0 h4,
-.text-default-bottom-px0 h5,
-.text-default-bottom-px0 h6,
-.text-default-bottom-px0 p,
-.text-default-bottom-px0 ul,
-.text-default-bottom-px0 li {
-color: rgba(255, 255, 255, 0.9);
-transition: color 0.3s ease;
-}
-
-/* Explicitly exclude .info-content-title h2 */
-.text-default-bottom-px0 .info-content-title h2 {
-color: inherit; /* ignore .text-default-bottom-px0 color override */
-margin-left: 15px;
-margin-top: 15px;
-}
-
-/* Hover/focus/active states (also exclude .info-content-title h2) */
-.text-default-bottom-px0:hover h1,
-.text-default-bottom-px0:hover h2,
-.text-default-bottom-px0:hover h3,
-.text-default-bottom-px0:hover h4,
-.text-default-bottom-px0:hover h5,
-.text-default-bottom-px0:hover h6,
-.text-default-bottom-px0:hover p,
-.text-default-bottom-px0:focus h1,
-.text-default-bottom-px0:focus h2,
-.text-default-bottom-px0:focus h3,
-.text-default-bottom-px0:focus h4,
-.text-default-bottom-px0:focus h5,
-.text-default-bottom-px0:focus h6,
-.text-default-bottom-px0:focus p,
-.text-default-bottom-px0.active h1,
-.text-default-bottom-px0.active h2,
-.text-default-bottom-px0.active h3,
-.text-default-bottom-px0.active h4,
-.text-default-bottom-px0.active h5,
-.text-default-bottom-px0.active h6,
-.text-default-bottom-px0.active p {
-color: #fff;
-}
-
-.text-default-bottom-px0:hover .info-content-title h2,
-.text-default-bottom-px0:focus .info-content-title h2,
-.text-default-bottom-px0.active .info-content-title h2 {
-color: inherit; /* don't override the special gold/turquoise behavior */
-}
 
 /*Tooltip*/
 /* Tooltip container (baseline) */
@@ -3823,6 +3584,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
