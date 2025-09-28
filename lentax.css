@@ -2686,7 +2686,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-radius: 6px;
   flex-grow: 1;
   overflow: hidden;
-  padding: 20px 15px 15px 15px; /* added padding */
+  padding: 30px 15px 15px 15px; /* added padding */
   position: relative;
   transition: background-color 0.3s ease;
   z-index: 1;
@@ -3635,6 +3635,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
