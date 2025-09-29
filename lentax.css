@@ -115,27 +115,29 @@
   margin-right: auto;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   width: fit-content;
-  overflow: hidden; /* needed for shine */
+  overflow: hidden; /* required for shine */
 }
 
 .button-custom-lentax::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -75%;
+  left: 100%; /* start fully right */
   width: 50%;
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
   transform: skewX(-20deg);
-  animation: feature-shine 3s infinite;
+  animation: shine-sweep 3s infinite;
   pointer-events: none;
   z-index: 2;
 }
 
-@keyframes feature-shine {
-  0% { left: -75%; }
-  50% { left: 125%; }
-  100% { left: 125%; }
+@keyframes shine-sweep {
+  0% { left: 100%; }   /* start off the right edge */
+  25% { left: 0%; }    /* sweep left to fully cover */
+  50% { left: -75%; }  /* move off left edge */
+  75% { left: 0%; }    /* sweep back to center */
+  100% { left: 100%; } /* return to start */
 }
 
 .button-custom-lentax:hover {
@@ -3659,6 +3661,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
