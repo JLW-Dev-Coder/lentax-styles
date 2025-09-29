@@ -122,7 +122,7 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 100%;       /* start off the right edge */
+  left: 100%;       /* start fully off right */
   width: 25%;       /* narrower shine line */
   height: 100%;
   background: linear-gradient(
@@ -138,12 +138,12 @@
 }
 
 @keyframes shine-sweep {
-  0%   { left: 100%; }   /* start off right */
-  20%  { left: 0%; }     /* sweep left to fully cover */
-  40%  { left: -25%; }   /* move off left edge */
-  60%  { left: 0%; }     /* sweep back to center */
-  80%  { left: 100%; }   /* move off right edge */
-  100% { left: 100%; }   /* reset to start */
+  0%   { left: 100%; }    /* completely off right */
+  20%  { left: 0%; }      /* center */
+  40%  { left: -25%; }    /* completely off left */
+  60%  { left: 0%; }      /* back to center */
+  80%  { left: 100%; }    /* completely off right */
+  100% { left: 100%; }    /* reset to start */
 }
 
 .button-custom-lentax:hover {
@@ -3667,6 +3667,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
