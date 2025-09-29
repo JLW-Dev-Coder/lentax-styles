@@ -85,7 +85,6 @@
 }
 
 /*Button*/
-/*Button Custom Animation*/
 .button-custom-animation {
   /* Shadow & Transition Effects */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -167,9 +166,6 @@
   transform: translateY(2px);
   box-shadow: inset 0 3px 7px #D6D6E7;
 }
-
-
-
 
 .button-custom-reset {
   position: relative;
@@ -1136,12 +1132,54 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border: none;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
+
+  position: relative;  /* needed for shine positioning */
+  overflow: hidden;    /* hides shine outside button */
+  cursor: pointer;
+}
+
+.item-btn-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 150%;        /* start fully off right */
+  width: 50%;        /* shine width */
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg); /* angled shine */
+  animation: shine-reverse 3s infinite linear; /* animation duration 3s */
+  pointer-events: none;     /* clicks pass through */
+  z-index: 2;
+}
+
+@keyframes shine-reverse {
+  0% {
+    left: 150%;   /* fully off right */
+  }
+  25% {
+    left: 50%;    /* halfway across */
+  }
+  50% {
+    left: -50%;   /* fully off left */
+  }
+  75% {
+    left: 50%;    /* back to center */
+  }
+  100% {
+    left: 150%;   /* reset off right */
+  }
 }
 
 .item-btn-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
+
 
 .item-column {
   background-color: rgba(0, 0, 0, 0.9);
@@ -3679,6 +3717,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
