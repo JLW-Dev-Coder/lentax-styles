@@ -394,7 +394,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 
   .feature-block-description {
-    padding-top: 12px;
+    padding-top: 20px;
   }
 }
 
@@ -3635,6 +3635,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
