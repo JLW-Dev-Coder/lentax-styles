@@ -2715,9 +2715,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .mint-block-border {
+  background-color: #ffffff;
   border-radius: 6px;
   overflow: hidden;
-  padding-left: 16px;
+  padding: 15px;
   position: relative;
   transition: background-color 0.3s ease;
 }
@@ -2837,7 +2838,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   pointer-events: none;
   position: absolute;
   width: 100%;
-  z-index: -1;
+  z-index: 0;
 }
 
 .mint-name {
@@ -3717,6 +3718,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
