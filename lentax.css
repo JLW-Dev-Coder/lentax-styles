@@ -133,7 +133,7 @@
     transparent
   );
   transform: skewX(-20deg); /* angled shine */
-  animation: shine-reverse 3.6s infinite linear; /* faster by 10% */
+  animation: shine-reverse 3s infinite linear; /* adjust speed */
   pointer-events: none; /* clicks pass through */
   z-index: 2;
 }
@@ -3679,6 +3679,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
