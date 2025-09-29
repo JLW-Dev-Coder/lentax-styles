@@ -3111,7 +3111,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transform: translateY(-1px);
 }
 
-.pricing-overlay-btn-lentax {
+/*.pricing-overlay-btn-lentax {
 align-items: center;
 display: flex;
 inset: 0;
@@ -3199,7 +3199,7 @@ box-shadow: none !important;
 outline: none !important;
 transition: none !important;
 transform: none !important;
-}
+}*/
 
 .pricing-overlay-lentax {
 background: var(--dark-base);
@@ -3717,6 +3717,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
