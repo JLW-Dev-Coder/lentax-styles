@@ -3751,3 +3751,14 @@ vertical-align: middle;
 .drawerItem {
     overflow: visible !important;
 }
+
+
+.drawerItem, 
+.tag {
+  overflow: visible !important;  /* allow absolutely positioned children to show */
+  position: relative;            /* ensure absolute children position relative to parent */
+}
+
+.tagIconWrap {
+  z-index: 10;                   /* bring the button above other elements */
+}
