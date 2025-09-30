@@ -3762,3 +3762,9 @@ vertical-align: middle;
 .tagIconWrap {
   z-index: 10;                   /* bring the button above other elements */
 }
+
+
+
+.drawerPanelAdditionalWrap > .MuiBox-root:first-child {
+    display: none !important;
+}
