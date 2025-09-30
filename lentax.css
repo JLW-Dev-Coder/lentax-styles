@@ -3751,3 +3751,9 @@ vertical-align: middle;
     position: relative; /* ensure absolute children are positioned correctly */
     z-index: 10;        /* bring the delete button above the content */
 }
+
+
+
+.drawerPanelAdditionalWrap {
+    overflow-x: auto;
+}
