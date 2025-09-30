@@ -3747,13 +3747,3 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
-.drawerPanelAdditionalWrap .tagIconWrap {
-    position: relative; /* ensure absolute children are positioned correctly */
-    z-index: 10;        /* bring the delete button above the content */
-}
-
-
-
-.drawerPanelAdditionalWrap {
-    overflow-x: auto;
-}
