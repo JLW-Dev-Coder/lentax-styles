@@ -1772,6 +1772,33 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     border-bottom: 8px solid transparent;
   }
 
+/*Live Chat*/
+.live-chat-input {
+  display: none;
+}
+
+.live-chat-label {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #000;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.live-chat-content {
+  display: none;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+/* Show content when checked */
+.live-chat-input:checked + .live-chat-label + .live-chat-content {
+  display: block;
+}
+
+
 /*Lottie*/
 .lottie-backdrop {
   position: relative;
@@ -3717,6 +3744,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
