@@ -3748,6 +3748,18 @@ vertical-align: middle;
 }
 /*End of SD Primary Button*/
 
+.drawerItem, 
+.tag {
+    overflow: visible !important;
+    position: relative;
+}
+
+.tagIconWrap {
+    z-index: 2; /* bring icons like delete above container */
+}
+
+
+
 
 
 
