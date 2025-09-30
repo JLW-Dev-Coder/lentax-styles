@@ -3747,6 +3747,20 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
-.drawerPanelAdditionalWrap > .MuiBox-root:first-child .tagLabel {
-    display: none !important;
+.drawerItem {
+  overflow: visible !important;   /* allow content to spill out */
+  height: auto !important;        /* allow it to grow with content */
+  white-space: normal !important; /* allow wrapping of long text */
+}
+
+.tagLabel {
+  overflow: visible !important;
+  text-overflow: unset !important;
+  white-space: normal !important;
+  word-break: break-word; /* force long words to wrap */
+}
+
+.tagIconWrap {
+  z-index: 10; /* bring delete button above the text */
+  position: relative; /* allow proper positioning */
 }
