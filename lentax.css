@@ -1986,12 +1986,14 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .sidebar-nav-two {
   background: linear-gradient(180deg, #65573b 30%, #c9a958 50%, #39a0a8 100%);
 }
-/*Text*/
-/* ───────────────────────────────────────────────────────────── */
-/* .text-animated-circle                                         */
-/* Ring + R/W/B glow expanding behind text                       */
-/* ───────────────────────────────────────────────────────────── */
 
+.lottie-step-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px; /* spacing below the lottie */
+}
+
+/*Text*/
 .text-animated-circle {
   display: inline-block;
   font-weight: bold;
@@ -3745,6 +3747,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
