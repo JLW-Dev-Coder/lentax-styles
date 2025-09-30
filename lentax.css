@@ -2799,6 +2799,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   position: relative;
   transition: background-color 0.3s ease;
   z-index: 1;
+  color: #000;
 }
 
 /* Hover effect: solid white background */
@@ -3744,6 +3745,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
