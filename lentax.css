@@ -1839,6 +1839,15 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   width: 100%;
   z-index: 2;
 }
+/*Proposal*/
+.proposal-column {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 30px;
+}
 
 /*Row*/
 .row-default {
@@ -3747,3 +3756,4 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
