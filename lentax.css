@@ -2605,6 +2605,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* ---------------------------
    TITLE (independent of text-default)
 --------------------------- */
+/* Title with animated border */
 .info-content-title h2 {
   background: linear-gradient(
     90deg,
@@ -2615,10 +2616,23 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.5px;
-  text-align: center;
   font-size: 30px;
-  transition: background 0.5s ease; /* switch to background for gradient animation */
+  letter-spacing: -0.5px;
+  position: relative;
+  text-align: center;
+  transition: background 0.5s ease;
+}
+
+.info-content-title h2::after {
+  background: linear-gradient(to right, transparent, #FF8C00, transparent);
+  border-radius: 2px;
+  content: "";
+  display: block;
+  height: 2px;
+  margin: 8px auto 0 auto;
+  opacity: 0.85;
+  transition: width 0.5s ease;
+  width: 60%;
 }
 
 .info-content-title h2:hover {
@@ -2632,6 +2646,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.info-content-title h2:hover::after {
+  width: 90%;
+}
+
 
 /* ---------------------------
    PARAGRAPH (self-contained text-default styling)
@@ -3756,4 +3775,5 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
