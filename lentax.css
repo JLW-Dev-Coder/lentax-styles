@@ -3370,7 +3370,7 @@ transform: translateY(-3px);
 
 
 /*Voyage*/
-.voyage-progress h2 {
+.voyage-progress {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -3386,7 +3386,7 @@ transform: translateY(-3px);
   transition: background 0.5s ease; /* switch to background for gradient animation */
 }
 
-.voyage-progress h2:hover {
+.voyage-progress:hover {
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
@@ -3756,3 +3756,4 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
