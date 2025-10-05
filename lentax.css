@@ -1868,6 +1868,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 15px;
   margin: 15px;
 }
+
+.row-default-v3 {
+  padding: 30px;
+  margin: 30px;
+}
+
 /*Section*/
 .section-related-links {
   text-align: center;
@@ -3756,4 +3762,5 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
