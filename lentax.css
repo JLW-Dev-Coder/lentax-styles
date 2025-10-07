@@ -3394,7 +3394,7 @@ transform: translateY(-3px);
 }
 
 
-/*Voyage*/
+/* Voyage */
 .voyage-progress {
   background: linear-gradient(
     90deg,
@@ -3405,11 +3405,11 @@ transform: translateY(-3px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.5px;
-  line-spacing: 0.5px;
-  text-align: center;
   font-size: 30px;
-  transition: background 0.5s ease; /* switch to background for gradient animation */
+  letter-spacing: -0.5px;
+  line-height: 1.1; /* ↓ Decrease this value to tighten line spacing */
+  text-align: center;
+  transition: background 0.5s ease;
 }
 
 .voyage-progress:hover {
@@ -3782,6 +3782,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
