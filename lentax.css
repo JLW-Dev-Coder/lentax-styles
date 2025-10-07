@@ -3406,6 +3406,7 @@ transform: translateY(-3px);
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.5px;
+  line-spacing: 1px;
   text-align: center;
   font-size: 30px;
   transition: background 0.5s ease; /* switch to background for gradient animation */
@@ -3781,6 +3782,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
