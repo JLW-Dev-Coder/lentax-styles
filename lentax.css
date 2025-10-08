@@ -601,21 +601,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   display: block;
   height: 100%;
   inset: 0;
+  object-fit: contain;   /* keep aspect ratio */
   opacity: 0.85;
   pointer-events: none;
   position: absolute;
   transform: none;
   width: 100%;
   z-index: 0;
-  object-fit: contain;   /* keep aspect ratio */
 }
 
 .flow-button-cta {
   background-color: #E67300;
   border: none;
   border-bottom: 2px solid black;
-  border-radius: 6px;
   border-right: 2px solid black;
+  border-radius: 6px;
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
@@ -652,26 +652,34 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   margin-top: 30px;
 }
 
+.flow-image {
+  border: 3px solid #3EB489; /* Mint green */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(62, 180, 137, 0.3);
+  height: auto;
+  max-width: 240px;
+}
+
+.flow-image-wrap {
+  flex-shrink: 0;
+}
+
 .flow-instructions {
   position: relative;
   z-index: 1;
 }
 
 .flow-item-name h2 {
+  animation: vibrant-shift 6s infinite linear;
   background: linear-gradient(90deg, #00ffcc, #33ccff, #ff33cc, #ff9933, #ffff33);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: vibrant-shift 6s infinite linear;
   font-size: 40px;
   font-weight: 800;
   letter-spacing: -1px;
   overflow: hidden;
   text-align: center;
   transition: transform 0.3s ease;
-}
-
-.flow-item-name h2:hover {
-  /*transform: scale(1.05);*/
 }
 
 @keyframes vibrant-shift {
@@ -684,6 +692,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   100% {
     background-position: 0% 50%;
   }
+}
+
+.flow-item-name h2:hover {
+  /*transform: scale(1.05);*/
 }
 
 .flow-main {
@@ -781,31 +793,38 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .flow-voyage-progress {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
     #FFA500,   /* orange-gold */
     #FFD700    /* gold again */
   );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: -0.5px;
   text-align: center;
   font-size: 30px;
-  transition: background 0.5s ease; /* switch to background for gradient animation */
+  transition: background 0.5s ease;
 }
 
 .flow-voyage-progress:hover {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   background: linear-gradient(
     90deg,
     #FFD700,   /* gold */
     #00ff00,   /* bright green */
     #FFD700    /* gold again */
   );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+}
+
+.flow-wrap {
+  align-items: center;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
 }
 
 /* Responsive */
@@ -822,7 +841,19 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   .flow-nav-btn:last-child {
     border-bottom: none;
   }
+
+  .flow-wrap {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .flow-image {
+    margin-left: 0;
+    max-width: 100%;
+    width: 320px; /* keeps a reasonable size but allows stacking */
+  }
 }
+
 
 /*Forms*/
 .forms-border {
@@ -3782,6 +3813,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
