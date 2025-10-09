@@ -811,7 +811,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 30px;
+  /*font-size: 30px;*/
   letter-spacing: -0.5px;
   line-height: 1.1; /* tighter spacing */
   text-align: center;
@@ -3862,6 +3862,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
