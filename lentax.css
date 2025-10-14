@@ -420,8 +420,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .feature-block-highlight {
-  font-weight: 600;
-  color: #FFD700;
+  /*font-weight: 600;
+  color: #FFD700;*/
 }
 
 .feature-block-lottie {
@@ -3893,6 +3893,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
