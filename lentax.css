@@ -2275,6 +2275,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     text-shadow: none;
   }
 }
+
 .text-animated-slide-in > * {
   opacity: 0;
   transform: translateY(12px);
@@ -2301,8 +2302,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /* Optional: special highlight styling with orange-gold emphasis */
 .special-highlight {
-  color: #ff8c00;
-  font-weight: 600;
+  /*color: #ff8c00;
+  font-weight: 600;*/
 }
 
 
@@ -3892,6 +3893,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
