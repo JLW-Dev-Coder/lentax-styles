@@ -1409,6 +1409,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   100% { left: 125%; }
 }
 
+.item-column-v3 {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  flex: 1 1 65%;
+  /*margin: 15px;*/
+  overflow: hidden;
+  padding: 30px 30px 45px 30px;
+  position: relative;
+}
+
 /*Item Column Two*/
 .item-column-two {
   background-color: rgba(0, 0, 0, 0.9);
@@ -3906,6 +3918,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
