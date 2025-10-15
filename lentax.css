@@ -35,7 +35,7 @@
 
 .account-card-status-setup {
     background: rgba(0, 255, 127, 0.15);
-    color: #fff;
+    color: rgba(255, 255, 255, 0.75); !important;   /* white text, forced */
     border: 1px solid rgba(0, 255, 127, 0.3);
 }
 
@@ -3906,6 +3906,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
