@@ -2012,7 +2012,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .section-related-links h4 {
   margin: 0;
-  padding: 10px;
+  /*padding: 10px;*/
 
   background: linear-gradient(
     90deg,
@@ -3906,6 +3906,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
