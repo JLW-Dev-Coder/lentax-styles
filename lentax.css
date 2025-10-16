@@ -2570,6 +2570,31 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   color: inherit;
 }
 
+/*Text Lottie*/
+
+.text-lottie-wrapper {
+  position: relative;
+  display: inline-block; /* shrink to text width */
+  overflow: hidden;
+}
+
+.text-lottie-wrapper dotlottie-wc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35; /* adjust intensity */
+}
+
+.text-lottie-wrapper .text-content {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ───────────────────────────────────────────────────────────── */
 /* Text Padding Bottom: top 15px, left/right 15px, variable bottom */
@@ -3981,6 +4006,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
