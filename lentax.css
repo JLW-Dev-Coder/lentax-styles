@@ -2127,10 +2127,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background: linear-gradient(to right, rgb(34, 34, 38) 20%, rgb(58, 58, 63), rgb(83, 83, 89) 100%);
 }
 
-/*.sidebar-nav-four {
-  background: linear-gradient(180deg, #375623 30%, #4F724F 50%, rgb(12, 83, 148) 100%);
-}/*
-
 .sidebar-nav-four {
   background: linear-gradient(180deg, #2a3e1a 30%, #3a5738 50%, #0a5a9c 100%);
   margin: 15px;
@@ -4138,6 +4134,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
