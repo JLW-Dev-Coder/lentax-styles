@@ -40,7 +40,7 @@
 }
 
 .account-card-status-setup:hover {
-  background: rgba(0, 255, 127, 0.35);
+  background: rgba(0, 255, 127, 0.5);
 }
 
 
@@ -3919,6 +3919,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
