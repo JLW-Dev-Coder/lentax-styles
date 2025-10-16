@@ -34,16 +34,13 @@
 }
 
 .account-card-status-setup {
-  background-color: #4caf50; /* original green */
-  color: #fff;
-  border-radius: 8px;
-  padding: 8px 12px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: rgba(0, 255, 127, 0.15);
+  color: rgba(255, 255, 255, 0.75); !important;   /* white text, forced */
+  border: 1px solid rgba(0, 255, 127, 0.3);
 }
 
 .account-card-status-setup:hover {
-  background-color: #66d066; /* brighter green on hover */
-  color: #fff;
+  background: rgba(0, 255, 127, 0.35);
 }
 
 
@@ -3922,6 +3919,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
