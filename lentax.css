@@ -742,21 +742,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   overflow-x: auto;
   scroll-behavior: smooth;
   gap: 4px;
-  flex: 1; /* take available space */
+  flex: 1;
 }
 
 .flow-nav-scroll::-webkit-scrollbar {
-  display: none; /* hide scrollbar */
+  display: none;
 }
 
-/* Original flow-nav-bar styles applied inside scroll wrapper */
 .flow-nav-bar,
 .flow-nav-scroll {
   background-color: #1a1a1a;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.4);
   display: flex;
-  justify-content: flex-start; /* scrollable, so no space-around */
+  justify-content: flex-start;
   margin-bottom: 30px;
   overflow: hidden;
 }
@@ -764,7 +763,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .flow-nav-btn {
   border-right: 1px solid rgba(255,255,255,0.15);
   color: rgba(255,255,255,0.7);
-  flex: 0 0 auto; /* don’t shrink, fit content */
+  flex: 1; /* equal width for all buttons */
   padding: 14px 16px;
   text-align: center;
   text-decoration: none;
@@ -773,6 +772,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-width: 100px; /* optional: ensures buttons don’t get too small */
 }
 
 .flow-nav-btn.active {
@@ -793,7 +794,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-right: none;
 }
 
-/* Next Button */
 .flow-nav-next {
   background-color: #ff8c00;
   border: none;
@@ -811,7 +811,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background-color: #ffa733;
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .flow-nav-scroll {
     flex-wrap: nowrap;
@@ -822,6 +821,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     padding: 12px 10px;
   }
 }
+
 
 
 /*Flow Right Sidebar*/
@@ -3981,6 +3981,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
