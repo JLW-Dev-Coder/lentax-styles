@@ -770,6 +770,9 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   text-decoration: none;
   transition: background 0.3s, transform 0.2s;
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .flow-nav-btn.active {
@@ -821,6 +824,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 
+/*Flow Right Sidebar*/
 .flow-right-sidebar a {
   background: rgba(255, 255, 255, 0.03);
   border-left: 4px solid rgba(255, 140, 0, 0.3);
@@ -3977,6 +3981,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
