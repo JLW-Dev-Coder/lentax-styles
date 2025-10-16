@@ -47,8 +47,6 @@
   border-color: rgba(0, 255, 127, 0.5);
 }
 
-
-
 .account-card-subtitle {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -2130,7 +2128,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .sidebar-nav-four {
   background: linear-gradient(180deg, #1f2d14 30%, #2c452d 50%, #062f6b 100%);
   border-radius: 35px;
-  margin: 15px 0px 15px 15px;
+  margin: 0px 15px 15px 15px;
   padding: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -4131,6 +4129,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
