@@ -451,12 +451,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 
   h2 + .feature-block-container {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
   
   .feature-block-description {
-    padding-top: 20px;
+    padding-top: 0px;
   }
 }
 
@@ -3918,6 +3918,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
