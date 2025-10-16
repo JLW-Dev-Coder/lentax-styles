@@ -35,13 +35,18 @@
 
 .account-card-status-setup {
   background: rgba(0, 255, 127, 0.15);
-  color: rgba(255, 255, 255, 0.75); !important;   /* white text, forced */
+  color: rgba(255, 255, 255, 0.75) !important;  /* fixed !important placement */
   border: 1px solid rgba(0, 255, 127, 0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .account-card-status-setup:hover {
   background: rgba(0, 255, 127, 0.5);
+  border-color: rgba(0, 255, 127, 0.5);
 }
+
 
 
 .account-card-subtitle {
@@ -3919,6 +3924,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
