@@ -3184,10 +3184,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 25px auto;
-  max-width: 340px;
+  margin: auto;
+  max-width: 400px;
   overflow: hidden;
-  padding: 25px 20px 35px;
+  padding: 0px;
   position: relative;
   text-align: center;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -4125,6 +4125,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
