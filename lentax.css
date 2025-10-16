@@ -3175,10 +3175,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .plan-comparison-card {
   align-items: center;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.75));
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 18px;
   box-shadow:
-    0 0 12px rgba(255, 215, 0, 0.2),
+    0 0 12px rgba(255, 215, 0, 0.1),
     inset 0 0 20px rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.9);
   display: flex;
@@ -3195,9 +3195,9 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .plan-comparison-card:hover {
   box-shadow:
-    0 0 16px rgba(255, 215, 0, 0.35),
+    0 0 16px rgba(255, 215, 0, 0.25),
     0 0 28px rgba(255, 255, 255, 0.08);
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 
 .plan-comparison-card img {
@@ -3209,6 +3209,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .plan-comparison-card:hover img {
   transform: scale(1.05);
+}
+
+.plan-comparison-expiry {
+  font-size: 14px;
+  margin-bottom: 10px;
+  opacity: 0.7;
 }
 
 .plan-comparison-feature {
@@ -3224,10 +3230,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .plan-comparison-highlight {
+  animation: planPulse 3s ease-in-out infinite;
   background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: planPulse 3s ease-in-out infinite;
   font-size: 18px;
   font-weight: 700;
   margin-top: 10px;
@@ -3239,11 +3245,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   100% { opacity: 0.9; transform: scale(1); }
 }
 
+.plan-comparison-price {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* Status badges — styled like status-setup */
 .plan-comparison-status {
-  background: linear-gradient(135deg, #00ffcc, #0066ff);
+  border: 1px solid rgba(0, 255, 127, 0.3);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-  color: #fff;
+  color: rgba(255, 255, 255, 0.75);
   font-size: 13px;
   font-weight: 700;
   left: 50%;
@@ -3252,34 +3264,30 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   text-transform: uppercase;
   top: 14px;
   transform: translateX(-50%);
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .plan-comparison-status.best-value {
-  background: linear-gradient(135deg, #FFD700, #FFA500);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.3);
 }
 
 .plan-comparison-status.most-popular {
-  background: linear-gradient(135deg, #00ff99, #00cc66);
-  box-shadow: 0 0 10px rgba(0, 255, 153, 0.4);
+  background: rgba(0, 255, 127, 0.15);
+  border-color: rgba(0, 255, 127, 0.3);
 }
 
 .plan-comparison-status.recommended {
-  background: linear-gradient(135deg, #33ccff, #3366ff);
-  box-shadow: 0 0 10px rgba(51, 204, 255, 0.4);
+  background: rgba(51, 204, 255, 0.15);
+  border-color: rgba(51, 204, 255, 0.3);
 }
 
-.plan-comparison-price {
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 6px;
+.plan-comparison-status:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
 }
 
-.plan-comparison-expiry {
-  font-size: 14px;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
 
 
 /*Porthole*/ 
@@ -4117,6 +4125,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
