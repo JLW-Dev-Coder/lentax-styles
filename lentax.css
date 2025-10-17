@@ -3754,7 +3754,7 @@ transform: none !important;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 30px;
+  /*font-size: 30px;*/
   letter-spacing: -0.5px;
   line-height: 1.1; /* ↓ Decrease this value to tighten line spacing */
   text-align: center;
@@ -4131,6 +4131,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
