@@ -1268,15 +1268,15 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .image-style {
   display: block;
-  margin: 20px auto;
-  max-width: 250px;
-  min-width: 250px;
-  height: auto;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;       /* allow full width */
+  height: auto;      /* maintain aspect ratio */
+  margin: 0;         /* remove auto margins */
+  border: none;      /* optional: remove border if needed */
+  border-radius: 0;  /* optional: remove rounding */
+  box-shadow: none;  /* optional: remove shadow */
+  max-width: none;   /* override previous max-width */
 }
+
 
 .image-style:hover {
   transform: scale(1.05);
@@ -4129,6 +4129,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
