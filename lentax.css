@@ -2130,6 +2130,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-radius: 35px;
   margin: 0px 15px 15px 15px;
   padding: 0px;
+  position: relative; /* added to anchor absolute children */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -2137,6 +2138,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
+
 
 /*.sidebar-nav-nine {
   background: linear-gradient(to right, rgb(255, 235, 59), rgb(76, 175, 80), rgb(33, 150, 243));
@@ -4129,6 +4131,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
