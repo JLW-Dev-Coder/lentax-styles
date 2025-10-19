@@ -12,9 +12,20 @@
   z-index: 1;
 }
 
-.account-card-status-active { 
-  background-color: #00ff00; /* bright green for active */ 
+.account-card-status-active {
+  background: linear-gradient(90deg, #00cc00, #00ff66);
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 4px 10px;
+  text-align: center;
+  transition: background 0.3s ease;
 }
+
+.account-card-status-active:hover {
+  background: linear-gradient(90deg, #00e600, #66ff99);
+}
+
 
 .account-card-status-coming-soon { 
   background-color: #ff1493; /* deep pink for coming soon */ 
@@ -4188,6 +4199,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
