@@ -511,14 +511,24 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .feature-name {
-  color: rgba(230, 184, 0, 0.9); /* Solid "gold-ish" tone — swap as needed */
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.95), rgba(230, 184, 0, 0.9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  transition: background 0.4s ease;
 }
 
 .feature-name:hover,
 .feature-name:focus,
 .feature-name.active {
-  color: rgb(230, 184, 0); /* Bright white on hover/focus/active */
+  background: linear-gradient(90deg, rgba(255, 239, 120, 1), rgba(255, 215, 0, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
+
 
 .feature-name-v2 h2 {
   background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33); /* gold → orange-gold → bright yellow */
@@ -4178,6 +4188,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
