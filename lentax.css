@@ -1232,6 +1232,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*End of Memberships*/
+/*Hide*/
+
+.hide-on-mobile {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
 
 /*Iframe*/
 .iframe-background {
@@ -4166,6 +4178,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
