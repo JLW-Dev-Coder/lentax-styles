@@ -13,9 +13,9 @@
 }
 
 .account-card-status-active {
-  background: linear-gradient(90deg, #00cc00, #00ff66);
+  background: linear-gradient(90deg, #00b300, #00e65c);
   border-radius: 6px;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.8);
   font-weight: 600;
   padding: 4px 10px;
   text-align: center;
@@ -23,7 +23,7 @@
 }
 
 .account-card-status-active:hover {
-  background: linear-gradient(90deg, #00e600, #66ff99);
+  background: linear-gradient(90deg, #00cc00, #00ff70);
 }
 
 
@@ -4199,6 +4199,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
