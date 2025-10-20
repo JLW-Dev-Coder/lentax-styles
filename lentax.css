@@ -2574,7 +2574,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* ───────────────────────────────────────────────────────────── */
 
 .text-animated-starburst {
-  color: #ffffff;
+  /*color: #ffffff;*/
   display: inline-block;
   font-weight: 700;
   position: relative;
@@ -4294,6 +4294,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
