@@ -1811,6 +1811,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
   
 /*Item Plan*/
+/* Item Plan */
 .item-plan-card {
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1847,7 +1848,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   color: transparent;
 }
 
-
 .item-plan-divider {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   margin: 10px 0;
@@ -1857,44 +1857,48 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   margin-top: 20px;
 }
 
-/* Base style for icons in item-plan-row */
-.item-plan-row div:before {
-  font-family: "Font Awesome 6 Duotone", sans-serif; /* optional if using FA */
-  display: inline-block;
-  margin-right: 6px;
-  vertical-align: middle;
-  font-weight: 900; /* if using FA duotone */
-  content: "➕"; /* default icon */
-  transition: color 0.3s ease;
-}
-
-/* Example: first row has crown instead of plus */
-.item-plan-row:first-child div:before {
-  content: "♚";
-}
-
-/* Optional hover effect can still be added separately */
-.item-plan-row:hover div:before {
-  /* e.g., color change on hover */
-}
-
-
-.item-plan-total {
+/* Flex row layout */
+.item-plan-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  gap: 10px;
 }
 
-.item-plan-total-label {
-  font-size: 22px;
+/* Main feature row with special icon */
+.item-plan-row-with-item {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* spacing between icon and text */
 }
 
-.item-plan-total-cost {
-  font-weight: 700;
-  font-size: 18px;
+.item-plan-row-with-item:before {
+  content: "♛"; /* new icon for feature row */
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  font-weight: 900;
+  font-family: "Font Awesome 6 Duotone", sans-serif; /* optional if using FA */
+  transition: color 0.3s ease;
 }
-  
+
+/* Base icons for support rows */
+.item-plan-row:not(.item-plan-row-with-item) > div:first-child:before {
+  content: "➕"; /* default icon for support options */
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  font-weight: 900;
+  font-family: "Font Awesome 6 Duotone", sans-serif; /* optional if using FA */
+  transition: color 0.3s ease;
+}
+
+/* Optional hover effect */
+.item-plan-row:hover > div:first-child:before {
+  /* Example:
+
+/*End of Item Plan*/
+
 /*LenBot 3D*/
 .lentax-3d-letter {
   color: transparent;
@@ -4224,6 +4228,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
