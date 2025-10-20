@@ -4304,9 +4304,9 @@ vertical-align: middle;
 /*Start of SD Image Block*/
 
 .cbe-block-single-image {
-  border-radius: 50%;
+  border-radius: 20%;
   display: block;
-  margin: 30px auto;
+  /*margin: 30px auto;*/
   max-width: 280px;
   width: 100%;
   height: auto;
@@ -4347,3 +4347,4 @@ vertical-align: middle;
 .cbe-block-single-image:hover::after {
   opacity: 1;
 }
+
