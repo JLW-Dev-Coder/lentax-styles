@@ -1864,38 +1864,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   gap: 10px; /* optional spacing between divs */
 }
 
-/* Feature name with icon */
+/* Left content flex container */
 .item-plan-row-with-item {
   display: flex;
-  align-items: center; /* vertically align icon and text */
-  gap: 6px; /* spacing between icon and text */
-}
-
-/* Icon for main feature row */
-.item-plan-row-with-item:before {
-  content: "♛"; /* new icon, e.g., different crown */
-  display: inline-block;
-  margin-right: 6px;
-  vertical-align: middle;
-  font-weight: 900; /* if using FA duotone */
-  font-family: "Font Awesome 6 Duotone", sans-serif; /* optional if using FA */
-  transition: color 0.3s ease;
-}
-
-/* Base style for other icons in support rows */
-.item-plan-row div:before {
-  font-family: "Font Awesome 6 Duotone", sans-serif; /* optional if using FA */
-  display: inline-block;
-  margin-right: 6px;
-  vertical-align: middle;
-  font-weight: 900; /* if using FA duotone */
-  content: "➕"; /* default icon */
-  transition: color 0.3s ease;
-}
-
-/* Optional: hover effect for icons */
-.item-plan-row:hover div:before {
-  /* e.g., color change on hover */
+  align-items: center; /* vertically align text */
+  gap: 6px; /* optional spacing */
 }
 
 /* Item Plan Total */
@@ -1914,7 +1887,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   font-weight: 700;
   font-size: 18px;
 }
-
 /*End of Item Plan*/
 
 /*LenBot 3D*/
@@ -4246,6 +4218,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
