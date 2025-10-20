@@ -4319,12 +4319,13 @@ vertical-align: middle;
 }
 
 .cbe-block-single-image:hover {
-  transform: scale(1.08) rotate(-2deg);
+  transform: scale(1.08); /* just slightly larger */
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.4),
     0 12px 30px rgba(0, 0, 0, 0.3),
-    0 0 36px rgba(255, 215, 0, 0.5);
+    0 0 36px rgba(255, 215, 0, 0.5); /* glow remains */
 }
+
 
 /* Optional: animated glowing border effect */
 .cbe-block-single-image::after {
@@ -4347,4 +4348,5 @@ vertical-align: middle;
 .cbe-block-single-image:hover::after {
   opacity: 1;
 }
+
 
