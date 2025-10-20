@@ -4302,7 +4302,9 @@ vertical-align: middle;
 /*End of SD Primary Button*/
 
 /*Start of SD Image Block*/
-.cbe-block-single-image {
+/* Base style */
+:not(.image-block) > .cbe-block-single-image,
+:not(.image-block) .cbe-block-single-image {
   border-radius: 20%;
   display: block;
   max-width: 280px;
@@ -4316,15 +4318,19 @@ vertical-align: middle;
   position: relative;
 }
 
-.cbe-block-single-image:hover {
-  transform: scale(1.08); /* only scale, no rotation */
+/* Hover effect - only scale slightly, no rotation */
+:not(.image-block) > .cbe-block-single-image:hover,
+:not(.image-block) .cbe-block-single-image:hover {
+  transform: scale(1.08);
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.4),
     0 12px 30px rgba(0, 0, 0, 0.3),
-    0 0 36px rgba(255, 215, 0, 0.5); /* glow remains */
+    0 0 36px rgba(255, 215, 0, 0.5); /* glow effect */
 }
 
-.cbe-block-single-image::after {
+/* Optional: animated glowing border effect */
+:not(.image-block) > .cbe-block-single-image::after,
+:not(.image-block) .cbe-block-single-image::after {
   content: '';
   position: absolute;
   top: -6px;
@@ -4341,6 +4347,8 @@ vertical-align: middle;
   transition: opacity 0.4s ease;
 }
 
-.cbe-block-single-image:hover::after {
+/* Show glow on hover */
+:not(.image-block) > .cbe-block-single-image:hover::after,
+:not(.image-block) .cbe-block-single-image:hover::after {
   opacity: 1;
 }
