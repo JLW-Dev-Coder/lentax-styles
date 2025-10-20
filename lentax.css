@@ -1960,12 +1960,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .item-plan-total-label {
-  font-size: 22px;
+  /*font-size: 22px;*/
 }
 
 .item-plan-total-cost {
   font-weight: 700;
-  font-size: 18px;
+  /*font-size: 18px;*/
 }
 /*End of Item Plan*/
 
@@ -4300,3 +4300,4 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
