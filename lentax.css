@@ -1761,20 +1761,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /*Item Instructions*/
 
 .item-instructions-cta {
-  display: inline-block;
-  padding: 10px 20px;
   font-weight: 700;
-  text-align: center;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #00cc00, #00ff00); /* slightly darker green to bright green */
-  color: #000; /* text color */
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.2s ease;
+  background: linear-gradient(90deg, #00cc00, #00ff00); /* base green gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  transition: background 0.4s ease;
+  cursor: pointer; /* optional to indicate clickable text */
 }
 
 .item-instructions-cta:hover {
-  background: linear-gradient(90deg, #00ff00, #33ff33); /* brightens on hover */
-  transform: scale(1.03); /* optional subtle hover pop */
+  background: linear-gradient(90deg, #00ff00, #33ff33); /* slightly brighter green on hover */
 }
 
 
@@ -4238,6 +4236,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
