@@ -1757,6 +1757,27 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   gap: 24px;
   margin-top: 30px;
 }
+
+/*Item Instructions*/
+
+.item-instructions-cta {
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #00cc00, #00ff00); /* slightly darker green to bright green */
+  color: #000; /* text color */
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.item-instructions-cta:hover {
+  background: linear-gradient(90deg, #00ff00, #33ff33); /* brightens on hover */
+  transform: scale(1.03); /* optional subtle hover pop */
+}
+
+
 /*Item Steps*/
 /*Steps*/
 .item-step-container {
@@ -4217,6 +4238,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
