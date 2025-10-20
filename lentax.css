@@ -1772,25 +1772,27 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-left: 4px solid #FF8C00;
 }
 
-/*Higher Layer*/
-/*.item-column-three-iframe {
+/* Higher Layer
+.item-column-three-iframe {
   position: absolute;
   pointer-events: none;
   opacity: 0.5;
-  z-index: 2; /* Higher layer */
-}*/
+  z-index: 2; 
+}
 
-/*.item-column-three-iframe-v2 {
+.item-column-three-iframe-v2 {
   margin-top: 30px;
-}*/
+}
 
-/*Lower Layer*/
+Lower Layer
 .item-column-three-iframe-two {
   pointer-events: none;
   opacity: 0.8;
   position: relative;
-  z-index: 1; /* Lower layer */
-}*/
+  z-index: 1;
+}
+*/
+
 
 /*Progress Bar*/
 .item-column-three-progress-bar {
@@ -4300,6 +4302,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
