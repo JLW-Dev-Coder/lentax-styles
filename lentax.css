@@ -1857,13 +1857,27 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   margin-top: 20px;
 }
 
-.item-plan-row {
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 6px 0;
+/* Base style for icons in item-plan-row */
+.item-plan-row div:before {
+  font-family: "Font Awesome 6 Duotone", sans-serif; /* optional if using FA */
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  font-weight: 900; /* if using FA duotone */
+  content: "➕"; /* default icon */
+  transition: color 0.3s ease;
 }
+
+/* Example: first row has crown instead of plus */
+.item-plan-row:first-child div:before {
+  content: "♚";
+}
+
+/* Optional hover effect can still be added separately */
+.item-plan-row:hover div:before {
+  /* e.g., color change on hover */
+}
+
 
 .item-plan-total {
   display: flex;
@@ -4210,6 +4224,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
