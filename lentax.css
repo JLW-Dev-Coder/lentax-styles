@@ -2582,7 +2582,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .text-animated-starburst::before {
-  animation: starburstPop 1.8s ease-out forwards;
+  animation: starburstPop 4.5s ease-out forwards; /* increased from 1.8s */
   background: radial-gradient(circle,
     rgba(255, 0, 0, 0.5) 0%,      /* Red core */
     rgba(255, 255, 255, 0.9) 40%, /* White ring */
@@ -2616,6 +2616,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+
 /*Text Animated Underline*/
 .text-animated-underline {
   display: inline-block;
@@ -4294,6 +4296,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
