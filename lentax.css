@@ -1830,12 +1830,23 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   margin-bottom: 10px;
   text-align: center;
   font-weight: 700;
+  background: linear-gradient(90deg, #e6b800, #cca300);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .item-plan-subtitle {
   margin: 10px 0;
   text-align: center;
+  background: linear-gradient(90deg, #e6b800, #cca300);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
+
 
 .item-plan-divider {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -4199,6 +4210,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
