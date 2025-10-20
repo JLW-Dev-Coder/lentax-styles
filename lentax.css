@@ -1076,6 +1076,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .form-title {
   /*margin: 0;*/
 }
+
 /*Memberships*/
 /* ===== Gold ===== */
 .gold-blue-light {
@@ -1102,8 +1103,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
-  display: block;          /* inline-block won’t fill width */
-  text-align: center;      /* now centers text within full width */
+  display: block;
   font-size: 45px;
   overflow: hidden;
   border-radius: 35px;
@@ -1112,11 +1112,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-/* Hover/active overrides the gradient mask with solid white */
-.gold-name-v2 h2:hover,
-.gold-name-v2 h2:focus,
-.gold-name-v2 h2.active {
-  /*-webkit-text-fill-color: #fff;*/
+.gold-name-v3 h2 {
+  background: linear-gradient(90deg, #FFD700, #FFA500, #FF8C00); /* gold → orange → dark orange */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
 }
 
 /*Gold Light*/
@@ -1159,17 +1168,19 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     0 0 18px rgb(0, 255, 0),
     0 0 24px rgb(255, 0, 0);
 }
+
 /*Icon*/
 .icon-red-white-blue {
-    animation: rwb-fade 1.2s linear infinite;
-  }
+  animation: rwb-fade 1.2s linear infinite;
+}
 
-  @keyframes rwb-fade {
-    0% { color: red; }
-    33% { color: white; }
-    66% { color: blue; }
-    100% { color: red; }
-  }
+@keyframes rwb-fade {
+  0% { color: red; }
+  33% { color: white; }
+  66% { color: blue; }
+  100% { color: red; }
+}
+
 /* ===== Silver ===== */
 .silver-name {
   color: #00c8ff; /* bright aqua blue */
@@ -1191,12 +1202,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-.silver-name-v2 h2:hover,
-.silver-name-v2 h2:focus,
-.silver-name-v2 h2.active {
-  /* -webkit-text-fill-color: #fff; */
+.silver-name-v3 h2 {
+  background: linear-gradient(90deg, #e0f7fa, #00c8ff, #0088cc); /* light aqua → bright aqua → deep teal */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
 }
-
 
 /* ===== Bronze ===== */
 .bronze-name {
@@ -1219,10 +1239,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-.bronze-name-v2 h2:hover,
-.bronze-name-v2 h2:focus,
-.bronze-name-v2 h2.active {
-  /* -webkit-text-fill-color: #fff; */
+.bronze-name-v3 h2 {
+  background: linear-gradient(90deg, #a0522d, #b87333, #cd7f32); /* bronze → copper → metallic bronze */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
 }
 
 /* ===== Starter ===== */
@@ -1246,13 +1276,41 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-.starter-name-v2 h2:hover,
-.starter-name-v2 h2:focus,
-.starter-name-v2 h2.active {
-  /* -webkit-text-fill-color: #fff; */
+.starter-name-v3 h2 {
+  background: linear-gradient(90deg, #bbb, #777, #444); /* light gray → medium gray → dark charcoal */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-radius: 35px;
+  display: block;
+  font-size: 45px;
+  line-height: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: -webkit-text-fill-color 0.3s ease;
+}
+
+/* Hover/active overrides for all */
+.gold-name-v3 h2:hover,
+.gold-name-v3 h2:focus,
+.gold-name-v3 h2.active,
+.silver-name-v3 h2:hover,
+.silver-name-v3 h2:focus,
+.silver-name-v3 h2.active,
+.bronze-name-v3 h2:hover,
+.bronze-name-v3 h2:focus,
+.bronze-name-v3 h2.active,
+.starter-name-v3 h2:hover,
+.starter-name-v3 h2:focus,
+.starter-name-v3 h2.active {
+  /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
 }
 
 /*End of Memberships*/
+
+
 /*Hide*/
 
 .hide-on-mobile {
@@ -4236,6 +4294,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
