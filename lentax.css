@@ -1773,7 +1773,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Higher Layer*/
-.item-column-three-iframe {
+/*.item-column-three-iframe {
   position: absolute;
   pointer-events: none;
   opacity: 0.5;
@@ -1790,7 +1790,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   opacity: 0.8;
   position: relative;
   z-index: 1; /* Lower layer */
-}
+}*/
 
 /*Progress Bar*/
 .item-column-three-progress-bar {
@@ -4300,4 +4300,5 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
