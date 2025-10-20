@@ -1819,19 +1819,23 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /*Item Instructions*/
 
 .item-instructions-cta {
-  font-weight: 700;
   background: linear-gradient(90deg, #00cc00, #00ff00); /* base green gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  transition: background 0.4s ease;
   cursor: pointer; /* optional to indicate clickable text */
+  font-weight: 700;
+  transition: background 0.4s ease;
 }
 
 .item-instructions-cta:hover {
   background: linear-gradient(90deg, #00ff00, #33ff33); /* slightly brighter green on hover */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
 
 
 /*Item Steps*/
@@ -4296,6 +4300,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
