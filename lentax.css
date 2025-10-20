@@ -1778,11 +1778,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   pointer-events: none;
   opacity: 0.5;
   z-index: 2; /* Higher layer */
-}
+}*/
 
-.item-column-three-iframe-v2 {
+/*.item-column-three-iframe-v2 {
   margin-top: 30px;
-}
+}*/
 
 /*Lower Layer*/
 .item-column-three-iframe-two {
@@ -4300,5 +4300,6 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
