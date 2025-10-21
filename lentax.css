@@ -27,9 +27,29 @@
 }
 
 
-.account-card-status-coming-soon { 
-  background-color: #ff1493; /* deep pink for coming soon */ 
+.account-card-status-coming-soon {
+  background-color: #ff1493; /* deep pink for coming soon */
+  color: rgba(255, 255, 255, 0.75) !important;
+  animation: pulseComingSoon 2s infinite ease-in-out;
 }
+
+.account-card-status-coming-soon:hover {
+  background-color: #ff1493;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+@keyframes pulseComingSoon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 15px 8px rgba(255, 20, 147, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
+  }
+}
+
 
 .account-card-status-inactive { 
   background-color: #ff003f; /* vivid red for inactive */ 
@@ -4302,6 +4322,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
