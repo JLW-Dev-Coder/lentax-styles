@@ -40,13 +40,13 @@
 
 @keyframes pulseComingSoon {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.5);
   }
   50% {
-    box-shadow: 0 0 15px 8px rgba(255, 20, 147, 0.5);
+    box-shadow: 0 0 8px 4px rgba(255, 20, 147, 0.3); /* smaller and lighter */
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.5);
   }
 }
 
@@ -4323,6 +4323,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
