@@ -30,7 +30,7 @@
 .account-card-status-coming-soon {
   background-color: #ff1493; /* deep pink for coming soon */
   color: rgba(255, 255, 255, 0.75) !important;
-  animation: pulseComingSoon 2s infinite ease-in-out;
+  animation: pulseComingSoon 4s infinite ease-in-out;
 }
 
 .account-card-status-coming-soon:hover {
@@ -4323,6 +4323,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
