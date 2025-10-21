@@ -1826,7 +1826,7 @@ Lower Layer
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  cursor: pointer; /* optional to indicate clickable text */
+  /*cursor: pointer; /* optional to indicate clickable text */
   font-weight: 700;
   transition: background 0.4s ease;
 }
@@ -4302,6 +4302,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
