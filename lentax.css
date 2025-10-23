@@ -117,6 +117,31 @@
   background-color: rgb(0, 0, 0);
   transform: scale(1.02);
 }
+/*Btn*/
+.btn-group button {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
 
 /*Button*/
 .button-custom-animation {
@@ -1021,54 +1046,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .forms-cf-border {
   padding-bottom: 30px;
   padding-top: 15px;
-}
-
-.forms-row {
-align-items: flex-start;
-display: flex;
-flex-wrap: wrap;
-gap: 24px;
-justify-content: center;
-}
-
-.forms-row > .forms-border {
-flex: 1 1 30%;
-max-width: 33%;
-}
-
-/* Ensure forms layout overrides when placed inside common item-column wrappers */
-.item-column .forms-row,
-.item-column-three .forms-row,
-.item-column-two .forms-row,
-.item-column-two-v2 .forms-row,
-.item-column-two-v3 .forms-row,
-.item-column-v2 .forms-row {
-align-items: flex-start;
-display: flex;
-flex-wrap: wrap;
-gap: 24px;
-justify-content: center;
-}
-
-@media (max-width: 768px) {
-.forms-row {
-align-items: stretch;
-flex-direction: column;
-}
-
-.forms-row > .forms-border {
-max-width: 100%;
-}
-
-.item-column .forms-row,
-.item-column-three .forms-row,
-.item-column-two .forms-row,
-.item-column-two-v2 .forms-row,
-.item-column-two-v3 .forms-row,
-.item-column-v2 .forms-row {
-align-items: stretch;
-flex-direction: column;
-}
 }
 
 
@@ -4360,6 +4337,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
