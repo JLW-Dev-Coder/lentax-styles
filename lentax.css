@@ -1655,6 +1655,46 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   isolation: isolate;
   z-index: 0;
 }
+.item-column-two .form-three-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;           /* spacing between buttons */
+  justify-content: flex-start;
+  align-items: center;  /* center buttons horizontally */
+}
+
+.item-column-two .form-three-stack .form-three-stack-btn {
+  width: 100%;
+  max-width: 250px;    /* optional max width */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #FFA500, #E67300);
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-column-two .form-three-stack .form-three-stack-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.item-column-two .form-three-stack .form-three-stack-btn:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive: make buttons full width on smaller screens */
+@media (max-width: 768px) {
+  .item-column-two .form-three-stack .form-three-stack-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 
 .item-column-two-bg {
   position: relative;
@@ -4364,6 +4404,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
