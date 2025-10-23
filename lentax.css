@@ -4329,25 +4329,7 @@ vertical-align: middle;
 /*End of SD Primary Button*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Option 1: hide submit button for this form */
+form#yw0 .form-submit-button {
+    display: none !important;
+}
