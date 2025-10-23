@@ -4329,9 +4329,3 @@ vertical-align: middle;
 form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
     display: none !important;
 }
-
-
-/* Target the specific form */
-form.sd-form-submit.sd-conditional-logic-applying button {
-  padding: 0 !important; /* remove all button padding */
-}
