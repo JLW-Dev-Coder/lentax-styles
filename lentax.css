@@ -4331,3 +4331,20 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 }
 
 
+
+/* Target the specific form by its class or id */
+form.sd-form-submit.sd-conditional-logic-applying {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove padding/margin from all children except buttons */
+form.sd-form-submit.sd-conditional-logic-applying *:not(button) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Keep button padding intact */
+form.sd-form-submit.sd-conditional-logic-applying button {
+  /* Existing padding remains */
+}
