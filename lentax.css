@@ -1003,8 +1003,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 }
 
-
-
 /*Forms*/
 .forms-border {
   background: rgba(255, 255, 255, 0.05);
@@ -1024,6 +1022,55 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding-bottom: 30px;
   padding-top: 15px;
 }
+
+.forms-row {
+align-items: flex-start;
+display: flex;
+flex-wrap: wrap;
+gap: 24px;
+justify-content: center;
+}
+
+.forms-row > .forms-border {
+flex: 1 1 30%;
+max-width: 33%;
+}
+
+/* Ensure forms layout overrides when placed inside common item-column wrappers */
+.item-column .forms-row,
+.item-column-three .forms-row,
+.item-column-two .forms-row,
+.item-column-two-v2 .forms-row,
+.item-column-two-v3 .forms-row,
+.item-column-v2 .forms-row {
+align-items: flex-start;
+display: flex;
+flex-wrap: wrap;
+gap: 24px;
+justify-content: center;
+}
+
+@media (max-width: 768px) {
+.forms-row {
+align-items: stretch;
+flex-direction: column;
+}
+
+.forms-row > .forms-border {
+max-width: 100%;
+}
+
+.item-column .forms-row,
+.item-column-three .forms-row,
+.item-column-two .forms-row,
+.item-column-two-v2 .forms-row,
+.item-column-two-v3 .forms-row,
+.item-column-v2 .forms-row {
+align-items: stretch;
+flex-direction: column;
+}
+}
+
 
 /* Flex child: fixed width (e.g., Lottie) */
 .form-flex-fixed {
@@ -4313,6 +4360,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
