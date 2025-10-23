@@ -4335,3 +4335,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form.sd-form-submit.sd-conditional-logic-applying button {
   padding: 0 !important; /* remove all button padding */
 }
+
+.cbe-block-items.ng-scope {
+  padding: 0 !important;
+}
