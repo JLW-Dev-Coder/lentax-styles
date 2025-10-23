@@ -4328,8 +4328,6 @@ vertical-align: middle;
 }
 /*End of SD Primary Button*/
 
-
-/* Hide submit button for first form */
-#FormEmbed_QxB7MYDU4o2PjG6nNSaFBiUiUNEP2oJtoc4qmeLxZR2fAM8HT-extended-form .form-actions.btn-list {
+form[action*="2sZsqfZc2TFdwbX2F"] .form-actions.btn-list {
     display: none !important;
 }
