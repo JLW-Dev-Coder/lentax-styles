@@ -1623,7 +1623,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
-  margin: 0px;
+  margin: 10px;
   overflow: hidden;
   padding: 30px;
   position: relative;   /* anchor absolute layers */
@@ -4330,5 +4330,6 @@ vertical-align: middle;
 form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
