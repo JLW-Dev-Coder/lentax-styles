@@ -1642,30 +1642,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Item Column Two*/
-.item-column-two {
-  background-color: rgba(0, 0, 0, 0.9);
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-              rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  flex: 1 1 65%;
-  margin: 15px;
-  overflow: hidden;
-  padding: 30px 30px 45px 30px;
-  position: relative;   /* anchor absolute layers */
-  isolation: isolate;
-  z-index: 0;
-}
+/* Horizontal three-button stack only inside .item-column-two and .form-three-stack */
 .item-column-two .form-three-stack {
   display: flex;
-  flex-direction: column;
-  gap: 12px;           /* spacing between buttons */
-  justify-content: flex-start;
-  align-items: center;  /* center buttons horizontally */
+  flex-direction: row;       /* side by side */
+  gap: 12px;                 /* spacing between buttons */
+  justify-content: center;   /* center buttons horizontally */
+  align-items: center;       /* vertically align buttons */
+  flex-wrap: wrap;           /* wrap on smaller screens */
+  z-index: 2;                /* ensures above any background images */
 }
 
+/* Individual buttons inside the stack */
 .item-column-two .form-three-stack .form-three-stack-btn {
-  width: 100%;
-  max-width: 250px;    /* optional max width */
+  flex: 1 1 auto;            /* flexible width */
+  max-width: 200px;          /* optional max width */
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
@@ -1677,6 +1668,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover and active effects */
 .item-column-two .form-three-stack .form-three-stack-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -1687,13 +1679,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive: make buttons full width on smaller screens */
+/* Responsive: stack vertically on smaller screens */
 @media (max-width: 768px) {
+  .item-column-two .form-three-stack {
+    flex-direction: column;
+  }
+
   .item-column-two .form-three-stack .form-three-stack-btn {
     width: 100%;
     max-width: 100%;
   }
 }
+
 
 .item-column-two-bg {
   position: relative;
@@ -4403,6 +4400,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
