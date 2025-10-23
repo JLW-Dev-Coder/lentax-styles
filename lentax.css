@@ -1642,7 +1642,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Item Column Two*/
-/*Item Column Two*/
 .item-column-two {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
@@ -1757,7 +1756,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   justify-content: center;
 }
 
-/* Horizontal Three-Button Stack */
+/* Horizontal alignment for buttons inside item-column-two */
 .item-column-two-three-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -1767,38 +1766,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 2;
 }
 
-.item-column-two-three-buttons > * {
-  flex: 1 1 30%;
+/* Make buttons flexible width; no styling applied */
+.item-column-two-three-buttons > button {
+  flex: 1 1 auto;
   max-width: 33%;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #FFA500, #E67300);
-  color: #000;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.item-column-two-three-buttons > *:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.item-column-two-three-buttons > *:active {
-  transform: translateY(2px);
-  box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2);
-}
-
-/* Stack buttons on mobile */
+/* Stack buttons vertically on mobile */
 @media (max-width: 768px) {
   .item-column-two-three-buttons {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .item-column-two-three-buttons > * {
+  .item-column-two-three-buttons > button {
     max-width: 100%;
   }
 }
@@ -4370,6 +4351,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
