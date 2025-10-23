@@ -1771,6 +1771,33 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 }
 
+/*Item Column Two Buttons*/
+.item-column-two-three-buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.item-column-two-three-buttons > * {
+  flex: 1 1 30%;
+  max-width: 33%;
+}
+
+/* Stack automatically on mobile */
+@media (max-width: 768px) {
+  .item-column-two-three-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .item-column-two-three-buttons > * {
+    max-width: 100%;
+  }
+}
+
+
 /*Item Column Three*/
 .item-column-three {
   position: relative;
@@ -4337,6 +4364,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
