@@ -260,51 +260,6 @@
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
 }
 
-/* Custom Completed Setup Button */
-.button-custom-setup {
-  background: linear-gradient(135deg, #800080, #550055); /* dark purple gradient */
-  border: none;
-  border-bottom: 2px solid black;
-  border-radius: 8px;
-  border-right: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25); /* subtle shadow */
-  color: white;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  overflow: hidden;
-  padding: 8px 32px !important;
-  text-align: center;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, background 0.2s ease-in-out;
-  position: relative;
-  cursor: pointer;
-  z-index: 1;
-  animation: pulse-darkpurple 2s infinite ease-in-out;
-}
-
-.button-custom-setup:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transform: translateY(-1px);
-  background: linear-gradient(135deg, #990099, #660066); /* slightly brighter hover */
-}
-
-/* Pulse keyframes */
-@keyframes pulse-darkpurple {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
-  }
-  50% {
-    transform: scale(1.03);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
-  }
-}
-
 
 /*Client*/
 .client-name {
@@ -4397,6 +4352,7 @@ line-height: 1;
 vertical-align: middle;
 }
 /*End of SD Primary Button*/
+
 
 
 
