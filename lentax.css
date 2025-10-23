@@ -4329,7 +4329,14 @@ vertical-align: middle;
 /*End of SD Primary Button*/
 
 
-/* Hide submit button for this specific form */
-#FormEmbed_2203c1bc-4d11-4d43-ac39-247f8aba2b09-extended-form .form-actions.btn-list {
+/* Hide submit button for first form */
+#FormEmbed_QxB7MYDU4o2PjG6nNSaFBiUiUNEP2oJtoc4qmeLxZR2fAM8HT-extended-form .form-actions.btn-list {
     display: none !important;
 }
+
+/* Hide submit button for second form */
+#FormEmbed_SGuVPYPyAntkxF5k9YEfXdf3iEYdBSZ9vB4jenKD6UkcUP4M4-extended-form .form-actions.btn-list {
+    display: none !important;
+}*/
+
+
