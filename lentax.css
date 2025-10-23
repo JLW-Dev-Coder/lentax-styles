@@ -1567,7 +1567,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 3;
 }
 
-
 .item-column-v2 {
   position: relative;
   background-color: rgba(0, 0, 0, 0.9);
@@ -1626,7 +1625,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   flex: 1 1 65%;
   margin: 15px;
   overflow: hidden;
-  padding: 30px 30px 45px 30px;
+  padding: 30px 30px 30px 30px;
   position: relative;   /* anchor absolute layers */
   isolation: isolate;
   z-index: 0;
@@ -1843,7 +1842,6 @@ Lower Layer
 }
 
 /*Item Instructions*/
-
 .item-instructions-cta {
   background: linear-gradient(90deg, #00cc00, #00ff00); /* base green gradient */
   -webkit-background-clip: text;
@@ -4331,4 +4329,5 @@ vertical-align: middle;
 form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
     display: none !important;
 }
+
 
