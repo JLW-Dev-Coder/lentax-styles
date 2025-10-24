@@ -1731,20 +1731,26 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   justify-content: center;
 }
 
-.item-column-two-two-buttons {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.item-column-two-two-buttons .item-btn-cta {
+  display: flex !important;   /* override block */
+  flex: 1 1 48% !important;   /* flexible width */
+  max-width: 48% !important;
+  min-width: 0;               /* allow shrinking */
+  box-sizing: border-box;     /* prevents padding from breaking width */
 }
 
-.item-column-two-two-buttons button {
-  flex: 1 1 48% !important;
-  min-width: 0; /* allows shrinking */
-  max-width: 48%;
+@media (max-width: 768px) {
+  .item-column-two-two-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .item-column-two-two-buttons .item-btn-cta {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
 }
+
 
 
 .item-column-two-three-buttons {
@@ -4348,6 +4354,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
