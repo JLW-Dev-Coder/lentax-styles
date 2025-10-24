@@ -1731,32 +1731,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   justify-content: center;
 }
 
-.item-column-two-dual-buttons {
-  display: flex;
-  flex-wrap: wrap;
+.item-column-two-two-buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
   gap: 16px;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  width: 100%;
 }
 
-/* Make buttons flexible width; no styling applied */
-.item-column-two-dual-buttons > button {
-  flex: 1 1 auto;
+.item-column-two-two-buttons button {
+  flex: 1 1 48% !important;
+  min-width: 0; /* allows shrinking */
   max-width: 48%;
 }
 
-/* Stack buttons vertically on mobile */
-@media (max-width: 768px) {
-  .item-column-two-three-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .item-column-two-dual-buttons > button {
-    max-width: 100%;
-  }
-}
 
 .item-column-two-three-buttons {
   display: flex;
@@ -4359,6 +4348,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
