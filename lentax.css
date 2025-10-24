@@ -277,7 +277,9 @@
     transform: scale(1.03);
   }
 }
+
 .button-custom-setup-v2 {
+  /*animation: pulse-slow 3s infinite ease-in-out;*/
   background: linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255));
   border: none;
   border-bottom: 2px solid black;
@@ -300,7 +302,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.05); /* subtle dark overlay */
+  /*background-color: rgba(0, 0, 0, 0.05); /* subtle dark overlay */
   pointer-events: none;
   z-index: 1;
 }
@@ -4454,6 +4456,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
