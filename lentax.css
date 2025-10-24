@@ -255,28 +255,21 @@
   width: fit-content;
 }
 
-.button-custom-setup::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /*background-color: rgba(0, 0, 0, 0.05); /* subtle dark overlay */
-  pointer-events: none;
-  z-index: 1;
-}
-
-.button-custom-setup:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
-}
-
 @keyframes pulse-slow {
-  0%, 100% {
+  0% {
     transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
   }
   50% {
-    transform: scale(1.03);
+    transform: scale(1.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 255, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
   }
 }
+
 
 .button-custom-setup-v2 {
   /*animation: pulse-slow 3s infinite ease-in-out;*/
@@ -4456,6 +4449,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
