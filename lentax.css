@@ -1731,40 +1731,51 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   justify-content: center;
 }
 
-/* Container for the two buttons */
-.item-column-two-two-buttons {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
+.item-column-two-dual-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; /* account for image-block-v2 spacing */
 }
 
-/* Target buttons or their immediate wrappers */
-.item-column-two-two-buttons > *,
-.item-column-two-two-buttons .item-btn-cta {
-  display: flex !important;        /* override block */
-  flex: 1 1 48% !important;        /* two buttons side by side */
-  max-width: 48% !important;
-  min-width: 0 !important;
-  width: auto !important;
-  box-sizing: border-box !important;
+.item-column-two-dual-buttons > .item-btn-cta {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green;   /* Green border */
+  border-radius: 15px;
+  color: white;               /* White text */
+  cursor: pointer;            /* Pointer/hand icon */
+  display: block;
+  flex: 1 1 45%;              /* roughly 2 per row */
+  max-width: 45%;
+  margin: 15px;
+  padding: 10px 24px;
+  text-align: center;
+  position: relative;         /* needed for shine effects */
+  overflow: hidden;           /* contain shine */
 }
 
-/* Mobile stacking */
+/* Prevent double borders if needed */
+.item-column-two-dual-buttons > .item-btn-cta:not(:last-child) {
+  border-right: none;
+}
+
+/* Hover effect */
+.item-column-two-dual-buttons > .item-btn-cta:hover {
+  background-color: #3e8e41;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive stack on smaller screens */
 @media (max-width: 768px) {
-  .item-column-two-two-buttons {
-    flex-direction: column !important;
-    align-items: stretch !important;
-  }
-
-  .item-column-two-two-buttons > *,
-  .item-column-two-two-buttons .item-btn-cta {
-    flex: 1 1 100% !important;
-    max-width: 100% !important;
+  .item-column-two-dual-buttons > .item-btn-cta {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }
+
 
 
 .item-column-two-three-buttons {
@@ -4368,6 +4379,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
