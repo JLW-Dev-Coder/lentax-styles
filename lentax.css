@@ -1451,20 +1451,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .image-style {
   display: block;
-  width: 100%;       /* allow full width */
-  height: auto;      /* maintain aspect ratio */
-  margin: 0;         /* remove auto margins */
-  border: none;      /* optional: remove border if needed */
-  border-radius: 0;  /* optional: remove rounding */
-  box-shadow: none;  /* optional: remove shadow */
-  max-width: none;   /* override previous max-width */
+  margin: 20px auto;
+  max-width: 250px;
+  min-width: 250px;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 35px;   /* updated from 10px to 35px */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 .image-style:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
 
 .image-style-v2 {
   animation: subtleFloat 6s ease-in-out infinite;
@@ -4463,6 +4464,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
