@@ -1731,26 +1731,40 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   justify-content: center;
 }
 
-.item-column-two-two-buttons .item-btn-cta {
-  display: flex !important;   /* override block */
-  flex: 1 1 48% !important;   /* flexible width */
-  max-width: 48% !important;
-  min-width: 0;               /* allow shrinking */
-  box-sizing: border-box;     /* prevents padding from breaking width */
+/* Container for the two buttons */
+.item-column-two-two-buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
+/* Target buttons or their immediate wrappers */
+.item-column-two-two-buttons > *,
+.item-column-two-two-buttons .item-btn-cta {
+  display: flex !important;        /* override block */
+  flex: 1 1 48% !important;        /* two buttons side by side */
+  max-width: 48% !important;
+  min-width: 0 !important;
+  width: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Mobile stacking */
 @media (max-width: 768px) {
   .item-column-two-two-buttons {
     flex-direction: column !important;
     align-items: stretch !important;
   }
 
+  .item-column-two-two-buttons > *,
   .item-column-two-two-buttons .item-btn-cta {
     flex: 1 1 100% !important;
     max-width: 100% !important;
   }
 }
-
 
 
 .item-column-two-three-buttons {
@@ -4354,6 +4368,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
