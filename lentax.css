@@ -1740,10 +1740,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 2;
 }
 
-.item-column-two-two-buttons > button {
-  flex: 1 1 auto !important;
-  max-width: 48% !important;
+.item-column-two-two-buttons button {
+  flex: 1 1 48%;
+  max-width: 48%;
 }
+
 
 @media (max-width: 768px) {
   .item-column-two-two-buttons {
@@ -4357,6 +4358,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
