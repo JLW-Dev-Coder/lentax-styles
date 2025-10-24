@@ -1861,6 +1861,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 
 
+
 .item-column-two-three-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -4462,6 +4463,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
