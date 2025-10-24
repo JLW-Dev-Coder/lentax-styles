@@ -277,6 +277,38 @@
     transform: scale(1.03);
   }
 }
+.button-custom-setup-v2 {
+  background: linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255));
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 8px;
+  border-right: 2px solid black;
+  box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+  width: fit-content;
+}
+
+.button-custom-setup-v2::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.05); /* subtle dark overlay */
+  pointer-events: none;
+  z-index: 1;
+}
+
+.button-custom-setup-v2:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
+}
 
 
 /*Client*/
@@ -4422,6 +4454,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
