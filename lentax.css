@@ -1758,6 +1758,30 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     max-width: 100%;
   }
 }
+.item-column-two-two-buttons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  z-index: 2;
+}
+
+.item-column-two-two-buttons > button {
+  flex: 1 1 auto;
+  max-width: 48%;
+}
+
+@media (max-width: 768px) {
+  .item-column-two-two-buttons {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .item-column-two-two-buttons > button {
+    max-width: 100%;
+  }
+}
 
 
 /*Item Column Three*/
@@ -4334,5 +4358,6 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
