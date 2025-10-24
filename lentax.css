@@ -265,7 +265,7 @@
 }
 
 .button-custom-setup:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
 
@@ -4456,6 +4456,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
