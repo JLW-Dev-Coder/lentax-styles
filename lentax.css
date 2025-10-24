@@ -284,7 +284,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.05); /* subtle darken */
+  /*background-color: rgba(0, 0, 0, 0.05); /* subtle darken */
   pointer-events: none;
   z-index: 1;
 }
@@ -4448,6 +4448,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
