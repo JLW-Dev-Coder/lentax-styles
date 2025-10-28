@@ -1821,7 +1821,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  margin-top: 30px; /* account for image-block-v2 spacing */
+  /*margin-top: 30px; /* account for image-block-v2 spacing */
 }
 
 .item-column-two-dual-buttons > .item-btn-cta {
@@ -4464,6 +4464,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
