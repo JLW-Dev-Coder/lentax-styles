@@ -1929,6 +1929,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   margin-top: 30px;
 }
 
+
 /*Progress Bar*/
 .item-column-three-progress-bar {
   background: rgba(255, 255, 255, 0.05);
@@ -4446,6 +4447,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
