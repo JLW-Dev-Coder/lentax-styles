@@ -1933,10 +1933,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 2; 
 }/*
 
-.item-column-three-iframe-v2 {
-  padding-top: 30px !important;
-}
-
 /*Lower Layer
 .item-column-three-iframe-two {
   pointer-events: none;
@@ -1946,6 +1942,9 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 */
 
+.item-column-three-iframe-v2 {
+  padding-top: 30px;
+}
 
 /*Progress Bar*/
 .item-column-three-progress-bar {
@@ -4464,6 +4463,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
