@@ -1931,13 +1931,13 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   pointer-events: none;
   opacity: 0.5;
   z-index: 2; 
-}
+}/*
 
 .item-column-three-iframe-v2 {
   margin-top: 30px;
 }
 
-Lower Layer
+/*Lower Layer
 .item-column-three-iframe-two {
   pointer-events: none;
   opacity: 0.8;
@@ -4464,6 +4464,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
