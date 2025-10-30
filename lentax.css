@@ -2432,7 +2432,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .sidebar-nav-four {
   background: linear-gradient(180deg, #1f2d14 30%, #2c452d 50%, #062f6b 100%);
-  border-radius: 35px;
+  /*border-radius: 35px;
   margin: 0px 15px 15px 15px;
   padding: 0px;
   position: relative; /* added to anchor absolute children */
@@ -2479,9 +2479,9 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .sidebar-nav-six {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 20%, rgb(0, 0, 255) 100%);
-  border-radius: 35px;
+  /*border-radius: 35px;
   padding: 15px 20px;
-  margin-bottom: 25px;
+  margin-bottom: 25px;*/
 }
 
 /* Hover effect for the steps section */
@@ -4447,6 +4447,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
