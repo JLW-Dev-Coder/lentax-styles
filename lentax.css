@@ -2912,19 +2912,19 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* ───────────────────────────────────────────────────────────── */
 /* Text Padding Bottom: top 15px, left/right 15px, variable bottom */
 /* ───────────────────────────────────────────────────────────── */
-.text-padding-bottom-0 { padding: 15px 15px 0px 15px; }
-.text-padding-bottom-15 { padding: 15px 15px 15px 15px; }
-.text-padding-bottom-20 { padding: 15px 15px 20px 15px; }
-.text-padding-bottom-25 { padding: 15px 15px 25px 15px; }
-.text-padding-bottom-30 { padding: 15px 15px 30px 15px; }
-.text-padding-bottom-35 { padding: 15px 15px 35px 15px; }
-.text-padding-bottom-40 { padding: 15px 15px 40px 15px; }
-.text-padding-bottom-45 { padding: 15px 15px 45px 15px; }
-.text-padding-bottom-50 { padding: 15px 15px 50px 15px; }
-.text-padding-bottom-55 { padding: 15px 15px 55px 15px; }
-.text-padding-bottom-60 { padding: 15px 15px 60px 15px; }
-.text-padding-bottom-65 { padding: 15px 15px 65px 15px; }
-.text-padding-bottom-70 { padding: 15px 15px 70px 15px; }
+.padding-bottom-0 { padding: 15px 15px 0px 15px; }
+.padding-bottom-15 { padding: 15px 15px 15px 15px; }
+.padding-bottom-20 { padding: 15px 15px 20px 15px; }
+.padding-bottom-25 { padding: 15px 15px 25px 15px; }
+.padding-bottom-30 { padding: 15px 15px 30px 15px; }
+.padding-bottom-35 { padding: 15px 15px 35px 15px; }
+.padding-bottom-40 { padding: 15px 15px 40px 15px; }
+.padding-bottom-45 { padding: 15px 15px 45px 15px; }
+.padding-bottom-50 { padding: 15px 15px 50px 15px; }
+.padding-bottom-55 { padding: 15px 15px 55px 15px; }
+.padding-bottom-60 { padding: 15px 15px 60px 15px; }
+.padding-bottom-65 { padding: 15px 15px 65px 15px; }
+.padding-bottom-70 { padding: 15px 15px 70px 15px; }
 
 
 /*Tooltip*/
@@ -4447,6 +4447,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
