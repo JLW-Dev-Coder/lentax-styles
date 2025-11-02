@@ -109,7 +109,7 @@
   flex-direction: column;
   /*gap: 5px;*/
   margin: 15px;
-  padding: 0px 30px;
+  padding: 0px 0px 30px 0px;
   position: relative;
 }
 
@@ -4470,6 +4470,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
