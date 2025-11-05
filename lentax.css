@@ -2487,15 +2487,14 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /* Hover effect for the steps section */
-.sidebar-nav-six > div:last-child {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/*.sidebar-nav-six > div:last-child {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
 }
 
 .sidebar-nav-six > div:last-child:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+   /* transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);*/
 }
-
 
 .sidebar-nav-ten {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 20%, rgb(0, 0, 255) 100%);
@@ -4472,6 +4471,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
