@@ -2349,7 +2349,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .row-default-v2 {
-.item-column {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -2359,7 +2358,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   overflow: hidden;
   /*padding: 30px 30px 45px 30px;*/
   position: relative;
-}
 }
 
 .row-default-v3 {
@@ -4474,6 +4472,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
