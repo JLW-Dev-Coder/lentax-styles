@@ -1563,7 +1563,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
 
-
 .item-column {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
@@ -2350,12 +2349,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .row-default-v2 {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 35px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+.item-column {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
-  padding: 15px;
   margin: 15px;
+  overflow: hidden;
+  /*padding: 30px 30px 45px 30px;*/
+  position: relative;
+}
 }
 
 .row-default-v3 {
@@ -4470,6 +4474,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
