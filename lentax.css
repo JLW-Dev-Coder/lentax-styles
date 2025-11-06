@@ -2449,12 +2449,13 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   margin: 0px 15px 15px 15px;
   padding: 0px;
   position: relative; /* added to anchor absolute children */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Remove transform/box-shadow from transition if not needed */
+  transition: none;
 }
 
 .sidebar-nav-four:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transform: none;
+  box-shadow: none;
 }
 
 
@@ -4482,6 +4483,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
