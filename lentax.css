@@ -1106,7 +1106,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding-top: 15px;
 }
 
-
 /* Flex child: fixed width (e.g., Lottie) */
 .form-flex-fixed {
   flex: 0 0 auto;
@@ -1117,6 +1116,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   flex: 1 1 300px;
   max-width: 100%;
   min-width: 300px;
+}
+
+.form-flex-fluid h2.form-subtitle:last-of-type {
+  animation: fadeIn 5s ease forwards;
+  animation-delay: 3s; /* starts after list animations */
+  opacity: 0; /* start hidden */
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* Flex container for the entire section */
@@ -1168,6 +1178,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .form-title {
   /*margin: 0;*/
 }
+
 
 /*Memberships*/
 /* ===== Gold ===== */
@@ -4471,6 +4482,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
