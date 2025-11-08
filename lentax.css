@@ -1983,6 +1983,22 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background-clip: text;
 }
 
+.item-instructions-cta-red {
+  background: linear-gradient(90deg, #ff1a1a, #ff6666); /* bright-to-soft red gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  transition: background 0.4s ease;
+}
+
+.item-instructions-cta-red:hover {
+  background: linear-gradient(90deg, #ff3333, #ff8080); /* slightly brighter on hover */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 
 /*Item Steps*/
@@ -4483,6 +4499,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
