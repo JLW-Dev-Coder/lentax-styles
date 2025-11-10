@@ -368,6 +368,18 @@
   display: inline-block;
 }
 
+.copy-paste-block-passkey {
+  background-color: #f0f0f0; /* light gray for contrast */
+  border-radius: 8px;        /* rounded corners for clarity */
+  color: #111;               /* dark text for readability */
+  font-family: monospace;    /* code-style font for clarity */
+  font-weight: bold;         /* make the text prominent */
+  padding: 12px 16px;        /* spacing inside the block */
+  text-align: center;        /* center the text */
+  user-select: all;          /* allows easy copy of the entire text */
+}
+
+
 /* Button wrapper for spacing */
 .copy-paste-block .copy-paste-block-btn-wrap { margin-bottom: 16px; }
 
@@ -4499,6 +4511,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
