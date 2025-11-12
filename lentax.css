@@ -2527,8 +2527,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /* Hover effect for the steps section */
-/*.sidebar-nav-six > div:last-child {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+.sidebar-nav-six > div:last-child {
+  /*transition: transform 0.3s ease, box-shadow 0.3s ease;*/
 }
 
 .sidebar-nav-six > div:last-child:hover {
@@ -4536,6 +4536,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
