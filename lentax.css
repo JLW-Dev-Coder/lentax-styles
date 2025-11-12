@@ -214,7 +214,7 @@
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
   display: block;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: 15px; /* aligns 15px from right */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   width: fit-content;
   overflow: hidden; /* required for shine */
@@ -4630,6 +4630,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
