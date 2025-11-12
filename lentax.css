@@ -646,7 +646,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 
-.feature-name-v2 h2 {
+.feature-name-v2 {
   background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33); /* gold → orange-gold → bright yellow */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -662,11 +662,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   transition: -webkit-text-fill-color 0.3s ease;
 }
 
-.feature-name-v2 h2:hover,
-.feature-name-v2 h2:focus,
-.feature-name-v2 h2.active {
+.feature-name-v2:hover,
+.feature-name-v2:focus,
+.feature-name-v2.active {
   /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
 }
+
 
 .feature-name-v3 {
   background: linear-gradient(
@@ -4536,6 +4537,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
