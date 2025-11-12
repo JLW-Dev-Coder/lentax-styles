@@ -2925,8 +2925,39 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   color: inherit;
 }
 
-/*Text Lottie*/
+/*ITEM INSTRUCTIONS HIGHLIGHT*/
+.item-instructions-highlight {
+  background: linear-gradient(
+    90deg,
+    #ff00ff,   /* magenta base */
+    #ff66ff,   /* lighter magenta */
+    #ff00cc    /* deeper pink */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
 
+.item-instructions-highlight:hover,
+.item-instructions-highlight:focus,
+.item-instructions-highlight.active {
+  background: linear-gradient(
+    90deg,
+    #ff33ff,
+    #ff99ff,
+    #ff00aa
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+
+/*Text Lottie*/
 .text-lottie-wrapper {
   position: relative;
   display: inline-block; /* shrink to text width */
@@ -4537,6 +4568,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
