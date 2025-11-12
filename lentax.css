@@ -201,6 +201,58 @@
   box-shadow: inset 0 3px 7px #D6D6E7;
 }
 
+.button-custom-lentax-right {
+  position: relative;
+  z-index: 3;
+  background: linear-gradient(135deg, #FFA500, #E67300);
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 6px;
+  border-right: 2px solid black;
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  width: fit-content;
+  overflow: hidden; /* required for shine */
+  cursor: pointer;
+}
+
+.button-custom-lentax-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shine-reverse 3s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.button-custom-lentax-right:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px;
+}
+
+.button-custom-lentax-right:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 3px 7px #D6D6E7;
+}
+
+
 .button-custom-reset {
   position: relative;
   z-index: 3; /* Ensure it's above the overlay */
@@ -4578,6 +4630,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
