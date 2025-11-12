@@ -697,7 +697,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   color: transparent;
 }
 
-
 .feature-name-v2 {
   background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33); /* gold → orange-gold → bright yellow */
   -webkit-background-clip: text;
@@ -718,6 +717,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .feature-name-v2:focus,
 .feature-name-v2.active {
   /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
+}
+
+.feature-name-v2 h1 span,
+.feature-name-v2 h2 span {
+  font-size: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .feature-name-v2 h1 span,
+  .feature-name-v2 h2 span {
+    font-size: 32px;
+  }
 }
 
 
@@ -4637,6 +4648,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
