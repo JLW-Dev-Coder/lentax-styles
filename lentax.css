@@ -1428,6 +1428,16 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 
 /*Hide*/
+.hide-on-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .hide-on-desktop {
+    display: block !important;
+  }
+}
+
 
 .hide-on-mobile {
   display: block;
@@ -4568,6 +4578,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
