@@ -1223,7 +1223,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .form-list-animated li {
   animation: slideInRight 0.6s ease forwards;
-  font-size: 22px;
+  font-size: 16px;
   opacity: 0;
 }
 
@@ -4648,6 +4648,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
