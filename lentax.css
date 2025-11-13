@@ -2373,6 +2373,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     border-bottom: 8px solid transparent;
   }
 
+/*LINKS*/
+
+.link-light-blue {
+    color: #00c8ff; /* standard Lentax light blue */
+    text-decoration: underline;
+}
+
+.link-light-blue:hover {
+    color: #33d4ff; /* slightly brighter on hover */
+}
+
+
 /*Live Chat*/
 .live-chat-input {
   display: none;
@@ -4648,6 +4660,7 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
