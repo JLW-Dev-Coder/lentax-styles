@@ -4652,11 +4652,6 @@ vertical-align: middle;
 }
 /*End of SD Primary Button*/
 
-/*Start of SD Chart Block*/
-.cbe-block-chart-title {   color: white; }  .cbe-block-items {   color: white; }
-/*End of SD Chart Block*/
-
-
 form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
     display: none !important;
 }
@@ -4664,4 +4659,5 @@ form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
 form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
     display: none !important;
 }
+
 
