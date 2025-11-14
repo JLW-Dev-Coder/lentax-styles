@@ -401,12 +401,8 @@
 
 .client-name-icon-after {
   color: #ff9902;        /* color for the ⚓ */
-  position: absolute;
-  left: calc(100% + 6px); /* offset right after the name */
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: -1;            /* places it behind the text */
-  font-style: normal;     /* override em italic if needed */
+      transform: translateY(-50%);
+    font-style: normal;     /* override em italic if needed */
 }
 
 
@@ -4694,5 +4690,6 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 .chart {
   color: white;
 }
+
 
 
