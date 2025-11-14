@@ -713,18 +713,19 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   display: block;
   font-size: 45px;
   line-height: 1;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   overflow: hidden;
   padding: 8px;
   position: relative;
   text-align: center;
-  transition: -webkit-text-fill-color 0.3s ease;
+  transition: -webkit-text-fill-color 0.3s ease, color 0.3s ease;
 }
 
 .feature-name-v2:hover,
 .feature-name-v2:focus,
 .feature-name-v2.active {
-  /* -webkit-text-fill-color: #fff; */ /* uncomment to force white on hover */
+  /* Optional hover color */
+  /* -webkit-text-fill-color: #fff; */
 }
 
 .feature-name-v2 h1 span,
@@ -733,6 +734,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 @media screen and (max-width: 768px) {
+  .feature-name-v2 {
+    font-size: 32px; /* adjust main container for mobile */
+  }
+
   .feature-name-v2 h1 span,
   .feature-name-v2 h2 span {
     font-size: 32px;
@@ -4691,6 +4696,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 .chart {
   color: white;
 }
+
 
 
 
