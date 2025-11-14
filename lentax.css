@@ -399,6 +399,17 @@
   }
 }
 
+.client-name-icon-after {
+  color: #ff9902;        /* color for the ⚓ */
+  position: absolute;
+  left: calc(100% + 6px); /* offset right after the name */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;            /* places it behind the text */
+  font-style: normal;     /* override em italic if needed */
+}
+
+
 /*Copy/Paste Block*/
 /* Center all text in this block */
 .copy-paste-block { text-align: center; }
@@ -2069,6 +2080,23 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background-clip: text;
 }
 
+.item-instructions-cta-aqua {
+  background: linear-gradient(90deg, #00ffcc, #33ffee); /* bright-to-soft aqua gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  transition: background 0.4s ease;
+}
+
+.item-instructions-cta-aqua:hover {
+  background: linear-gradient(90deg, #33ffee, #66ffdd); /* slightly brighter on hover */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .item-instructions-cta-red {
   background: linear-gradient(90deg, #ff1a1a, #ff6666); /* bright-to-soft red gradient */
   -webkit-background-clip: text;
@@ -2084,6 +2112,36 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.item-instructions-highlight {
+  background: linear-gradient(
+    90deg,
+    #ff00ff,   /* magenta base */
+    #ff66ff,   /* lighter magenta */
+    #ff00cc    /* deeper pink */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+
+.item-instructions-highlight:hover,
+.item-instructions-highlight:focus,
+.item-instructions-highlight.active {
+  background: linear-gradient(
+    90deg,
+    #ff33ff,
+    #ff99ff,
+    #ff00aa
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 
@@ -3017,36 +3075,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   color: inherit;
 }
 
-/*ITEM INSTRUCTIONS HIGHLIGHT*/
-.item-instructions-highlight {
-  background: linear-gradient(
-    90deg,
-    #ff00ff,   /* magenta base */
-    #ff66ff,   /* lighter magenta */
-    #ff00cc    /* deeper pink */
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  transition: background 0.3s ease;
-}
-
-.item-instructions-highlight:hover,
-.item-instructions-highlight:focus,
-.item-instructions-highlight.active {
-  background: linear-gradient(
-    90deg,
-    #ff33ff,
-    #ff99ff,
-    #ff00aa
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
 
 
 /*Text Lottie*/
@@ -4666,4 +4694,5 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 .chart {
   color: white;
 }
+
 
