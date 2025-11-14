@@ -1797,7 +1797,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /*Item Column Two*/
 .item-column-two {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -4666,3 +4666,4 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 .chart {
   color: white;
 }
+
