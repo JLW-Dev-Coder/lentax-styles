@@ -713,7 +713,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   display: block;
   font-size: 45px;
   line-height: 1;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   overflow: hidden;
   padding: 8px;
   position: relative;
@@ -4691,6 +4691,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 .chart {
   color: white;
 }
+
 
 
 
