@@ -4702,21 +4702,19 @@ vertical-align: middle;
 
 /*SD FLOW*/
 
-/* Container for the two buttons */
 .flow-button-row {
   display: flex;
-  gap: 16px; /* spacing between buttons */
-  justify-content: center; /* center row horizontally */
+  gap: 16px; /* space between buttons */
+  justify-content: center; /* center horizontally */
   flex-wrap: nowrap; /* prevent stacking */
 }
 
-/* Continue Button */
 .flow-button-continue {
-  background: linear-gradient(135deg, #FFA500, #FFD700); /* orange → gold */
+  background: linear-gradient(135deg, #FFA500, #FFD700);
   border: none;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  color: #000 !important; /* black text */
+  color: #000 !important;
   cursor: pointer;
   display: flex;
   flex: 1 1 50%;
@@ -4732,15 +4730,28 @@ vertical-align: middle;
 }
 
 .flow-button-continue:hover {
-  background: linear-gradient(135deg, #FFB733, #FFFF33); /* brighter gold */
+  background: linear-gradient(135deg, #FFB733, #FFFF33);
   box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
   transform: translateY(-2px);
-  color: #000 !important; /* keep black text on hover */
+  color: #000 !important;
 }
 
-/* Skip Button */
+.flow-button-continue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  animation: shine-reverse 3s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .flow-button-skip {
-  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
+  background-color: rgba(255, 0, 0, 0.15);
   border: 1px solid red;
   border-radius: 6px;
   color: #ffcccc;
@@ -4763,21 +4774,6 @@ vertical-align: middle;
   color: #ff9999;
   box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
   transform: translateY(-2px);
-}
-
-/* Optional shine overlay for continue button */
-.flow-button-continue::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 150%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transform: skewX(-20deg);
-  animation: shine-reverse 3s infinite linear;
-  pointer-events: none;
-  z-index: 2;
 }
 
 @keyframes shine-reverse {
@@ -4803,5 +4799,6 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
