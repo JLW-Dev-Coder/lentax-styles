@@ -1267,6 +1267,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .form-title {
   /*margin: 0;*/
 }
+
 /*FREELANCER*/
 .freelancer-background-quote {
   border-left: 4px solid #FFD700;  /* gold accent for emphasis */
@@ -1299,6 +1300,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   bottom: 10px;
   right: 10px;
 }
+
 .freelancer-booking-btn {
   background: linear-gradient(135deg, #FFA500, #E67300); /* golden-orange gradient */
   border: none;
@@ -1316,7 +1318,36 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   position: relative;
   text-align: center;
   text-decoration: none;
-  transition: background 0.3s, transfor
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s ease;
+  width: fit-content;
+}
+
+.freelancer-booking-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  animation: shine-reverse 3s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes shine-reverse {
+  0% { left: 150%; }
+  25% { left: 50%; }
+  50% { left: -50%; }
+  75% { left: 50%; }
+  100% { left: 150%; }
+}
+
+.freelancer-booking-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
+}
 
 
 /*Memberships*/
@@ -4893,6 +4924,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
