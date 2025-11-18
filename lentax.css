@@ -4703,34 +4703,35 @@ vertical-align: middle;
 /*SD FLOW*/
 
 .flow-button-continue {
-  background: linear-gradient(135deg, #FFA500, #FFD700); /* FFA-orange → gold */
+  background: linear-gradient(135deg, #FFA500, #FFD700); /* orange → gold */
   border: none;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  color: #fff;
+  color: #000; /* black text */
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
+  overflow: hidden;
   padding: 10px 28px;
-  position: relative; /* for optional shine */
+  position: relative;
   text-align: center;
   text-decoration: none;
   transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
+  width: 50%;
+  box-sizing: border-box;
 }
 
 .flow-button-continue:hover {
   background: linear-gradient(135deg, #FFB733, #FFFF33); /* brighter gold */
-  transform: translateY(-2px);
   box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
+  transform: translateY(-2px);
 }
 
-/* Optional “shine” overlay similar to button-custom-lentax */
 .flow-button-continue::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 150%; /* offscreen start */
+  left: 150%;
   width: 50%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
@@ -4740,22 +4741,29 @@ vertical-align: middle;
   z-index: 2;
 }
 
-/* Skip button — complementary style */
 .flow-button-skip {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
+  border: 1px solid red;
   border-radius: 6px;
-  color: #FFD700; /* gold text */
-  font-weight: 600;
-  padding: 10px 28px;
+  color: #ffcccc; /* softer red text for contrast */
   cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 10px 28px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: 50%;
+  box-sizing: border-box;
 }
 
 .flow-button-skip:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #FFFF33; /* brighter gold */
-  transform: translateY(-2px);
+  background-color: rgba(255, 0, 0, 0.25); /* slightly darker red */
+  color: #ff9999; /* brighter text on hover */
   box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
+  transform: translateY(-2px);
 }
 
 /* Reuse the existing shine animation from button-custom-lentax */
@@ -4769,6 +4777,7 @@ vertical-align: middle;
 
 /*End of SD FLOW*/
 
+
 form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
     display: none !important;
 }
@@ -4780,3 +4789,4 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
