@@ -2658,7 +2658,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .row-default-v4 {
   background-color: rgb(123, 108, 73);
-  padding: 15px;
+  padding-bottom: 100px;
+  padding-top: 50px;
 }
 
 /*Section*/
@@ -4924,6 +4925,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
