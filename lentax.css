@@ -1267,6 +1267,38 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .form-title {
   /*margin: 0;*/
 }
+/*FREELANCER*/
+.freelancer-background-quote {
+  border-left: 4px solid #FFD700;  /* gold accent for emphasis */
+  color: #f0f0f0;                  /* light text for readability */
+  display: block;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 20px 0;
+  padding: 15px 20px 15px 25px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.05); /* subtle dark overlay */
+  border-radius: 8px;
+}
+
+.freelancer-background-quote::before {
+  content: "“";                   /* opening quote */
+  font-size: 40px;
+  color: #FFD700;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.freelancer-background-quote::after {
+  content: "”";                   /* closing quote */
+  font-size: 40px;
+  color: #FFD700;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 
 
 /*Memberships*/
@@ -4843,6 +4875,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
