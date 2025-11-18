@@ -1308,7 +1308,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   border-radius: 8px;
   border-right: 2px solid black;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  color: white;
+  color: white !important;
   cursor: pointer;
   display: block;
   font-weight: bold;
@@ -1317,7 +1317,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 10px 24px;
   position: relative;
   text-align: center;
-  text-decoration: none; !important;
+  text-decoration: none;
   transition: background 0.3s, transform 0.2s, box-shadow 0.2s ease;
   width: fit-content;
 }
@@ -4926,6 +4926,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
