@@ -533,8 +533,8 @@
   border: 1px solid #333;
   border-radius: 8px;
   padding: 24px;
-  margin-bottom: 30px;
-  margin-top: 50px;
+  /*margin-bottom: 20px;
+  margin-top: 20px;*/
   gap: 24px;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
@@ -4924,6 +4924,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
