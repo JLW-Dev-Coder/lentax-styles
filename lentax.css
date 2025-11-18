@@ -4205,6 +4205,21 @@ transform: none !important;
   /*text-transform: uppercase;     /* optional: makes it even more prominent */
 }
 
+/*VERIFIED*/
+.verified-tag {
+  background-color: green;       /* base green */
+  border-radius: 12px;
+  color: white;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 8px;
+  padding: 2px 6px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
 /*Video*/
 .video {
   display: block;
@@ -4828,6 +4843,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
