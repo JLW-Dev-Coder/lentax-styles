@@ -4702,14 +4702,25 @@ vertical-align: middle;
 
 /*SD FLOW*/
 
+/* Container for the two buttons */
+.flow-button-row {
+  display: flex;
+  gap: 16px; /* spacing between buttons */
+  justify-content: center; /* center row horizontally */
+  flex-wrap: nowrap; /* prevent stacking */
+}
+
+/* Continue Button */
 .flow-button-continue {
   background: linear-gradient(135deg, #FFA500, #FFD700); /* orange → gold */
   border: none;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  color: #000; /* black text */
+  color: #000 !important; /* black text */
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  flex: 1 1 50%;
+  font-size: 18px !important;
   font-weight: 700;
   overflow: hidden;
   padding: 10px 28px;
@@ -4717,7 +4728,6 @@ vertical-align: middle;
   text-align: center;
   text-decoration: none;
   transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  width: 50%;
   box-sizing: border-box;
 }
 
@@ -4725,8 +4735,37 @@ vertical-align: middle;
   background: linear-gradient(135deg, #FFB733, #FFFF33); /* brighter gold */
   box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
   transform: translateY(-2px);
+  color: #000 !important; /* keep black text on hover */
 }
 
+/* Skip Button */
+.flow-button-skip {
+  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
+  border: 1px solid red;
+  border-radius: 6px;
+  color: #ffcccc;
+  cursor: pointer;
+  display: flex;
+  flex: 1 1 50%;
+  font-size: 18px;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 10px 28px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.flow-button-skip:hover {
+  background-color: rgba(255, 0, 0, 0.25);
+  color: #ff9999;
+  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
+  transform: translateY(-2px);
+}
+
+/* Optional shine overlay for continue button */
 .flow-button-continue::before {
   content: '';
   position: absolute;
@@ -4741,32 +4780,6 @@ vertical-align: middle;
   z-index: 2;
 }
 
-.flow-button-skip {
-  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
-  border: 1px solid red;
-  border-radius: 6px;
-  color: #ffcccc; /* softer red text for contrast */
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  overflow: hidden;
-  padding: 10px 28px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  width: 50%;
-  box-sizing: border-box;
-}
-
-.flow-button-skip:hover {
-  background-color: rgba(255, 0, 0, 0.25); /* slightly darker red */
-  color: #ff9999; /* brighter text on hover */
-  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  transform: translateY(-2px);
-}
-
-/* Reuse the existing shine animation from button-custom-lentax */
 @keyframes shine-reverse {
   0% { left: 150%; }
   25% { left: 50%; }
@@ -4774,6 +4787,7 @@ vertical-align: middle;
   75% { left: 50%; }
   100% { left: 150%; }
 }
+
 
 /*End of SD FLOW*/
 
@@ -4789,4 +4803,5 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
