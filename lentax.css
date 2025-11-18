@@ -4702,13 +4702,28 @@ vertical-align: middle;
 
 /*SD FLOW*/
 
-.flow-button-row {
+/* Parent wrapper: flex row on desktop */
+.flow-advance-wrapper {
   display: flex;
-  gap: 16px; /* space between buttons */
-  justify-content: center; /* center horizontally */
-  flex-wrap: nowrap; /* prevent stacking */
+  gap: 16px;
+  flex-wrap: nowrap;
+  justify-content: center; /* center buttons horizontally */
+  align-items: stretch;    /* equal height buttons */
 }
 
+/* Make the continue button container flexible */
+.flow-button-group {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+}
+
+/* Skip button itself made flexible */
+.flow-advance-wrapper > .flow-button-skip {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+}
+
+/* Continue Button */
 .flow-button-continue {
   background: linear-gradient(135deg, #FFA500, #FFD700);
   border: none;
@@ -4717,7 +4732,6 @@ vertical-align: middle;
   color: #000 !important;
   cursor: pointer;
   display: flex;
-  flex: 1 1 50%;
   font-size: 18px !important;
   font-weight: 700;
   overflow: hidden;
@@ -4726,9 +4740,27 @@ vertical-align: middle;
   text-align: center;
   text-decoration: none;
   transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-sizing: border-box;
 }
 
+/* Skip Button */
+.flow-button-skip {
+  background-color: rgba(255, 0, 0, 0.15);
+  border: 1px solid red;
+  border-radius: 6px;
+  color: #ffcccc;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 10px 28px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover states */
 .flow-button-continue:hover {
   background: linear-gradient(135deg, #FFB733, #FFFF33);
   box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
@@ -4736,6 +4768,14 @@ vertical-align: middle;
   color: #000 !important;
 }
 
+.flow-button-skip:hover {
+  background-color: rgba(255, 0, 0, 0.25);
+  color: #ff9999;
+  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
+  transform: translateY(-2px);
+}
+
+/* Shine overlay for continue button (optional) */
 .flow-button-continue::before {
   content: '';
   position: absolute;
@@ -4750,38 +4790,25 @@ vertical-align: middle;
   z-index: 2;
 }
 
-.flow-button-skip {
-  background-color: rgba(255, 0, 0, 0.15);
-  border: 1px solid red;
-  border-radius: 6px;
-  color: #ffcccc;
-  cursor: pointer;
-  display: flex;
-  flex: 1 1 50%;
-  font-size: 18px;
-  font-weight: 600;
-  overflow: hidden;
-  padding: 10px 28px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-sizing: border-box;
-}
-
-.flow-button-skip:hover {
-  background-color: rgba(255, 0, 0, 0.25);
-  color: #ff9999;
-  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  transform: translateY(-2px);
-}
-
 @keyframes shine-reverse {
   0% { left: 150%; }
   25% { left: 50%; }
   50% { left: -50%; }
   75% { left: 50%; }
   100% { left: 150%; }
+}
+
+/* Responsive: stack buttons vertically on mobile */
+@media screen and (max-width: 768px) {
+  .flow-advance-wrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .flow-button-group,
+  .flow-advance-wrapper > .flow-button-skip {
+    flex: 1 1 100%;
+  }
 }
 
 
@@ -4799,6 +4826,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
