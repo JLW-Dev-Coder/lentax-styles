@@ -1299,6 +1299,24 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   bottom: 10px;
   right: 10px;
 }
+.freelancer-booking-btn {
+  background: linear-gradient(135deg, #FFA500, #E67300); /* golden-orange gradient */
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 8px;
+  border-right: 2px solid black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 10px 24px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s, transfor
 
 
 /*Memberships*/
@@ -4875,6 +4893,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
