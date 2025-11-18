@@ -2657,10 +2657,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .row-default-v4 {
-  background-color: rgb(123, 108, 73);
+  background: linear-gradient(to bottom right, rgb(123, 108, 73), rgb(90, 78, 52));
   margin-bottom: 300px;
   margin-top: 50px;
 }
+
 
 /*Section*/
 .section-related-links {
@@ -4925,6 +4926,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
