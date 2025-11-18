@@ -1350,6 +1350,126 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
 
+.freelancer-score-card {
+  background-color: rgb(18, 18, 18);
+  border-radius: 12px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+}
+
+.freelancer-score-chart {
+  flex: 1;
+  min-width: 260px;
+}
+
+.freelancer-score-chart-bar {
+  border-radius: 999px;
+  height: 10px;
+}
+
+.freelancer-score-chart-bar--a {
+  background: linear-gradient(90deg, rgb(255, 196, 0), rgb(255, 140, 0));
+}
+
+.freelancer-score-chart-bar--b {
+  background: linear-gradient(90deg, rgb(0, 200, 140), rgb(0, 160, 110));
+}
+
+.freelancer-score-chart-bar--c {
+  background: linear-gradient(90deg, rgb(0, 170, 255), rgb(0, 120, 210));
+}
+
+.freelancer-score-chart-bar--d {
+  background: linear-gradient(90deg, rgb(180, 120, 255), rgb(140, 80, 220));
+}
+
+.freelancer-score-chart-bar--overall {
+  background: linear-gradient(90deg, rgb(255, 230, 120), rgb(255, 170, 0));
+}
+
+.freelancer-score-chart-bar-wrap {
+  background-color: rgb(40, 40, 40);
+  border-radius: 999px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.freelancer-score-chart-label {
+  color: rgb(220, 220, 220);
+  flex-basis: 38%;
+  font-size: 12px;
+}
+
+.freelancer-score-chart-row {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.freelancer-score-chart-value {
+  color: rgb(255, 187, 51);
+  font-size: 12px;
+  text-align: right;
+  width: 32px;
+}
+
+.freelancer-score-form {
+  border-left: 1px solid rgb(40, 40, 40);
+  flex: 1;
+  min-width: 260px;
+  padding-left: 20px;
+}
+
+.freelancer-score-form-field {
+  margin-bottom: 16px;
+}
+
+.freelancer-score-form-label {
+  color: rgb(200, 200, 200);
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.freelancer-score-form-rating {
+  align-items: center;
+  column-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  row-gap: 8px;
+}
+
+.freelancer-score-form-stars {
+  display: flex;
+  gap: 8px;
+}
+
+.freelancer-score-form-submit {
+  border-radius: 999px;
+  font-size: 13px;
+  padding: 8px 18px;
+}
+
+.freelancer-score-form-textarea {
+  background-color: rgb(20, 20, 20);
+  border: 1px solid rgb(60, 60, 60);
+  border-radius: 8px;
+  color: rgb(235, 235, 235);
+  font-size: 13px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.freelancer-score-form-title {
+  color: rgb(255, 187, 51);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
 
 /*Memberships*/
 /* ===== Gold ===== */
@@ -4927,6 +5047,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
