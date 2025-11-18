@@ -146,6 +146,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px 32px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   width: fit-content;
   overflow: hidden; /* required for shine */
@@ -4926,6 +4927,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
