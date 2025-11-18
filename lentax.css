@@ -4725,11 +4725,11 @@ vertical-align: middle;
 /* Continue Button */
 .flow-button-continue {
   align-items: center;      /* center content vertically */
-  background: linear-gradient(135deg, #FFA500, #FFD700);
+  background: linear-gradient(135deg, #FFA500, #FFD700); /* orange → gold */
   border: none;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  color: #000 !important;
+  color: #000 !important; /* black text */
   cursor: pointer;
   display: flex;
   font-size: 18px !important;
@@ -4743,39 +4743,11 @@ vertical-align: middle;
   transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Skip Button */
-.flow-button-skip {
-  align-items: center;      /* center content vertically */
-  background-color: rgba(255, 0, 0, 0.15);
-  border: 3px solid red;    /* increased border width */
-  border-radius: 6px;
-  color: #ffcccc;
-  cursor: pointer;
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-  justify-content: center;  /* center text horizontally */
-  overflow: hidden;
-  padding: 10px 28px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Hover states */
 .flow-button-continue:hover {
-  background: linear-gradient(135deg, #FFB733, #FFFF33);
+  background: linear-gradient(135deg, #FFB733, #FFFF33); /* brighter gold */
   box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
   transform: translateY(-2px);
   color: #000 !important;
-}
-
-.flow-button-skip:hover {
-  background-color: rgba(255, 0, 0, 0.25);
-  color: #ff9999;
-  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  transform: translateY(-2px);
 }
 
 /* Shine overlay for continue button */
@@ -4793,6 +4765,34 @@ vertical-align: middle;
   z-index: 2;
 }
 
+/* Skip Button */
+.flow-button-skip {
+  align-items: center;      
+  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
+  border: 3px solid red;    /* more prominent border */
+  border-radius: 6px;
+  color: #ff6666;           /* visible text on light background */
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: center;  /* center text horizontally */
+  overflow: hidden;
+  padding: 10px 28px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flow-button-skip:hover {
+  background-color: rgba(255, 0, 0, 0.25); /* slightly darker background */
+  color: #990000; /* dark red text */
+  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
+  transform: translateY(-2px);
+}
+
+/* Shine animation keyframes for continue button */
 @keyframes shine-reverse {
   0% { left: 150%; }
   25% { left: 50%; }
@@ -4801,7 +4801,7 @@ vertical-align: middle;
   100% { left: 150%; }
 }
 
-/* Responsive: stack buttons vertically on mobile */
+/* Responsive: stack buttons vertically on small screens */
 @media screen and (max-width: 768px) {
   .flow-advance-wrapper {
     flex-direction: column;
@@ -4828,6 +4828,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
