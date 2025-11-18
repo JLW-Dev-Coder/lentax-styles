@@ -4700,6 +4700,38 @@ vertical-align: middle;
 }
 /*End of SD Primary Button*/
 
+/*SD FLOW*/
+
+.flow-button-continue {
+  background: linear-gradient(90deg, #FFA500, #FFD700); /* FFA-orange → gold */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  transition: background 0.4s ease;
+}
+
+.flow-button-continue:hover {
+  background: linear-gradient(90deg, #FFB733, #FFFF33); /* brighter on hover */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.flow-button-skip {
+  background-color: rgba(255, 255, 255, 0.1); /* subtle SD style */
+  color: #FFD700; /* gold text */
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.flow-button-skip:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #FFFF33; /* brighter gold on hover */
+}
+
+
 form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
     display: none !important;
 }
@@ -4711,6 +4743,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
