@@ -117,6 +117,7 @@
   background-color: rgb(0, 0, 0);
   transform: scale(1.02);
 }
+
 /*Blog*/
 .blog-author-avatar {
   border-radius: 50%;
@@ -161,7 +162,6 @@
   line-height: 1.6;
   margin-top: 0.5rem;
 }
-
 
 .blog-header-info {
   align-items: center;
@@ -5192,6 +5192,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
