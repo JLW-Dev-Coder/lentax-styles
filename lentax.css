@@ -2636,38 +2636,86 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-font-smoothing: antialiased;
 }
 
-.lentax-header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-}
-
+/*Lentax Header*/
 .lentax-header-left {
-  align-items: center;
-  display: flex;
+  display: inline-block;
+  margin-bottom: 0.25rem;
 }
 
 .lentax-header-menu {
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  display: inline-block;
+  float: right;
+  height: 24px;
+  margin-top: 0.25rem;
+  position: relative;
+  width: 32px;
 }
 
-.lentax-header-menu span {
-  background-color: dark base;
-  border-radius: 3px;
-  height: 4px;
-  width: 30px;
+.lentax-header-menu::before,
+.lentax-header-menu::after {
+  background-color: #111827;
+  content: "";
+  height: 3px;
+  left: 0;
+  position: absolute;
+  transition: top 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  width: 100%;
+}
+
+.lentax-header-menu::before {
+  box-shadow: 0 10px 0 #111827;
+  top: 0;
+}
+
+.lentax-header-menu::after {
+  top: 20px;
 }
 
 .lentax-logo {
+  display: block;
   height: auto;
-  max-height: 60px;
-  width: auto;
+  max-width: 180px;
 }
 
+.lentax-menu-open::before {
+  box-shadow: none;
+  top: 10px;
+  transform: rotate(45deg);
+}
+
+.lentax-menu-open::after {
+  top: 10px;
+  transform: rotate(-45deg);
+}
+
+.lentax-nav {
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+  display: none;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.lentax-nav a {
+  border-top: 1px solid #e5e7eb;
+  color: #111827;
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  text-decoration: none;
+}
+
+.lentax-nav a:hover {
+  background-color: #e5e7eb;
+}
+
+.lentax-nav-open {
+  display: block;
+}
+/*End of Lentax Header*/
 
 /*LenBot Chat*/
 /* Chat Container */
@@ -5132,6 +5180,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
