@@ -2661,17 +2661,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .lentax-header-menu::before,
 .lentax-header-menu::after {
-  background-color: #111827;
+  background-color: #f9fafb;
   content: "";
   height: 3px;
   left: 0;
   position: absolute;
-  transition: top 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  transition: box-shadow 0.25s ease, opacity 0.25s ease, top 0.25s ease, transform 0.25s ease;
   width: 100%;
 }
 
 .lentax-header-menu::before {
-  box-shadow: 0 10px 0 #111827;
+  box-shadow: 0 10px 0 #f9fafb;
   top: 0;
 }
 
@@ -2697,17 +2697,21 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lentax-nav {
-  background-color: #f9fafb;
+  background-color: rgba(15, 23, 42, 0.98);
   border-radius: 0.5rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.45);
   display: none;
-  margin: 0.5rem 0 1.5rem;
   padding: 0.5rem 0;
+  position: fixed;
+  right: 1.5rem;
+  top: 4rem;
+  width: 220px;
+  z-index: 9999;
 }
 
 .lentax-nav a {
-  border-top: 1px solid #e5e7eb;
-  color: #111827;
+  border-top: 1px solid rgba(148, 163, 184, 0.6);
+  color: #f9fafb;
   display: block;
   font-size: 0.95rem;
   font-weight: 500;
@@ -2716,12 +2720,13 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lentax-nav a:hover {
-  background-color: #e5e7eb;
+  background-color: rgba(51, 65, 85, 0.95);
 }
 
 .lentax-nav-open {
   display: block;
 }
+
 /*End of Lentax Header*/
 
 /*LenBot Chat*/
@@ -5187,6 +5192,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
