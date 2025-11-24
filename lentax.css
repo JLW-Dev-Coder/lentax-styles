@@ -2636,6 +2636,39 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   -webkit-font-smoothing: antialiased;
 }
 
+.lentax-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.lentax-header-left {
+  align-items: center;
+  display: flex;
+}
+
+.lentax-header-menu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.lentax-header-menu span {
+  background-color: dark base;
+  border-radius: 3px;
+  height: 4px;
+  width: 30px;
+}
+
+.lentax-logo {
+  height: auto;
+  max-height: 60px;
+  width: auto;
+}
+
+
 /*LenBot Chat*/
 /* Chat Container */
   .lenbot-chat-container {
@@ -5099,6 +5132,7 @@ form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
 form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
