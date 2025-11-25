@@ -181,10 +181,19 @@
   width: 100%;
 }
 
-.blog-small-content {
+.blog-small {
     font-size: 0.95rem;
     line-height: 1.55;
 }
+
+.blog-small h3,
+.blog-small ol,
+.blog-small ul,
+.blog-small li {
+    font-size: inherit;
+    line-height: inherit;
+}
+
 
 
 /*Button*/
@@ -5207,6 +5216,7 @@ form[action*="25obtQmXLf6gjpa9g"] .form-actions.btn-list {
 form[action*="2tgbohKtxbUWKxAs4"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
