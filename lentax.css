@@ -181,6 +181,11 @@
   width: 100%;
 }
 
+.blog-small-content {
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
 
 /*Button*/
 .button-custom-animation {
@@ -5202,6 +5207,7 @@ form[action*="25obtQmXLf6gjpa9g"] .form-actions.btn-list {
 form[action*="2tgbohKtxbUWKxAs4"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
