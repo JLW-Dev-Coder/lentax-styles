@@ -5511,3 +5511,89 @@ sd-form-as-extension .bm-card h4,
 sd-form-as-extension .bm-main h4 {
     color: #ffffff !important;
 }
+
+/* =========================================
+   BOOK-ME APPOINTMENT DETAILS MODAL
+   ========================================= */
+
+/* Kill default white shell around the modal */
+.modal-content .book-me-option-modal {
+  background-color: #070b18; /* deep navy */
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  color: #f9fafb;
+  padding: 24px 28px 26px;
+}
+
+/* Make the backdrop itself neutral / transparent-ish if SD exposes it */
+.modal-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Close button */
+.book-me-option-modal .modal-close-btn {
+  color: #ffffff;
+  opacity: 0.85;
+  position: absolute;
+  right: 18px;
+  top: 14px;
+}
+
+.book-me-option-modal .modal-close-btn .material-icons {
+  font-size: 22px;
+}
+
+.book-me-option-modal .modal-close-btn:hover {
+  opacity: 1;
+}
+
+/* Layout inside the modal */
+.book-me-option-modal .appointment-card__call-option-modal-body-inner-wrap {
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Avatar / image stack */
+.book-me-option-modal .appointment-card__img-common-wrap {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Ensure avatar is a clean circle with a subtle border */
+.book-me-option-modal .default-user-avatar-container img {
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  display: block;
+  height: 80px;
+  width: 80px;
+}
+
+/* Text column */
+.book-me-option-modal .appointment-card__details {
+  flex: 1;
+}
+
+/* Title – your appointment name (make it white + strong) */
+.book-me-option-modal .appointment-card__title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Subtitle – host name */
+.book-me-option-modal .appointment-card__subtitle {
+  color: #c4c6ff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Description copy */
+.book-me-option-modal .appointment-card__description {
+  color: #e5e7f5;
+  font
