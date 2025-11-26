@@ -5584,7 +5584,7 @@ sd-form-as-extension textarea::placeholder {
 
 .book-me-option-modal .appointment-card__description {
   color: #e5e7f5;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.5;
 }sd-form-as-extension .bm-confirmation hr {
   border-color: rgba(255,255,255,0.25) !important;
@@ -5629,3 +5629,4 @@ sd-form-as-extension .bm-confirmation__summary > *:first-child {
   color: #c7c9ff !important;
   font-size: 18px !important;
 }
+
