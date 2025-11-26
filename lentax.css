@@ -5326,3 +5326,79 @@ sd-form-as-extension input::placeholder,
 sd-form-as-extension textarea::placeholder {
   color: #9ca3c7 !important;
 }
+
+/* ===========================
+   KILL WHITE BOOKME CONTAINER
+   =========================== */
+
+.book-me,
+.book-me__box,
+.book-me__content,
+.book-me .content-holder,
+.book-me .book-me-box {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+
+/* ===========================
+   THE STEPS PANEL BACKGROUND
+   =========================== */
+
+.book-me-step {
+    background-color: #181a2a !important; /* your Lentax dark navy */
+    border-radius: 16px !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    box-shadow: none !important;
+}
+
+
+/* ===========================
+   STEP HEADER (purple bar)
+   =========================== */
+
+.book-me-step__header {
+    background: linear-gradient(90deg, #5515b8, #8b2fff) !important;
+    color: #fff !important;
+    border-radius: 14px !important;
+    padding: 14px 20px !important;
+    border: none !important;
+}
+
+
+/* ===========================
+   INNER FORMS
+   =========================== */
+
+.book-me-step input,
+.book-me-step select,
+.book-me-step textarea {
+    background-color: #0d1020 !important;
+    border-color: #2c2f55 !important;
+    color: #ffffff !important;
+}
+
+.book-me-step input::placeholder,
+.book-me-step textarea::placeholder {
+    color: #9ca3c7 !important;
+}
+
+
+/* ===========================
+   BUTTONS
+   =========================== */
+
+.book-me-step button,
+.book-me button,
+.book-me .btn {
+    background: linear-gradient(90deg, #ffb347, #ff7b00) !important;
+    border: none !important;
+    color: #050816 !important;
+    font-weight: bold !important;
+    border-radius: 999px !important;
+}
+
+.book-me-step button:hover {
+    filter: brightness(1.08) !important;
+}
