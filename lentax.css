@@ -5402,3 +5402,53 @@ sd-form-as-extension textarea::placeholder {
 .book-me-step button:hover {
     filter: brightness(1.08) !important;
 }
+
+
+/* ============================================
+   BOOKME — REMOVE OUTER WHITE PANEL COMPLETELY
+   ============================================ */
+
+.book-me,
+.book-me-wrapper,
+.book-me-container,
+.book-me .page-section,
+.book-me .section,
+.book-me-box,
+.book-me__box,
+.book-me .box,
+.book-me .content-inner,
+.book-me .content-holder {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Remove the inner white bar wrapper */
+.book-me-step-wrapper,
+.book-me-step-container,
+.book-me-step-block,
+.book-me-step-box {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ============================================
+   STEP PANELS (the grey blocks you're seeing)
+   ============================================ */
+
+.book-me-step {
+    background-color: #101326 !important; /* Lentax dark navy */
+    border-radius: 16px !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    box-shadow: none !important;
+}
+
+/* Purple header bar */
+.book-me-step__header {
+    background: linear-gradient(90deg, #5515b8, #8b2fff) !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 14px 20px !important;
+    border: none !important;
+}
