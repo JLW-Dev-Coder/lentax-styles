@@ -5586,10 +5586,46 @@ sd-form-as-extension textarea::placeholder {
   color: #e5e7f5;
   font-size: 14px;
   line-height: 1.5;
+}sd-form-as-extension .bm-confirmation hr {
+  border-color: rgba(255,255,255,0.25) !important;
 }
 
 .book-me-option-modal .appointment-card__duration {
   color: #9ca3c7;
   display: inline-block;
   font-size: 13px;
+}
+
+
+/* =========================================
+   STEP 3 — CONFIRMATION TEXT BLOCK
+   ========================================= */
+
+sd-form-as-extension .bm-confirmation,
+sd-form-as-extension .bm-confirmation * {
+  color: #ffffff !important;
+}
+
+sd-form-as-extension .bm-confirmation__summary,
+sd-form-as-extension .bm-confirmation__info,
+sd-form-as-extension .wizard__confirmation,
+sd-form-as-extension .appointment-confirm,
+sd-form-as-extension .appointment-summary {
+  color: #ffffff !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+}
+
+/* The headings inside Step 3 */
+sd-form-as-extension .bm-confirmation h3,
+sd-form-as-extension .bm-confirmation h4,
+sd-form-as-extension .bm-confirmation strong {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* The “You Have Selected” label */
+sd-form-as-extension .bm-confirmation__summary > *:first-child {
+  color: #c7c9ff !important;
+  font-size: 18px !important;
 }
