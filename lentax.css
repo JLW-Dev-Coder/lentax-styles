@@ -5668,3 +5668,9 @@ sd-form-as-extension #choose-items-step-1,
 sd-form-as-extension #choose-items-step-1 * {
   font-size: 20px !important;
 }
+
+/* Step 2 "You Have Selected" block – force text white */
+sd-form-as-extension #choose-items-step-2 .book-me-appointment__details,
+sd-form-as-extension #choose-items-step-2 .book-me-appointment__details * {
+  color: #ffffff !important;
+}
