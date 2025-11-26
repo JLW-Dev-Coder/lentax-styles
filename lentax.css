@@ -181,6 +181,18 @@
   width: 100%;
 }
 
+.blog-quote {
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 20px;
+    border-left: 4px solid #000;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    margin: 25px 0;
+}
+
 .blog-small {
     font-size: 0.95rem;
     line-height: 1.55;
@@ -5226,3 +5238,4 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
+
