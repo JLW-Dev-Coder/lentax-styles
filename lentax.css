@@ -5698,3 +5698,19 @@ sd-form-as-extension #choose-items-step-2 .form-group input {
 sd-form-as-extension #choose-items-step-2 .label-subtext p {
   line-height: 1.2 !important;
 }
+
+/* Center the entire Step 2 form field stack */
+sd-form-as-extension .choose-items-step-2 .form-group {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Center the actual input boxes */
+sd-form-as-extension .choose-items-step-2 .form-control {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  max-width: 340px !important;
+}
