@@ -5714,3 +5714,10 @@ sd-form-as-extension .choose-items-step-2 .form-control {
   text-align: center !important;
   max-width: 340px !important;
 }
+
+sd-form-as-extension .choose-items-step-2 .label-subtext {
+  line-height: 1.2 !important;
+  text-align: center !important;
+  max-width: 420px;
+  margin: 0 auto !important;
+}
