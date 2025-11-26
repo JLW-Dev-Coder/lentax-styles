@@ -5630,3 +5630,35 @@ sd-form-as-extension .bm-confirmation__summary > *:first-child {
   font-size: 18px !important;
 }
 
+
+
+/* =========================================
+   STEP 3 CONFIRMATION TEXT – FORCE VISIBLE
+   ========================================= */
+
+/* Catch the confirmation container by common class names */
+sd-form-as-extension .bm-confirmation,
+sd-form-as-extension .bm-confirmation__summary,
+sd-form-as-extension .bm-confirmation__info {
+  color: #ffffff !important;
+}
+
+/* Nuclear option for the LAST wizard step (Confirm Details) */
+sd-form-as-extension .wizard__step:last-child p,
+sd-form-as-extension .wizard__step:last-child span,
+sd-form-as-extension .wizard__step:last-child div {
+  color: #ffffff !important;
+}
+
+/* Slight emphasis on key lines like "You Have Selected" */
+sd-form-as-extension .wizard__step:last-child h3,
+sd-form-as-extension .wizard__step:last-child h4,
+sd-form-as-extension .wizard__step:last-child strong {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Make any underline there actually visible */
+sd-form-as-extension .wizard__step:last-child hr {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
