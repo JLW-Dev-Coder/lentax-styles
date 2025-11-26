@@ -5662,3 +5662,9 @@ sd-form-as-extension .wizard__step:last-child strong {
 sd-form-as-extension .wizard__step:last-child hr {
   border-color: rgba(255, 255, 255, 0.35) !important;
 }
+
+/* Step 1 booking block – make all text 20px */
+sd-form-as-extension #choose-items-step-1,
+sd-form-as-extension #choose-items-step-1 * {
+  font-size: 20px !important;
+}
