@@ -5452,3 +5452,36 @@ sd-form-as-extension textarea::placeholder {
     padding: 14px 20px !important;
     border: none !important;
 }
+
+/* ============================================
+   REMOVE ALL WHITE BACKGROUND FROM BOOKME STEP 1
+   ============================================ */
+
+.book-me-box,
+.book-me-box-step,
+.book-me-step-box,
+.book-me-step-wrapper,
+.book-me-step-container {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Force Step 1 to match the dark navy styling Step 2 uses */
+.book-me-box .content-holder,
+.book-me-box .book-me-step,
+.book-me-box-step .book-me-step {
+    background-color: #101326 !important; /* Lentax dark navy */
+    border-radius: 16px !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+/* Fix Step 1 Headers */
+.book-me-box .book-me-step__header,
+.book-me-box-step .book-me-step__header {
+    background: linear-gradient(90deg, #5515b8, #8b2fff) !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 14px 20px !important;
+    border: none !important;
+}
