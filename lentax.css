@@ -5485,3 +5485,114 @@ sd-form-as-extension textarea::placeholder {
     padding: 14px 20px !important;
     border: none !important;
 }
+
+
+/* ==== BOOKING WIDGET WRAPPER ==== */
+
+sd-form-as-extension {
+  background: transparent;
+  display: block;
+  margin: 0 auto 60px;
+  max-width: 980px;
+}
+
+/* big white shell around the steps */
+sd-form-as-extension .choose-items-wrapper.choose-items-card {
+  background: #0b0f26;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 26px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  padding: 0;
+}
+
+/* inner container */
+sd-form-as-extension .choose-items-block {
+  background: transparent;
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+/* ==== STEPPER / ACCORDION ==== */
+
+sd-form-as-extension .sdAccordion.choose-items-steps {
+  background: transparent;
+  border-radius: 26px;
+}
+
+/* each step card */
+sd-form-as-extension .sdAccordion__item.choose-items-card {
+  background: #070b1e;
+  border: none;
+  border-radius: 26px;
+}
+
+/* header bar of each step */
+sd-form-as-extension .sdAccordion__head {
+  background: linear-gradient(90deg, #5b2dff, #8b4bff);
+  color: #ffffff;
+  padding: 18px 26px;
+}
+
+sd-form-as-extension .sdAccordion__head h4,
+sd-form-as-extension .sdAccordion__head .sdAccordion__title {
+  color: #ffffff;
+}
+
+/* body of each step */
+sd-form-as-extension .sdAccordion__body {
+  background: radial-gradient(circle at top left, rgba(91, 45, 255, 0.25), #070b1e);
+  padding: 24px 26px 28px;
+}
+
+/* ==== APPOINTMENT CARDS / CALENDAR BLOCKS ==== */
+
+sd-form-as-extension .bm-main,
+sd-form-as-extension .bm-card,
+sd-form-as-extension .choose-items-card .card {
+  background: #090d24;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+/* calendar days */
+sd-form-as-extension .calendar,
+sd-form-as-extension .calendar-day,
+sd-form-as-extension .fc,
+sd-form-as-extension .fc-daygrid-day {
+  background: transparent;
+  color: #f4f5ff;
+}
+
+sd-form-as-extension .fc-daygrid-day-number {
+  color: #f4f5ff;
+}
+
+sd-form-as-extension .fc-day-disabled,
+sd-form-as-extension .day.is-disabled {
+  opacity: 0.35;
+}
+
+/* ==== BUTTONS (time slots + nav) ==== */
+
+sd-form-as-extension .btn,
+sd-form-as-extension .sd-btn,
+sd-form-as-extension button {
+  background: linear-gradient(135deg, #ff8c1a, #ffc44b);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  color: #151515;
+  font-weight: 600;
+}
+
+sd-form-as-extension .btn:hover,
+sd-form-as-extension .sd-btn:hover,
+sd-form-as-extension button:hover {
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+/* back/next footer buttons – keep consistent */
+sd-form-as-extension .wizard__footer .btn {
+  background: linear-gradient(135deg, #ff8c1a, #ffc44b);
+}
