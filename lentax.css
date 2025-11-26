@@ -5224,39 +5224,41 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 
 /* ===== BOOKING ACCORDION WRAPPER ===== */
 
-/* ===== WRAPPER ======================================= */
+/* =====================================================
+   WRAPPER
+   ===================================================== */
 
 sd-form-as-extension {
   background: transparent;
   display: block;
   margin: 0 auto 60px;
   max-width: 980px;
-  /* padding: 0 !important; */
 }
 
 sd-form-as-extension section {
   background-color: transparent !important;
-  /* padding: 0 !important; */
 }
 
-/* ===== OUTER CARD SHELL (Choose Items Wrapper) ===== */
+/* =====================================================
+   OUTER CARD SHELL (CHOOSE ITEMS WRAPPER)
+   ===================================================== */
+
+sd-form-as-extension .choose-items-block {
+  background: transparent;
+  border-radius: 26px;
+  overflow: hidden;
+}
 
 sd-form-as-extension .choose-items-wrapper.choose-items-card {
   background: #0b0f26;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 26px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-  /* padding: 0; */
 }
 
-sd-form-as-extension .choose-items-block {
-  background: transparent;
-  border-radius: 26px;
-  overflow: hidden;
-  /* padding: 0 !important; */
-}
-
-/* ===== WIZARD PANEL ================================= */
+/* =====================================================
+   WIZARD PANEL
+   ===================================================== */
 
 sd-form-as-extension .wizard,
 sd-form-as-extension .wizard__body,
@@ -5265,7 +5267,6 @@ sd-form-as-extension .wizard__step {
   border: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-radius: 18px !important;
   box-shadow: none !important;
-  /* padding: 0 !important; */
 }
 
 /* =====================================================
@@ -5275,19 +5276,12 @@ sd-form-as-extension .wizard__step {
 sd-form-as-extension .sdAccordion.choose-items-steps {
   background: transparent;
   border-radius: 26px;
-  /* padding: 0 !important; */
 }
 
-sd-form-as-extension .sdAccordion__item {
-  background-color: transparent !important;
-  border: none !important;
-  border-radius: 26px;
-  box-shadow: none !important;
-  margin-bottom: 18px !important;
-  /* padding: 0 !important; */
+sd-form-as-extension .sdAccordion__body {
+  background: radial-gradient(circle at top left, rgba(91, 45, 255, 0.25), #070b1e);
+  padding: 24px 26px 28px;
 }
-
-/* --- HEADER ----------------------------------------- */
 
 sd-form-as-extension .sdAccordion__head,
 sd-form-as-extension .sdAccordion__header {
@@ -5296,23 +5290,11 @@ sd-form-as-extension .sdAccordion__header {
   border-radius: 18px !important;
   box-shadow: 0 16px 30px rgba(15, 23, 42, 0.55) !important;
   color: #ffffff !important;
-  padding: 18px 28px !important; /* COMMENT OUT IF NEEDED */
+  padding: 18px 28px !important;
 }
 
-/* HOVER / OPEN / ACTIVE — force purple theme */
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__head,
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__head,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__head,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
-  background: linear-gradient(90deg, #8b5cf6, #2563eb) !important;
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.7) !important;
-  /* padding: 18px 28px !important; */
-}
-
-sd-form-as-extension .sdAccordion__header-icon,
-sd-form-as-extension .sdAccordion__header > span:first-child {
+sd-form-as-extension .sdAccordion__header > span:first-child,
+sd-form-as-extension .sdAccordion__header-icon {
   align-items: center !important;
   background: rgba(15, 23, 42, 0.35) !important;
   border-radius: 999px !important;
@@ -5323,39 +5305,90 @@ sd-form-as-extension .sdAccordion__header > span:first-child {
   justify-content: center !important;
   margin-right: 12px !important;
   width: 30px !important;
-  /* padding: 0 !important; */
 }
 
-sd-form-as-extension .sdAccordion__header-title,
+sd-form-as-extension .sdAccordion__head h4,
+sd-form-as-extension .sdAccordion__head .sdAccordion__title,
 sd-form-as-extension .sdAccordion__header h3,
 sd-form-as-extension .sdAccordion__header .sdAccordion__title,
-sd-form-as-extension .sdAccordion__head h4,
-sd-form-as-extension .sdAccordion__head .sdAccordion__title {
+sd-form-as-extension .sdAccordion__header-title {
   color: #ffffff !important;
   font-size: 18px !important;
   font-weight: 600 !important;
-  /* padding: 0 !important; */
 }
 
-sd-form-as-extension .sdAccordion__body {
-  background: radial-gradient(circle at top left, rgba(91, 45, 255, 0.25), #070b1e);
-  padding: 24px 26px 28px; /* COMMENT OUT IF NEEDED */
+/* Hover / open / active — keep same purple theme */
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__head,
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__head,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__head,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
+  background: linear-gradient(90deg, #8b5cf6, #2563eb) !important;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.7) !important;
+}
+
+sd-form-as-extension .sdAccordion__item {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 26px;
+  box-shadow: none !important;
+  margin-bottom: 18px !important;
+}
+
+/* Slight size bump for the main header band */
+sd-form-as-extension .sdAccordion__head,
+sd-form-as-extension .sdAccordion__header {
+  font-size: 20px !important;
+  padding: 26px 32px !important;
 }
 
 /* =====================================================
    APPOINTMENT CARDS / CALENDAR
    ===================================================== */
 
-sd-form-as-extension .bm-main,
+/* Base appointment card look */
+sd-form-as-extension .appointment-card,
 sd-form-as-extension .bm-card,
-sd-form-as-extension .choose-items-card .card,
-sd-form-as-extension .appointment-card {
-  background: #090d24;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+sd-form-as-extension .choose-items-card .card {
+  background: #090d24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
   border-radius: 20px;
-  /* padding: 0 !important; */
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
+/* Hover – only affect hovered card */
+sd-form-as-extension .appointment-card:hover,
+sd-form-as-extension .bm-card:hover {
+  background: #141a33 !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* SELECTED card — only .is-selected (no .active) */
+sd-form-as-extension .appointment-card.is-selected,
+sd-form-as-extension .bm-card.is-selected {
+  background: linear-gradient(180deg, #1f274b, #0f1328) !important;
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.35) !important;
+}
+
+/* Unselected cards never get the glow */
+sd-form-as-extension .appointment-card:not(.is-selected),
+sd-form-as-extension .bm-card:not(.is-selected) {
+  box-shadow: none !important;
+}
+
+/* Appointment generator titles to white */
+sd-form-as-extension .appointment-card h4,
+sd-form-as-extension .appointment-card .card-title,
+sd-form-as-extension .bm-card h4,
+sd-form-as-extension .bm-card__title,
+sd-form-as-extension .bm-main h4,
+sd-form-as-extension .choose-items-card .title {
+  color: #ffffff !important;
+}
+
+/* Calendar shell + days */
 sd-form-as-extension .calendar,
 sd-form-as-extension .calendar-day,
 sd-form-as-extension .day,
@@ -5364,11 +5397,6 @@ sd-form-as-extension .fc-daygrid-day {
   background-color: #151936 !important;
   border-color: #262c55 !important;
   color: #f4f5ff !important;
-  /* padding: 0 !important; */
-}
-
-sd-form-as-extension .fc-daygrid-day-number {
-  color: #f4f5ff;
 }
 
 sd-form-as-extension .fc-day-disabled,
@@ -5376,10 +5404,14 @@ sd-form-as-extension .day.is-disabled {
   opacity: 0.35;
 }
 
-/* selected day */
-sd-form-as-extension .fc-daygrid-day.fc-day-today,
+sd-form-as-extension .fc-daygrid-day-number {
+  color: #f4f5ff;
+}
+
+/* Selected / today */
+sd-form-as-extension .calendar-day.is-selected,
 sd-form-as-extension .fc-daygrid-day.fc-day-selected,
-sd-form-as-extension .calendar-day.is-selected {
+sd-form-as-extension .fc-daygrid-day.fc-day-today {
   background-color: #ffb347 !important;
   color: #050816 !important;
 }
@@ -5397,7 +5429,6 @@ sd-form-as-extension button {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
   color: #151515;
   font-weight: 700;
-  /* padding: 0 !important; */
 }
 
 sd-form-as-extension .btn:hover,
@@ -5422,7 +5453,6 @@ sd-form-as-extension textarea {
   background-color: #050816 !important;
   border-color: #262c55 !important;
   color: #ffffff !important;
-  /* padding: 0 !important; */
 }
 
 sd-form-as-extension input::placeholder,
@@ -5431,23 +5461,22 @@ sd-form-as-extension textarea::placeholder {
 }
 
 /* =====================================================
-   BOOK-ME
+   BOOK-ME CONTAINER
    ===================================================== */
 
 .book-me,
 .book-me-wrapper,
 .book-me-container,
+.book-me .box,
+.book-me .content-holder,
+.book-me .content-inner,
 .book-me .page-section,
 .book-me .section,
-.book-me .box,
-.book-me .content-inner,
-.book-me .content-holder,
 .book-me-box,
 .book-me__box {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  /* padding: 0 !important; */
 }
 
 .book-me-step-wrapper,
@@ -5457,7 +5486,6 @@ sd-form-as-extension textarea::placeholder {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  /* padding: 0 !important; */
 }
 
 .book-me-step {
@@ -5471,7 +5499,7 @@ sd-form-as-extension textarea::placeholder {
   border: none !important;
   border-radius: 14px !important;
   color: #ffffff !important;
-  padding: 14px 20px !important; /* COMMENT OUT IF NEEDED */
+  padding: 14px 20px !important;
 }
 
 .book-me-step input,
@@ -5501,24 +5529,13 @@ sd-form-as-extension textarea::placeholder {
   filter: brightness(1.08) !important;
 }
 
-/* ==== APPOINTMENT GENERATOR TITLES (Fix to White) ==== */
-
-sd-form-as-extension .appointment-card .card-title,
-sd-form-as-extension .appointment-card h4,
-sd-form-as-extension .bm-card__title,
-sd-form-as-extension .choose-items-card .title,
-sd-form-as-extension .bm-card h4,
-sd-form-as-extension .bm-main h4 {
-    color: #ffffff !important;
-}
-
-/* =========================================
+/* =====================================================
    BOOK-ME APPOINTMENT DETAILS MODAL
-   ========================================= */
+   ===================================================== */
 
-/* Kill default white shell around the modal */
+/* Modal shell */
 .modal-content .book-me-option-modal {
-  background-color: #070b18; /* deep navy */
+  background-color: #070b18;
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 22px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
@@ -5526,7 +5543,7 @@ sd-form-as-extension .bm-main h4 {
   padding: 24px 28px 26px;
 }
 
-/* Make the backdrop itself neutral / transparent-ish if SD exposes it */
+/* Backdrop area */
 .modal-content {
   background: transparent;
   border: none;
@@ -5550,7 +5567,7 @@ sd-form-as-extension .bm-main h4 {
   opacity: 1;
 }
 
-/* Layout inside the modal */
+/* Modal layout */
 .book-me-option-modal .appointment-card__call-option-modal-body-inner-wrap {
   align-items: flex-start;
   gap: 20px;
@@ -5564,10 +5581,9 @@ sd-form-as-extension .bm-main h4 {
   gap: 12px;
 }
 
-/* Ensure avatar is a clean circle with a subtle border */
 .book-me-option-modal .default-user-avatar-container img {
-  border-radius: 999px;
   border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
   display: block;
   height: 80px;
   width: 80px;
@@ -5578,7 +5594,6 @@ sd-form-as-extension .bm-main h4 {
   flex: 1;
 }
 
-/* Title – your appointment name (make it white + strong) */
 .book-me-option-modal .appointment-card__title {
   color: #ffffff;
   font-size: 20px;
@@ -5586,50 +5601,21 @@ sd-form-as-extension .bm-main h4 {
   margin-bottom: 4px;
 }
 
-/* Subtitle – host name */
 .book-me-option-modal .appointment-card__subtitle {
   color: #c4c6ff;
   font-size: 14px;
   font-weight: 500;
 }
 
-/* Description copy */
 .book-me-option-modal .appointment-card__description {
   color: #e5e7f5;
-  font
-
-/* =============================
-   FIX — APPOINTMENT CARD SELECTION
-   ============================= */
-
-/* Base card look (normal state) */
-sd-form-as-extension .appointment-card,
-sd-form-as-extension .bm-card,
-sd-form-as-extension .choose-items-card .card {
-  background: #090d24 !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  transition: background 0.25s ease, border-color 0.25s ease;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-/* Hover only affects the hovered one */
-sd-form-as-extension .appointment-card:hover,
-sd-form-as-extension .bm-card:hover {
-  background: #141a33 !important;
-  border-color: rgba(255,255,255,0.25) !important;
-}
-
-/* SELECTED CARD — force this stronger look */
-sd-form-as-extension .appointment-card.is-selected,
-sd-form-as-extension .bm-card.is-selected,
-sd-form-as-extension .appointment-card.active,
-sd-form-as-extension .bm-card.active {
-  background: linear-gradient(180deg, #1f274b, #0f1328) !important;
-  border-color: #7c3aed !important; /* purple accent */
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.35) !important;
-}
-
-/* STOP the “other” card from inheriting blue glow */
-sd-form-as-extension .appointment-card:not(.is-selected):not(.active),
-sd-form-as-extension .bm-card:not(.is-selected):not(.active) {
-  box-shadow: none !important;
+.book-me-option-modal .appointment-card__duration {
+  color: #9ca3c7;
+  display: inline-block;
+  font-size: 13px;
+  margin-top: 8px;
 }
