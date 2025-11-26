@@ -182,15 +182,37 @@
 }
 
 .blog-quote {
-    font-size: 22px;
-    font-weight: 600;
-    font-style: italic;
-    line-height: 1.5;
-    padding: 20px;
-    border-left: 4px solid #000;
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    margin: 25px 0;
+  border-left: 4px solid #FFD700;     /* gold accent */
+  color: #222;                        /* dark text for blog readability */
+  display: block;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 25px 0;
+  padding: 20px 24px 20px 40px;       /* more padding for quote icon */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.25); /* brighter overlay for blog */
+  border-radius: 10px;
+}
+
+.blog-quote::before {
+  content: "“";
+  font-size: 42px;
+  color: #FFD700;
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  line-height: 1;
+}
+
+.blog-quote::after {
+  content: "”";
+  font-size: 42px;
+  color: #FFD700;
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  line-height: 1;
 }
 
 .blog-small {
@@ -5238,4 +5260,5 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
+
 
