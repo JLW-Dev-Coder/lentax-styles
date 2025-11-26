@@ -5224,37 +5224,40 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 
 /* ===== BOOKING ACCORDION WRAPPER ===== */
 
-/* =========================
-   BOOKING WIDGET WRAPPER
-   ========================= */
+/* ===== WRAPPER ======================================= */
 
 sd-form-as-extension {
   background: transparent;
   display: block;
   margin: 0 auto 60px;
   max-width: 980px;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension section {
   background-color: transparent !important;
+  /* padding: 0 !important; */
 }
 
-/* outer shell around steps */
+/* ===== OUTER CARD SHELL (Choose Items Wrapper) ===== */
+
 sd-form-as-extension .choose-items-wrapper.choose-items-card {
   background: #0b0f26;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 26px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-  padding: 0;
+  /* padding: 0; */
 }
 
 sd-form-as-extension .choose-items-block {
   background: transparent;
   border-radius: 26px;
   overflow: hidden;
+  /* padding: 0 !important; */
 }
 
-/* wizard panel */
+/* ===== WIZARD PANEL ================================= */
+
 sd-form-as-extension .wizard,
 sd-form-as-extension .wizard__body,
 sd-form-as-extension .wizard__step {
@@ -5262,15 +5265,17 @@ sd-form-as-extension .wizard__step {
   border: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-radius: 18px !important;
   box-shadow: none !important;
+  /* padding: 0 !important; */
 }
 
-/* =========================
-   STEPPER / ACCORDION
-   ========================= */
+/* =====================================================
+   ACCORDION / STEPPER
+   ===================================================== */
 
 sd-form-as-extension .sdAccordion.choose-items-steps {
   background: transparent;
   border-radius: 26px;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension .sdAccordion__item {
@@ -5279,9 +5284,11 @@ sd-form-as-extension .sdAccordion__item {
   border-radius: 26px;
   box-shadow: none !important;
   margin-bottom: 18px !important;
+  /* padding: 0 !important; */
 }
 
-/* some versions use __head, some __header – style both */
+/* --- HEADER ----------------------------------------- */
+
 sd-form-as-extension .sdAccordion__head,
 sd-form-as-extension .sdAccordion__header {
   background: linear-gradient(90deg, #7c3aed, #3b82f6) !important;
@@ -5289,9 +5296,10 @@ sd-form-as-extension .sdAccordion__header {
   border-radius: 18px !important;
   box-shadow: 0 16px 30px rgba(15, 23, 42, 0.55) !important;
   color: #ffffff !important;
-  padding: 18px 28px !important;
+  padding: 18px 28px !important; /* COMMENT OUT IF NEEDED */
 }
 
+/* HOVER / OPEN / ACTIVE — force purple theme */
 sd-form-as-extension .sdAccordion__item:hover .sdAccordion__head,
 sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
 sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__head,
@@ -5300,6 +5308,7 @@ sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__head,
 sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
   background: linear-gradient(90deg, #8b5cf6, #2563eb) !important;
   box-shadow: 0 18px 36px rgba(15, 23, 42, 0.7) !important;
+  /* padding: 18px 28px !important; */
 }
 
 sd-form-as-extension .sdAccordion__header-icon,
@@ -5314,6 +5323,7 @@ sd-form-as-extension .sdAccordion__header > span:first-child {
   justify-content: center !important;
   margin-right: 12px !important;
   width: 30px !important;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension .sdAccordion__header-title,
@@ -5324,16 +5334,17 @@ sd-form-as-extension .sdAccordion__head .sdAccordion__title {
   color: #ffffff !important;
   font-size: 18px !important;
   font-weight: 600 !important;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension .sdAccordion__body {
   background: radial-gradient(circle at top left, rgba(91, 45, 255, 0.25), #070b1e);
-  padding: 24px 26px 28px;
+  padding: 24px 26px 28px; /* COMMENT OUT IF NEEDED */
 }
 
-/* =========================
+/* =====================================================
    APPOINTMENT CARDS / CALENDAR
-   ========================= */
+   ===================================================== */
 
 sd-form-as-extension .bm-main,
 sd-form-as-extension .bm-card,
@@ -5342,9 +5353,9 @@ sd-form-as-extension .appointment-card {
   background: #090d24;
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
+  /* padding: 0 !important; */
 }
 
-/* calendar shell + days */
 sd-form-as-extension .calendar,
 sd-form-as-extension .calendar-day,
 sd-form-as-extension .day,
@@ -5353,6 +5364,7 @@ sd-form-as-extension .fc-daygrid-day {
   background-color: #151936 !important;
   border-color: #262c55 !important;
   color: #f4f5ff !important;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension .fc-daygrid-day-number {
@@ -5364,7 +5376,7 @@ sd-form-as-extension .day.is-disabled {
   opacity: 0.35;
 }
 
-/* today / selected day */
+/* selected day */
 sd-form-as-extension .fc-daygrid-day.fc-day-today,
 sd-form-as-extension .fc-daygrid-day.fc-day-selected,
 sd-form-as-extension .calendar-day.is-selected {
@@ -5372,9 +5384,9 @@ sd-form-as-extension .calendar-day.is-selected {
   color: #050816 !important;
 }
 
-/* =========================
-   BUTTONS (TIME + NAV)
-   ========================= */
+/* =====================================================
+   BUTTONS
+   ===================================================== */
 
 sd-form-as-extension .btn,
 sd-form-as-extension .sd-btn,
@@ -5385,6 +5397,7 @@ sd-form-as-extension button {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
   color: #151515;
   font-weight: 700;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension .btn:hover,
@@ -5399,9 +5412,9 @@ sd-form-as-extension .wizard__footer .btn {
   background: linear-gradient(135deg, #ffb347, #ff7b00);
 }
 
-/* =========================
+/* =====================================================
    INPUTS
-   ========================= */
+   ===================================================== */
 
 sd-form-as-extension input,
 sd-form-as-extension select,
@@ -5409,6 +5422,7 @@ sd-form-as-extension textarea {
   background-color: #050816 !important;
   border-color: #262c55 !important;
   color: #ffffff !important;
+  /* padding: 0 !important; */
 }
 
 sd-form-as-extension input::placeholder,
@@ -5416,9 +5430,9 @@ sd-form-as-extension textarea::placeholder {
   color: #9ca3c7 !important;
 }
 
-/* =========================
-   BOOK-ME: REMOVE WHITE SHELL
-   ========================= */
+/* =====================================================
+   BOOK-ME
+   ===================================================== */
 
 .book-me,
 .book-me-wrapper,
@@ -5433,9 +5447,9 @@ sd-form-as-extension textarea::placeholder {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  /* padding: 0 !important; */
 }
 
-/* step wrappers */
 .book-me-step-wrapper,
 .book-me-step-container,
 .book-me-step-block,
@@ -5443,26 +5457,23 @@ sd-form-as-extension textarea::placeholder {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  /* padding: 0 !important; */
 }
 
-/* step panels */
 .book-me-step {
   background-color: #101326 !important;
   border: 1px solid rgba(255, 255, 255, 0.05) !important;
   border-radius: 16px !important;
-  box-shadow: none !important;
 }
 
-/* step header */
 .book-me-step__header {
   background: linear-gradient(90deg, #5515b8, #8b2fff) !important;
   border: none !important;
   border-radius: 14px !important;
   color: #ffffff !important;
-  padding: 14px 20px !important;
+  padding: 14px 20px !important; /* COMMENT OUT IF NEEDED */
 }
 
-/* inner fields */
 .book-me-step input,
 .book-me-step select,
 .book-me-step textarea {
@@ -5476,7 +5487,6 @@ sd-form-as-extension textarea::placeholder {
   color: #9ca3c7 !important;
 }
 
-/* buttons */
 .book-me-step button,
 .book-me button,
 .book-me .btn {
@@ -5489,47 +5499,4 @@ sd-form-as-extension textarea::placeholder {
 
 .book-me-step button:hover {
   filter: brightness(1.08) !important;
-}
-
-/* =========================================================
-   OVERRIDE HOVER / ACTIVE / OPEN STATES FOR ACCORDION HEADER
-   ========================================================= */
-
-/* Base size upgrade */
-sd-form-as-extension .sdAccordion__head,
-sd-form-as-extension .sdAccordion__header {
-    padding: 26px 32px !important;
-    font-size: 20px !important;
-}
-
-/* Force purple theme ON in all states */
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__head,
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__head,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__head,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
-    background: linear-gradient(90deg, #7c3aed, #3b82f6) !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-radius: 22px !important;
-    box-shadow: 0 20px 36px rgba(15, 23, 42, 0.7) !important;
-}
-
-/* Fix the left circle in hover/active */
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header-icon,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header-icon,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header-icon {
-    background: rgba(255, 255, 255, 0.18) !important;
-    color: #ffffff !important;
-}
-
-/* Fix the title text in hover/active */
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header-title,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header-title,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header-title,
-sd-form-as-extension .sdAccordion__item:hover .sdAccordion__title,
-sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__title,
-sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__title {
-    color: #ffffff !important;
 }
