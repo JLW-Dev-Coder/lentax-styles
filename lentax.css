@@ -5490,3 +5490,46 @@ sd-form-as-extension textarea::placeholder {
 .book-me-step button:hover {
   filter: brightness(1.08) !important;
 }
+
+/* =========================================================
+   OVERRIDE HOVER / ACTIVE / OPEN STATES FOR ACCORDION HEADER
+   ========================================================= */
+
+/* Base size upgrade */
+sd-form-as-extension .sdAccordion__head,
+sd-form-as-extension .sdAccordion__header {
+    padding: 26px 32px !important;
+    font-size: 20px !important;
+}
+
+/* Force purple theme ON in all states */
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__head,
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__head,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__head,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
+    background: linear-gradient(90deg, #7c3aed, #3b82f6) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 22px !important;
+    box-shadow: 0 20px 36px rgba(15, 23, 42, 0.7) !important;
+}
+
+/* Fix the left circle in hover/active */
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header-icon,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header-icon,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header-icon {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+}
+
+/* Fix the title text in hover/active */
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header-title,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header-title,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header-title,
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__title,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__title,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__title {
+    color: #ffffff !important;
+}
