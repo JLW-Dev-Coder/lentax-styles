@@ -5666,11 +5666,30 @@ sd-form-as-extension .wizard__step:last-child hr {
 /* Step 1 booking block – make all text 20px */
 sd-form-as-extension #choose-items-step-1,
 sd-form-as-extension #choose-items-step-1 * {
-  font-size: 20px !important;
+  font-size: 22px !important;
 }
 
 /* Step 2 "You Have Selected" block – force text white */
 sd-form-as-extension #choose-items-step-2 .book-me-appointment__details,
 sd-form-as-extension #choose-items-step-2 .book-me-appointment__details * {
   color: #ffffff !important;
+}
+
+/* Center the entire Step 2 form field column */
+sd-form-as-extension #choose-items-step-2 .form-fields-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+/* Center labels + inputs */
+sd-form-as-extension #choose-items-step-2 .form-group label,
+sd-form-as-extension #choose-items-step-2 .form-group input {
+  text-align: center !important;
+}
+
+sd-form-as-extension #choose-items-step-2 .form-group input {
+  max-width: 340px !important;
+  margin: 0 auto !important;
 }
