@@ -5222,16 +5222,23 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
     display: none !important;
 }
 
-/* Remove ALL portal-level white blocks */
-.portalWidget,
-.widget-content,
-.contentBlock,
-.pageSection,
-.pageSection .widget-content,
-.pageSection .contentBlock {
-    background-color: #1d1f2e !important;  /* match your site dark */
-    border-radius: 28px !important;
-    border: 1px solid #2a2d40 !important;
-    box-shadow: none !important;
-    padding: 20px !important;
+/* VA booking page – kill the white card and match portal styling */
+.page-book_me,
+.page-book_me .wrapper,
+.page-book_me .section,
+.page-book_me .book-me,
+.page-book_me .book-me__main-content,
+.page-book_me .book-me__box {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Keep the inner content readable against the dark portal background */
+.page-book_me .book-me-step {
+  background-color: #2a2750 !important; /* darker purple panel */
+}
+
+.page-book_me .book-me-step__header {
+  background: linear-gradient(90deg, #a000ff, #ff4dd2) !important;
+  color: #ffffff !important;
 }
