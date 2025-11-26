@@ -5693,3 +5693,8 @@ sd-form-as-extension #choose-items-step-2 .form-group input {
   max-width: 340px !important;
   margin: 0 auto !important;
 }
+
+/* Tighten helper text spacing under Company Name */
+sd-form-as-extension #choose-items-step-2 .label-subtext p {
+  line-height: 1.2 !important;
+}
