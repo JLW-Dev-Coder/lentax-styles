@@ -5231,7 +5231,6 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 sd-form-as-extension {
   background: transparent;
   display: block;
-  margin: 0 auto 60px;
   max-width: 980px;
 }
 
@@ -5280,17 +5279,16 @@ sd-form-as-extension .sdAccordion.choose-items-steps {
 
 sd-form-as-extension .sdAccordion__body {
   background: radial-gradient(circle at top left, rgba(91, 45, 255, 0.25), #070b1e);
-  padding: 24px 26px 28px;
 }
 
 sd-form-as-extension .sdAccordion__head,
 sd-form-as-extension .sdAccordion__header {
-  background: linear-gradient(90deg, #7c3aed, #3b82f6) !important;
+  background: linear-gradient(90deg, #3533cd, #4f46e5) !important;
   border: 0 !important;
   border-radius: 18px !important;
   box-shadow: 0 16px 30px rgba(15, 23, 42, 0.55) !important;
   color: #ffffff !important;
-  padding: 18px 28px !important;
+  font-size: 20px !important;
 }
 
 sd-form-as-extension .sdAccordion__header > span:first-child,
@@ -5303,28 +5301,27 @@ sd-form-as-extension .sdAccordion__header-icon {
   font-weight: 600 !important;
   height: 30px !important;
   justify-content: center !important;
-  margin-right: 12px !important;
   width: 30px !important;
 }
 
 sd-form-as-extension .sdAccordion__head h4,
 sd-form-as-extension .sdAccordion__head .sdAccordion__title,
 sd-form-as-extension .sdAccordion__header h3,
-sd-form-as-extension .sdAccordion__header .sdAccordion__title,
-sd-form-as-extension .sdAccordion__header-title {
+sd-form-as-extension .sdAccordion__header-title,
+sd-form-as-extension .sdAccordion__header .sdAccordion__title {
   color: #ffffff !important;
   font-size: 18px !important;
   font-weight: 600 !important;
 }
 
-/* Hover / open / active — keep same purple theme */
+/* HOVER / OPEN / ACTIVE */
 sd-form-as-extension .sdAccordion__item:hover .sdAccordion__head,
 sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
 sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__head,
 sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header,
 sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__head,
 sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
-  background: linear-gradient(90deg, #8b5cf6, #2563eb) !important;
+  background: linear-gradient(90deg, #3533cd, #6366f1) !important;
   box-shadow: 0 18px 36px rgba(15, 23, 42, 0.7) !important;
 }
 
@@ -5333,21 +5330,12 @@ sd-form-as-extension .sdAccordion__item {
   border: none !important;
   border-radius: 26px;
   box-shadow: none !important;
-  margin-bottom: 18px !important;
-}
-
-/* Slight size bump for the main header band */
-sd-form-as-extension .sdAccordion__head,
-sd-form-as-extension .sdAccordion__header {
-  font-size: 20px !important;
-  padding: 26px 32px !important;
 }
 
 /* =====================================================
    APPOINTMENT CARDS / CALENDAR
    ===================================================== */
 
-/* Base appointment card look */
 sd-form-as-extension .appointment-card,
 sd-form-as-extension .bm-card,
 sd-form-as-extension .choose-items-card .card {
@@ -5357,14 +5345,13 @@ sd-form-as-extension .choose-items-card .card {
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 
-/* Hover – only affect hovered card */
 sd-form-as-extension .appointment-card:hover,
 sd-form-as-extension .bm-card:hover {
   background: #141a33 !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* SELECTED card — only .is-selected (no .active) */
+/* SELECTED */
 sd-form-as-extension .appointment-card.is-selected,
 sd-form-as-extension .bm-card.is-selected {
   background: linear-gradient(180deg, #1f274b, #0f1328) !important;
@@ -5372,23 +5359,21 @@ sd-form-as-extension .bm-card.is-selected {
   box-shadow: 0 0 20px rgba(124, 58, 237, 0.35) !important;
 }
 
-/* Unselected cards never get the glow */
 sd-form-as-extension .appointment-card:not(.is-selected),
 sd-form-as-extension .bm-card:not(.is-selected) {
   box-shadow: none !important;
 }
 
-/* Appointment generator titles to white */
 sd-form-as-extension .appointment-card h4,
 sd-form-as-extension .appointment-card .card-title,
-sd-form-as-extension .bm-card h4,
 sd-form-as-extension .bm-card__title,
+sd-form-as-extension .bm-card h4,
 sd-form-as-extension .bm-main h4,
 sd-form-as-extension .choose-items-card .title {
   color: #ffffff !important;
 }
 
-/* Calendar shell + days */
+/* Calendar */
 sd-form-as-extension .calendar,
 sd-form-as-extension .calendar-day,
 sd-form-as-extension .day,
@@ -5408,7 +5393,6 @@ sd-form-as-extension .fc-daygrid-day-number {
   color: #f4f5ff;
 }
 
-/* Selected / today */
 sd-form-as-extension .calendar-day.is-selected,
 sd-form-as-extension .fc-daygrid-day.fc-day-selected,
 sd-form-as-extension .fc-daygrid-day.fc-day-today {
@@ -5499,7 +5483,6 @@ sd-form-as-extension textarea::placeholder {
   border: none !important;
   border-radius: 14px !important;
   color: #ffffff !important;
-  padding: 14px 20px !important;
 }
 
 .book-me-step input,
@@ -5533,24 +5516,20 @@ sd-form-as-extension textarea::placeholder {
    BOOK-ME APPOINTMENT DETAILS MODAL
    ===================================================== */
 
-/* Modal shell */
 .modal-content .book-me-option-modal {
   background-color: #070b18;
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 22px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
   color: #f9fafb;
-  padding: 24px 28px 26px;
 }
 
-/* Backdrop area */
 .modal-content {
   background: transparent;
   border: none;
   box-shadow: none;
 }
 
-/* Close button */
 .book-me-option-modal .modal-close-btn {
   color: #ffffff;
   opacity: 0.85;
@@ -5567,13 +5546,11 @@ sd-form-as-extension textarea::placeholder {
   opacity: 1;
 }
 
-/* Modal layout */
 .book-me-option-modal .appointment-card__call-option-modal-body-inner-wrap {
   align-items: flex-start;
   gap: 20px;
 }
 
-/* Avatar / image stack */
 .book-me-option-modal .appointment-card__img-common-wrap {
   align-items: center;
   display: flex;
@@ -5589,7 +5566,6 @@ sd-form-as-extension textarea::placeholder {
   width: 80px;
 }
 
-/* Text column */
 .book-me-option-modal .appointment-card__details {
   flex: 1;
 }
@@ -5598,7 +5574,6 @@ sd-form-as-extension textarea::placeholder {
   color: #ffffff;
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
 .book-me-option-modal .appointment-card__subtitle {
@@ -5617,5 +5592,4 @@ sd-form-as-extension textarea::placeholder {
   color: #9ca3c7;
   display: inline-block;
   font-size: 13px;
-  margin-top: 8px;
 }
