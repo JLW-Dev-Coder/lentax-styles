@@ -5596,3 +5596,53 @@ sd-form-as-extension button:hover {
 sd-form-as-extension .wizard__footer .btn {
   background: linear-gradient(135deg, #ff8c1a, #ffc44b);
 }
+
+/* Accordion container – kill extra white card look */
+sd-form-as-extension .sdAccordion__item {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin-bottom: 18px !important;
+}
+
+/* Header band – purple pill, always */
+sd-form-as-extension .sdAccordion__header {
+  background: linear-gradient(90deg, #7c3aed, #3b82f6) !important;
+  border: 0 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.55) !important;
+  color: #ffffff !important;
+  padding: 18px 28px !important;
+}
+
+/* Keep the same look on hover / active */
+sd-form-as-extension .sdAccordion__item:hover .sdAccordion__header,
+sd-form-as-extension .sdAccordion__item.is-open .sdAccordion__header,
+sd-form-as-extension .sdAccordion__item.is-active .sdAccordion__header {
+  background: linear-gradient(90deg, #8b5cf6, #2563eb) !important;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.7) !important;
+}
+
+/* Number circle on the left */
+sd-form-as-extension .sdAccordion__header-icon,
+sd-form-as-extension .sdAccordion__header > span:first-child {
+  align-items: center !important;
+  background: rgba(15, 23, 42, 0.35) !important;
+  border-radius: 999px !important;
+  color: #ffffff !important;
+  display: inline-flex !important;
+  font-weight: 600 !important;
+  height: 30px !important;
+  justify-content: center !important;
+  margin-right: 12px !important;
+  width: 30px !important;
+}
+
+/* Title text */
+sd-form-as-extension .sdAccordion__header-title,
+sd-form-as-extension .sdAccordion__header h3,
+sd-form-as-extension .sdAccordion__header span.sdAccordion__title {
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
