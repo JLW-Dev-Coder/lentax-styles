@@ -5221,3 +5221,17 @@ form[action*="2tgbohKtxbUWKxAs4"] .form-actions.btn-list {
 form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
     display: none !important;
 }
+
+/* Remove ALL portal-level white blocks */
+.portalWidget,
+.widget-content,
+.contentBlock,
+.pageSection,
+.pageSection .widget-content,
+.pageSection .contentBlock {
+    background-color: #1d1f2e !important;  /* match your site dark */
+    border-radius: 28px !important;
+    border: 1px solid #2a2d40 !important;
+    box-shadow: none !important;
+    padding: 20px !important;
+}
