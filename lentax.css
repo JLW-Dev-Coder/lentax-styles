@@ -5222,23 +5222,107 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
     display: none !important;
 }
 
-/* VA booking page – kill the white card and match portal styling */
-.page-book_me,
-.page-book_me .wrapper,
-.page-book_me .section,
-.page-book_me .book-me,
-.page-book_me .book-me__main-content,
-.page-book_me .book-me__box {
+/* ===== BOOKING ACCORDION WRAPPER ===== */
+
+/* Kill the white card look and let your page background show through */
+.sdAccordion__item {
   background-color: transparent !important;
+  border: none !important;
   box-shadow: none !important;
 }
 
-/* Keep the inner content readable against the dark portal background */
-.page-book_me .book-me-step {
-  background-color: #2a2750 !important; /* darker purple panel */
+/* Step headers: deep purple bar, white text */
+.sdAccordion__header {
+  background: linear-gradient(90deg, #5515b8, #8b2fff) !important;
+  color: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 14px 20px !important;
+  border: none !important;
 }
 
-.page-book_me .book-me-step__header {
-  background: linear-gradient(90deg, #a000ff, #ff4dd2) !important;
+/* ===== BOOKING WIDGET SHELL ===== */
+
+sd-form-as-extension {
+  display: block !important;
+  background-color: transparent !important;
+}
+
+sd-form-as-extension section {
+  background-color: transparent !important;
+}
+
+/* Main wizard panel (the big inner block) */
+sd-form-as-extension .wizard,
+sd-form-as-extension .wizard__body,
+sd-form-as-extension .wizard__step {
+  background-color: #070b18 !important;      /* deep navy */
+  border-radius: 18px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+}
+
+/* ===== APPOINTMENT TYPE CARDS / INNER CARDS ===== */
+
+sd-form-as-extension .appointment-card,
+sd-form-as-extension .bm-card,
+sd-form-as-extension .bm-main {
+  background-color: #101326 !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+}
+
+/* ===== CALENDAR & TIME GRID ===== */
+
+sd-form-as-extension .calendar,
+sd-form-as-extension .calendar-day,
+sd-form-as-extension .day,
+sd-form-as-extension .fc-daygrid-day {
+  background-color: #151936 !important;
+  border-color: #262c55 !important;
+  color: #f5f5ff !important;
+}
+
+/* Today / selected slots pop in orange-gold */
+sd-form-as-extension .fc-daygrid-day.fc-day-today,
+sd-form-as-extension .fc-daygrid-day.fc-day-selected,
+sd-form-as-extension .calendar-day.is-selected {
+  background-color: #ffb347 !important;
+  color: #050816 !important;
+}
+
+/* ===== BUTTONS ===== */
+
+sd-form-as-extension button,
+sd-form-as-extension .btn,
+sd-form-as-extension .sd-btn {
+  background: linear-gradient(90deg, #ffb347, #ff7b00) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  color: #050816 !important;
+  font-weight: 700 !important;
+}
+
+/* Hover state for CTAs */
+sd-form-as-extension button:hover,
+sd-form-as-extension .btn:hover,
+sd-form-as-extension .sd-btn:hover {
+  filter: brightness(1.05) !important;
+}
+
+/* ===== INPUTS ===== */
+
+sd-form-as-extension input,
+sd-form-as-extension select,
+sd-form-as-extension textarea {
+  background-color: #050816 !important;
+  border-color: #262c55 !important;
   color: #ffffff !important;
+}
+
+/* Placeholder text a bit softer */
+sd-form-as-extension input::placeholder,
+sd-form-as-extension textarea::placeholder {
+  color: #9ca3c7 !important;
 }
