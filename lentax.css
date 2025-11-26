@@ -5597,3 +5597,39 @@ sd-form-as-extension .bm-main h4 {
 .book-me-option-modal .appointment-card__description {
   color: #e5e7f5;
   font
+
+/* =============================
+   FIX — APPOINTMENT CARD SELECTION
+   ============================= */
+
+/* Base card look (normal state) */
+sd-form-as-extension .appointment-card,
+sd-form-as-extension .bm-card,
+sd-form-as-extension .choose-items-card .card {
+  background: #090d24 !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+/* Hover only affects the hovered one */
+sd-form-as-extension .appointment-card:hover,
+sd-form-as-extension .bm-card:hover {
+  background: #141a33 !important;
+  border-color: rgba(255,255,255,0.25) !important;
+}
+
+/* SELECTED CARD — force this stronger look */
+sd-form-as-extension .appointment-card.is-selected,
+sd-form-as-extension .bm-card.is-selected,
+sd-form-as-extension .appointment-card.active,
+sd-form-as-extension .bm-card.active {
+  background: linear-gradient(180deg, #1f274b, #0f1328) !important;
+  border-color: #7c3aed !important; /* purple accent */
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.35) !important;
+}
+
+/* STOP the “other” card from inheriting blue glow */
+sd-form-as-extension .appointment-card:not(.is-selected):not(.active),
+sd-form-as-extension .bm-card:not(.is-selected):not(.active) {
+  box-shadow: none !important;
+}
