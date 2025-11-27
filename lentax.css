@@ -490,7 +490,7 @@
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
-  padding: 10px 26px;
+  /*padding: 10px 26px;*/
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.1s ease;
@@ -509,7 +509,6 @@
   color: rgb(41, 43, 44);
   transform: translateY(-1px);
 }
-
 
 /*Client*/
 .client-name {
@@ -5288,6 +5287,7 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
