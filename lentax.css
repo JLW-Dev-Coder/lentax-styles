@@ -485,7 +485,7 @@
   border: 1px solid rgb(204, 204, 204);
   border-radius: 6px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  color: rgb(41, 43, 44);
+  /*color: rgb(41, 43, 44);*/
   font-size: 18px;
   font-weight: 600;
   /*padding: 10px 26px;*/
@@ -5284,6 +5284,7 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
