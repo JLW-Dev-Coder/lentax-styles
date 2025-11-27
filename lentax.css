@@ -109,7 +109,7 @@
   flex-direction: column;
   /*gap: 5px;*/
   margin: 15px;
-  /*padding: 0px 15px 30px 15px;*/
+  padding: 0px 15px 30px 15px;
   /*position: relative;*/
 }
 
@@ -5351,6 +5351,7 @@ form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
