@@ -23,7 +23,7 @@
 }
 
 .account-card-status-active:hover {
-  background: linear-gradient(90deg, #00cc00, #00ff70);
+  background: linear-gradient(90deg, #00cc00, #00ff70);but
 }
 
 
@@ -480,31 +480,6 @@
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
 
-.button-custom-white {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(204, 204, 204);
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-
-  font-size: 18px;
-
-  text-align: center;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.1s ease;
-}
-
-.button-custom-white:active {
-  background-color: rgb(225, 225, 225);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-
-  transform: translateY(0);
-}
-
-.button-custom-white:hover {
-  background-color: rgb(236, 236, 236);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-
-  transform: translateY(-1px);
-}
 
 /*Client*/
 .client-name {
@@ -5283,6 +5258,7 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
