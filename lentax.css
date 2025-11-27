@@ -485,10 +485,9 @@
   border: 1px solid rgb(204, 204, 204);
   border-radius: 6px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  /*color: rgb(41, 43, 44);*/
+
   font-size: 18px;
-  font-weight: 600;
-  /*padding: 10px 26px;*/
+
   text-align: center;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
@@ -496,14 +495,14 @@
 .button-custom-white:active {
   background-color: rgb(225, 225, 225);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  color: rgb(41, 43, 44);
+
   transform: translateY(0);
 }
 
 .button-custom-white:hover {
   background-color: rgb(236, 236, 236);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  color: rgb(41, 43, 44);
+
   transform: translateY(-1px);
 }
 
@@ -5284,6 +5283,7 @@ form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
 form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
+
 
 
 
