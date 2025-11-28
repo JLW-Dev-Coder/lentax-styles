@@ -5259,6 +5259,11 @@ form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
     display: none !important;
 }
 
+/*Lentax Blog 0005*/
+form[action*="2ttW49FiPWyTf1R8c"] .form-actions.btn-list {
+    display: none !important;
+}
+
 
 /* ===== Password / login form card (registration-page) ===== */
 .registration-page .registration-card.form-oscar {
@@ -5351,13 +5356,3 @@ form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
-
-
-
-
-
-
-
-
-
-
