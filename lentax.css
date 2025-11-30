@@ -1300,6 +1300,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     display: none;
   }
 
+  .flow-nav-bar a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none !important;
+}
+
+  
   .flow-nav-btn {
     border-bottom: 1px solid rgba(255,255,255,0.1);
     border-right: none;
@@ -5408,6 +5414,7 @@ form[action*="21DUSRaM2uEc6Gvgd"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
