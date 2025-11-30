@@ -3482,6 +3482,14 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* ───────────────────────────────────────────────────────────── */
 /* Text Default: color + hover/active/focus states               */
 /* ───────────────────────────────────────────────────────────── */
+.text-default .flow-nav-bar a.flow-nav-btn,
+.text-default .flow-nav-bar a.flow-nav-btn:visited,
+.text-default .flow-nav-bar a.flow-nav-btn:hover,
+.text-default .flow-nav-bar a.flow-nav-btn:focus {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none !important;
+}
+
 .text-default,
 .text-default h1,
 .text-default h2,
@@ -5414,6 +5422,7 @@ form[action*="21DUSRaM2uEc6Gvgd"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
