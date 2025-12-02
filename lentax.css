@@ -1859,7 +1859,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 
 /*Hide*/
-/*.hide-on-desktop {
+.hide-on-desktop {
   display: none;
 }
 
@@ -1878,7 +1878,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   .hide-on-mobile {
     display: none !important;
   }
-}*/
+}
 
 
 /*Iframe*/
@@ -5431,6 +5431,7 @@ form[action*="vrJFioTesAYTS6iC"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
