@@ -3107,6 +3107,36 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 }
 
+/* Lock text colors inside lead magnet chips, even on hover */
+
+/* Header chips: Includes / Time */
+.lead-magnet-wrap .lead-magnet-pill,
+.lead-magnet-wrap .lead-magnet-pill * {
+  color: #f9fafb !important;
+}
+
+/* Persona chips */
+.lead-magnet-wrap .lead-magnet-persona-pill,
+.lead-magnet-wrap .lead-magnet-persona-pill * {
+  color: inherit !important;
+}
+
+/* Preview pills in the rock card */
+.lead-magnet-wrap .lead-magnet-preview-pill,
+.lead-magnet-wrap .lead-magnet-preview-pill * {
+  color: #111111 !important;
+}
+
+/* Optional: subtle hover without killing contrast */
+.lead-magnet-wrap .lead-magnet-persona-pill:hover {
+  filter: brightness(0.96);
+}
+
+.lead-magnet-wrap .lead-magnet-preview-pill:hover {
+  background: #f3f4f6;
+}
+
+
 /* End of Lead Magnet */
 
 
@@ -5894,6 +5924,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
