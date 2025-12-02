@@ -5340,6 +5340,11 @@ form[action*="vrJFioTesAYTS6iC"] .form-actions.btn-list {
     display: none !important;
 }
 
+/*Lentax Blog 0010*/
+form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
+    display: none !important;
+}
+
 /* ===== Password / login form card (registration-page) ===== */
 .registration-page .registration-card.form-oscar {
   background-color: rgb(26, 26, 26);
@@ -5431,6 +5436,7 @@ form[action*="vrJFioTesAYTS6iC"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
