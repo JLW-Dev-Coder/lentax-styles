@@ -3035,7 +3035,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 
   .lead-magnet-preview-title {
-    font-size:15px;
+    font-size: 20px;
     font-weight:700;
     margin-bottom:6px;
   }
@@ -5867,6 +5867,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
