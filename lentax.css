@@ -2834,254 +2834,273 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 /*End of Item Plan*/
 
-/*LEAD MAGNET*/
+/* LEAD MAGNET */
 
 :root {
-    --lm-bg: #f5f5f7;
-    --lm-card: #ffffff;
-    --lm-text: #111111;
-    --lm-muted: #555555;
-    --lm-gold: #e0b54c;
-    --lm-border: #e2e2e2;
-    --lm-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-    --lm-radius-lg: 22px;
-    --lm-radius-md: 14px;
-    --lm-pill: 999px;
-  }
+  --lm-bg: #f5f5f7;
+  --lm-border: #e2e2e2;
+  --lm-card: #ffffff;
+  --lm-gold: #e0b54c;
+  --lm-muted: #555555;
+  --lm-radius-lg: 22px;
+  --lm-radius-md: 14px;
+  --lm-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+  --lm-text: #111111;
+  --lm-pill: 999px;
+}
 
-  .lead-magnet-wrap {
-    background: var(--lm-bg);
-    padding: 28px 0 40px;
-    display: flex;
-    justify-content: center;
-  }
+.lead-magnet-wrap {
+  background: var(--lm-bg);
+  display: flex;
+  justify-content: center;
+  padding: 28px 0 40px;
+}
 
-  .lead-magnet-inner {
-    max-width: 1120px;
-    width: 100%;
-    background: #fff;
-    border-radius: var(--lm-radius-lg);
-    box-shadow: var(--lm-shadow);
-    padding: 32px 34px;
-    display: grid;
-    gap: 32px;
-    grid-template-columns: 2fr 1.2fr;
-  }
+.lead-magnet-inner {
+  background: #ffffff;
+  border-radius: var(--lm-radius-lg);
+  box-shadow: var(--lm-shadow);
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 2fr 1.2fr;
+  max-width: 1120px;
+  padding: 32px 34px;
+  width: 100%;
+}
 
-  @media (max-width: 900px) {
-    .lead-magnet-inner {
-      grid-template-columns: 1fr;
-      padding: 20px;
-    }
-  }
+.lead-magnet-eyebrow {
+  color: var(--lm-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
 
-  /* TEXT + LAYOUT */
-  .lead-magnet-eyebrow {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 600;
-    color: var(--lm-muted);
-    margin-bottom: 8px;
-  }
+.lead-magnet-title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
 
-  .lead-magnet-title {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    line-height: 1.15;
-  }
+.lead-magnet-title span {
+  background: linear-gradient(120deg, #e0b54c, #f97316);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
-  .lead-magnet-title span {
-    background: linear-gradient(120deg, #e0b54c, #f97316);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
+.lead-magnet-subtitle {
+  color: var(--lm-muted);
+  font-size: 14px;
+  margin-bottom: 16px;
+  max-width: 540px;
+}
 
-  .lead-magnet-subtitle {
-    font-size: 14px;
-    color: var(--lm-muted);
-    max-width: 540px;
-    margin-bottom: 16px;
-  }
+.lead-magnet-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
 
-  .lead-magnet-pill-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 22px;
-  }
+.lead-magnet-pill {
+  background: linear-gradient(135deg, #3a3a3a, #101010);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--lm-pill);
+  color: #f9fafb;
+  display: inline-flex;
+  font-size: 12px;
+  gap: 6px;
+  padding: 6px 14px;
+}
 
-  .lead-magnet-pill {
-    border-radius: var(--lm-pill);
-    border: 1px solid rgba(224,181,76,0.35);
-    background: #fff8e3aa;
-    padding: 6px 10px;
-    font-size: 11px;
-    display: inline-flex;
-    gap: 6px;
-  }
+.lead-magnet-benefits {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 26px;
+}
 
+.lead-magnet-benefit {
+  display: flex;
+  font-size: 13px;
+  gap: 10px;
+  line-height: 1.45;
+}
 
+.lead-magnet-benefit-icon {
+  align-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: inherit;
+  display: flex;
+  font-size: 13px;
+  font-weight: 600;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+  background: transparent;
+}
 
-  .lead-magnet-benefits {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 14px;
-    margin-bottom: 26px;
-  }
+.lead-magnet-personas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
 
-  @media (max-width: 680px){
-    .lead-magnet-benefits { grid-template-columns: 1fr; }
-  }
+.lead-magnet-persona-pill {
+  align-items: center;
+  border-radius: 35px;
+  display: inline-flex;
+  font-size: 125%;
+  justify-content: center;
+  padding: 6px 14px;
+}
 
-  .lead-magnet-benefit {
-    display: flex;
-    gap: 10px;
-    font-size: 13px;
-    line-height: 1.45;
-  }
-
-  .lead-magnet-benefit-icon {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    font-size: 12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#fff;
-  }
-
-  .lead-magnet-personas {
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:24px;
-  }
-
+/* Persona colors */
 .lead-magnet-persona-pill.thinker {
-  background-color: #dbeafe;       /* Soft blue */
-  border-color: #93c5fd;
+  background-color: #dbeafe;
+  border: 1px solid #93c5fd;
   color: #1e3a8a;
 }
 
 .lead-magnet-persona-pill.director {
-  background-color: #fee2e2;       /* Soft red */
-  border-color: #fca5a5;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
   color: #991b1b;
 }
 
 .lead-magnet-persona-pill.socializer {
-  background-color: #fef9c3;       /* Soft yellow */
-  border-color: #fde047;
+  background-color: #fef9c3;
+  border: 1px solid #fde047;
   color: #854d0e;
 }
 
 .lead-magnet-persona-pill.relator {
-  background-color: #dcfce7;       /* Soft green */
-  border-color: #86efac;
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
   color: #166534;
 }
 
+.lead-magnet-how {
+  background: #ffffff;
+  border: 1px solid var(--lm-border);
+  border-radius: var(--lm-radius-md);
+  margin-bottom: 24px;
+  padding: 14px;
+}
 
-  .lead-magnet-how {
-    border:1px solid var(--lm-border);
-    padding:14px;
-    border-radius:var(--lm-radius-md);
-    background:#fff;
-    margin-bottom:24px;
+.lead-magnet-how-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.lead-magnet-how-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.lead-magnet-how-step {
+  font-size: 12px;
+}
+
+.lead-magnet-side {
+  background: var(--lm-card);
+  border: 1px solid var(--lm-border);
+  border-radius: var(--lm-radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px;
+}
+
+.lead-magnet-preview {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.08) 0, transparent 40%),
+    linear-gradient(145deg, #5a4b35 0%, #2b2419 40%, #111111 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 35px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 35px rgba(0, 0, 0, 0.55);
+  padding: 18px 18px 16px;
+}
+
+.lead-magnet-preview-title {
+  color: #f9fafb;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.lead-magnet-preview-sub {
+  color: #e5e7eb;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.lead-magnet-preview-pills {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.lead-magnet-preview-pill {
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: var(--lm-pill);
+  font-size: 11px;
+  padding: 5px 10px;
+}
+
+.lead-magnet-form-block {
+  background: #fafbff;
+  border: 1px dashed #cbd5f5;
+  border-radius: var(--lm-radius-md);
+  padding: 12px;
+}
+
+.lead-magnet-form-placeholder {
+  background: #ffffff;
+  border: 1px dashed #dddddd;
+  border-radius: 12px;
+  color: #444444;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.lead-magnet-thanks {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .lead-magnet-inner {
+    grid-template-columns: 1fr;
+    padding: 20px;
   }
+}
 
-  .lead-magnet-how-title {
-    text-transform:uppercase;
-    font-size:12px;
-    letter-spacing:0.14em;
-    font-weight:700;
-    margin-bottom:6px;
+@media (max-width: 680px) {
+  .lead-magnet-benefits {
+    grid-template-columns: 1fr;
   }
 
   .lead-magnet-how-grid {
-    display:grid;
-    gap:12px;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns: 1fr;
   }
+}
 
-  @media(max-width:680px){
-    .lead-magnet-how-grid { grid-template-columns:1fr; }
-  }
+/* End of Lead Magnet */
 
-  .lead-magnet-how-step {
-    font-size:12px;
-  }
-
-  /* RIGHT CARD */
-  .lead-magnet-side {
-    background:var(--lm-card);
-    border:1px solid var(--lm-border);
-    border-radius:var(--lm-radius-lg);
-    padding:18px;
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-  }
-
-  .lead-magnet-preview {
-    background:linear-gradient(145deg,#fffdf7,#f4f4fa);
-    border:1px solid var(--lm-border);
-    border-radius:var(--lm-radius-md);
-    padding:16px;
-  }
-
-  .lead-magnet-preview-title {
-    font-size: 20px;
-    font-weight:700;
-    margin-bottom:6px;
-  }
-
-  .lead-magnet-preview-sub {
-    font-size:12px;
-    color:var(--lm-muted);
-    margin-bottom:12px;
-  }
-
-  .lead-magnet-preview-pills {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-  }
-
-  .lead-magnet-preview-pill {
-    font-size:11px;
-    padding:5px 10px;
-    border:1px solid #ddd;
-    border-radius:var(--lm-pill);
-    background:#fff;
-  }
-
-  .lead-magnet-form-block {
-    border:1px dashed #cbd5f5;
-    border-radius:var(--lm-radius-md);
-    padding:12px;
-    background:#fafbff;
-  }
-
-  .lead-magnet-form-placeholder {
-    border:1px dashed #ddd;
-    background:#fff;
-    padding:10px;
-    border-radius:12px;
-    font-size:12px;
-    color:#444;
-  }
-
-  /* Thank You */
-  .lead-magnet-thanks {
-    font-size:14px;
-    font-weight:600;
-  }
-/*End of Lead Magnet*/
 
 /*LenBot 3D*/
 .lentax-3d-letter {
@@ -5867,6 +5886,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
