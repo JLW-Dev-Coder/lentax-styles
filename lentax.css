@@ -3010,6 +3010,13 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   font-size: 12px;
 }
 
+.lead-magnet-lottie {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+
 .lead-magnet-side {
   background: var(--lm-card);
   border: 1px solid var(--lm-border);
@@ -3058,6 +3065,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   font-size: 11px;
   padding: 5px 10px;
 }
+
 
 .lead-magnet-form-block {
   background: #fafbff;
@@ -5886,6 +5894,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
