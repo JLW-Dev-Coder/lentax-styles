@@ -2837,17 +2837,19 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* LEAD MAGNET */
 
 :root {
-  --lm-bg: #f5f5f7;
+  --lm-bg: #1d1d1f;
   --lm-border: #e2e2e2;
   --lm-card: #ffffff;
   --lm-gold: #e0b54c;
-  --lm-muted: #555555;
+  --lm-muted: #cccccc;
   --lm-radius-lg: 22px;
   --lm-radius-md: 14px;
-  --lm-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-  --lm-text: #111111;
+  --lm-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+  --lm-text: #f9fafb;
   --lm-pill: 999px;
 }
+
+/* OUTER WRAP */
 
 .lead-magnet-wrap {
   background: var(--lm-bg);
@@ -2857,7 +2859,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-inner {
-  background: #ffffff;
+  background: #050505;
   border-radius: var(--lm-radius-lg);
   box-shadow: var(--lm-shadow);
   display: grid;
@@ -2867,6 +2869,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 32px 34px;
   width: 100%;
 }
+
+/* TEXT + HEADER */
 
 .lead-magnet-eyebrow {
   color: var(--lm-muted);
@@ -2878,6 +2882,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-title {
+  color: var(--lm-text);
   font-size: 32px;
   font-weight: 800;
   line-height: 1.15;
@@ -2893,15 +2898,29 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .lead-magnet-subtitle {
   color: var(--lm-muted);
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   max-width: 540px;
 }
 
+/* LOTTIE + PILLS ROW */
+
+.lead-magnet-lottie-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 0 18px;
+}
+
+.lead-magnet-lottie {
+  flex-shrink: 0;
+}
+
+/* HEADER PILLS */
+
 .lead-magnet-pill-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 8px;
-  margin-bottom: 22px;
 }
 
 .lead-magnet-pill {
@@ -2915,6 +2934,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 6px 14px;
 }
 
+/* BENEFITS */
+
 .lead-magnet-benefits {
   display: grid;
   gap: 14px;
@@ -2923,6 +2944,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-benefit {
+  color: var(--lm-text);
   display: flex;
   font-size: 13px;
   gap: 10px;
@@ -2942,6 +2964,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   width: 22px;
   background: transparent;
 }
+
+/* PERSONA PILLS */
 
 .lead-magnet-personas {
   display: flex;
@@ -2984,15 +3008,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   color: #166534;
 }
 
+/* HOW IT WORKS */
+
 .lead-magnet-how {
-  background: #ffffff;
-  border: 1px solid var(--lm-border);
+  background: #050505;
+  border: 1px solid #333333;
   border-radius: var(--lm-radius-md);
   margin-bottom: 24px;
   padding: 14px;
 }
 
 .lead-magnet-how-title {
+  color: #f9fafb;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -3007,19 +3034,15 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-how-step {
+  color: #e5e7eb;
   font-size: 12px;
 }
 
-.lead-magnet-lottie {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-
+/* RIGHT SIDE CARD */
 
 .lead-magnet-side {
-  background: var(--lm-card);
-  border: 1px solid var(--lm-border);
+  background: #050505;
+  border: 1px solid #333333;
   border-radius: var(--lm-radius-lg);
   display: flex;
   flex-direction: column;
@@ -3066,34 +3089,70 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 5px 10px;
 }
 
+/* FORM BLOCK PLACEHOLDER */
 
 .lead-magnet-form-block {
-  background: #fafbff;
+  background: #050711;
   border: 1px dashed #cbd5f5;
   border-radius: var(--lm-radius-md);
   padding: 12px;
 }
 
 .lead-magnet-form-placeholder {
-  background: #ffffff;
-  border: 1px dashed #dddddd;
+  background: #111111;
+  border: 1px dashed #444444;
   border-radius: 12px;
-  color: #444444;
+  color: #e5e7eb;
   font-size: 12px;
   padding: 10px;
 }
 
+/* THANK YOU TEXT (if you swap via JS later) */
+
 .lead-magnet-thanks {
+  color: #f9fafb;
   font-size: 14px;
   font-weight: 600;
 }
 
-/* Responsive */
+/* TEXT-DEFAULT OVERRIDES FOR VISIBILITY */
+
+.lead-magnet-wrap .lead-magnet-pill,
+.lead-magnet-wrap .lead-magnet-pill * {
+  color: #f9fafb !important;
+}
+
+.lead-magnet-wrap .lead-magnet-persona-pill,
+.lead-magnet-wrap .lead-magnet-persona-pill * {
+  color: inherit !important;
+}
+
+.lead-magnet-wrap .lead-magnet-preview-pill,
+.lead-magnet-wrap .lead-magnet-preview-pill * {
+  color: #111111 !important;
+}
+
+.lead-magnet-wrap .lead-magnet-persona-pill:hover {
+  filter: brightness(0.96);
+}
+
+.lead-magnet-wrap .lead-magnet-preview-pill:hover {
+  background: #f3f4f6;
+}
+
+/* RESPONSIVE */
 
 @media (max-width: 900px) {
   .lead-magnet-inner {
     grid-template-columns: 1fr;
     padding: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .lead-magnet-lottie-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -3107,37 +3166,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   }
 }
 
-/* Lock text colors inside lead magnet chips, even on hover */
-
-/* Header chips: Includes / Time */
-.lead-magnet-wrap .lead-magnet-pill,
-.lead-magnet-wrap .lead-magnet-pill * {
-  color: #f9fafb !important;
-}
-
-/* Persona chips */
-.lead-magnet-wrap .lead-magnet-persona-pill,
-.lead-magnet-wrap .lead-magnet-persona-pill * {
-  color: inherit !important;
-}
-
-/* Preview pills in the rock card */
-.lead-magnet-wrap .lead-magnet-preview-pill,
-.lead-magnet-wrap .lead-magnet-preview-pill * {
-  color: #111111 !important;
-}
-
-/* Optional: subtle hover without killing contrast */
-.lead-magnet-wrap .lead-magnet-persona-pill:hover {
-  filter: brightness(0.96);
-}
-
-.lead-magnet-wrap .lead-magnet-preview-pill:hover {
-  background: #f3f4f6;
-}
-
-
 /* End of Lead Magnet */
+
 
 
 /*LenBot 3D*/
@@ -5924,6 +5954,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
