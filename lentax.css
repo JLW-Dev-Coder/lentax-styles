@@ -2922,6 +2922,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     gap: 6px;
   }
 
+
+
   .lead-magnet-benefits {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -2959,13 +2961,30 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     margin-bottom:24px;
   }
 
-  .lead-magnet-persona-pill {
-    font-size:11px;
-    padding:5px 10px;
-    border:1px solid var(--lm-border);
-    background:#fff;
-    border-radius:var(--lm-pill);
-  }
+.lead-magnet-persona-pill.thinker {
+  background-color: #dbeafe;       /* Soft blue */
+  border-color: #93c5fd;
+  color: #1e3a8a;
+}
+
+.lead-magnet-persona-pill.director {
+  background-color: #fee2e2;       /* Soft red */
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.lead-magnet-persona-pill.socializer {
+  background-color: #fef9c3;       /* Soft yellow */
+  border-color: #fde047;
+  color: #854d0e;
+}
+
+.lead-magnet-persona-pill.relator {
+  background-color: #dcfce7;       /* Soft green */
+  border-color: #86efac;
+  color: #166534;
+}
+
 
   .lead-magnet-how {
     border:1px solid var(--lm-border);
@@ -5848,6 +5867,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
   transform: translateY(-1px);
 }
+
 
 
 
