@@ -2210,7 +2210,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
 }
 
-.item-column {
+/*ITEM COLUMN*/
+/*.item-column {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -2589,7 +2590,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .item-column-three-progress-bar:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.25);
-}
+}*/
 
 /*Item Grid*/
 /*Grid*/
@@ -6200,6 +6201,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
     flex: 0 0 100%;
   }
 }
+
 
 
 
