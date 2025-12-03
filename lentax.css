@@ -5972,6 +5972,53 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
 }
 
 
+/*PROPOSAL FIXES*/
+/* ===== Fix: Scope Lentax overlay button styling so it doesn't affect SuiteDash buttons ===== */
+.pricing-overlay-btn-lentax .btn {
+  align-items: center !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  height: 100% !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  outline: none !important;
+  padding: 0 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  transition: none !important;
+  transform: none !important;
+  width: 100% !important;
+}
+
+
+/* ===== Optional: Restore SuiteDash bottom navigation buttons ===== */
+.bottom_nav .btn {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  display: inline-flex;
+  height: auto;
+  justify-content: center;
+  margin: 0 5px;
+  padding: 4px 10px;
+  width: auto;
+}
+
+.bottom_nav .material-icons {
+  font-family: 'Material Icons';
+  font-feature-settings: 'liga';
+  font-size: 20px;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+}
+
+
 
 
 
