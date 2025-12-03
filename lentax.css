@@ -6180,6 +6180,27 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
 
 
 
+.proposal-progress-image {
+  display: block;
+  flex: 0 0 calc(50% - 8px);
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.proposal-progress-image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .proposal-progress-image {
+    flex: 0 0 100%;
+  }
+}
+
 
 
 
