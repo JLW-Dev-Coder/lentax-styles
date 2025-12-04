@@ -6153,40 +6153,17 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
 }
 
 /* ===== Proposal bottom navigator: FIX ===== */
-.bottom_nav {
+/*PROPOSAL FIXES*/
+/* ===== Fix: Scope Lentax overlay button styling so it doesn't affect SuiteDash buttons ===== */
+.pricing-overlay-btn-lentax {
   align-items: center;
   display: flex;
-  gap: 10px;
+  inset: 0;
   justify-content: center;
+  position: absolute;
+  z-index: 2;
 }
 
-.bottom_nav .btn {
-  align-items: center;
-  background-color: transparent !important;
-  border: 1px solid #cccccc;
-  border-radius: 50%;
-  display: inline-flex;
-  height: 40px;
-  justify-content: center;
-  margin: 0 5px;
-  padding: 0;
-  width: 40px;
-}
-
-.bottom_nav .material-icons {
-  color: #ffffff;
-  font-family: "Material Icons";
-  font-feature-settings: "liga";
-  font-size: 26px;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  white-space: nowrap;
-  -webkit-font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ===== Fix: Restore SuiteDash defaults for other buttons (limit scope) ===== */
 .pricing-overlay-btn-lentax .btn {
   align-items: center !important;
   background-color: transparent !important;
@@ -6205,4 +6182,40 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   transition: none !important;
   transform: none !important;
   width: 100% !important;
+}
+
+/* ===== Proposal bottom navigator ===== */
+.bottom_nav {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.bottom_nav .btn {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  display: inline-flex;
+  height: auto;
+  justify-content: center;
+  margin: 0 5px;
+  padding: 4px 10px;
+  width: auto;
+}
+
+.bottom_nav .material-icons {
+  font-family: "Material Icons" !important;
+  font-feature-settings: "liga";
+  font-size: 20px;
+  font-style: normal !important;
+  font-weight: normal !important;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
 }
