@@ -2041,7 +2041,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 
 /*Hide*/
-/*.hide-on-desktop {
+.hide-on-desktop {
   display: none;
 }
 
@@ -2049,7 +2049,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   .hide-on-desktop {
     display: block !important;
   }
-}*/
+}
 
 
 .hide-on-mobile {
@@ -6258,5 +6258,6 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 /*End of BLOG*/
+
 
 
