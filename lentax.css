@@ -6152,9 +6152,19 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   }
 }
 
-/* ===== Proposal bottom navigator: FIX ===== */
 /*PROPOSAL FIXES*/
-/* ===== Fix: Scope Lentax overlay button styling so it doesn't affect SuiteDash buttons ===== */
+/* ============================================================
+   PROPOSAL FIXES — CLEAN + COMPLETE
+   ============================================================ */
+
+/* ===== Fix: Prevent Lentax overlay components from affecting SuiteDash UI ===== */
+.pricing-overlay-btn-lentax,
+.pricing-overlay-btn-lentax * {
+  all: unset !important;
+  display: revert !important;
+}
+
+/* ===== Restore overlay container positioning (safe, isolated) ===== */
 .pricing-overlay-btn-lentax {
   align-items: center;
   display: flex;
@@ -6184,7 +6194,10 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   width: 100% !important;
 }
 
-/* ===== Proposal bottom navigator ===== */
+/* ============================================================
+   PROPOSAL BOTTOM NAVIGATION (NEXT / PREV)
+   ============================================================ */
+
 .bottom_nav {
   align-items: center;
   display: flex;
@@ -6216,6 +6229,26 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   text-transform: none;
   white-space: nowrap;
   word-wrap: normal;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   SIGNATURE MODAL FIX — removes textsmsType / createSign
+   ============================================================ */
+
+#signature-modal .material-icons,
+.sd-signature-container .material-icons,
+.sd-tabs .material-icons,
+.sd-sign-controls .material-icons {
+  font-family: "Material Icons" !important;
+  font-feature-settings: "liga";
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none !important;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }
