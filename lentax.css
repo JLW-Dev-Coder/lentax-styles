@@ -5880,7 +5880,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
     display: none !important;
 }
 
-/* ===== Password / login form card (registration-page) ===== */
+/*LOGIN PAGE*/
 .registration-page .registration-card.form-oscar {
   background-color: rgb(26, 26, 26);
   border-radius: 24px;
@@ -5952,7 +5952,6 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   text-align: center;
 }
 
-/* Make the default password button match your other CTAs if you can't add a custom class */
 .registration-page .registration-card .form-actions .btn-primary {
   background: linear-gradient(135deg, rgb(255, 170, 0), rgb(230, 115, 0));
   border: none;
@@ -5972,53 +5971,7 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   transform: translateY(-1px);
 }
 
-
-/*PROPOSAL FIXES*/
-/* ===== Fix: Scope Lentax overlay button styling so it doesn't affect SuiteDash buttons ===== */
-.pricing-overlay-btn-lentax .btn {
-  align-items: center !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  cursor: pointer !important;
-  display: flex !important;
-  height: 100% !important;
-  justify-content: center !important;
-  margin: 0 !important;
-  outline: none !important;
-  padding: 0 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  transition: none !important;
-  transform: none !important;
-  width: 100% !important;
-}
-
-
-/* ===== Optional: Restore SuiteDash bottom navigation buttons ===== */
-.bottom_nav .btn {
-  align-items: center;
-  background-color: transparent;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  display: inline-flex;
-  height: auto;
-  justify-content: center;
-  margin: 0 5px;
-  padding: 4px 10px;
-  width: auto;
-}
-
-.bottom_nav .material-icons {
-  font-family: 'Material Icons';
-  font-feature-settings: 'liga';
-  font-size: 20px;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-}
-
+/*End of LOGIN PAGE*/
 
 /*PROPOSAL*/
 .cart-proposal-intro {
@@ -6097,7 +6050,6 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
     color: #6ee7b7;
   }
 
-  /* ===================== PIPELINE CASCADE ===================== */
   .pipeline-cascade {
     border-radius: 12px;
     border: 1px solid #333333;
@@ -6179,8 +6131,6 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
     }
   }
 
-
-
 .proposal-progress-image {
   display: block;
   flex: 0 0 calc(50% - 8px);
@@ -6202,14 +6152,57 @@ form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
   }
 }
 
+/* ===== Proposal bottom navigator: FIX ===== */
+.bottom_nav {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
 
+.bottom_nav .btn {
+  align-items: center;
+  background-color: transparent !important;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  margin: 0 5px;
+  padding: 0;
+  width: 40px;
+}
 
+.bottom_nav .material-icons {
+  color: #ffffff;
+  font-family: "Material Icons";
+  font-feature-settings: "liga";
+  font-size: 26px;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
 
-
-
-
-
-
-
-
-
+/* ===== Fix: Restore SuiteDash defaults for other buttons (limit scope) ===== */
+.pricing-overlay-btn-lentax .btn {
+  align-items: center !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  height: 100% !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  outline: none !important;
+  padding: 0 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  transition: none !important;
+  transform: none !important;
+  width: 100% !important;
+}
