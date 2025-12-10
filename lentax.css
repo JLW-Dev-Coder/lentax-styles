@@ -6398,3 +6398,17 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
   opacity: 0.9;
   transform: translateY(-1px);
 }
+
+
+/* Remove ALL SuiteDash gray layers */
+.dashboard-item--project,
+.dashboard-item--project .shadow-block,
+.dashboard-item--project .skeleton-loader__item,
+.dashboard-item--project .dashboard-item__inner,
+.dashboard-item--project .completionData {
+  background: rgba(0, 0, 0, 0.70) !important;
+}
+
+.dashboard-item--project .skeleton-loader__item .shadow-block {
+  background: transparent !important;
+}
