@@ -6264,7 +6264,9 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
    =============================== */
 
 .cbe-block-1762457217329 {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 20, 0.95));
   border-radius: 18px;
+  color: white;
   font-family: "Raleway", sans-serif;
   overflow: hidden;
 }
@@ -6274,6 +6276,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
    =============================== */
 
 .dashboard-item--project {
+  background: rgba(0, 0, 0, 0.70);
   border-radius: 14px;
   cursor: pointer;
   margin-bottom: 12px;
@@ -6290,6 +6293,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
    =============================== */
 
 .dashboard-item--project .completionData {
+  background: rgba(0, 0, 0, 0.70);
   border-radius: 12px;
   margin-right: 16px;
   min-width: 10px;
@@ -6311,6 +6315,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 .dashboard-item--project .first-row {
   align-items: center;
+  color: white;
   display: flex;
   font-size: 11px;
   gap: 6px;
@@ -6319,6 +6324,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .dashboard-item--project .second-row {
+  color: white;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -6335,6 +6341,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 /* ===============================
    ACTION ICON AREA (RIGHT SIDE)
+   item-btn-cta theme
    =============================== */
 
 .contact2-filter__actions {
@@ -6345,6 +6352,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 .contact2-filter__actions .icon {
   align-items: center;
+  background: linear-gradient(to right, dark base, orange-gold);
   border-radius: 8px;
   display: flex;
   height: 26px;
@@ -6355,21 +6363,26 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .contact2-filter__actions .icon svg {
+  fill: white;
   height: 14px;
   width: 14px;
 }
 
 .contact2-filter__actions .icon:hover {
+  opacity: 0.85;
   transform: translateY(-1px);
 }
 
 /* ===============================
    FOOTER BUTTON ("View All Projects")
+   item-btn-cta theme
    =============================== */
 
 .dashboard-organize-box__footer-btn {
+  background: linear-gradient(to right, dark base, orange-gold);
   border: none;
   border-radius: 999px;
+  color: white;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -6378,11 +6391,13 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .dashboard-organize-box__footer-btn:hover {
+  opacity: 0.9;
   transform: translateY(-1px);
 }
 
 /* ===============================
    REMOVE SUITEDASH GRAY LAYERS
+   Force black backgrounds only
    =============================== */
 
 .dashboard-item--project,
@@ -6390,9 +6405,9 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 .dashboard-item--project .skeleton-loader__item,
 .dashboard-item--project .dashboard-item__inner,
 .dashboard-item--project .completionData {
-  /* backgrounds removed */
+  background: rgba(0, 0, 0, 0.70) !important;
 }
 
 .dashboard-item--project .skeleton-loader__item .shadow-block {
-  /* backgrounds removed */
+  background: transparent !important;
 }
