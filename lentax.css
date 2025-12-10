@@ -6264,10 +6264,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
    =============================== */
 
 .cbe-block-1762457217329 {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 20, 0.95));
   border-radius: 18px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
-  color: white;
   font-family: "Raleway", sans-serif;
   overflow: hidden;
 }
@@ -6277,9 +6274,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
    =============================== */
 
 .dashboard-item--project {
-  background: rgba(0, 0, 0, 0.70); /* BLACK, NOT GRAY */
   border-radius: 14px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   margin-bottom: 12px;
   padding: 12px 16px;
@@ -6287,7 +6282,6 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .dashboard-item--project:hover {
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.95);
   transform: translateY(-2px);
 }
 
@@ -6317,7 +6311,6 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 .dashboard-item--project .first-row {
   align-items: center;
-  color: rgba(255, 255, 255, 0.85);
   display: flex;
   font-size: 11px;
   gap: 6px;
@@ -6326,7 +6319,6 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .dashboard-item--project .second-row {
-  color: white;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -6343,7 +6335,6 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 /* ===============================
    ACTION ICON AREA (RIGHT SIDE)
-   Converted to item-btn-cta style
    =============================== */
 
 .contact2-filter__actions {
@@ -6354,9 +6345,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 .contact2-filter__actions .icon {
   align-items: center;
-  background: linear-gradient(to right, dark base, orange-gold);
   border-radius: 8px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.65);
   display: flex;
   height: 26px;
   justify-content: center;
@@ -6366,27 +6355,21 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .contact2-filter__actions .icon svg {
-  fill: white;
   height: 14px;
   width: 14px;
 }
 
 .contact2-filter__actions .icon:hover {
-  opacity: 0.85;
   transform: translateY(-1px);
 }
 
 /* ===============================
    FOOTER BUTTON ("View All Projects")
-   Match item-btn-cta style
    =============================== */
 
 .dashboard-organize-box__footer-btn {
-  background: linear-gradient(to right, dark base, orange-gold);
-  border-radius: 999px;
   border: none;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.8);
-  color: white;
+  border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -6395,20 +6378,21 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 .dashboard-organize-box__footer-btn:hover {
-  opacity: 0.9;
   transform: translateY(-1px);
 }
 
+/* ===============================
+   REMOVE SUITEDASH GRAY LAYERS
+   =============================== */
 
-/* Remove ALL SuiteDash gray layers */
 .dashboard-item--project,
 .dashboard-item--project .shadow-block,
 .dashboard-item--project .skeleton-loader__item,
 .dashboard-item--project .dashboard-item__inner,
 .dashboard-item--project .completionData {
-  background: rgba(0, 0, 0, 0.70) !important;
+  /* backgrounds removed */
 }
 
 .dashboard-item--project .skeleton-loader__item .shadow-block {
-  background: transparent !important;
+  /* backgrounds removed */
 }
