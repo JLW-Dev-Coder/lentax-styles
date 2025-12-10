@@ -6258,6 +6258,154 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 
 /*End of BLOG*/
 
+/*SD PROJECT BLOCK*/
+.cbe-block-1762457217329 {
+  background: radial-gradient(circle at top left, rgba(0, 255, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 215, 0, 0.18), transparent 55%), linear-gradient(135deg, rgba(0, 10, 40, 0.96), rgba(0, 0, 0, 0.96));
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+  color: white;
+  font-family: "Raleway", sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.dashboard-item--project {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 60%), rgba(0, 0, 0, 0.55);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  transition: box-shadow 0.18s ease-out, transform 0.18s ease-out;
+}
+
+.dashboard-item--project .completionData {
+  border-radius: 10px;
+  margin-right: 14px;
+  min-width: 8px;
+  overflow: hidden;
+}
+
+.dashboard-item--project .contact2-filter__actions {
+  gap: 6px;
+}
+
+.dashboard-item--project .dashboard-item__content {
+  padding-right: 10px;
+}
+
+.dashboard-item--project .dashboard-item__info {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.dashboard-item--project .dashboard-item__statuses {
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.dashboard-item--project .first-row {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  font-size: 11px;
+  gap: 4px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.dashboard-item--project .second-row {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
+}
+
+.dashboard-item--project .third-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard-item--project:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9);
+  transform: translateY(-2px);
+}
+
+.dashboard-organize-box__content {
+  padding: 12px 18px 4px 18px;
+}
+
+.dashboard-organize-box__footer {
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px 14px 18px;
+}
+
+.dashboard-organize-box__footer-btn {
+  background: linear-gradient(to right, dark base, orange-gold);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 7px 18px;
+  text-transform: uppercase;
+}
+
+.dashboard-organize-box__header {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px 10px 18px;
+}
+
+.dashboard-organize-box__header-filters {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+}
+
+.dashboard-organize-box__header-title {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dashboard-organize-box__filters-inputs-wrap {
+  gap: 6px;
+}
+
+.projectsBlockLoader .skeleton-loader__item {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.widget-filters .filter-button {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  padding: 0 10px;
+  transition: background 0.15s ease-out, border-color 0.15s ease-out, transform 0.15s ease-out;
+}
+
+.widget-filters .filter-button svg {
+  height: 14px;
+  width: 14px;
+}
 
 
 
