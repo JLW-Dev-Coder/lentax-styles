@@ -3535,7 +3535,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   /*margin: 15px;*/
   overflow: hidden;
   /*padding: 30px 30px 45px 30px;*/
-  position: relative;
+  /*position: relative;*/
 }
 
 .row-default-v3 {
@@ -6257,4 +6257,5 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 /*End of BLOG*/
+
 
