@@ -3526,7 +3526,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   padding: 15px;
 }
 
-.row-default-v2 {
+/*.row-default-v2 {
   background-color: black;
   /*border-radius: 8px;*/
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -3536,7 +3536,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   overflow: hidden;
   /*padding: 30px 30px 45px 30px;*/
   position: relative;
-}
+}*/
 
 .row-default-v3 {
   background-color: rgb(26, 26, 26);
@@ -6257,6 +6257,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 /*End of BLOG*/
+
 
 
 
