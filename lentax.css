@@ -2145,68 +2145,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /*Item*/
 .item-btn-cta {
-  background: linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255));
-  box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
-  transition: background 0.3s, transform 0.2s;
-
-  display: block;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-
-  border-radius: 8px;
-  text-align: center;
-  text-decoration: none;
-
-  border: none;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-
-  position: relative;  /* needed for shine positioning */
-  overflow: hidden;    /* hides shine outside button */
   cursor: pointer;
-}
-
-.item-btn-cta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 150%;        /* start fully off right */
-  width: 50%;        /* shine width */
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
-  transform: skewX(-20deg); /* angled shine */
-  animation: shine-reverse 3s infinite linear; /* animation duration 3s */
-  pointer-events: none;     /* clicks pass through */
-  z-index: 2;
-}
-
-@keyframes shine-reverse {
-  0% {
-    left: 150%;   /* fully off right */
-  }
-  25% {
-    left: 50%;    /* halfway across */
-  }
-  50% {
-    left: -50%;   /* fully off left */
-  }
-  75% {
-    left: 50%;    /* back to center */
-  }
-  100% {
-    left: 150%;   /* reset off right */
-  }
+  position: relative;
+  transform: translateY(0);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .item-btn-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 120, 0, 0.3);
+}
+
+.item-btn-cta:active {
+  transform: translateY(1px);
 }
 
 /*ITEM COLUMN*/
@@ -6257,6 +6207,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 /*End of BLOG*/
+
 
 
 
