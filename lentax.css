@@ -2145,19 +2145,62 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /*Item*/
 .item-btn-cta {
+  background: linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255));
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 8px;
+  border-right: 2px solid black;
+  box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
   cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
   position: relative;
+  text-align: center;
+  text-decoration: none;
   transform: translateY(0);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transition: background 0.3s, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  width: fit-content;
+}
+
+.item-btn-cta::before {
+  animation: shine-reverse 3s infinite linear;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  content: '';
+  height: 100%;
+  left: 150%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: skewX(-20deg);
+  width: 50%;
+  z-index: 2;
 }
 
 .item-btn-cta:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 255, 0.2);
   transform: translateY(-2px);
 }
 
 .item-btn-cta:active {
-  transform: translateY(1px);
+  box-shadow: inset 0 3px 7px rgba(0, 0, 255, 0.2);
+  transform: translateY(2px);
 }
+
+@keyframes shine-reverse {
+  0% { left: 150%; }
+  25% { left: 50%; }
+  50% { left: -50%; }
+  75% { left: 50%; }
+  100% { left: 150%; }
+}
+
 
 /*ITEM COLUMN*/
 .item-column {
@@ -6207,6 +6250,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 /*End of BLOG*/
+
 
 
 
