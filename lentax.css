@@ -2460,46 +2460,48 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  /*margin-top: 30px; /* account for image-block-v2 spacing */
 }
 
 .item-column-two-dual-buttons > .item-btn-cta {
-  background-color: #04AA6D; /* Green background */
-  border: 1px solid green;   /* Green border */
+  background-color: #04AA6D;
+  border: 1px solid green;
   border-radius: 15px;
   box-sizing: border-box;
-  color: white;               /* White text */
-  cursor: pointer;            /* Pointer/hand icon */
-  flex: 1 1 calc(50% - 16px); /* two-per-row math using container gap */
+  color: white;
+  cursor: pointer;
+  flex: 1 1 calc(50% - 16px);
   max-width: calc(50% - 16px);
-  overflow: hidden;           /* contain shine */
+  overflow: hidden;
   padding: 10px 24px;
-  position: relative;         /* needed for shine effects */
+  position: relative;
   text-align: center;
 }
 
-/* center the single final button when there is an odd number (e.g. 5) */
 .item-column-two-dual-buttons > .item-btn-cta:last-child {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Hover effect */
 .item-column-two-dual-buttons > .item-btn-cta:hover {
   background-color: #3e8e41;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
 }
 
-/* Responsive stack on smaller screens */
 @media (max-width: 768px) {
+  .item-column-two-dual-buttons {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .item-column-two-dual-buttons > .item-btn-cta {
     flex: 1 1 100%;
+    margin-left: 0;
+    margin-right: 0;
     max-width: 100%;
   }
 }
-
-
 
 
 .item-column-two-three-buttons {
@@ -6250,6 +6252,7 @@ form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
 }
 
 /*End of BLOG*/
+
 
 
 
