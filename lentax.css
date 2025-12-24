@@ -2202,9 +2202,18 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 
-/*ITEM COLUMN*/
+/* ===============================
+   ITEM COLUMN — LUX GRADIENT SYSTEM
+   =============================== */
+
+/* ITEM COLUMN */
 .item-column {
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -2215,35 +2224,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   position: relative;
 }
 
-/* Shine overlay (commented out for now)
-.item-column::before {
-  animation: feature-shine 3s infinite;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.45),
-    transparent
-  );
-  content: "";
-  height: 100%;
-  left: -75%;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  transform: skewX(-20deg);
-  width: 50%;
-  z-index: 2;
-}
-
-@keyframes feature-shine {
-  0% { left: -75%; }
-  50% { left: 125%; }
-  100% { left: 125%; }
-}
-*/
-
 .item-column::after {
-  background-color: rgba(0, 0, 0, 0.65);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
   border-radius: 8px;
   content: "";
   height: 100%;
@@ -2266,9 +2252,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   opacity: 1;
 }
 
-.item-column-overlay-icon {
-}
-
 .item-column-overlay-line {
   display: block;
   letter-spacing: 0.5px;
@@ -2289,73 +2272,98 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 3;
 }
 
+/* ===============================
+   ITEM COLUMN V2
+   =============================== */
+
 .item-column-v2 {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
-  padding: 30px 30px 45px 30px;
   margin: 15px;
-  overflow: hidden; /* contain shine */
+  overflow: hidden;
+  padding: 30px 30px 45px 30px;
+  position: relative;
 }
 
 .item-column-v2::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  height: 100%;
-  width: 50%;
+  animation: feature-shine 3s infinite;
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.35),
     transparent
   );
+  content: "";
+  height: 100%;
+  left: -75%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
   transform: skewX(-20deg);
-  animation: feature-shine 3s infinite;
-  z-index: 2;              /* put shine above content */
-  pointer-events: none;    /* let clicks pass through */
+  width: 50%;
+  z-index: 2;
 }
 
 @keyframes feature-shine {
-  0%   { left: -75%; }
-  50%  { left: 125%; }
+  0% { left: -75%; }
+  50% { left: 125%; }
   100% { left: 125%; }
 }
 
+/* ===============================
+   ITEM COLUMN V3
+   =============================== */
+
 .item-column-v3 {
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
-  /*margin: 15px;*/
   overflow: hidden;
   padding: 30px 30px 45px 30px;
   position: relative;
 }
 
-/*Item Column Two*/
+/* ===============================
+   ITEM COLUMN TWO
+   =============================== */
+
 .item-column-two {
-  background-color: rgba(0, 0, 0, 0.95);
+  background: linear-gradient(
+    160deg,
+    rgba(30, 30, 34, 0.99) 0%,
+    rgba(10, 10, 12, 0.97) 45%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
   flex: 1 1 65%;
+  isolation: isolate;
   margin: 15px;
   overflow: hidden;
   padding: 30px;
-  position: relative;   /* anchor absolute layers */
-  isolation: isolate;
+  position: relative;
   z-index: 0;
 }
 
 .item-column-two-bg {
   position: relative;
-  z-index: 1; /* ensures text layers above */
+  z-index: 1;
 }
 
 .item-column-two-bg h1,
@@ -2365,22 +2373,32 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .item-column-two-lottie {
+  height: 100%;
+  left: 50%;
+  opacity: 0.5;
+  pointer-events: none;
   position: absolute;
   top: 100%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%) scale(1.8); /* scale up the lottie */
+  transform: translate(-50%, -50%) scale(1.8);
   transform-origin: center center;
+  width: 100%;
   z-index: 0;
-  pointer-events: none;
-  opacity: 0.5;
 }
 
+/* ===============================
+   ITEM COLUMN TWO V2
+   =============================== */
+
 .item-column-two-v2 {
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+              0 15px 12px rgba(0, 0, 0, 0.22);
   display: flex;
   isolation: isolate;
   margin: 15px;
@@ -2400,8 +2418,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   width: 100%;
 }
 
+/* ===============================
+   ITEM COLUMN TWO V3
+   =============================== */
+
 .item-column-two-v3 {
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -2414,30 +2441,37 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 0;
 }
 
-/* text/content (always above overlay) */
 .item-column-two-v3-content {
   position: relative;
   z-index: 1;
 }
 
-/* overlay iframe layer (behind text) */
 .item-column-two-v3-iframe-bg {
-  position: absolute;
-  top: 75px;   /* offset down to align with content */
-  left: 0;
-  right: 0;
   bottom: 0;
-  width: 100%;
-  height: calc(100% - 75px); /* shrink height so it fits */
+  height: calc(100% - 75px);
+  left: 0;
   object-fit: cover;
   opacity: 0.5;
   pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 75px;
+  width: 100%;
   z-index: 0;
 }
 
+/* ===============================
+   ITEM COLUMN TWO V4
+   =============================== */
+
 .item-column-two-v4 {
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -2446,161 +2480,59 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   flex-wrap: wrap;
   gap: 16px;
   isolation: isolate;
+  justify-content: center;
   margin: 15px;
   overflow: hidden;
   padding: 30px 30px 45px 30px;
   z-index: 0;
-  justify-content: center;
 }
 
-.item-column-two-dual-buttons {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-}
+/* ===============================
+   ITEM COLUMN THREE
+   =============================== */
 
-.item-column-two-dual-buttons > .item-btn-cta {
-  background-color: #04AA6D;
-  border: 1px solid green;
-  border-radius: 15px;
-  box-sizing: border-box;
-  color: white;
-  cursor: pointer;
-  flex: 1 1 calc(50% - 16px);
-  max-width: calc(50% - 16px);
-  overflow: hidden;
-  padding: 10px 24px;
-  position: relative;
-  text-align: center;
-}
-
-.item-column-two-dual-buttons > .item-btn-cta:last-child {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.item-column-two-dual-buttons > .item-btn-cta:hover {
-  background-color: #3e8e41;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .item-column-two-dual-buttons {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .item-column-two-dual-buttons > .item-btn-cta {
-    flex: 1 1 100%;
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 100%;
-  }
-}
-
-
-.item-column-two-three-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-}
-
-/* Make buttons flexible width; no styling applied */
-.item-column-two-three-buttons > button {
-  flex: 1 1 auto;
-  max-width: 33%;
-}
-
-/* Stack buttons vertically on mobile */
-@media (max-width: 768px) {
-  .item-column-two-three-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .item-column-two-three-buttons > button {
-    max-width: 100%;
-  }
-}
-
-/*Item Column Three*/
 .item-column-three {
-  position: relative;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(32, 32, 36, 0.98) 0%,
+    rgba(12, 12, 14, 0.96) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  padding: 30px 30px 45px 30px;
   margin: 15px;
+  overflow: hidden;
+  padding: 30px 30px 45px 30px;
+  position: relative;
 }
 
-.item-column-three-btn {
-  display: block;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-left: 4px solid rgba(255, 140, 0, 0.3);
-  border-radius: 8px;
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease, border-left 0.3s ease;
-}
+/* ===============================
+   PROGRESS BAR
+   =============================== */
 
-.item-column-three-btn:hover {
-  background-color: #555;
-  transform: translateX(4px);
-  border-left: 4px solid #FF8C00;
-}
-
-.item-column-three-iframe-v2 {
-  top: 30px;
-}
-
-
-/*Progress Bar*/
 .item-column-three-progress-bar {
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  transition: background 0.3s ease, border-color 0.3s ease;
-  padding: 30px;
   margin-top: 30px;
+  padding: 30px;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .item-column-three-progress-bar:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-/* ITEM COLUMN */
-.item-column,
-.item-column-v2,
-.item-column-v3,
-.item-column-two,
-.item-column-two-v2,
-.item-column-two-v3,
-.item-column-two-v4,
-.item-column-three {
   background: linear-gradient(
     180deg,
-    rgba(28, 28, 30, 0.98) 0%,
-    rgba(10, 10, 12, 0.95) 45%,
-    rgba(0, 0, 0, 0.98) 100%
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.05) 100%
   );
+  border-color: rgba(255, 255, 255, 0.25);
 }
+
 
 /*Item Grid*/
 /*Grid*/
@@ -6288,6 +6220,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
 
