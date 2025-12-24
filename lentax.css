@@ -2585,6 +2585,22 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.25);
 }
+/* ITEM COLUMN */
+.item-column,
+.item-column-v2,
+.item-column-v3,
+.item-column-two,
+.item-column-two-v2,
+.item-column-two-v3,
+.item-column-two-v4,
+.item-column-three {
+  background: linear-gradient(
+    180deg,
+    rgba(28, 28, 30, 0.98) 0%,
+    rgba(10, 10, 12, 0.95) 45%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+}
 
 /*Item Grid*/
 /*Grid*/
@@ -6272,6 +6288,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
 
