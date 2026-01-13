@@ -3513,7 +3513,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Row*/
-.row-default {
+/*.row-default {
   /*background-color: rgba(0, 0, 0, 0.9);
   background-image: url('https://secure.lentax.co/file/be2b6ce694705bf3a825924674848f9d/0a4d0ca8-3e5b-43e1-94df-e349f74d2c24/Pic_Menu_Ship+anchor_558779821.jpeg?original=1');
   background-attachment: fixed;
@@ -3551,7 +3551,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background: linear-gradient(to bottom right, rgb(123, 108, 73), rgb(90, 78, 52));
   padding-bottom: 300px;
   padding-top: 50px;
-}
+}*/
 
 
 /*Section*/
@@ -6274,6 +6274,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
 
