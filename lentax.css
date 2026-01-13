@@ -1908,6 +1908,46 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   66% { color: blue; }
   100% { color: red; }
 }
+/*Row*/
+.row-default {
+  /*background-color: rgba(0, 0, 0, 0.9);
+  background-image: url('https://secure.lentax.co/file/be2b6ce694705bf3a825924674848f9d/0a4d0ca8-3e5b-43e1-94df-e349f74d2c24/Pic_Menu_Ship+anchor_558779821.jpeg?original=1');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
+  padding: 15px;
+}
+
+.row-default-v2 {
+  background-color: black;
+  /*border-radius: 8px;*/
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  flex: 1 1 65%;
+  /*margin: 15px;*/
+  overflow: hidden;
+  /*padding: 30px 30px 45px 30px;*/
+  position: relative;
+}
+
+.row-default-v3 {
+  background-color: rgb(26, 26, 26);
+  /*border-radius: 8px;*/
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  flex: 1 1 65%;
+  /*margin: 15px;*/
+  overflow: hidden;
+  /*padding: 30px 30px 45px 30px;*/
+  position: relative;
+}
+
+.row-default-v4 {
+  background: linear-gradient(to bottom right, rgb(123, 108, 73), rgb(90, 78, 52));
+  padding-bottom: 300px;
+  padding-top: 50px;
+}
 
 /* ===== Silver ===== */
 .silver-name {
@@ -6235,6 +6275,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
 
