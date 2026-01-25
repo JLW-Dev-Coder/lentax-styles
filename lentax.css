@@ -472,7 +472,7 @@
   background: linear-gradient(135deg, #FFA500, #E67300);
   border: none;
   border-bottom: 2px solid black;
-  border-radius: 35px;
+  border-radius: 6px;
   border-right: 2px solid black;
   box-shadow:
     rgba(45, 35, 66, 0.4) 0 2px 4px,
@@ -6275,6 +6275,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
 
