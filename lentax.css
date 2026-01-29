@@ -6312,7 +6312,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
-  border-radius: 25px;
+  border-radius: 15px;
   display: flex;
   font: inherit;
   font-size: 18px;
@@ -6324,7 +6324,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-align: center;
   text-decoration: none;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
-  width: 100%;
+  width: 80%;
 }
 
 .vl-btn .cbe-block-button-element.btn:active {
@@ -7257,6 +7257,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   overflow: auto;
   padding: 14px;
 }
+
 
 
 
