@@ -6429,6 +6429,13 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-hero-title {
+  background: linear-gradient(
+    270deg,
+    #f97316,
+    #fb923c,
+    #fbbf24
+  );
+  background-clip: text;
   font-size: 46px;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -6436,7 +6443,10 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   margin: 0 auto 18px;
   max-width: 1200px;
   text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .vl-list {
   margin: 12px 0 16px 26px;
@@ -6609,6 +6619,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
 
 
