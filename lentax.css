@@ -6277,6 +6277,11 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 /*End of BLOG*/
 
 /*VIRTUAL LAUNCH PRO*/
+.vl-body {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+  line-height: 1.7;
+}
 
 .vl-btn {
   align-items: center;
@@ -6297,10 +6302,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   white-space: nowrap;
 }
 
-.vl-btn:active {
-  transform: translateY(1px);
-}
-
 .vl-btn--ghost {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.16);
@@ -6313,17 +6314,13 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-btn--primary {
-  background: #f97316; /* brand-500 */
+  background: #f97316;
   border-color: transparent;
-  color: #070a10; /* ink-950 */
+  color: #070a10;
 }
 
 .vl-btn--primary:hover {
-  background: #fb923c; /* brand-400 */
-}
-
-.vl-btn--wide {
-  width: 100%;
+  background: #fb923c;
 }
 
 .vl-btn--sm {
@@ -6331,14 +6328,30 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   padding: 10px 16px;
 }
 
-/* =========================================================
-   VLP PAGE + HERO
-   ========================================================= */
+.vl-btn--wide {
+  width: 100%;
+}
+
+.vl-btn:active {
+  transform: translateY(1px);
+}
 
 .vl-divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   margin: 28px 0;
+}
+
+.vl-flow-step {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.92);
+  flex: 0 0 auto;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 8px 16px;
+  white-space: nowrap;
 }
 
 .vl-greeting {
@@ -6385,30 +6398,20 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-align: center;
 }
 
-/* =========================================================
-   VLP PAGE SHELL
-   ========================================================= */
+.vl-list {
+  margin: 12px 0 16px 26px;
+}
+
+.vl-list li {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
 
 .vl-page {
   margin: 0 auto;
   max-width: 100%;
   position: relative;
-}
-
-/* =========================================================
-   VLP PROGRESS / STEPS
-   ========================================================= */
-
-.vl-flow-step {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  color: rgba(255, 255, 255, 0.92);
-  flex: 0 0 auto;
-  font-size: 16px;
-  font-weight: 800;
-  padding: 8px 16px;
-  white-space: nowrap;
 }
 
 .vl-progress-steps {
@@ -6418,6 +6421,18 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   grid-template-columns: repeat(5, 1fr);
   margin-bottom: 28px;
   text-align: center;
+}
+
+.vl-section-subtitle {
+  font-size: 20px;
+  font-weight: 900;
+  margin: 28px 0 10px;
+}
+
+.vl-section-title {
+  font-size: 26px;
+  font-weight: 900;
+  margin: 40px 0 14px;
 }
 
 .vl-step {
@@ -6483,38 +6498,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-transform: uppercase;
 }
 
-/* =========================================================
-   VLP TEXT + CONTENT
-   ========================================================= */
-
-.vl-body {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 17px;
-  line-height: 1.7;
-}
-
-.vl-list {
-  margin: 12px 0 16px 26px;
-}
-
-.vl-list li {
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 8px;
-}
-
-.vl-section-subtitle {
-  font-size: 20px;
-  font-weight: 900;
-  margin: 28px 0 10px;
-}
-
-.vl-section-title {
-  font-size: 26px;
-  font-weight: 900;
-  margin: 40px 0 14px;
-}
-
 .vl-subhead {
   font-size: 20px;
   font-weight: 800;
@@ -6523,10 +6506,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   max-width: 1000px;
   text-align: center;
 }
-
-/* =========================================================
-   MOBILE ADJUSTMENTS
-   ========================================================= */
 
 @media (max-width: 768px) {
   .vl-hero {
