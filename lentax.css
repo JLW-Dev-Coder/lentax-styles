@@ -6375,6 +6375,45 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
+.vl-card {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 165, 0, 0.10);
+  border: 2px solid rgba(255, 165, 0, 1);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  justify-content: flex-start;
+  max-width: 320px;
+  padding: 32px;
+  text-align: left;
+}
+
+.vl-card-icon {
+  align-items: center;
+  background: rgba(255, 165, 0, 0.15);
+  border: 1px solid rgba(255, 165, 0, 0.40);
+  border-radius: 12px;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.vl-card-kicker {
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-top: 18px;
+}
+
+.vl-card-text {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-top: 12px;
+}
+
 
 .vl-divider {
   border: none;
@@ -6620,11 +6659,3 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
-
-
-
-
-
-
-
-
