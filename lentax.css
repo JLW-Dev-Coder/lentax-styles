@@ -6372,6 +6372,17 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
+.vl-btn--support .cbe-block-button-element.btn,
+.vl-btn--support .cbe-block-button-element.btn.btn-primary {
+  background-color: #0ea5a4; /* teal-calm */
+  border: 0;
+  color: #031313;
+}
+
+.vl-btn--support .cbe-block-button-element.btn:hover {
+  background-color: #14b8b6;
+}
+
 /*VIRTUAL LAUNCH PRO*/
 
 .vl-card {
@@ -7246,6 +7257,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   overflow: auto;
   padding: 14px;
 }
+
 
 
 
