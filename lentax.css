@@ -6398,9 +6398,21 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   justify-content: center;
 }
 
-.vl-cards-grid > .vl-card {
+.vl-cards-grid > .vl-card:nth-last-child(2),
+.vl-cards-grid > .vl-card:nth-last-child(1) {
+  grid-column: span 1;
+}
+
+.vl-cards-grid > .vl-card:nth-last-child(2) {
+  grid-column: 1 / span 2;
   justify-self: center;
 }
+
+.vl-cards-grid > .vl-card:nth-last-child(1) {
+  grid-column: 2 / span 2;
+  justify-self: center;
+}
+
 
 
 .vl-card-icon {
@@ -6673,6 +6685,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     white-space: nowrap;
   }
 }
+
 
 
 
