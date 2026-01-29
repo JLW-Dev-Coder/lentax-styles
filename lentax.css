@@ -6543,3 +6543,29 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     white-space: nowrap;
   }
 }
+
+
+/* STEP NUMBER — visible gray circle like SuiteDash */
+
+.vl-step-num {
+  align-items: center;
+  background: #e5e7eb;          /* light gray fill */
+  border: 1px solid #d1d5db;    /* subtle gray edge */
+  border-radius: 999px;
+  color: #374151;               /* dark gray number */
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  height: 28px;
+  justify-content: center;
+  line-height: 1;
+  width: 28px;
+}
+
+/* Active step — orange fill like brand */
+
+.vl-step.is-active .vl-step-num {
+  background: #f97316;          /* brand orange */
+  border-color: #fb923c;
+  color: #070a10;
+}
