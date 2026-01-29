@@ -6291,7 +6291,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
-  border-radius: 20px;
+  border-radius: 25px;
   display: flex;
   font: inherit;
   font-size: 18px;
@@ -6299,7 +6299,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   justify-content: center;
   line-height: 1;
   min-height: 44px;
-  padding: 10px 32px;
+  padding: 12px 32px;
   text-align: center;
   text-decoration: none;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
@@ -6601,4 +6601,5 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
