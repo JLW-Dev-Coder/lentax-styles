@@ -6364,9 +6364,9 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-hero {
-  margin-bottom: 36px;
+  margin-bottom: 10px;
   overflow: visible;
-  padding: 24px 40px 32px;
+  padding: 24px 15px 32px;
 }
 
 .vl-hero-lead {
@@ -6569,3 +6569,4 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
