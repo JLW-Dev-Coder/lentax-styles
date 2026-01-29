@@ -6692,4 +6692,558 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   }
 }
 
+/* =========================================================
+   VIRTUAL LAUNCH (VL) — DETAILS (MODEL TOUR + TEMPLATE MAP)
+   Add to lentax.css
+   ========================================================= */
+
+.vl-aurora {
+  overflow: hidden;
+  position: relative;
+}
+
+.vl-aurora__blob {
+  border-radius: 999px;
+  filter: blur(120px);
+  height: 520px;
+  pointer-events: none;
+  position: absolute;
+  width: 520px;
+  z-index: -1;
+}
+
+.vl-aurora__blob--a {
+  background: rgba(249, 115, 22, 0.30);
+  left: -8rem;
+  top: -8rem;
+}
+
+.vl-aurora__blob--b {
+  background: rgba(110, 231, 255, 0.18);
+  right: -8rem;
+  top: 30%;
+}
+
+.vl-aurora__blob--c {
+  background: rgba(232, 121, 249, 0.12);
+  bottom: -6rem;
+  left: 25%;
+  height: 420px;
+  width: 420px;
+}
+
+.vl-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.80);
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  padding: 8px 14px;
+}
+
+.vl-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1240px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+}
+
+.vl-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  inset: 0;
+  mask-image: radial-gradient(circle at 50% 18%, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 58%);
+  opacity: 0.60;
+  pointer-events: none;
+  position: fixed;
+  z-index: -20;
+}
+
+.vl-grid-pan {
+  animation: vlGridPan 22s linear infinite;
+  will-change: transform;
+}
+
+@keyframes vlGridPan {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-56px, -56px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vl-grid-pan {
+    animation: none;
+  }
+}
+
+.vl-glow {
+  border-radius: 999px;
+  filter: blur(80px);
+  height: 520px;
+  pointer-events: none;
+  position: fixed;
+  width: 520px;
+  z-index: -10;
+}
+
+.vl-glow--a {
+  background: rgba(249, 115, 22, 0.35);
+  left: -10rem;
+  top: -10rem;
+}
+
+.vl-glow--b {
+  background: rgba(110, 231, 255, 0.25);
+  bottom: -10rem;
+  right: -10rem;
+}
+
+.vl-hero {
+  padding-bottom: 40px;
+  padding-top: 12px;
+}
+
+.vl-hero__inner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.vl-hero__lottie {
+  height: 220px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+}
+
+.vl-hero__lottie iframe {
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.vl-hero__title {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin: 14px auto 0;
+  max-width: 980px;
+  text-align: center;
+}
+
+.vl-hero__subhead {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 18px auto 0;
+  max-width: 760px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .vl-hero {
+    padding-bottom: 56px;
+    padding-top: 24px;
+  }
+
+  .vl-hero__lottie {
+    height: 250px;
+    width: 250px;
+  }
+
+  .vl-hero__subhead {
+    font-size: 18px;
+  }
+
+  .vl-hero__title {
+    font-size: 60px;
+  }
+}
+
+.vl-panel {
+  background: rgba(11, 18, 32, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 980px;
+  padding: 22px;
+}
+
+@media (min-width: 768px) {
+  .vl-panel {
+    padding: 30px;
+  }
+}
+
+.vl-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  position: relative;
+}
+
+.vl-section__head {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 780px;
+  text-align: center;
+}
+
+.vl-section__kicker {
+  color: rgba(251, 146, 60, 0.95);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.vl-section__title {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin-top: 14px;
+}
+
+.vl-section__text {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+  max-width: 680px;
+}
+
+@media (min-width: 768px) {
+  .vl-section__title {
+    font-size: 44px;
+  }
+}
+
+.vl-shell {
+  background: #070a10;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: Raleway, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.vl-tabs {
+  display: grid;
+  gap: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 980px;
+  margin-top: 26px;
+}
+
+@media (min-width: 640px) {
+  .vl-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.vl-tabs__btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  padding: 18px 18px;
+  text-align: left;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  width: 100%;
+}
+
+.vl-tabs__btn:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.vl-tabs__btn[aria-selected="true"] {
+  border-color: rgba(249, 115, 22, 0.45);
+  outline: 2px solid rgba(249, 115, 22, 0.25);
+  outline-offset: 0;
+}
+
+.vl-tabs__btn-kicker {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.vl-tabs__btn-title {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 18px;
+  font-weight: 900;
+  margin-top: 6px;
+}
+
+.vl-tabs__btn-text {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 6px;
+  max-width: 44ch;
+}
+
+.vl-tour {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 980px;
+}
+
+.vl-tour__headline {
+  color: #ffb300;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  margin: 0;
+  text-align: center;
+}
+
+.vl-tour__subhead {
+  color: rgba(209, 213, 219, 0.95);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .vl-tour__headline {
+    font-size: 40px;
+  }
+
+  .vl-tour__subhead {
+    font-size: 16px;
+  }
+}
+
+.vl-tour__tabs {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 18px;
+  max-width: 980px;
+  padding-bottom: 10px;
+}
+
+.vl-tour__tab {
+  border-bottom: 3px solid transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 10px 6px;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.vl-tour__tab.is-active {
+  border-bottom-color: #f97316;
+  color: rgba(255, 255, 255, 1);
+}
+
+.vl-tour__slide {
+  display: none;
+  padding-top: 18px;
+}
+
+.vl-tour__slide.is-active {
+  display: block;
+}
+
+.vl-tour__title {
+  color: rgba(255, 255, 255, 1);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+.vl-tour__subtitle {
+  color: rgba(209, 213, 219, 0.90);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.vl-tour__items {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+}
+
+.vl-tour__item {
+  color: rgba(229, 231, 235, 0.98);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+
+.vl-view {
+  padding-bottom: 80px;
+  padding-top: 64px;
+}
+
+@media (min-width: 768px) {
+  .vl-view {
+    padding-bottom: 96px;
+    padding-top: 80px;
+  }
+}
+
+.vl-map__headline {
+  color: #ffb300;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  margin: 0;
+}
+
+.vl-map__subhead {
+  color: rgba(209, 213, 219, 0.95);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .vl-map__headline {
+    font-size: 40px;
+  }
+
+  .vl-map__subhead {
+    font-size: 16px;
+  }
+}
+
+.vl-template {
+  margin-top: 18px;
+}
+
+.vl-template__layout {
+  display: grid;
+  gap: 26px;
+  grid-template-columns: 280px 1fr;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .vl-template__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vl-template__panels {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: 26px;
+}
+
+@media (max-width: 900px) {
+  .vl-template__panels {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+.vl-template__panel {
+  display: none;
+}
+
+.vl-template__panel.is-active {
+  display: block;
+}
+
+.vl-template__panel h3 {
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  font-weight: 900;
+  margin-top: 0;
+}
+
+.vl-template__panel p {
+  color: rgba(209, 213, 219, 0.90);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 8px;
+  max-width: 720px;
+}
+
+.vl-template__panel ul {
+  color: rgba(255, 255, 255, 0.90);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.vl-template__panel ul li {
+  margin-top: 6px;
+}
+
+.vl-template__tab {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.86);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+  padding: 9px 10px;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.vl-template__tab.is-active {
+  background: rgba(255, 255, 255, 0.10);
+  outline: 2px solid rgba(249, 115, 22, 0.35);
+  outline-offset: 0;
+}
+
+.vl-template__tabs {
+  width: 100%;
+}
+
+.vl-template details summary {
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.vl-template details pre {
+  background: rgba(11, 18, 32, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+  color: rgba(229, 231, 235, 0.92);
+  margin-top: 10px;
+  max-height: 320px;
+  overflow: auto;
+  padding: 14px;
+}
+
 
