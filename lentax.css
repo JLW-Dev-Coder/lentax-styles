@@ -6330,3 +6330,237 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   font-size: 13px;
   padding: 10px 16px;
 }
+
+/* =========================================================
+   VLP PAGE + HERO
+   ========================================================= */
+
+.vl-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 28px 0;
+}
+
+.vl-greeting {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.35;
+  margin: 0 auto 18px;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.vl-hero {
+  margin-bottom: 36px;
+  overflow: visible;
+  padding: 24px 40px 32px;
+}
+
+.vl-hero-lead {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 20px;
+  line-height: 1.75;
+  margin: 0 auto 16px;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.vl-hero-note {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.7;
+  margin: 30px auto 28px;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.vl-hero-title {
+  font-size: 46px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 auto 18px;
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* =========================================================
+   VLP PAGE SHELL
+   ========================================================= */
+
+.vl-page {
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+}
+
+/* =========================================================
+   VLP PROGRESS / STEPS
+   ========================================================= */
+
+.vl-flow-step {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.92);
+  flex: 0 0 auto;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.vl-progress-steps {
+  align-items: flex-start;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.vl-step {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.vl-step.is-active .vl-step-num {
+  background: linear-gradient(135deg, #fb923c, #f97316);
+  color: #070a10;
+}
+
+.vl-step-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 6px;
+  text-align: center;
+  width: 100%;
+}
+
+.vl-step-num {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.70);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.vl-step-sep {
+  color: rgba(255, 255, 255, 0.45);
+  flex: 0 0 auto;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.vl-steps {
+  text-align: center;
+}
+
+.vl-steps-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 100%;
+  padding: 2px 0 6px;
+}
+
+.vl-steps-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   VLP TEXT + CONTENT
+   ========================================================= */
+
+.vl-body {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.vl-list {
+  margin: 12px 0 16px 26px;
+}
+
+.vl-list li {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.vl-section-subtitle {
+  font-size: 20px;
+  font-weight: 900;
+  margin: 28px 0 10px;
+}
+
+.vl-section-title {
+  font-size: 26px;
+  font-weight: 900;
+  margin: 40px 0 14px;
+}
+
+.vl-subhead {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.6;
+  margin: 18px auto 10px;
+  max-width: 1000px;
+  text-align: center;
+}
+
+/* =========================================================
+   MOBILE ADJUSTMENTS
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .vl-hero {
+    padding: 20px 18px 24px;
+  }
+
+  .vl-hero-title {
+    font-size: 34px;
+  }
+
+  .vl-progress-steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .vl-progress-steps {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .vl-progress-steps::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vl-step-label {
+    display: none;
+  }
+
+  .vl-steps-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
