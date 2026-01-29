@@ -2642,21 +2642,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /*Item Instructions*/
 .item-instructions-cta {
-  background: linear-gradient(90deg, #00cc00, #00ff00); /* base green gradient */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, #f97316, #fb923c);
   background-clip: text;
   color: transparent;
-  /*cursor: pointer; /* optional to indicate clickable text */
   font-weight: 700;
   transition: background 0.4s ease;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .item-instructions-cta:hover {
-  background: linear-gradient(90deg, #00ff00, #33ff33); /* slightly brighter green on hover */
+  background: linear-gradient(90deg, #fb923c, #fbbf24);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .item-instructions-cta-aqua {
@@ -6604,6 +6603,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
 
 
