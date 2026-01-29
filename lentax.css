@@ -2818,14 +2818,20 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .item-plan-title {
-  margin: 10px 0;
-  text-align: center;
-  background: linear-gradient(90deg, #e6b800, #cca300);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    #f97316,
+    #fb923c,
+    #fbbf24
+  );
   background-clip: text;
   color: transparent;
+  margin: 12px 0;
+  text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .item-plan-subtitle {
   margin: 10px 0;
@@ -6291,11 +6297,14 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   line-height: 1.7;
 }
 
-/* =========================================================
-   VLP BUTTON BRIDGE → SUITEDASH (CBE)
-   ========================================================= */
+/*VIRTUAL LAUNCH PRO*/
 
-/* Base button */
+.vl-body {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
@@ -6318,25 +6327,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   transform: translateY(1px);
 }
 
-/* =========================================================
-   PRIMARY (ORANGE)
-   ========================================================= */
-
-.vl-btn--primary .cbe-block-button-element.btn,
-.vl-btn--primary .cbe-block-button-element.btn.btn-primary {
-  background-color: #f97316;
-  border: 0;
-  color: #070a10;
-}
-
-.vl-btn--primary .cbe-block-button-element.btn:hover {
-  background-color: #fb923c;
-}
-
-/* =========================================================
-   GHOST / SECONDARY
-   ========================================================= */
-
 .vl-btn--ghost .cbe-block-button-element.btn {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -6348,10 +6338,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: rgba(255, 255, 255, 0.22);
 }
 
-/* =========================================================
-   INACTIVE / DISABLED
-   ========================================================= */
-
 .vl-btn--inactive .cbe-block-button-element.btn {
   background-color: rgba(203, 213, 225, 0.6);
   border: 1px solid rgba(203, 213, 225, 0.8);
@@ -6362,9 +6348,16 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   pointer-events: none;
 }
 
-/* =========================================================
-   SIZE MODIFIERS
-   ========================================================= */
+.vl-btn--primary .cbe-block-button-element.btn,
+.vl-btn--primary .cbe-block-button-element.btn.btn-primary {
+  background-color: #f97316;
+  border: 0;
+  color: #070a10;
+}
+
+.vl-btn--primary .cbe-block-button-element.btn:hover {
+  background-color: #fb923c;
+}
 
 .vl-btn--sm .cbe-block-button-element.btn {
   font-size: 13px;
@@ -6385,6 +6378,13 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   max-width: 320px;
   padding: 32px;
   text-align: left;
+}
+
+.vl-card-foot {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 16px;
 }
 
 .vl-card-icon {
@@ -6414,11 +6414,18 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   margin-top: 12px;
 }
 
+.vl-cards-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 320px));
+  justify-content: center;
+  justify-items: center;
+}
 
 .vl-divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  margin: 0px 0;
+  margin: 0 0;
 }
 
 .vl-flow-step {
@@ -6468,12 +6475,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-hero-title {
-  background: linear-gradient(
-    270deg,
-    #f97316,
-    #fb923c,
-    #fbbf24
-  );
+  background: linear-gradient(270deg, #f97316, #fb923c, #fbbf24);
   background-clip: text;
   font-size: 46px !important;
   font-weight: 900;
@@ -6486,6 +6488,10 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   -webkit-text-fill-color: transparent;
 }
 
+.vl-icon {
+  height: 24px;
+  width: 24px;
+}
 
 .vl-list {
   margin: 12px 0 16px 26px;
@@ -6512,6 +6518,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-align: center;
 }
 
+.vl-section {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 10px 0 0;
+}
+
 .vl-section-subtitle {
   font-size: 20px;
   font-weight: 900;
@@ -6532,7 +6544,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-step.is-active .vl-step-num {
-  background: linear-gradient(135deg, #fb923c, #f97316);
+  background: #f97316;
+  border-color: #fb923c;
   color: #070a10;
 }
 
@@ -6547,14 +6560,16 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-step-num {
   align-items: center;
-  background: rgba(255, 255, 255, 0.18);
+  background: #e5e7eb;
+  border: 1px solid #d1d5db;
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.70);
+  color: #374151;
   display: inline-flex;
   font-size: 13px;
   font-weight: 900;
   height: 28px;
   justify-content: center;
+  line-height: 1;
   width: 28px;
 }
 
@@ -6596,6 +6611,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-align: center;
 }
 
+@media (max-width: 980px) {
+  .vl-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 320px));
+  }
+}
+
 @media (max-width: 768px) {
   .vl-hero {
     padding: 20px 18px 24px;
@@ -6610,8 +6631,11 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   }
 }
 
-
 @media (max-width: 640px) {
+  .vl-cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .vl-progress-steps {
     overflow-x: auto;
     padding-bottom: 6px;
@@ -6632,30 +6656,4 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     overflow-x: auto;
     white-space: nowrap;
   }
-}
-
-
-/* STEP NUMBER — visible gray circle like SuiteDash */
-
-.vl-step-num {
-  align-items: center;
-  background: #e5e7eb;          /* light gray fill */
-  border: 1px solid #d1d5db;    /* subtle gray edge */
-  border-radius: 999px;
-  color: #374151;               /* dark gray number */
-  display: inline-flex;
-  font-size: 13px;
-  font-weight: 900;
-  height: 28px;
-  justify-content: center;
-  line-height: 1;
-  width: 28px;
-}
-
-/* Active step — orange fill like brand */
-
-.vl-step.is-active .vl-step-num {
-  background: #f97316;          /* brand orange */
-  border-color: #fb923c;
-  color: #070a10;
 }
