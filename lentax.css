@@ -6427,14 +6427,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   justify-content: center;
 }
 
-.vl-cards-grid > .vl-card:nth-last-child(1) {
-  grid-column: 2 / span 1;
-  justify-self: start;
+.vl-cards-grid > .vl-card:nth-last-child(2) {
+  grid-column: 1 / span 2;
 }
 
-.vl-cards-grid > .vl-card:nth-last-child(2) {
-  grid-column: 1 / span 1;
-  justify-self: end;
+.vl-cards-grid > .vl-card:nth-last-child(1) {
+  grid-column: 3 / span 2;
 }
 
 @media (max-width: 980px) {
@@ -6442,22 +6440,14 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     grid-template-columns: repeat(2, minmax(0, 320px));
   }
 
-  .vl-cards-grid > .vl-card:nth-last-child(1),
-  .vl-cards-grid > .vl-card:nth-last-child(2) {
+  .vl-cards-grid > .vl-card {
     grid-column: auto;
-    justify-self: auto;
   }
 }
 
 @media (max-width: 640px) {
   .vl-cards-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .vl-cards-grid > .vl-card:nth-last-child(1),
-  .vl-cards-grid > .vl-card:nth-last-child(2) {
-    grid-column: auto;
-    justify-self: auto;
   }
 }
 
@@ -6689,3 +6679,4 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     white-space: nowrap;
   }
 }
+
