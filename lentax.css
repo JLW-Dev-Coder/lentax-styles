@@ -2834,13 +2834,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 
 .item-plan-subtitle {
-  margin: 10px 0;
-  text-align: center;
-  background: linear-gradient(90deg, #e6b800, #cca300);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    #fb923c,
+    #f97316
+  );
   background-clip: text;
   color: transparent;
+  margin: 12px 0;
+  text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .item-plan-divider {
@@ -6667,4 +6671,5 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     white-space: nowrap;
   }
 }
+
 
