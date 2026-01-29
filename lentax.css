@@ -6843,7 +6843,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-hero__title {
-  color: rgba(255, 255, 255, 0.70);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 40px;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -7293,3 +7293,4 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
