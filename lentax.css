@@ -6283,58 +6283,90 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   line-height: 1.7;
 }
 
-.vl-btn {
+/* =========================================================
+   VLP BUTTON BRIDGE → SUITEDASH (CBE)
+   ========================================================= */
+
+/* Base button */
+.vl-btn .cbe-block-button-element.btn,
+.vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
-  border: 1px solid transparent;
   border-radius: 12px;
-  cursor: pointer;
-  display: inline-flex;
+  display: flex;
   font: inherit;
   font-size: 14px;
   font-weight: 800;
-  gap: 8px;
   justify-content: center;
   line-height: 1;
+  min-height: 44px;
   padding: 14px 28px;
+  text-align: center;
   text-decoration: none;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
-  user-select: none;
-  white-space: nowrap;
+  width: 100%;
 }
 
-.vl-btn--ghost {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.92);
+.vl-btn .cbe-block-button-element.btn:active {
+  transform: translateY(1px);
 }
 
-.vl-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.10);
-  border-color: rgba(255, 255, 255, 0.22);
-}
+/* =========================================================
+   PRIMARY (ORANGE)
+   ========================================================= */
 
-.vl-btn--primary {
-  background: #f97316;
-  border-color: transparent;
+.vl-btn--primary .cbe-block-button-element.btn,
+.vl-btn--primary .cbe-block-button-element.btn.btn-primary {
+  background-color: #f97316;
+  border: 0;
   color: #070a10;
 }
 
-.vl-btn--primary:hover {
-  background: #fb923c;
+.vl-btn--primary .cbe-block-button-element.btn:hover {
+  background-color: #fb923c;
 }
 
-.vl-btn--sm {
+/* =========================================================
+   GHOST / SECONDARY
+   ========================================================= */
+
+.vl-btn--ghost .cbe-block-button-element.btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.vl-btn--ghost .cbe-block-button-element.btn:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* =========================================================
+   INACTIVE / DISABLED
+   ========================================================= */
+
+.vl-btn--inactive .cbe-block-button-element.btn {
+  background-color: rgba(203, 213, 225, 0.6);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  color: rgba(17, 24, 39, 0.5);
+  cursor: not-allowed;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* =========================================================
+   SIZE MODIFIERS
+   ========================================================= */
+
+.vl-btn--sm .cbe-block-button-element.btn {
   font-size: 13px;
   padding: 10px 16px;
 }
 
-.vl-btn--wide {
+.vl-btn--wide .cbe-block-button-element.btn {
   width: 100%;
 }
 
-.vl-btn:active {
-  transform: translateY(1px);
-}
 
 .vl-divider {
   border: none;
@@ -6569,4 +6601,5 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
