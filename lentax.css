@@ -6529,7 +6529,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-hero-title {
   background: linear-gradient(270deg, #f97316, #fb923c, #fbbf24);
   background-clip: text;
-  font-size: 46px !important;
+  font-size: 40px !important;
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -7293,4 +7293,5 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
