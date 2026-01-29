@@ -6833,6 +6833,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-hero__title {
+  color: rgba(255, 255, 255, 0.70);
   font-size: 40px;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -7245,5 +7246,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   overflow: auto;
   padding: 14px;
 }
+
 
 
