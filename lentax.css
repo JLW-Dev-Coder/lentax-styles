@@ -6393,13 +6393,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-cards-grid > .vl-card:nth-last-child(2) {
   grid-column: 1 / span 1;
-  justify-self: end;
 }
 
 .vl-cards-grid > .vl-card:nth-last-child(1) {
-  grid-column: 3 / span 1;
-  justify-self: start;
+  grid-column: 2 / span 1;
 }
+
 
 .vl-card-icon {
   align-items: center;
@@ -6671,5 +6670,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     white-space: nowrap;
   }
 }
+
 
 
