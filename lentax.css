@@ -6291,7 +6291,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
-  border-radius: 12px;
+  border-radius: 20px;
   display: flex;
   font: inherit;
   font-size: 18px;
@@ -6601,7 +6601,3 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
-
-
-
-
