@@ -6526,19 +6526,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-align: center;
 }
 
-.vl-hero-title {
-  background: linear-gradient(270deg, #f97316, #fb923c, #fbbf24);
-  background-clip: text;
-  font-size: 40px !important;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin: 0 auto 18px;
-  max-width: 1200px;
-  text-align: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 .vl-icon {
   height: 24px;
@@ -6842,16 +6829,34 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
-.vl-hero__title {
-  color: rgba(255, 255, 255, 0.95);
+/* SHARED HERO FONT */
+.vl-hero__title,
+.vl-hero-title {
   font-size: 40px;
   font-weight: 900;
   letter-spacing: -0.03em;
-  line-height: 1.12;
+  line-height: 1.15;
+}
+
+/* BASE HERO TITLE */
+.vl-hero__title {
+  color: rgba(255, 255, 255, 0.95);
   margin: 14px auto 0;
   max-width: 980px;
   text-align: center;
 }
+
+/* GRADIENT EMPHASIS */
+.vl-hero-title {
+  background: linear-gradient(270deg, #f97316, #fb923c, #fbbf24);
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  padding: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .vl-hero__subhead {
   color: rgba(255, 255, 255, 0.70);
@@ -7293,5 +7298,6 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
