@@ -6436,7 +6436,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     #fbbf24
   );
   background-clip: text;
-  font-size: 46px;
+  font-size: 46px !important;
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -6619,6 +6619,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
 
 
