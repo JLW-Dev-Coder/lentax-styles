@@ -6552,7 +6552,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   font-size: 20px;
   font-weight: 800;
   line-height: 1.6;
-  margin: 18px auto 10px;
+  margin: 32px auto 28px;
   max-width: 1000px;
   text-align: center;
 }
@@ -6570,6 +6570,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
+
 
 @media (max-width: 640px) {
   .vl-progress-steps {
@@ -6619,6 +6620,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
 
 
