@@ -706,19 +706,22 @@
 
 /*Client*/
 .client-name {
-  background: linear-gradient(270deg, #ff0000, #ffffff, #0000ff); /* Red → White → Blue */
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
-  color: transparent;
-
   animation: gradientSweep 8s ease-in-out infinite;
+  background: linear-gradient(
+    270deg,
+    #f97316,
+    #fb923c,
+    #fbbf24
+  );
+  background-clip: text;
+  background-size: 300% 300%;
+  color: transparent;
   display: inline-block;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: capitalize;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @keyframes gradientSweep {
@@ -6601,5 +6604,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: #fb923c;
   color: #070a10;
 }
+
 
 
