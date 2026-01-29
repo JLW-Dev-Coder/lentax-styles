@@ -7257,8 +7257,39 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   padding: 14px;
 }
 
+#suiteDashBody,
+body,
+html {
+  background: transparent !important;
+  background-image: none !important;
+}
 
+.vl-container,
+.vl-panel,
+.vl-section,
+.vl-shell,
+.vl-template,
+.vl-tour,
+.vl-view {
+  background: transparent !important;
+  background-image: none !important;
+}
 
-
-
-
+.vl-container::after,
+.vl-container::before,
+.vl-panel::after,
+.vl-panel::before,
+.vl-section::after,
+.vl-section::before,
+.vl-shell::after,
+.vl-shell::before,
+.vl-template::after,
+.vl-template::before,
+.vl-tour::after,
+.vl-tour::before,
+.vl-view::after,
+.vl-view::before {
+  background: transparent !important;
+  background-image: none !important;
+  content: none !important;
+}
