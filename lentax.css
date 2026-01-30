@@ -1367,7 +1367,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 
-
 /*Flow Right Sidebar*/
 .flow-right-sidebar a {
   background: rgba(255, 255, 255, 0.03);
@@ -6374,14 +6373,17 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
-  background-color: #0ea5a4; /* teal-calm */
-  border: 0;
-  color: #031313;
+  background-color: transparent;
+  border: 1px solid #97316;
+  color: #97316;
 }
 
 .vl-btn--support .cbe-block-button-element.btn:hover {
-  background-color: #14b8b6;
+  background-color: rgba(151, 49, 22, 0.08);
+  border-color: #97316;
+  color: #97316;
 }
+
 
 /*VIRTUAL LAUNCH PRO*/
 
@@ -7290,6 +7292,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
