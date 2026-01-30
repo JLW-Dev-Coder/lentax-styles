@@ -5398,7 +5398,7 @@ transform: none !important;
   box-shadow:
     rgba(45, 35, 66, 0.40) 0 2px 4px,
     rgba(45, 35, 66, 0.30) 0 7px 13px -3px;
-  color: rgba(255, 255, 255, 0.86) !important;
+  color: #000 !important;
   cursor: pointer;
   display: inline-block;
   font-weight: 800;
@@ -5434,9 +5434,14 @@ transform: none !important;
   padding: 0 0 15px 0;
 }
 
+.checklist-header,
+.checklist-header * {
+  color: #000 !important;
+}
+
 .checklist-header svg {
   display: inline-block;
-  fill: rgba(255, 255, 255, 0.80);
+  fill: #000 !important;
   height: 1.1em;
   margin: 0 6px 0 0;
   vertical-align: middle;
@@ -5447,6 +5452,7 @@ transform: none !important;
   animation: checklistFadeIn 300ms ease-out both;
   background: transparent !important;
   border: none;
+  color: #000 !important;
   text-align: left;
 }
 
@@ -5479,17 +5485,19 @@ transform: none !important;
 
 .checklist-item-completed-icon svg {
   display: inline-block;
-  fill: rgba(255, 255, 255, 0.86);
+  fill: #000 !important;
   height: 18px;
   width: 18px;
 }
 
 .checklist-item-container {
+  color: #000 !important;
   overflow: hidden !important;
   padding: 0;
 }
 
 .checklist-item-content {
+  color: #000 !important;
   display: grid;
   gap: 8px;
   grid-template-columns: 1fr auto;
@@ -5499,9 +5507,11 @@ transform: none !important;
 
 .checklist-item-description {
   background: transparent !important;
+  color: #000 !important;
 }
 
 .checklist-item-info {
+  color: #000 !important;
   height: auto !important;
   max-height: none !important;
   overflow: hidden !important;
@@ -5509,7 +5519,7 @@ transform: none !important;
 }
 
 .checklist-item-subtitle {
-  color: rgba(255, 255, 255, 0.72) !important;
+  color: #000 !important;
   letter-spacing: 0.2px;
   margin: 0;
   overflow: visible !important;
@@ -5519,6 +5529,7 @@ transform: none !important;
 
 .checklist-item-subtitle-wrap {
   align-items: center;
+  color: #000 !important;
   display: flex;
   gap: 6px;
   justify-content: flex-start;
@@ -5527,7 +5538,7 @@ transform: none !important;
 }
 
 .checklist-item-title {
-  color: rgba(255, 255, 255, 0.86) !important;
+  color: #000 !important;
   font-weight: 700;
   letter-spacing: 0.2px;
   margin: 0;
@@ -5538,6 +5549,7 @@ transform: none !important;
 
 .checklist-item__header {
   align-items: center;
+  color: #000 !important;
   display: flex;
   gap: 8px;
   justify-content: flex-start;
@@ -5547,8 +5559,8 @@ transform: none !important;
 
 .checklist-title {
   align-items: center;
-  background: linear-gradient(90deg, #fbbf24, #fb923c, #f97316);
-  background-clip: text;
+  background: none !important;
+  color: #000 !important;
   display: inline-flex;
   font-size: 25px !important;
   font-weight: 900 !important;
@@ -5557,16 +5569,13 @@ transform: none !important;
   margin: 0;
   padding: 0;
   text-align: center;
-  transition: background 0.5s ease;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: #000 !important;
 }
 
 .checklist-title:hover {
-  background: linear-gradient(90deg, #f97316, #fbbf24, #fb923c);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none !important;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
 }
 
 .see-more-btn {
@@ -5574,7 +5583,7 @@ transform: none !important;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
-  color: rgba(255, 255, 255, 0.80) !important;
+  color: #000 !important;
   cursor: pointer;
   display: inline-flex;
   gap: 6px;
@@ -5594,18 +5603,26 @@ transform: none !important;
 }
 
 .see-more-btn span {
+  color: #000 !important;
   display: inline-block;
   letter-spacing: 0.3px;
 }
 
 .see-more-btn svg {
   display: inline-block;
-  fill: rgba(255, 255, 255, 0.80);
+  fill: #000 !important;
   height: 18px;
   margin-left: 5px;
   width: 18px;
 }
+
+/* FORCE ALL CHECKLIST TEXT BLACK */
+.cbe-block-checklist,
+.cbe-block-checklist * {
+  color: #000 !important;
+}
 /*End of SD CHECKLIST*/
+
 
 
 /*SD Progress Bar*/
@@ -7444,4 +7461,5 @@ html {
     text-align: left;
   }
 }
+
 
