@@ -6298,6 +6298,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-body {
   font-size: 17px;
   line-height: 1.7;
+  padding-top: 10px;
 }
 
 .vl-btn .cbe-block-button-element.btn,
@@ -7288,6 +7289,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
