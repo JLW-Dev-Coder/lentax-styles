@@ -7339,6 +7339,17 @@ html {
   padding: 14px 16px;
 }
 
+.vl-support-check__center {
+  margin: 0 auto;
+  max-width: 520px;
+  text-align: center;
+}
+
+.vl-support-check__center .vl-btn .cbe-block-button-element.btn,
+.vl-support-check__center .vl-btn .cbe-block-button-element.btn.btn-primary {
+  width: 100%;
+}
+
 .vl-support-check__desc {
   color: rgba(255, 255, 255, 0.76);
   font-size: 14px;
@@ -7462,6 +7473,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
