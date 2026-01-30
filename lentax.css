@@ -6465,7 +6465,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-divider {
   border: none;
-  border-top: 1px solid rgba(128, 128, 128, 0.24);
+  border-top: 1px solid rgba(128, 128, 128, 0.01);
   margin: 0 0;
 }
 
@@ -7287,6 +7287,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
