@@ -7346,7 +7346,7 @@ html {
 
 .vl-support-check__center-inner {
   margin: 0 auto;
-  max-width: 720px;
+  /*max-width: 720px;*/
 }
 
 .vl-support-check__center .vl-btn .cbe-block-button-element.btn,
@@ -7476,6 +7476,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
