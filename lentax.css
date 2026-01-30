@@ -5396,6 +5396,7 @@ transform: none !important;
   box-shadow: none !important;
   color: rgba(0, 0, 0, 0.55) !important;
   cursor: default !important;
+  margin-right: 6px;
   pointer-events: none; /* visually inactive, no click affordance */
 }
 
@@ -7456,6 +7457,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
