@@ -5424,7 +5424,7 @@ transform: none !important;
 }
 
 .checklist-item-container.completed {
-  background: rgba(249, 115, 22, 0.06) !important;
+  /*background: rgba(249, 115, 22, 0.06) !important;*/
   border-color: rgba(249, 115, 22, 0.35) !important;
 }
 
@@ -7473,6 +7473,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
