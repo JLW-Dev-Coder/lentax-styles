@@ -5434,7 +5434,7 @@ transform: none !important;
 }
 
 .checklist-item-container.completed .date {
-  opacity: 0.7;
+  /*opacity: 0.7;*/
 }
 
 
@@ -5633,8 +5633,6 @@ transform: none !important;
 }
 
 /*End of SD CHECKLIST*/
-
-
 
 
 /*SD Progress Bar*/
@@ -7473,6 +7471,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
