@@ -7285,3 +7285,15 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
+
+.vl-map__headline,
+.vl-tour__headline {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.vl-template,
+.vl-tour {
+  padding-top: 0;
+}
