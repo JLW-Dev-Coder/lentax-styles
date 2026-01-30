@@ -7366,17 +7366,22 @@ html {
 }
 
 .vl-support-check__pill {
+  align-items: center;
   background: rgba(249, 115, 22, 0.16);
   border: 1px solid rgba(249, 115, 22, 0.55);
   border-radius: 999px;
   color: rgba(255, 255, 255, 0.86);
+  display: inline-flex;
   font-size: 13px;
   font-weight: 900;
+  justify-content: center;
   letter-spacing: 0.02em;
   padding: 8px 14px;
+  text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
 }
+
 
 .vl-support-check__right {
   flex: 0 0 auto;
@@ -7457,6 +7462,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
