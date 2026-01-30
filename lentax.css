@@ -5389,39 +5389,24 @@ transform: none !important;
   padding: 0;
 }
 
+/* INACTIVE LOOK — main checklist action button */
 .checklist-actions .button {
-  background: linear-gradient(135deg, #f97316, #fb923c);
-  border: none;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.9);
-  border-radius: 10px;
-  border-right: 2px solid rgba(0, 0, 0, 0.9);
-  box-shadow:
-    rgba(45, 35, 66, 0.40) 0 2px 4px,
-    rgba(45, 35, 66, 0.30) 0 7px 13px -3px;
-  color: #000 !important;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 800;
-  letter-spacing: 0.2px;
-  margin-right: 6px;
-  padding: 0;
-  text-align: center;
-  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.25) !important;
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.55) !important;
+  cursor: default !important;
+  pointer-events: none; /* visually inactive, no click affordance */
 }
 
-.checklist-actions .button:hover {
-  background: linear-gradient(135deg, #fb923c, #fbbf24);
-  box-shadow:
-    rgba(45, 35, 66, 0.40) 0 4px 8px,
-    rgba(45, 35, 66, 0.30) 0 7px 13px -3px;
-  transform: translateY(-2px);
-}
-
+/* kill interaction states */
+.checklist-actions .button:hover,
 .checklist-actions .button:active {
-  box-shadow: inset 0 3px 7px rgba(214, 214, 231, 0.55);
-  transform: translateY(2px);
+  background: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
+
 
 .checklist-item-container.completed {
   /*background: rgba(249, 115, 22, 0.06) !important;*/
@@ -7471,6 +7456,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
