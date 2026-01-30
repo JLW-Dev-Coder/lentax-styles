@@ -6842,16 +6842,15 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   -webkit-text-fill-color: transparent;
 }
 
-
 .vl-hero__subhead {
   align-self: center;
   color: rgba(255, 255, 255, 0.70);
   font-size: 16px;
   line-height: 1.7;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 0px;
   max-width: 760px;
   text-align: center;
 }
@@ -7288,6 +7287,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
