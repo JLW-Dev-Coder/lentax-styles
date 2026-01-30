@@ -6294,16 +6294,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 /*End of BLOG*/
 
 /*VIRTUAL LAUNCH PRO*/
-.vl-body {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 17px;
-  line-height: 1.7;
-}
-
-/*VIRTUAL LAUNCH PRO*/
 
 .vl-body {
-  color: rgba(255, 255, 255, 0.78);
   font-size: 17px;
   line-height: 1.7;
 }
@@ -7296,6 +7288,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
