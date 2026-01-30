@@ -7413,11 +7413,6 @@ html {
   text-align: center;
 }
 
-.vl-support-hero__bot dotlottie-wc {
-  height: 220px;
-  width: auto;
-}
-
 .vl-support-hero__botname {
   margin-top: 6px;
   text-align: center;
@@ -7463,6 +7458,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
