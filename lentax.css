@@ -6300,11 +6300,11 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   line-height: 1.7;
   padding-top: 10px;
 }
-
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
   border-radius: 15px;
+  color: rgba(255, 255, 255, 0.80);
   display: flex;
   font: inherit;
   font-size: 18px;
@@ -6326,18 +6326,19 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn--ghost .cbe-block-button-element.btn {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.80);
 }
 
 .vl-btn--ghost .cbe-block-button-element.btn:hover {
   background-color: rgba(255, 255, 255, 0.10);
   border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.80);
 }
 
 .vl-btn--inactive .cbe-block-button-element.btn {
   background-color: rgba(203, 213, 225, 0.6);
   border: 1px solid rgba(203, 213, 225, 0.8);
-  color: rgba(17, 24, 39, 0.5);
+  color: rgba(255, 255, 255, 0.80);
   cursor: not-allowed;
   filter: grayscale(100%);
   opacity: 0.6;
@@ -6348,11 +6349,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn--primary .cbe-block-button-element.btn.btn-primary {
   background-color: #f97316;
   border: 0;
-  color: #070a10;
+  color: rgba(255, 255, 255, 0.80);
 }
 
 .vl-btn--primary .cbe-block-button-element.btn:hover {
   background-color: #fb923c;
+  color: rgba(255, 255, 255, 0.80);
 }
 
 .vl-btn--sm .cbe-block-button-element.btn {
@@ -6370,13 +6372,13 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: rgba(249, 115, 22, 0.55);
   border-style: solid;
   border-width: 1px;
-  color: rgba(151, 49, 22, 0.75);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .vl-btn--support .cbe-block-button-element.btn:hover {
   background-color: rgba(249, 115, 22, 0.22);
   border-color: rgba(249, 115, 22, 0.75);
-  color: rgba(151, 49, 22, 0.85);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 
@@ -7281,6 +7283,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
