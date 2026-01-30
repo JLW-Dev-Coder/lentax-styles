@@ -6493,7 +6493,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-hero {
   overflow: visible;
-  padding: 20px 15px 20px;
+  padding: 15px;
 }
 
 .vl-hero-lead {
@@ -6642,7 +6642,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 @media (max-width: 768px) {
   .vl-hero {
-    padding: 20px 18px 24px;
+    padding: 20px;
   }
 
   .vl-hero-title {
@@ -6789,11 +6789,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   background: rgba(110, 231, 255, 0.25);
   bottom: -10rem;
   right: -10rem;
-}
-
-.vl-hero {
-  padding-bottom: 20px;
-  padding-top: 12px;
 }
 
 .vl-hero__inner {
@@ -7287,6 +7282,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
