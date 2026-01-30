@@ -6714,8 +6714,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-aurora__blob--c {
   background: rgba(232, 121, 249, 0.12);
   bottom: -6rem;
-  left: 25%;
   height: 420px;
+  left: 25%;
   width: 420px;
 }
 
@@ -6792,6 +6792,10 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   right: -10rem;
 }
 
+.vl-hero {
+  padding-bottom: 15px;
+}
+
 .vl-hero__inner {
   margin-left: auto;
   margin-right: auto;
@@ -6855,13 +6859,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   text-align: center;
 }
 
-
 @media (min-width: 768px) {
-  .vl-hero {
-    /*padding-bottom: 56px;
-    padding-top: 24px;*/
-  }
-
   .vl-hero__lottie {
     height: 250px;
     width: 250px;
@@ -6949,8 +6947,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   gap: 12px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 980px;
   margin-top: 26px;
+  max-width: 980px;
 }
 
 @media (min-width: 640px) {
@@ -7107,14 +7105,14 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-view {
-  padding-bottom: 80px;
-  padding-top: 64px;
+  padding-bottom: 32px;
+  padding-top: 15px;
 }
 
 @media (min-width: 768px) {
   .vl-view {
-    padding-bottom: 96px;
-    padding-top: 80px;
+    padding-bottom: 40px;
+    padding-top: 15px;
   }
 }
 
@@ -7287,44 +7285,3 @@ html {
   background-image: none !important;
   content: none !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
