@@ -6370,13 +6370,13 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border-color: rgba(249, 115, 22, 0.55);
   border-style: solid;
   border-width: 1px;
-  color: #973116;
+  color: rgba(151, 49, 22, 0.75);
 }
 
 .vl-btn--support .cbe-block-button-element.btn:hover {
   background-color: rgba(249, 115, 22, 0.22);
   border-color: rgba(249, 115, 22, 0.75);
-  color: #973116;
+  color: rgba(151, 49, 22, 0.85);
 }
 
 
@@ -7281,6 +7281,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
