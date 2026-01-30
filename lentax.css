@@ -6463,13 +6463,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   }
 }
 
-
-
 .vl-divider {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(128, 128, 128, 0.24);
   margin: 0 0;
 }
+
 
 .vl-flow-step {
   background: rgba(255, 255, 255, 0.06);
@@ -7289,6 +7288,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
