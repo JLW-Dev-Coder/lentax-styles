@@ -5375,7 +5375,7 @@ transform: none !important;
   border: 1px solid var(--panel-border);
   border-radius: 14px;
   margin: 16px auto;
-  max-width: 960px;
+  /*max-width: 960px;*/
   overflow: hidden !important;
   padding: 0;
   text-align: center;
@@ -7458,6 +7458,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
