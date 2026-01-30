@@ -6464,10 +6464,9 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-divider {
-  background-color: rgba(128, 128, 128, 0.02);
   border: 0;
-  height: 1px;
-  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  margin: 22px 0;
 }
 
 
@@ -6793,7 +6792,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-hero {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   padding-top: 12px;
 }
 
@@ -7288,6 +7287,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
