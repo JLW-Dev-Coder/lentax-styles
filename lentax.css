@@ -5617,11 +5617,6 @@ transform: none !important;
   width: 18px;
 }
 
-/* FORCE ALL CHECKLIST TEXT BLACK */
-.cbe-block-checklist,
-.cbe-block-checklist * {
-  color: #000 !important;
-}
 /*End of SD CHECKLIST*/
 
 
@@ -7463,6 +7458,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
