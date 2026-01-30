@@ -6493,7 +6493,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-hero {
   overflow: visible;
-  padding: 15px;
+  /*padding: 15px;*/
 }
 
 .vl-hero-lead {
@@ -6642,7 +6642,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 @media (max-width: 768px) {
   .vl-hero {
-    padding: 20px;
+    padding: 0px;
   }
 
   .vl-hero-title {
@@ -6853,8 +6853,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 @media (min-width: 768px) {
   .vl-hero {
-    padding-bottom: 56px;
-    padding-top: 24px;
+    /*padding-bottom: 56px;
+    padding-top: 24px;*/
   }
 
   .vl-hero__lottie {
@@ -7282,6 +7282,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
