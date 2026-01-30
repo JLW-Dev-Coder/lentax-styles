@@ -6374,15 +6374,18 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
   background-color: transparent;
-  border: 1px solid #97316 !important;
+  border-color: #97316;
+  border-style: solid;
+  border-width: 1px;
   color: #97316;
 }
 
 .vl-btn--support .cbe-block-button-element.btn:hover {
   background-color: rgba(151, 49, 22, 0.08);
-  border-color: #97316 !important;
+  border-color: #97316;
   color: #97316;
 }
+
 
 
 /*VIRTUAL LAUNCH PRO*/
@@ -7293,6 +7296,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
