@@ -1049,7 +1049,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .feature-name-v2 {
-  background: linear-gradient(90deg, #FFD700, #FFA500, #FFFF33); /* gold → orange-gold → bright yellow */
+  background: linear-gradient(
+    90deg,
+    #f97316 0%,
+    #ff8a3d 50%,
+    #f97316 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border-radius: 35px;
@@ -1067,8 +1072,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .feature-name-v2:hover,
 .feature-name-v2:focus,
 .feature-name-v2.active {
-  /* Optional hover color */
-  /* -webkit-text-fill-color: #fff; */
+  /* intentional no-op to preserve gradient */
 }
 
 .feature-name-v2 h1 span,
@@ -1078,7 +1082,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 @media screen and (max-width: 768px) {
   .feature-name-v2 {
-    font-size: 32px; /* adjust main container for mobile */
+    font-size: 32px;
   }
 
   .feature-name-v2 h1 span,
@@ -1086,6 +1090,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     font-size: 32px;
   }
 }
+
 
 
 .feature-name-v3 {
@@ -7476,4 +7481,5 @@ html {
     text-align: left;
   }
 }
+
 
