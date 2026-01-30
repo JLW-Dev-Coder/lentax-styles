@@ -1618,7 +1618,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /*FREELANCER*/
 .freelancer-background-quote {
-  border-left: 4px solid #FFD700;  /* gold accent for emphasis */
+  border-left: 4px solid #f97316;  /* gold accent for emphasis */
   color: #f0f0f0;                  /* light text for readability */
   display: block;
   font-style: italic;
@@ -7476,3 +7476,4 @@ html {
     text-align: left;
   }
 }
+
