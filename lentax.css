@@ -6830,7 +6830,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 /* SHARED HERO FONT */
 .vl-hero__title,
 .vl-hero-title {
-  font-size: 40px;
+  font-size: 45px;
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -7296,6 +7296,7 @@ html {
   background-image: none !important;
   content: none !important;
 }
+
 
 
 
