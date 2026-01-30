@@ -5436,7 +5436,7 @@ transform: none !important;
 
 .checklist-header,
 .checklist-header * {
-  color: #000 !important;
+  color: #97316 !important;
 }
 
 .checklist-header svg {
@@ -7461,5 +7461,6 @@ html {
     text-align: left;
   }
 }
+
 
 
