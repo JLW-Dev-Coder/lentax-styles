@@ -3974,7 +3974,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 
-/*Text Animated Underline*/
+/* Text Animated Underline */
 .text-animated-underline {
   display: inline-block;
   font-weight: bold;
@@ -3984,7 +3984,12 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .text-animated-underline::after {
   animation: underlineGrow 0.6s ease-out 1s forwards;
-  background: linear-gradient(to right, #ff0000, #ffffff, #0000ff); /* R/W/B */
+  background: linear-gradient(
+    90deg,
+    rgba(249, 115, 22, 0.95),
+    rgba(251, 146, 60, 0.85),
+    rgba(255, 237, 213, 0.9)
+  );
   bottom: 0;
   content: '';
   height: 2px;
@@ -4003,6 +4008,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     transform: scaleX(1);
   }
 }
+
 /*Text Animated Waterfall*/
 .text-animated-waterfall {
   animation: waterfall 1s ease-out forwards;
@@ -7486,6 +7492,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
