@@ -6170,6 +6170,29 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   background-color: rgba(255, 255, 255, 0.10);
 }
 
+.vl-btn-static {
+  position: relative;
+}
+
+.vl-btn-static a {
+  color: transparent;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+
+.vl-btn-static a::after {
+  color: rgba(255, 255, 255, 0.92);
+  content: "Open";
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
 
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
@@ -7535,6 +7558,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
