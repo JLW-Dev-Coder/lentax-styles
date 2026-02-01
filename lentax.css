@@ -6136,7 +6136,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   display: flex;
   font: inherit;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
   justify-content: center;
   line-height: 1;
   margin-left: auto;
@@ -6155,6 +6155,19 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-btn-static:active {
   transform: translateY(1px);
+}
+
+/* Intent buttons should size to content */
+.vl-btn-static--book,
+.vl-btn-static--profile {
+  width: auto;
+}
+
+/* Ensure text stays centered when width is auto */
+.vl-btn-static--book > a::after,
+.vl-btn-static--profile > a::after {
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 /* Anchor isolation */
@@ -7589,6 +7602,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
