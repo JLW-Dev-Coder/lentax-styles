@@ -6059,97 +6059,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   line-height: 1.7;
   padding-top: 10px;
 }
-
-.vl-btn,
-.vl-btn:link,
-.vl-btn:visited,
-.vl-btn a,
-.vl-btn button,
-a.vl-btn,
-button.vl-btn {
-  align-items: center;
-  border-radius: 15px;
-  color: rgba(255, 255, 255, 0.80);
-  display: inline-flex;
-  font: inherit;
-  font-size: 18px;
-  font-weight: 800;
-  justify-content: center;
-  line-height: 1;
-  min-height: 44px;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
-}
-
-.vl-btn {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.vl-btn:active,
-a.vl-btn:active,
-button.vl-btn:active {
-  transform: translateY(1px);
-}
-
-.vl-btn--ghost,
-a.vl-btn--ghost,
-button.vl-btn--ghost {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.80);
-}
-
-.vl-btn--ghost:hover,
-a.vl-btn--ghost:hover,
-button.vl-btn--ghost:hover {
-  background-color: rgba(255, 255, 255, 0.10);
-  border-color: rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.80);
-}
-
-.vl-btn--inactive,
-a.vl-btn--inactive,
-button.vl-btn--inactive {
-  background-color: rgba(203, 213, 225, 0.6);
-  border: 1px solid rgba(203, 213, 225, 0.8);
-  color: rgba(255, 255, 255, 0.80);
-  cursor: not-allowed;
-  filter: grayscale(100%);
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.vl-btn--primary,
-a.vl-btn--primary,
-button.vl-btn--primary {
-  background-color: #f97316;
-  border: 0;
-  color: rgba(255, 255, 255, 0.80);
-}
-
-.vl-btn--primary:hover,
-a.vl-btn--primary:hover,
-button.vl-btn--primary:hover {
-  background-color: #fb923c;
-  color: rgba(255, 255, 255, 0.80);
-}
-
-.vl-btn--sm,
-a.vl-btn--sm,
-button.vl-btn--sm {
-  font-size: 13px;
-  padding: 10px 16px;
-}
-
-.vl-btn--wide,
-a.vl-btn--wide,
-button.vl-btn--wide {
-  width: 100%;
-}
-
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
@@ -6161,10 +6070,8 @@ button.vl-btn--wide {
   font-weight: 800;
   justify-content: center;
   line-height: 1;
-  margin-left: auto;
-  margin-right: auto;
   min-height: 44px;
-  padding: 10px 32px;
+  padding: 12px 32px;
   text-align: center;
   text-decoration: none;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
@@ -6214,6 +6121,10 @@ button.vl-btn--wide {
   padding: 10px 16px;
 }
 
+.vl-btn--wide .cbe-block-button-element.btn {
+  width: 100%;
+}
+
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
   background-color: rgba(249, 115, 22, 0.16);
@@ -6229,9 +6140,8 @@ button.vl-btn--wide {
   color: rgba(255, 255, 255, 0.92);
 }
 
-.vl-btn--wide .cbe-block-button-element.btn {
-  width: 100%;
-}
+
+/*VIRTUAL LAUNCH PRO*/
 
 .vl-card {
   backdrop-filter: blur(8px);
@@ -7582,10 +7492,6 @@ html {
     text-align: left;
   }
 }
-
-
-
-
 
 
 
