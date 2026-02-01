@@ -6063,8 +6063,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn,
 .vl-btn:link,
 .vl-btn:visited,
-.vl-btn button,
 .vl-btn a,
+.vl-btn button,
 a.vl-btn,
 button.vl-btn {
   align-items: center;
@@ -6077,11 +6077,15 @@ button.vl-btn {
   justify-content: center;
   line-height: 1;
   min-height: 44px;
-  padding: 12px 32px;
+  padding: 10px 32px;
   text-align: center;
   text-decoration: none;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
-  width: 80%;
+}
+
+.vl-btn {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .vl-btn:active,
@@ -6146,7 +6150,6 @@ button.vl-btn--wide {
   width: 100%;
 }
 
-
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
@@ -6158,8 +6161,10 @@ button.vl-btn--wide {
   font-weight: 800;
   justify-content: center;
   line-height: 1;
+  margin-left: auto;
+  margin-right: auto;
   min-height: 44px;
-  padding: 12px 32px;
+  padding: 10px 32px;
   text-align: center;
   text-decoration: none;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
@@ -6209,10 +6214,6 @@ button.vl-btn--wide {
   padding: 10px 16px;
 }
 
-.vl-btn--wide .cbe-block-button-element.btn {
-  width: 100%;
-}
-
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
   background-color: rgba(249, 115, 22, 0.16);
@@ -6226,6 +6227,10 @@ button.vl-btn--wide {
   background-color: rgba(249, 115, 22, 0.22);
   border-color: rgba(249, 115, 22, 0.75);
   color: rgba(255, 255, 255, 0.92);
+}
+
+.vl-btn--wide .cbe-block-button-element.btn {
+  width: 100%;
 }
 
 .vl-card {
@@ -7577,6 +7582,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
