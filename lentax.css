@@ -6593,11 +6593,15 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 999px;
   color: rgba(255, 255, 255, 0.80);
-  display: inline-block;
+  display: block;
   font-size: 12px;
   line-height: 1;
+  margin: 0 auto;
   padding: 8px 14px;
+  text-align: center;
+  width: fit-content;
 }
+
 
 .vl-container {
   margin-left: auto;
@@ -7602,6 +7606,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
