@@ -6151,14 +6151,13 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 
 .vl-btn-static:hover {
   background-color: #fb923c;
-  color: rgba(255, 255, 255, 0.80);
 }
 
 .vl-btn-static:active {
   transform: translateY(1px);
 }
 
-/* Strict scoping: only affect anchors rendered INSIDE the static button wrapper */
+/* Anchor isolation */
 .vl-btn-static > a {
   color: transparent;
   display: block;
@@ -6182,7 +6181,42 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
-/* Labels (scoped by modifier class) */
+/* ----- MODIFIERS (alphabetical) ----- */
+
+/* Ghost */
+.vl-btn-static--ghost {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.vl-btn-static--ghost:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Inactive */
+.vl-btn-static--inactive {
+  background-color: rgba(203, 213, 225, 0.6);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  cursor: not-allowed;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Small */
+.vl-btn-static--sm {
+  font-size: 13px;
+  padding: 10px 16px;
+}
+
+/* Wide */
+.vl-btn-static--wide {
+  width: 100%;
+}
+
+/* ----- LABEL VARIANTS ----- */
+
 .vl-btn-static--book > a::after {
   content: "Let’s talk — book an intro  ↗";
 }
@@ -7555,6 +7589,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
