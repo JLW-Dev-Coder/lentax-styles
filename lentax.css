@@ -6136,7 +6136,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   display: flex;
   font: inherit;
   font-size: 18px;
-  font-weight: 600;
+  /*font-weight: 600;*/
   justify-content: center;
   line-height: 1;
   margin-left: auto;
@@ -7606,6 +7606,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
