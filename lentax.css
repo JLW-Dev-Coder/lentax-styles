@@ -6132,9 +6132,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   background-color: #f97316;
   border: 0;
   border-radius: 15px;
-  color: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  display: inline-flex;
+  color: rgba(255, 255, 255, 0.80);
+  display: flex;
   font: inherit;
   font-size: 18px;
   font-weight: 800;
@@ -6143,34 +6142,34 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   margin-left: auto;
   margin-right: auto;
   min-height: 44px;
-  padding: 10px 32px;
+  padding: 12px 32px;
   position: relative;
   text-align: center;
-  transition: background 140ms ease, transform 140ms ease;
+  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+  width: 80%;
 }
 
 .vl-btn-static:hover {
   background-color: #fb923c;
+  color: rgba(255, 255, 255, 0.80);
 }
 
 .vl-btn-static:active {
   transform: translateY(1px);
 }
 
-/* Hide raw URL text */
-.vl-btn-static a {
+/* Strict scoping: only affect anchors rendered INSIDE the static button wrapper */
+.vl-btn-static > a {
   color: transparent;
-  display: inline-block;
+  display: block;
   position: relative;
   text-decoration: none;
   width: 100%;
 }
 
-/* Shared label + icon layout */
-.vl-btn-static a::after {
+.vl-btn-static > a::after {
   align-items: center;
   color: rgba(255, 255, 255, 0.95);
-  content: "";
   display: inline-flex;
   gap: 8px;
   justify-content: center;
@@ -6180,16 +6179,16 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   top: 50%;
   transform: translateY(-50%);
   white-space: nowrap;
+  width: 100%;
 }
 
-/* Profile button label */
-.vl-btn-static--profile a::after {
-  content: "View my public profile  ↗";
-}
-
-/* Booking button label */
-.vl-btn-static--book a::after {
+/* Labels (scoped by modifier class) */
+.vl-btn-static--book > a::after {
   content: "Let’s talk — book an intro  ↗";
+}
+
+.vl-btn-static--profile > a::after {
+  content: "View my public profile  ↗";
 }
 
 .vl-btn--support .cbe-block-button-element.btn,
@@ -7556,6 +7555,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
