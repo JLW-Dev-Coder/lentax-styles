@@ -6132,7 +6132,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   background-color: #f97316;
   border: 0;
   border-radius: 15px;
-  color: rgba(255, 255, 255, 0.80);
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   display: inline-flex;
   font: inherit;
@@ -6144,8 +6144,8 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   margin-right: auto;
   min-height: 44px;
   padding: 10px 32px;
+  position: relative;
   text-align: center;
-  text-decoration: none;
   transition: background 140ms ease, transform 140ms ease;
 }
 
@@ -6157,42 +6157,40 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   transform: translateY(1px);
 }
 
-.vl-btn-static--wide {
-  width: 100%;
-}
-
-.vl-btn-static--ghost {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.vl-btn-static--ghost:hover {
-  background-color: rgba(255, 255, 255, 0.10);
-}
-
-.vl-btn-static {
-  position: relative;
-}
-
+/* Hide raw URL text */
 .vl-btn-static a {
   color: transparent;
   display: inline-block;
   position: relative;
   text-decoration: none;
-}
-
-.vl-btn-static a::after {
-  color: rgba(255, 255, 255, 0.92);
-  content: "Open";
-  left: 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
 }
 
+/* Shared label + icon layout */
+.vl-btn-static a::after {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.95);
+  content: "";
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+/* Profile button label */
+.vl-btn-static--profile a::after {
+  content: "View my public profile  ↗";
+}
+
+/* Booking button label */
+.vl-btn-static--book a::after {
+  content: "Let’s talk — book an intro  ↗";
+}
 
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
@@ -7558,6 +7556,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
