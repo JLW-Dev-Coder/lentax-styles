@@ -6164,7 +6164,10 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
-/* VLP STATIC BUTTON (non-cbe, safe) */
+/* =========================================================
+   VLP STATIC BUTTON (non-cbe, safe)
+   ========================================================= */
+
 .vl-btn-static {
   align-items: center;
   background-color: #f97316;
@@ -6174,7 +6177,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   display: flex;
   font: inherit;
   font-size: 18px !important;
-  /*font-weight: 600;*/
   justify-content: center;
   line-height: 1;
   margin-left: auto;
@@ -6232,7 +6234,26 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
-/* ----- MODIFIERS (alphabetical) ----- */
+/* =========================================================
+   MODIFIERS (alphabetical)
+   ========================================================= */
+
+/* Book — outlined like Support button */
+.vl-btn-static--book {
+  background-color: rgba(249, 115, 22, 0.16);
+  border: 1px solid rgba(249, 115, 22, 0.55);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.vl-btn-static--book:hover {
+  background-color: rgba(249, 115, 22, 0.22);
+  border-color: rgba(249, 115, 22, 0.75);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.vl-btn-static--book > a::after {
+  color: rgba(255, 255, 255, 0.92);
+}
 
 /* Ghost */
 .vl-btn-static--ghost {
@@ -6255,6 +6276,15 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   pointer-events: none;
 }
 
+/* Profile — primary solid CTA */
+.vl-btn-static--profile {
+  background-color: #f97316;
+}
+
+.vl-btn-static--profile:hover {
+  background-color: #fb923c;
+}
+
 /* Small */
 .vl-btn-static--sm {
   font-size: 13px;
@@ -6266,7 +6296,9 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   width: 100%;
 }
 
-/* ----- LABEL VARIANTS ----- */
+/* =========================================================
+   LABEL VARIANTS
+   ========================================================= */
 
 .vl-btn-static--book > a::after {
   content: "Let’s talk — book an intro  ↗";
@@ -6275,6 +6307,26 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-btn-static--profile > a::after {
   content: "View my public profile  ↗";
 }
+
+/* =========================================================
+   SUPPORT BUTTON (REFERENCE / ALIGNMENT)
+   ========================================================= */
+
+.vl-btn--support .cbe-block-button-element.btn,
+.vl-btn--support .cbe-block-button-element.btn.btn-primary {
+  background-color: rgba(249, 115, 22, 0.16);
+  border-color: rgba(249, 115, 22, 0.55);
+  border-style: solid;
+  border-width: 1px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.vl-btn--support .cbe-block-button-element.btn:hover {
+  background-color: rgba(249, 115, 22, 0.22);
+  border-color: rgba(249, 115, 22, 0.75);
+  color: rgba(255, 255, 255, 0.92);
+}
+
 
 .vl-btn--support .cbe-block-button-element.btn,
 .vl-btn--support .cbe-block-button-element.btn.btn-primary {
@@ -7644,6 +7696,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
