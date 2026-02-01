@@ -6228,9 +6228,6 @@ button.vl-btn--wide {
   color: rgba(255, 255, 255, 0.92);
 }
 
-
-/*VIRTUAL LAUNCH PRO*/
-
 .vl-card {
   backdrop-filter: blur(8px);
   background: rgba(255, 165, 0, 0.10);
@@ -7580,6 +7577,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
