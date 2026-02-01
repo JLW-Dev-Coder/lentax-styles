@@ -6182,7 +6182,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   margin-left: auto;
   margin-right: auto;
   min-height: 44px;
-  padding: 12px 32px;
+  padding: 10px 32px;
   position: relative;
   text-align: center;
   transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
@@ -7696,6 +7696,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
