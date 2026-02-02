@@ -5374,688 +5374,164 @@ transform: none !important;
   background-clip: text;
 }
 
-/*END CUSTOM CSS*/
-
-/*SuiteDash Default Classes*/
-/*SD Progress Bar*/
-.cbe-block-progress-title {
-  color: #fff;
-  font-size: 18px;
+/*TAX MONITOR SETUP*/
+.tm-flow-step {
+  font-weight: 900;
+  letter-spacing: 0.01em;
 }
 
-/*SD Primary Button*/
-.btn.btn-primary.btn-block {
-  align-items: center;
-  background-color: #1a1a1a;
-  border: 1px solid #00cc00;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 255, 0, 0.2);
-  color: #00ff00;
-  display: flex;
-  flex-direction: column;
-  font-size: 1.2rem;
-  font-weight: 700;
-  justify-content: center;
-  margin: 12px auto;
-  max-width: 360px;
-  padding: 16px;
-  text-align: center;
-  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease,
-              box-shadow 0.4s ease, color 0.3s ease;
+.tm-hero {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
+  padding: 26px 22px;
 }
 
-.btn.btn-primary.btn-block:hover {
-  background-color: #262626;
-  border-color: #00ff00;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4);
-  color: #33ff33;
-  transform: translateY(-2px);
-}
-
-.btn.btn-primary.btn-block {
-  animation: button-glow 2.5s infinite ease-in-out;
-}
-
-@keyframes button-glow {
-  0% {
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 35px rgba(0, 255, 0, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
-  }
-}
-
-.btn.btn-link.btn-block {
-  align-items: center;
-  background: rgba(255, 0, 0, 0.08);
-  border: 1px solid #ff0000;
-  border-radius: 8px;
-  color: #ff0000;
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
-  font-weight: 600;
-  justify-content: center;
-  margin: 12px auto;
-  max-width: 360px;
-  padding: 12px 16px;
-  text-align: center;
-  transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-}
-
-.btn.btn-link.btn-block:hover {
-  background: rgba(255, 0, 0, 0.15);
-  border-color: #cc0000;
-  color: #cc0000;
-  transform: translateY(-2px);
-}
-
-/* Dark Mode Primary Button */
-.sd-dark-mode .btn.btn-primary {
-  color: rgba(255, 255, 255, 0.9) !important;
-  transition: color 0.2s ease-in-out;
-}
-
-.sd-dark-mode .btn.btn-primary:hover {
-  color: #fff !important;
-}
-
-.sd-nav-bar-add-button {
-font-size: 0 !important;
-}
-
-.sd-nav-bar-add-button::after {
-content: "➕";
-display: inline-block;
-font-size: 16px;
-line-height: 1;
-vertical-align: middle;
-}
-/*End of SD Primary Button*/
-
-/*SD FLOW*/
-/* Parent wrapper: flex row on desktop */
-.flow-advance-wrapper {
-  display: flex;
-  gap: 16px;
-  flex-wrap: nowrap;
-  justify-content: center; /* center buttons horizontally */
-  align-items: stretch;    /* equal height buttons */
-}
-
-/* Make the continue button container flexible */
-.flow-button-group {
-  flex: 1 1 50%;
-  box-sizing: border-box;
-}
-
-/* Skip button itself made flexible */
-.flow-advance-wrapper > .flow-button-skip {
-  flex: 1 1 50%;
-  box-sizing: border-box;
-}
-
-/* Continue Button */
-.flow-button-continue {
-  align-items: center;      /* center content vertically */
-  background: linear-gradient(135deg, #FFA500, #FFD700); /* orange → gold */
-  border: none;
-  border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  color: #000 !important; /* black text */
-  cursor: pointer;
-  display: flex;
-  font-size: 18px !important;
-  font-weight: 700;
-  justify-content: center;  /* center text horizontally */
-  overflow: hidden;
-  padding: 10px 28px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.flow-button-continue:hover {
-  background: linear-gradient(135deg, #FFB733, #FFFF33); /* brighter gold */
-  box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
-  transform: translateY(-2px);
-  color: #000 !important;
-}
-
-/* Shine overlay for continue button */
-.flow-button-continue::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 150%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transform: skewX(-20deg);
-  animation: shine-reverse 3s infinite linear;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Skip Button */
-.flow-button-skip {
-  align-items: center;      
-  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
-  border: 3px solid red;    /* more prominent border */
-  border-radius: 6px;
-  color: #ff6666;           /* visible text on light background */
-  cursor: pointer;
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-  justify-content: center;  /* center text horizontally */
-  overflow: hidden;
-  padding: 10px 28px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.flow-button-skip:hover {
-  background-color: rgba(255, 0, 0, 0.25); /* slightly darker background */
-  color: #990000; /* dark red text */
-  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
-  transform: translateY(-2px);
-}
-
-/* Shine animation keyframes for continue button */
-@keyframes shine-reverse {
-  0% { left: 150%; }
-  25% { left: 50%; }
-  50% { left: -50%; }
-  75% { left: 50%; }
-  100% { left: 150%; }
-}
-
-/* Responsive: stack buttons vertically on small screens */
-@media screen and (max-width: 768px) {
-  .flow-advance-wrapper {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .flow-button-group,
-  .flow-advance-wrapper > .flow-button-skip {
-    flex: 1 1 100%;
-  }
-}
-
-/*End of SD FLOW*/
-
-/*LOGIN PAGE*/
-.registration-page .registration-card.form-oscar {
-  background-color: rgb(26, 26, 26);
-  border-radius: 24px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
-  margin: 40px auto;
-  max-width: 520px;
-  padding: 30px 26px 32px;
-}
-
-.registration-page .registration-card .card-block {
-  padding: 0;
-}
-
-.registration-page .registration-card .logo-wrap {
-  margin-bottom: 20px;
+.tm-hero-lead {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 16px auto 0;
+  max-width: 980px;
   text-align: center;
 }
 
-.registration-page .registration-card .form-group label {
-  color: rgb(255, 255, 255);
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.registration-page .registration-card .form-group .required {
-  color: rgb(255, 187, 51);
-}
-
-.registration-page .registration-card .form-control {
-  background-color: rgb(18, 18, 18);
-  border: 1px solid rgb(60, 60, 60);
-  border-radius: 6px;
-  color: rgb(240, 240, 240);
-  font-size: 14px;
-  padding: 10px 12px;
-}
-
-.registration-page .registration-card .form-control:focus {
-  border-color: rgb(255, 187, 51);
-  box-shadow: 0 0 0 1px rgba(255, 187, 51, 0.6);
-  outline: none;
-}
-
-.registration-page .registration-card .onboarding-password-strength #password-strength {
-  background-color: rgb(34, 34, 34);
-  border-radius: 999px;
-  height: 4px;
-  margin-top: 6px;
-  overflow: hidden;
-}
-
-.registration-page .registration-card .onboarding-password-strength .password-strength-bar {
-  background: linear-gradient(90deg, rgb(255, 153, 51), rgb(0, 200, 120));
-  display: block;
-  height: 100%;
-  transition: width 0.3s ease;
-  width: 0;
-}
-
-.registration-page .registration-card .info-text {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 13px;
-  margin-top: 12px;
-}
-
-.registration-page .registration-card .form-actions.btn-list {
-  margin-top: 20px;
+.tm-hero-note {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.7;
+  margin: 18px auto 0;
+  max-width: 980px;
   text-align: center;
 }
 
-.registration-page .registration-card .form-actions .btn-primary {
-  background: linear-gradient(135deg, rgb(255, 170, 0), rgb(230, 115, 0));
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  font-weight: 600;
-  padding: 10px 26px;
+.tm-hero-title {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 14px auto 0;
+  max-width: 980px;
   text-align: center;
-  text-decoration: none;
-  transition: background 0.3s ease, box-shadow 0.2s ease, transform 0.1s ease;
 }
 
-.registration-page .registration-card .form-actions .btn-primary:hover {
-  box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
-  transform: translateY(-1px);
-}
-
-/*End of LOGIN PAGE*/
-
-/*PROPOSAL*/
-.cart-proposal-intro {
-    color: #ffffff;
-    margin: 0 auto 26px auto;
-    max-width: 1000px;
-    padding: 10px 20px 20px 20px;
-    text-align: left;
-  }
-
-  .cart-proposal-heading {
-    font-size: 34px;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-
-  .cart-proposal-subheading {
-    font-size: 18px;
-    margin-bottom: 18px;
-  }
-
-  .cart-proposal-keypoints {
-    border-left: 3px solid #ffb300;
-    margin: 14px 0 22px 0;
-    padding-left: 14px;
-  }
-
-  .cart-proposal-keypoints p {
-    font-size: 15px;
-    line-height: 1.5;
-    margin: 4px 0;
-  }
-
-  .persona-grid {
-    border-radius: 12px;
-    border: 1px solid #333333;
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-bottom: 20px;
-    padding: 12px 14px;
-  }
-
-  .persona-card {
-    border-radius: 10px;
-    padding: 8px 10px;
-  }
-
-  .persona-label {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.7px;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-  }
-
-  .persona-card p {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .persona-card-thinker .persona-label {
-    color: #93c5fd;
-  }
-
-  .persona-card-director .persona-label {
-    color: #facc15;
-  }
-
-  .persona-card-socializer .persona-label {
-    color: #fb7185;
-  }
-
-  .persona-card-relator .persona-label {
-    color: #6ee7b7;
-  }
-
-  .pipeline-cascade {
-    border-radius: 12px;
-    border: 1px solid #333333;
-    margin-bottom: 18px;
-    padding: 14px 14px 12px 14px;
-    position: relative;
-  }
-
-  .pipeline-cascade-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .pipeline-cascade-inner {
-    border-left: 2px solid #444444;
-    margin-left: 14px;
-    padding-left: 14px;
-  }
-
-  .pipeline-step {
-    align-items: flex-start;
-    display: flex;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-
-  .pipeline-step-number {
-    align-items: center;
-    background: #111827;
-    border: 1px solid #4b5563;
-    border-radius: 999px;
-    display: inline-flex;
-    font-size: 11px;
-    font-weight: 800;
-    height: 22px;
-    justify-content: center;
-    min-width: 22px;
-  }
-
-  .pipeline-step-body {
-    flex: 1;
-  }
-
-  .pipeline-step-title {
-    font-size: 14px;
-    margin-bottom: 2px;
-    cursor: pointer;
-    transition: color .25s ease, text-shadow .25s ease;
-  }
-
-  .pipeline-step-title:hover {
-    color: #ffb300;
-    text-shadow: 0 0 6px rgba(255, 179, 0, 0.6);
-  }
-
-  .pipeline-detail {
-    display: none;
-    margin-top: 8px;
-    padding-left: 10px;
-    border-left: 2px solid #333;
-  }
-
-  .pipeline-detail p {
-    font-size: 12px;
-    color: #d1d5db;
-    margin: 4px 0;
-  }
-
-  @media (max-width: 900px) {
-    .persona-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 600px) {
-    .persona-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-.proposal-progress-image {
-  display: block;
-  flex: 0 0 calc(50% - 8px);
-  height: auto;
+.tm-page {
+  margin: 0 auto;
   max-width: 100%;
+  position: relative;
+}
+
+.tm-progress {
+  margin-bottom: 18px;
+}
+
+.tm-progress-fill {
+  border-radius: 999px;
+  height: 100%;
+  width: 0%;
+}
+
+.tm-progress-steps {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 14px;
+  text-align: center;
+}
+
+.tm-progress-track {
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
   width: 100%;
 }
 
-.proposal-progress-image-container {
+.tm-step {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tm-step-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 6px;
+  text-align: center;
+  width: 100%;
+}
+
+.tm-step-num {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  height: 28px;
+  justify-content: center;
+  line-height: 1;
+  width: 28px;
+}
+
+.tm-step-sep {
+  flex: 0 0 auto;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.tm-steps {
+  text-align: center;
+}
+
+.tm-steps-row {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
+  max-width: 100%;
+  padding: 2px 0 6px;
+}
+
+.tm-steps-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
-  .proposal-progress-image {
-    flex: 0 0 100%;
+  .tm-hero-title {
+    font-size: 34px;
   }
 }
 
-/*PROPOSAL FIXES*/
-/* ============================================================
-   PROPOSAL FIXES — CLEAN + COMPLETE
-   ============================================================ */
+@media (max-width: 640px) {
+  .tm-progress-steps {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
 
-/* ===== Fix: Prevent Lentax overlay components from affecting SuiteDash UI ===== */
-.pricing-overlay-btn-lentax,
-.pricing-overlay-btn-lentax * {
-  all: unset !important;
-  display: revert !important;
+  .tm-progress-steps::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tm-step-label {
+    display: none;
+  }
+
+  .tm-steps-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
-
-/* ===== Restore overlay container positioning (safe, isolated) ===== */
-.pricing-overlay-btn-lentax {
-  align-items: center;
-  display: flex;
-  inset: 0;
-  justify-content: center;
-  position: absolute;
-  z-index: 2;
-}
-
-.pricing-overlay-btn-lentax .btn {
-  align-items: center !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  cursor: pointer !important;
-  display: flex !important;
-  height: 100% !important;
-  justify-content: center !important;
-  margin: 0 !important;
-  outline: none !important;
-  padding: 0 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  transition: none !important;
-  transform: none !important;
-  width: 100% !important;
-}
-
-/* ============================================================
-   PROPOSAL BOTTOM NAVIGATION (NEXT / PREV)
-   ============================================================ */
-
-.bottom_nav {
-  align-items: center;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.bottom_nav .btn {
-  align-items: center;
-  background-color: transparent;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  display: inline-flex;
-  height: auto;
-  justify-content: center;
-  margin: 0 5px;
-  padding: 4px 10px;
-  width: auto;
-}
-
-.bottom_nav .material-icons {
-  font-family: "Material Icons" !important;
-  font-feature-settings: "liga";
-  font-size: 20px;
-  font-style: normal !important;
-  font-weight: normal !important;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  -webkit-font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ============================================================
-   SIGNATURE MODAL FIX — removes textsmsType / createSign
-   ============================================================ */
-
-#signature-modal .material-icons,
-.sd-signature-container .material-icons,
-.sd-tabs .material-icons,
-.sd-sign-controls .material-icons {
-  font-family: "Material Icons" !important;
-  font-feature-settings: "liga";
-  font-size: 20px !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  letter-spacing: normal;
-  line-height: 1;
-  text-transform: none !important;
-  -webkit-font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
-}
-
-/*BLOG*/
-form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
-    display: none !important;
-}
-
-form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
-    display: none !important;
-}
-
-form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0001*/
-form[action*="25obtQmXLf6gjpa9g"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0002*/
-form[action*="2tgbohKtxbUWKxAs4"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0003*/
-form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0004*/
-form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0005*/
-form[action*="2ttW49FiPWyTf1R8c"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0006*/
-form[action*="ukcaeLqxLqSYRYv9"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0007*/
-form[action*="21DUSRaM2uEc6Gvgd"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0008*/
-form[action*="2ttFmvm5kgsDQ3s55"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0009*/
-form[action*="vrJFioTesAYTS6iC"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0010*/
-form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0011*/
-form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0012*/
-form[action*="2rhJ2xzFvAzDW89JP"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0013*/
-form[action*="z9nEKoAeDanZXYu5"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0014*/
-form[action*="22LjridPWY1rhW4MN"] .form-actions.btn-list {
-    display: none !important;
-}
-
-/*Lentax Blog 0015*/
-form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
-    display: none !important;
-}
-/*End of BLOG*/
 
 /*VIRTUAL LAUNCH PRO*/
-
 .vl-body {
   font-size: 17px;
   line-height: 1.7;
@@ -7345,6 +6821,263 @@ html {
   content: none !important;
 }
 
+/*SUPPORT PAGE*/
+.vl-hero--support {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 26px 22px;
+}
+
+.vl-support-check {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+
+.vl-support-check__center {
+  text-align: center;
+  width: 100%;
+}
+
+.vl-support-check__center-inner {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.vl-support-check__center .vl-btn .cbe-block-button-element.btn,
+.vl-support-check__center .vl-btn .cbe-block-button-element.btn.btn-primary {
+  width: 100%;
+}
+
+.vl-support-check__desc {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.vl-support-check__icon {
+  align-items: center;
+  background: rgba(249, 115, 22, 0.14);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.90);
+  display: inline-flex;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.vl-support-check__left {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  gap: 12px;
+  min-width: 0;
+}
+
+.vl-support-check__pill {
+  align-items: center;
+  background: rgba(249, 115, 22, 0.16);
+  border: 1px solid rgba(249, 115, 22, 0.55);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.86);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vl-support-check__right {
+  flex: 0 0 auto;
+}
+
+.vl-support-check__text {
+  min-width: 0;
+  width: 100%;
+}
+
+.vl-support-check__title {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.vl-support-checklist {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.vl-support-hero {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+}
+
+.vl-support-hero__bot {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.vl-support-hero__botname {
+  margin-top: 6px;
+  text-align: center;
+}
+
+.vl-support-hero__copy {
+  flex: 1;
+  min-width: 280px;
+}
+
+.vl-support-quick {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  margin-top: 18px;
+  padding: 16px 18px;
+}
+
+.vl-support-quick__list {
+  margin: 10px 0 12px 26px;
+}
+
+.vl-support-quick__title {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .vl-hero--support {
+    padding: 20px 16px;
+  }
+
+  .vl-support-hero__copy {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .vl-support-quick__list {
+    margin-left: 22px;
+    text-align: left;
+  }
+}
+
+/*SuiteDash Default Classes*/
+/*SD Progress Bar*/
+.cbe-block-progress-title {
+  color: #fff;
+  font-size: 18px;
+}
+
+/*SD Primary Button*/
+.btn.btn-primary.btn-block {
+  align-items: center;
+  background-color: #1a1a1a;
+  border: 1px solid #00cc00;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 700;
+  justify-content: center;
+  margin: 12px auto;
+  max-width: 360px;
+  padding: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease,
+              box-shadow 0.4s ease, color 0.3s ease;
+}
+
+.btn.btn-primary.btn-block:hover {
+  background-color: #262626;
+  border-color: #00ff00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4);
+  color: #33ff33;
+  transform: translateY(-2px);
+}
+
+.btn.btn-primary.btn-block {
+  animation: button-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes button-glow {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 35px rgba(0, 255, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
+  }
+}
+
+.btn.btn-link.btn-block {
+  align-items: center;
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  color: #ff0000;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: center;
+  margin: 12px auto;
+  max-width: 360px;
+  padding: 12px 16px;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+.btn.btn-link.btn-block:hover {
+  background: rgba(255, 0, 0, 0.15);
+  border-color: #cc0000;
+  color: #cc0000;
+  transform: translateY(-2px);
+}
+
+/* Dark Mode Primary Button */
+.sd-dark-mode .btn.btn-primary {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 0.2s ease-in-out;
+}
+
+.sd-dark-mode .btn.btn-primary:hover {
+  color: #fff !important;
+}
+
+.sd-nav-bar-add-button {
+font-size: 0 !important;
+}
+
+.sd-nav-bar-add-button::after {
+content: "➕";
+display: inline-block;
+font-size: 16px;
+line-height: 1;
+vertical-align: middle;
+}
+/*End of SD Primary Button*/
+
 /*SD CHECKLIST*/
 .card.checklist-card {
   background: transparent;
@@ -7605,159 +7338,580 @@ html {
   width: 18px;
 }
 
-/*SUPPORT PAGE*/
-.vl-hero--support {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
-  padding: 26px 22px;
-}
-
-.vl-support-check {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.26);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 18px;
+/*SD FLOW*/
+/* Parent wrapper: flex row on desktop */
+.flow-advance-wrapper {
   display: flex;
-  justify-content: space-between;
-  padding: 14px 16px;
+  gap: 16px;
+  flex-wrap: nowrap;
+  justify-content: center; /* center buttons horizontally */
+  align-items: stretch;    /* equal height buttons */
 }
 
-.vl-support-check__center {
+/* Make the continue button container flexible */
+.flow-button-group {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+}
+
+/* Skip button itself made flexible */
+.flow-advance-wrapper > .flow-button-skip {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+}
+
+/* Continue Button */
+.flow-button-continue {
+  align-items: center;      /* center content vertically */
+  background: linear-gradient(135deg, #FFA500, #FFD700); /* orange → gold */
+  border: none;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
+  color: #000 !important; /* black text */
+  cursor: pointer;
+  display: flex;
+  font-size: 18px !important;
+  font-weight: 700;
+  justify-content: center;  /* center text horizontally */
+  overflow: hidden;
+  padding: 10px 28px;
+  position: relative;
   text-align: center;
-  width: 100%;
+  text-decoration: none;
+  transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.vl-support-check__center-inner {
-  margin: 0 auto;
-  width: 100%;
+.flow-button-continue:hover {
+  background: linear-gradient(135deg, #FFB733, #FFFF33); /* brighter gold */
+  box-shadow: rgba(45, 35, 66, 0.4) 0 6px 16px;
+  transform: translateY(-2px);
+  color: #000 !important;
 }
 
-.vl-support-check__center .vl-btn .cbe-block-button-element.btn,
-.vl-support-check__center .vl-btn .cbe-block-button-element.btn.btn-primary {
-  width: 100%;
+/* Shine overlay for continue button */
+.flow-button-continue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  animation: shine-reverse 3s infinite linear;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.vl-support-check__desc {
-  color: rgba(255, 255, 255, 0.76);
+/* Skip Button */
+.flow-button-skip {
+  align-items: center;      
+  background-color: rgba(255, 0, 0, 0.15); /* slightly transparent red */
+  border: 3px solid red;    /* more prominent border */
+  border-radius: 6px;
+  color: #ff6666;           /* visible text on light background */
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: center;  /* center text horizontally */
+  overflow: hidden;
+  padding: 10px 28px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flow-button-skip:hover {
+  background-color: rgba(255, 0, 0, 0.25); /* slightly darker background */
+  color: #990000; /* dark red text */
+  box-shadow: rgba(45, 35, 66, 0.3) 0 4px 10px;
+  transform: translateY(-2px);
+}
+
+/* Shine animation keyframes for continue button */
+@keyframes shine-reverse {
+  0% { left: 150%; }
+  25% { left: 50%; }
+  50% { left: -50%; }
+  75% { left: 50%; }
+  100% { left: 150%; }
+}
+
+/* Responsive: stack buttons vertically on small screens */
+@media screen and (max-width: 768px) {
+  .flow-advance-wrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .flow-button-group,
+  .flow-advance-wrapper > .flow-button-skip {
+    flex: 1 1 100%;
+  }
+}
+
+/*End of SD FLOW*/
+
+/*SD LOGIN PAGE*/
+.registration-page .registration-card.form-oscar {
+  background-color: rgb(26, 26, 26);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+  margin: 40px auto;
+  max-width: 520px;
+  padding: 30px 26px 32px;
+}
+
+.registration-page .registration-card .card-block {
+  padding: 0;
+}
+
+.registration-page .registration-card .logo-wrap {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.registration-page .registration-card .form-group label {
+  color: rgb(255, 255, 255);
   font-size: 14px;
-  line-height: 1.5;
-  margin-top: 2px;
+  font-weight: 500;
+  margin-bottom: 6px;
 }
 
-.vl-support-check__icon {
-  align-items: center;
-  background: rgba(249, 115, 22, 0.14);
-  border: 1px solid rgba(249, 115, 22, 0.35);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.90);
-  display: inline-flex;
-  height: 38px;
-  justify-content: center;
-  width: 38px;
+.registration-page .registration-card .form-group .required {
+  color: rgb(255, 187, 51);
 }
 
-.vl-support-check__left {
-  align-items: flex-start;
-  display: flex;
-  flex: 1 1 auto;
-  gap: 12px;
-  min-width: 0;
+.registration-page .registration-card .form-control {
+  background-color: rgb(18, 18, 18);
+  border: 1px solid rgb(60, 60, 60);
+  border-radius: 6px;
+  color: rgb(240, 240, 240);
+  font-size: 14px;
+  padding: 10px 12px;
 }
 
-.vl-support-check__pill {
-  align-items: center;
-  background: rgba(249, 115, 22, 0.16);
-  border: 1px solid rgba(249, 115, 22, 0.55);
+.registration-page .registration-card .form-control:focus {
+  border-color: rgb(255, 187, 51);
+  box-shadow: 0 0 0 1px rgba(255, 187, 51, 0.6);
+  outline: none;
+}
+
+.registration-page .registration-card .onboarding-password-strength #password-strength {
+  background-color: rgb(34, 34, 34);
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.86);
-  display: inline-flex;
+  height: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.registration-page .registration-card .onboarding-password-strength .password-strength-bar {
+  background: linear-gradient(90deg, rgb(255, 153, 51), rgb(0, 200, 120));
+  display: block;
+  height: 100%;
+  transition: width 0.3s ease;
+  width: 0;
+}
+
+.registration-page .registration-card .info-text {
+  color: rgba(255, 255, 255, 0.75);
   font-size: 13px;
-  font-weight: 900;
-  justify-content: center;
-  letter-spacing: 0.02em;
-  padding: 8px 14px;
+  margin-top: 12px;
+}
+
+.registration-page .registration-card .form-actions.btn-list {
+  margin-top: 20px;
   text-align: center;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
-.vl-support-check__right {
-  flex: 0 0 auto;
+.registration-page .registration-card .form-actions .btn-primary {
+  background: linear-gradient(135deg, rgb(255, 170, 0), rgb(230, 115, 0));
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 26px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, box-shadow 0.2s ease, transform 0.1s ease;
 }
 
-.vl-support-check__text {
-  min-width: 0;
+.registration-page .registration-card .form-actions .btn-primary:hover {
+  box-shadow: 0 6px 16px rgba(255, 120, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+/*End of LOGIN PAGE*/
+
+/*SD PROPOSAL*/
+.cart-proposal-intro {
+    color: #ffffff;
+    margin: 0 auto 26px auto;
+    max-width: 1000px;
+    padding: 10px 20px 20px 20px;
+    text-align: left;
+  }
+
+  .cart-proposal-heading {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .cart-proposal-subheading {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .cart-proposal-keypoints {
+    border-left: 3px solid #ffb300;
+    margin: 14px 0 22px 0;
+    padding-left: 14px;
+  }
+
+  .cart-proposal-keypoints p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 4px 0;
+  }
+
+  .persona-grid {
+    border-radius: 12px;
+    border: 1px solid #333333;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 20px;
+    padding: 12px 14px;
+  }
+
+  .persona-card {
+    border-radius: 10px;
+    padding: 8px 10px;
+  }
+
+  .persona-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .persona-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .persona-card-thinker .persona-label {
+    color: #93c5fd;
+  }
+
+  .persona-card-director .persona-label {
+    color: #facc15;
+  }
+
+  .persona-card-socializer .persona-label {
+    color: #fb7185;
+  }
+
+  .persona-card-relator .persona-label {
+    color: #6ee7b7;
+  }
+
+  .pipeline-cascade {
+    border-radius: 12px;
+    border: 1px solid #333333;
+    margin-bottom: 18px;
+    padding: 14px 14px 12px 14px;
+    position: relative;
+  }
+
+  .pipeline-cascade-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .pipeline-cascade-inner {
+    border-left: 2px solid #444444;
+    margin-left: 14px;
+    padding-left: 14px;
+  }
+
+  .pipeline-step {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .pipeline-step-number {
+    align-items: center;
+    background: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 11px;
+    font-weight: 800;
+    height: 22px;
+    justify-content: center;
+    min-width: 22px;
+  }
+
+  .pipeline-step-body {
+    flex: 1;
+  }
+
+  .pipeline-step-title {
+    font-size: 14px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    transition: color .25s ease, text-shadow .25s ease;
+  }
+
+  .pipeline-step-title:hover {
+    color: #ffb300;
+    text-shadow: 0 0 6px rgba(255, 179, 0, 0.6);
+  }
+
+  .pipeline-detail {
+    display: none;
+    margin-top: 8px;
+    padding-left: 10px;
+    border-left: 2px solid #333;
+  }
+
+  .pipeline-detail p {
+    font-size: 12px;
+    color: #d1d5db;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 900px) {
+    .persona-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .persona-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+.proposal-progress-image {
+  display: block;
+  flex: 0 0 calc(50% - 8px);
+  height: auto;
+  max-width: 100%;
   width: 100%;
 }
 
-.vl-support-check__title {
-  font-size: 16px;
-  font-weight: 900;
-  line-height: 1.25;
-  margin: 0;
-}
-
-.vl-support-checklist {
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.vl-support-hero {
-  align-items: flex-start;
+.proposal-progress-image-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 22px;
+  gap: 16px;
   justify-content: center;
-}
-
-.vl-support-hero__bot {
-  flex: 0 0 auto;
-  text-align: center;
-}
-
-.vl-support-hero__botname {
-  margin-top: 6px;
-  text-align: center;
-}
-
-.vl-support-hero__copy {
-  flex: 1;
-  min-width: 280px;
-}
-
-.vl-support-quick {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 18px;
-  margin-top: 18px;
-  padding: 16px 18px;
-}
-
-.vl-support-quick__list {
-  margin: 10px 0 12px 26px;
-}
-
-.vl-support-quick__title {
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 0.01em;
-  margin: 0;
-  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
-  .vl-hero--support {
-    padding: 20px 16px;
-  }
-
-  .vl-support-hero__copy {
-    min-width: 0;
-    text-align: center;
-  }
-
-  .vl-support-quick__list {
-    margin-left: 22px;
-    text-align: left;
+  .proposal-progress-image {
+    flex: 0 0 100%;
   }
 }
+
+/*PROPOSAL FIXES*/
+/* ============================================================
+   PROPOSAL FIXES — CLEAN + COMPLETE
+   ============================================================ */
+
+/* ===== Fix: Prevent Lentax overlay components from affecting SuiteDash UI ===== */
+.pricing-overlay-btn-lentax,
+.pricing-overlay-btn-lentax * {
+  all: unset !important;
+  display: revert !important;
+}
+
+/* ===== Restore overlay container positioning (safe, isolated) ===== */
+.pricing-overlay-btn-lentax {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+}
+
+.pricing-overlay-btn-lentax .btn {
+  align-items: center !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  height: 100% !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  outline: none !important;
+  padding: 0 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  transition: none !important;
+  transform: none !important;
+  width: 100% !important;
+}
+
+/* ============================================================
+   PROPOSAL BOTTOM NAVIGATION (NEXT / PREV)
+   ============================================================ */
+
+.bottom_nav {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.bottom_nav .btn {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  display: inline-flex;
+  height: auto;
+  justify-content: center;
+  margin: 0 5px;
+  padding: 4px 10px;
+  width: auto;
+}
+
+.bottom_nav .material-icons {
+  font-family: "Material Icons" !important;
+  font-feature-settings: "liga";
+  font-size: 20px;
+  font-style: normal !important;
+  font-weight: normal !important;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   SIGNATURE MODAL FIX — removes textsmsType / createSign
+   ============================================================ */
+
+#signature-modal .material-icons,
+.sd-signature-container .material-icons,
+.sd-tabs .material-icons,
+.sd-sign-controls .material-icons {
+  font-family: "Material Icons" !important;
+  font-feature-settings: "liga";
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none !important;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/*BLOG*/
+form[action*="22XrKWxpKXmGnmcrc"] .form-actions.btn-list {
+    display: none !important;
+}
+
+form[action*="vqr5BtLhA8zDtVax"] .form-actions.btn-list {
+    display: none !important;
+}
+
+form[action*="21F1YYUL9jiPtWgEK"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0001*/
+form[action*="25obtQmXLf6gjpa9g"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0002*/
+form[action*="2tgbohKtxbUWKxAs4"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0003*/
+form[action*="zLPyP3enGa9G3Tj8"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0004*/
+form[action*="23Qw4sx3nR6JaK1o6"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0005*/
+form[action*="2ttW49FiPWyTf1R8c"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0006*/
+form[action*="ukcaeLqxLqSYRYv9"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0007*/
+form[action*="21DUSRaM2uEc6Gvgd"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0008*/
+form[action*="2ttFmvm5kgsDQ3s55"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0009*/
+form[action*="vrJFioTesAYTS6iC"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0010*/
+form[action*="y41GuexDwK1mCvtx"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0011*/
+form[action*="22XN1Bh8wWuNDm1TE"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0012*/
+form[action*="2rhJ2xzFvAzDW89JP"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0013*/
+form[action*="z9nEKoAeDanZXYu5"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0014*/
+form[action*="22LjridPWY1rhW4MN"] .form-actions.btn-list {
+    display: none !important;
+}
+
+/*Lentax Blog 0015*/
+form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
+    display: none !important;
+}
+/*End of BLOG*/
