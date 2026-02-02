@@ -750,122 +750,86 @@
 }
 
 
-/*Copy/Paste Block*/
-/* Center all text in this block */
-.copy-paste-block { text-align: center; }
-
-/* Headings */
-.copy-paste-block .copy-paste-block-title { margin-bottom: 10px; font-weight: 700; font-size: 22px; }
-.copy-paste-block .copy-paste-block-subtitle { margin-bottom: 18px; font-size: 14px; opacity: 0.8; }
-
-/* Referral code box */
-.copy-paste-block .copy-paste-block-passkey {
-  font-weight: 700;
-  word-break: break-all;
-  background: rgba(255, 255, 255, 0.10);
-  padding: 16px 20px;
-  border-radius: 8px;
-  margin: 0 auto 12px auto;   /* center + spacing */
-  font-size: 16px;
-  max-width: fit-content;
-  display: inline-block;
-}
-
-.copy-paste-block-passkey {
-  background-color: #f0f0f0; /* light gray for contrast */
-  border-radius: 8px;        /* rounded corners for clarity */
-  color: #111;               /* dark text for readability */
-  font-family: monospace;    /* code-style font for clarity */
-  font-weight: bold;         /* make the text prominent */
-  padding: 12px 16px;        /* spacing inside the block */
-  text-align: center;        /* center the text */
-  user-select: all;          /* allows easy copy of the entire text */
-}
-
-
-/* Button wrapper for spacing */
-.copy-paste-block .copy-paste-block-btn-wrap { margin-bottom: 16px; }
-
-/* Button — stronger selector + fallback for --accent */
-.copy-paste-block .copy-paste-block-btn {
-  display: inline-block;
-  background: var(--accent, #FF8C00) !important;  /* fallback to darker orange */
-  color: #000 !important;
-  font-weight: 700;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 32px !important;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.05s ease;
+/* Copy/Paste Block */
+.copy-paste-block {
+  position: relative;
   text-align: center;
-  text-decoration: none;
 }
-.copy-paste-block .copy-paste-block-btn:hover { filter: brightness(1.05); }
-.copy-paste-block .copy-paste-block-btn:active { transform: translateY(1px); }
+
+.copy-paste-block .copy-paste-block-btn-wrap {
+  margin-bottom: 16px;
+}
+
+.copy-paste-block .copy-paste-block-passkey {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 auto 12px auto;
+  max-width: fit-content;
+  padding: 16px 20px;
+  user-select: all;
+  word-break: break-word;
+}
+
+/* Copy button — match vl ghost button styling */
+.copy-paste-block .copy-paste-block-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.80);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 900;
+  gap: 8px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 10px 16px;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 120ms ease;
+  user-select: none;
+}
+
+.copy-paste-block .copy-paste-block-btn:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.copy-paste-block .copy-paste-block-btn:active {
+  transform: translateY(1px);
+}
+
 .copy-paste-block .copy-paste-block-btn:focus-visible {
-  outline: 2px solid var(--accent, #FF8C00);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22);
 }
 
 /* Toast */
 .copy-paste-block .copy-paste-block-toast {
-  position: absolute;
-  left: 50%;
-  bottom: 12px;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.85);
   border-radius: 8px;
-  font-size: 14px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 180ms ease;
-  max-width: calc(100% - 24px);
+  bottom: 12px;
   box-sizing: border-box;
-  text-align: center;
-}
-.copy-paste-block .copy-paste-block-toast.show { opacity: 1; }
-.copy-paste-block .copy-paste-block-toast.success { background: rgba(40,167,69,0.92); }
-.copy-paste-block .copy-paste-block-toast.error   { background: rgba(220,53,69,0.92); }
-
-/* COPY / UTILITY BUTTON — VL SECONDARY */
-
-.copy-paste-block-btn {
-  background: transparent;
-  border: 1.5px solid #F97316;
-  border-radius: 12px;
-  color: #F97316;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
+  color: #fff;
+  font-size: 14px;
+  left: 50%;
+  max-width: calc(100% - 24px);
+  opacity: 0;
   padding: 10px 16px;
-  text-transform: uppercase;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    box-shadow 160ms ease,
-    transform 120ms ease;
-  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  transition: opacity 180ms ease;
 }
 
-.copy-paste-block-btn:hover {
-  background-color: rgba(249, 115, 22, 0.12);
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
-}
-
-.copy-paste-block-btn:active {
-  transform: translateY(1px);
-}
-
-.copy-paste-block-btn:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 2px rgba(249, 115, 22, 0.35),
-    0 0 0 6px rgba(249, 115, 22, 0.15);
-}
+.copy-paste-block .copy-paste-block-toast.show { opacity: 1; }
+.copy-paste-block .copy-paste-block-toast.success { background: rgba(40, 167, 69, 0.92); }
+.copy-paste-block .copy-paste-block-toast.error { background: rgba(220, 53, 69, 0.92); }
 
 
 /*Dropdowns*/
@@ -7696,6 +7660,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
