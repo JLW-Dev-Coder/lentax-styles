@@ -6535,6 +6535,32 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   margin-bottom: 28px;
   text-align: center;
 }
+.vl-progress-steps--8 {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.vl-progress-steps--8 .vl-step {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  padding: 4px 6px;
+}
+
+.vl-progress-steps--8 .vl-step-num {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.vl-progress-steps--8 .vl-step-label {
+  font-size: 10px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
 
 .vl-section {
   margin: 0 auto;
@@ -7726,6 +7752,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
