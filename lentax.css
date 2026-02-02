@@ -5387,7 +5387,7 @@ transform: none !important;
 }
 
 .tm-hero-lead {
-  color: rgba(255, 255, 255, 0.78);
+  /*color: rgba(255, 255, 255, 0.78);*/
   font-size: 16px;
   line-height: 1.7;
   margin: 16px auto 0;
@@ -5396,7 +5396,7 @@ transform: none !important;
 }
 
 .tm-hero-note {
-  color: rgba(255, 255, 255, 0.62);
+/*color: rgba(255, 255, 255, 0.62);*/
   font-size: 16px;
   font-style: italic;
   line-height: 1.7;
@@ -7915,3 +7915,4 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
