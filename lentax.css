@@ -6062,6 +6062,71 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
   padding-top: 10px;
 }
 
+.vl-btn-accent,
+.vl-btn-accent span.tooltipBlock .vl-btn-accent {
+  background-color: rgba(10, 12, 18, 0.92);
+  border-left: 4px solid rgba(255, 140, 0, 0.95);
+  border-radius: 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.35) 0 2px 6px,
+    rgba(0, 0, 0, 0.25) 0 10px 20px -6px;
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    border-left 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+  width: fit-content;
+  z-index: 3;
+}
+
+.vl-btn-accent::before,
+.vl-btn-accent span.tooltipBlock .vl-btn-accent::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  content: '';
+  height: 100%;
+  left: 140%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: skewX(-18deg);
+  width: 45%;
+  z-index: 4;
+}
+
+.vl-btn-accent:hover,
+.vl-btn-accent span.tooltipBlock .vl-btn-accent:hover {
+  background-color: rgba(18, 22, 32, 0.95);
+  border-left: 5px solid rgba(255, 156, 36, 1);
+  box-shadow:
+    rgba(0, 0, 0, 0.45) 0 6px 14px,
+    rgba(0, 0, 0, 0.3) 0 14px 30px -8px;
+  transform: translateX(3px);
+}
+
+.vl-btn-accent:active,
+.vl-btn-accent span.tooltipBlock .vl-btn-accent:active {
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
+  transform: translateX(1px);
+}
+
+
 .vl-btn .cbe-block-button-element.btn,
 .vl-btn .cbe-block-button-element.btn.btn-primary {
   align-items: center;
@@ -7660,6 +7725,7 @@ html {
     text-align: left;
   }
 }
+
 
 
 
