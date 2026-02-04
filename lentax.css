@@ -5533,7 +5533,7 @@ transform: none !important;
 
 /*VIRTUAL LAUNCH PRO*/
 .vl-body {
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.82) !important;
   font-size: 17px;
   line-height: 1.7;
   padding-top: 10px;
@@ -7936,6 +7936,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
 
