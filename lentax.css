@@ -5533,6 +5533,7 @@ transform: none !important;
 
 /*VIRTUAL LAUNCH PRO*/
 .vl-body {
+  color: rgba(255, 255, 255, 0.82);
   font-size: 17px;
   line-height: 1.7;
   padding-top: 10px;
@@ -6132,6 +6133,7 @@ transform: none !important;
 }
 
 .vl-subhead {
+  color: rgba(255, 255, 255, 0.82);
   font-size: 20px;
   font-weight: 800;
   line-height: 1.6;
@@ -6139,7 +6141,6 @@ transform: none !important;
   max-width: 1000px;
   text-align: center;
 }
-
 
 @media (max-width: 768px) {
   .vl-hero {
@@ -7899,5 +7900,6 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
     display: none !important;
 }
 /*End of BLOG*/
+
 
 
