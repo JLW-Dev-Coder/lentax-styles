@@ -8610,22 +8610,22 @@ html {
   }
 }
 
-/* =========================================================
-   PROJECT DASHBOARD (pd-*)
-   Isolated • CF-safe • No JS
-   ========================================================= */
+/* PROJECT DASHBOARD (pd-*) — FULL CSS SET (isolated; used classes only) */
 
-/* ---------- layout ---------- */
-
-.pd-container {
-  margin: 0 auto;
-  max-width: 1200px;
+.pd-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 28px;
 }
 
-.pd-grid {
-  display: grid;
-  gap: 24px;
-  margin-top: 48px;
+.pd-card-title {
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  font-weight: 900;
+  gap: 12px;
+  margin: 0 0 14px 0;
 }
 
 .pd-col-2 {
@@ -8636,31 +8636,10 @@ html {
   grid-column: span 1;
 }
 
-@media (min-width: 768px) {
-  .pd-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .pd-col-3 {
-    grid-column: span 2;
-  }
+.pd-container {
+  margin: 0 auto;
+  max-width: 1200px;
 }
-
-@media (min-width: 1024px) {
-  .pd-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .pd-col-2 {
-    grid-column: span 2;
-  }
-
-  .pd-col-3 {
-    grid-column: span 3;
-  }
-}
-
-/* ---------- top headings (black) ---------- */
 
 .pd-eyebrow {
   color: #000000 !important;
@@ -8671,34 +8650,95 @@ html {
   text-transform: uppercase;
 }
 
-.pd-title {
+.pd-faqt {
+  margin: 22px auto 0 auto;
+  max-width: 920px;
+}
+
+.pd-faqt-a {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  display: none;
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 14px 22px 18px 22px;
+}
+
+.pd-faqt-caret {
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 160ms ease;
+}
+
+.pd-faqt-close {
+  margin-top: 10px;
+}
+
+.pd-faqt-close-link {
+  color: rgba(255,255,255,0.92) !important;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pd-faqt-head {
+  margin: 0 auto 12px auto;
+  text-align: center;
+}
+
+.pd-faqt-item {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pd-faqt-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pd-faqt-q {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  padding: 18px 22px;
+  text-decoration: none !important;
+}
+
+.pd-faqt-qtext {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.pd-faqt-title {
   color: #000000 !important;
-  font-size: 38px;
+  font-size: 34px;
   font-weight: 900;
   line-height: 1.2;
-  margin: 0;
+  margin: 15px auto;
 }
 
-.pd-subtext {
-  color: #000000 !important;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-top: 18px;
+.pd-gradient-orange {
+  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
 }
 
-@media (min-width: 768px) {
-  .pd-title {
-    font-size: 44px;
-  }
+.pd-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 48px;
 }
 
-@media (min-width: 1024px) {
-  .pd-title {
-    font-size: 52px;
-  }
+.pd-handle-pill {
+  display: inline-block;
+  margin: 0 2px;
 }
-
-/* ---------- handle pill (black) ---------- */
 
 .pd-handle-pill__inner {
   background: rgba(0,0,0,0.06);
@@ -8711,34 +8751,55 @@ html {
   padding: 2px 10px;
 }
 
-/* ---------- cards (force white) ---------- */
-
-.pd-card {
-  background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
-  color: #ffffff !important;
-  padding: 28px;
+.pd-scroll-shell {
+  max-height: calc(100vh - 220px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
-.pd-card * {
+.pd-scroll-shell::-webkit-scrollbar {
+  width: 10px;
+}
+
+.pd-scroll-shell::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+
+.pd-scroll-shell::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+
+.pd-section {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 56px 16px 0 16px;
+}
+
+.pd-scope {
+  color: #ffffff !important;
+  font-family: inherit;
+}
+
+.pd-scope * {
   color: #ffffff !important;
   opacity: 1 !important;
 }
 
-/* ---------- card titles + icons ---------- */
-
-.pd-card-title {
-  align-items: center;
-  display: flex;
-  font-size: 18px;
-  font-weight: 900;
-  gap: 12px;
-  margin: 0 0 14px 0;
+.pd-subtext {
+  color: #000000 !important;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 18px;
 }
 
-.pd-gradient-orange {
-  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+.pd-title {
+  color: #000000 !important;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .pd-title-icon {
@@ -8760,86 +8821,43 @@ html {
   stroke: #ffffff;
 }
 
-/* =========================================================
-   FAQ (pd-faqd-*) — USE THIS (details/summary)
-   Fixes: click toggle + padding + title alignment
-   ========================================================= */
-
-.pd-faqd {
-  margin: 32px auto 0 auto;
-  max-width: 920px;
+/* Hash-target open state (no JS) */
+.pd-faqt-item:target .pd-faqt-a {
+  display: block;
 }
 
-.pd-faqd-head {
-  margin: 0 0 18px 0;
-  padding: 0 16px;
-  text-align: center;
-}
-
-.pd-faqd-title {
-  color: #000000 !important;
-  font-size: 34px;
-  font-weight: 900;
-  line-height: 1.2;
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .pd-faqd-title {
-    font-size: 40px;
-  }
-}
-
-.pd-faqd-item {
-  background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.pd-faqd-item + .pd-faqd-item {
-  margin-top: 14px;
-}
-
-.pd-faqd-summary {
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  gap: 14px;
-  justify-content: space-between;
-  list-style: none;
-  padding: 20px 24px !important;
-  user-select: none;
-}
-
-.pd-faqd-summary::-webkit-details-marker {
-  display: none;
-}
-
-.pd-faqd-q {
-  color: #ffffff !important;
-  font-size: 14px;
-  font-weight: 900;
-  line-height: 1.4;
-}
-
-.pd-faqd-caret {
-  color: #ffffff !important;
-  flex-shrink: 0;
-  font-size: 12px;
-  line-height: 1;
-  transform: rotate(0deg);
-  transition: transform 160ms ease;
-}
-
-.pd-faqd-item[open] .pd-faqd-caret {
+.pd-faqt-item:target .pd-faqt-caret {
   transform: rotate(180deg);
 }
 
-.pd-faqd-answer {
-  border-top: 1px solid rgba(255,255,255,0.10);
-  color: #ffffff !important;
-  font-size: 14px;
-  line-height: 1.6;
-  padding: 18px 24px 22px 24px !important;
+@media (min-width: 768px) {
+  .pd-col-3 {
+    grid-column: span 2;
+  }
+
+  .pd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pd-title {
+    font-size: 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pd-col-2 {
+    grid-column: span 2;
+  }
+
+  .pd-col-3 {
+    grid-column: span 3;
+  }
+
+  .pd-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .pd-title {
+    font-size: 52px;
+  }
 }
