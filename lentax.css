@@ -8612,10 +8612,10 @@ html {
 
 /* =========================================================
    PROJECT DASHBOARD (pd-*)
-   Isolated • Clean • No JS • CF-safe
+   Isolated • CF-safe • No JS
    ========================================================= */
 
-/* ---------- Layout ---------- */
+/* ---------- layout ---------- */
 
 .pd-container {
   margin: 0 auto;
@@ -8628,30 +8628,42 @@ html {
   margin-top: 48px;
 }
 
-.pd-col-2 { grid-column: span 1; }
-.pd-col-3 { grid-column: span 1; }
+.pd-col-2 {
+  grid-column: span 1;
+}
+
+.pd-col-3 {
+  grid-column: span 1;
+}
 
 @media (min-width: 768px) {
-  .pd-grid { grid-template-columns: repeat(2, 1fr); }
-  .pd-col-3 { grid-column: span 2; }
+  .pd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pd-col-3 {
+    grid-column: span 2;
+  }
 }
 
 @media (min-width: 1024px) {
-  .pd-grid { grid-template-columns: repeat(6, 1fr); }
-  .pd-col-2 { grid-column: span 2; }
-  .pd-col-3 { grid-column: span 3; }
+  .pd-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .pd-col-2 {
+    grid-column: span 2;
+  }
+
+  .pd-col-3 {
+    grid-column: span 3;
+  }
 }
 
-/* ---------- Scope ---------- */
-
-.pd-scope {
-  font-family: inherit;
-}
-
-/* ---------- Top Headings (BLACK) ---------- */
+/* ---------- top headings (black) ---------- */
 
 .pd-eyebrow {
-  color: #000000;
+  color: #000000 !important;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -8660,7 +8672,7 @@ html {
 }
 
 .pd-title {
-  color: #000000;
+  color: #000000 !important;
   font-size: 38px;
   font-weight: 900;
   line-height: 1.2;
@@ -8668,37 +8680,54 @@ html {
 }
 
 .pd-subtext {
-  color: #000000;
+  color: #000000 !important;
   font-size: 16px;
   line-height: 1.6;
   margin-top: 18px;
 }
 
-/* Handle pill (black text) */
+@media (min-width: 768px) {
+  .pd-title {
+    font-size: 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pd-title {
+    font-size: 52px;
+  }
+}
+
+/* ---------- handle pill (black) ---------- */
+
 .pd-handle-pill__inner {
   background: rgba(0,0,0,0.06);
   border: 1px solid rgba(0,0,0,0.12);
   border-radius: 999px;
-  color: #000000;
+  color: #000000 !important;
+  display: inline-block;
   font-weight: 900;
+  line-height: 1.2;
   padding: 2px 10px;
 }
 
-/* ---------- Cards ---------- */
+/* ---------- cards (force white) ---------- */
 
 .pd-card {
   background: #1a1a1a;
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
+  color: #ffffff !important;
   padding: 28px;
-  color: #ffffff;
 }
 
 .pd-card * {
-  color: #ffffff;
+  color: #ffffff !important;
+  opacity: 1 !important;
 }
 
-/* Card title with icon */
+/* ---------- card titles + icons ---------- */
+
 .pd-card-title {
   align-items: center;
   display: flex;
@@ -8708,7 +8737,9 @@ html {
   margin: 0 0 14px 0;
 }
 
-/* ---------- Icons ---------- */
+.pd-gradient-orange {
+  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+}
 
 .pd-title-icon {
   align-items: center;
@@ -8720,10 +8751,6 @@ html {
   width: 32px;
 }
 
-.pd-gradient-orange {
-  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
-}
-
 .pd-title-icon svg {
   height: 18px;
   width: 18px;
@@ -8733,97 +8760,86 @@ html {
   stroke: #ffffff;
 }
 
-/* ---------- FAQ v2 (checkbox-driven, CF-safe) ---------- */
+/* =========================================================
+   FAQ (pd-faqd-*) — USE THIS (details/summary)
+   Fixes: click toggle + padding + title alignment
+   ========================================================= */
 
-.pd-faq2 {
+.pd-faqd {
   margin: 32px auto 0 auto;
   max-width: 920px;
 }
 
-/* FAQ title (BLACK) */
-.pd-faq2-title {
-  color: #000000;
-  font-size: 34px;
-  font-weight: 900;
-  line-height: 1.2;
+.pd-faqd-head {
   margin: 0 0 18px 0;
+  padding: 0 16px;
   text-align: center;
 }
 
-/* FAQ list */
-.pd-faq2-list {
-  display: grid;
-  gap: 14px;
+.pd-faqd-title {
+  color: #000000 !important;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
 }
 
-/* FAQ item shell */
-.pd-faq2-item {
+@media (min-width: 768px) {
+  .pd-faqd-title {
+    font-size: 40px;
+  }
+}
+
+.pd-faqd-item {
   background: #1a1a1a;
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
   overflow: hidden;
 }
 
-/* Hidden checkbox (still clickable via label) */
-.pd-faq2-input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+.pd-faqd-item + .pd-faqd-item {
+  margin-top: 14px;
 }
 
-/* FAQ bar (THIS fixes padding + click) */
-.pd-faq2-label {
+.pd-faqd-summary {
   align-items: center;
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
   gap: 14px;
-  padding: 20px 24px;            /* <-- padding FIX */
+  justify-content: space-between;
+  list-style: none;
+  padding: 20px 24px !important;
   user-select: none;
 }
 
-/* Question text */
-.pd-faq2-q {
+.pd-faqd-summary::-webkit-details-marker {
+  display: none;
+}
+
+.pd-faqd-q {
+  color: #ffffff !important;
   font-size: 14px;
   font-weight: 900;
   line-height: 1.4;
-  color: #ffffff;
 }
 
-/* Caret */
-.pd-faq2-caret {
+.pd-faqd-caret {
+  color: #ffffff !important;
   flex-shrink: 0;
   font-size: 12px;
+  line-height: 1;
+  transform: rotate(0deg);
   transition: transform 160ms ease;
 }
 
-/* Answer panel */
-.pd-faq2-answer {
-  background: #1a1a1a;
-  border-top: 1px solid rgba(255,255,255,0.10);
-  color: #ffffff;
-  font-size: 14px;
-  line-height: 1.6;
-  max-height: 0;
-  overflow: hidden;
-  padding: 0 24px;
-  transition: max-height 240ms ease, padding 240ms ease;
-}
-
-/* Open state */
-.pd-faq2-input:checked + .pd-faq2-label .pd-faq2-caret {
+.pd-faqd-item[open] .pd-faqd-caret {
   transform: rotate(180deg);
 }
 
-.pd-faq2-input:checked + .pd-faq2-label + .pd-faq2-answer {
-  max-height: 400px;
-  padding: 18px 24px 22px 24px;
+.pd-faqd-answer {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  color: #ffffff !important;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 18px 24px 22px 24px !important;
 }
-
-
-/*End of VIRTUAL LAUNCH PRO*/
-
-
-
-
-
