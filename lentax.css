@@ -8851,3 +8851,33 @@ html {
     font-size: 52px;
   }
 }
+
+/* STATIC FAQ — HEIGHT CONSTRAINT (CONTAIN SCROLL) */
+
+.pd-faq {
+  max-height: 750px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Subtle scrollbar (WebKit only, safe to ignore elsewhere) */
+.pd-faq::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pd-faq::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.18);
+  border-radius: 999px;
+}
+
+.pd-faq::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.06);
+  border-radius: 999px;
+}
+
+/* Mobile tuning */
+@media (max-width: 768px) {
+  .pd-faq {
+    max-height: 620px;
+  }
+}
