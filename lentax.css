@@ -8934,12 +8934,13 @@ html {
   border-top: 1px solid rgba(255,255,255,0.10);
   max-height: 0;
   overflow: hidden;
-  padding: 0 18px;
-  transition: max-height 200ms ease, padding 200ms ease;
+  padding: 0 22px;
+  transition: max-height 220ms ease, padding 220ms ease;
 }
 
 .pd-faq2-caret {
   display: inline-block;
+  flex-shrink: 0;
   font-size: 12px;
   line-height: 1;
   transform: rotate(0deg);
@@ -8947,7 +8948,7 @@ html {
 }
 
 .pd-faq2-head {
-  margin: 0 auto 10px auto;
+  margin: 0 auto 12px auto;
   text-align: center;
 }
 
@@ -8969,10 +8970,9 @@ html {
   align-items: center;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
-  font-weight: 900;
+  gap: 12px;
   justify-content: space-between;
-  padding: 16px 18px;
+  padding: 18px 22px;
   user-select: none;
 }
 
@@ -8982,7 +8982,10 @@ html {
 }
 
 .pd-faq2-q {
-  padding-right: 12px;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.3;
+  padding-right: 10px;
 }
 
 .pd-faq2-title {
@@ -8999,11 +9002,12 @@ html {
 }
 
 .pd-faq2-input:checked + .pd-faq2-label + .pd-faq2-answer {
-  max-height: 220px;
-  padding: 12px 18px 18px 18px;
+  max-height: 340px;
+  padding: 14px 22px 20px 22px;
 }
 
 
 /*End of VIRTUAL LAUNCH PRO*/
+
 
 
