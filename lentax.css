@@ -8894,3 +8894,24 @@ html {
     font-size: 52px;
   }
 }
+
+/* FORCE WHITE TEXT INSIDE DARK DASHBOARD CARDS (SuiteDash override-safe) */
+.pd-card,
+.pd-card *,
+
+.pd-faq2-item,
+.pd-faq2-item * {
+  color: rgba(255,255,255,0.92) !important;
+}
+
+/* Slightly softer body text */
+.pd-card p,
+.pd-card li,
+.pd-faq2-answer {
+  color: rgba(255,255,255,0.80) !important;
+}
+
+/* Keep FAQ title black (intentional exception) */
+.pd-faq2-title {
+  color: #000000 !important;
+}
