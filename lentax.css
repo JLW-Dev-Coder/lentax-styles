@@ -8610,7 +8610,7 @@ html {
   }
 }
 
-/* PROJECT DASHBOARD (pd-*) — FULL CSS SET (isolated; SuiteDash-safe FAQ toggle) */
+/* PROJECT DASHBOARD (pd-*) — FULL CSS SET (canonical; SuiteDash-safe FAQ toggle) */
 
 .pd-card {
   background: #1a1a1a;
@@ -8640,17 +8640,21 @@ html {
   margin: 0 0 14px 0;
 }
 
-.pd-faq2 {
-  margin: 18px auto 0 auto;
-  max-width: 920px;
-}
-
 .pd-faq2-answer {
-  color: rgba(255,255,255,0.80);
+  color: rgba(255,255,255,0.82);
   display: none;
   font-size: 14px;
   line-height: 1.6;
   padding: 0 20px 18px 20px;
+}
+
+.pd-faq2-caret {
+  color: rgba(255,255,255,0.70);
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 160ms ease;
 }
 
 .pd-faq2-head {
@@ -8677,17 +8681,6 @@ html {
   transform: rotate(180deg);
 }
 
-.pd-faq2-label {
-  align-items: center;
-  color: rgba(255,255,255,0.92);
-  cursor: pointer;
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  padding: 16px 20px;
-  user-select: none;
-}
-
 .pd-faq2-list {
   margin: 0 auto;
   max-width: 920px;
@@ -8709,19 +8702,33 @@ html {
   margin: 0;
 }
 
+.pd-faq2-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.92);
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 16px 20px;
+  text-align: left;
+  width: 100%;
+}
+
+.pd-faq2-toggle:focus {
+  outline: none;
+}
+
+.pd-faq2-toggle:focus-visible {
+  outline: 2px solid rgba(249,115,22,0.55);
+  outline-offset: 2px;
+}
+
 .pd-faq2-wrap {
   margin: 28px auto 0 auto;
   max-width: 920px;
   padding: 0 16px;
-}
-
-.pd-faq2-caret {
-  color: rgba(255,255,255,0.70);
-  flex-shrink: 0;
-  font-size: 12px;
-  line-height: 1;
-  transform: rotate(0deg);
-  transition: transform 160ms ease;
 }
 
 .pd-gradient-orange {
