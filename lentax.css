@@ -8902,3 +8902,43 @@ html {
     font-size: 52px;
   }
 }
+
+/* SIMPLE FAQ — minimal + reliable */
+
+.sd-faq {
+  margin: 32px auto;
+  max-width: 920px;
+  padding: 0 16px;
+}
+
+.sd-faq-item {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.sd-faq-q {
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.95);
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 16px 20px;
+  text-align: left;
+  width: 100%;
+}
+
+.sd-faq-a {
+  color: rgba(255,255,255,0.80);
+  display: none;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 0 20px 18px 20px;
+}
+
+.sd-faq-item.open .sd-faq-a {
+  display: block;
+}
