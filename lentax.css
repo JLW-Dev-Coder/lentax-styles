@@ -26,7 +26,6 @@
   background: linear-gradient(90deg, #00cc00, #00ff70);but
 }
 
-
 .account-card-status-coming-soon {
   background-color: #ff1493; /* deep pink for coming soon */
   color: rgba(255, 255, 255, 0.75) !important;
@@ -8645,7 +8644,7 @@ html {
 }
 
 .pd-faq-head {
-  margin: 0 auto;
+  margin: 15px auto;
   max-width: 860px;
   text-align: center;
 }
@@ -8851,6 +8850,3 @@ html {
 
 
 /*End of VIRTUAL LAUNCH PRO*/
-
-
-
