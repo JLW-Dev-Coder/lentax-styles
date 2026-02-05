@@ -8752,6 +8752,95 @@ html {
   }
 }
 
+/* PROJECT DASHBOARD (pd-*) — FAQ CSS (alphabetical: selectors + properties) */
+
+.pd-faq-answer {
+  color: rgba(255,255,255,0.70);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 12px 18px 18px 18px;
+}
+
+.pd-faq-caret {
+  color: rgba(255,255,255,0.60);
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 160ms ease;
+}
+
+.pd-faq-head {
+  margin: 0 auto;
+  max-width: 860px;
+  text-align: center;
+}
+
+.pd-faq-item {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pd-faq-item[open] .pd-faq-caret {
+  transform: rotate(180deg);
+}
+
+.pd-faq-list {
+  margin: 22px auto 0 auto;
+  max-width: 860px;
+}
+
+.pd-faq-list > .pd-faq-item + .pd-faq-item {
+  margin-top: 12px;
+}
+
+.pd-faq-q {
+  display: inline-block;
+  padding-right: 12px;
+}
+
+.pd-faq-section {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 56px 16px;
+}
+
+.pd-faq-summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 800;
+  justify-content: space-between;
+  list-style: none;
+  padding: 16px 18px;
+  user-select: none;
+}
+
+.pd-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.pd-faq-title {
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .pd-faq-section {
+    padding: 64px 16px;
+  }
+
+  .pd-faq-title {
+    font-size: 40px;
+  }
+}
+
 
 /*End of VIRTUAL LAUNCH PRO*/
+
 
