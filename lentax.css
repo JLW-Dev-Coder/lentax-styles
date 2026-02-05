@@ -8883,7 +8883,19 @@ html {
   }
 }
 
+/* --- ALLOW BLACK TEXT FOR TOP HEADINGS + FAQ TITLE --- */
+
+.pd-eyebrow,
+.pd-title,
+.pd-subtext,
+.pd-faq-title {
+  color: #000000 !important;
+}
+
+/* Ensure FAQ title stays black even inside force-white scope */
+.pd-faq-head *,
+.pd-faq-head h2 {
+  color: #000000 !important;
+}
+
 /*End of VIRTUAL LAUNCH PRO*/
-
-
-
