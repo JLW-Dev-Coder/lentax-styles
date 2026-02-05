@@ -8663,63 +8663,40 @@ html {
 }
 
 .pd-faq {
-  margin: 28px auto 0 auto;
+  margin: 40px auto 0 auto;
   max-width: 920px;
   padding: 0 16px;
 }
 
-.pd-faq__caret {
-  color: rgba(255,255,255,0.70);
-  flex-shrink: 0;
-  font-size: 12px;
-  line-height: 1;
-  transform: rotate(0deg);
-  transition: transform 160ms ease;
+.pd-faq__a {
+  color: rgba(255,255,255,0.80);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .pd-faq__head {
-  margin: 0 auto 12px auto;
+  margin: 0 auto 18px auto;
   text-align: center;
 }
 
 .pd-faq__item {
   background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 14px;
-  overflow: hidden;
+  padding: 20px 22px;
 }
 
 .pd-faq__item + .pd-faq__item {
-  margin-top: 12px;
-}
-
-.pd-faq__item.is-open .pd-faq__caret {
-  transform: rotate(180deg);
-}
-
-.pd-faq__item.is-open .pd-faq__panel {
-  display: block !important;
-}
-
-.pd-faq__list {
-  margin: 0 auto;
-  max-width: 920px;
-}
-
-.pd-faq__panel {
-  color: rgba(255,255,255,0.80) !important;
-  display: none;
-  font-size: 14px;
-  line-height: 1.6;
-  padding: 0 20px 18px 20px;
+  margin-top: 14px;
 }
 
 .pd-faq__q {
-  font-size: 14px;
+  color: rgba(255,255,255,0.95);
+  font-size: 15px;
   font-weight: 900;
   line-height: 1.3;
-  padding-left: 2px;
-  padding-right: 10px;
+  margin: 0 0 8px 0;
 }
 
 .pd-faq__title {
@@ -8728,34 +8705,6 @@ html {
   font-weight: 900;
   line-height: 1.2;
   margin: 0;
-}
-
-.pd-faq__toggle {
-  align-items: center;
-  background: transparent;
-  border: 0;
-  color: rgba(255,255,255,0.92);
-  cursor: pointer;
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  padding: 16px 20px;
-  position: relative;
-  text-align: left;
-  width: 100%;
-}
-
-.pd-faq__toggle * {
-  pointer-events: none;
-}
-
-.pd-faq__toggle:focus {
-  outline: none;
-}
-
-.pd-faq__toggle:focus-visible {
-  outline: 2px solid rgba(249,115,22,0.55);
-  outline-offset: 2px;
 }
 
 .pd-gradient-orange {
@@ -8901,44 +8850,4 @@ html {
   .pd-title {
     font-size: 52px;
   }
-}
-
-/* SIMPLE FAQ — minimal + reliable */
-
-.sd-faq {
-  margin: 32px auto;
-  max-width: 920px;
-  padding: 0 16px;
-}
-
-.sd-faq-item {
-  background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 14px;
-  margin-bottom: 12px;
-}
-
-.sd-faq-q {
-  background: transparent;
-  border: 0;
-  color: rgba(255,255,255,0.95);
-  cursor: pointer;
-  display: block;
-  font-size: 14px;
-  font-weight: 900;
-  padding: 16px 20px;
-  text-align: left;
-  width: 100%;
-}
-
-.sd-faq-a {
-  color: rgba(255,255,255,0.80);
-  display: none;
-  font-size: 14px;
-  line-height: 1.6;
-  padding: 0 20px 18px 20px;
-}
-
-.sd-faq-item.open .sd-faq-a {
-  display: block;
 }
