@@ -8610,7 +8610,28 @@ html {
   }
 }
 
-/* PROJECT DASHBOARD (pd-*) — FULL CSS SET (isolated; no Tailwind; no conflicts) */
+/* PROJECT DASHBOARD (pd-*) — FULL CSS SET (isolated; force-white text inside pd-scope) */
+
+.pd-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.pd-card-title {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 14px 0;
+}
+
+.pd-col-2 {
+  grid-column: span 1;
+}
+
+.pd-col-3 {
+  grid-column: span 1;
+}
 
 .pd-container {
   margin: 0 auto;
@@ -8618,7 +8639,6 @@ html {
 }
 
 .pd-eyebrow {
-  color: #ffffff;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -8627,7 +8647,6 @@ html {
 }
 
 .pd-faq-answer {
-  color: #ffffff;
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
@@ -8635,7 +8654,6 @@ html {
 }
 
 .pd-faq-caret {
-  color: #ffffff;
   display: inline-block;
   font-size: 12px;
   line-height: 1;
@@ -8644,7 +8662,7 @@ html {
 }
 
 .pd-faq-head {
-  margin: 15px auto;
+  margin: 0 auto;
   max-width: 860px;
   text-align: center;
 }
@@ -8682,7 +8700,6 @@ html {
 
 .pd-faq-summary {
   align-items: center;
-  color: #ffffff;
   cursor: pointer;
   display: flex;
   font-size: 14px;
@@ -8698,39 +8715,16 @@ html {
 }
 
 .pd-faq-title {
-  color: #ffffff;
   font-size: 34px;
   font-weight: 900;
   line-height: 1.2;
-  margin: 0;
+  margin: 15px auto;
 }
 
 .pd-grid {
   display: grid;
   gap: 24px;
   margin-top: 48px;
-}
-
-.pd-card {
-  background: #1a1a1a;
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
-  padding: 28px;
-}
-
-.pd-card-title {
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 900;
-  margin: 0 0 14px 0;
-}
-
-.pd-col-2 {
-  grid-column: span 1;
-}
-
-.pd-col-3 {
-  grid-column: span 1;
 }
 
 .pd-scroll-shell {
@@ -8761,14 +8755,12 @@ html {
 }
 
 .pd-subtext {
-  color: #ffffff;
   font-size: 16px;
   line-height: 1.6;
   margin-top: 18px;
 }
 
 .pd-title {
-  color: #ffffff;
   font-size: 38px;
   font-weight: 900;
   line-height: 1.2;
@@ -8776,18 +8768,24 @@ html {
 }
 
 .pd-scope {
-  color: #ffffff;
+  color: #ffffff !important;
   font-family: inherit;
 }
 
+.pd-scope * {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
 .pd-scope a {
-  color: #ffffff;
+  color: #ffffff !important;
+  opacity: 1 !important;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .pd-scope a:hover {
-  opacity: 0.95;
+  opacity: 0.95 !important;
 }
 
 .pd-scope b,
@@ -8847,6 +8845,5 @@ html {
     font-size: 52px;
   }
 }
-
-
 /*End of VIRTUAL LAUNCH PRO*/
+
