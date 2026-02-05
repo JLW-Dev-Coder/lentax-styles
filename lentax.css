@@ -8917,6 +8917,9 @@ html {
 }
 
 .pd-faq2-toggle {
-  position: relative;
-  z-index: 5;
+  pointer-events: auto;
+}
+
+.pd-faq2-toggle * {
+  pointer-events: none;
 }
