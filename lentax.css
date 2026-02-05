@@ -8924,6 +8924,86 @@ html {
   text-underline-offset: 3px;
 }
 
+.pd-faq2 {
+  margin: 18px auto 0 auto;
+  max-width: 920px;
+}
+
+.pd-faq2-answer {
+  background: #1a1a1a;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px;
+  transition: max-height 200ms ease, padding 200ms ease;
+}
+
+.pd-faq2-caret {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 160ms ease;
+}
+
+.pd-faq2-head {
+  margin: 0 auto 10px auto;
+  text-align: center;
+}
+
+.pd-faq2-input {
+  height: 1px;
+  left: -9999px;
+  position: absolute;
+  width: 1px;
+}
+
+.pd-faq2-item {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pd-faq2-label {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 900;
+  justify-content: space-between;
+  padding: 16px 18px;
+  user-select: none;
+}
+
+.pd-faq2-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pd-faq2-q {
+  padding-right: 12px;
+}
+
+.pd-faq2-title {
+  color: #000000 !important;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Open state */
+.pd-faq2-input:checked + .pd-faq2-label .pd-faq2-caret {
+  transform: rotate(180deg);
+}
+
+.pd-faq2-input:checked + .pd-faq2-label + .pd-faq2-answer {
+  max-height: 220px;
+  padding: 12px 18px 18px 18px;
+}
+
 
 /*End of VIRTUAL LAUNCH PRO*/
+
 
