@@ -8611,4 +8611,147 @@ html {
   }
 }
 
+/* PROJECT DASHBOARD (pd-*) — FULL CSS SET (isolated; no Tailwind) */
+
+.pd-scope {
+  color: rgba(255,255,255,0.92);
+  font-family: inherit;
+}
+
+.pd-scope a {
+  color: rgba(255,255,255,0.92);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pd-scope a:hover {
+  opacity: 0.95;
+}
+
+.pd-scope b,
+.pd-scope strong {
+  font-weight: 900;
+}
+
+.pd-scope ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.pd-scope ul li {
+  margin-bottom: 8px;
+}
+
+.pd-container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.pd-eyebrow {
+  color: #f97316;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+}
+
+.pd-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.pd-section {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 72px 16px;
+}
+
+.pd-section--tight {
+  padding: 56px 16px;
+}
+
+.pd-subtext {
+  color: rgba(255,255,255,0.70);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+.pd-title {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pd-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.pd-card-title {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 14px 0;
+}
+
+.pd-col-2 {
+  grid-column: span 1;
+}
+
+.pd-col-3 {
+  grid-column: span 1;
+}
+
+/* Scoped helpers for any legacy classes referenced inside this block */
+.pd-scope .client-name {
+  font-weight: 900;
+}
+
+.pd-scope .item-instructions-cta {
+  font-weight: 900;
+}
+
+/* Responsive layout to match 3-top / 2-bottom card feel */
+@media (min-width: 768px) {
+  .pd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pd-col-2 {
+    grid-column: span 1;
+  }
+
+  .pd-col-3 {
+    grid-column: span 2;
+  }
+
+  .pd-title {
+    font-size: 44px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pd-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .pd-col-2 {
+    grid-column: span 2;
+  }
+
+  .pd-col-3 {
+    grid-column: span 3;
+  }
+
+  .pd-title {
+    font-size: 52px;
+  }
+}
+
+
 /*End of VIRTUAL LAUNCH PRO*/
+
