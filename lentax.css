@@ -7960,6 +7960,11 @@ text-decoration: none;
 }
 
 .vl-dash-pp__amount {
+  display: flex;
+  flex-direction: column;
+}
+
+.vl-dash-pp__amount {
 font-size: 70px !important;
 font-weight: 400;
 letter-spacing: -0.06em;
@@ -8006,6 +8011,10 @@ justify-content: center;
 font-size: 12px;
 line-height: 1;
 opacity: 0.9;
+}
+
+.vl-dash-pp__currency {
+  display: block;
 }
 
 .vl-dash-pp__currency {
@@ -8884,5 +8893,6 @@ padding: 18px 18px 28px 18px;
     max-height: 620px;
   }
 }
+
 
 
