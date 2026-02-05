@@ -8861,3 +8861,45 @@ html {
     font-size: 52px;
   }
 }
+
+.pd-faq-js {
+  margin: 28px auto 0 auto;
+  max-width: 920px;
+}
+
+.pd-faq-js-q {
+  align-items: center;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 900;
+  justify-content: space-between;
+  padding: 18px 22px;
+}
+
+.pd-faq-js-a {
+  background: #1a1a1a;
+  border-left: 1px solid rgba(255,255,255,0.10);
+  border-right: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  border-radius: 0 0 16px 16px;
+  display: none;
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 16px 22px 20px 22px;
+}
+
+.pd-faq-js-item.is-open .pd-faq-js-a {
+  display: block;
+}
+
+.pd-faq-js-item.is-open .pd-faq-js-caret {
+  transform: rotate(180deg);
+}
+
+.pd-faq-js-caret {
+  transition: transform 160ms ease;
+}
