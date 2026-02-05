@@ -8897,5 +8897,33 @@ html {
 .pd-faq-head h2 {
   color: #000000 !important;
 }
+.pd-handle-pill {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.pd-handle-pill__inner {
+  background: rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 999px;
+  color: #000000 !important;
+  display: inline-block;
+  font-weight: 900;
+  line-height: 1.2;
+  padding: 2px 10px;
+  text-decoration: none !important;
+}
+
+/* If SD auto-converts @handle into a link, force it black inside the subtext area */
+.pd-subtext a,
+.pd-subtext a:visited,
+.pd-subtext a:hover,
+.pd-subtext a:active {
+  color: #000000 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 
 /*End of VIRTUAL LAUNCH PRO*/
+
