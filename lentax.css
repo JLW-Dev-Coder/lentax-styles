@@ -7960,7 +7960,7 @@ text-decoration: none;
 }
 
 .vl-dash-pp__amount {
-font-size: 140px !important;
+font-size: 70px !important;
 font-weight: 400;
 letter-spacing: -0.06em;
 line-height: 0.90;
@@ -8884,4 +8884,5 @@ padding: 18px 18px 28px 18px;
     max-height: 620px;
   }
 }
+
 
