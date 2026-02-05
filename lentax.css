@@ -8915,3 +8915,8 @@ html {
 .pd-faq2-title {
   color: #000000 !important;
 }
+
+.pd-faq2-toggle {
+  position: relative;
+  z-index: 5;
+}
