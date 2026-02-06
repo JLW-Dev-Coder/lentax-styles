@@ -8768,7 +8768,7 @@ padding: 18px 18px 28px 18px;
 }
 
 .pd-section {
-  border-top: 1px solid rgba(0,0,0,0.10);
+  border-top: none;
   padding: 56px 16px 0 16px;
 }
 
@@ -8893,6 +8893,7 @@ padding: 18px 18px 28px 18px;
     max-height: 620px;
   }
 }
+
 
 
 
