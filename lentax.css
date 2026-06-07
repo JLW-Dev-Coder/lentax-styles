@@ -6916,10 +6916,12 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-list {
+  color: rgba(255, 255, 255, 0.62);
   margin: 12px 0 16px 26px;
 }
 
 .vl-list li {
+  color: rgba(255, 255, 255, 0.62);
   font-size: 17px;
   line-height: 1.7;
   margin-bottom: 8px;
@@ -7024,6 +7026,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 }
 
 .vl-section-title {
+  color: rgba(255, 255, 255, 0.62);
   font-size: 26px;
   font-weight: 900;
   margin: 40px 0 14px;
