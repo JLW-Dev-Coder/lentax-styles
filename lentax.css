@@ -748,6 +748,10 @@
   margin-left: 6px;
 }
 
+.content-ribbon {
+    margin: 0px;
+    padding: 0px;
+}
 
 /* Copy/Paste Block */
 .copy-paste-block {
