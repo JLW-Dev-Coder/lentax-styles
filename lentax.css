@@ -748,7 +748,7 @@
   margin-left: 6px;
 }
 
-.content-ribbon {
+body.lentax-dashboard .content-ribbon {
     display: none !important;
 }
 
