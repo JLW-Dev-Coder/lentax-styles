@@ -8902,3 +8902,79 @@ padding: 18px 18px 28px 18px;
 
 
 
+/* ============================================================
+   VL Order/Project Tracker Hero — scoped override
+   Used on SuiteDash dashboard pages (TPP Tax Prep Setup, etc.)
+   Overrides the unscoped .vl-* rules in this file (6460+) for
+   the tracker hero only. !important is used to defeat existing
+   !important declarations (e.g. .vl-body at 6461), mirroring
+   the file's existing override convention. Do not unscope.
+   ============================================================ */
+
+.vl-page .vl-hero,
+.vl-page .vl-hero * {
+  color: #ffffff !important;
+}
+
+.vl-page .vl-hero .vl-hero-title,
+.vl-page .vl-hero .vl-hero__title {
+  color: #ff9a1f !important;
+}
+
+.vl-page .vl-hero .vl-subhead,
+.vl-page .vl-hero .vl-subhead b,
+.vl-page .vl-hero .vl-body,
+.vl-page .vl-hero .vl-body b,
+.vl-page .vl-hero .vl-section-title,
+.vl-page .vl-hero .vl-list,
+.vl-page .vl-hero .vl-list li,
+.vl-page .vl-hero .vl-list b {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.vl-page .vl-hero .vl-cta-link,
+.vl-page .vl-hero a.vl-cta-link {
+  color: #ff9a1f !important;
+  text-decoration: underline !important;
+}
+.vl-page .vl-hero .vl-cta-link:hover,
+.vl-page .vl-hero a.vl-cta-link:hover {
+  color: #ffb04d !important;
+}
+
+/* Bullet list — replace default <ul> bullets with custom ::before
+   tightly adjacent to text. Overrides existing .vl-list margins
+   (12px 0 16px 26px) at line 6917. */
+.vl-page .vl-hero .vl-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 16px auto !important;
+  max-width: 720px !important;
+  text-align: left !important;
+}
+
+.vl-page .vl-hero .vl-list li {
+  position: relative !important;
+  padding-left: 18px !important;
+  margin: 6px 0 !important;
+  line-height: 1.5 !important;
+  font-size: 17px !important;
+}
+
+.vl-page .vl-hero .vl-list li::before {
+  content: "\2022";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  color: #ffffff;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+/* Divider — override existing margin: 0 at line 6859 for hero breathing room */
+.vl-page .vl-hero .vl-divider {
+  border: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+  margin: 24px 0 !important;
+}
