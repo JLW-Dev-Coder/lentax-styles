@@ -9444,7 +9444,7 @@ padding: 18px 18px 28px 18px;
   gap: 14px;
   margin: 22px 0 0 0;
   padding: 16px 20px;
-  background: linear-gradient(135deg, rgba(244, 123, 32, 0.10) 0%, rgba(194, 90, 14, 0.14) 100%);
+  background: linear-gradient(135deg, rgba(10, 18, 40, 0.30) 0%, rgba(244, 123, 32, 0.12) 100%);
   border: 1px solid rgba(244, 123, 32, 0.30);
   border-left: 4px solid #F47B20;
   border-radius: 12px;
@@ -12319,7 +12319,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 
 /* 3) Sidebar — VLP dark gradient */
 .sd-flow .flow-nav-list__container {
-  background: linear-gradient(180deg, #1F1A15, #14110D) !important;
+  background: linear-gradient(180deg, #1F1A15, #0A1228) !important;
 }
 
 .sd-flow .flow-nav-list li {
@@ -12368,6 +12368,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 .sd-flow .flow-modal-header {
   background: linear-gradient(135deg, #1A1612, #14110D) !important;
   border-bottom: 1px solid rgba(244, 123, 32, 0.25) !important;
+  box-shadow: inset 0 -1px 0 #162848 !important;
 }
 
 .sd-flow .flow-modal-header .btn {
