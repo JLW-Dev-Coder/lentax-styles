@@ -9278,7 +9278,7 @@ padding: 18px 18px 28px 18px;
   max-width: 720px;
   margin: 0 auto 32px auto;
   padding: 40px 36px 36px 36px;
-  background: linear-gradient(180deg, #1F1A15 0%, #14110D 100%);
+  background: linear-gradient(180deg, #1F1A15 0%, #0F1A33 100%);
   border: 2px dashed #F47B20;
   border-radius: 14px;
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
@@ -12352,8 +12352,8 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 }
 
 .sd-flow .flow-nav-list li.active {
-  background: rgba(244, 123, 32, 0.16) !important;
-  background-color: rgba(244, 123, 32, 0.16) !important;
+  background: rgba(22, 40, 72, 0.50) !important;
+  background-color: rgba(22, 40, 72, 0.50) !important;
 }
 
 .sd-flow .flow-nav-list li.active h4 {
@@ -12386,7 +12386,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 
 /* 5) Flow content area + modal background */
 .sd-flow .flow-wrapper .content {
-  background: #FFFAF4 !important;
+  background: linear-gradient(180deg, #FFFAF4 0%, #FFFAF4 65%, rgba(15, 26, 51, 0.08) 100%) !important;
 }
 
 .sd-flow .flow-modal {

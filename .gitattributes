@@ -1,0 +1,22 @@
+# Pin line endings to LF for text files.
+# Netlify expects LF; LF is the cross-platform default.
+# This prevents line-ending normalization churn on edits
+# made from different OS/editor combinations.
+
+* text=auto eol=lf
+
+# Explicit overrides for the file types in this repo
+*.css       text eol=lf
+*.js        text eol=lf
+*.html      text eol=lf
+*.md        text eol=lf
+*.json      text eol=lf
+
+# Binary files (no normalization)
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.woff      binary
+*.woff2     binary
