@@ -1,3 +1,19 @@
+/* ═══════════════════════════════════════════════════════════════ */
+/*  LENTAX.CSS — MASTER STYLESHEET                                  */
+/*  Single source of truth for all CSS (site + SuiteDash).          */
+/*  Loaded via lentax.js preload-swap pattern on Netlify.           */
+/*  Last migrated to single-source-of-truth: 2026-06-16             */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* @import for Google Fonts (Cormorant Garamond + Inter) — top of file */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════ */
+/*  SECTION 1 — SITE / LENTAX                                       */
+/*  Styles scoped to the Lentax site (non-SuiteDash).               */
+/*  Preserved verbatim from prior lentax.css content.               */
+/* ═══════════════════════════════════════════════════════════════ */
+
 /*Account*/
 .account-card-status {
   position: absolute;
@@ -8977,4 +8993,3420 @@ padding: 18px 18px 28px 18px;
   border: 0 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
   margin: 24px 0 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════ */
+/*  SECTION 2 — SUITEDASH                                           */
+/*  All SuiteDash-targeted CSS (forms, flows, pages, components).   */
+/*  Migrated from SuiteDash "Enable Advanced Custom CSS" textarea.  */
+/* ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.1 — STANDALONE PAGE COMPONENTS                                */
+/*  .vlpd-onboard (TPP), .vlp-onboard (VLP) — flow welcome cards    */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  ONBOARDING CONTENT BLOCK — .vlpd-onboard                       */
+/*  Standalone SD pages (not forms, not LP). TPP brand theme.       */
+/* ─────────────────────────────────────────────────────────────── */
+
+.vlpd-onboard {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 32px auto;
+  padding: 40px 36px 36px 36px;
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%);
+  border: 2px dashed #8B1538;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08);
+  overflow: hidden;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  color: #2A1820;
+}
+
+.vlpd-onboard-accent {
+  display: none;
+}
+
+.vlpd-onboard-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.vlpd-onboard-icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E91E63, #8B1538);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.30);
+}
+
+.vlpd-onboard-header-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vlpd-onboard-eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #E91E63;
+  margin: 0 0 6px 0;
+  padding: 3px 10px;
+  background: #FFFAF4;
+  border: 1px solid rgba(233, 30, 99, 0.35);
+  border-radius: 999px;
+}
+
+.vlpd-onboard-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1A0B14;
+  margin: 6px 0 0 0;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Italic gradient span — inline-block + padding-right prevents the
+   rightmost italic glyph from clipping under -webkit-background-clip. */
+.vlpd-onboard-title em {
+  font-style: italic;
+  font-weight: 600;
+  background: linear-gradient(120deg, #E91E63 0%, #8B1538 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 8px;
+  margin-right: 2px;
+}
+
+.vlpd-onboard-lede {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6B5260;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  max-width: 620px;
+}
+
+.vlpd-onboard-expect {
+  background: #FFFAF4;
+  border: 1px solid rgba(139, 21, 56, 0.14);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 0 0 22px 0;
+  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.05);
+}
+
+.vlpd-onboard-expect-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A0B14;
+  margin: 0 0 14px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(139, 21, 56, 0.14);
+  position: relative;
+}
+
+.vlpd-onboard-expect-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #E91E63, #8B1538);
+}
+
+.vlpd-onboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vlpd-onboard-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(139, 21, 56, 0.10);
+  font-size: 14px;
+  color: #2A1820;
+  line-height: 1.5;
+}
+
+.vlpd-onboard-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vlpd-onboard-check {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E91E63, #8B1538);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.vlpd-onboard-cta-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8B1538;
+  margin: 0;
+  letter-spacing: -0.1px;
+}
+
+/* Heads-up banner — gold/wine accent notice */
+.vlpd-onboard-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 22px 0 0 0;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #FFF4E5 0%, #FFE5EC 100%);
+  border: 1px solid rgba(212, 165, 116, 0.45);
+  border-left: 4px solid #D4A574;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.06);
+}
+
+.vlpd-onboard-banner-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D4A574, #8B1538);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 1px;
+  box-shadow: 0 2px 6px rgba(139, 21, 56, 0.20);
+}
+
+.vlpd-onboard-banner-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vlpd-onboard-banner-title {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8B1538;
+  margin: 0 0 4px 0;
+}
+
+.vlpd-onboard-banner-text {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #2A1820;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.vlpd-onboard-banner-text strong {
+  color: #8B1538;
+  font-weight: 700;
+}
+
+/* Single-line lede sentence — wraps gracefully on mobile */
+.tu-lede-oneline {
+  display: block;
+  max-width: 720px;
+  margin: 8px auto 0 auto;
+}
+
+@media (min-width: 768px) {
+  .tu-lede-oneline {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .vlpd-onboard {
+    padding: 28px 22px 24px 22px;
+  }
+  .vlpd-onboard-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vlpd-onboard-title {
+    font-size: 22px;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  VLP ONBOARDING CONTENT BLOCK — .vlp-onboard                    */
+/*  Standalone SD pages (not forms, not LP). VLP brand theme.      */
+/*  Palette: orange #F47B20, dark #1A1612, burnt #C25A0E           */
+/* ─────────────────────────────────────────────────────────────── */
+
+.vlp-onboard {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 32px auto;
+  padding: 40px 36px 36px 36px;
+  background: linear-gradient(180deg, #1F1A15 0%, #14110D 100%);
+  border: 2px dashed #F47B20;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  color: #F5EFE6;
+}
+
+.vlp-onboard-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.vlp-onboard-icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F47B20, #C25A0E);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(244, 123, 32, 0.40);
+}
+
+.vlp-onboard-header-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vlp-onboard-eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #F47B20;
+  margin: 0 0 6px 0;
+  padding: 3px 10px;
+  background: rgba(244, 123, 32, 0.10);
+  border: 1px solid rgba(244, 123, 32, 0.45);
+  border-radius: 999px;
+}
+
+.vlp-onboard-title {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 6px 0 0 0;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Italic gradient span — inline-block + padding-right prevents the
+   rightmost italic glyph from clipping under -webkit-background-clip. */
+.vlp-onboard-title em {
+  font-style: italic;
+  font-weight: 700;
+  background: linear-gradient(120deg, #FFA559 0%, #F47B20 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 8px;
+  margin-right: 2px;
+}
+
+.vlp-onboard-lede {
+  font-size: 15px;
+  font-weight: 400;
+  color: #C7BFB3;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  max-width: 620px;
+}
+
+.vlp-onboard-expect {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(244, 123, 32, 0.20);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 0 0 22px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.vlp-onboard-expect-title {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 14px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(244, 123, 32, 0.18);
+  position: relative;
+  letter-spacing: 0.2px;
+}
+
+.vlp-onboard-expect-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #F47B20, #C25A0E);
+}
+
+.vlp-onboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vlp-onboard-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(244, 123, 32, 0.14);
+  font-size: 14px;
+  color: #E8E0D2;
+  line-height: 1.5;
+}
+
+.vlp-onboard-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vlp-onboard-check {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F47B20, #C25A0E);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.vlp-onboard-cta-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #F47B20;
+  margin: 0;
+  letter-spacing: -0.1px;
+}
+
+/* Heads-up banner — orange/amber accent notice on dark surface */
+.vlp-onboard-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 22px 0 0 0;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(244, 123, 32, 0.10) 0%, rgba(194, 90, 14, 0.14) 100%);
+  border: 1px solid rgba(244, 123, 32, 0.30);
+  border-left: 4px solid #F47B20;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
+}
+
+.vlp-onboard-banner-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F47B20, #C25A0E);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 1px;
+  box-shadow: 0 2px 6px rgba(244, 123, 32, 0.40);
+}
+
+.vlp-onboard-banner-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vlp-onboard-banner-title {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #F47B20;
+  margin: 0 0 4px 0;
+}
+
+.vlp-onboard-banner-text {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #E8E0D2;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.vlp-onboard-banner-text strong {
+  color: #FFA559;
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .vlp-onboard {
+    padding: 28px 22px 24px 22px;
+  }
+  .vlp-onboard-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vlp-onboard-title {
+    font-size: 22px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.2 — FLOW MODAL — TPP THEME OVERRIDES                          */
+/*  .sd-flow sidebar, header, advance buttons, appointment intake   */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  FLOW MODAL — TPP THEME OVERRIDES                                */
+/*  Targets: sidebar, header content spacing, appointment block,    */
+/*  and advance/complete button inside SD Flow modals.              */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* 1) Vertical spacing above welcome card */
+.sd-flow .step-header {
+  padding-top: 24px !important;
+  margin-bottom: 16px !important;
+}
+
+/* 2) Appointment block — themed to match form's tu-form-header */
+.sd-flow .appointment-intake-form-wrapper {
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
+  border: 2px dashed #8B1538 !important;
+  border-radius: 14px !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+}
+
+.sd-flow .appointment-intake-form-field-block {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sd-flow .appointment-intake-form-wrapper .btn-primary {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 14px 28px !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+
+.sd-flow .appointment-intake-form-wrapper .btn-primary:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.40) !important;
+}
+
+.sd-flow .appointment-intake-form-field-block .p-2.m-2,
+.sd-flow .appointment-intake-form-field-block .p-2.m-md-0:not(:first-child) {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 14px !important;
+  color: #6B5260 !important;
+}
+
+/* 3) Flow advance/complete button */
+.sd-flow .flow-buttons.flow-button-continue,
+.sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip) {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 16px 48px !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 10px 24px rgba(233, 30, 99, 0.25) !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+}
+
+.sd-flow .flow-buttons.flow-button-continue:hover,
+.sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip):hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 32px rgba(233, 30, 99, 0.40) !important;
+}
+
+/* 4) Sidebar — TPP dark theme with refined hover/active states */
+.sd-flow .flow-nav-list__container {
+  background: linear-gradient(180deg, #5C0D24, #1A0B14) !important;
+}
+
+.sd-flow .flow-nav-list li {
+  position: relative !important;
+  border-bottom: 1px solid rgba(245, 230, 211, 0.08) !important;
+  background: transparent !important;
+  transition: background 0.25s ease !important;
+  overflow: hidden !important;
+}
+
+/* Accent stripe — sits flush left, scales on hover/active */
+.sd-flow .flow-nav-list li::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: linear-gradient(180deg, #E91E63, #8B1538, #D4A574) !important;
+  transform: scaleY(0) !important;
+  transform-origin: center !important;
+  transition: transform 0.25s ease !important;
+}
+
+.sd-flow .flow-nav-list li h4 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: rgba(245, 230, 211, 0.75) !important;
+  letter-spacing: 0.2px !important;
+  background: transparent !important;
+  transition: color 0.2s ease !important;
+}
+
+.sd-flow .flow-nav-list li h4 i {
+  color: rgba(245, 230, 211, 0.40) !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Hover — subtle crimson tint, accent stripe slides in (NO white background) */
+.sd-flow .flow-nav-list li.can-nav:hover {
+  background: rgba(233, 30, 99, 0.08) !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover::before {
+  transform: scaleY(0.6) !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover h4 {
+  color: #F5E6D3 !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover h4 i {
+  color: rgba(245, 230, 211, 0.80) !important;
+}
+
+/* Active — slightly stronger tint, full accent stripe, rose icon */
+.sd-flow .flow-nav-list li.active {
+  background: rgba(233, 30, 99, 0.14) !important;
+  border-left: none !important;
+}
+
+.sd-flow .flow-nav-list li.active::before {
+  transform: scaleY(1) !important;
+}
+
+.sd-flow .flow-nav-list li.active h4 {
+  color: #F5E6D3 !important;
+}
+
+.sd-flow .flow-nav-list li.active h4 i {
+  color: #E91E63 !important;
+}
+
+/* Override any inherited white/gray background that SuiteDash injects */
+.sd-flow .flow-nav-list li,
+.sd-flow .flow-nav-list li *,
+.sd-flow .flow-nav-list li.active,
+.sd-flow .flow-nav-list li.active *,
+.sd-flow .flow-nav-list li.can-nav:hover,
+.sd-flow .flow-nav-list li.can-nav:hover * {
+  background-color: transparent !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover {
+  background-color: rgba(233, 30, 99, 0.08) !important;
+}
+
+.sd-flow .flow-nav-list li.active {
+  background-color: rgba(233, 30, 99, 0.14) !important;
+}
+
+/* Flow header bar */
+.sd-flow .flow-modal-header {
+  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
+  border-bottom: 1px solid rgba(233, 30, 99, 0.20) !important;
+}
+
+.sd-flow .flow-modal-header .btn {
+  color: rgba(245, 230, 211, 0.75) !important;
+}
+
+.sd-flow .flow-modal-header .btn:hover {
+  color: #E91E63 !important;
+}
+
+.sd-flow .flow-modal-header .close-btn .btn-close-element::before,
+.sd-flow .flow-modal-header .close-btn .btn-close-element::after {
+  background-color: rgba(245, 230, 211, 0.75) !important;
+}
+
+/* Flow content area background */
+.sd-flow .flow-wrapper .content {
+  background: #FFFAF4 !important;
+}
+
+/* Flow title */
+.sd-flow .flow-header .title h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  font-size: 24px !important;
+  letter-spacing: -0.3px !important;
+}
+
+/* Flow back button */
+.sd-flow .flow-header .back .btn {
+  color: #8B1538 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.sd-flow .flow-header .back .btn:hover {
+  color: #E91E63 !important;
+}
+
+/* Flow modal background */
+.sd-flow .flow-modal {
+  background: #F5E6D3 !important;
+}
+
+@media (max-width: 768px) {
+  .sd-flow .flow-nav-list__container {
+    background: linear-gradient(90deg, #5C0D24, #1A0B14) !important;
+  }
+  .sd-flow .appointment-intake-form-wrapper {
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+  .sd-flow .flow-buttons.flow-button-continue {
+    padding: 14px 32px !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.3 — ADD APPOINTMENT MODAL — TPP THEME                         */
+/*  .sd-flow .add-appointment-form, calendar grid, time slot pills  */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  ADD APPOINTMENT MODAL — TPP THEME                               */
+/*  Targets the "Add Appointment" inner modal with calendar/slots.  */
+/*  Scoped to .sd-flow so it only applies inside the Flow context.  */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* Modal shell */
+.sd-flow .add-appointment-form {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  background: linear-gradient(135deg, #FFFAF4 0%, #FFF1F5 100%) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* Modal header */
+.sd-flow .intakeForm-modal-header {
+  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
+  padding: 18px 28px !important;
+  border-bottom: 1px solid rgba(233, 30, 99, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.sd-flow .intakeForm-modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #F5E6D3 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 !important;
+}
+
+.sd-flow .intakeForm-modal-close-btn .btn-close-element::before,
+.sd-flow .intakeForm-modal-close-btn .btn-close-element::after {
+  background-color: rgba(245, 230, 211, 0.75) !important;
+}
+
+.sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::before,
+.sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::after {
+  background-color: #E91E63 !important;
+}
+
+/* Modal body */
+.sd-flow .intakeForm-modal-body {
+  background: transparent !important;
+  padding: 24px 28px !important;
+}
+
+/* Selected appointment type card */
+.sd-flow .appointment-type__item.active .appointment-type__block {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.08) !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  text-align: left !important;
+}
+
+/* Staff avatar — gradient ring */
+.sd-flow .appointment-type__staff-avatar {
+  flex: 0 0 auto !important;
+  position: relative !important;
+}
+
+.sd-flow .appointment-type__staff-avatar .default-user-avatar-container {
+  display: inline-block !important;
+  padding: 3px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538, #D4A574) !important;
+}
+
+.sd-flow .appointment-type__staff-avatar .default-user-avatar {
+  background: #1A0B14 !important;
+  color: #F5E6D3 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #FFFAF4 !important;
+}
+
+.sd-flow .appointment-type__staff-avatar img {
+  border-radius: 50% !important;
+  border: 3px solid transparent !important;
+  background:
+    linear-gradient(#FFFAF4, #FFFAF4) padding-box,
+    linear-gradient(135deg, #E91E63, #8B1538, #D4A574) border-box !important;
+}
+
+.sd-flow .appointment-type__info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.sd-flow .appointment-type__title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 0 4px 0 !important;
+  line-height: 1.25 !important;
+}
+
+.sd-flow .appointment-type__staff-name {
+  display: inline-block !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #E91E63 !important;
+  letter-spacing: 0.2px !important;
+  margin-bottom: 12px !important;
+}
+
+.sd-flow .appointment-type__description {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 13px !important;
+  color: #6B5260 !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  margin-bottom: 12px !important;
+}
+
+.sd-flow .appointment-type__duration {
+  display: inline-block !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #8B1538 !important;
+  background: #FFE5EC !important;
+  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border-radius: 999px !important;
+  padding: 5px 12px !important;
+}
+
+.sd-flow .appointment-type__duration #appointmentCalendarSlotDurationTime {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+}
+
+/* Time zone selector */
+#appointmentTimeZoneSelect h5 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #E91E63 !important;
+  margin: 18px 0 10px 0 !important;
+}
+
+.sd-flow .select2-container--default .select2-selection--single,
+#appointmentTimeZoneSelect .select2-container--default .select2-selection--single {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border-radius: 12px !important;
+  height: 44px !important;
+  box-shadow: 0 1px 3px rgba(139, 21, 56, 0.05) !important;
+}
+
+.sd-flow .select2-container--default .select2-selection__rendered,
+#appointmentTimeZoneSelect .select2-selection__rendered {
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 42px !important;
+  padding-left: 16px !important;
+}
+
+.sd-flow .select2-container--default .select2-selection__arrow,
+#appointmentTimeZoneSelect .select2-selection__arrow {
+  height: 42px !important;
+  right: 8px !important;
+}
+
+.sd-flow .select2-container--default .select2-selection__arrow b {
+  border-color: #8B1538 transparent transparent transparent !important;
+}
+
+/* Calendar pagination header */
+.sd-flow .appointment-schedule-pagination {
+  border-bottom: 1px solid rgba(139, 21, 56, 0.14) !important;
+  margin-bottom: 12px !important;
+}
+
+.sd-flow .appointment-schedule-pagination__month h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 !important;
+}
+
+.sd-flow .appointment-schedule-pagination-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #8B1538 !important;
+  background: transparent !important;
+  border: 1px solid rgba(139, 21, 56, 0.25) !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.sd-flow .appointment-schedule-pagination-button:hover {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+}
+
+.sd-flow .appointment-schedule-pagination__arrow {
+  display: inline-block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-style: solid !important;
+}
+
+.sd-flow .appointment-schedule-pagination__arrow--forward {
+  border-width: 4px 0 4px 6px !important;
+  border-color: transparent transparent transparent currentColor !important;
+}
+
+.sd-flow .appointment-schedule-pagination__arrow--back {
+  border-width: 4px 6px 4px 0 !important;
+  border-color: transparent currentColor transparent transparent !important;
+}
+
+/* Calendar grid — day columns */
+.sd-flow .appointment-schedule-container-block {
+  display: flex !important;
+  gap: 6px !important;
+  padding: 8px 0 !important;
+}
+
+.sd-flow .appointment-schedule-date-column {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(139, 21, 56, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 10px 6px !important;
+  align-items: stretch !important;
+}
+
+.sd-flow .appointment-date-head-text {
+  display: inline-block !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border-radius: 999px !important;
+  padding: 3px 10px !important;
+  margin-bottom: 6px !important;
+}
+
+.sd-flow .appointment-schedule-date-column-header {
+  padding-bottom: 10px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid rgba(139, 21, 56, 0.10) !important;
+}
+
+.sd-flow .appointment-date-day-of-week {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #8B1538 !important;
+}
+
+.sd-flow .appointment-date.text-secondary {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  line-height: 1 !important;
+  margin-top: 2px !important;
+}
+
+/* No-availability day */
+.sd-flow .appointment-date-no-availability {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 60px !important;
+  margin: 0 !important;
+}
+
+.sd-flow .appointment-date-no-availability .material-icons.red {
+  color: rgba(139, 21, 56, 0.25) !important;
+  font-size: 22px !important;
+}
+
+/* Time slots — outlined pills */
+.sd-flow .appointment-slot-timer-container {
+  margin: 0 0 6px 0 !important;
+  padding: 0 !important;
+}
+
+.sd-flow .appointment-slot-timer {
+  display: block !important;
+  width: 100% !important;
+  background: #FFFFFF !important;
+  color: #8B1538 !important;
+  border: 1px solid rgba(233, 30, 99, 0.35) !important;
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  letter-spacing: 0.2px !important;
+  transition: all 0.18s ease !important;
+}
+
+.sd-flow .appointment-slot-timer:hover,
+.sd-flow .appointment-slot-timer:focus {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.30) !important;
+  transform: translateY(-1px) !important;
+}
+
+.sd-flow .appointment-slot-timer.selected,
+.sd-flow .appointment-slot-timer-container.selected .appointment-slot-timer {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+}
+
+/* Error banner */
+.sd-flow .sd-form-error-banner {
+  background: #FFE5EC !important;
+  border: 1px solid rgba(139, 21, 56, 0.25) !important;
+  color: #8B1538 !important;
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.sd-flow .sd-form-error-banner__action {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+}
+
+/* Success message after booking */
+.sd-flow #appointmentCalendarSuccessMessage {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border-radius: 16px !important;
+  padding: 20px 24px !important;
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.08) !important;
+}
+
+/* Scrollbars inside the modal */
+.sd-flow .ps__scrollbar-y {
+  background-color: rgba(233, 30, 99, 0.40) !important;
+}
+
+.sd-flow .ps__scrollbar-x {
+  background-color: rgba(233, 30, 99, 0.40) !important;
+}
+
+/* Responsive — appointment modal */
+@media (max-width: 768px) {
+  .sd-flow .intakeForm-modal-body {
+    padding: 18px 16px !important;
+  }
+  .sd-flow .appointment-type__item.active .appointment-type__block {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 18px !important;
+  }
+  .sd-flow .appointment-type__title {
+    font-size: 19px !important;
+  }
+  .sd-flow .appointment-schedule-container-block {
+    flex-wrap: wrap !important;
+  }
+  .sd-flow .appointment-slot-timer {
+    font-size: 13px !important;
+    padding: 9px 10px !important;
+  }
+}
+
+/* ============================================================
+   APPOINTMENT MODAL — APPEND TO TAX PREP SETUP FORM CSS
+   ============================================================
+   Context:
+   The Tax Prep Booking form renders inside .app-form-embed, NOT
+   inside .sd-flow. Pre-existing .sd-flow modal rules in the
+   canonical stack never matched the form's modal, leaving it
+   unstyled. This patch re-scopes every modal rule to
+   .app-form-embed #appointmentForm (and bare #appointmentForm
+   for cascade weight). All rules use !important to override
+   SuiteDash global theme chrome.
+   ============================================================ */
+
+/* ===================== MODAL WRAPPER ===================== */
+
+.app-form-embed #appointmentForm,
+#appointmentForm.add-appointment-form {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  background: linear-gradient(135deg, #FFFAF4 0%, #FFF1F5 100%) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 60px rgba(139, 21, 56, 0.12) !important;
+}
+
+/* ===================== MODAL HEADER ===================== */
+
+.app-form-embed #appointmentForm .intakeForm-modal-header,
+#appointmentForm .intakeForm-modal-header {
+  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
+  padding: 18px 28px !important;
+  border-bottom: 1px solid rgba(233, 30, 99, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.app-form-embed #appointmentForm .intakeForm-modal-title,
+#appointmentForm .intakeForm-modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #F5E6D3 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ===================== MODAL CLOSE BUTTON ===================== */
+
+.app-form-embed #appointmentForm .intakeForm-modal-close-btn,
+#appointmentForm .intakeForm-modal-close-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid rgba(245, 230, 211, 0.5) !important;
+  background: transparent !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  transition: background 0.2s, border-color 0.2s !important;
+  position: relative !important;
+}
+
+.app-form-embed #appointmentForm .intakeForm-modal-close-btn:hover,
+#appointmentForm .intakeForm-modal-close-btn:hover {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border-color: transparent !important;
+}
+
+.app-form-embed #appointmentForm .intakeForm-modal-close-btn .btn-close-element::before,
+.app-form-embed #appointmentForm .intakeForm-modal-close-btn .btn-close-element::after,
+#appointmentForm .intakeForm-modal-close-btn .btn-close-element::before,
+#appointmentForm .intakeForm-modal-close-btn .btn-close-element::after {
+  background-color: rgba(245, 230, 211, 0.75) !important;
+}
+
+.app-form-embed #appointmentForm .intakeForm-modal-close-btn:hover .btn-close-element::before,
+.app-form-embed #appointmentForm .intakeForm-modal-close-btn:hover .btn-close-element::after,
+#appointmentForm .intakeForm-modal-close-btn:hover .btn-close-element::before,
+#appointmentForm .intakeForm-modal-close-btn:hover .btn-close-element::after {
+  background-color: #ffffff !important;
+}
+
+/* ===================== MODAL BODY ===================== */
+
+.app-form-embed #appointmentForm .intakeForm-modal-body,
+#appointmentForm .intakeForm-modal-body {
+  background: transparent !important;
+  padding: 24px 28px !important;
+}
+
+/* ===================== ERROR BANNER ===================== */
+
+.app-form-embed #appointmentForm .sd-form-error-banner,
+#appointmentForm .sd-form-error-banner {
+  background: #FFE5EC !important;
+  border: 1px solid rgba(139, 21, 56, 0.25) !important;
+  color: #8B1538 !important;
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.app-form-embed #appointmentForm .sd-form-error-banner__action,
+#appointmentForm .sd-form-error-banner__action {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+}
+
+/* ===================== APPOINTMENT TYPE LIST ===================== */
+
+.app-form-embed #appointmentForm .appointment-type__list,
+#appointmentForm .appointment-type__list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 20px !important;
+  overflow: visible !important;
+}
+
+/* Hide perfect-scrollbar rails inside the appointment type list */
+.app-form-embed #appointmentForm .appointment-type__list .ps__scrollbar-y-rail,
+.app-form-embed #appointmentForm .appointment-type__list .ps__scrollbar-x-rail,
+#appointmentForm .ps__scrollbar-y-rail,
+#appointmentForm .ps__scrollbar-x-rail {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* ===================== APPOINTMENT TYPE CARD (DEFAULT) ===================== */
+
+.app-form-embed #appointmentForm .appointment-type__block,
+#appointmentForm .appointment-type__block {
+  background: #FFFAF4 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.06) !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  cursor: pointer !important;
+  transition: box-shadow 0.2s, border-color 0.2s !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__list .appointment-type__block:hover,
+.app-form-embed #appointmentForm .appointment-type__block:hover,
+#appointmentForm .appointment-type__block:hover {
+  border-color: rgba(139, 21, 56, 0.30) !important;
+  box-shadow: 0 8px 28px rgba(139, 21, 56, 0.12) !important;
+}
+
+/* ===================== APPOINTMENT TYPE CARD (ACTIVE) ===================== */
+
+.app-form-embed #appointmentForm .appointment-type__item.active .appointment-type__block,
+#appointmentForm .appointment-type__item.active .appointment-type__block {
+  background: #FFFAF4 !important;
+  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border-top: 4px solid #8B1538 !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.14) !important;
+}
+
+/* ===================== STAFF AVATAR ===================== */
+
+.app-form-embed #appointmentForm .appointment-type__staff-avatar,
+#appointmentForm .appointment-type__staff-avatar {
+  flex: 0 0 auto !important;
+  position: relative !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__staff-avatar .default-user-avatar-container,
+#appointmentForm .appointment-type__staff-avatar .default-user-avatar-container {
+  display: inline-block !important;
+  padding: 3px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538, #D4A574) !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__staff-avatar .default-user-avatar,
+#appointmentForm .appointment-type__staff-avatar .default-user-avatar {
+  background: #1A0B14 !important;
+  color: #F5E6D3 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 64px !important;
+  height: 64px !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__staff-avatar img,
+#appointmentForm .appointment-type__staff-avatar img {
+  border-radius: 50% !important;
+  border: 3px solid transparent !important;
+  background: linear-gradient(#FFFAF4, #FFFAF4) padding-box,
+              linear-gradient(135deg, #E91E63, #8B1538) border-box !important;
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: cover !important;
+}
+
+/* ===================== APPOINTMENT TYPE INFO AREA ===================== */
+
+.app-form-embed #appointmentForm .appointment-type__info,
+#appointmentForm .appointment-type__info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__title,
+#appointmentForm .appointment-type__title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 4px !important;
+  line-height: 1.2 !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__staff-name,
+#appointmentForm .appointment-type__staff-name {
+  display: inline-block !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #E91E63 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 10px !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__description,
+#appointmentForm .appointment-type__description {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 13px !important;
+  color: #6B5260 !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  margin-bottom: 12px !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__duration,
+#appointmentForm .appointment-type__duration {
+  display: inline-block !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #6B5260 !important;
+}
+
+.app-form-embed #appointmentForm .appointment-type__duration #appointmentCalendarSlotDurationTime,
+#appointmentForm .appointment-type__duration #appointmentCalendarSlotDurationTime {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+}
+
+/* ===================== TIMEZONE SELECTOR ===================== */
+
+.app-form-embed #appointmentForm #appointmentTimeZoneSelect h5,
+#appointmentForm #appointmentTimeZoneSelect h5 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  color: #E91E63 !important;
+  margin-bottom: 8px !important;
+}
+
+.app-form-embed #appointmentForm .select2-container--default .select2-selection--single,
+#appointmentForm .select2-container--default .select2-selection--single {
+  background: #F5E6D3 !important;
+  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border-radius: 14px !important;
+  height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.app-form-embed #appointmentForm .select2-selection__rendered,
+#appointmentForm .select2-selection__rendered {
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 42px !important;
+  padding-left: 14px !important;
+}
+
+.app-form-embed #appointmentForm .select2-selection__arrow,
+#appointmentForm .select2-selection__arrow {
+  height: 42px !important;
+  right: 10px !important;
+}
+
+.app-form-embed #appointmentForm .select2-selection__arrow b,
+#appointmentForm .select2-selection__arrow b {
+  border-color: #8B1538 transparent transparent !important;
+}
+
+/* ===================== CALENDAR PAGINATION ===================== */
+
+.app-form-embed #appointmentForm .appointment-schedule-pagination,
+#appointmentForm .appointment-schedule-pagination {
+  border-bottom: 1px solid rgba(139, 21, 56, 0.14) !important;
+  margin-bottom: 12px !important;
+  padding-top: 16px !important;
+  padding-bottom: 12px !important;
+}
+
+.app-form-embed #appointmentForm .appointment-schedule-pagination__month h3,
+#appointmentForm .appointment-schedule-pagination__month h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+}
+
+.app-form-embed #appointmentForm .appointment-schedule-pagination-button,
+#appointmentForm .appointment-schedule-pagination-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #8B1538 !important;
+  text-decoration: none !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(139, 21, 56, 0.25) !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.app-form-embed #appointmentForm .appointment-schedule-pagination-button:hover,
+#appointmentForm .appointment-schedule-pagination-button:hover {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.28) !important;
+}
+
+/* Arrow chevrons */
+.app-form-embed #appointmentForm .appointment-schedule-pagination__arrow,
+#appointmentForm .appointment-schedule-pagination__arrow {
+  display: inline-block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-style: solid !important;
+}
+
+.app-form-embed #appointmentForm .appointment-schedule-pagination__arrow--forward,
+#appointmentForm .appointment-schedule-pagination__arrow--forward {
+  border-width: 4px 0 4px 6px !important;
+  border-color: transparent transparent transparent currentColor !important;
+}
+
+.app-form-embed #appointmentForm .appointment-schedule-pagination__arrow--back,
+#appointmentForm .appointment-schedule-pagination__arrow--back {
+  border-width: 4px 6px 4px 0 !important;
+  border-color: transparent currentColor transparent transparent !important;
+}
+
+/* ===================== CALENDAR GRID CONTAINER ===================== */
+
+.app-form-embed #appointmentForm .appointment-schedule-container-block,
+#appointmentForm .appointment-schedule-container-block {
+  display: flex !important;
+  gap: 6px !important;
+  padding: 8px 0 !important;
+}
+
+/* ===================== DATE COLUMNS ===================== */
+
+.app-form-embed #appointmentForm .appointment-schedule-date-column,
+#appointmentForm .appointment-schedule-date-column {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(139, 21, 56, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 10px 6px !important;
+}
+
+/* "Today" badge */
+.app-form-embed #appointmentForm .appointment-date-head-text,
+#appointmentForm .appointment-date-head-text {
+  display: inline-block !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border-radius: 999px !important;
+  padding: 2px 8px !important;
+  margin-bottom: 6px !important;
+}
+
+/* Date column separator line */
+.app-form-embed #appointmentForm .appointment-schedule-date-column-header,
+#appointmentForm .appointment-schedule-date-column-header {
+  padding-bottom: 10px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid rgba(139, 21, 56, 0.10) !important;
+}
+
+/* Day of week label */
+.app-form-embed #appointmentForm .appointment-date-day-of-week,
+#appointmentForm .appointment-date-day-of-week {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #8B1538 !important;
+}
+
+/* Date number */
+.app-form-embed #appointmentForm .appointment-date.text-secondary,
+#appointmentForm .appointment-date.text-secondary {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  line-height: 1 !important;
+  margin-top: 2px !important;
+}
+
+/* ===================== NO-AVAILABILITY BLOCK ICON ===================== */
+
+.app-form-embed #appointmentForm .appointment-date-no-availability,
+#appointmentForm .appointment-date-no-availability {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 60px !important;
+  margin: 0 !important;
+}
+
+.app-form-embed #appointmentForm .appointment-date-no-availability .material-icons.red,
+#appointmentForm .appointment-date-no-availability .material-icons.red {
+  color: rgba(139, 21, 56, 0.22) !important;
+  font-size: 22px !important;
+}
+
+/* ===================== TIME SLOT PILLS ===================== */
+
+.app-form-embed #appointmentForm .appointment-slot-timer-container,
+#appointmentForm .appointment-slot-timer-container {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Defeat the global rule that turns container hover black */
+.app-form-embed #appointmentForm .appointment-slot-timer-container:hover,
+#appointmentForm .appointment-slot-timer-container:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* Default pill */
+.app-form-embed #appointmentForm .appointment-slot-timer,
+#appointmentForm .appointment-slot-timer {
+  display: block !important;
+  width: 100% !important;
+  background: #ffffff !important;
+  color: #8B1538 !important;
+  border: 1px solid rgba(233, 30, 99, 0.35) !important;
+  border-radius: 999px !important;
+  padding: 8px 6px !important;
+  text-align: center !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  line-height: 1.3 !important;
+  transition: all 0.18s !important;
+}
+
+/* Hover pill */
+.app-form-embed #appointmentForm .appointment-slot-timer:hover,
+.app-form-embed #appointmentForm .appointment-slot-timer:focus,
+#appointmentForm .appointment-slot-timer:hover,
+#appointmentForm .appointment-slot-timer:focus {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.28) !important;
+}
+
+/* Keyboard focus ring for accessibility */
+.app-form-embed #appointmentForm .appointment-slot-timer:focus-visible,
+#appointmentForm .appointment-slot-timer:focus-visible {
+  outline: 2px solid #E91E63 !important;
+  outline-offset: 2px !important;
+}
+
+/* Selected / active pill */
+.app-form-embed #appointmentForm .appointment-slot-timer.selected,
+.app-form-embed #appointmentForm .appointment-slot-timer-container.selected .appointment-slot-timer,
+#appointmentForm .appointment-slot-timer.selected,
+#appointmentForm .appointment-slot-timer-container.selected .appointment-slot-timer {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.30) !important;
+}
+
+/* ===================== SCROLLBARS — HIDE INSIDE MODAL ===================== */
+
+#appointmentForm *::-webkit-scrollbar {
+  display: none !important;
+}
+
+#appointmentForm * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* ===================== SUCCESS / BOOKING CONFIRMATION ===================== */
+
+.app-form-embed #appointmentCalendarSuccessMessage,
+#appointmentCalendarSuccessMessage {
+  background: #ffffff !important;
+  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border-top: 4px solid #8B1538 !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+}
+
+/* ============================================================
+   APPOINTMENT MODAL — JW MONOGRAM CENTERING FIX
+   Replaces the existing .default-user-avatar-container rule.
+   The inline-block + padding combo left a baseline gap that
+   threw the inner circle off-center. Switching the wrapper to
+   flex distributes the 3px ring padding evenly on all sides.
+   ============================================================ */
+
+.app-form-embed #appointmentForm .appointment-type__staff-avatar .default-user-avatar-container,
+#appointmentForm .appointment-type__staff-avatar .default-user-avatar-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 3px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538, #D4A574) !important;
+  width: 70px !important;
+  height: 70px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.4 — FORM CHROME (LP + STANDALONE)                             */
+/*  .app-form-embed, .extended-form-wrapper — inputs, buttons, typo */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   TAX PREP SETUP FORM CSS
+   Brand: Rose #E91E63, Crimson #8B1538, Champagne #F5E6D3,
+          Cormorant Garamond + Inter
+
+   Styles the form in BOTH contexts:
+   1. Standalone form page (suitedash.com/frm/...) — full chrome
+   2. Embedded inside a landing page via {{form id="..."}}
+
+   Page-level rules (html, body) are scoped with `html.intake-form`
+   so they only apply on the standalone form page.
+   ============================================================ */
+
+/* ===================== STANDALONE FORM PAGE ===================== */
+html.intake-form,
+html.intake-form body {
+  background: #FFFAF4 !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+html.intake-form body {
+  padding-top: 50px !important;
+}
+
+/* ===================== FORM CARD WRAPPER ===================== */
+.app-form-embed,
+.extended-form-wrapper {
+  max-width: 920px !important;
+  margin: 0 auto 60px !important;
+  background: #FFFAF4 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-top: 4px solid #8B1538 !important;
+  border-radius: 24px !important;
+  padding: 20px 48px 56px !important;
+  box-shadow: 0 24px 60px rgba(139, 21, 56, 0.08) !important;
+}
+
+.app-form-embed #forms-form-wrapper.card,
+.extended-form-wrapper #forms-form-wrapper.card {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.app-form-embed #forms-form-wrapper .card-header,
+.extended-form-wrapper #forms-form-wrapper .card-header {
+  display: none !important;
+}
+.app-form-embed #forms-form-wrapper .card-block,
+.extended-form-wrapper #forms-form-wrapper .card-block {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* ===================== TYPOGRAPHY ===================== */
+.app-form-embed,
+.app-form-embed *,
+.extended-form-wrapper,
+.extended-form-wrapper * {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+.app-form-embed .form-title,
+.extended-form-wrapper .form-title {
+  display: none !important;
+}
+
+.app-form-embed label,
+.extended-form-wrapper label,
+.app-form-embed .control-label {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 8px !important;
+}
+
+.app-form-embed .help-block,
+.app-form-embed .text-muted,
+.extended-form-wrapper .help-block,
+.extended-form-wrapper .text-muted {
+  color: #6B5260 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+.app-form-embed .label-subtext,
+.extended-form-wrapper .label-subtext {
+  color: #6B5260 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  margin-top: -4px !important;
+  margin-bottom: 8px !important;
+}
+.app-form-embed .label-subtext p,
+.extended-form-wrapper .label-subtext p {
+  margin: 0 !important;
+}
+
+.app-form-embed .required,
+.extended-form-wrapper .required {
+  color: #E91E63 !important;
+}
+
+.app-form-embed #requiredMessage,
+.extended-form-wrapper #requiredMessage {
+  display: none !important;
+}
+
+.app-form-embed h1,
+.app-form-embed h2,
+.app-form-embed h3,
+.extended-form-wrapper h1,
+.extended-form-wrapper h2,
+.extended-form-wrapper h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  color: #1A0B14 !important;
+  font-weight: 600 !important;
+}
+
+/* ===================== INPUTS ===================== */
+.app-form-embed .form-control,
+.extended-form-wrapper .form-control,
+.app-form-embed input[type="text"],
+.app-form-embed input[type="email"],
+.app-form-embed input[type="tel"],
+.app-form-embed input[type="number"],
+.app-form-embed select,
+.app-form-embed textarea {
+  background: #F5E6D3 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-radius: 14px !important;
+  padding: 14px 18px !important;
+  font-size: 16px !important;
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-height: 50px !important;
+  transition: all 0.2s ease !important;
+}
+
+.app-form-embed .form-control:focus,
+.extended-form-wrapper .form-control:focus {
+  border-color: #E91E63 !important;
+  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.12) !important;
+  background: #FFFAF4 !important;
+  outline: none !important;
+}
+
+.app-form-embed .form-control::placeholder {
+  color: #6B5260 !important;
+  opacity: 0.7 !important;
+}
+
+/* Toggle switch */
+.app-form-embed .switch input:checked + .slider,
+.extended-form-wrapper .switch input:checked + .slider {
+  background-color: #8B1538 !important;
+  border-color: #8B1538 !important;
+}
+
+/* ===================== BUTTONS ===================== */
+.app-form-embed .btn-primary,
+.extended-form-wrapper .btn-primary,
+.app-form-embed button[type="submit"],
+.extended-form-wrapper button[type="submit"] {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.4px !important;
+  text-transform: none !important;
+  padding: 16px 32px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.app-form-embed .btn-primary:hover,
+.extended-form-wrapper .btn-primary:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.42) !important;
+}
+
+.app-form-embed .form-actions,
+.extended-form-wrapper .form-actions {
+  margin-top: 32px !important;
+  text-align: center !important;
+}
+
+.app-form-embed .book-me__schedule-btn,
+.extended-form-wrapper .book-me__schedule-btn {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0.4px !important;
+  padding: 16px 28px !important;
+  border-radius: 999px !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3) !important;
+}
+
+/* ===================== APPOINTMENT BLOCK + CALENDAR ===================== */
+.app-form-embed .appointment-block-wrapper,
+.extended-form-wrapper .appointment-block-wrapper {
+  background: #FFFAF4 !important;
+  border: 2px dashed rgba(139, 21, 56, 0.14) !important;
+  border-radius: 14px !important;
+  padding: 28px !important;
+  margin: 20px 0 !important;
+}
+
+.app-form-embed .book-me-calendar {
+  border-radius: 12px !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  overflow: hidden !important;
+}
+.app-form-embed .book-me-calendar table tr:first-child th {
+  background-color: #8B1538 !important;
+  color: #F5E6D3 !important;
+}
+.app-form-embed .book-me-calendar td.available:hover {
+  background-color: rgba(233, 30, 99, 0.08) !important;
+  color: #E91E63 !important;
+}
+.app-form-embed .book-me-calendar td.selected {
+  background-color: #E91E63 !important;
+  color: #ffffff !important;
+}
+
+/* ===================== FILE UPLOAD FIELD ===================== */
+.app-form-embed .file-upload-field-input,
+.extended-form-wrapper .file-upload-field-input {
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
+  border: 2px dashed rgba(139, 21, 56, 0.20) !important;
+  border-radius: 14px !important;
+  padding: 24px !important;
+  transition: all 0.25s ease !important;
+}
+.app-form-embed .file-upload-field-input:hover,
+.extended-form-wrapper .file-upload-field-input:hover {
+  border-color: #8B1538 !important;
+  background: #FFFAF4 !important;
+}
+
+/* ===================== SPACING ===================== */
+.app-form-embed .form-group,
+.extended-form-wrapper .form-group {
+  margin-bottom: 24px !important;
+}
+
+
+/* ============================================================
+   EMBEDDED-IN-LP ADJUSTMENTS
+   ============================================================ */
+.tu-lp .app-form-embed,
+.tu-lp .extended-form-wrapper {
+  margin: 0 auto !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.5 — PAYMENT / SHOPPING CARDS                                  */
+/*  .choose-items-wrapper, item cards, quantity inputs              */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   PAYMENT / SHOPPING CARDS
+   ============================================================ */
+
+/* ---- Item cards ---- */
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item {
+  color: #2A1820 !important;
+  background-color: #FFFAF4 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-top: none !important;
+  border-radius: 24px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+  padding: 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .scroll-text-wrapper::after,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .scroll-text-wrapper::after,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover .scroll-text-wrapper::after,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover .scroll-text-wrapper::after,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .scroll-text-wrapper::after,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .scroll-text-wrapper::after {
+  background-image: linear-gradient(90deg, #FFFAF4 0%, #FFFAF4 50%) !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-title,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-title {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-desc,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-desc-text,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-desc,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-desc-text,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card-desc,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card-desc-text,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card-desc,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card-desc-text,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-desc,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-desc-text,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-desc,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-desc-text,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-desc,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-desc-text,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-desc,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-desc-text {
+  color: #2A1820 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-price,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-price,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-price,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-price,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-price,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-price {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item a,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item a {
+  color: #E91E63 !important;
+  font-weight: 600 !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover {
+  color: #2A1820 !important;
+  background-color: #FFFAF4 !important;
+  border-color: rgba(233, 30, 99, 0.35) !important;
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.14) !important;
+  transform: translateY(-3px) !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover a,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover a {
+  color: #C2185B !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover {
+  color: #2A1820 !important;
+  background-color: #FFFAF4 !important;
+  border-color: #8B1538 !important;
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.16) !important;
+}
+
+/* ---- Highlight tag ---- */
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .choose-items-card__label,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .choose-items-card__label {
+  color: #8B1538 !important;
+  background-color: rgba(255, 229, 236, 0.6) !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(233, 30, 99, 0.35) !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item__active .choose-items-card__label,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card__label,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item__active .choose-items-card__label,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card__label {
+  color: #ffffff !important;
+  background-color: #E91E63 !important;
+  border-color: #E91E63 !important;
+}
+
+/* ---- Checkmark circle ---- */
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+body.branding-theme-mrclean .app-form-embed .choose-items-wrapper .sd-checkmark-card-item .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+body.branding-theme-mrclean .app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__circle {
+  border-color: rgba(139, 21, 56, 0.14) !important;
+  background-color: #8B1538 !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__check:after,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__check:after,
+body.branding-theme-mrclean .app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__check:after,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__check:after {
+  border-color: #ffffff !important;
+}
+
+/* ---- Quantity input ---- */
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .quantity-input input,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .quantity-input input {
+  color: #1A0B14 !important;
+  background-color: #FFFAF4 !important;
+  border-color: rgba(139, 21, 56, 0.14) !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+}
+
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__sub::before,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__add::before,
+.app-form-embed .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__add::after,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__sub::before,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__add::before,
+.extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__add::after {
+  background-color: #8B1538 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.6 — TOTALS / SUMMARY PANEL                                    */
+/*  .choose-items-summary-* — checkout sidebar                      */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   TOTALS / SUMMARY PANEL
+   ============================================================ */
+
+.app-form-embed .choose-items-summary-block,
+.extended-form-wrapper .choose-items-summary-block {
+  display: block !important;
+  visibility: visible !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.app-form-embed .choose-items-summary-wrapper,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-wrapper,
+.extended-form-wrapper .choose-items-summary-wrapper,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  background-color: #FFFAF4 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-top: 4px solid #8B1538 !important;
+  border-radius: 24px !important;
+  padding: 28px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+  color: #1A0B14 !important;
+}
+
+.app-form-embed .choose-items-wrapper .choose-items-summary-wrapper:not(.loader-widget)::before,
+.extended-form-wrapper .choose-items-wrapper .choose-items-summary-wrapper:not(.loader-widget)::before {
+  background-color: #FFFAF4 !important;
+  border: none !important;
+}
+
+.app-form-embed .choose-items-summary-head,
+.app-form-embed .choose-items-wrapper .choose-items-summary-head,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-head,
+.extended-form-wrapper .choose-items-summary-head,
+.extended-form-wrapper .choose-items-wrapper .choose-items-summary-head,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-head {
+  color: #1A0B14 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  border-bottom: 2px solid rgba(139, 21, 56, 0.14) !important;
+  padding-bottom: 14px !important;
+  margin-bottom: 18px !important;
+}
+
+/* All summary text → dark plum */
+.app-form-embed .choose-items-summary-body,
+.app-form-embed .choose-items-summary-body *,
+.app-form-embed .choose-items-summary-wrapper *,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-wrapper *,
+.extended-form-wrapper .choose-items-summary-body,
+.extended-form-wrapper .choose-items-summary-body *,
+.extended-form-wrapper .choose-items-summary-wrapper *,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-wrapper *,
+body.branding-theme-default .app-form-embed .choose-items-summary-body *,
+body.branding-theme-default .app-form-embed .choose-items-summary-wrapper *,
+body.branding-theme-mrclean .app-form-embed .choose-items-summary-body *,
+body.branding-theme-mrclean .app-form-embed .choose-items-summary-wrapper *,
+body.branding-theme-default .extended-form-wrapper .choose-items-summary-body *,
+body.branding-theme-default .extended-form-wrapper .choose-items-summary-wrapper *,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-body *,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper * {
+  color: #1A0B14 !important;
+}
+
+/* Summary item title */
+.app-form-embed .choose-items-summary__title,
+.extended-form-wrapper .choose-items-summary__title,
+body.branding-theme-default .app-form-embed .choose-items-summary__title,
+body.branding-theme-mrclean .app-form-embed .choose-items-summary__title,
+body.branding-theme-default .extended-form-wrapper .choose-items-summary__title,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary__title {
+  color: #2A1820 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  padding: 6px 0 !important;
+}
+
+.app-form-embed .choose-items-summary__amount,
+.app-form-embed .choose-items-summary__sub-amount,
+.extended-form-wrapper .choose-items-summary__amount,
+.extended-form-wrapper .choose-items-summary__sub-amount {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 6px 0 !important;
+}
+
+/* Section titles + total label → rose accent */
+.app-form-embed .choose-items-summary__section-title,
+.app-form-embed .choose-items-summary__section-title h4,
+.app-form-embed .choose-items-summary-wrapper .colored-title,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-wrapper .colored-title,
+.app-form-embed .choose-items-wrapper .choose-items-summary-wrapper .colored-title,
+.extended-form-wrapper .choose-items-summary__section-title,
+.extended-form-wrapper .choose-items-summary__section-title h4,
+.extended-form-wrapper .choose-items-summary-wrapper .colored-title,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-wrapper .colored-title,
+.extended-form-wrapper .choose-items-wrapper .choose-items-summary-wrapper .colored-title,
+body.branding-theme-default .app-form-embed .choose-items-summary__section-title,
+body.branding-theme-default .app-form-embed .choose-items-summary-wrapper .colored-title,
+body.branding-theme-mrclean .app-form-embed .choose-items-summary__section-title,
+body.branding-theme-mrclean .app-form-embed .choose-items-summary-wrapper .colored-title,
+body.branding-theme-default .extended-form-wrapper .choose-items-summary__section-title,
+body.branding-theme-default .extended-form-wrapper .choose-items-summary-wrapper .colored-title,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary__section-title,
+body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper .colored-title,
+.app-form-embed .choose-items-summary-total label,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-wrapper .choose-items-summary-body .choose-items-summary-total label,
+.extended-form-wrapper .choose-items-summary-total label,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-wrapper .choose-items-summary-body .choose-items-summary-total label {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 10px !important;
+  margin-top: 8px !important;
+}
+
+.app-form-embed .choose-items-summary__sub-title,
+.extended-form-wrapper .choose-items-summary__sub-title {
+  color: #6B5260 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+.app-form-embed .choose-items-summary-total-amount,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-total-amount,
+.extended-form-wrapper .choose-items-summary-total-amount,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-total-amount {
+  color: #1A0B14 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 28px !important;
+}
+
+.app-form-embed .choose-items-summary-payment-amount,
+.app-form-embed .cbe-block-shopping-wrapper .choose-items-summary-payment-amount,
+.extended-form-wrapper .choose-items-summary-payment-amount,
+.extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-payment-amount {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+.app-form-embed .choose-items-summary__items-wrap,
+.app-form-embed .choose-items-summary__items-wrap.border-bottom,
+.extended-form-wrapper .choose-items-summary__items-wrap,
+.extended-form-wrapper .choose-items-summary__items-wrap.border-bottom {
+  border-bottom-color: rgba(139, 21, 56, 0.14) !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.7 — ACCORDION (PAYMENT STEPS)                                 */
+/*  .sdAccordion__* — step headers, bodies, step number circles     */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   ACCORDION (PAYMENT STEPS)
+   SuiteDash paints gray on .sdAccordion__toggle (the <a> inside
+   the head) using an ID-scoped selector. We use doubled attribute
+   selectors to win specificity, and paint via background-image so
+   any inline background-color can't bleed through.
+   ============================================================ */
+
+.app-form-embed .choose-items-wrapper .sdAccordion__item,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  margin-bottom: 12px !important;
+  border: none !important;
+  background-color: transparent !important;
+}
+
+/* Head + toggle: crimson gradient */
+[class*="app-form-embed"][class*="app-form-embed"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head,
+[class*="app-form-embed"][class*="app-form-embed"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head .sdAccordion__toggle,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head .sdAccordion__toggle {
+  background: linear-gradient(135deg, #8B1538 0%, #5C0D24 100%) !important;
+  background-color: #8B1538 !important;
+  background-image: linear-gradient(135deg, #8B1538 0%, #5C0D24 100%) !important;
+  color: #F5E6D3 !important;
+  border: none !important;
+  border-color: #8B1538 !important;
+  border-radius: 14px !important;
+  padding: 18px 24px !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.02em !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+[class*="app-form-embed"][class*="app-form-embed"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head:hover,
+[class*="app-form-embed"][class*="app-form-embed"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head .sdAccordion__toggle:hover,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head:hover,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head .sdAccordion__toggle:hover {
+  background: linear-gradient(135deg, #5C0D24 0%, #1A0B14 100%) !important;
+  background-color: #5C0D24 !important;
+  background-image: linear-gradient(135deg, #5C0D24 0%, #1A0B14 100%) !important;
+  border-color: #5C0D24 !important;
+}
+
+/* Active head: keep crimson, add shadow + square bottom */
+.app-form-embed .choose-items-wrapper .sdAccordion__item.sdAccordion__item--active .sdAccordion__head,
+.app-form-embed .choose-items-wrapper .sdAccordion__item.active .sdAccordion__head,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item.sdAccordion__item--active .sdAccordion__head,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item.active .sdAccordion__head {
+  box-shadow: 0 8px 20px rgba(139, 21, 56, 0.25) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Head text + chevron → champagne */
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .sdAccordion__title,
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .sdAccordion__title *,
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .ng-binding,
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .icon-chevron-down,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .sdAccordion__title,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .sdAccordion__title *,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .ng-binding,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .icon-chevron-down {
+  color: #F5E6D3 !important;
+}
+
+/* Step number circle: rose with white number */
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .step-number,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .step-number,
+.app-form-embed .choose-items-wrapper .sdAccordion__item .sdAccordion__head .step-number,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item .sdAccordion__head .step-number {
+  background-color: #E91E63 !important;
+  background: #E91E63 !important;
+  border: 2px solid #E91E63 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 28px !important;
+  border-radius: 999px !important;
+  text-align: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 14px !important;
+  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.35) !important;
+}
+
+/* Active step number: invert (champagne dot, crimson number) */
+.app-form-embed .choose-items-wrapper .sdAccordion__item.sdAccordion__item--active .sdAccordion__head .step-number,
+.app-form-embed .choose-items-wrapper .sdAccordion__item.active .sdAccordion__head .step-number,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item.sdAccordion__item--active .sdAccordion__head .step-number,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item.active .sdAccordion__head .step-number {
+  background-color: #FFFAF4 !important;
+  background: #FFFAF4 !important;
+  border-color: #FFFAF4 !important;
+  color: #8B1538 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Accordion body */
+.app-form-embed .choose-items-wrapper .sdAccordion__item .sdAccordion__body,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item .sdAccordion__body {
+  background-color: #FFFAF4 !important;
+  border: 1px solid #8B1538 !important;
+  border-top: none !important;
+  border-bottom-left-radius: 14px !important;
+  border-bottom-right-radius: 14px !important;
+  padding: 28px 24px !important;
+}
+
+/* Next Step button */
+.app-form-embed .choose-items-wrapper .choose-items-summary-actions button.next-btn,
+.extended-form-wrapper .choose-items-wrapper .choose-items-summary-actions button.next-btn {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  text-transform: none !important;
+  padding: 14px 28px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.app-form-embed .choose-items-wrapper .choose-items-summary-actions button.next-btn:hover,
+.extended-form-wrapper .choose-items-wrapper .choose-items-summary-actions button.next-btn:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.42) !important;
+}
+
+.app-form-embed .choose-items-wrapper .choose-items-summary-actions button.next-btn svg,
+.extended-form-wrapper .choose-items-wrapper .choose-items-summary-actions button.next-btn svg {
+  fill: #ffffff !important;
+}
+
+
+/* ============================================================
+   ACCORDION HEAD — TIGHTEN PROPORTIONS
+   Override the chunky 18px×24px padding + 32px step circle
+   ============================================================ */
+[class*="app-form-embed"][class*="app-form-embed"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head,
+[class*="app-form-embed"][class*="app-form-embed"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head .sdAccordion__toggle,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .choose-items-wrapper .sdAccordion__item .sdAccordion__head .sdAccordion__toggle {
+  padding: 12px 18px !important;
+  min-height: 0 !important;
+  font-size: 14px !important;
+}
+
+/* Step circle: shrink from 32px → 26px */
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .step-number,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .step-number,
+.app-form-embed .choose-items-wrapper .sdAccordion__item .sdAccordion__head .step-number,
+.extended-form-wrapper .choose-items-wrapper .sdAccordion__item .sdAccordion__head .step-number {
+  width: 26px !important;
+  height: 26px !important;
+  line-height: 22px !important;
+  font-size: 12px !important;
+  margin-right: 10px !important;
+  border-width: 2px !important;
+  box-shadow: 0 2px 6px rgba(233, 30, 99, 0.3) !important;
+}
+
+/* Title text inside head */
+[class*="app-form-embed"][class*="app-form-embed"] .sdAccordion__toggle .sdAccordion__title,
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .sdAccordion__title {
+  font-size: 17px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.8 — TU-FORM-HEADER + 8-STEP PROGRESS INDICATOR                */
+/*  .tu-form-header, .tu-progress, .tu-progress__step               */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   TU-FORM-HEADER (form intro block)
+   ============================================================ */
+.app-form-embed .tu-form-header,
+.extended-form-wrapper .tu-form-header,
+.tu-form-header {
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
+  border: 2px dashed #8B1538 !important;
+  border-radius: 14px !important;
+  padding: 40px 32px 36px !important;
+  text-align: center !important;
+  margin: 0 0 32px 0 !important;
+}
+.app-form-embed .tu-form-header .tu-step,
+.extended-form-wrapper .tu-form-header .tu-step,
+.tu-form-header .tu-step {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #E91E63 !important;
+  letter-spacing: 2.4px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 14px !important;
+  background: transparent !important;
+}
+.app-form-embed .tu-form-header .tu-title,
+.extended-form-wrapper .tu-form-header .tu-title,
+.tu-form-header .tu-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  color: #1A0B14 !important;
+  font-size: 30px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.15 !important;
+  background: transparent !important;
+}
+.app-form-embed .tu-form-header .tu-lede,
+.extended-form-wrapper .tu-form-header .tu-lede,
+.tu-form-header .tu-lede {
+  color: #6B5260 !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  max-width: 540px !important;
+  margin: 0 auto !important;
+  background: transparent !important;
+}
+
+/* In-title links read as a link, not a 30px headline word */
+.app-form-embed .tu-form-header .tu-title a,
+.extended-form-wrapper .tu-form-header .tu-title a,
+.tu-form-header .tu-title a {
+  font-size: 22px !important;
+  color: #E91E63 !important;
+  text-decoration: none !important;
+  text-underline-offset: 2px !important;
+}
+.app-form-embed .tu-form-header .tu-title a:hover,
+.extended-form-wrapper .tu-form-header .tu-title a:hover,
+.tu-form-header .tu-title a:hover {
+  color: #C2185B !important;
+}
+
+.app-form-embed .form-group.html-content-wrapper:has(.tu-form-header),
+.extended-form-wrapper .form-group.html-content-wrapper:has(.tu-form-header) {
+  margin-bottom: 0 !important;
+}
+
+
+/* ============================================================
+   8-STEP PROGRESS INDICATOR (inside tu-form-header)
+   ============================================================ */
+.app-form-embed .tu-form-header .tu-progress,
+.extended-form-wrapper .tu-form-header .tu-progress,
+.tu-form-header .tu-progress {
+  list-style: none !important;
+  margin: 28px 0 0 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 0 !important;
+  position: relative !important;
+  counter-reset: tu-step-counter !important;
+}
+
+.tu-form-header .tu-progress__step {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 0 4px !important;
+  background: transparent !important;
+}
+
+/* Connector line between dots */
+.tu-form-header .tu-progress__step::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 18px !important;
+  left: -50% !important;
+  right: 50% !important;
+  height: 2px !important;
+  background: rgba(139, 21, 56, 0.18) !important;
+  z-index: 0 !important;
+}
+.tu-form-header .tu-progress__step:first-child::before {
+  display: none !important;
+}
+.tu-form-header .tu-progress__step[data-state="complete"]::before,
+.tu-form-header .tu-progress__step[data-state="current"]::before {
+  background: linear-gradient(90deg, #8B1538 0%, #8B1538 100%) !important;
+}
+
+/* The dot */
+.tu-form-header .tu-progress__dot {
+  position: relative !important;
+  z-index: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  background: #FFFAF4 !important;
+  border: 2px solid rgba(139, 21, 56, 0.20) !important;
+  color: #6B5260 !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 2px 6px rgba(139, 21, 56, 0.04) !important;
+}
+
+/* Complete: filled crimson with checkmark */
+.tu-form-header .tu-progress__step[data-state="complete"] .tu-progress__dot {
+  background: #8B1538 !important;
+  border-color: #8B1538 !important;
+  color: transparent !important;
+  font-size: 0 !important;
+}
+.tu-form-header .tu-progress__step[data-state="complete"] .tu-progress__dot::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 11px !important;
+  height: 6px !important;
+  border-left: 2px solid #F5E6D3 !important;
+  border-bottom: 2px solid #F5E6D3 !important;
+  transform: rotate(-45deg) translateY(-1px) !important;
+}
+
+/* Current: rose gradient, larger, glow */
+.tu-form-header .tu-progress__step[data-state="current"] .tu-progress__dot {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border-color: #E91E63 !important;
+  color: #ffffff !important;
+  width: 42px !important;
+  height: 42px !important;
+  font-size: 15px !important;
+  box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.14), 0 8px 18px rgba(233, 30, 99, 0.28) !important;
+}
+.tu-form-header .tu-progress__step[data-state="current"]::before {
+  top: 21px !important;
+}
+
+/* Upcoming: default with explicit confirmation */
+.tu-form-header .tu-progress__step[data-state="upcoming"] .tu-progress__dot {
+  background: #FFFAF4 !important;
+  border-color: rgba(139, 21, 56, 0.18) !important;
+  color: #8B7280 !important;
+}
+
+/* Label */
+.tu-form-header .tu-progress__label {
+  margin-top: 12px !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.02em !important;
+  color: #6B5260 !important;
+  background: transparent !important;
+  transition: color 0.25s ease !important;
+}
+.tu-form-header .tu-progress__step[data-state="complete"] .tu-progress__label {
+  color: #8B1538 !important;
+}
+.tu-form-header .tu-progress__step[data-state="current"] .tu-progress__label {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.9 — PAGE HEADER + FOOTER (STANDALONE FORM PAGES)              */
+/*  .tu-form-page-header, .tu-form-page-footer                      */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   PAGE HEADER (standalone form pages)
+   ============================================================ */
+.tu-form-page-header {
+  background: rgba(245, 230, 211, 0.85) !important;
+  backdrop-filter: saturate(140%) blur(12px) !important;
+  -webkit-backdrop-filter: saturate(140%) blur(12px) !important;
+  border-bottom: 1px solid rgba(139, 21, 56, 0.14) !important;
+  padding: 8px 0 !important;
+  margin: 0 0 80px 0 !important;
+  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.04) !important;
+}
+.tu-form-page-header__inner {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 0 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+.tu-form-page-header__brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  transition: transform 0.3s ease !important;
+}
+.tu-form-page-header__brand:hover {
+  transform: translateY(-1px) !important;
+}
+.tu-form-page-header__brand img {
+  height: 48px !important;
+  width: auto !important;
+  display: block !important;
+}
+.tu-form-page-header__cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 12px 22px !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 999px !important;
+  letter-spacing: 0.4px !important;
+  font-size: 13px !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+.tu-form-page-header__cta:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(233, 30, 99, 0.45) !important;
+}
+
+/* Hide page header/footer when form is embedded in a landing page */
+.tu-lp .tu-form-page-header,
+.tu-lp .tu-form-page-footer {
+  display: none !important;
+}
+.tu-lp .app-form-embed > .div-block:first-child:has(.tu-form-page-header),
+.tu-lp .app-form-embed > .div-block:last-child:has(.tu-form-page-footer) {
+  display: none !important;
+}
+
+
+/* ============================================================
+   PAGE FOOTER (standalone form pages)
+   ============================================================ */
+.tu-form-page-footer {
+  background: linear-gradient(135deg, #5C0D24, #1A0B14) !important;
+  color: rgba(245, 230, 211, 0.75) !important;
+  margin: 60px 0 0 !important;
+  padding: 64px 32px 0 !important;
+  position: relative !important;
+}
+.tu-form-page-footer::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 5px !important;
+  background: linear-gradient(90deg, #E91E63, #E8C088) !important;
+}
+.tu-form-page-footer__inner {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 48px !important;
+  padding-bottom: 48px !important;
+}
+.tu-form-page-footer__heading {
+  color: #F5E6D3 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 18px !important;
+  position: relative !important;
+  padding-bottom: 12px !important;
+}
+.tu-form-page-footer__heading::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 36px !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #E91E63, #E8C088) !important;
+}
+.tu-form-page-footer a {
+  color: rgba(245, 230, 211, 0.75) !important;
+  display: block !important;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  padding-left: 0 !important;
+}
+.tu-form-page-footer a:hover {
+  color: #E91E63 !important;
+  padding-left: 6px !important;
+}
+.tu-form-page-footer__line {
+  font-size: 14px !important;
+  color: rgba(245, 230, 211, 0.85) !important;
+  margin-bottom: 14px !important;
+  line-height: 1.5 !important;
+}
+.tu-form-page-footer__line strong {
+  display: block !important;
+  color: #E8C088 !important;
+  font-weight: 700 !important;
+  font-size: 10px !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 4px !important;
+}
+.tu-form-page-footer__socials {
+  display: flex !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+.tu-form-page-footer__socials a {
+  width: 42px !important;
+  height: 42px !important;
+  background: rgba(212, 165, 116, 0.14) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #E8C088 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  border: 1px solid rgba(212, 165, 116, 0.20) !important;
+  transition: all 0.3s ease !important;
+}
+.tu-form-page-footer__socials a:hover {
+  background: #E91E63 !important;
+  color: #ffffff !important;
+  border-color: #E91E63 !important;
+  padding-left: 0 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4) !important;
+}
+.tu-form-page-footer__copy {
+  border-top: 1px solid rgba(212, 165, 116, 0.16) !important;
+  padding: 24px 0 !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  color: rgba(245, 230, 211, 0.55) !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.10 — APPOINTMENT INTAKE BLOCKS (pre + post booking)           */
+/*  .appointment-intake-form-wrapper, confirmation card             */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   APPOINTMENT INTAKE BLOCKS — APPEND TO TAX PREP SETUP FORM CSS
+   Two states styled here:
+   1. Pre-booking scheduler   → "Click to schedule an Appointment"
+   2. Post-booking confirmed  → "GREAT! Your appointment with..."
+   ============================================================ */
+
+/* ===================== SHARED WRAPPER ===================== */
+.app-form-embed .appointment-intake-form-wrapper,
+.extended-form-wrapper .appointment-intake-form-wrapper {
+  margin: 0 0 24px 0 !important;
+}
+
+.app-form-embed .appointment-intake-form-field-block,
+.extended-form-wrapper .appointment-intake-form-field-block {
+  position: relative !important;
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
+  border: 2px dashed rgba(139, 21, 56, 0.30) !important;
+  border-radius: 18px !important;
+  padding: 28px 32px !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 12px !important;
+  box-shadow: 0 8px 24px rgba(139, 21, 56, 0.06) !important;
+  transition: all 0.25s ease !important;
+}
+
+.app-form-embed .appointment-intake-form-field-block:hover,
+.extended-form-wrapper .appointment-intake-form-field-block:hover {
+  border-color: #8B1538 !important;
+  box-shadow: 0 12px 32px rgba(139, 21, 56, 0.10) !important;
+}
+
+/* Decorative top-left calendar accent */
+.app-form-embed .appointment-intake-form-field-block::before,
+.extended-form-wrapper .appointment-intake-form-field-block::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -1px !important;
+  left: 32px !important;
+  width: 56px !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #E91E63, #8B1538) !important;
+  border-radius: 0 0 4px 4px !important;
+}
+
+/* Reset bootstrap utility padding/margins that fight our layout */
+.app-form-embed .appointment-intake-form-field-block > div,
+.extended-form-wrapper .appointment-intake-form-field-block > div {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 480px !important;
+}
+
+/* ===================== PRE-BOOKING (SCHEDULER) ===================== */
+
+/* Helper text — "Make an Appointment: You will be able..." */
+.app-form-embed .appointment-intake-form-wrapper:not([ng-hide="appt.show == 1"]) .appointment-intake-form-field-block > div:last-child:not(:first-child),
+.app-form-embed .appointment-intake-form-field-block > div.p-2.m-2:not(.text-left):not(.text-md-right),
+.extended-form-wrapper .appointment-intake-form-field-block > div.p-2.m-2:not(.text-left):not(.text-md-right) {
+  color: #6B5260 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  margin-top: 4px !important;
+}
+
+/* "Click to schedule an Appointment" + "Modify your Appointment" buttons */
+.app-form-embed .appointment-intake-form-field-block input.btn.btn-primary,
+.extended-form-wrapper .appointment-intake-form-field-block input.btn.btn-primary {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.4px !important;
+  text-transform: none !important;
+  padding: 14px 32px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.30) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  width: auto !important;
+  display: inline-block !important;
+  text-align: center !important;
+}
+
+.app-form-embed .appointment-intake-form-field-block input.btn.btn-primary:hover,
+.extended-form-wrapper .appointment-intake-form-field-block input.btn.btn-primary:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.42) !important;
+}
+
+.app-form-embed .appointment-intake-form-field-block input.btn.btn-primary:active,
+.extended-form-wrapper .appointment-intake-form-field-block input.btn.btn-primary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 6px 14px rgba(233, 30, 99, 0.30) !important;
+}
+
+/* ===================== POST-BOOKING (CONFIRMED) ===================== */
+
+/* Confirmation card variant — solid champagne, crimson accent border */
+.app-form-embed .appointment-intake-form-wrapper[ng-hide="appt.show == 1"]:not(.ng-hide) .appointment-intake-form-field-block:has(h5),
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5),
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5) {
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
+  border: 1px solid rgba(139, 21, 56, 0.18) !important;
+  border-top: 4px solid #8B1538 !important;
+  border-radius: 18px !important;
+  padding: 32px 32px 28px !important;
+  box-shadow: 0 16px 40px rgba(139, 21, 56, 0.10) !important;
+}
+
+/* Overwrite the ::before stripe when block is in confirmed state */
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5)::before,
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5)::before {
+  display: none !important;
+}
+
+/* Add a ✓ checkmark badge above the confirmation text */
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5)::after,
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5)::after {
+  content: '✓' !important;
+  position: absolute !important;
+  top: -22px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 44px !important;
+  height: 44px !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFAF4 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35), 0 0 0 4px #FFFAF4 !important;
+}
+
+/* "GREAT! Your appointment with Jamie Williams is scheduled!" */
+.app-form-embed .appointment-intake-form-field-block span.ng-binding,
+.extended-form-wrapper .appointment-intake-form-field-block span.ng-binding {
+  display: block !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #E91E63 !important;
+  letter-spacing: 2.4px !important;
+  text-transform: uppercase !important;
+  margin: 8px 0 16px 0 !important;
+  background: transparent !important;
+}
+
+/* Override the .ng-binding hide-text-when-empty behavior so spacing holds */
+.app-form-embed .appointment-intake-form-field-block span.ng-binding:empty,
+.extended-form-wrapper .appointment-intake-form-field-block span.ng-binding:empty {
+  display: none !important;
+}
+
+/* Date/time line — first h5 ("06/18/2026 at 3:45 pm") */
+.app-form-embed .appointment-intake-form-field-block h5,
+.extended-form-wrapper .appointment-intake-form-field-block h5 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  color: #1A0B14 !important;
+  font-weight: 600 !important;
+  font-size: 28px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 6px 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+}
+
+/* Timezone line — second h5 ("(GMT-07:00) America, Los Angeles") */
+.app-form-embed .appointment-intake-form-field-block h5 + h5,
+.extended-form-wrapper .appointment-intake-form-field-block h5 + h5 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #6B5260 !important;
+  letter-spacing: 0.02em !important;
+  font-style: normal !important;
+  margin: 0 0 4px 0 !important;
+  text-transform: none !important;
+}
+
+/* "Modify your Appointment" button — secondary treatment on confirmed state */
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5) input.btn.btn-primary,
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5) input.btn.btn-primary {
+  background: transparent !important;
+  color: #8B1538 !important;
+  border: 1.5px solid rgba(139, 21, 56, 0.40) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 10px 24px !important;
+  box-shadow: none !important;
+  margin-top: 18px !important;
+}
+
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5) input.btn.btn-primary:hover,
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5) input.btn.btn-primary:hover {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #ffffff !important;
+  border-color: #8B1538 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.30) !important;
+}
+
+/* Override bootstrap text-md-right for confirmed block so button stays centered */
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5) > div.text-md-right,
+.app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5) > div.text-center,
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5) > div.text-md-right,
+.extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5) > div.text-center {
+  text-align: center !important;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 600px) {
+  .app-form-embed .appointment-intake-form-field-block,
+  .extended-form-wrapper .appointment-intake-form-field-block {
+    padding: 24px 20px !important;
+  }
+  .app-form-embed .appointment-intake-form-field-block h5,
+  .extended-form-wrapper .appointment-intake-form-field-block h5 {
+    font-size: 22px !important;
+  }
+  .app-form-embed .appointment-intake-form-field-block h5 + h5,
+  .extended-form-wrapper .appointment-intake-form-field-block h5 + h5 {
+    font-size: 12px !important;
+  }
+  .app-form-embed .appointment-intake-form-field-block input.btn.btn-primary,
+  .extended-form-wrapper .appointment-intake-form-field-block input.btn.btn-primary {
+    width: 100% !important;
+    padding: 14px 20px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.11 — RESPONSIVE BREAKPOINTS                                   */
+/*  @media queries for forms + progress indicator                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .app-form-embed,
+  .extended-form-wrapper {
+    margin: 24px 16px !important;
+    padding: 32px 24px !important;
+    border-radius: 18px !important;
+  }
+  .tu-form-header { padding: 32px 20px !important; }
+  .tu-form-header .tu-title { font-size: 24px !important; }
+  .app-form-embed .btn-primary { width: 100% !important; }
+  .app-form-embed .form-control { font-size: 16px !important; }
+
+  .tu-form-page-header__inner {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .tu-form-page-footer__inner {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Progress indicator: shrink dots, hide labels */
+  .tu-form-header .tu-progress {
+    margin-top: 24px !important;
+  }
+  .tu-form-header .tu-progress__dot {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+  }
+  .tu-form-header .tu-progress__step[data-state="current"] .tu-progress__dot {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 12px !important;
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.14), 0 4px 10px rgba(233, 30, 99, 0.28) !important;
+  }
+  .tu-form-header .tu-progress__step::before { top: 14px !important; }
+  .tu-form-header .tu-progress__step[data-state="current"]::before { top: 16px !important; }
+  .tu-form-header .tu-progress__step[data-state="complete"] .tu-progress__dot::after {
+    width: 8px !important;
+    height: 4px !important;
+  }
+  .tu-form-header .tu-progress__label { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  /* Progress: collapse to gradient bar */
+  .tu-form-header .tu-progress {
+    grid-template-columns: 1fr !important;
+    margin-top: 20px !important;
+  }
+  .tu-form-header .tu-progress__step { display: none !important; }
+  .tu-form-header .tu-progress::before {
+    content: '' !important;
+    display: block !important;
+    height: 6px !important;
+    background: rgba(139, 21, 56, 0.12) !important;
+    border-radius: 999px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  .tu-form-header .tu-progress::after {
+    content: '' !important;
+    display: block !important;
+    height: 6px !important;
+    width: 62.5%; /* 5 of 8 — adjust via inline style per page */
+    background: linear-gradient(90deg, #E91E63, #8B1538) !important;
+    border-radius: 999px !important;
+    margin-top: -6px !important;
+    box-shadow: 0 2px 6px rgba(233, 30, 99, 0.3) !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.12 — FLOW MODAL — VLP THEME OVERRIDES (NEW, appended)         */
+/*  Repaints .sd-flow chrome for VLP-branded flows (orange/dark).   */
+/*  Must come AFTER section 2.2 to win cascade by source order.     */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* 1) Appointment intake block — VLP dark + dashed orange */
+.sd-flow .appointment-intake-form-wrapper {
+  background: linear-gradient(180deg, #1F1A15 0%, #14110D 100%) !important;
+  border: 2px dashed #F47B20 !important;
+  border-radius: 14px !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35) !important;
+}
+
+.sd-flow .appointment-intake-form-wrapper .btn-primary {
+  background: linear-gradient(135deg, #F47B20, #C25A0E) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 14px 28px !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 8px 20px rgba(244, 123, 32, 0.30) !important;
+  transition: all 0.25s ease !important;
+}
+
+.sd-flow .appointment-intake-form-wrapper .btn-primary:hover {
+  background: linear-gradient(135deg, #C25A0E, #8B3F08) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(244, 123, 32, 0.45) !important;
+}
+
+.sd-flow .appointment-intake-form-field-block .p-2.m-2,
+.sd-flow .appointment-intake-form-field-block .p-2.m-md-0:not(:first-child) {
+  color: #C7BFB3 !important;
+}
+
+/* 2) Flow advance/complete button — VLP orange */
+.sd-flow .flow-buttons.flow-button-continue,
+.sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip) {
+  background: linear-gradient(135deg, #F47B20, #C25A0E) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 16px 48px !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 10px 24px rgba(244, 123, 32, 0.30) !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+}
+
+.sd-flow .flow-buttons.flow-button-continue:hover,
+.sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip):hover {
+  background: linear-gradient(135deg, #C25A0E, #8B3F08) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 32px rgba(244, 123, 32, 0.45) !important;
+}
+
+/* 3) Sidebar — VLP dark gradient */
+.sd-flow .flow-nav-list__container {
+  background: linear-gradient(180deg, #1F1A15, #14110D) !important;
+}
+
+.sd-flow .flow-nav-list li {
+  border-bottom: 1px solid rgba(245, 239, 230, 0.08) !important;
+}
+
+.sd-flow .flow-nav-list li::before {
+  background: linear-gradient(180deg, #F47B20, #C25A0E, #FFA559) !important;
+}
+
+.sd-flow .flow-nav-list li h4 {
+  color: rgba(245, 239, 230, 0.75) !important;
+}
+
+.sd-flow .flow-nav-list li h4 i {
+  color: rgba(245, 239, 230, 0.40) !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover {
+  background: rgba(244, 123, 32, 0.10) !important;
+  background-color: rgba(244, 123, 32, 0.10) !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover h4 {
+  color: #F5EFE6 !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover h4 i {
+  color: rgba(245, 239, 230, 0.85) !important;
+}
+
+.sd-flow .flow-nav-list li.active {
+  background: rgba(244, 123, 32, 0.16) !important;
+  background-color: rgba(244, 123, 32, 0.16) !important;
+}
+
+.sd-flow .flow-nav-list li.active h4 {
+  color: #F5EFE6 !important;
+}
+
+.sd-flow .flow-nav-list li.active h4 i {
+  color: #F47B20 !important;
+}
+
+/* 4) Flow header bar — VLP dark */
+.sd-flow .flow-modal-header {
+  background: linear-gradient(135deg, #1A1612, #14110D) !important;
+  border-bottom: 1px solid rgba(244, 123, 32, 0.25) !important;
+}
+
+.sd-flow .flow-modal-header .btn {
+  color: rgba(245, 239, 230, 0.80) !important;
+}
+
+.sd-flow .flow-modal-header .btn:hover {
+  color: #F47B20 !important;
+}
+
+.sd-flow .flow-modal-header .close-btn .btn-close-element::before,
+.sd-flow .flow-modal-header .close-btn .btn-close-element::after {
+  background-color: rgba(245, 239, 230, 0.80) !important;
+}
+
+/* 5) Flow content area + modal background */
+.sd-flow .flow-wrapper .content {
+  background: #FFFAF4 !important;
+}
+
+.sd-flow .flow-modal {
+  background: #FFFAF4 !important;
+}
+
+/* 6) Flow title + back button */
+.sd-flow .flow-header .title h2 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  color: #1A1612 !important;
+  font-size: 24px !important;
+  letter-spacing: -0.3px !important;
+}
+
+.sd-flow .flow-header .back .btn {
+  color: #F47B20 !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.sd-flow .flow-header .back .btn:hover {
+  color: #C25A0E !important;
 }
