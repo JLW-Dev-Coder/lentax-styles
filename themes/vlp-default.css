@@ -1,0 +1,85 @@
+/* themes/vlp-default.css
+ * VLP Default — orange + navy + bronze + gold palette (Virtual Launch Pro brand)
+ * Loaded after lentax-base.css on VLP portals via SuiteDash Custom JS.
+ * Overrides TPP brand tokens to VLP equivalents AND declares VLP-native tokens.
+ * Non-brand tokens (semantic state, surfaces, text/overlays) fall through to base.
+ * Source: THEMES.md §3.2–§3.5 (VLP-native) + Commit-3 Step-5 role mapping (TPP overrides).
+ */
+:root {
+  /* ===== Override TPP brand tokens with VLP equivalents (Step-5 role mapping) ===== */
+  /* clean role mappings */
+  --lentax-tpp-crimson-primary: #f97316;          /* -> orange-primary */
+  --lentax-tpp-crimson-primary-rgb: 249, 115, 22; /* -> orange-primary-rgb */
+  --lentax-tpp-crimson-deep: #0A1228;             /* -> navy-deep */
+  --lentax-tpp-crimson-deep-rgb: 10, 18, 40;      /* -> navy-deep-rgb */
+  --lentax-tpp-crimson-magenta: #ea580c;          /* deep accent -> orange-dark */
+  --lentax-tpp-crimson-light: #F5E6D3;            /* light surface -> parchment-soft */
+  --lentax-tpp-crimson-light-rgb: 245, 230, 211;  /* -> parchment-soft-rgb */
+  --lentax-tpp-crimson-tint: #FFFAF4;             /* lightest tint -> parchment-cream */
+  /* best-effort mappings (no clean VLP analog — Commit-3 Step-5 ruling) */
+  --lentax-tpp-crimson-maroon: #0F1A33;           /* dark rose surface -> navy-surface */
+  --lentax-tpp-crimson-surface-deep: #070a10;     /* near-black rose surface -> navy-void */
+  --lentax-tpp-crimson-surface-darkest: #050711;  /* deepest rose surface -> navy-nearblack */
+  --lentax-tpp-crimson-muted: #b87333;            /* muted mauve text -> bronze-copper */
+  --lentax-tpp-crimson-muted-alt: #C7BFB3;        /* muted mauve-gray text -> bronze-tan */
+
+  /* ===== VLP-native tokens (mirror lentax-base.css §3.2–§3.5) ===== */
+  /* Also declared in base — redeclaring here is self-documenting and idempotent. */
+
+  /* VLP orange (§3.2) */
+  --lentax-vlp-orange-primary: #f97316;
+  --lentax-vlp-orange-primary-rgb: 249, 115, 22;
+  --lentax-vlp-orange-hover: #fb923c;
+  --lentax-vlp-orange-hover-rgb: 251, 146, 60;
+  --lentax-vlp-orange-dark: #ea580c;
+  --lentax-vlp-orange-darkest: #8B3F08;
+  --lentax-vlp-orange-burnt: #C25A0E;
+  --lentax-vlp-orange-amber: #E67300;
+  --lentax-vlp-orange-light: #FFF4E5;
+  --lentax-vlp-orange-pantone: #F47B20;
+  --lentax-vlp-orange-pantone-rgb: 244, 123, 32;
+
+  /* VLP navy (§3.3) */
+  --lentax-vlp-navy-deep: #0A1228;
+  --lentax-vlp-navy-deep-rgb: 10, 18, 40;
+  --lentax-vlp-navy-mid: #162848;
+  --lentax-vlp-navy-bright: #1e3a8a;
+  --lentax-vlp-navy-slate: #111827;
+  --lentax-vlp-navy-surface: #0F1A33;
+  --lentax-vlp-navy-void: #070a10;
+  --lentax-vlp-navy-nearblack: #050711;
+  --lentax-vlp-navy-royal: #062f6b;
+
+  /* VLP bronze/parchment (§3.4) */
+  --lentax-vlp-bronze-primary: #cd7f32;
+  --lentax-vlp-bronze-copper: #b87333;
+  --lentax-vlp-bronze-sienna: #a0522d;
+  --lentax-vlp-bronze-light: #D4A574;
+  --lentax-vlp-bronze-light-rgb: 212, 165, 116;
+  --lentax-vlp-bronze-tan: #C7BFB3;
+  --lentax-vlp-parchment-soft: #F5E6D3;
+  --lentax-vlp-parchment-soft-rgb: 245, 230, 211;
+  --lentax-vlp-parchment-warm: #F5EFE6;
+  --lentax-vlp-parchment-warm-rgb: 245, 239, 230;
+  --lentax-vlp-parchment-stone: #E8E0D2;
+  --lentax-vlp-parchment-cream: #FFFAF4;
+  --lentax-vlp-bronze-surface-1: #2b2419;
+  --lentax-vlp-bronze-surface-2: #1F1A15;
+  --lentax-vlp-bronze-surface-3: #1A1612;
+  --lentax-vlp-bronze-surface-4: #14110D;
+  --lentax-vlp-bronze-shadow: #5a4b35;
+  --lentax-vlp-bronze-shadow-alt: #65573b;
+
+  /* VLP gold (§3.5) */
+  --lentax-vlp-gold-primary: #FFD700;
+  --lentax-vlp-gold-primary-rgb: 255, 215, 0;
+  --lentax-vlp-gold-muted: #e0b54c;
+  --lentax-vlp-gold-antique: #c9a958;
+  --lentax-vlp-gold-tan: #E8C088;
+  --lentax-vlp-gold-amber: #ffb300;
+  --lentax-vlp-gold-amber-deep: #854d0e;
+  --lentax-vlp-gold-yellow: #facc15;
+  --lentax-vlp-gold-yellow-bright: #fde047;
+  --lentax-vlp-gold-yellow-light: #fef9c3;
+  --lentax-vlp-gold-tint: #fff8e3;
+}

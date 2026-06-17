@@ -1,0 +1,23 @@
+/* themes/tpp-default.css
+ * TPP Default — rose/crimson palette (Tax Prep Pro brand)
+ * Loaded after lentax-base.css.
+ * Redeclares brand tokens with identical values to base :root —
+ * self-documenting "this portal is the TPP default look".
+ * Source: THEMES.md §3.1 (canonical values, identical to lentax-base.css).
+ */
+:root {
+  /* TPP rose/crimson (mirrors lentax-base.css §3.1) */
+  --lentax-tpp-crimson-primary: #E91E63;
+  --lentax-tpp-crimson-primary-rgb: 233, 30, 99;
+  --lentax-tpp-crimson-deep: #8B1538;
+  --lentax-tpp-crimson-deep-rgb: 139, 21, 56;
+  --lentax-tpp-crimson-maroon: #5C0D24;
+  --lentax-tpp-crimson-magenta: #C2185B;
+  --lentax-tpp-crimson-light: #FFE5EC;
+  --lentax-tpp-crimson-light-rgb: 255, 229, 236;
+  --lentax-tpp-crimson-tint: #FFF1F5;
+  --lentax-tpp-crimson-surface-deep: #2A1820;
+  --lentax-tpp-crimson-surface-darkest: #1A0B14;
+  --lentax-tpp-crimson-muted: #6B5260;
+  --lentax-tpp-crimson-muted-alt: #8B7280;
+}
