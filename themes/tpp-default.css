@@ -20,4 +20,7 @@
   --lentax-tpp-crimson-surface-darkest: #1A0B14;
   --lentax-tpp-crimson-muted: #6B5260;
   --lentax-tpp-crimson-muted-alt: #8B7280;
+
+  /* TPP portal page background — crimson-deep, ties to TPP brand chrome. */
+  --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 }

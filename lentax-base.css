@@ -153,6 +153,12 @@
   --lentax-overlay-glass-soft: rgba(255, 255, 255, 0.05);
   --lentax-overlay-glass-medium: rgba(255, 255, 255, 0.10);
   --lentax-overlay-glass-strong: rgba(255, 255, 255, 0.2);
+
+  /* ===== Portal page background (.main-wrapper) ===== */
+  /* Page background for portal dashboard views. Default preserves
+     SuiteDash's #A6A6A6 gray. Themes override via redeclaration in
+     themes/{product}-default.css. */
+  --lentax-form-page-bg: #A6A6A6;
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -12543,4 +12549,18 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 
 .sd-flow .flow-header .back .btn:hover {
   color: var(--lentax-vlp-orange-burnt) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.13 — PORTAL PAGE BACKGROUND (NEW, appended)                   */
+/*  Overrides SuiteDash's flat #A6A6A6 .main-wrapper gray with a    */
+/*  themed token. See --lentax-form-page-bg in the :root block.    */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* SuiteDash injects body:not(.sd-dark-mode) .main-wrapper { background-color: #A6A6A6; }
+   via an inline style tag (id="theme-advanced-and-background-controls"). We override with
+   a token that themes redeclare. Selector specificity matches SuiteDash's (0,2,1);
+   !important guards against the inline tag loading after the Netlify-served CSS. */
+body:not(.sd-dark-mode) .main-wrapper {
+  background-color: var(--lentax-form-page-bg) !important;
 }
