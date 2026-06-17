@@ -10910,6 +10910,16 @@ html.intake-form body {
   box-shadow: 0 24px 60px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08) !important;
 }
 
+/* ---- extended-form-wrapper full-width override ----
+   SuiteDash injects a constrained centered-card width on
+   .extended-form-wrapper. Doubled-attribute selector defeats
+   ID-scoped injected styles per established pattern.
+   Applies platform-wide (TPP + VLP, every theme). */
+[class*="extended-form-wrapper"][class*="extended-form-wrapper"]:not(.book-me-form) {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
 .app-form-embed #forms-form-wrapper.card,
 .extended-form-wrapper #forms-form-wrapper.card {
   background: transparent !important;
