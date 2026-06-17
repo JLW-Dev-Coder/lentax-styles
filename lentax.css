@@ -9,6 +9,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ═══════════════════════════════════════════════════════════════ */
+/*  LENTAX DESIGN TOKENS — consolidated :root (--lentax-* namespace) */
+/*  Folded from two former :root blocks (was at lines 2918 + 4977). */
+/*  Component-scoped vars (.porthole-scene) renamed in place, not    */
+/*  hoisted here — see that selector for --lentax-porthole-*.        */
+/* ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* From original --lm-* block (was at line 2918) */
+  --lentax-lm-bg: #1d1d1f;
+  --lentax-lm-border: #e2e2e2;
+  --lentax-lm-card: #ffffff;
+  --lentax-lm-gold: #e0b54c;
+  --lentax-lm-muted: #cccccc;
+  --lentax-lm-radius-lg: 22px;
+  --lentax-lm-radius-md: 14px;
+  --lentax-lm-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+  --lentax-lm-text: #f9fafb;
+  --lentax-lm-pill: 999px;
+
+  /* From original Pricing :root block (was at line 4977) */
+  --lentax-accent-purple: #8c52ff;
+  --lentax-accent-purple-hover: #a178ff;
+  --lentax-accent-purple-badge: linear-gradient(135deg, #9b5de5, #6a0dad);
+  --lentax-surface-dark: #111;
+  --lentax-surface-dark-hover: #1a1a1a;
+  --lentax-text-light: #ffffff;
+  --lentax-text-muted: #cfcfcf;
+  --lentax-border-panel: #333;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
 /*  SECTION 1 — SITE / LENTAX                                       */
 /*  Styles scoped to the Lentax site (non-SuiteDash).               */
 /*  Preserved verbatim from prior lentax.css content.               */
@@ -1771,7 +1801,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background-color: var(--orange-gold, rgb(255, 170, 0));
   border: none;
   border-radius: 50px;
-  color: var(--dark-base, rgb(10, 10, 10));
+  color: var(--lentax-surface-dark, rgb(10, 10, 10));
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
@@ -2915,23 +2945,10 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /* LEAD MAGNET */
 
-:root {
-  --lm-bg: #1d1d1f;
-  --lm-border: #e2e2e2;
-  --lm-card: #ffffff;
-  --lm-gold: #e0b54c;
-  --lm-muted: #cccccc;
-  --lm-radius-lg: 22px;
-  --lm-radius-md: 14px;
-  --lm-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
-  --lm-text: #f9fafb;
-  --lm-pill: 999px;
-}
-
 /* OUTER WRAP */
 
 .lead-magnet-wrap {
-  background: var(--lm-bg);
+  background: var(--lentax-lm-bg);
   display: flex;
   justify-content: center;
   padding: 28px 0 40px;
@@ -2939,8 +2956,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .lead-magnet-inner {
   background: #050505;
-  border-radius: var(--lm-radius-lg);
-  box-shadow: var(--lm-shadow);
+  border-radius: var(--lentax-lm-radius-lg);
+  box-shadow: var(--lentax-lm-shadow);
   display: grid;
   gap: 32px;
   grid-template-columns: 2fr 1.2fr;
@@ -2952,7 +2969,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 /* TEXT + HEADER */
 
 .lead-magnet-eyebrow {
-  color: var(--lm-muted);
+  color: var(--lentax-lm-muted);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -2961,7 +2978,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-title {
-  color: var(--lm-text);
+  color: var(--lentax-lm-text);
   font-size: 32px;
   font-weight: 800;
   line-height: 1.15;
@@ -2975,7 +2992,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-subtitle {
-  color: var(--lm-muted);
+  color: var(--lentax-lm-muted);
   font-size: 14px;
   margin-bottom: 10px;
   max-width: 540px;
@@ -3005,7 +3022,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .lead-magnet-pill {
   background: linear-gradient(135deg, #3a3a3a, #101010);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--lm-pill);
+  border-radius: var(--lentax-lm-pill);
   color: #f9fafb;
   display: inline-flex;
   font-size: 12px;
@@ -3023,7 +3040,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .lead-magnet-benefit {
-  color: var(--lm-text);
+  color: var(--lentax-lm-text);
   display: flex;
   font-size: 13px;
   gap: 10px;
@@ -3094,7 +3111,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .lead-magnet-how {
   background: #050505;
   border: 1px solid #333333;
-  border-radius: var(--lm-radius-md);
+  border-radius: var(--lentax-lm-radius-md);
   margin-bottom: 24px;
   padding: 14px;
 }
@@ -3134,7 +3151,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .lead-magnet-side {
   background: #050505;
   border: 1px solid #333333;
-  border-radius: var(--lm-radius-lg);
+  border-radius: var(--lentax-lm-radius-lg);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -3176,7 +3193,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .lead-magnet-preview-pill {
   background: rgba(255, 255, 255, 0.98);
   border: 1px solid #facc15;
-  border-radius: var(--lm-pill);
+  border-radius: var(--lentax-lm-pill);
   font-size: 12px;
   font-weight: 600;
   padding: 5px 10px;
@@ -3192,7 +3209,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .lead-magnet-form-block {
   background: #050711;
   border: 1px dashed #cbd5f5;
-  border-radius: var(--lm-radius-md);
+  border-radius: var(--lentax-lm-radius-md);
   padding: 12px;
 }
 
@@ -4889,17 +4906,17 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /* Size + shared geometry for the hole and tap ring */
 .porthole-scene {
-  --porthole-size: 320px;   /* tweak if you want it bigger/smaller */
-  --hole: 42%;              /* radius of the clear opening */
-  --tap: 10%;               /* ring thickness for the click target */
+  --lentax-porthole-size: 320px;   /* tweak if you want it bigger/smaller */
+  --lentax-porthole-hole: 42%;              /* radius of the clear opening */
+  --lentax-porthole-tap: 10%;               /* ring thickness for the click target */
   align-items: center;
   display: grid;
-  height: var(--porthole-size);
+  height: var(--lentax-porthole-size);
   justify-items: center;
   margin: 6px auto !important;
   perspective: 1200px;
   position: relative;
-  width: var(--porthole-size);
+  width: var(--lentax-porthole-size);
 }
 
 /* Inner background image – now clipped to the circular hole */
@@ -4916,8 +4933,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   z-index: 1;
 
   /* ⬇️ Only show the part inside the hole */
-  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
-          mask: radial-gradient(circle at 50% 50%, #000 0 var(--hole), transparent calc(var(--hole) + 1px) 100%);
+  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0 var(--lentax-porthole-hole), transparent calc(var(--lentax-porthole-hole) + 1px) 100%);
+          mask: radial-gradient(circle at 50% 50%, #000 0 var(--lentax-porthole-hole), transparent calc(var(--lentax-porthole-hole) + 1px) 100%);
 }
 
 /* Brass rim overlay (PNG has transparent center) */
@@ -4941,8 +4958,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   position: absolute;
   inset: 0;
   z-index: 3;
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
-          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--hole), #000 var(--hole) calc(var(--hole) + var(--tap)), transparent calc(var(--hole) + var(--tap)) 100%);
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 0 var(--lentax-porthole-hole), #000 var(--lentax-porthole-hole) calc(var(--lentax-porthole-hole) + var(--lentax-porthole-tap)), transparent calc(var(--lentax-porthole-hole) + var(--lentax-porthole-tap)) 100%);
+          mask: radial-gradient(circle at 50% 50%, transparent 0 var(--lentax-porthole-hole), #000 var(--lentax-porthole-hole) calc(var(--lentax-porthole-hole) + var(--lentax-porthole-tap)), transparent calc(var(--lentax-porthole-hole) + var(--lentax-porthole-tap)) 100%);
 }
 
 /* Hidden checkbox toggle */
@@ -4974,17 +4991,6 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 /*Pricing*/
-:root {
-  --accent-purple: #8c52ff;
-  --accent-purple-hover: #a178ff;
-  --badge-purple: linear-gradient(135deg, #9b5de5, #6a0dad);
-  --dark-base: #111;
-  --dark-hover: #1a1a1a;
-  --light-text: #ffffff;
-  --muted-text: #cfcfcf;
-  --panel-border: #333;
-}
-
 .pricing-grid-lentax {
   align-items: stretch;
   display: grid;
@@ -4998,11 +5004,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .pricing-card-lentax {
   align-items: center;
-  /*background: var(--dark-base);
-  border: 1px solid var(--panel-border);*/
+  /*background: var(--lentax-surface-dark);
+  border: 1px solid var(--lentax-border-panel);*/
   border-radius: 8px;
   box-shadow: none;
-  color: var(--light-text);
+  color: var(--lentax-text-light);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -5014,22 +5020,22 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .pricing-card-lentax:focus-within,
 .pricing-card-lentax:hover {
-  /*background: var(--dark-hover);
+  /*background: var(--lentax-surface-dark-hover);
   border-color: #444;*/
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
 
 .pricing-card-lentax.is-recommended {
-  border-color: var(--badge-purple);
+  border-color: var(--lentax-accent-purple-badge);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
   transform: translateY(-2px);
   z-index: 1;
 }
 
 .pricing-card-lentax.is-recommended::after {
-  background: var(--badge-purple);
+  background: var(--lentax-accent-purple-badge);
   border-radius: 999px;
-  color: var(--light-text);
+  color: var(--lentax-text-light);
   content: "Recommended";
   font-size: 12px;
   font-weight: 700;
@@ -5070,7 +5076,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .pricing-subtitle-lentax {
-  color: var(--muted-text);
+  color: var(--lentax-text-muted);
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
@@ -5086,11 +5092,11 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .pricing-card-lentax .button {
-  background: var(--accent-purple);
+  background: var(--lentax-accent-purple);
   border: 0;
   border-radius: 10px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  color: var(--light-text);
+  color: var(--lentax-text-light);
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
@@ -5104,7 +5110,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .pricing-card-lentax .button:hover {
-  background: var(--accent-purple-hover);
+  background: var(--lentax-accent-purple-hover);
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16);
   transform: translateY(-1px);
 }
@@ -5200,8 +5206,8 @@ transform: none !important;
 }
 
 .pricing-overlay-lentax {
-  background: var(--dark-base);
-  border: 1px solid var(--panel-border);
+  background: var(--lentax-surface-dark);
+  border: 1px solid var(--lentax-border-panel);
   border-radius: 12px;
   padding: 15px;
   margin: 15px;
@@ -5217,7 +5223,7 @@ transform: none !important;
 }
 
 .pricing-overlay-lentax:hover {
-  background: var(--dark-hover);
+  background: var(--lentax-surface-dark-hover);
   border-color: #444;
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
   transform: translateY(-3px);
@@ -5653,7 +5659,7 @@ vertical-align: middle;
 /*SD CHECKLIST*/
 .card.checklist-card {
   background: transparent;
-  border: 1px solid var(--panel-border);
+  border: 1px solid var(--lentax-border-panel);
   border-radius: 12px;
   box-shadow: none;
   margin: 0 auto;
@@ -5662,8 +5668,8 @@ vertical-align: middle;
 }
 
 .cbe-block-checklist {
-  background: var(--dark-base);
-  border: 1px solid var(--panel-border);
+  background: var(--lentax-surface-dark);
+  border: 1px solid var(--lentax-border-panel);
   border-radius: 14px;
   margin: 16px auto;
   /*max-width: 960px;*/
@@ -5715,7 +5721,7 @@ vertical-align: middle;
 
 .checklist-header {
   align-items: center;
-  border-bottom: 1px solid var(--panel-border);
+  border-bottom: 1px solid var(--lentax-border-panel);
   display: flex;
   gap: 10px;
   justify-content: center;
