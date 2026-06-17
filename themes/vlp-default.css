@@ -87,7 +87,7 @@
   --lentax-form-page-bg: var(--lentax-vlp-navy-surface);
 
   /* VLP chrome treatment — Option C, branded accent (§2.14) */
-  --lentax-chrome-sidebar-bg: var(--lentax-vlp-navy-surface);
+  --lentax-chrome-sidebar-bg: var(--lentax-vlp-navy-deep);
   --lentax-chrome-sidebar-org-pill-bg: rgba(249, 115, 22, 0.12);
   --lentax-chrome-sidebar-text: #ffffff;
   --lentax-chrome-sidebar-hover-bg: rgba(249, 115, 22, 0.10);

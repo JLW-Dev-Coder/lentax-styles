@@ -12664,3 +12664,12 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button {
   color: var(--lentax-chrome-navbar-create-btn-color) !important;
   border-color: var(--lentax-chrome-navbar-create-btn-bg) !important;
 }
+
+/* + Create button — replace SuiteDash's color emoji with a themable text glyph */
+body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
+  content: "+" !important;
+  font-size: 22px !important;
+  font-weight: 300 !important;
+  color: var(--lentax-chrome-navbar-create-btn-color) !important;
+  line-height: 1 !important;
+}
