@@ -82,4 +82,7 @@
   --lentax-vlp-gold-yellow-bright: #fde047;
   --lentax-vlp-gold-yellow-light: #fef9c3;
   --lentax-vlp-gold-tint: #fff8e3;
+
+  /* VLP portal page background — navy surface, ties to VLP nav chrome. */
+  --lentax-form-page-bg: var(--lentax-vlp-navy-surface);
 }
