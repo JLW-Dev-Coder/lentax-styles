@@ -159,6 +159,32 @@
      SuiteDash's #A6A6A6 gray. Themes override via redeclaration in
      themes/{product}-default.css. */
   --lentax-form-page-bg: #A6A6A6;
+
+  /* ===== Portal chrome — sidebar / navbar / tab strip (§2.14) ===== */
+  /* Defaults match current SuiteDash chrome, so any portal without a
+     theme override stays identical to today. Themes redeclare these in
+     themes/{product}-default.css to apply branded chrome treatments. */
+  /* Chrome — sidebar */
+  --lentax-chrome-sidebar-bg: #1a1a1a;
+  --lentax-chrome-sidebar-org-pill-bg: #000000;
+  --lentax-chrome-sidebar-text: #ffffff;
+  --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
+  --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
+  --lentax-chrome-sidebar-border: transparent;
+
+  /* Chrome — navbar */
+  --lentax-chrome-navbar-bg: #ffffff;
+  --lentax-chrome-navbar-border-bottom: transparent;
+  --lentax-chrome-navbar-icon-color: #686868;
+  --lentax-chrome-navbar-badge-bg: #C40000;
+  --lentax-chrome-navbar-create-btn-bg: #000000;
+  --lentax-chrome-navbar-create-btn-color: #ffffff;
+
+  /* Chrome — tab strip (flow-nav-bar) */
+  --lentax-chrome-tabstrip-bg: var(--lentax-surface-dark-hover);
+  --lentax-chrome-tabstrip-active-bg: #2a2a2a;
+  --lentax-chrome-tabstrip-divider: rgba(255, 255, 255, 0.15);
+  --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
 }
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -1473,7 +1499,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 .flow-nav-bar,
 .flow-nav-scroll {
-  background-color: var(--lentax-surface-dark-hover);
+  background-color: var(--lentax-chrome-tabstrip-bg);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   display: flex;
@@ -1483,8 +1509,8 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .flow-nav-btn {
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.7);
+  border-right: 1px solid var(--lentax-chrome-tabstrip-divider);
+  color: var(--lentax-chrome-tabstrip-text);
   flex: 1; /* equal width for all buttons */
   padding: 14px 16px;
   text-align: center;
@@ -1499,7 +1525,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .flow-nav-btn.active {
-  background-color: #444;
+  background-color: var(--lentax-chrome-tabstrip-active-bg);
 }
 
 .flow-nav-btn div:first-child {
@@ -1507,7 +1533,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 }
 
 .flow-nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: var(--lentax-chrome-tabstrip-active-bg);
   color: var(--lentax-text-on-dark);
   transform: translateY(-2px);
 }
@@ -4211,7 +4237,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 .text-default .flow-nav-bar a.flow-nav-btn:visited,
 .text-default .flow-nav-bar a.flow-nav-btn:hover,
 .text-default .flow-nav-bar a.flow-nav-btn:focus {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--lentax-chrome-tabstrip-text);
   text-decoration: none !important;
 }
 
@@ -12563,4 +12589,78 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
    !important guards against the inline tag loading after the Netlify-served CSS. */
 body:not(.sd-dark-mode) .main-wrapper {
   background-color: var(--lentax-form-page-bg) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2.14 — PORTAL CHROME (SIDEBAR, NAVBAR, TAB STRIP) (NEW)         */
+/*  Token-driven portal-shell chrome. Sidebar + navbar rules live   */
+/*  here; the tab strip (.flow-nav-bar / .flow-nav-btn) is          */
+/*  tokenized in place at its existing location (~line 1474), as it */
+/*  predates this section. Tokens are declared in the :root block;  */
+/*  themes override them in themes/{product}-default.css. Base      */
+/*  defaults preserve current SuiteDash chrome; VLP applies         */
+/*  "Option C — branded accent". Selectors verified portal-shell-   */
+/*  level via Chrome DevTools. !important guards against SuiteDash   */
+/*  core CSS loading after the Netlify-served CSS.                  */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* ---- Portal sidebar ---- */
+body:not(.sd-dark-mode) aside.site-sidebar {
+  background-color: var(--lentax-chrome-sidebar-bg) !important;
+  border-right-color: var(--lentax-chrome-sidebar-border) !important;
+}
+
+body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li > a.ripple {
+  color: var(--lentax-chrome-sidebar-text) !important;
+}
+
+body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li > a.ripple:hover {
+  background-color: var(--lentax-chrome-sidebar-hover-bg) !important;
+}
+
+body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li.active > a.ripple {
+  background-color: var(--lentax-chrome-sidebar-active-bg) !important;
+}
+
+body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li > a.ripple span.hide-menu {
+  color: var(--lentax-chrome-sidebar-text) !important;
+}
+
+/* Sub-menu link readability on dark/navy sidebar */
+body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav .sub-menu a {
+  color: var(--lentax-chrome-sidebar-text) !important;
+}
+
+/* Org pill */
+body:not(.sd-dark-mode) div.mpa-compact-profile {
+  background-color: var(--lentax-chrome-sidebar-org-pill-bg) !important;
+}
+
+body:not(.sd-dark-mode) div.mpa-compact-profile a.mpa-compact-profile__link,
+body:not(.sd-dark-mode) div.mpa-compact-profile span.mpa-compact-profile__name {
+  color: var(--lentax-chrome-sidebar-text) !important;
+}
+
+/* ---- Portal navbar ---- */
+body:not(.sd-dark-mode) nav.navbar {
+  background-color: var(--lentax-chrome-navbar-bg) !important;
+  border-bottom: 0.5px solid var(--lentax-chrome-navbar-border-bottom) !important;
+  box-shadow: none !important;
+}
+
+/* Top-bar icon links (search, bell, chat, sidebar-toggle) */
+body:not(.sd-dark-mode) nav.navbar li.top-nav-link > a.ripple {
+  color: var(--lentax-chrome-navbar-icon-color) !important;
+}
+
+/* Notification badge (chat unread count) */
+body:not(.sd-dark-mode) nav.navbar span.notifications-counter {
+  background-color: var(--lentax-chrome-navbar-badge-bg) !important;
+}
+
+/* + Create button */
+body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button {
+  background-color: var(--lentax-chrome-navbar-create-btn-bg) !important;
+  color: var(--lentax-chrome-navbar-create-btn-color) !important;
+  border-color: var(--lentax-chrome-navbar-create-btn-bg) !important;
 }

@@ -23,4 +23,24 @@
 
   /* TPP portal page background — crimson-deep, ties to TPP brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
+
+  /* TPP chrome — preserve current behavior (overridden in Commit 8) */
+  --lentax-chrome-sidebar-bg: #1a1a1a;
+  --lentax-chrome-sidebar-org-pill-bg: #000000;
+  --lentax-chrome-sidebar-text: #ffffff;
+  --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
+  --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
+  --lentax-chrome-sidebar-border: transparent;
+
+  --lentax-chrome-navbar-bg: #ffffff;
+  --lentax-chrome-navbar-border-bottom: transparent;
+  --lentax-chrome-navbar-icon-color: #686868;
+  --lentax-chrome-navbar-badge-bg: #C40000;
+  --lentax-chrome-navbar-create-btn-bg: #000000;
+  --lentax-chrome-navbar-create-btn-color: #ffffff;
+
+  --lentax-chrome-tabstrip-bg: #1a1a1a;
+  --lentax-chrome-tabstrip-active-bg: #2a2a2a;
+  --lentax-chrome-tabstrip-divider: rgba(255, 255, 255, 0.15);
+  --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
 }
