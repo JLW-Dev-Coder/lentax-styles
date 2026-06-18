@@ -31,6 +31,9 @@
   --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
   --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
   --lentax-chrome-sidebar-border: transparent;
+  --lentax-chrome-sidebar-scrollbar-thumb: rgba(139, 21, 56, 0.35);
+  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(233, 30, 99, 0.50);
+  --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #E91E63, #E8C088);
 
   --lentax-chrome-navbar-bg: #ffffff;
   --lentax-chrome-navbar-border-bottom: transparent;
