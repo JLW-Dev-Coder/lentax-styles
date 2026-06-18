@@ -13994,23 +13994,25 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   2.16 — DOCUMENT: TAX PREP SERVICE AGREEMENT
+   2.16 — DOCGEN: SHARED FOUNDATION
    Source: ClickUp doc1_tax_prep_service_agreement.css (page 80djf-710337)
-   Ported: 2026-06-17
+   Ported: 2026-06-17 — split from monolithic 2.16 on 2026-06-17
    Scope: structure only; palette overrides live in theme files
-   Note: leading @import (Cormorant Garamond + Inter) dropped on port —
-         byte-identical to the existing @import at top of file (line 9);
-         CLAUDE.md forbids @import after non-import rules. Same handling
-         as the 2.15 dashboard port.
+   Contains: .tpp-doc root + shared --tpp-* custom properties + shared
+             placeholder + utility rules. Doc 1 (Service Agreement) is now
+             2.17; Doc 2 (Form 8879) is now 2.18.
+   Note: leading @import (Cormorant Garamond + Inter) was dropped on the
+         original port — byte-identical to the existing @import at top of
+         file (line 9); CLAUDE.md forbids @import after non-import rules.
+   Change log:
+     2026-06-17 JLW — bare `.dynamic-placeholder` selector removed
+                       (redundant; `.tpp-doc .dynamic-placeholder` covers
+                       all in-document occurrences; bare form had global
+                       blast radius on non-document surfaces).
    ───────────────────────────────────────────────────────────────────── */
 
-/* ============================================================
-   SHARED FOUNDATION — applies to all TPP docgen documents
-   ============================================================ */
-
 /* Strip SD's default merge-tag highlight */
-.tpp-doc .dynamic-placeholder,
-.dynamic-placeholder {
+.tpp-doc .dynamic-placeholder {
   background: transparent !important;
   background-color: transparent !important;
   color: inherit !important;
@@ -14060,9 +14062,15 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 .tpp-doc strong { color: var(--tpp-noir) !important; font-weight: 700 !important; }
 
-/* ============================================================
-   DOC 1 — Tax Prep Service Agreement (.tpp-doc-* prefix)
-   ============================================================ */
+/* ─────────────────────────────────────────────────────────────────────
+   2.17 — DOCGEN: TAX PREP SERVICE AGREEMENT (Doc 1)
+   Source: ClickUp doc1_tax_prep_service_agreement.css (page 80djf-710337)
+   Ported: 2026-06-17 (split from monolithic 2.16 on 2026-06-17)
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .tpp-doc-* (hyphen prefix, not descendant-scoped under .tpp-doc)
+   Depends on: 2.16 — DOCGEN: SHARED FOUNDATION (must precede in cascade
+               order for --tpp-* custom properties to resolve).
+   ───────────────────────────────────────────────────────────────────── */
 
 /* Header — crimson gradient with gold accent bar */
 .tpp-doc-header {
@@ -14279,10 +14287,15 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   .tpp-doc-table td:first-child { width: 45%; }
 }
 
-/* ============================================================
-   DOC 2 — Form 8879 IRS e-file Signature Auth (.doc-* unprefixed)
-   All rules scoped under .tpp-doc to avoid global leakage
-   ============================================================ */
+/* ─────────────────────────────────────────────────────────────────────
+   2.18 — DOCGEN: FORM 8879 IRS E-FILE SIGNATURE AUTH (Doc 2)
+   Source: ClickUp doc1_tax_prep_service_agreement.css (page 80djf-710337)
+   Ported: 2026-06-17 (split from monolithic 2.16 on 2026-06-17)
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .tpp-doc .doc-* (descendant-scoped — requires .tpp-doc ancestor)
+   Depends on: 2.16 — DOCGEN: SHARED FOUNDATION (must precede in cascade
+               order for --tpp-* custom properties to resolve).
+   ───────────────────────────────────────────────────────────────────── */
 
 /* Header */
 .tpp-doc .doc-header {
