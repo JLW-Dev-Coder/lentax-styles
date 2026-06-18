@@ -1,0 +1,51 @@
+/* themes/tpp-coastal.css
+ * TPP Coastal — teal/navy/seafoam/sand palette
+ * Loaded after lentax-base.css on TPP "Coastal" portals via lentax-tpp-coastal.js.
+ * Re-skins the TPP brand token surface to a calm coastal palette
+ * (deep teal #0E7C7B / navy-slate #1B3A4B / seafoam #E0F2F1 / sand #D9C2A3).
+ * Same token surface as themes/tpp-default.css — only values differ.
+ * Fonts unchanged (Cormorant Garamond + Inter, inherited from lentax-base.css).
+ * Source: Coastal palette approved 2026-06-18 (Care Law Group demo).
+ */
+:root {
+  /* TPP brand tokens re-skinned to Coastal (mirrors tpp-default.css surface) */
+  --lentax-tpp-crimson-primary: #0E7C7B;
+  --lentax-tpp-crimson-primary-rgb: 14, 124, 123;
+  --lentax-tpp-crimson-deep: #1B3A4B;
+  --lentax-tpp-crimson-deep-rgb: 27, 58, 75;
+  --lentax-tpp-crimson-maroon: #0F2733;
+  --lentax-tpp-crimson-magenta: #0A5F5E;
+  --lentax-tpp-crimson-light: #E0F2F1;
+  --lentax-tpp-crimson-light-rgb: 224, 242, 241;
+  --lentax-tpp-crimson-tint: #F4FAF9;
+  --lentax-tpp-crimson-surface-deep: #11303D;
+  --lentax-tpp-crimson-surface-darkest: #0A1F29;
+  --lentax-tpp-crimson-muted: #5A7A85;
+  --lentax-tpp-crimson-muted-alt: #7B98A1;
+
+  /* TPP portal page background — crimson-deep token (now navy-slate), ties to brand chrome. */
+  --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
+
+  /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Coastal */
+  --lentax-chrome-sidebar-bg: #1a1a1a;
+  --lentax-chrome-sidebar-org-pill-bg: #000000;
+  --lentax-chrome-sidebar-text: #ffffff;
+  --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
+  --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
+  --lentax-chrome-sidebar-border: transparent;
+  --lentax-chrome-sidebar-scrollbar-thumb: rgba(27, 58, 75, 0.35);
+  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(14, 124, 123, 0.50);
+  --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #0E7C7B, #D9C2A3);
+
+  --lentax-chrome-navbar-bg: #ffffff;
+  --lentax-chrome-navbar-border-bottom: transparent;
+  --lentax-chrome-navbar-icon-color: #686868;
+  --lentax-chrome-navbar-badge-bg: #C40000;
+  --lentax-chrome-navbar-create-btn-bg: #000000;
+  --lentax-chrome-navbar-create-btn-color: #ffffff;
+
+  --lentax-chrome-tabstrip-bg: #1a1a1a;
+  --lentax-chrome-tabstrip-active-bg: #2a2a2a;
+  --lentax-chrome-tabstrip-divider: rgba(255, 255, 255, 0.15);
+  --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
+}
