@@ -14868,3 +14868,923 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   .tu-doc-footer { padding: 24px; }
   .tu-doc-table td:first-child { width: 45%; }
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.20 — STACK: FLOWS
+   Source: ClickUp Stack_Flows_CSS (page TBD)
+   Ported: 2026-06-18
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .sd-flow (flow + appointment modals); also .vlpd-onboard /
+              .tu-lede-oneline (standalone onboarding block) and
+              #appointmentTimeZoneSelect (id-scoped time-zone selector)
+   Port adjustments (on import from source):
+     - Stripped markdown wrapper (heading + fenced ```css code block) from
+       the source. No <style> tags, HTML comments, or @import were present.
+   ───────────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  ONBOARDING CONTENT BLOCK — .vlpd-onboard                       */
+/*  Standalone SD pages (not forms, not LP). TPP brand theme.       */
+/* ─────────────────────────────────────────────────────────────── */
+
+.vlpd-onboard {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 32px auto;
+  padding: 40px 36px 36px 36px;
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%);
+  border: 2px dashed #8B1538;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08);
+  overflow: hidden;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  color: #2A1820;
+}
+
+.vlpd-onboard-accent {
+  display: none;
+}
+
+.vlpd-onboard-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.vlpd-onboard-icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E91E63, #8B1538);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.30);
+}
+
+.vlpd-onboard-header-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vlpd-onboard-eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #E91E63;
+  margin: 0 0 6px 0;
+  padding: 3px 10px;
+  background: #FFFAF4;
+  border: 1px solid rgba(233, 30, 99, 0.35);
+  border-radius: 999px;
+}
+
+.vlpd-onboard-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1A0B14;
+  margin: 6px 0 0 0;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Italic gradient span — inline-block + padding-right prevents the
+   rightmost italic glyph from clipping under -webkit-background-clip. */
+.vlpd-onboard-title em {
+  font-style: italic;
+  font-weight: 600;
+  background: linear-gradient(120deg, #E91E63 0%, #8B1538 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 8px;
+  margin-right: 2px;
+}
+
+.vlpd-onboard-lede {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6B5260;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  max-width: 620px;
+}
+
+.vlpd-onboard-expect {
+  background: #FFFAF4;
+  border: 1px solid rgba(139, 21, 56, 0.14);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 0 0 22px 0;
+  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.05);
+}
+
+.vlpd-onboard-expect-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A0B14;
+  margin: 0 0 14px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(139, 21, 56, 0.14);
+  position: relative;
+}
+
+.vlpd-onboard-expect-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #E91E63, #8B1538);
+}
+
+.vlpd-onboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vlpd-onboard-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(139, 21, 56, 0.10);
+  font-size: 14px;
+  color: #2A1820;
+  line-height: 1.5;
+}
+
+.vlpd-onboard-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vlpd-onboard-check {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E91E63, #8B1538);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.vlpd-onboard-cta-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8B1538;
+  margin: 0;
+  letter-spacing: -0.1px;
+}
+
+/* Heads-up banner — gold/wine accent notice */
+.vlpd-onboard-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 22px 0 0 0;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #FFF4E5 0%, #FFE5EC 100%);
+  border: 1px solid rgba(212, 165, 116, 0.45);
+  border-left: 4px solid #D4A574;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.06);
+}
+
+.vlpd-onboard-banner-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D4A574, #8B1538);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 1px;
+  box-shadow: 0 2px 6px rgba(139, 21, 56, 0.20);
+}
+
+.vlpd-onboard-banner-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vlpd-onboard-banner-title {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8B1538;
+  margin: 0 0 4px 0;
+}
+
+.vlpd-onboard-banner-text {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #2A1820;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.vlpd-onboard-banner-text strong {
+  color: #8B1538;
+  font-weight: 700;
+}
+
+/* Single-line lede sentence — wraps gracefully on mobile */
+.tu-lede-oneline {
+  display: block;
+  max-width: 720px;
+  margin: 8px auto 0 auto;
+}
+
+@media (min-width: 768px) {
+  .tu-lede-oneline {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .vlpd-onboard {
+    padding: 28px 22px 24px 22px;
+  }
+  .vlpd-onboard-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vlpd-onboard-title {
+    font-size: 22px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  FLOW MODAL — TPP THEME OVERRIDES                                */
+/*  Targets: sidebar, header content spacing, appointment block,    */
+/*  and advance/complete button inside SD Flow modals.              */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* 1) Vertical spacing above welcome card */
+.sd-flow .step-header {
+  padding-top: 24px !important;
+  margin-bottom: 16px !important;
+}
+
+/* 2) Appointment block — themed to match form's tu-form-header */
+.sd-flow .appointment-intake-form-wrapper {
+  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
+  border: 2px dashed #8B1538 !important;
+  border-radius: 14px !important;
+  padding: 28px 32px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+}
+
+.sd-flow .appointment-intake-form-field-block {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sd-flow .appointment-intake-form-wrapper .btn-primary {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 14px 28px !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+
+.sd-flow .appointment-intake-form-wrapper .btn-primary:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.40) !important;
+}
+
+.sd-flow .appointment-intake-form-field-block .p-2.m-2,
+.sd-flow .appointment-intake-form-field-block .p-2.m-md-0:not(:first-child) {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 14px !important;
+  color: #6B5260 !important;
+}
+
+/* 3) Flow advance/complete button */
+.sd-flow .flow-buttons.flow-button-continue,
+.sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip) {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 16px 48px !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 10px 24px rgba(233, 30, 99, 0.25) !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+}
+
+.sd-flow .flow-buttons.flow-button-continue:hover,
+.sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip):hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 32px rgba(233, 30, 99, 0.40) !important;
+}
+
+/* 4) Sidebar — TPP dark theme with refined hover/active states */
+.sd-flow .flow-nav-list__container {
+  background: linear-gradient(180deg, #5C0D24, #1A0B14) !important;
+}
+
+.sd-flow .flow-nav-list li {
+  position: relative !important;
+  border-bottom: 1px solid rgba(245, 230, 211, 0.08) !important;
+  background: transparent !important;
+  transition: background 0.25s ease !important;
+  overflow: hidden !important;
+}
+
+/* Accent stripe — sits flush left, scales on hover/active */
+.sd-flow .flow-nav-list li::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: linear-gradient(180deg, #E91E63, #8B1538, #D4A574) !important;
+  transform: scaleY(0) !important;
+  transform-origin: center !important;
+  transition: transform 0.25s ease !important;
+}
+
+.sd-flow .flow-nav-list li h4 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: rgba(245, 230, 211, 0.75) !important;
+  letter-spacing: 0.2px !important;
+  background: transparent !important;
+  transition: color 0.2s ease !important;
+}
+
+.sd-flow .flow-nav-list li h4 i {
+  color: rgba(245, 230, 211, 0.40) !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Hover — subtle crimson tint, accent stripe slides in (NO white background) */
+.sd-flow .flow-nav-list li.can-nav:hover {
+  background: rgba(233, 30, 99, 0.08) !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover::before {
+  transform: scaleY(0.6) !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover h4 {
+  color: #F5E6D3 !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover h4 i {
+  color: rgba(245, 230, 211, 0.80) !important;
+}
+
+/* Active — slightly stronger tint, full accent stripe, rose icon */
+.sd-flow .flow-nav-list li.active {
+  background: rgba(233, 30, 99, 0.14) !important;
+  border-left: none !important;
+}
+
+.sd-flow .flow-nav-list li.active::before {
+  transform: scaleY(1) !important;
+}
+
+.sd-flow .flow-nav-list li.active h4 {
+  color: #F5E6D3 !important;
+}
+
+.sd-flow .flow-nav-list li.active h4 i {
+  color: #E91E63 !important;
+}
+
+/* Override any inherited white/gray background that SuiteDash injects */
+.sd-flow .flow-nav-list li,
+.sd-flow .flow-nav-list li *,
+.sd-flow .flow-nav-list li.active,
+.sd-flow .flow-nav-list li.active *,
+.sd-flow .flow-nav-list li.can-nav:hover,
+.sd-flow .flow-nav-list li.can-nav:hover * {
+  background-color: transparent !important;
+}
+
+.sd-flow .flow-nav-list li.can-nav:hover {
+  background-color: rgba(233, 30, 99, 0.08) !important;
+}
+
+.sd-flow .flow-nav-list li.active {
+  background-color: rgba(233, 30, 99, 0.14) !important;
+}
+
+/* Flow header bar */
+.sd-flow .flow-modal-header {
+  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
+  border-bottom: 1px solid rgba(233, 30, 99, 0.20) !important;
+}
+
+.sd-flow .flow-modal-header .btn {
+  color: rgba(245, 230, 211, 0.75) !important;
+}
+
+.sd-flow .flow-modal-header .btn:hover {
+  color: #E91E63 !important;
+}
+
+.sd-flow .flow-modal-header .close-btn .btn-close-element::before,
+.sd-flow .flow-modal-header .close-btn .btn-close-element::after {
+  background-color: rgba(245, 230, 211, 0.75) !important;
+}
+
+/* Flow content area background */
+.sd-flow .flow-wrapper .content {
+  background: #FFFAF4 !important;
+}
+
+/* Flow title */
+.sd-flow .flow-header .title h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  font-size: 24px !important;
+  letter-spacing: -0.3px !important;
+}
+
+/* Flow back button */
+.sd-flow .flow-header .back .btn {
+  color: #8B1538 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.sd-flow .flow-header .back .btn:hover {
+  color: #E91E63 !important;
+}
+
+/* Flow modal background */
+.sd-flow .flow-modal {
+  background: #F5E6D3 !important;
+}
+
+@media (max-width: 768px) {
+  .sd-flow .flow-nav-list__container {
+    background: linear-gradient(90deg, #5C0D24, #1A0B14) !important;
+  }
+  .sd-flow .appointment-intake-form-wrapper {
+    padding: 20px 18px !important;
+    border-radius: 18px !important;
+  }
+  .sd-flow .flow-buttons.flow-button-continue {
+    padding: 14px 32px !important;
+    width: 100% !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  ADD APPOINTMENT MODAL — TPP THEME                               */
+/*  Targets the "Add Appointment" inner modal with calendar/slots.  */
+/*  Scoped to .sd-flow so it only applies inside the Flow context.  */
+/* ─────────────────────────────────────────────────────────────── */
+
+/* Modal shell */
+.sd-flow .add-appointment-form {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  background: linear-gradient(135deg, #FFFAF4 0%, #FFF1F5 100%) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* Modal header */
+.sd-flow .intakeForm-modal-header {
+  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
+  padding: 18px 28px !important;
+  border-bottom: 1px solid rgba(233, 30, 99, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.sd-flow .intakeForm-modal-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #F5E6D3 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 !important;
+}
+
+.sd-flow .intakeForm-modal-close-btn .btn-close-element::before,
+.sd-flow .intakeForm-modal-close-btn .btn-close-element::after {
+  background-color: rgba(245, 230, 211, 0.75) !important;
+}
+
+.sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::before,
+.sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::after {
+  background-color: #E91E63 !important;
+}
+
+/* Modal body */
+.sd-flow .intakeForm-modal-body {
+  background: transparent !important;
+  padding: 24px 28px !important;
+}
+
+/* Selected appointment type card */
+.sd-flow .appointment-type__item.active .appointment-type__block {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.08) !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  text-align: left !important;
+}
+
+/* Staff avatar — gradient ring */
+.sd-flow .appointment-type__staff-avatar {
+  flex: 0 0 auto !important;
+  position: relative !important;
+}
+
+.sd-flow .appointment-type__staff-avatar .default-user-avatar-container {
+  display: inline-block !important;
+  padding: 3px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538, #D4A574) !important;
+}
+
+.sd-flow .appointment-type__staff-avatar .default-user-avatar {
+  background: #1A0B14 !important;
+  color: #F5E6D3 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #FFFAF4 !important;
+}
+
+.sd-flow .appointment-type__staff-avatar img {
+  border-radius: 50% !important;
+  border: 3px solid transparent !important;
+  background:
+    linear-gradient(#FFFAF4, #FFFAF4) padding-box,
+    linear-gradient(135deg, #E91E63, #8B1538, #D4A574) border-box !important;
+}
+
+.sd-flow .appointment-type__info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.sd-flow .appointment-type__title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 0 4px 0 !important;
+  line-height: 1.25 !important;
+}
+
+.sd-flow .appointment-type__staff-name {
+  display: inline-block !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #E91E63 !important;
+  letter-spacing: 0.2px !important;
+  margin-bottom: 12px !important;
+}
+
+.sd-flow .appointment-type__description {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 13px !important;
+  color: #6B5260 !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  margin-bottom: 12px !important;
+}
+
+.sd-flow .appointment-type__duration {
+  display: inline-block !important;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #8B1538 !important;
+  background: #FFE5EC !important;
+  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border-radius: 999px !important;
+  padding: 5px 12px !important;
+}
+
+.sd-flow .appointment-type__duration #appointmentCalendarSlotDurationTime {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+}
+
+/* Time zone selector */
+#appointmentTimeZoneSelect h5 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #E91E63 !important;
+  margin: 18px 0 10px 0 !important;
+}
+
+.sd-flow .select2-container--default .select2-selection--single,
+#appointmentTimeZoneSelect .select2-container--default .select2-selection--single {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border-radius: 12px !important;
+  height: 44px !important;
+  box-shadow: 0 1px 3px rgba(139, 21, 56, 0.05) !important;
+}
+
+.sd-flow .select2-container--default .select2-selection__rendered,
+#appointmentTimeZoneSelect .select2-selection__rendered {
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 42px !important;
+  padding-left: 16px !important;
+}
+
+.sd-flow .select2-container--default .select2-selection__arrow,
+#appointmentTimeZoneSelect .select2-selection__arrow {
+  height: 42px !important;
+  right: 8px !important;
+}
+
+.sd-flow .select2-container--default .select2-selection__arrow b {
+  border-color: #8B1538 transparent transparent transparent !important;
+}
+
+/* Calendar pagination header */
+.sd-flow .appointment-schedule-pagination {
+  border-bottom: 1px solid rgba(139, 21, 56, 0.14) !important;
+  margin-bottom: 12px !important;
+}
+
+.sd-flow .appointment-schedule-pagination__month h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.2px !important;
+  margin: 0 !important;
+}
+
+.sd-flow .appointment-schedule-pagination-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #8B1538 !important;
+  background: transparent !important;
+  border: 1px solid rgba(139, 21, 56, 0.25) !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.sd-flow .appointment-schedule-pagination-button:hover {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+}
+
+.sd-flow .appointment-schedule-pagination__arrow {
+  display: inline-block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-style: solid !important;
+}
+
+.sd-flow .appointment-schedule-pagination__arrow--forward {
+  border-width: 4px 0 4px 6px !important;
+  border-color: transparent transparent transparent currentColor !important;
+}
+
+.sd-flow .appointment-schedule-pagination__arrow--back {
+  border-width: 4px 6px 4px 0 !important;
+  border-color: transparent currentColor transparent transparent !important;
+}
+
+/* Calendar grid — day columns */
+.sd-flow .appointment-schedule-container-block {
+  display: flex !important;
+  gap: 6px !important;
+  padding: 8px 0 !important;
+}
+
+.sd-flow .appointment-schedule-date-column {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(139, 21, 56, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 10px 6px !important;
+  align-items: stretch !important;
+}
+
+.sd-flow .appointment-date-head-text {
+  display: inline-block !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border-radius: 999px !important;
+  padding: 3px 10px !important;
+  margin-bottom: 6px !important;
+}
+
+.sd-flow .appointment-schedule-date-column-header {
+  padding-bottom: 10px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid rgba(139, 21, 56, 0.10) !important;
+}
+
+.sd-flow .appointment-date-day-of-week {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #8B1538 !important;
+}
+
+.sd-flow .appointment-date.text-secondary {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  line-height: 1 !important;
+  margin-top: 2px !important;
+}
+
+/* No-availability day */
+.sd-flow .appointment-date-no-availability {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 60px !important;
+  margin: 0 !important;
+}
+
+.sd-flow .appointment-date-no-availability .material-icons.red {
+  color: rgba(139, 21, 56, 0.25) !important;
+  font-size: 22px !important;
+}
+
+/* Time slots — outlined pills */
+.sd-flow .appointment-slot-timer-container {
+  margin: 0 0 6px 0 !important;
+  padding: 0 !important;
+}
+
+.sd-flow .appointment-slot-timer {
+  display: block !important;
+  width: 100% !important;
+  background: #FFFFFF !important;
+  color: #8B1538 !important;
+  border: 1px solid rgba(233, 30, 99, 0.35) !important;
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  letter-spacing: 0.2px !important;
+  transition: all 0.18s ease !important;
+}
+
+.sd-flow .appointment-slot-timer:hover,
+.sd-flow .appointment-slot-timer:focus {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.30) !important;
+  transform: translateY(-1px) !important;
+}
+
+.sd-flow .appointment-slot-timer.selected,
+.sd-flow .appointment-slot-timer-container.selected .appointment-slot-timer {
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+}
+
+/* Error banner */
+.sd-flow .sd-form-error-banner {
+  background: #FFE5EC !important;
+  border: 1px solid rgba(139, 21, 56, 0.25) !important;
+  color: #8B1538 !important;
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.sd-flow .sd-form-error-banner__action {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+}
+
+/* Success message after booking */
+.sd-flow #appointmentCalendarSuccessMessage {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border-radius: 16px !important;
+  padding: 20px 24px !important;
+  color: #2A1820 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.08) !important;
+}
+
+/* Scrollbars inside the modal */
+.sd-flow .ps__scrollbar-y {
+  background-color: rgba(233, 30, 99, 0.40) !important;
+}
+
+.sd-flow .ps__scrollbar-x {
+  background-color: rgba(233, 30, 99, 0.40) !important;
+}
+
+/* Responsive — appointment modal */
+@media (max-width: 768px) {
+  .sd-flow .intakeForm-modal-body {
+    padding: 18px 16px !important;
+  }
+  .sd-flow .appointment-type__item.active .appointment-type__block {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 18px !important;
+  }
+  .sd-flow .appointment-type__title {
+    font-size: 19px !important;
+  }
+  .sd-flow .appointment-schedule-container-block {
+    flex-wrap: wrap !important;
+  }
+  .sd-flow .appointment-slot-timer {
+    font-size: 13px !important;
+    padding: 9px 10px !important;
+  }
+}
