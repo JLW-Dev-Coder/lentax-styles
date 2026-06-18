@@ -73,7 +73,7 @@
     loaded: function (ph) {
       // Tag every event with platform so VLP and TPP are filterable.
       ph.register({
-        platform: "vlp",
+        platform: "vlp-app",
         platform_host: window.location.hostname
       });
     }
