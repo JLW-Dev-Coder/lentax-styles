@@ -12612,7 +12612,6 @@ body:not(.sd-dark-mode) .main-wrapper {
 body:not(.sd-dark-mode) aside.site-sidebar {
   background-color: var(--lentax-chrome-sidebar-bg) !important;
   border-right-color: var(--lentax-chrome-sidebar-border) !important;
-  position: relative !important; /* anchor for ::before accent strip (Item 5) */
 }
 
 body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li > a.ripple {
