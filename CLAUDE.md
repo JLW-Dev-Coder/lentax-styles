@@ -2,7 +2,7 @@
 
 **Audience:** RC (Repo Claude, running in Claude Code inside VS Code), and any future AI agent operating on this repo.
 **Maintained by:** JLW
-**Last updated:** 2026-06-16
+**Last updated:** 2026-06-18
 
 This file is the operating manual for autonomous work in `lentax-styles`. Read it in full at the start of every session before making any changes. If a task prompt conflicts with this file, follow this file and flag the conflict in the report.
 
@@ -17,15 +17,74 @@ This file is the operating manual for autonomous work in `lentax-styles`. Read i
 
 Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app/` and consumed by SuiteDash's Custom JS field via `<link>` and `<script>` injection.
 
+### Repository layout
+
+```
+/
+├── lentax-base.css                 # Master stylesheet — all products + themes inherit
+├── lentax-tpp-default.js           # TPP per-theme loader (FOUC-preload IIFE)
+├── lentax-vlp-default.js           # VLP per-theme loader (FOUC-preload IIFE)
+├── themes/
+│   ├── tpp-default.css             # TPP palette overrides
+│   └── vlp-default.css             # VLP palette overrides
+├── js/                             # Ported behavior JS, one file per source doc
+│   └── .gitkeep
+├── THEMES.md                       # Token mapping + loader contract
+├── CLAUDE.md                       # This file — operating manual
+├── index.html                      # Netlify root — usually unused or minimal
+├── lentax-css-pre-migration.snapshot.css   # Historical snapshot (do not edit/delete)
+├── apps/tmp/scratch/               # Scratch directory (disposable; do not assume persistence)
+├── .gitattributes
+└── .gitignore
+```
+
 ### Key files
 
 | File | Purpose |
 |---|---|
-| `lentax.css` | Master stylesheet. Sectioned internally (Section 1 = Site, Section 2 = SuiteDash with sub-sections). |
-| `lentax.js` | Loader script. Injects `lentax.css` via preload-swap pattern (FOUC prevention). Also handles route-scoped body classes. |
+| `lentax-base.css` | Master stylesheet. All products and themes inherit from it. Sectioned internally (Section 1 = Site, Section 2 = SuiteDash with sub-sections). |
+| `lentax-tpp-default.js` | TPP per-theme loader. FOUC-preload IIFE (`loadLentaxStyles`) that injects `lentax-base.css` + `themes/tpp-default.css` via the preload-swap pattern. Pasted into SuiteDash Custom JS on TPP portals. |
+| `lentax-vlp-default.js` | VLP per-theme loader. Same pattern as the TPP loader but injects `themes/vlp-default.css`. |
+| `themes/*.css` | Per-theme palette overrides (token re-bindings). Loaded SECOND so theme tokens win the cascade over base fallbacks. See `THEMES.md`. |
 | `index.html` | Netlify root — usually unused or minimal. |
 | `lentax-css-pre-migration.snapshot.css` | Historical reference from the Path Y migration. Do NOT delete. |
 | `apps/tmp/scratch/` | Disposable workspace. Anything here is temporary; do not assume persistence. |
+
+### Required reading at session start
+
+Before making any change, read these in full:
+
+- `CLAUDE.md` (this file) — the operating manual.
+- `THEMES.md` — token mapping + the per-theme loader contract.
+- `lentax-base.css` (at minimum the sections you are touching) — the master stylesheet.
+
+---
+
+## JS Ports
+
+Ported behavior JS lives in `js/{name}.js`, one file per source doc.
+Per-theme loaders (`lentax-tpp-default.js`, `lentax-vlp-default.js`) stay
+at repo root — they are entry points, the JS analog of `lentax-base.css`.
+
+Convention:
+- Filename matches the CU source doc (e.g., `js/doc2-8879.js` for
+  `doc2_8879_custom_js.js` in CU).
+- Each file has a header comment block matching the CSS sub-section
+  pattern: `Source:` (CU page ID), `Ported:` (date), `Scope:` (one line),
+  `Namespace:` (DOM selectors it touches), `Depends on:` (any other JS
+  files).
+- Defensive DOM guards required: a JS file should no-op on pages that
+  don't contain the elements it targets.
+- No build step. Netlify serves `js/*.js` directly at `/js/{name}.js`.
+
+## JS injection (open question)
+
+The injection model for ported JS is not yet decided:
+- Option A: paste each file into the per-doc SuiteDash Custom JS field
+  (current pattern for SuiteDash-hosted JS).
+- Option B: have the per-theme loader inject `js/*` files at runtime,
+  mirroring the CSS loader's `loadLentaxStyles` pattern.
+This will be decided at first JS port.
 
 ---
 
@@ -53,24 +112,26 @@ Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app
 
 ## Required Verification Before Merging to Main
 
-Every commit that touches `lentax.css` or `lentax.js` must pass these checks before the merge step:
+Every commit that touches `lentax-base.css` or a per-theme loader
+(`lentax-tpp-default.js`, `lentax-vlp-default.js`) must pass these checks
+before the merge step:
 
-### For `lentax.css`
+### For `lentax-base.css`
 
 ```powershell
 # 1. No HTML <style> tags should ever appear in a .css file
-$styleTags = (Select-String -Path .\lentax.css -Pattern "</?style>" -AllMatches).Matches.Count
+$styleTags = (Select-String -Path .\lentax-base.css -Pattern "</?style>" -AllMatches).Matches.Count
 if ($styleTags -gt 0) { Write-Host "FAIL: <style> tags in CSS" -ForegroundColor Red; exit 1 }
 
 # 2. Brace balance
-$content = Get-Content .\lentax.css -Raw
+$content = Get-Content .\lentax-base.css -Raw
 $open = ([regex]::Matches($content, '\{')).Count
 $close = ([regex]::Matches($content, '\}')).Count
 if ($open -ne $close) { Write-Host "FAIL: Brace mismatch ($open / $close)" -ForegroundColor Red; exit 1 }
 
 # 3. @import statements only at the very top of the file
-$firstNonImportLine = (Get-Content .\lentax.css | Select-String -Pattern "^\s*[^@/\s]" | Select-Object -First 1).LineNumber
-$lastImportLine = (Get-Content .\lentax.css | Select-String -Pattern "^@import" | Select-Object -Last 1).LineNumber
+$firstNonImportLine = (Get-Content .\lentax-base.css | Select-String -Pattern "^\s*[^@/\s]" | Select-Object -First 1).LineNumber
+$lastImportLine = (Get-Content .\lentax-base.css | Select-String -Pattern "^@import" | Select-Object -Last 1).LineNumber
 if ($lastImportLine -and $firstNonImportLine -and $lastImportLine -gt $firstNonImportLine) {
   Write-Host "FAIL: @import found after non-import rules" -ForegroundColor Red; exit 1
 }
@@ -82,22 +143,24 @@ $requiredHeaders = @(
   "SECTION 2 — SUITEDASH"
 )
 foreach ($h in $requiredHeaders) {
-  if (-not (Select-String -Path .\lentax.css -Pattern $h -SimpleMatch -Quiet)) {
+  if (-not (Select-String -Path .\lentax-base.css -Pattern $h -SimpleMatch -Quiet)) {
     Write-Host "FAIL: Missing required header: $h" -ForegroundColor Red; exit 1
   }
 }
 ```
 
-### For `lentax.js`
+### For the per-theme loaders (`lentax-*-default.js`)
 
 ```powershell
-# 1. Syntactic validity
-node --check .\lentax.js
-if ($LASTEXITCODE -ne 0) { Write-Host "FAIL: JS syntax error" -ForegroundColor Red; exit 1 }
+foreach ($loader in @(".\lentax-tpp-default.js", ".\lentax-vlp-default.js")) {
+  # 1. Syntactic validity
+  node --check $loader
+  if ($LASTEXITCODE -ne 0) { Write-Host "FAIL: JS syntax error in $loader" -ForegroundColor Red; exit 1 }
 
-# 2. FOUC loader must still be present (preload-swap pattern is load-bearing)
-if (-not (Select-String -Path .\lentax.js -Pattern "LENTAX.CSS PRELOAD" -SimpleMatch -Quiet)) {
-  Write-Host "FAIL: FOUC preload block removed" -ForegroundColor Red; exit 1
+  # 2. FOUC loader must still be present (preload-swap IIFE is load-bearing)
+  if (-not (Select-String -Path $loader -Pattern "loadLentaxStyles" -SimpleMatch -Quiet)) {
+    Write-Host "FAIL: FOUC preload IIFE removed from $loader" -ForegroundColor Red; exit 1
+  }
 }
 ```
 
@@ -111,7 +174,7 @@ After pushing to `main` and waiting for Netlify:
 
 ```powershell
 Start-Sleep -Seconds 60
-$deployed = Invoke-WebRequest -Uri "https://precious-lily-bbe555.netlify.app/lentax.css" -UseBasicParsing | Select-Object -ExpandProperty Content
+$deployed = Invoke-WebRequest -Uri "https://precious-lily-bbe555.netlify.app/lentax-base.css" -UseBasicParsing | Select-Object -ExpandProperty Content
 
 # Confirm new content is live (use a marker specific to THIS change)
 $marker = "<replace with marker from the change>"
@@ -130,7 +193,7 @@ Do NOT block indefinitely on Netlify. If the marker isn't live after 60–90 sec
 
 ### Sectioning
 
-`lentax.css` uses a hierarchical comment system. Preserve it:
+`lentax-base.css` uses a hierarchical comment system. Preserve it:
 
 - `/* ═══... ═══ */` = top-level sections (SECTION 1, SECTION 2)
 - `/* ───... ─── */` = sub-sections (2.1, 2.2, etc.)
@@ -204,3 +267,4 @@ When stopping: push the branch (don't merge), include "STOPPED" prominently in t
 | Date | Change |
 |---|---|
 | 2026-06-16 | Initial creation. Locks direct-to-main policy. Codifies verification + deploy contract from FOUC and Path Y migrations. |
+| 2026-06-18 | JLW — CLAUDE.md refreshed to match current repo layout (`lentax-base.css` + per-theme loaders + `themes/`; no more `lentax.css` / `lentax.js`). Verification blocks retargeted to current filenames and the real `loadLentaxStyles` FOUC marker. Added `js/` directory + JS Ports convention. |
