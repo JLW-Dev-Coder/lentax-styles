@@ -172,6 +172,9 @@
   --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
   --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
   --lentax-chrome-sidebar-border: transparent;
+  --lentax-chrome-sidebar-scrollbar-thumb: rgba(255, 255, 255, 0.20);
+  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(255, 255, 255, 0.30);
+  --lentax-chrome-sidebar-accent-strip: transparent;
 
   /* Chrome — navbar */
   --lentax-chrome-navbar-bg: #ffffff;
@@ -12609,6 +12612,7 @@ body:not(.sd-dark-mode) .main-wrapper {
 body:not(.sd-dark-mode) aside.site-sidebar {
   background-color: var(--lentax-chrome-sidebar-bg) !important;
   border-right-color: var(--lentax-chrome-sidebar-border) !important;
+  position: relative !important; /* anchor for ::before accent strip (Item 5) */
 }
 
 body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li > a.ripple {
@@ -12640,6 +12644,41 @@ body:not(.sd-dark-mode) div.mpa-compact-profile {
 body:not(.sd-dark-mode) div.mpa-compact-profile a.mpa-compact-profile__link,
 body:not(.sd-dark-mode) div.mpa-compact-profile span.mpa-compact-profile__name {
   color: var(--lentax-chrome-sidebar-text) !important;
+}
+
+/* ---- Portal sidebar scrollbar ---- */
+body:not(.sd-dark-mode) aside.site-sidebar::-webkit-scrollbar {
+  width: 4px !important;
+}
+body:not(.sd-dark-mode) aside.site-sidebar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+body:not(.sd-dark-mode) aside.site-sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--lentax-chrome-sidebar-scrollbar-thumb) !important;
+  border-radius: 4px !important;
+}
+body:not(.sd-dark-mode) aside.site-sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--lentax-chrome-sidebar-scrollbar-thumb-hover) !important;
+}
+body:not(.sd-dark-mode) aside.site-sidebar {
+  scrollbar-color: var(--lentax-chrome-sidebar-scrollbar-thumb) transparent !important;
+}
+
+/* Ripple flash color on sidebar nav links */
+body:not(.sd-dark-mode) aside.site-sidebar .sidebar-nav ul.main-side-menu > li > a.ripple::after {
+  background-color: var(--lentax-chrome-sidebar-active-bg) !important;
+}
+
+/* ---- Portal sidebar top accent strip (branded; base hidden) ---- */
+body:not(.sd-dark-mode) aside.site-sidebar::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: var(--lentax-chrome-sidebar-accent-strip) !important;
+  z-index: 10 !important;
 }
 
 /* ---- Portal navbar ---- */

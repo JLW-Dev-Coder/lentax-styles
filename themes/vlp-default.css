@@ -93,6 +93,9 @@
   --lentax-chrome-sidebar-hover-bg: rgba(249, 115, 22, 0.10);
   --lentax-chrome-sidebar-active-bg: rgba(249, 115, 22, 0.15);
   --lentax-chrome-sidebar-border: rgba(249, 115, 22, 0.15);
+  --lentax-chrome-sidebar-scrollbar-thumb: rgba(249, 115, 22, 0.35);
+  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(249, 115, 22, 0.50);
+  --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, var(--lentax-vlp-orange-primary), var(--lentax-vlp-parchment-cream));
 
   --lentax-chrome-navbar-bg: transparent;
   --lentax-chrome-navbar-border-bottom: rgba(249, 115, 22, 0.20);
