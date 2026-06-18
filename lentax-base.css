@@ -15788,3 +15788,786 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
     padding: 9px 10px !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.21 — STACK: PROPOSALS
+   Source: ClickUp Stack_Proposals_CSS_v2 (page TBD)
+   Ported: 2026-06-18
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .proposal_content (proposal modal); also .sidebar-dark and
+              body.branding-theme-default / -mrclean state wrappers, both of
+              which still scope through .proposal_content
+   Port adjustments (on import from source):
+     - Stripped markdown wrapper (heading + fenced ```plain block) and the
+       <style> / </style> tags. No HTML comments present.
+     - Dropped the leading @import (Cormorant Garamond + Inter) — byte-
+       identical to the existing top-of-file @import in lentax-base.css.
+     - No .dynamic-placeholder present (nothing to auto-scope).
+     - 4 selector fragments ported verbatim while intentionally NOT scoped
+       under .proposal_content (each shares a rule group with a
+       .proposal_content-scoped selector; not auto-scoped per policy):
+         .choose-items-wrapper .choose-items-summary-wrapper .colored-title
+         .choose-items-summary__section-title
+         .cbe-block-shopping-wrapper … .choose-items-summary-total label
+         .cbe-block-shopping-wrapper … .choose-items-summary-total span
+   ───────────────────────────────────────────────────────────────────── */
+
+/* ---- TYPOGRAPHY BASE ---- */
+.proposal_content .proposal-content-wrapper,
+.proposal_content .proposal-content-wrapper p,
+.proposal_content .proposal-content-wrapper ul,
+.proposal_content .proposal-content-wrapper ol,
+.proposal_content .proposal-content-wrapper li,
+.proposal_content .proposal-content-wrapper table,
+.proposal_content .proposal-content-wrapper table td,
+.proposal_content .proposal-content-wrapper input,
+.pdf-wrapper .proposal_content .proposal-content-wrapper {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  color: #2A1820 !important;
+  line-height: 1.6 !important;
+}
+
+.proposal_content .proposal-content-wrapper h1,
+.proposal_content .proposal-content-wrapper .main-wrapper .proposal-page-title h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.12 !important;
+}
+
+.proposal_content .proposal-content-wrapper h2,
+.pdf-wrapper .proposal_content h2 {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 400 !important;
+  color: #6B5260 !important;
+  line-height: 1.45 !important;
+}
+
+.proposal_content .proposal-content-wrapper h3,
+.proposal_content .proposal-content-wrapper .main-wrapper h3,
+.pdf-wrapper .proposal_content h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  line-height: 1.3 !important;
+}
+
+/* ---- LINKS ---- */
+.proposal_content a:not(.cbe-block-button-element),
+.proposal_content a:not(.cbe-block-button-element):link,
+.proposal_content a:not(.cbe-block-button-element):visited,
+.proposal_content a:not(.cbe-block-button-element):hover,
+.proposal_content a:not(.cbe-block-button-element):focus,
+.proposal_content a:not(.cbe-block-button-element):active,
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element),
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element):link,
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element):visited,
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element):hover,
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element):focus,
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element):active {
+  color: #E91E63 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.proposal_content a:not(.cbe-block-button-element):hover,
+.proposal_content .proposal-content-wrapper a:not(.cbe-block-button-element):hover {
+  color: #C2185B !important;
+  text-decoration: none !important;
+  background-color: rgba(233, 30, 99, 0.08) !important;
+  border-radius: 4px !important;
+  border-bottom: none !important;
+}
+
+.proposal_content .choose-items-card-desc a,
+.proposal_content .choose-items-card-desc-text a,
+.proposal_content .choose-items-card-desc a:link,
+.proposal_content .choose-items-card-desc-text a:link,
+.proposal_content .choose-items-card-desc a:visited,
+.proposal_content .choose-items-card-desc-text a:visited,
+.proposal_content .choose-items-card-desc a:hover,
+.proposal_content .choose-items-card-desc-text a:hover {
+  color: #E91E63 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.proposal_content .card-show-more,
+.proposal_content .card-show-more:link,
+.proposal_content .card-show-more:visited,
+.proposal_content .card-show-more:hover,
+.proposal_content .card-show-more:focus,
+.proposal_content .card-show-more:active,
+.proposal_content .btn-link,
+.proposal_content .btn-link:link,
+.proposal_content .btn-link:visited,
+.proposal_content .btn-link:hover,
+.proposal_content .btn-link:focus,
+.proposal_content .btn-link:active {
+  color: #E91E63 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.proposal_content .card-show-more:hover,
+.proposal_content .btn-link:hover {
+  color: #C2185B !important;
+}
+
+.proposal_content .sd-checkmark-card-item__toggle,
+.proposal_content .sd-checkmark-card-item__toggle:link,
+.proposal_content .sd-checkmark-card-item__toggle:visited,
+.proposal_content .sd-checkmark-card-item__toggle:hover,
+.proposal_content .sd-checkmark-card-item__toggle:focus,
+.proposal_content .sd-checkmark-card-item__toggle:active {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+/* ---- HORIZONTAL RULES ---- */
+.proposal_content hr {
+  border: none !important;
+  height: 1px !important;
+  background: rgba(139, 21, 56, 0.14) !important;
+  margin: 28px 0 !important;
+}
+
+/* ---- LISTS ---- */
+.proposal_content ul li::marker {
+  color: #E91E63 !important;
+}
+
+/* ---- BOLD TEXT ---- */
+.proposal_content strong,
+.proposal_content b {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+/* ---- MAIN CONTENT AREA ---- */
+.proposal_content .proposal-content-wrapper .main-wrapper {
+  background: #FFFAF4 !important;
+}
+
+.proposal_content .proposal-content-wrapper .main-wrapper .page-title {
+  background: #FFFAF4 !important;
+}
+
+/* ================================================
+   SIDEBAR NAVIGATION
+   ================================================ */
+.sidebar-dark .proposal_content .sidebar {
+  background: linear-gradient(180deg, #5C0D24, #1A0B14) !important;
+}
+
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li button,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li > a,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li > input {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  color: rgba(245, 230, 211, 0.85) !important;
+  letter-spacing: 0.01em !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-dark .proposal_content .proposal-content-wrapper .new-page-wrapper,
+.sidebar-dark .proposal_content .proposal-content-wrapper .new-page-wrapper a,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li i {
+  color: rgba(245, 230, 211, 0.7) !important;
+}
+
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li:hover > a,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li.current-page > a,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li:hover > input,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li.current-page > input,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li:hover i,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li.current-page i,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li:hover button,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li.current-page button {
+  color: #1A0B14 !important;
+}
+
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li:hover,
+.sidebar-dark .proposal_content .proposal-content-wrapper .proposal-side-menu li.current-page {
+  color: #1A0B14 !important;
+  background: #FFFAF4 !important;
+}
+
+/* ================================================
+   PROPOSAL NAVBAR
+   ================================================ */
+.proposal_content .proposal-navbar-header {
+  background: linear-gradient(135deg, #5C0D24, #1A0B14) !important;
+}
+
+.proposal_content .proposal-topbar {
+  background: linear-gradient(135deg, #5C0D24, #1A0B14) !important;
+}
+
+/* ================================================
+   ITEM CARDS
+   ================================================ */
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item {
+  color: #2A1820 !important;
+  background-color: #FFFAF4 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-top: none !important;
+  border-radius: 24px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .scroll-text-wrapper::after {
+  background-image: linear-gradient(90deg, #FFFAF4 0%, #FFFAF4 50%) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-title {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-desc,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-desc-text {
+  color: #2A1820 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-price {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item a {
+  color: #E91E63 !important;
+  font-weight: 600 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item:hover {
+  color: #2A1820 !important;
+  background-color: #FFFAF4 !important;
+  border-color: rgba(233, 30, 99, 0.35) !important;
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.14) !important;
+  transform: translateY(-3px) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item:hover .scroll-text-wrapper::after {
+  background-image: linear-gradient(90deg, #FFFAF4 0%, #FFFAF4 50%) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item:hover a {
+  color: #C2185B !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card-desc,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card-desc-text {
+  color: #2A1820 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover {
+  color: #2A1820 !important;
+  background-color: #FFFAF4 !important;
+  border-color: #8B1538 !important;
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.16) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .scroll-text-wrapper::after {
+  background-image: linear-gradient(90deg, #FFFAF4 0%, #FFFAF4 50%) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-price,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-price {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-desc,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .choose-items-card-desc-text,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-desc,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .choose-items-card-desc-text {
+  color: #2A1820 !important;
+}
+
+/* ---- PRICE DISPLAY ---- */
+.proposal_content .proposed_value {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  color: #1A0B14 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ================================================
+   HIGHLIGHT TAG LABELS
+   ================================================ */
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .choose-items-card__label {
+  color: #8B1538 !important;
+  background-color: rgba(255, 229, 236, 0.6) !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(233, 30, 99, 0.35) !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item__active .choose-items-card__label,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item:hover .choose-items-card__label {
+  color: #ffffff !important;
+  background-color: #E91E63 !important;
+  border-color: #E91E63 !important;
+}
+
+/* ================================================
+   CHECKMARK CIRCLES
+   ================================================ */
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__circle {
+  border-color: rgba(139, 21, 56, 0.14) !important;
+  background-color: #8B1538 !important;
+}
+
+body.branding-theme-mrclean .proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item .sd-checkmark-card-item__arrow .checkmark-icon__circle,
+body.branding-theme-mrclean .proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__circle {
+  border-color: rgba(139, 21, 56, 0.14) !important;
+  background-color: #8B1538 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__check:after {
+  border-color: #ffffff !important;
+}
+
+body.branding-theme-mrclean .proposal_content .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active .sd-checkmark-card-item__arrow .checkmark-icon__check:after {
+  border-color: #ffffff !important;
+}
+
+/* ================================================
+   QUANTITY INPUT
+   ================================================ */
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .quantity-input input {
+  color: #1A0B14 !important;
+  background-color: #FFFAF4 !important;
+  border-color: rgba(139, 21, 56, 0.14) !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+}
+
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__sub::before,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__add::before,
+.proposal_content .choose-items-wrapper .sd-checkmark-card-item .quantity-input .quantity-input__button.quantity-input__add::after {
+  background-color: #8B1538 !important;
+}
+
+/* ================================================
+   TOTALS / SUMMARY PANEL
+   ================================================ */
+.proposal_content .choose-items-summary-block {
+  display: block !important;
+  visibility: visible !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.proposal_content .choose-items-summary-wrapper,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  background-color: #FFFAF4 !important;
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-top: 4px solid #8B1538 !important;
+  border-radius: 24px !important;
+  padding: 28px !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+  color: #1A0B14 !important;
+}
+
+.proposal_content .choose-items-wrapper .choose-items-summary-wrapper:not(.loader-widget)::before,
+.proposal_content .choose-items-wrapper .sdAccordion__item {
+  background-color: #FFFAF4 !important;
+  border: none !important;
+}
+
+.proposal_content .choose-items-summary-head,
+.proposal_content .choose-items-wrapper .choose-items-summary-head,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-head {
+  color: #1A0B14 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  border-bottom: 2px solid rgba(139, 21, 56, 0.14) !important;
+  padding-bottom: 14px !important;
+  margin-bottom: 18px !important;
+}
+
+.proposal_content .choose-items-summary-body,
+.proposal_content .choose-items-summary-body *,
+.proposal_content .choose-items-summary-wrapper *,
+.proposal_content .choose-items-summary__title,
+.proposal_content .choose-items-summary__amount,
+.proposal_content .choose-items-summary__sub-title,
+.proposal_content .choose-items-summary__sub-amount,
+.proposal_content .choose-items-summary__items-wrap,
+.proposal_content .choose-items-summary__table,
+.proposal_content .choose-items-summary__table td,
+.proposal_content .choose-items-summary__item,
+.proposal_content .choose-items-summary__item td,
+.proposal_content .choose-items-summary-total,
+.proposal_content .choose-items-summary-total label,
+.proposal_content .choose-items-summary-total span,
+.proposal_content .choose-items-summary-total-amount,
+.proposal_content .choose-items-summary-payment-amount,
+.proposal_content .choose-items-summary-wrapper h3,
+.proposal_content .choose-items-summary-wrapper h4,
+.proposal_content .choose-items-summary-wrapper small,
+.proposal_content .choose-items-summary-wrapper span,
+.proposal_content .choose-items-summary-wrapper label,
+.proposal_content .choose-items-summary-wrapper td,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-wrapper *,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-payment-amount,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-total-amount {
+  color: #1A0B14 !important;
+}
+
+.proposal_content .choose-items-summary__title,
+.proposal_content .choose-items-summary__item .choose-items-summary__title {
+  color: #2A1820 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  padding: 6px 0 !important;
+}
+
+.proposal_content .choose-items-summary__amount,
+.proposal_content .choose-items-summary__sub-amount {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 6px 0 !important;
+}
+
+.proposal_content .choose-items-summary__section-title,
+.proposal_content .choose-items-summary__section-title h4,
+.proposal_content .choose-items-summary-wrapper .colored-title,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-wrapper .colored-title,
+.choose-items-wrapper .choose-items-summary-wrapper .colored-title,
+.choose-items-summary__section-title {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 10px !important;
+  margin-top: 8px !important;
+}
+
+.proposal_content .choose-items-summary__sub-title {
+  color: #6B5260 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+.proposal_content .choose-items-summary-total-amount,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-total-amount {
+  color: #1A0B14 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 28px !important;
+}
+
+.proposal_content .choose-items-summary-payment-amount,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-payment-amount {
+  color: #1A0B14 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+.proposal_content .choose-items-summary-total label,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-wrapper .choose-items-summary-body .choose-items-summary-total label {
+  color: #E91E63 !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+}
+
+body.branding-theme-default .proposal_content .choose-items-summary-body *,
+body.branding-theme-default .proposal_content .choose-items-summary-wrapper *,
+body.branding-theme-mrclean .proposal_content .choose-items-summary-body *,
+body.branding-theme-mrclean .proposal_content .choose-items-summary-wrapper * {
+  color: #1A0B14 !important;
+}
+
+body.branding-theme-default .proposal_content .choose-items-summary__section-title,
+body.branding-theme-default .proposal_content .choose-items-summary-wrapper .colored-title,
+body.branding-theme-mrclean .proposal_content .choose-items-summary__section-title,
+body.branding-theme-mrclean .proposal_content .choose-items-summary-wrapper .colored-title {
+  color: #E91E63 !important;
+}
+
+body.branding-theme-default .proposal_content .choose-items-summary__title,
+body.branding-theme-mrclean .proposal_content .choose-items-summary__title {
+  color: #2A1820 !important;
+}
+
+.cbe-block-shopping-wrapper .choose-items-summary-wrapper .choose-items-summary-body .choose-items-summary-total label,
+.cbe-block-shopping-wrapper .choose-items-summary-wrapper .choose-items-summary-body .choose-items-summary-total span,
+.proposal_content .cbe-block-shopping-wrapper .choose-items-summary-wrapper .choose-items-summary-body .choose-items-summary-total span {
+  color: #1A0B14 !important;
+}
+
+.proposal_content .choose-items-summary__items-wrap.border-bottom,
+.proposal_content .choose-items-summary__items-wrap {
+  border-bottom-color: rgba(139, 21, 56, 0.14) !important;
+}
+
+/* ================================================
+   PROGRESS BAR
+   ================================================ */
+.proposal_content .progress {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background: #EBD7BE !important;
+}
+
+.proposal_content .progress-bar {
+  background: linear-gradient(90deg, #E91E63, #8B1538) !important;
+  border-radius: 10px !important;
+}
+
+/* ================================================
+   PROPOSAL NOTICE BLOCK
+   ================================================ */
+.proposal_content .proposal-notice,
+.proposal_content section.proposal-notice {
+  background: linear-gradient(135deg, #5C0D24, #1A0B14) !important;
+  color: #F5E6D3 !important;
+  border-radius: 24px !important;
+  padding: 36px 32px !important;
+  border: none !important;
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.14) !important;
+}
+
+.proposal_content .proposal-notice h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  color: #F5E6D3 !important;
+}
+
+.proposal_content .proposal-notice p {
+  color: rgba(245, 230, 211, 0.85) !important;
+}
+
+.proposal_content .proposal-notice strong {
+  color: #F5E6D3 !important;
+}
+
+/* ================================================
+   HOW IT WORKS — PHASE LABELS
+   ================================================ */
+.proposal_content h3 b {
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  color: #E91E63 !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+}
+
+/* ================================================
+   SIGNATURE SECTION
+   ================================================ */
+.proposal_content .signature-wrapper {
+  border-top: 3px solid #8B1538 !important;
+  padding-top: 24px !important;
+}
+
+/* ================================================
+   BUTTON BLOCK
+   ================================================ */
+.proposal_content .cbe-block-button-element,
+.proposal_content .cbe-block-button-element.btn,
+.proposal_content .cbe-block-button-element.btn-primary,
+.proposal_content a.cbe-block-button-element,
+.proposal_content a.cbe-block-button-element:link,
+.proposal_content a.cbe-block-button-element:visited,
+.proposal_content a.cbe-block-button-element:focus,
+.proposal_content a.cbe-block-button-element:active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 16px 32px !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.4px !important;
+  text-decoration: none !important;
+  box-shadow: 0 10px 24px rgba(233, 30, 99, 0.25) !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.proposal_content .cbe-block-button-element:hover,
+.proposal_content a.cbe-block-button-element:hover {
+  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  box-shadow: 0 14px 32px rgba(233, 30, 99, 0.35) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background-color: transparent !important;
+}
+
+/* ================================================
+   EMBEDDED AGREEMENT — COLLAPSIBLE ACCORDION
+   ================================================ */
+.proposal_content details.agreement-accordion {
+  border: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-top: none !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+  margin: 32px 0 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.proposal_content details.agreement-accordion:hover {
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.14) !important;
+  transform: translateY(-2px) !important;
+}
+
+.proposal_content details.agreement-accordion[open] {
+  border-color: #8B1538 !important;
+  box-shadow: 0 20px 50px rgba(139, 21, 56, 0.16) !important;
+}
+
+.proposal_content details.agreement-accordion summary {
+  background: linear-gradient(135deg, #8B1538, #5C0D24) !important;
+  color: #F5E6D3 !important;
+  padding: 28px 36px !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  letter-spacing: -0.01em !important;
+  cursor: pointer !important;
+  list-style: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: all 0.3s ease !important;
+  user-select: none !important;
+  position: relative !important;
+}
+
+.proposal_content details.agreement-accordion summary::-webkit-details-marker {
+  display: none !important;
+}
+
+.proposal_content details.agreement-accordion summary::after {
+  content: '+ Expand to Review' !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  background: #E91E63 !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 10px 20px !important;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35) !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap !important;
+}
+
+.proposal_content details.agreement-accordion[open] summary::after {
+  content: '\2212  Collapse' !important;
+  background: #FFFAF4 !important;
+  color: #8B1538 !important;
+  box-shadow: 0 6px 16px rgba(255, 250, 244, 0.25) !important;
+}
+
+.proposal_content details.agreement-accordion summary:hover {
+  background: linear-gradient(135deg, #5C0D24, #1A0B14) !important;
+}
+
+.proposal_content details.agreement-accordion summary:hover::after {
+  background: #C2185B !important;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+.proposal_content details.agreement-accordion[open] summary:hover::after {
+  background: #F5E6D3 !important;
+  color: #8B1538 !important;
+  box-shadow: 0 8px 20px rgba(245, 230, 211, 0.35) !important;
+}
+
+.proposal_content details.agreement-accordion .agreement-body {
+  padding: 32px 36px !important;
+  max-height: 600px !important;
+  overflow-y: auto !important;
+  background: #FFFAF4 !important;
+}
+
+.proposal_content details.agreement-accordion .agreement-body h3 {
+  color: #1A0B14 !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid #E91E63 !important;
+  padding-bottom: 8px !important;
+  display: inline-block !important;
+  margin-top: 28px !important;
+}
+
+.proposal_content details.agreement-accordion .agreement-body p {
+  color: #2A1820 !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+
+.proposal_content details.agreement-accordion .agreement-body li {
+  color: #2A1820 !important;
+  font-size: 14px !important;
+}
+
+.proposal_content details.agreement-accordion .agreement-footer {
+  background: linear-gradient(135deg, #8B1538, #5C0D24) !important;
+  color: rgba(245, 230, 211, 0.7) !important;
+  padding: 20px 36px !important;
+  font-size: 13px !important;
+  text-align: center !important;
+}
+
+.proposal_content details.agreement-accordion .agreement-footer strong {
+  color: #F5E6D3 !important;
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+  .proposal_content .choose-items-wrapper .sd-checkmark-card-item {
+    border-radius: 18px !important;
+  }
+
+  .proposal_content .contract-header,
+  .proposal_content .contract-body {
+    padding: 24px 20px !important;
+  }
+}
