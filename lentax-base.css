@@ -14640,26 +14640,32 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 /* ─────────────────────────────────────────────────────────────────────
    2.19 — DOCGEN: TAX PREP FILING SUMMARY (Doc 3)
-   Source: ClickUp doc3_tax_prep_filing_summary_v1.css (page 80djf-710317)
-   Ported: 2026-06-17
+   Source: ClickUp doc3_tax_prep_filing_summary_v2.css (page TBD)
+   Ported: 2026-06-17 (v1)
+   Updated: 2026-06-18 (v2 — full replacement)
    Scope: structure only; palette overrides live in theme files
    Namespace: .tu-doc + .tu-doc-* (canonical TPP namespace going forward)
    Standalone: does NOT depend on 2.16 — DOCGEN: SHARED FOUNDATION (which is
                scoped to .tpp-doc). This block contains its own root rule,
                custom properties, and placeholder styling.
-   Port adjustments (on import from source):
-     - HTML comment scaffolding (<!-- Destination... -->, <!-- Self-contained... -->)
-       and <style>/</style> wrapper tags stripped.
-     - Source Sans 3 @import hoisted to the top of lentax-base.css (line 10)
-       beside the existing Cormorant+Inter @import — CLAUDE.md forbids @import
-       after non-import rules. Adds one global font load to all surfaces
-       consuming lentax-base.css (intentional, low cost).
-     - Bare `.dynamic-placeholder` selector dropped from the first rule;
+   Port adjustments (v2):
+     - Markdown fence, HTML comment scaffolding, and <style>/</style> wrapper
+       tags stripped from the source.
+     - v2 @import DROPPED (not hoisted). Its only delta vs the top-of-file
+       line-9 Cormorant+Inter @import is Inter wght 800, which v2 never uses.
+       Every font/weight v2 renders (Cormorant 400-700, Inter 400/700) is
+       already loaded — so no global font-load change. JLW-approved 2026-06-18.
+     - Bare `.dynamic-placeholder` selector dropped from the merge-tag rule;
        only `.tu-doc .dynamic-placeholder` is retained. Matches the refactor
-       pattern applied to `.tpp-doc` on 2026-06-17 (commit 2f92bf6) — bare
-       form had global blast radius on non-document surfaces.
+       pattern applied on 2026-06-17 (commit 2f92bf6) — bare form had global
+       blast radius on non-document surfaces.
    Note: Doc 1 (2.17) and Doc 2 (2.18) use the .tpp-doc namespace and will
          be migrated to .tu-doc in a future task.
+   Change log:
+     2026-06-17 JLW — v1 port (commit 0032bec)
+     2026-06-18 JLW — v2 full replacement: navy/red corporate → rose/crimson/
+       champagne luxury re-skin; Cormorant Garamond serif headings + Inter
+       body; gradient header/footer accents (rose→gold) replacing solid bars.
    ───────────────────────────────────────────────────────────────────── */
 
 /* Strip SD's default merge-tag highlight */
@@ -14677,35 +14683,46 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .tu-doc {
-  --tu-navy: #14213d;
-  --tu-navy-soft: #1f3a68;
-  --tu-red: #dc2626;
-  --tu-red-deep: #b91c1c;
-  --tu-cream: #f8fafc;
-  --tu-slate: #334155;
-  --tu-slate-soft: #64748b;
-  --tu-border: #e2e8f0;
-  --tu-white: #ffffff;
-  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: var(--tu-slate);
+  --tpp-rose:           #E91E63;
+  --tpp-rose-deep:      #C2185B;
+  --tpp-crimson:        #8B1538;
+  --tpp-crimson-deep:   #5C0D24;
+  --tpp-blush:          #FFE5EC;
+  --tpp-noir:           #1A0B14;
+  --tpp-champagne:      #F5E6D3;
+  --tpp-champagne-deep: #EBD7BE;
+  --tpp-ivory:          #FFFAF4;
+  --tpp-gold-leaf:      #D4A574;
+  --tpp-gold-bright:    #E8C088;
+  --tpp-text:           #2A1820;
+  --tpp-text-muted:     #6B5260;
+  --tpp-text-on-dark:   #F5E6D3;
+  --tpp-text-on-rose:   #FFFFFF;
+  --tpp-border:         rgba(139, 21, 56, 0.14);
+  --tpp-border-strong:  rgba(139, 21, 56, 0.30);
+  --tpp-white:          #FFFFFF;
+
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+  color: var(--tpp-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   max-width: 920px;
   margin: 0 auto;
-  background: var(--tu-white);
+  background: var(--tpp-white);
 }
 .tu-doc *, .tu-doc *::before, .tu-doc *::after { box-sizing: border-box; }
 .tu-doc p, .tu-doc li {
-  color: var(--tu-slate) !important;
+  color: var(--tpp-text) !important;
   font-size: 15px;
   line-height: 1.7;
   margin: 0 0 12px 0;
 }
-.tu-doc strong { color: var(--tu-navy) !important; font-weight: 800 !important; }
+.tu-doc strong { color: var(--tpp-noir) !important; font-weight: 700 !important; }
 
+/* Header — crimson gradient with rose→gold accent bar */
 .tu-doc-header {
-  background: linear-gradient(135deg, var(--tu-navy) 0%, #0f172a 100%) !important;
-  color: var(--tu-white) !important;
+  background: linear-gradient(135deg, var(--tpp-crimson-deep) 0%, var(--tpp-noir) 100%) !important;
+  color: var(--tpp-text-on-dark) !important;
   padding: 40px 48px 36px;
   position: relative;
 }
@@ -14714,39 +14731,42 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 5px;
-  background: var(--tu-red);
+  background: linear-gradient(90deg, var(--tpp-rose), var(--tpp-gold-bright));
 }
 .tu-doc-header .tu-doc-logo {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 32px;
-  font-weight: 900 !important;
+  font-weight: 600 !important;
   letter-spacing: -0.02em;
-  color: var(--tu-white) !important;
+  color: var(--tpp-text-on-dark) !important;
   margin-bottom: 4px;
 }
 .tu-doc-header .tu-doc-tagline {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: var(--tu-red) !important;
+  color: var(--tpp-rose) !important;
   margin-bottom: 24px;
 }
 .tu-doc-header .tu-doc-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 28px;
-  font-weight: 900 !important;
-  color: var(--tu-white) !important;
+  font-weight: 600 !important;
+  color: var(--tpp-text-on-dark) !important;
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin-bottom: 8px;
 }
 .tu-doc-header .tu-doc-doctype {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.7) !important;
-  letter-spacing: 0.06em;
+  color: var(--tpp-gold-bright) !important;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
 }
 
+/* Body */
 .tu-doc-body { padding: 48px 48px 32px; }
 
 .tu-doc .tu-doc-image {
@@ -14759,14 +14779,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   margin: 0 auto;
 }
 
+/* Section headings */
 .tu-doc-h2 {
-  font-size: 20px;
-  font-weight: 800 !important;
-  color: var(--tu-navy) !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 22px;
+  font-weight: 600 !important;
+  color: var(--tpp-noir) !important;
   letter-spacing: -0.01em;
   margin: 32px 0 14px 0;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--tu-border);
+  border-bottom: 2px solid var(--tpp-border);
   position: relative;
 }
 .tu-doc-h2::after {
@@ -14774,46 +14796,49 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   position: absolute;
   bottom: -2px; left: 0;
   width: 48px; height: 2px;
-  background: var(--tu-red);
+  background: linear-gradient(90deg, var(--tpp-rose), var(--tpp-crimson));
 }
 
+/* Data table */
 .tu-doc-table {
   width: 100%;
   border-collapse: collapse;
   margin: 16px 0 20px 0;
-  background: var(--tu-cream);
+  background: var(--tpp-ivory);
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid var(--tu-border);
+  border: 2px solid var(--tpp-border);
 }
 .tu-doc-table td {
   padding: 14px 18px;
   font-size: 14px;
-  color: var(--tu-slate) !important;
-  border-bottom: 1px solid var(--tu-border);
+  color: var(--tpp-text) !important;
+  border-bottom: 1px solid var(--tpp-border);
 }
 .tu-doc-table tr:last-child td { border-bottom: none; }
 .tu-doc-table td:first-child {
   width: 40%;
   font-weight: 700 !important;
-  color: var(--tu-navy) !important;
-  background: rgba(20, 33, 61, 0.04);
+  color: var(--tpp-noir) !important;
+  background: rgba(139, 21, 56, 0.04);
 }
 
+/* Callout block */
 .tu-doc-block {
-  background: var(--tu-cream);
-  border-left: 4px solid var(--tu-red);
+  background: var(--tpp-ivory);
+  border-left: 4px solid var(--tpp-rose);
   border-radius: 8px;
   padding: 16px 20px;
   margin: 24px 0 20px 0;
   font-size: 14px;
   line-height: 1.65;
-  color: var(--tu-slate) !important;
+  color: var(--tpp-text) !important;
 }
 
+/* Footer */
 .tu-doc-footer {
-  background: var(--tu-navy) !important;
-  color: rgba(255, 255, 255, 0.85) !important;
+  background: linear-gradient(135deg, var(--tpp-crimson-deep) 0%, var(--tpp-noir) 100%) !important;
+  color: var(--tpp-text-on-dark) !important;
   padding: 28px 48px;
   text-align: center;
   font-size: 13px;
@@ -14825,15 +14850,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--tu-red);
+  background: linear-gradient(90deg, var(--tpp-rose), var(--tpp-gold-bright));
 }
 .tu-doc-footer strong {
-  color: var(--tu-white) !important;
-  font-weight: 800 !important;
+  color: var(--tpp-text-on-dark) !important;
+  font-weight: 700 !important;
   display: block;
   margin-bottom: 4px;
 }
 
+/* Responsive */
 @media (max-width: 720px) {
   .tu-doc-header { padding: 32px 24px 28px; }
   .tu-doc-header .tu-doc-logo { font-size: 26px; }
