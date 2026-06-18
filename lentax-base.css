@@ -14290,7 +14290,9 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 /* ─────────────────────────────────────────────────────────────────────
    2.18 — DOCGEN: FORM 8879 IRS E-FILE SIGNATURE AUTH (Doc 2)
-   Source: ClickUp doc1_tax_prep_service_agreement.css (page 80djf-710337)
+   Source: embedded in ClickUp doc1_tax_prep_service_agreement.css (page 80djf-710337);
+           Form 8879 styles ported alongside Doc 1 Service Agreement, split into
+           2.18 in the 2026-06-17 refactor.
    Ported: 2026-06-17 (split from monolithic 2.16 on 2026-06-17)
    Scope: structure only; palette overrides live in theme files
    Namespace: .tpp-doc .doc-* (descendant-scoped — requires .tpp-doc ancestor)
