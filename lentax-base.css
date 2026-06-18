@@ -14048,10 +14048,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
                        (redundant; `.tpp-doc .dynamic-placeholder` covers
                        all in-document occurrences; bare form had global
                        blast radius on non-document surfaces).
+     2026-06-18 JLW — added `.doc-8879` as alternate root alongside `.tpp-doc`.
+                       Live SuiteDash 8879 template wraps the doc body in
+                       `<div class="doc-8879">` (sole class). Twinning makes all
+                       2.16/2.18 rules match the live wrapper without requiring a
+                       SuiteDash template change. Doc 1 (.tpp-doc) is unaffected.
    ───────────────────────────────────────────────────────────────────── */
 
 /* Strip SD's default merge-tag highlight */
-.tpp-doc .dynamic-placeholder {
+.tpp-doc .dynamic-placeholder,
+.doc-8879 .dynamic-placeholder {
   background: transparent !important;
   background-color: transparent !important;
   color: inherit !important;
@@ -14064,7 +14070,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   display: inline !important;
 }
 
-.tpp-doc {
+.tpp-doc,
+.doc-8879 {
   --tpp-rose:           #E91E63;
   --tpp-rose-deep:      #C2185B;
   --tpp-crimson:        #8B1538;
@@ -14092,14 +14099,14 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   margin: 0 auto;
   background: var(--tpp-white);
 }
-.tpp-doc *, .tpp-doc *::before, .tpp-doc *::after { box-sizing: border-box; }
-.tpp-doc p, .tpp-doc li {
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after { box-sizing: border-box; }
+.tpp-doc p, .doc-8879 p, .tpp-doc li, .doc-8879 li {
   color: var(--tpp-text) !important;
   font-size: 15px;
   line-height: 1.7;
   margin: 0 0 12px 0;
 }
-.tpp-doc strong { color: var(--tpp-noir) !important; font-weight: 700 !important; }
+.tpp-doc strong, .doc-8879 strong { color: var(--tpp-noir) !important; font-weight: 700 !important; }
 
 /* ─────────────────────────────────────────────────────────────────────
    2.17 — DOCGEN: TAX PREP SERVICE AGREEMENT (Doc 1)
@@ -14333,13 +14340,21 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
            2.18 in the 2026-06-17 refactor.
    Ported: 2026-06-17 (split from monolithic 2.16 on 2026-06-17)
    Scope: structure only; palette overrides live in theme files
-   Namespace: .tpp-doc .doc-* (descendant-scoped — requires .tpp-doc ancestor)
+   Namespace: .tpp-doc .doc-* AND .doc-8879 .doc-* (descendant-scoped — requires
+              .tpp-doc OR .doc-8879 ancestor)
    Depends on: 2.16 — DOCGEN: SHARED FOUNDATION (must precede in cascade
                order for --tpp-* custom properties to resolve).
+   Change log:
+     2026-06-18 JLW — added `.doc-8879` as alternate root alongside `.tpp-doc`.
+                       Live SuiteDash 8879 template wraps the doc body in
+                       `<div class="doc-8879">` (sole class). Twinning makes all
+                       2.16/2.18 rules match the live wrapper without requiring a
+                       SuiteDash template change. Doc 1 (.tpp-doc) is unaffected.
    ───────────────────────────────────────────────────────────────────── */
 
 /* Header */
-.tpp-doc .doc-header {
+.tpp-doc .doc-header,
+.doc-8879 .doc-header {
   background: linear-gradient(135deg, var(--tpp-crimson-deep) 0%, var(--tpp-noir) 100%) !important;
   color: var(--tpp-text-on-dark) !important;
   padding: 40px 48px 36px;
@@ -14349,7 +14364,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   gap: 28px;
   align-items: center;
 }
-.tpp-doc .doc-header::before {
+.tpp-doc .doc-header::before,
+.doc-8879 .doc-header::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -14357,12 +14373,15 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   background: linear-gradient(90deg, var(--tpp-rose), var(--tpp-gold-bright));
 }
 .tpp-doc .doc-header-logo img,
-.tpp-doc .doc-header-logo .dynamic-placeholder {
+.doc-8879 .doc-header-logo img,
+.tpp-doc .doc-header-logo .dynamic-placeholder,
+.doc-8879 .doc-header-logo .dynamic-placeholder {
   max-width: 140px;
   max-height: 70px;
   display: block;
 }
-.tpp-doc .doc-header-org .org-name {
+.tpp-doc .doc-header-org .org-name,
+.doc-8879 .doc-header-org .org-name {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 26px;
   font-weight: 600 !important;
@@ -14372,34 +14391,41 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   margin-bottom: 6px;
 }
 .tpp-doc .doc-header-org .org-address,
+.doc-8879 .doc-header-org .org-address,
 .tpp-doc .doc-header-org .org-locale,
-.tpp-doc .doc-header-org .org-email {
+.doc-8879 .doc-header-org .org-locale,
+.tpp-doc .doc-header-org .org-email,
+.doc-8879 .doc-header-org .org-email {
   font-size: 13px;
   color: var(--tpp-champagne) !important;
   line-height: 1.5;
   margin-bottom: 2px;
 }
-.tpp-doc .doc-header-org .org-email {
+.tpp-doc .doc-header-org .org-email,
+.doc-8879 .doc-header-org .org-email {
   color: var(--tpp-gold-bright) !important;
   font-weight: 500;
   margin-top: 4px;
 }
 
 /* Divider */
-.tpp-doc .doc-divider {
+.tpp-doc .doc-divider,
+.doc-8879 .doc-divider {
   height: 3px;
   background: linear-gradient(90deg, var(--tpp-rose), var(--tpp-gold-bright));
   margin: 0;
 }
 
 /* Title block */
-.tpp-doc .doc-title-block {
+.tpp-doc .doc-title-block,
+.doc-8879 .doc-title-block {
   padding: 40px 48px 24px;
   text-align: center;
   background: var(--tpp-ivory);
   border-bottom: 2px solid var(--tpp-border);
 }
-.tpp-doc .doc-title {
+.tpp-doc .doc-title,
+.doc-8879 .doc-title {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 32px;
   font-weight: 600 !important;
@@ -14408,7 +14434,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   line-height: 1.2;
   margin: 0 0 8px 0;
 }
-.tpp-doc .doc-subtitle {
+.tpp-doc .doc-subtitle,
+.doc-8879 .doc-subtitle {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.8px;
@@ -14416,14 +14443,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   color: var(--tpp-rose) !important;
   margin-bottom: 14px;
 }
-.tpp-doc .doc-date {
+.tpp-doc .doc-date,
+.doc-8879 .doc-date {
   font-size: 13px;
   color: var(--tpp-text-muted) !important;
   font-style: italic;
 }
 
 /* Important notice */
-.tpp-doc .doc-notice {
+.tpp-doc .doc-notice,
+.doc-8879 .doc-notice {
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 16px;
@@ -14434,27 +14463,32 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   border-left: 4px solid var(--tpp-rose);
   border-radius: 8px;
 }
-.tpp-doc .doc-notice-icon {
+.tpp-doc .doc-notice-icon,
+.doc-8879 .doc-notice-icon {
   font-size: 28px;
   color: var(--tpp-crimson) !important;
   line-height: 1;
   text-align: center;
 }
-.tpp-doc .doc-notice-text {
+.tpp-doc .doc-notice-text,
+.doc-8879 .doc-notice-text {
   font-size: 14px;
   line-height: 1.6;
   color: var(--tpp-text) !important;
 }
-.tpp-doc .doc-notice-text strong {
+.tpp-doc .doc-notice-text strong,
+.doc-8879 .doc-notice-text strong {
   color: var(--tpp-crimson-deep) !important;
 }
 
 /* Sections */
-.tpp-doc .doc-section {
+.tpp-doc .doc-section,
+.doc-8879 .doc-section {
   padding: 0 48px;
   margin: 28px 0 0 0;
 }
-.tpp-doc .doc-section-title {
+.tpp-doc .doc-section-title,
+.doc-8879 .doc-section-title {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 22px;
   font-weight: 600 !important;
@@ -14465,7 +14499,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   border-bottom: 2px solid var(--tpp-border);
   position: relative;
 }
-.tpp-doc .doc-section-title::after {
+.tpp-doc .doc-section-title::after,
+.doc-8879 .doc-section-title::after {
   content: '';
   position: absolute;
   bottom: -2px; left: 0;
@@ -14474,22 +14509,26 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 /* Field rows */
-.tpp-doc .doc-field-row {
+.tpp-doc .doc-field-row,
+.doc-8879 .doc-field-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 12px;
 }
-.tpp-doc .doc-field {
+.tpp-doc .doc-field,
+.doc-8879 .doc-field {
   background: var(--tpp-ivory);
   border: 2px solid var(--tpp-border);
   border-radius: 10px;
   padding: 12px 16px;
 }
-.tpp-doc .doc-field.full-width {
+.tpp-doc .doc-field.full-width,
+.doc-8879 .doc-field.full-width {
   grid-column: 1 / -1;
 }
-.tpp-doc .doc-field-label {
+.tpp-doc .doc-field-label,
+.doc-8879 .doc-field-label {
   font-size: 11px;
   font-weight: 700 !important;
   color: var(--tpp-rose) !important;
@@ -14497,7 +14536,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.tpp-doc .doc-field-value {
+.tpp-doc .doc-field-value,
+.doc-8879 .doc-field-value {
   font-size: 15px;
   color: var(--tpp-noir) !important;
   font-weight: 600 !important;
@@ -14506,24 +14546,29 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 /* Legal text */
-.tpp-doc .doc-legal-text {
+.tpp-doc .doc-legal-text,
+.doc-8879 .doc-legal-text {
   background: var(--tpp-ivory);
   border-left: 4px solid var(--tpp-crimson);
   border-radius: 8px;
   padding: 18px 22px;
   margin: 0 0 16px 0;
 }
-.tpp-doc .doc-legal-text p {
+.tpp-doc .doc-legal-text p,
+.doc-8879 .doc-legal-text p {
   font-size: 14px;
   line-height: 1.65;
   margin: 0 0 12px 0;
 }
-.tpp-doc .doc-legal-text p:last-child { margin-bottom: 0; }
-.tpp-doc .doc-consent-list {
+.tpp-doc .doc-legal-text p:last-child,
+.doc-8879 .doc-legal-text p:last-child { margin-bottom: 0; }
+.tpp-doc .doc-consent-list,
+.doc-8879 .doc-consent-list {
   margin: 4px 0 12px 0;
   padding: 0 0 0 24px;
 }
-.tpp-doc .doc-consent-list li {
+.tpp-doc .doc-consent-list li,
+.doc-8879 .doc-consent-list li {
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 6px;
@@ -14531,23 +14576,27 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 /* Signature blocks (Doc 2 variant — unprefixed) */
-.tpp-doc .doc-signature-block {
+.tpp-doc .doc-signature-block,
+.doc-8879 .doc-signature-block {
   margin: 18px 0 8px 0;
 }
-.tpp-doc .doc-sig-row {
+.tpp-doc .doc-sig-row,
+.doc-8879 .doc-sig-row {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
   margin-bottom: 16px;
 }
-.tpp-doc .doc-sig-field {
+.tpp-doc .doc-sig-field,
+.doc-8879 .doc-sig-field {
   background: var(--tpp-ivory);
   border: 2px solid var(--tpp-border);
   border-top: 4px solid var(--tpp-crimson);
   border-radius: 12px;
   padding: 16px 18px;
 }
-.tpp-doc .doc-sig-label {
+.tpp-doc .doc-sig-label,
+.doc-8879 .doc-sig-label {
   font-size: 11px;
   font-weight: 800 !important;
   color: var(--tpp-rose) !important;
@@ -14555,7 +14604,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   text-transform: uppercase;
   margin-bottom: 12px;
 }
-.tpp-doc .doc-sig-line {
+.tpp-doc .doc-sig-line,
+.doc-8879 .doc-sig-line {
   min-height: 44px;
   border-bottom: 2px solid var(--tpp-crimson);
   padding: 4px 4px 6px;
@@ -14563,11 +14613,14 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   color: var(--tpp-noir) !important;
   font-weight: 600 !important;
 }
-.tpp-doc .doc-sig-line .dynamic-placeholder { display: block !important; }
-.tpp-doc .doc-sig-line img { max-height: 44px; width: auto; }
+.tpp-doc .doc-sig-line .dynamic-placeholder,
+.doc-8879 .doc-sig-line .dynamic-placeholder { display: block !important; }
+.tpp-doc .doc-sig-line img,
+.doc-8879 .doc-sig-line img { max-height: 44px; width: auto; }
 
 /* Retention notice */
-.tpp-doc .doc-retention {
+.tpp-doc .doc-retention,
+.doc-8879 .doc-retention {
   margin: 32px 48px 0;
   padding: 16px 20px;
   background: var(--tpp-champagne);
@@ -14577,12 +14630,14 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   line-height: 1.6;
   color: var(--tpp-text) !important;
 }
-.tpp-doc .doc-retention strong {
+.tpp-doc .doc-retention strong,
+.doc-8879 .doc-retention strong {
   color: var(--tpp-crimson-deep) !important;
 }
 
 /* Footer (Doc 2 variant — split left/right) */
-.tpp-doc .doc-footer {
+.tpp-doc .doc-footer,
+.doc-8879 .doc-footer {
   background: linear-gradient(135deg, var(--tpp-crimson-deep) 0%, var(--tpp-noir) 100%) !important;
   color: var(--tpp-text-on-dark) !important;
   padding: 24px 48px;
@@ -14594,19 +14649,22 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-size: 12px;
   position: relative;
 }
-.tpp-doc .doc-footer::before {
+.tpp-doc .doc-footer::before,
+.doc-8879 .doc-footer::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--tpp-rose), var(--tpp-gold-bright));
 }
-.tpp-doc .doc-footer-left {
+.tpp-doc .doc-footer-left,
+.doc-8879 .doc-footer-left {
   color: var(--tpp-champagne) !important;
   font-weight: 500;
   letter-spacing: 0.3px;
 }
-.tpp-doc .doc-footer-right {
+.tpp-doc .doc-footer-right,
+.doc-8879 .doc-footer-right {
   color: var(--tpp-gold-bright) !important;
   font-style: italic;
   text-align: right;
@@ -14614,28 +14672,40 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 /* Doc 2 Responsive */
 @media (max-width: 720px) {
-  .tpp-doc .doc-header {
+  .tpp-doc .doc-header,
+  .doc-8879 .doc-header {
     grid-template-columns: 1fr;
     text-align: center;
     padding: 32px 24px 28px;
   }
   .tpp-doc .doc-header-logo img,
-  .tpp-doc .doc-header-logo .dynamic-placeholder {
+  .doc-8879 .doc-header-logo img,
+  .tpp-doc .doc-header-logo .dynamic-placeholder,
+  .doc-8879 .doc-header-logo .dynamic-placeholder {
     margin: 0 auto;
   }
-  .tpp-doc .doc-title-block { padding: 32px 24px 20px; }
-  .tpp-doc .doc-title { font-size: 26px; }
+  .tpp-doc .doc-title-block,
+  .doc-8879 .doc-title-block { padding: 32px 24px 20px; }
+  .tpp-doc .doc-title,
+  .doc-8879 .doc-title { font-size: 26px; }
   .tpp-doc .doc-notice,
-  .tpp-doc .doc-retention { margin-left: 24px; margin-right: 24px; }
-  .tpp-doc .doc-section { padding: 0 24px; }
-  .tpp-doc .doc-field-row { grid-template-columns: 1fr; }
-  .tpp-doc .doc-sig-row { grid-template-columns: 1fr; gap: 14px; }
-  .tpp-doc .doc-footer {
+  .doc-8879 .doc-notice,
+  .tpp-doc .doc-retention,
+  .doc-8879 .doc-retention { margin-left: 24px; margin-right: 24px; }
+  .tpp-doc .doc-section,
+  .doc-8879 .doc-section { padding: 0 24px; }
+  .tpp-doc .doc-field-row,
+  .doc-8879 .doc-field-row { grid-template-columns: 1fr; }
+  .tpp-doc .doc-sig-row,
+  .doc-8879 .doc-sig-row { grid-template-columns: 1fr; gap: 14px; }
+  .tpp-doc .doc-footer,
+  .doc-8879 .doc-footer {
     grid-template-columns: 1fr;
     text-align: center;
     padding: 24px;
   }
-  .tpp-doc .doc-footer-right { text-align: center; }
+  .tpp-doc .doc-footer-right,
+  .doc-8879 .doc-footer-right { text-align: center; }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
