@@ -12673,3 +12673,1322 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   color: var(--lentax-chrome-navbar-create-btn-color) !important;
   line-height: 1 !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.15 — DASHBOARD PAGES (#dashboard-view)
+   Source: ClickUp Stack_Dashboards_CSS_v1 (page 80djf-708277)
+   Ported: 2026-06-17
+   Scope: structure only; palette overrides live in theme files
+   Note: source's leading @import (Cormorant Garamond + Inter) omitted —
+         a byte-identical @import already lives at the top of this file
+         (line 9). Per CLAUDE.md, @import must not follow non-import rules,
+         so the duplicate is dropped here without loss (fonts still load).
+   ───────────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  1. TOKENS                                                       */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view {
+  --vlpd-rose:           #E91E63;
+  --vlpd-rose-deep:      #C2185B;
+  --vlpd-rose-glow:      rgba(233, 30, 99, 0.45);
+  --vlpd-crimson:        #8B1538;
+  --vlpd-crimson-deep:   #5C0D24;
+  --vlpd-blush:          #FFE5EC;
+  --vlpd-blush-tint:     rgba(255, 229, 236, 0.6);
+  --vlpd-noir:           #1A0B14;
+  --vlpd-champagne:      #F5E6D3;
+  --vlpd-champagne-deep: #EBD7BE;
+  --vlpd-ivory:          #FFFAF4;
+  --vlpd-gold-leaf:      #D4A574;
+  --vlpd-gold-bright:    #E8C088;
+
+  --vlpd-success:        #2E7D5B;
+  --vlpd-success-tint:   rgba(46, 125, 91, 0.10);
+  --vlpd-warning:        #C77E2E;
+  --vlpd-warning-tint:   rgba(199, 126, 46, 0.12);
+  --vlpd-danger:         #B22234;
+  --vlpd-danger-tint:    rgba(178, 34, 52, 0.10);
+
+  --vlpd-text:           #2A1820;
+  --vlpd-text-muted:     #6B5260;
+  --vlpd-text-on-dark:   #F5E6D3;
+  --vlpd-text-on-rose:   #FFFFFF;
+
+  --vlpd-border:         rgba(139, 21, 56, 0.14);
+  --vlpd-border-strong:  rgba(139, 21, 56, 0.30);
+  --vlpd-border-rose:    rgba(233, 30, 99, 0.35);
+
+  --vlpd-font-display:   "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --vlpd-font-body:      "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --vlpd-radius-sm:      8px;
+  --vlpd-radius-md:      14px;
+  --vlpd-radius-lg:      24px;
+
+  --vlpd-shadow-sm:      0 2px 12px rgba(139, 21, 56, 0.08);
+  --vlpd-shadow-md:      0 16px 40px rgba(139, 21, 56, 0.14);
+  --vlpd-shadow-lg:      0 28px 70px rgba(139, 21, 56, 0.22);
+  --vlpd-shadow-rose:    0 16px 50px rgba(233, 30, 99, 0.30);
+
+  --vlpd-ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --vlpd-ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+  --vlpd-dur-fast:       180ms;
+  --vlpd-dur-base:       400ms;
+  --vlpd-dur-slow:       800ms;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  2. PAGE BACKGROUND + ROOT TYPOGRAPHY                            */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(233, 30, 99, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 90%, rgba(139, 21, 56, 0.07) 0%, transparent 60%),
+    linear-gradient(180deg, var(--vlpd-champagne) 0%, var(--vlpd-champagne-deep) 100%) !important;
+  font-family: var(--vlpd-font-body) !important;
+  color: var(--vlpd-text) !important;
+  padding: 28px 24px !important;
+  min-height: calc(100vh - 64px) !important;
+}
+
+#dashboard-view * {
+  font-family: inherit;
+}
+
+#dashboard-view h1,
+#dashboard-view h2,
+#dashboard-view h3,
+#dashboard-view h4,
+#dashboard-view h5,
+#dashboard-view h6,
+#dashboard-view .widget-title,
+#dashboard-view .dashboard-organize-box__header-title {
+  font-family: var(--vlpd-font-display) !important;
+  color: var(--vlpd-noir) !important;
+  letter-spacing: -0.2px !important;
+  font-weight: 600 !important;
+}
+
+#dashboard-view a,
+#dashboard-view a:link,
+#dashboard-view a:visited,
+#dashboard-view a:hover,
+#dashboard-view a:focus,
+#dashboard-view a:active {
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+}
+
+#dashboard-view a *,
+#dashboard-view a span,
+#dashboard-view a em,
+#dashboard-view a small,
+#dashboard-view a div {
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  3. NEUTRALIZE CBE BLOCK / TEXT-BLOCK CONTAINER FRAMES           */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .cbe-block-wrapper,
+#dashboard-view sd-content-block-template,
+#dashboard-view sd-content-block-render-block,
+#dashboard-view sd-content-block-editor,
+#dashboard-view .content-block-wrapper,
+#dashboard-view .cbe-content,
+#dashboard-view .cbe-block-content-text,
+#dashboard-view .cbe-row-wrapper,
+#dashboard-view .cbe-block,
+#dashboard-view .cbe-block-sortable,
+#dashboard-view .cbe-block-items,
+#dashboard-view .cbe-stack-wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Reset SD's hardcoded inline padding/margins on text blocks */
+#dashboard-view .cbe-block-content-text {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#dashboard-view .cbe-block-wrapper,
+#dashboard-view sd-content-block-template {
+  margin-bottom: 12px !important;
+}
+
+#dashboard-view .cbe-block-wrapper:last-child,
+#dashboard-view sd-content-block-template:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* SD Stacks (the cross-page CSS/JS reuse feature) inject embed blocks whose
+   ng-bind-html output renders raw <style>/<script> source as visible text on
+   the page. The Stack's actual CSS/JS is loaded by SD's own mechanism — these
+   visible blocks are just rendering artifacts. Hide them on the dashboard
+   surface only; the Stack continues to distribute on every other page. */
+#dashboard-view .cbe-block-embed {
+  display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  3b. WELCOME STRIP (Text Block content)                          */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .vlpd-welcome {
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 22px !important;
+  padding: 28px 32px !important;
+  margin: 0 0 12px 0 !important;
+  background:
+    radial-gradient(ellipse 60% 100% at 0% 50%, rgba(233, 30, 99, 0.10) 0%, transparent 60%),
+    linear-gradient(135deg, var(--vlpd-ivory) 0%, var(--vlpd-blush) 100%) !important;
+  border: 1px solid var(--vlpd-border-rose) !important;
+  border-radius: var(--vlpd-radius-lg) !important;
+  box-shadow: var(--vlpd-shadow-sm) !important;
+  overflow: hidden !important;
+}
+
+#dashboard-view .vlpd-welcome::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 4px !important;
+  background: linear-gradient(180deg, var(--vlpd-rose), var(--vlpd-crimson), var(--vlpd-gold-leaf)) !important;
+}
+
+#dashboard-view .vlpd-welcome-icon {
+  flex: 0 0 auto !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, var(--vlpd-rose), var(--vlpd-crimson)) !important;
+  color: var(--vlpd-text-on-rose) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--vlpd-font-display) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.30) !important;
+}
+
+#dashboard-view .vlpd-welcome-body {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+#dashboard-view .vlpd-welcome-eyebrow {
+  display: inline-block !important;
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: var(--vlpd-rose) !important;
+  margin: 0 0 6px 0 !important;
+  padding: 3px 10px !important;
+  background: var(--vlpd-ivory) !important;
+  border: 1px solid var(--vlpd-border-rose) !important;
+  border-radius: 999px !important;
+}
+
+#dashboard-view .vlpd-welcome-title {
+  font-family: var(--vlpd-font-display) !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  color: var(--vlpd-noir) !important;
+  margin: 6px 0 8px 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.3px !important;
+}
+
+#dashboard-view .vlpd-welcome-title em {
+  font-style: italic !important;
+  background: linear-gradient(120deg, var(--vlpd-rose) 0%, var(--vlpd-crimson) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 600 !important;
+}
+
+#dashboard-view .vlpd-welcome-lede {
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--vlpd-text-muted) !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+  max-width: 720px !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  4. KPI WIDGET — .reporting__container shell                     */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .reporting__container {
+  background: var(--vlpd-ivory) !important;
+  border: 1px solid var(--vlpd-border) !important;
+  border-radius: var(--vlpd-radius-lg) !important;
+  box-shadow: var(--vlpd-shadow-sm) !important;
+  padding: 12px !important;
+  margin-bottom: 12px !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 12px !important;
+  transition: box-shadow var(--vlpd-dur-base) var(--vlpd-ease-out) !important;
+}
+
+#dashboard-view .reporting__container:hover {
+  box-shadow: var(--vlpd-shadow-md) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  5. KPI TILE — .reporting__block                                 */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .reporting__block {
+  position: relative !important;
+  background: var(--vlpd-ivory) !important;
+  /* SD injects per-block inline border-color: rgb(239, 239, 239) — override */
+  border: 1px solid var(--vlpd-border) !important;
+  border-radius: var(--vlpd-radius-md) !important;
+  /* SD injects per-block inline padding 16px + margin 5px — override */
+  padding: 18px 18px 16px 18px !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  transition: transform var(--vlpd-dur-base) var(--vlpd-ease-out),
+              box-shadow var(--vlpd-dur-base) var(--vlpd-ease-out),
+              border-color var(--vlpd-dur-base) ease !important;
+  overflow: visible !important;
+  min-height: 140px !important;
+}
+
+#dashboard-view .reporting__block::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, var(--vlpd-rose), var(--vlpd-crimson), var(--vlpd-gold-leaf)) !important;
+  transform: scaleX(0) !important;
+  transform-origin: left center !important;
+  transition: transform var(--vlpd-dur-slow) var(--vlpd-ease-out) !important;
+  border-radius: var(--vlpd-radius-md) var(--vlpd-radius-md) 0 0 !important;
+  z-index: 1 !important;
+}
+
+#dashboard-view .reporting__block:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--vlpd-shadow-md) !important;
+  border-color: var(--vlpd-border-rose) !important;
+}
+
+#dashboard-view .reporting__block:hover::before {
+  transform: scaleX(1) !important;
+}
+
+/* Title row: text + black-square icon */
+#dashboard-view .reporting__block__title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+
+#dashboard-view .reporting__block__title__text {
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+  color: var(--vlpd-crimson) !important;
+  -webkit-text-fill-color: var(--vlpd-crimson) !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* The black square icon at top-right of each tile (SD sets inline
+   background-color via ng-style — usually a dark color). Restyle the
+   container to a soft blush pill, then color the SVG inside. */
+#dashboard-view .reporting__block__title__icon {
+  flex: 0 0 auto !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: var(--vlpd-radius-sm) !important;
+  background: var(--vlpd-blush-tint) !important;
+  background-color: var(--vlpd-blush-tint) !important;
+  border: 1px solid var(--vlpd-border-rose) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background var(--vlpd-dur-fast) ease,
+              transform var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .reporting__block:hover .reporting__block__title__icon {
+  background: linear-gradient(135deg, var(--vlpd-rose), var(--vlpd-crimson)) !important;
+  background-color: var(--vlpd-crimson) !important;
+  border-color: transparent !important;
+  transform: rotate(-6deg) scale(1.05) !important;
+}
+
+#dashboard-view .reporting__block__title__icon-svg {
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--vlpd-crimson) !important;
+  transition: color var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .reporting__block:hover .reporting__block__title__icon-svg {
+  color: var(--vlpd-text-on-rose) !important;
+}
+
+#dashboard-view .reporting__block__title__icon-svg use {
+  fill: currentColor !important;
+}
+
+/* Value row: big number + delta % */
+#dashboard-view .reporting__block__value {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  margin: 4px 0 6px 0 !important;
+}
+
+#dashboard-view .reporting__block__value__current {
+  font-family: var(--vlpd-font-display) !important;
+  font-size: 36px !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  /* Solid color — not gradient-clipped — because SD injects per-block
+     `color: undefined !important` which clobbers gradient-clip in some
+     theme combos and makes the text render invisible. */
+  color: var(--vlpd-noir) !important;
+  -webkit-text-fill-color: var(--vlpd-noir) !important;
+  background: none !important;
+  letter-spacing: -0.5px !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Trend / delta — three modifier states */
+#dashboard-view .reporting__block__value__trend {
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: var(--vlpd-text-muted) !important;
+  -webkit-text-fill-color: var(--vlpd-text-muted) !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  width: max-content !important;
+  padding: 2px 8px !important;
+  border-radius: 999px !important;
+  background: rgba(107, 82, 96, 0.08) !important;
+  line-height: 1.4 !important;
+}
+
+#dashboard-view .reporting__block__value__trend--positive {
+  color: var(--vlpd-success) !important;
+  -webkit-text-fill-color: var(--vlpd-success) !important;
+  background: var(--vlpd-success-tint) !important;
+}
+
+#dashboard-view .reporting__block__value__trend--negative {
+  color: var(--vlpd-danger) !important;
+  -webkit-text-fill-color: var(--vlpd-danger) !important;
+  background: var(--vlpd-danger-tint) !important;
+}
+
+#dashboard-view .reporting__block__value__trend--none {
+  color: var(--vlpd-text-muted) !important;
+  -webkit-text-fill-color: var(--vlpd-text-muted) !important;
+  background: rgba(107, 82, 96, 0.08) !important;
+}
+
+#dashboard-view .reporting__block__value__trend__icon {
+  font-size: 10px !important;
+}
+
+#dashboard-view .reporting__block__value__trend i.fa {
+  font-size: 10px !important;
+}
+
+/* Graphics row: progress bar / sparkline + view button */
+#dashboard-view .reporting__block__graphics {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  margin-top: auto !important;
+  padding-top: 4px !important;
+}
+
+#dashboard-view .reporting__block__graphics__content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+#dashboard-view .reporting__block__graphics__button {
+  flex: 0 0 auto !important;
+}
+
+/* Progress bar wrapper (contains ApexCharts SVG) */
+#dashboard-view .reporting__block__progress__bar {
+  flex: 1 1 auto !important;
+  min-width: 80px !important;
+  position: relative !important;
+}
+
+/* The ApexCharts canvas inside the progress bar — re-skin its background.
+   We can't restyle the gradient SVG fill from CSS, but we can override the
+   canvas wrapper background. */
+#dashboard-view .reporting__block__progress__bar .apexcharts-canvas {
+  background: var(--vlpd-champagne-deep) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 1px 2px rgba(139, 21, 56, 0.10) !important;
+}
+
+#dashboard-view .reporting__block__progress__value {
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+  color: var(--vlpd-crimson) !important;
+  -webkit-text-fill-color: var(--vlpd-crimson) !important;
+  margin: 0 !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+/* Sparkline chart container — for tiles like Total Revenue / Unpaid Invoices */
+#dashboard-view .reporting__block__chart {
+  flex: 1 1 auto !important;
+  display: block !important;
+  min-width: 80px !important;
+}
+
+#dashboard-view .reporting__block__anchor {
+  display: block !important;
+  color: inherit !important;
+}
+
+/* "View" link / pill — bottom-right of each tile */
+#dashboard-view .reporting__block__view-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 5px 12px !important;
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: var(--vlpd-crimson) !important;
+  -webkit-text-fill-color: var(--vlpd-crimson) !important;
+  background: transparent !important;
+  border: 1px solid var(--vlpd-border-strong) !important;
+  border-radius: 999px !important;
+  transition: background var(--vlpd-dur-fast) ease,
+              color var(--vlpd-dur-fast) ease,
+              border-color var(--vlpd-dur-fast) ease,
+              transform var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .reporting__block__view-button:hover {
+  background: linear-gradient(135deg, var(--vlpd-rose), var(--vlpd-crimson)) !important;
+  color: var(--vlpd-text-on-rose) !important;
+  -webkit-text-fill-color: var(--vlpd-text-on-rose) !important;
+  border-color: transparent !important;
+  transform: translateY(-1px) !important;
+}
+
+#dashboard-view .reporting__block__view-button span {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+/* Eye icon (open chart modal) — for sparkline tiles */
+#dashboard-view .eye-icon {
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  color: var(--vlpd-text-muted) !important;
+  border-radius: 50% !important;
+  transition: color var(--vlpd-dur-fast) ease,
+              background var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .eye-icon:hover {
+  color: var(--vlpd-crimson) !important;
+  background: var(--vlpd-blush-tint) !important;
+}
+
+#dashboard-view .eye-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+/* Dropdown view (multi-link variant — Total Clients, Total Prospects, Total Leads) */
+#dashboard-view .reporting__block .dropdown-menu {
+  background: var(--vlpd-ivory) !important;
+  border: 1px solid var(--vlpd-border) !important;
+  border-radius: var(--vlpd-radius-sm) !important;
+  box-shadow: var(--vlpd-shadow-md) !important;
+  padding: 6px !important;
+  min-width: 180px !important;
+  z-index: 1000 !important;
+}
+
+#dashboard-view .reporting__block .dropdown-menu .dropdown-item {
+  color: var(--vlpd-text) !important;
+  padding: 8px 10px !important;
+  border-radius: var(--vlpd-radius-sm) !important;
+  font-size: 13px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+}
+
+#dashboard-view .reporting__block .dropdown-menu .dropdown-item:hover,
+#dashboard-view .reporting__block .dropdown-menu .dropdown-item:focus {
+  background: var(--vlpd-blush-tint) !important;
+  color: var(--vlpd-crimson) !important;
+}
+
+#dashboard-view .reporting__block .dropdown-menu .dropdown-item svg {
+  color: var(--vlpd-rose) !important;
+  fill: currentColor !important;
+}
+
+/* Skeleton-element placeholder (shown during loading) */
+#dashboard-view .reporting__block .skeleton-element {
+  background: transparent !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  5b. MULTI-LINK DROPDOWN CLIP FIX                                */
+/* ─────────────────────────────────────────────────────────────── */
+/*  Symptom: on multi-link tiles (Total Clients / Prospects /       */
+/*  Leads) the dropdown's 2nd row ("Companies") was height-clipped  */
+/*  flush with the top of the lower KPI tile's brand stripe.        */
+/*                                                                  */
+/*  `.reporting__block` is already overflow:visible (prior fix) and */
+/*  z-index on `.dropdown-menu` is already 1000 — so this is a      */
+/*  height-clip from an ANCESTOR, not a stacking-order problem.     */
+/*                                                                  */
+/*  Parent chain (style-spec §3.1):                                 */
+/*    .dropdown-menu                                                */
+/*      ← .reporting__block__graphics__button (.dropdown)           */
+/*      ← .reporting__block__graphics                               */
+/*      ← .reporting__block            (already overflow:visible)   */
+/*      ← .reporting__container         ← CLIPPER (rounded shell;   */
+/*          SD base sets overflow:hidden, our §4 never overrode it) */
+/*      ← .cbe-block / .cbe-row-wrapper / .row.no-gutters           */
+/*      ← #dashboard-view                                           */
+/*                                                                  */
+/*  Narrowest clipper = .reporting__container (KPI-only class).     */
+/*  The :has(.reporting__block) override also clears any CBE/row    */
+/*  wrapper that holds a KPI tile WITHOUT touching the Projects /   */
+/*  Activity panel shells (§6) — those wrappers contain a           */
+/*  .dashboard-organize-box, never a .reporting__block, so they     */
+/*  keep their overflow:hidden rounded-corner clipping.             */
+#dashboard-view .reporting__container,
+#dashboard-view .reporting__block .reporting__block__graphics,
+#dashboard-view .reporting__block .reporting__block__graphics__button {
+  overflow: visible !important;
+}
+
+#dashboard-view .cbe-block:has(.reporting__block),
+#dashboard-view .cbe-row-wrapper:has(.reporting__block),
+#dashboard-view .row.no-gutters:has(.reporting__block) {
+  overflow: visible !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  5c. ACTIVE-TILE STACKING LIFT (multi-link dropdown paint fix)   */
+/* ─────────────────────────────────────────────────────────────── */
+/*  Follow-up to §5b. overflow:visible alone did NOT resolve the    */
+/*  clip — JLW live-confirmed the dropdown's lower rows still got   */
+/*  cut exactly at the next tile's top edge. That ruled out         */
+/*  overflow entirely and pointed at PAINT ORDER.                   */
+/*                                                                  */
+/*  ROOT CAUSE: §5 `.reporting__block:hover { transform:            */
+/*  translateY(-3px) }` turns the hovered tile into a STACKING      */
+/*  CONTEXT. The dropdown's z-index:1000 is therefore scoped        */
+/*  INSIDE that tile — it can rise above the tile's own children    */
+/*  but NOT above the next tile, which (z-index:auto, later in DOM) */
+/*  paints over the overlapping region. The result looks like a     */
+/*  clean clip at the lower tile's brand stripe, but it is paint    */
+/*  order. This also explains why the earlier z-index 10 → 1000     */
+/*  bump on .dropdown-menu had no effect: you cannot escape a       */
+/*  parent stacking context by raising a child's z-index — the      */
+/*  lift must be on the TILE.                                       */
+/*                                                                  */
+/*  Fix: raise the active tile's own z-index so its whole subtree   */
+/*  (dropdown included) paints above sibling tiles. Scoped to the   */
+/*  KPI grid and to active states only (:hover covers the mouse     */
+/*  path; :focus-within covers the keyboard path and keeps the      */
+/*  lift while focus stays inside the open dropdown). z-index only  */
+/*  — no position/isolation change; the tile is already            */
+/*  position:relative from §5.                                      */
+#dashboard-view .reporting__container .reporting__block:hover,
+#dashboard-view .reporting__container .reporting__block:focus-within {
+  z-index: 50 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  6. PROJECTS + ACTIVITY STREAM SHELL — .dashboard-organize-box   */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .dashboard-organize-box {
+  background: var(--vlpd-ivory) !important;
+  border: 1px solid var(--vlpd-border) !important;
+  border-radius: var(--vlpd-radius-lg) !important;
+  box-shadow: var(--vlpd-shadow-sm) !important;
+  /* SD applies inline `margin: 10px 15px` — override */
+  margin: 0 0 12px 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#dashboard-view .dashboard-organize-box.card {
+  /* Bootstrap .card adds its own bg/border — neutralize so our shell wins */
+  background-color: var(--vlpd-ivory) !important;
+  border-color: var(--vlpd-border) !important;
+}
+
+/* Spacing between side-by-side panels (Projects + Activity Stream).
+   SD nests each .dashboard-organize-box inside a .cbe-block column whose
+   row uses .row.no-gutters — kill the no-gutters override for this scope
+   and let the dashboard-organize-box's own margin breathe. */
+#dashboard-view .row.no-gutters > .cbe-block {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+#dashboard-view .row.no-gutters {
+  margin-left: -8px !important;
+  margin-right: -8px !important;
+}
+
+/* Header bar (title + filter / sort / refresh icons) */
+#dashboard-view .dashboard-organize-box__header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 18px 22px !important;
+  border-bottom: 1px solid var(--vlpd-border) !important;
+  background: linear-gradient(180deg, var(--vlpd-ivory) 0%, var(--vlpd-champagne) 100%) !important;
+  gap: 12px !important;
+  flex: 0 0 auto !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-title,
+#dashboard-view .dashboard-organize-box__header h4.widget-title {
+  font-family: var(--vlpd-font-display) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: var(--vlpd-noir) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.2px !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* Filter / sort / refresh icon buttons */
+#dashboard-view .dashboard-organize-box__header-filters .filter-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--vlpd-text-muted) !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  transition: background var(--vlpd-dur-fast) ease,
+              color var(--vlpd-dur-fast) ease,
+              border-color var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters .filter-button:hover {
+  background: var(--vlpd-blush-tint) !important;
+  color: var(--vlpd-crimson) !important;
+  border-color: var(--vlpd-border-rose) !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters .filter-button svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters .filter-button::after {
+  /* Kill Bootstrap's dropdown caret */
+  display: none !important;
+}
+
+/* Header dropdown menu (filter list, sort list) */
+#dashboard-view .dashboard-organize-box__header-filters .dropdown-menu {
+  background: var(--vlpd-ivory) !important;
+  border: 1px solid var(--vlpd-border) !important;
+  border-radius: var(--vlpd-radius-sm) !important;
+  box-shadow: var(--vlpd-shadow-md) !important;
+  padding: 6px !important;
+  min-width: 200px !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters .dropdown-menu .dropdown-item {
+  color: var(--vlpd-text) !important;
+  padding: 8px 12px !important;
+  border-radius: var(--vlpd-radius-sm) !important;
+  font-size: 13px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters .dropdown-menu .dropdown-item:hover,
+#dashboard-view .dashboard-organize-box__header-filters .dropdown-menu .dropdown-item.active {
+  background: var(--vlpd-blush-tint) !important;
+  color: var(--vlpd-crimson) !important;
+}
+
+#dashboard-view .dashboard-organize-box__header-filters .dropdown-menu .dropdown-item svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+  color: var(--vlpd-rose) !important;
+  flex: 0 0 auto !important;
+}
+
+/* Body */
+#dashboard-view .dashboard-organize-box__content {
+  flex: 1 1 auto !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  background: transparent !important;
+}
+
+/* Footer (Showing N Results + View All button) */
+#dashboard-view .dashboard-organize-box__footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 22px !important;
+  border-top: 1px solid var(--vlpd-border) !important;
+  background: linear-gradient(180deg, var(--vlpd-champagne) 0%, var(--vlpd-champagne-deep) 100%) !important;
+  gap: 12px !important;
+  flex: 0 0 auto !important;
+}
+
+#dashboard-view .dashboard-organize-box__footer .tasks-number {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--vlpd-text-muted) !important;
+  letter-spacing: 0.3px !important;
+}
+
+#dashboard-view .dashboard-organize-box__footer .tasks-number svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+}
+
+#dashboard-view .dashboard-organize-box__footer-btn,
+#dashboard-view .dashboard-organize-box__footer .btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 18px !important;
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: var(--vlpd-text-on-rose) !important;
+  background: linear-gradient(135deg, var(--vlpd-rose), var(--vlpd-crimson)) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: var(--vlpd-shadow-sm) !important;
+  transition: transform var(--vlpd-dur-fast) ease,
+              box-shadow var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .dashboard-organize-box__footer-btn:hover,
+#dashboard-view .dashboard-organize-box__footer .btn-secondary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--vlpd-shadow-rose) !important;
+  color: var(--vlpd-text-on-rose) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  7. PROJECTS — .dashboard-item--project rows                     */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .dashboard-item {
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 14px !important;
+  padding: 14px 22px !important;
+  border-bottom: 1px solid var(--vlpd-border) !important;
+  background: transparent !important;
+  transition: background var(--vlpd-dur-fast) ease !important;
+  cursor: pointer !important;
+}
+
+#dashboard-view .dashboard-organize-box__content > projects-item:last-child .dashboard-item,
+#dashboard-view .dashboard-organize-box__content > live-stream-item:last-child .dashboard-item {
+  border-bottom: 0 !important;
+}
+
+#dashboard-view .dashboard-item:hover {
+  background: var(--vlpd-blush-tint) !important;
+}
+
+/* Completion-data progress sliver on project cards */
+#dashboard-view .dashboard-item .completionData {
+  flex: 0 0 6px !important;
+  width: 6px !important;
+  border-radius: 999px !important;
+  background: var(--vlpd-champagne-deep) !important;
+  overflow: hidden !important;
+  align-self: stretch !important;
+  display: flex !important;
+  align-items: flex-end !important;
+}
+
+#dashboard-view .dashboard-item .completionData > div {
+  background: linear-gradient(180deg, var(--vlpd-rose), var(--vlpd-crimson), var(--vlpd-gold-leaf)) !important;
+  background-color: var(--vlpd-rose) !important;
+  border-radius: 999px !important;
+}
+
+#dashboard-view .dashboard-item__content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+#dashboard-view .dashboard-item__info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+#dashboard-view .dashboard-item__info .first-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--vlpd-text-muted) !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.3 !important;
+}
+
+#dashboard-view .dashboard-item__info .first-row .projectClient {
+  color: var(--vlpd-rose) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 10px !important;
+}
+
+#dashboard-view .dashboard-item__info .first-row .assignee {
+  color: var(--vlpd-text-muted) !important;
+}
+
+#dashboard-view .dashboard-item__info .first-row .dot-divider {
+  display: inline-block !important;
+  width: 3px !important;
+  height: 3px !important;
+  border-radius: 50% !important;
+  background: var(--vlpd-text-muted) !important;
+  opacity: 0.5 !important;
+}
+
+#dashboard-view .dashboard-item__title {
+  font-family: var(--vlpd-font-display) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--vlpd-noir) !important;
+  margin: 2px 0 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.1px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Status / progress / sector / due-date pills */
+#dashboard-view .dashboard-item__statuses {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin-top: 4px !important;
+}
+
+#dashboard-view .category-pill {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 10px !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  isolation: isolate !important;
+}
+
+#dashboard-view .category-pill__background {
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 999px !important;
+  opacity: 0.18 !important;
+  z-index: 0 !important;
+}
+
+#dashboard-view .category-pill__text {
+  position: relative !important;
+  z-index: 1 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  white-space: nowrap !important;
+}
+
+/* Right-side action icons (folder, kanban, notes, calendar, timer, tasks, view) */
+#dashboard-view .contact2-filter__actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
+}
+
+#dashboard-view .contact2-filter__contact-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  color: var(--vlpd-text-muted) !important;
+  transition: color var(--vlpd-dur-fast) ease,
+              background var(--vlpd-dur-fast) ease,
+              transform var(--vlpd-dur-fast) ease !important;
+}
+
+#dashboard-view .contact2-filter__contact-link:hover {
+  color: var(--vlpd-crimson) !important;
+  background: var(--vlpd-blush-tint) !important;
+  transform: translateY(-1px) !important;
+}
+
+#dashboard-view .contact2-filter__contact-link svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  8. ACTIVITY STREAM — .dashboard-item--live-stream rows          */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view .dashboard-item--live-stream {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+/* Avatar wrapper */
+#dashboard-view .targets-avatar {
+  flex: 0 0 auto !important;
+}
+
+#dashboard-view .targets-avatar .sd-user-avatar,
+#dashboard-view .targets-avatar figure.avatar {
+  margin: 0 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  border: 2px solid var(--vlpd-ivory) !important;
+  box-shadow: 0 0 0 2px var(--vlpd-border-rose),
+              var(--vlpd-shadow-sm) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--vlpd-blush-tint) !important;
+}
+
+#dashboard-view .targets-avatar img,
+#dashboard-view .targets-avatar svg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+#dashboard-view .default-user-avatar-container,
+#dashboard-view .default-user-avatar {
+  width: 100% !important;
+  height: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, var(--vlpd-rose), var(--vlpd-crimson)) !important;
+  color: var(--vlpd-text-on-rose) !important;
+  font-family: var(--vlpd-font-display) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  border-radius: 50% !important;
+}
+
+/* Activity row content */
+#dashboard-view .dashboard-item--live-stream .dashboard-item__content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+
+#dashboard-view .dashboard-item--live-stream .dashboard-item__info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+#dashboard-view .dashboard-item--live-stream .first-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-bottom: 2px !important;
+}
+
+#dashboard-view .dashboard-item--live-stream .first-row > span:first-child {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  color: var(--vlpd-rose) !important;
+  line-height: 1.3 !important;
+}
+
+#dashboard-view .dashboard-item--live-stream .first-row .dot-divider {
+  display: inline-block !important;
+  width: 3px !important;
+  height: 3px !important;
+  border-radius: 50% !important;
+  background: var(--vlpd-text-muted) !important;
+  opacity: 0.5 !important;
+}
+
+#dashboard-view .dashboard-item--live-stream .first-row > span:last-child {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--vlpd-text-muted) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Activity description (the main "edited the Landing Page" text) */
+#dashboard-view .dashboard-item--live-stream .dashboard-item__title {
+  font-family: var(--vlpd-font-body) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--vlpd-text) !important;
+  margin: 2px 0 4px 0 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0 !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  overflow: visible !important;
+}
+
+/* Timestamp */
+#dashboard-view .dashboard-item--live-stream .text-muted.small {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: var(--vlpd-text-muted) !important;
+  letter-spacing: 0.2px !important;
+  margin: 0 !important;
+}
+
+/* External-link icon (right side of activity row) */
+#dashboard-view .dashboard-item--live-stream .contact2-filter__contact-link {
+  margin-top: 4px !important;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  9. SCROLLBARS                                                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+#dashboard-view ::-webkit-scrollbar,
+#dashboard-view .dashboard-organize-box__content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#dashboard-view ::-webkit-scrollbar-track,
+#dashboard-view .dashboard-organize-box__content::-webkit-scrollbar-track {
+  background: var(--vlpd-champagne-deep);
+  border-radius: 999px;
+}
+
+#dashboard-view ::-webkit-scrollbar-thumb,
+#dashboard-view .dashboard-organize-box__content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--vlpd-rose), var(--vlpd-crimson));
+  border-radius: 999px;
+}
+
+#dashboard-view ::-webkit-scrollbar-thumb:hover,
+#dashboard-view .dashboard-organize-box__content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--vlpd-rose-deep), var(--vlpd-crimson-deep));
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  10. RESPONSIVE                                                  */
+/* ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  #dashboard-view {
+    padding: 22px 16px !important;
+  }
+  #dashboard-view .reporting__container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+  #dashboard-view .reporting__block {
+    padding: 16px 14px 14px 14px !important;
+    min-height: 130px !important;
+  }
+  #dashboard-view .reporting__block__value__current {
+    font-size: 30px !important;
+  }
+  #dashboard-view .dashboard-organize-box__header {
+    padding: 14px 16px !important;
+  }
+  #dashboard-view .dashboard-item {
+    padding: 12px 16px !important;
+  }
+  #dashboard-view .dashboard-organize-box__footer {
+    padding: 12px 16px !important;
+  }
+  #dashboard-view .vlpd-welcome {
+    padding: 22px 22px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  #dashboard-view {
+    padding: 16px 10px !important;
+  }
+  #dashboard-view .reporting__container {
+    grid-template-columns: 1fr !important;
+  }
+  #dashboard-view .dashboard-organize-box__header-title,
+  #dashboard-view .dashboard-organize-box__header h4.widget-title {
+    font-size: 18px !important;
+  }
+  #dashboard-view .reporting__block__value__current {
+    font-size: 28px !important;
+  }
+  #dashboard-view .dashboard-item__title {
+    font-size: 14px !important;
+  }
+  #dashboard-view .vlpd-welcome {
+    flex-direction: column !important;
+    gap: 14px !important;
+    padding: 22px 18px !important;
+  }
+  #dashboard-view .vlpd-welcome-title {
+    font-size: 22px !important;
+  }
+  #dashboard-view .vlpd-welcome-lede {
+    font-size: 13px !important;
+  }
+  #dashboard-view .contact2-filter__actions {
+    /* On narrow screens, project rows have a lot of action icons.
+       Keep them visible but allow wrapping. */
+    flex-wrap: wrap !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  11. REDUCED MOTION                                              */
+/* ─────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  #dashboard-view *,
+  #dashboard-view *::before,
+  #dashboard-view *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  #dashboard-view .reporting__block::before {
+    transform: scaleX(1) !important;
+  }
+  #dashboard-view .reporting__block:hover .reporting__block__title__icon {
+    transform: none !important;
+  }
+}
