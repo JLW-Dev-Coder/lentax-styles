@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f4f6fa"/>
+    </linearGradient>
+    <linearGradient id="navyA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d3a6b"/>
+      <stop offset="100%" stop-color="#14213d"/>
+    </linearGradient>
+    <linearGradient id="navyB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2c5fa8"/>
+      <stop offset="100%" stop-color="#1d3a6b"/>
+    </linearGradient>
+    <linearGradient id="redA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#b41d1d"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2.2" fill="#14213d" opacity="0.10"/>
+    </pattern>
+    <linearGradient id="dotfade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="dotmask"><rect width="1600" height="1000" fill="url(#dotfade)"/></mask>
+  </defs>
+
+  <!-- base field -->
+  <rect width="1600" height="1000" fill="url(#field)"/>
+
+  <!-- halftone dot fade, upper-right, masked to fade out toward center -->
+  <g mask="url(#dotmask)" transform="translate(1080,40)">
+    <rect width="520" height="420" fill="url(#dots)" transform="scale(-1,1) translate(-520,0)"/>
+  </g>
+
+  <!-- TOP-LEFT swoosh stack -->
+  <path d="M0,0 L470,0 C300,150 150,330 60,560 C30,360 10,170 0,0 Z" fill="url(#redA)"/>
+  <path d="M0,0 L600,0 C380,200 200,440 120,720 C70,470 30,230 0,0 Z" fill="url(#navyB)" opacity="0.92"/>
+  <path d="M0,0 L560,0 C360,190 190,420 110,690 L70,640 C150,400 320,180 500,0 Z" fill="#ffffff" opacity="0.55"/>
+
+  <!-- BOTTOM-RIGHT swoosh stack (mirror, larger) -->
+  <path d="M1600,1000 L1080,1000 C1320,840 1480,620 1560,360 C1590,560 1600,780 1600,1000 Z" fill="url(#redA)"/>
+  <path d="M1600,1000 L940,1000 C1260,820 1460,560 1560,250 C1590,490 1600,740 1600,1000 Z" fill="url(#navyA)"/>
+  <path d="M1600,1000 L980,1000 C1290,830 1480,580 1575,290 L1545,360 C1450,640 1270,860 1040,1000 Z" fill="#ffffff" opacity="0.5"/>
+
+  <!-- fine flowing line-work across the middle (very subtle) -->
+  <g fill="none" stroke="#1d3a6b" stroke-width="1" opacity="0.08">
+    <path d="M0,520 C400,420 800,640 1600,470"/>
+    <path d="M0,560 C420,470 820,690 1600,520"/>
+    <path d="M0,600 C440,520 840,740 1600,570"/>
+  </g>
+</svg>

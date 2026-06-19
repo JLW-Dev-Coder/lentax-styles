@@ -173,6 +173,11 @@
      themes/{product}-default.css. */
   --lentax-form-page-bg: #A6A6A6;
 
+  /* Themeable page background IMAGE (§2.13). Base default = none, so any
+     portal without a theme image renders exactly as before (color only).
+     Themes override via redeclaration in themes/{product}-default.css. */
+  --lentax-page-bg-image: none;   /* themeable page background image; themes override */
+
   /* ===== Portal chrome — sidebar / navbar / tab strip (§2.14) ===== */
   /* Defaults match current SuiteDash chrome, so any portal without a
      theme override stays identical to today. Themes redeclare these in
@@ -12604,8 +12609,21 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
    via an inline style tag (id="theme-advanced-and-background-controls"). We override with
    a token that themes redeclare. Selector specificity matches SuiteDash's (0,2,1);
    !important guards against the inline tag loading after the Netlify-served CSS. */
+/* page background: themeable color + optional themeable image (Phase 6).
+   .main-wrapper is the portal-shell content surface present on every page type
+   (dashboard, docs, forms, flows, proposals — verified across all DOM snapshots),
+   so this rule paints the global page background. The image layer renders OVER the
+   color; for SVGs with transparent areas the --lentax-form-page-bg color shows
+   through. background-attachment: fixed anchors the image to the viewport so it
+   stays put on long scrolling pages. When --lentax-page-bg-image is none, the
+   background-image declaration is a clean no-op — image-less themes are unchanged. */
 body:not(.sd-dark-mode) .main-wrapper {
   background-color: var(--lentax-form-page-bg) !important;
+  background-image: var(--lentax-page-bg-image) !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
 }
 
 /* ─────────────────────────────────────────────────────────────── */
@@ -12760,6 +12778,9 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   --vlpd-gold-leaf:      var(--lentax-tpp-gold-leaf);
   --vlpd-gold-bright:    var(--lentax-tpp-gold-bright);
 
+  /* Functional status colors are intentionally semantic (fixed), NOT themeable.
+     JLW ruling 2026-06-19: success=green / warning=amber / danger=red on every
+     theme for universal legibility. Do NOT re-point these to --lentax-* tokens. */
   --vlpd-success:        #2E7D5B;
   --vlpd-success-tint:   rgba(46, 125, 91, 0.10);
   --vlpd-warning:        #C77E2E;
