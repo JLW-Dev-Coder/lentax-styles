@@ -23,6 +23,18 @@
   --lentax-tpp-crimson-muted: #b87333;            /* muted mauve text -> bronze-copper */
   --lentax-tpp-crimson-muted-alt: #C7BFB3;        /* muted mauve-gray text -> bronze-tan */
 
+  /* TPP warm accents (champagne / ivory / gold) — Phase 1, mapped to VLP parchment/bronze/gold */
+  --lentax-tpp-champagne: #F5E6D3;                /* -> parchment-soft */
+  --lentax-tpp-champagne-rgb: 245, 230, 211;      /* -> parchment-soft-rgb */
+  --lentax-tpp-champagne-deep: #EBD7BE;           /* deeper champagne (no clean VLP analog; matches base) */
+  --lentax-tpp-champagne-deep-rgb: 235, 215, 190;
+  --lentax-tpp-ivory: #FFFAF4;                    /* -> parchment-cream */
+  --lentax-tpp-ivory-rgb: 255, 250, 244;
+  --lentax-tpp-gold-leaf: #D4A574;                /* -> bronze-light */
+  --lentax-tpp-gold-leaf-rgb: 212, 165, 116;      /* -> bronze-light-rgb */
+  --lentax-tpp-gold-bright: #E8C088;              /* -> gold-tan */
+  --lentax-tpp-gold-bright-rgb: 232, 192, 136;
+
   /* ===== VLP-native tokens (mirror lentax-base.css §3.2–§3.5) ===== */
   /* Also declared in base — redeclaring here is self-documenting and idempotent. */
 
