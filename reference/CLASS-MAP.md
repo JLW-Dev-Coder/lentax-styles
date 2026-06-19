@@ -6,6 +6,9 @@ on every port/fix to target real selectors instead of assumed ones.
 
 **Captured:** 2026-06-19 | **Snapshots:** `reference/dom-snapshots/` (8 surfaces × `_outerHTML.txt` + `_styles.txt`)
 
+**Updates:**
+- **2026-06-19** — Agreement doc (Doc 1) body corrected (was rendering 8879 markup); now renders `.tpp-doc-*` per the `reference/agreement-tpp.html` paste. §2.17 live. Agreement snapshot re-staged.
+
 > **Why this file exists:** the `.doc-8879`-vs-`.tpp-doc` wrapper divergence (Fix B,
 > commit `bc02e90`) and the Coastal partial-reskin both stemmed from not having
 > ground-truth DOM. This map is the antidote: it records what SuiteDash *emits*,
@@ -41,7 +44,7 @@ Bootstrap grid (`.row`, `.col-*`, `.d-flex`, `.no-gutters`), `.pace*`,
 |---------|-------------------|---------------------|---------------|-------------------------------|
 | Dashboard | `#dashboard-view` (on `div.card-block.dashboard-page-content`) | 2.15 (+2.1 onboarding) | `.vlpd-onboard*`, `.tu-progress__*` | None for root. Body components are SD-native. |
 | Document — 8879 (Doc 2) | `.doc-8879` | 2.16 + 2.18 | `.doc-*` (under `.doc-8879`) | ⚠ uses `.doc-8879`, no `.tpp-doc` parent — relies on Fix B twins (already fixed). |
-| Document — Agreement (Doc 1) | `.tpp-doc` › `.doc-8879` | 2.16 + 2.18 (NOT 2.17) | `.doc-*` (under `.tpp-doc`/`.doc-8879`) | ⚠⚠ **Body is Form 8879 markup, not agreement markup.** Zero `.tpp-doc-*` classes → **2.17 matches nothing.** See cross-doc section. |
+| Document — Agreement (Doc 1) | `.tpp-doc` | 2.16 + 2.17 | `.tpp-doc-*` | ✅ Renders `.tpp-doc-*` agreement markup — **§2.17 live** (corrected 2026-06-19; was 8879 body). See cross-doc section. |
 | Document — Filing Summary (Doc 3) | `.tu-doc` | 2.19 | `.tu-doc`, `.tu-doc-*` | ✅ None — live matches CSS exactly. |
 | Flows | `.sd-flow` (`.flow-type-ondemand sd-flow`) | 2.20 (+2.2 TPP / 2.12 VLP modal) | `.flow-*`, `.vlpd-onboard`, `.tu-lede-*` | `.crm-actions-panel__*` present but unstyled (shared SD component). |
 | Forms | `.app-form-embed` (`.app-form-type-intake`) | 2.4–2.9 | `.tu-form-header`, `.tu-form-page-*` | `.crm-actions-panel__*` present but unstyled (shared SD component). |
@@ -101,20 +104,19 @@ cross-document comparison below.
 
 ### Document — Service Agreement (Doc 1) — `doc_agreement_*`
 
-**Live root:** `<div class="tpp-doc">` › `<div class="doc-8879">` (both wrappers, nested)
-**Sub-section it is *actually* styled by:** 2.16 + 2.18 (the 8879 rules)
-**Sub-section that was *built* for it:** 2.17 — and it matches **nothing live** (see below)
+**Live root:** `<div class="tpp-doc">` (sole class; **no `.doc-8879` child** — clean wrapper)
+**Sub-section:** 2.16 (shared foundation → `--tpp-*` custom properties) + 2.17 (Service Agreement)
+**Namespace:** `.tpp-doc-*` content classes, descendant-scoped under `.tpp-doc`.
 
-**⚠⚠ Surprise — the document named "Tax Prep Service Agreement" renders Form 8879 body markup.**
-- SuiteDash chrome confirms the document identity: `<span class="title" id="contract-title">Tax Prep Service Agreement</span>` and the signature ribbon `"Tax Prep Service Agreement" requires your signature`.
-- But the WYSIWYG body is 8879 content: wrapper chain `.tpp-doc > .doc-8879`, and `.doc-subtitle` reads **"Form 8879 — Authorization for Electronic Filing"**.
-- The body uses the same `.doc-*` classes as Doc 2 (`.doc-header`, `.doc-section`, `.doc-field*`, `.doc-sig-*`, `.doc-signature-block`, `.doc-retention`, …).
-- It contains **zero `.tpp-doc-*` (hyphenated) classes** — i.e. none of `.tpp-doc-header`, `.tpp-doc-body`, `.tpp-doc-logo`, `.tpp-doc-title` that section **2.17** targets.
+**Key elements (ours):** `.tpp-doc-header` (`.tpp-doc-logo` wordmark / `.tpp-doc-tagline` / `.tpp-doc-title` / `.tpp-doc-doctype`), `.tpp-doc-body`, `.tpp-doc-preamble`, `.tpp-doc-section` (×6) / `.tpp-doc-h2`, `.tpp-doc-signatures` (`.tpp-doc-sig-meta` / `.tpp-doc-sig-row` / `.tpp-doc-sig-block` / `.tpp-doc-sig-label` / `.tpp-doc-sig-field-label` / `.tpp-doc-sig-line` / `.tpp-doc-sig-value`), `.tpp-doc-footer`.
 
-**Consequences:**
-1. **Doc 1 renders styled** — because it carries both `.tpp-doc` (so 2.16's `--tpp-*` custom properties resolve) and `.doc-8879` (so 2.18's `.doc-8879 .doc-*` rules match). It is doubly covered by the 8879 styling.
-2. **Section 2.17 is effectively dead** against current production content — its `.tpp-doc-*` selectors match none of the live agreement DOM.
-3. This is a **content** divergence (the agreement doc's body markup is 8879), not a CSS cascade failure. **Flag for JLW:** is the agreement doc intentionally repurposed as a second 8879, or did 8879 markup get pasted into the agreement doc in SuiteDash? Either way, 2.17 only becomes live again if/when the agreement doc is given true agreement markup (`.tpp-doc-*`).
+**✅ Corrected 2026-06-19 — §2.17 is now live.** JLW pasted `reference/agreement-tpp.html` into the SuiteDash "Tax Prep Service Agreement" document body, replacing the Form 8879 markup that the 2026-06-18 audit flagged. The recaptured DOM confirms:
+- Root wrapper is now `.tpp-doc` **alone** (line 1505) — SuiteDash did **not** re-nest `.doc-8879`, and did **not** strip the pasted classes (no sanitization).
+- All 19 distinct `.tpp-doc-*` structural classes are present verbatim (40 `class="…tpp-doc…"` attribute hits incl. root), in source order.
+- **Zero** `.doc-8879` / `.doc-subtitle` / "Form 8879 — Authorization for Electronic Filing" tokens remain.
+- Body content is genuine agreement language (Tax Preparation Service, Client Responsibilities, MFJ, Power of Attorney, Governing Law, Acceptance).
+
+**Prior state (pre-2026-06-19, kept for history):** the doc body was Form 8879 markup under a `.tpp-doc > .doc-8879` wrapper chain using `.doc-*` classes (`.doc-header`, `.doc-section`, `.doc-field*`, `.doc-sig-*`, `.doc-signature-block`, `.doc-retention`, …). It rendered styled via 2.16 + 2.18 but **§2.17 matched nothing live**. That was a content divergence (8879 markup pasted into the agreement doc), not a cascade failure — now resolved by the correct-markup paste.
 
 ### Document — Filing Summary (Doc 3) — `doc_summary_*`
 
@@ -198,7 +200,7 @@ cross-document comparison below.
 
 | # | Surface | Live wrapper | CSS expects | Severity | Impact |
 |---|---------|-------------|-------------|----------|--------|
-| 1 | Doc 1 (Agreement) | `.tpp-doc > .doc-8879`, `.doc-*` body | 2.17's `.tpp-doc-*` | **HIGH (content)** | Doc renders styled via 2.16+2.18, but **2.17 matches nothing** — the agreement doc's live body is 8879 markup. Content issue, not cascade failure. Flag to JLW. |
+| 1 | Doc 1 (Agreement) | `.tpp-doc`, `.tpp-doc-*` body | 2.17's `.tpp-doc-*` | RESOLVED ✅ | Corrected 2026-06-19 — `reference/agreement-tpp.html` pasted; live body now renders `.tpp-doc-*` agreement markup and **§2.17 is live**. Was: 8879 markup. |
 | 2 | Doc 2 (8879) | `.doc-8879` (no `.tpp-doc`) | `.tpp-doc` (orig.) | RESOLVED | Fixed via Fix B (`bc02e90`) — `.doc-8879` twinned into 2.16/2.18. |
 | 3 | Doc 3 (Summary) | `.tu-doc` | `.tu-doc` | NONE ✅ | Live matches CSS exactly. Migration target for Docs 1 & 2. |
 | 4 | Proposal | (no `.contract-*`) | `.contract-header/.body` in 2.21 tail | LOW | Dead selector for this proposal type; standard proposal unaffected. |
@@ -210,11 +212,9 @@ cross-document comparison below.
 The 8879 diagnosis flagged a backlog risk: would Fix B need `.doc-agreement` / `.doc-summary` twins?
 Ground truth answers it:
 - **Doc 3 (Summary)** uses `.tu-doc` cleanly — **no twin needed**.
-- **Doc 1 (Agreement)** uses `.tpp-doc > .doc-8879` and is already covered by the existing 2.16/2.18 `.tpp-doc` **and** `.doc-8879` selectors — **no new twin needed for styling**. The real issue is content-level (its body is 8879 markup), not a missing selector.
+- **Doc 1 (Agreement)** now uses `.tpp-doc` with a `.tpp-doc-*` body (corrected 2026-06-19), styled by 2.16 + 2.17 — **no twin needed**. (Pre-correction it carried `.tpp-doc > .doc-8879` 8879 markup, covered by 2.16/2.18; the issue was content-level, not a missing selector.)
 
-So **no `.doc-agreement` / `.doc-summary` twin pass is required.** The open item is instead:
-decide whether the Agreement document should carry genuine agreement markup (which would
-make 2.17 live again) or stay as-is.
+So **no `.doc-agreement` / `.doc-summary` twin pass is required.** The former open item — whether to give the Agreement doc genuine agreement markup — is now **closed: the correct `.tpp-doc-*` markup was pasted 2026-06-19, making §2.17 live.**
 
 ---
 
