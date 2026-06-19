@@ -1,39 +1,42 @@
 /* themes/tpp-coastal.css
- * TPP Coastal — teal/navy/seafoam/sand palette
+ * TPP Coastal — cool teal/navy/seafoam/slate palette
  * Loaded after lentax-base.css on TPP "Coastal" portals via lentax-tpp-coastal.js.
- * Re-skins the TPP brand token surface to a calm coastal palette
- * (deep teal #0E7C7B / navy-slate #1B3A4B / seafoam #E0F2F1 / sand #D9C2A3).
+ * Re-skins the TPP brand token surface to a dramatic coastal palette
+ * (teal #0B8A95 / ocean-navy #143A52 / seafoam #CDE5E8 / pale-blue #DCEEF5).
  * Same token surface as themes/tpp-default.css — only values differ.
  * Fonts unchanged (Cormorant Garamond + Inter, inherited from lentax-base.css).
  * Source: Coastal palette approved 2026-06-18 (Care Law Group demo).
+ * Revised 2026-06-19: cooler/bolder palette — warm sand/champagne surfaces
+ * replaced with pale blue / seafoam / slate for a dramatic blues-and-teals
+ * coastal identity. Accents brightened (teal #0B8A95 / seafoam #9FCDD6).
  */
 :root {
   /* TPP brand tokens re-skinned to Coastal (mirrors tpp-default.css surface) */
-  --lentax-tpp-crimson-primary: #0E7C7B;
-  --lentax-tpp-crimson-primary-rgb: 14, 124, 123;
-  --lentax-tpp-crimson-deep: #1B3A4B;
-  --lentax-tpp-crimson-deep-rgb: 27, 58, 75;
-  --lentax-tpp-crimson-maroon: #0F2733;
-  --lentax-tpp-crimson-magenta: #0A5F5E;
-  --lentax-tpp-crimson-light: #E0F2F1;
-  --lentax-tpp-crimson-light-rgb: 224, 242, 241;
-  --lentax-tpp-crimson-tint: #F4FAF9;
-  --lentax-tpp-crimson-surface-deep: #11303D;
-  --lentax-tpp-crimson-surface-darkest: #0A1F29;
-  --lentax-tpp-crimson-muted: #5A7A85;
-  --lentax-tpp-crimson-muted-alt: #7B98A1;
+  --lentax-tpp-crimson-primary: #0B8A95;
+  --lentax-tpp-crimson-primary-rgb: 11, 138, 149;
+  --lentax-tpp-crimson-deep: #143A52;
+  --lentax-tpp-crimson-deep-rgb: 20, 58, 82;
+  --lentax-tpp-crimson-maroon: #0C2A3A;
+  --lentax-tpp-crimson-magenta: #0A6E78;
+  --lentax-tpp-crimson-light: #DCEEF5;
+  --lentax-tpp-crimson-light-rgb: 220, 238, 245;
+  --lentax-tpp-crimson-tint: #EFF7FB;
+  --lentax-tpp-crimson-surface-deep: #103445;
+  --lentax-tpp-crimson-surface-darkest: #08222F;
+  --lentax-tpp-crimson-muted: #4E7A8C;
+  --lentax-tpp-crimson-muted-alt: #6E96A6;
 
-  /* TPP warm accents (champagne / ivory / gold) — Phase 1, Coastal sand/seafoam analogs */
-  --lentax-tpp-champagne: #D9C2A3;       /* warm sand (Coastal accent-strip sand) */
-  --lentax-tpp-champagne-rgb: 217, 194, 163;
-  --lentax-tpp-champagne-deep: #C9B08C;  /* sand-deep */
-  --lentax-tpp-champagne-deep-rgb: 201, 176, 140;
-  --lentax-tpp-ivory: #F4FAF9;           /* seafoam-tint (matches crimson-tint) */
-  --lentax-tpp-ivory-rgb: 244, 250, 249;
-  --lentax-tpp-gold-leaf: #A88F6F;       /* muted sand-bronze */
-  --lentax-tpp-gold-leaf-rgb: 168, 143, 111;
-  --lentax-tpp-gold-bright: #D9C2A3;     /* warm sand */
-  --lentax-tpp-gold-bright-rgb: 217, 194, 163;
+  /* TPP cool accents (champagne / ivory / gold tokens re-skinned to seafoam/slate) — Phase 1 */
+  --lentax-tpp-champagne: #CDE5E8;       /* pale seafoam (Coastal accent-strip seafoam) */
+  --lentax-tpp-champagne-rgb: 205, 229, 232;
+  --lentax-tpp-champagne-deep: #A8CDD4;  /* muted seafoam */
+  --lentax-tpp-champagne-deep-rgb: 168, 205, 212;
+  --lentax-tpp-ivory: #EEF6FA;           /* pale blue-white (matches crimson-tint family) */
+  --lentax-tpp-ivory-rgb: 238, 246, 250;
+  --lentax-tpp-gold-leaf: #7FA8B5;       /* slate-blue */
+  --lentax-tpp-gold-leaf-rgb: 127, 168, 181;
+  --lentax-tpp-gold-bright: #9FCDD6;     /* bright seafoam */
+  --lentax-tpp-gold-bright-rgb: 159, 205, 214;
 
   /* TPP portal page background — crimson-deep token (now navy-slate), ties to brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
@@ -45,9 +48,9 @@
   --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
   --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
   --lentax-chrome-sidebar-border: transparent;
-  --lentax-chrome-sidebar-scrollbar-thumb: rgba(27, 58, 75, 0.35);
-  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(14, 124, 123, 0.50);
-  --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #0E7C7B, #D9C2A3);
+  --lentax-chrome-sidebar-scrollbar-thumb: rgba(20, 58, 82, 0.35);
+  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(11, 138, 149, 0.50);
+  --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #0B8A95, #9FCDD6);
 
   --lentax-chrome-navbar-bg: #ffffff;
   --lentax-chrome-navbar-border-bottom: transparent;
