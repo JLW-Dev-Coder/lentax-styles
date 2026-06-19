@@ -4,7 +4,8 @@
  * Re-skins the TPP brand token surface to a dramatic coastal palette
  * (teal #0B8A95 / ocean-navy #143A52 / seafoam #CDE5E8 / pale-blue #DCEEF5).
  * Same token surface as themes/tpp-default.css — only values differ.
- * Fonts unchanged (Cormorant Garamond + Inter, inherited from lentax-base.css).
+ * Fonts unchanged (Cormorant Garamond + Inter); Phase 7 declares them as
+ * --lentax-font-* tokens with the same values (typography-neutral).
  * Source: Coastal palette approved 2026-06-18 (Care Law Group demo).
  * Revised 2026-06-19: cooler/bolder palette — warm sand/champagne surfaces
  * replaced with pale blue / seafoam / slate for a dramatic blues-and-teals
@@ -43,6 +44,12 @@
 
   /* Coastal page background image — subtle seafoam-wave SVG, renders over the bg color. */
   --lentax-page-bg-image: url('https://precious-lily-bbe555.netlify.app/assets/coastal-bg.svg');
+
+  /* Font tokens (Phase 7): Coastal keeps TPP fonts (Cormorant + Inter), same as
+     base. Typography-neutral; Sentinel (Phase 8) overrides these. */
+  --lentax-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --lentax-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --lentax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Coastal */
   --lentax-chrome-sidebar-bg: #1a1a1a;

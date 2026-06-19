@@ -317,6 +317,27 @@ Tokenize a small canonical set; leave decorative alpha variants literal (see §5
 
 > The remaining ~50 `rgba(255, 255, 255, *)` alpha steps are decorative tuning, not theme tokens — listed literal in §5.7.
 
+### 3.10 Font tokens (Phase 7 — themeable typography)
+
+Added 2026-06-19. Replaces hardcoded `font-family` stacks across the base stylesheet so themes can re-skin typography (Sentinel prerequisite — Source Sans 3). Declared in base `:root` and redeclared in every theme file (same TPP values, so the override surface is complete and explicit). This phase is typography-neutral: the same fonts render, now via tokens.
+
+| Token | Canonical value (TPP default) | Role |
+|---|---|---|
+| `--lentax-font-serif` | `'Cormorant Garamond', Georgia, serif` | Display / doc / heading serif |
+| `--lentax-font-sans` | `'Inter', 'Helvetica Neue', Arial, sans-serif` | Body / UI sans |
+| `--lentax-font-mono` | `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace` | Code / passkey / number contexts |
+
+All Inter-primary stacks (`'Inter', sans-serif`, `'Inter', Arial, sans-serif`, the `"Inter", "Poppins", …` 3D-letter stack) fold into `--lentax-font-sans` — same first family, so rendering is unchanged (Inter always loads via the `@import`); only dead fallback chains are normalized. The legacy `--vlpd-font-display` / `--vlpd-font-body` indirection tokens were re-pointed to `var(--lentax-font-serif)` / `var(--lentax-font-sans)` (Phase 2a pattern), so the DocGen v1 surface flows through the same themeable tokens. (`--vlpd-font-display` previously listed `"Playfair Display"` as a secondary fallback; Playfair is not loaded by the `@import`, so dropping it is render-neutral.)
+
+**Literals — not tokenized (functional / one-off, like icon fonts):**
+
+- `"Material Icons"` — icon font: functional glyph mapping, not typography.
+- `'Raleway', sans-serif` and `Raleway, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif` — scattered one-off display font (account cards, tooltip, vl-shell). Not loaded by the `@import` and render-distinct from Inter, so folding would change rendering. Left literal; flagged as a future `--lentax-font-display` candidate if JLW wants it themeable.
+- `'Segoe UI', sans-serif` — single LenBot chat container; system font, render-distinct from Inter. Left literal.
+- `inherit` — CSS keyword, not a family.
+
+Fonts loaded by the top-of-file `@import`: Cormorant Garamond, Inter, Source Sans 3 (the last hoisted for DocGen doc3 and reused by Sentinel in Phase 8).
+
 ## 4. Per-theme palette overrides
 
 Each theme file overrides ONLY the tokens that differ from the base. Non-overridden tokens fall through to the `lentax-base.css` `:root` fallback.
