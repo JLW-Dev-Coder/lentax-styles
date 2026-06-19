@@ -45,11 +45,12 @@
   /* Coastal page background image — subtle seafoam-wave SVG, renders over the bg color. */
   --lentax-page-bg-image: url('https://precious-lily-bbe555.netlify.app/assets/coastal-bg.svg');
 
-  /* Font tokens (Phase 7): Coastal keeps TPP fonts (Cormorant + Inter), same as
-     base. Typography-neutral; Sentinel (Phase 8) overrides these. */
+  /* Font tokens (Phase 7; display added Phase 8): Coastal keeps TPP fonts
+     (Cormorant + Inter + Raleway display), same as base. Typography-neutral. */
   --lentax-font-serif: 'Cormorant Garamond', Georgia, serif;
   --lentax-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --lentax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --lentax-font-display: 'Raleway', 'Inter', sans-serif;
 
   /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Coastal */
   --lentax-chrome-sidebar-bg: #1a1a1a;

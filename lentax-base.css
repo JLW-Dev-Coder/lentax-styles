@@ -6,7 +6,7 @@
 /* ═══════════════════════════════════════════════════════════════ */
 
 /* @import for Google Fonts (Cormorant Garamond + Inter) — top of file */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -178,15 +178,17 @@
      Themes override via redeclaration in themes/{product}-default.css. */
   --lentax-page-bg-image: none;   /* themeable page background image; themes override */
 
-  /* ===== Font tokens (Phase 7, Sentinel enabler) =====
+  /* ===== Font tokens (Phase 7, Sentinel enabler; display added Phase 8) =====
      Themeable typography. Values = current TPP fonts (Cormorant Garamond
-     serif + Inter sans), loaded via the top-of-file @import. Themes override
-     these (e.g. Sentinel -> Source Sans 3). Icon fonts (Material Icons) and
-     one-off display/system stacks (Raleway, Segoe UI) stay literal:
-     functional, not part of the themeable serif/sans/mono surface. */
+     serif + Inter sans + Raleway display), loaded via the top-of-file @import.
+     Themes override these (e.g. Sentinel -> Source Sans 3). Icon fonts
+     (Material Icons) stay literal: functional glyph mapping, not typography.
+     --lentax-font-display (Phase 8) folds the former Raleway/Segoe one-offs
+     (account cards, tooltip, .vl-shell, LenBot chat) into one themeable token. */
   --lentax-font-serif: 'Cormorant Garamond', Georgia, serif;
   --lentax-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --lentax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --lentax-font-display: 'Raleway', 'Inter', sans-serif;
 
   /* ===== Portal chrome — sidebar / navbar / tab strip (§2.14) ===== */
   /* Defaults match current SuiteDash chrome, so any portal without a
@@ -295,7 +297,7 @@
 
 .account-card-subtitle {
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--lentax-font-display);
   font-size: 0.95rem;
   color: #444;
 }
@@ -311,7 +313,7 @@
   background-clip: text;
   background-size: 400% 400%;
   display: inline-block;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--lentax-font-display);
   font-size: 1.4rem;
   margin: 0 0 10px 0;
   -webkit-background-clip: text;
@@ -3639,7 +3641,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
     max-width: 500px;
     margin: 40px auto;
     padding: 10px 20px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--lentax-font-display);  /* Phase 8: was 'Segoe UI', sans-serif (bare system default) — folded into themeable display token */
   }
 
   /* Timestamp */
@@ -4483,7 +4485,7 @@ color: inherit; /* don't override the special gold/turquoise behavior */
   background-color: var(--lentax-surface-elevated);
   border-radius: 4px;
   color: #fff;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--lentax-font-display);
   font-size: 13px;
   left: 50%;
   line-height: 1.4;
@@ -7611,7 +7613,7 @@ form[action*="wwHRQcUJ3pdGUQod"] .form-actions.btn-list {
 .vl-shell {
   background: var(--lentax-vlp-navy-void);
   color: rgba(255, 255, 255, 0.92);
-  font-family: Raleway, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--lentax-font-display);
 }
 
 .vl-tabs {

@@ -101,11 +101,13 @@
   /* VLP has no page background image (unchanged for now). */
   --lentax-page-bg-image: none;
 
-  /* Font tokens (Phase 7): VLP keeps the base fonts (Cormorant + Inter), same
-     as base. Typography-neutral; Sentinel (Phase 8) overrides these. */
+  /* Font tokens (Phase 7; display added Phase 8): VLP keeps the base fonts
+     (Cormorant + Inter + Raleway display), same as base. The VLP shell (.vl-shell)
+     already used Raleway, so display = Raleway matches VLP intent. Typography-neutral. */
   --lentax-font-serif: 'Cormorant Garamond', Georgia, serif;
   --lentax-font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --lentax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --lentax-font-display: 'Raleway', 'Inter', sans-serif;
 
   /* VLP chrome treatment — Option C, branded accent (§2.14) */
   --lentax-chrome-sidebar-bg: var(--lentax-vlp-navy-deep);
