@@ -362,6 +362,44 @@ Overrides brand tokens to VLP families. Non-brand tokens (semantic state, surfac
 
 (NOTE: open question — does VLP need to NULL the TPP tokens, or does VLP-only CSS reference its own VLP tokens? Principal: rule on whether base CSS body uses TPP tokens vs. a generic `--lentax-brand-*` indirection layer. See §6 open questions.)
 
+### 4.3 `themes/tpp-coastal.css` — TPP Coastal (teal/navy/seafoam)
+
+Cool coastal re-skin of the TPP brand token surface — teal / ocean-navy / seafoam replacing rose/crimson. Same token surface as `tpp-default.css`; only values differ. Fonts unchanged (Cormorant Garamond + Inter — inherits the TPP default font tokens). Non-brand tokens (semantic state, surfaces, text) fall through to base.
+
+| Token in base | Override in tpp-coastal | Source |
+|---|---|---|
+| `--lentax-tpp-crimson-primary` | `#0B8A95` (teal) | Declared in this file |
+| `--lentax-tpp-crimson-deep` | `#143A52` (ocean-navy) | Declared in this file |
+| `--lentax-tpp-crimson-light` | `#DCEEF5` (pale blue) | Declared in this file |
+| `--lentax-tpp-crimson-tint` | `#EFF7FB` (lightest tint) | Declared in this file |
+| `--lentax-tpp-champagne` | `#CDE5E8` (seafoam accent) | Declared in this file |
+| `--lentax-tpp-gold-bright` | `#9FCDD6` (bright seafoam) | Declared in this file |
+| `--lentax-page-bg-image` | `url('https://precious-lily-bbe555.netlify.app/assets/coastal-bg.svg')` (seafoam waves) | Declared in this file |
+| `--lentax-font-serif` | `'Cormorant Garamond', Georgia, serif` (TPP default) | Declared in this file |
+| `--lentax-font-sans` | `'Inter', 'Helvetica Neue', Arial, sans-serif` (TPP default) | Declared in this file |
+
+**Loader:** `lentax-tpp-coastal.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-coastal.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
+`<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-coastal.js"></script>`
+
+### 4.4 `themes/tpp-sentinel.css` — TPP Sentinel (navy/red/cream)
+
+Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream replacing rose/crimson. Same token surface as `tpp-coastal.css`; only values differ. Fonts overridden to Source Sans 3 (headings included — Sentinel has no serif display); Source Sans 3 already loads via the base `@import`, so no import change is needed. Non-brand tokens (semantic state, surfaces, text) fall through to base.
+
+| Token in base | Override in tpp-sentinel | Source |
+|---|---|---|
+| `--lentax-tpp-crimson-primary` | `#dc2626` (signal-red) | Declared in this file |
+| `--lentax-tpp-crimson-deep` | `#14213d` (navy) | Declared in this file |
+| `--lentax-tpp-crimson-light` | `#E7ECF3` (pale) | Declared in this file |
+| `--lentax-tpp-champagne` | `#F5EFE0` (cream surface) | Declared in this file |
+| `--lentax-tpp-gold-leaf` | `#B08D57` (antique gold) | Declared in this file |
+| `--lentax-tpp-gold-bright` | `#C9A227` (brighter gold) | Declared in this file |
+| `--lentax-page-bg-image` | `url('https://precious-lily-bbe555.netlify.app/assets/sentinel-bg.svg')` (red/white/blue swoosh) | Declared in this file |
+| `--lentax-font-serif` | `'Source Sans 3', 'Georgia', serif` (overrides TPP default) | Declared in this file |
+| `--lentax-font-sans` | `'Source Sans 3', 'Helvetica Neue', Arial, sans-serif` (overrides TPP default) | Declared in this file |
+
+**Loader:** `lentax-tpp-sentinel.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-sentinel.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
+`<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-sentinel.js"></script>`
+
 ## 5. Literals — do not tokenize
 
 The following values stay as literals in `lentax.css` after the Commit 3 sweep. No token is created for them.
