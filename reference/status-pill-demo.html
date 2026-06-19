@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status Pill Color — Decision Aid (semantic vs. theme-accent)</title>
+<style>
+  /* ============================================================
+     status-pill-demo.html — DECISION AID (not a production file)
+     Renders the dashboard status pills two ways so JLW can rule on
+     whether the functional colors (--vlpd-success / -warning / -danger)
+     should stay semantic-fixed (Option A) or follow the theme (Option B).
+
+     All palette values are pulled verbatim from the repo:
+       - Functional (semantic):  lentax-base.css §2.15 #dashboard-view
+                                   --vlpd-success  #2E7D5B
+                                   --vlpd-warning  #C77E2E
+                                   --vlpd-danger   #B22234
+       - TPP Default palette:    themes/tpp-default.css
+       - TPP Coastal palette:    themes/tpp-coastal.css
+       - Custom-colored pills:   reference/dom-snapshots/dash_outerHTML.txt
+     Self-contained: no dependency on lentax-base.css. Opens standalone.
+     ============================================================ */
+
+  :root{
+    /* Functional semantic colors — Option A (fixed, from base §2.15) */
+    --fn-success: #2E7D5B;
+    --fn-warning: #C77E2E;
+    --fn-danger:  #B22234;
+
+    /* Custom-colored status pills (theme-independent inline colors,
+       captured from the live dashboard snapshot — UNAFFECTED by this ruling) */
+    --custom-assigned: #1093F5;  /* rgb(16,147,245)  */
+    --custom-esign:    #7B61FF;  /* rgb(123,97,255)  */
+  }
+
+  /* --- TPP Default theme palette (themes/tpp-default.css) --- */
+  .theme-default{
+    --t-primary:  #E91E63;   /* crimson-primary  (rose)        */
+    --t-deep:     #8B1538;   /* crimson-deep     (crimson)     */
+    --t-magenta:  #C2185B;   /* crimson-magenta               */
+    --t-gold:     #D4A574;   /* gold-leaf                      */
+    --surface-1:  #F5E6D3;   /* champagne                      */
+    --surface-2:  #EBD7BE;   /* champagne-deep                 */
+  }
+  /* --- TPP Coastal theme palette (themes/tpp-coastal.css) --- */
+  .theme-coastal{
+    --t-primary:  #0B8A95;   /* teal   (crimson-primary slot)  */
+    --t-deep:     #143A52;   /* ocean-navy (crimson-deep slot) */
+    --t-magenta:  #0A6E78;   /* deep teal (magenta slot)       */
+    --t-gold:     #7FA8B5;   /* slate-blue (gold-leaf slot)    */
+    --surface-1:  #CDE5E8;   /* pale seafoam                   */
+    --surface-2:  #A8CDD4;   /* muted seafoam                  */
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0; padding:32px 28px 64px;
+    font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+    color:#1f2937; background:#eef0f3; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1100px; margin:0 auto; }
+
+  h1{ font-size:24px; margin:0 0 6px; letter-spacing:-.3px; }
+  h1 .sub{ display:block; font-size:13px; font-weight:500; color:#6b7280; letter-spacing:0; margin-top:4px; }
+  .lede{ font-size:14px; max-width:760px; }
+  .lede code{ background:#e2e6eb; padding:1px 5px; border-radius:4px; font-size:12.5px; }
+  .aid-note{
+    margin:16px 0 28px; padding:10px 14px; font-size:12.5px;
+    background:#fff7ed; border:1px solid #fed7aa; border-left:4px solid #f59e0b;
+    border-radius:8px; color:#7c5410;
+  }
+
+  /* Functional-token legend */
+  .legend{
+    display:flex; flex-wrap:wrap; gap:10px; margin:0 0 30px;
+    padding:14px 16px; background:#fff; border:1px solid #e2e6eb; border-radius:12px;
+  }
+  .legend .lbl{ font-size:12px; font-weight:700; color:#374151; align-self:center; margin-right:4px; }
+  .swatch{ display:inline-flex; align-items:center; gap:8px; font-size:12px; color:#374151; }
+  .swatch .chip{ width:18px; height:18px; border-radius:5px; border:1px solid rgba(0,0,0,.12); }
+  .swatch code{ font-size:11.5px; color:#6b7280; }
+
+  /* Theme panel = a representative dashboard surface */
+  .panel{
+    margin:0 0 26px; border-radius:16px; overflow:hidden;
+    border:1px solid rgba(0,0,0,.10);
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+  }
+  .panel__head{
+    padding:12px 18px; font-size:13px; font-weight:700; letter-spacing:.3px;
+    color:#fff; display:flex; align-items:center; gap:10px;
+  }
+  .panel.theme-default  .panel__head{ background:linear-gradient(90deg,#8B1538,#E91E63); }
+  .panel.theme-coastal  .panel__head{ background:linear-gradient(90deg,#143A52,#0B8A95); }
+  .panel__head .tag{ font-size:10px; font-weight:600; opacity:.85; text-transform:uppercase; letter-spacing:.5px; }
+
+  /* surface uses the theme's real page-gradient (champagne / seafoam) */
+  .surface{
+    display:grid; grid-template-columns:1fr 1fr; gap:0;
+    background:linear-gradient(135deg,var(--surface-1) 0%,var(--surface-2) 100%);
+  }
+  @media (max-width:720px){ .surface{ grid-template-columns:1fr; } }
+
+  .option{ padding:20px 22px 24px; }
+  .option + .option{ border-left:1px solid rgba(0,0,0,.08); }
+  @media (max-width:720px){ .option + .option{ border-left:0; border-top:1px solid rgba(0,0,0,.08); } }
+  .option__label{
+    font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.6px;
+    color:#0f172a; margin:0 0 3px;
+  }
+  .option__label .opt{ display:inline-block; padding:1px 7px; border-radius:5px; background:rgba(15,23,42,.10); margin-right:6px; }
+  .option__sub{ font-size:11.5px; color:#475569; margin:0 0 14px; }
+
+  .group-label{
+    font-size:9.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase;
+    color:#64748b; margin:0 0 7px;
+  }
+  .group-label.second{ margin-top:16px; }
+  .pillrow{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+
+  /* Pill — faithful to #dashboard-view .category-pill
+     (padding 3px 10px, radius 999px, ~10px, weight 600, letter-spacing,
+      tinted background + solid colored text). Uppercased per spec. */
+  .pill{
+    display:inline-flex; align-items:center;
+    padding:4px 11px; border-radius:999px;
+    font-size:10.5px; font-weight:700; letter-spacing:.5px;
+    text-transform:uppercase; line-height:1.3; white-space:nowrap;
+    color:var(--c);
+    background:color-mix(in srgb, var(--c) 16%, #ffffff);
+    border:1px solid color-mix(in srgb, var(--c) 34%, #ffffff);
+  }
+
+  /* Tradeoff table */
+  .tradeoff{ width:100%; border-collapse:collapse; margin:8px 0 0; font-size:13px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,.06); }
+  .tradeoff th, .tradeoff td{ padding:12px 16px; text-align:left; vertical-align:top; border-bottom:1px solid #eef0f3; }
+  .tradeoff thead th{ background:#f8fafc; font-size:12px; text-transform:uppercase; letter-spacing:.4px; color:#475569; }
+  .tradeoff td.opt{ font-weight:800; white-space:nowrap; }
+  .tradeoff .pro{ color:#166534; } .tradeoff .con{ color:#9a1f1f; }
+  .tradeoff tr:last-child td{ border-bottom:0; }
+
+  h2.section{ font-size:16px; margin:34px 0 12px; letter-spacing:-.2px; }
+  footer{ margin-top:34px; font-size:12px; color:#6b7280; border-top:1px solid #dfe3e8; padding-top:16px; }
+  footer code{ background:#e2e6eb; padding:1px 4px; border-radius:3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Status Pill Color — Decision Aid
+    <span class="sub">Should the dashboard's functional status colors stay semantic, or follow the active theme?</span>
+  </h1>
+
+  <p class="lede">
+    The dashboard's functional status colors live in <code>lentax-base.css</code> §2.15 as
+    <code>--vlpd-success</code> / <code>--vlpd-warning</code> / <code>--vlpd-danger</code>
+    (currently fixed green / amber / red). They drive status pills and the reporting trend chips
+    ("Past&nbsp;Due", completion %, "On&nbsp;Track", "Needs&nbsp;Attention"). Every other brand
+    surface now re-skins per theme — these three are the last fixed colors. The question:
+  </p>
+  <p class="lede" style="margin-top:10px">
+    <strong>Option&nbsp;A — keep them semantic</strong> (success&nbsp;=&nbsp;green, warning&nbsp;=&nbsp;amber,
+    danger&nbsp;=&nbsp;red, regardless of theme), or
+    <strong>Option&nbsp;B — make them follow the theme accent</strong> (e.g. coastal teal/navy instead of green/red).
+  </p>
+
+  <div class="aid-note">
+    <strong>This is a decision aid, not a production file.</strong> It renders the pills two ways under
+    each theme so the tradeoff is visible. Nothing here changes production CSS. Palette values are pulled
+    verbatim from <code>themes/tpp-default.css</code>, <code>themes/tpp-coastal.css</code>, and
+    <code>lentax-base.css</code> §2.15. A follow-up (Phase&nbsp;5b) will implement whichever option JLW picks.
+  </div>
+
+  <!-- Functional token legend -->
+  <div class="legend">
+    <span class="lbl">Functional tokens (Option A, fixed):</span>
+    <span class="swatch"><span class="chip" style="background:#2E7D5B"></span> success <code>#2E7D5B</code></span>
+    <span class="swatch"><span class="chip" style="background:#C77E2E"></span> warning <code>#C77E2E</code></span>
+    <span class="swatch"><span class="chip" style="background:#B22234"></span> danger <code>#B22234</code></span>
+  </div>
+
+  <h2 class="section">Side by side, under each theme</h2>
+
+  <!-- ============ TPP DEFAULT ============ -->
+  <div class="panel theme-default">
+    <div class="panel__head">TPP Default <span class="tag">rose / crimson · champagne surface</span></div>
+    <div class="surface">
+
+      <!-- Option A -->
+      <div class="option">
+        <p class="option__label"><span class="opt">Option A</span> Semantic (fixed)</p>
+        <p class="option__sub">Green / amber / red — identical on every theme.</p>
+
+        <p class="group-label">Semantic status (the pills in question)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:#B22234">Past Due</span>
+          <span class="pill" style="--c:#C77E2E">Needs Attention</span>
+          <span class="pill" style="--c:#2E7D5B">On Track</span>
+          <span class="pill" style="--c:#2E7D5B">80% Completed</span>
+        </div>
+
+        <p class="group-label second">Custom-colored status (unaffected by this ruling)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:var(--custom-assigned)">Assigned</span>
+          <span class="pill" style="--c:var(--custom-esign)">Phase 6 — E-Sign</span>
+        </div>
+      </div>
+
+      <!-- Option B -->
+      <div class="option">
+        <p class="option__label"><span class="opt">Option B</span> Theme accent — Default</p>
+        <p class="option__sub">Pills take the rose/crimson palette.</p>
+
+        <p class="group-label">Semantic status (the pills in question)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:var(--t-deep)">Past Due</span>
+          <span class="pill" style="--c:var(--t-gold)">Needs Attention</span>
+          <span class="pill" style="--c:var(--t-primary)">On Track</span>
+          <span class="pill" style="--c:var(--t-primary)">80% Completed</span>
+        </div>
+
+        <p class="group-label second">Custom-colored status (unaffected by this ruling)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:var(--custom-assigned)">Assigned</span>
+          <span class="pill" style="--c:var(--custom-esign)">Phase 6 — E-Sign</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ TPP COASTAL ============ -->
+  <div class="panel theme-coastal">
+    <div class="panel__head">TPP Coastal <span class="tag">teal / navy / seafoam surface</span></div>
+    <div class="surface">
+
+      <!-- Option A -->
+      <div class="option">
+        <p class="option__label"><span class="opt">Option A</span> Semantic (fixed)</p>
+        <p class="option__sub">Same green / amber / red — note how they read against a cool surface.</p>
+
+        <p class="group-label">Semantic status (the pills in question)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:#B22234">Past Due</span>
+          <span class="pill" style="--c:#C77E2E">Needs Attention</span>
+          <span class="pill" style="--c:#2E7D5B">On Track</span>
+          <span class="pill" style="--c:#2E7D5B">80% Completed</span>
+        </div>
+
+        <p class="group-label second">Custom-colored status (unaffected by this ruling)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:var(--custom-assigned)">Assigned</span>
+          <span class="pill" style="--c:var(--custom-esign)">Phase 6 — E-Sign</span>
+        </div>
+      </div>
+
+      <!-- Option B -->
+      <div class="option">
+        <p class="option__label"><span class="opt">Option B</span> Theme accent — Coastal</p>
+        <p class="option__sub">Pills take the teal/navy palette — cohesive, but the red/green signal is gone.</p>
+
+        <p class="group-label">Semantic status (the pills in question)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:var(--t-deep)">Past Due</span>
+          <span class="pill" style="--c:var(--t-gold)">Needs Attention</span>
+          <span class="pill" style="--c:var(--t-primary)">On Track</span>
+          <span class="pill" style="--c:var(--t-primary)">80% Completed</span>
+        </div>
+
+        <p class="group-label second">Custom-colored status (unaffected by this ruling)</p>
+        <div class="pillrow">
+          <span class="pill" style="--c:var(--custom-assigned)">Assigned</span>
+          <span class="pill" style="--c:var(--custom-esign)">Phase 6 — E-Sign</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h2 class="section">The tradeoff</h2>
+  <table class="tradeoff">
+    <thead>
+      <tr><th>Option</th><th>Pros</th><th>Cons</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="opt">A — Semantic<br>(fixed)</td>
+        <td class="pro">Universal "red = bad / green = good" legibility. Status reads the same in every theme; no relearning. Accessibility-friendly (color meaning is stable).</td>
+        <td class="con">Green / amber / red can clash with a cool coastal (or other) surface — see the Coastal · Option A row above.</td>
+      </tr>
+      <tr>
+        <td class="opt">B — Theme<br>accent</td>
+        <td class="pro">Fully cohesive look — pills always match the active brand palette.</td>
+        <td class="con">Loses the semantic color signal. Under Coastal, "Past Due" (navy) and "On Track" (teal) look alike — danger no longer reads as danger.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <strong>Decision for JLW:</strong> keep status colors <strong>semantic (A)</strong> or make them
+    <strong>follow the theme (B)</strong>? Phase&nbsp;5b will implement the pick — for (A), leave the
+    three <code>--vlpd-*</code> functional tokens as literals; for (B), re-point them to themeable
+    <code>--lentax-*</code> tokens.<br><br>
+    Palette provenance — Default: <code>themes/tpp-default.css</code> · Coastal:
+    <code>themes/tpp-coastal.css</code> · Functional: <code>lentax-base.css</code> §2.15 ·
+    Custom pill colors: <code>reference/dom-snapshots/dash_outerHTML.txt</code>.
+    Pill geometry mirrors <code>#dashboard-view .category-pill</code>.
+  </footer>
+
+</div>
+</body>
+</html>

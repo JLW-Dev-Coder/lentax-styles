@@ -10923,8 +10923,9 @@ padding: 18px 18px 28px 18px;
 
 /* ============================================================
    TAX PREP SETUP FORM CSS
-   Brand: Rose #E91E63, Crimson #8B1538, Champagne #F5E6D3,
-          Cormorant Garamond + Inter
+   Brand: Rose (--lentax-tpp-crimson-primary), Crimson (--lentax-tpp-crimson-deep),
+          Champagne (--lentax-tpp-champagne); Cormorant Garamond + Inter
+   (Section is fully tokenized — brand colors resolve through the active theme.)
 
    Styles the form in BOTH contexts:
    1. Standalone form page (suitedash.com/frm/...) — full chrome
@@ -15158,7 +15159,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   gap: 14px;
   margin: 22px 0 0 0;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #FFF4E5 0%, var(--lentax-tpp-crimson-light) 100%);
+  background: linear-gradient(135deg, var(--lentax-tpp-ivory) 0%, var(--lentax-tpp-crimson-light) 100%);
   border: 1px solid rgba(var(--lentax-tpp-gold-leaf-rgb), 0.45);
   border-left: 4px solid var(--lentax-tpp-gold-leaf);
   border-radius: 12px;
