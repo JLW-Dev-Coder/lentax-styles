@@ -1,0 +1,244 @@
+<!--
+  TPP — Tax Preparation Service Agreement (Doc 1) — SuiteDash document body
+  ----------------------------------------------------------------------------
+  Source:   Adapted from TMP's Service Agreement (structure/legal register only).
+            TMP service-description wording fully replaced with tax-preparation
+            wording; no TMP service language carried over.
+  Target:   TPP "Tax Prep Service Agreement" SuiteDash document. Paste this block
+            into the document's WYSIWYG body, replacing the current 8879 markup.
+  Why:      The 2026-06-19 surface class-map audit found the live Agreement doc
+            was rendering Form 8879 body markup (.doc-* under .tpp-doc > .doc-8879),
+            so lentax-base.css §2.17 (.tpp-doc-* selectors) matched nothing and was
+            dead against production. This restores genuine agreement markup that
+            §2.17 actually styles.
+  Classes:  Root .tpp-doc (triggers §2.16 SHARED FOUNDATION → --tpp-* custom
+            properties + base p/li/strong styling). Inner structure uses §2.17's
+            .tpp-doc-* namespace: .tpp-doc-header/-logo/-tagline/-title/-doctype,
+            .tpp-doc-body, .tpp-doc-preamble, .tpp-doc-section, .tpp-doc-h2,
+            .tpp-doc-signatures/-sig-meta/-sig-row/-sig-block/-sig-label/
+            -sig-field-label/-sig-line/-sig-value, .tpp-doc-footer.
+            Header is text-based (org name as .tpp-doc-logo wordmark) — mirrors the
+            proven §2.19 Filing Summary header; §2.17 has no header image slot.
+  Merge tags ({{...}}) are resolved by SuiteDash — do not alter.
+  Date:     2026-06-19
+-->
+<div class="tpp-doc">
+
+    <!-- Header -->
+    <div class="tpp-doc-header">
+        <div class="tpp-doc-logo">{{myOrganizationName}}</div>
+        <div class="tpp-doc-tagline">Tax Preparation Service</div>
+        <div class="tpp-doc-title">Service Agreement and Contract</div>
+        <div class="tpp-doc-doctype">Doc 1 — Tax Preparation Service Agreement</div>
+    </div>
+
+    <div class="tpp-doc-body">
+
+        <!-- Introduction -->
+        <div class="tpp-doc-preamble">
+            <p>
+                This Service Agreement ("Agreement") governs the Tax Preparation Service
+                provided by {{myOrganizationName}} ("Company"). By submitting payment or
+                otherwise enrolling in this service, the Client agrees to the terms
+                outlined below.
+            </p>
+            <p>
+                This service consists of the preparation, review, and electronic filing of
+                the Client's authorized federal and applicable state income tax return(s),
+                based solely on the information and documentation the Client provides. This
+                service does not include audit representation, IRS resolution or
+                negotiation, payment arrangements, offers in compromise, appeals, or
+                enforcement intervention unless expressly agreed to in a separate written
+                Representation Agreement and Power of Attorney.
+            </p>
+        </div>
+
+        <!-- Client Responsibilities -->
+        <div class="tpp-doc-section">
+            <h2 class="tpp-doc-h2">Client Responsibilities</h2>
+            <ol>
+                <li>The Client agrees to provide complete, accurate, and timely tax
+                    documents and information requested for preparation purposes —
+                    including income, deductions, credits, prior-year returns, and IRS
+                    correspondence — within forty-eight (48) hours of request unless
+                    otherwise agreed.</li>
+                <li>The Client acknowledges sole responsibility for the accuracy and
+                    completeness of all information and documentation provided, including
+                    income, deductions, credits, dependents, filing history, and IRS
+                    correspondence.</li>
+                <li>Failure to respond after three (3) documented contact attempts may
+                    result in suspension or termination of preparation services without
+                    refund.</li>
+                <li>The Client agrees not to alter, amend, or submit any return or document
+                    prepared by the Company without prior written authorization.</li>
+                <li>Cancellation is available within forty-eight (48) hours of payment by
+                    contacting <a href="mailto:{{myOrganizationEmail}}">{{myOrganizationEmail}}</a>.
+                    Cancellation stops future billing.
+                    <strong>All service fees are non-refundable once services begin,
+                    including any work performed, records accessed, or returns
+                    prepared.</strong></li>
+            </ol>
+        </div>
+
+        <!-- Married Filing Jointly (MFJ) Years -->
+        <div class="tpp-doc-section">
+            <h2 class="tpp-doc-h2">Married Filing Jointly (MFJ) Years</h2>
+            <p>
+                For tax years filed as <strong>Married Filing Jointly (MFJ)</strong>, the
+                Client acknowledges that the Internal Revenue Service requires
+                <strong>separate enrollment and authorization from each spouse</strong> in
+                order to access and prepare jointly filed tax records.
+            </p>
+            <p>
+                To enable preparation of MFJ returns, <strong>each spouse must
+                independently enroll in the Tax Preparation Service</strong>, select the
+                MFJ option if applicable, and execute their own required authorization
+                forms. Enrollment or authorization by one spouse does not grant access to
+                jointly filed records for the other spouse.
+            </p>
+            <p>
+                Until both spouses complete enrollment and authorization, access to
+                MFJ-related tax records, prepared returns, filing results, and project
+                materials will be limited to the enrolled and authorized spouse only.
+            </p>
+            <p>
+                Jointly filed tax years will not be prepared, linked, filed, displayed, or
+                reported within the client portal unless both spouses complete enrollment
+                and authorization.
+            </p>
+            <p>
+                The Client acknowledges that a spouse's failure to enroll or authorize
+                services may limit portal visibility, shared project access, and the
+                Company's ability to prepare or file MFJ returns, and does not constitute a
+                breach by the Company.
+            </p>
+            <p>
+                Such limitation does not entitle the Client to refunds, credits, service
+                extensions, or modified service terms.
+            </p>
+        </div>
+
+        <!-- Company Responsibilities -->
+        <div class="tpp-doc-section">
+            <h2 class="tpp-doc-h2">Company Responsibilities</h2>
+            <ol start="6">
+                <li>{{myOrganizationName}} will prepare and review the Client's authorized
+                    federal and applicable state income tax return(s) based on the
+                    information and documentation provided, and will electronically file the
+                    completed return(s) upon the Client's authorization.</li>
+                <li>Any original documents provided by the Client will be returned upon
+                    conclusion of the engagement. Copies retained are for documentation
+                    purposes only.</li>
+                <li>The Company maintains reasonable administrative, technical, and physical
+                    safeguards to protect nonpublic personal information.</li>
+                <li>Electronic data transmission and storage may involve secure third-party
+                    systems necessary to deliver services efficiently.</li>
+            </ol>
+        </div>
+
+        <!-- Scope Limitation -->
+        <div class="tpp-doc-section">
+            <h2 class="tpp-doc-h2">Scope Limitation</h2>
+            <p>
+                This Agreement is limited to the preparation, review, and electronic filing
+                of the Client's authorized tax return(s). It does not include IRS
+                representation, negotiations, payment arrangements, offers in compromise,
+                appeals, or enforcement resolution unless expressly authorized in writing
+                through a separate executed Representation Agreement and Power of Attorney.
+            </p>
+        </div>
+
+        <!-- Right to Representation & Power of Attorney -->
+        <div class="tpp-doc-section">
+            <h2 class="tpp-doc-h2">Right to Representation &amp; Power of Attorney Authorization</h2>
+            <p>
+                The Client is advised that the right to be represented before the Internal
+                Revenue Service is a statutory right under Section 7521 of Title 26 of the
+                United States Code (Internal Revenue Code). The Client may appoint only
+                individuals authorized to practice before the Internal Revenue Service,
+                including Enrolled Agents, Certified Public Accountants, and Attorneys, as
+                legal representatives.
+            </p>
+            <p>
+                Practice before the Internal Revenue Service is governed by federal
+                regulations contained in Circular 230 (31 CFR Part 10). The Client has the
+                right to submit a complaint to the Internal Revenue Service Office of
+                Professional Responsibility if the Client believes those regulations have
+                been violated.
+            </p>
+            <p>
+                If the Client engages the Company for services that require IRS
+                representation, the Client will be provided access to a limited Power of
+                Attorney (IRS Form 2848) and a separate Representation Agreement within the
+                Client portal.
+            </p>
+            <p>
+                The Client acknowledges and agrees that execution of Form 2848 may occur
+                prior to final completion of representative details. By signing the Form
+                2848, the Client grants conditional authorization for the Company's
+                designated Enrolled Agent to complete the representative section of the form
+                after review.
+            </p>
+            <p>
+                The Client understands that a Form 2848 signed in this manner is not valid,
+                active, or submitted to the Internal Revenue Service until all required
+                sections are fully completed and reviewed by the Company. The Company will
+                not submit any Power of Attorney to the Internal Revenue Service until the
+                form is complete and compliant.
+            </p>
+            <p>
+                Once the Internal Revenue Service processes the completed Power of Attorney,
+                the designated representative will be recognized as the Client's authorized
+                representative for the matters specified. Thereafter, IRS personnel are
+                required to communicate through the authorized representative, and any
+                direct contact attempts should be reported immediately.
+            </p>
+        </div>
+
+        <!-- Governing Law -->
+        <div class="tpp-doc-section">
+            <h2 class="tpp-doc-h2">Governing Law</h2>
+            <p>
+                This Agreement shall be governed by and construed in accordance with the
+                laws of {{myOrganizationStateProvince}}.
+            </p>
+        </div>
+
+        <!-- Acceptance -->
+        <div class="tpp-doc-signatures">
+            <h2 class="tpp-doc-h2">Acceptance</h2>
+            <div class="tpp-doc-sig-meta">
+                By signing electronically, the Client acknowledges that this Agreement is
+                legally binding and enforceable to the same extent as a handwritten
+                signature.
+            </div>
+            <div class="tpp-doc-sig-row">
+                <div class="tpp-doc-sig-block">
+                    <div class="tpp-doc-sig-label">Accepted by Client</div>
+                    <div class="tpp-doc-sig-field-label">Signature</div>
+                    <div class="tpp-doc-sig-line">{{documentTargetSignature}}</div>
+                    <div class="tpp-doc-sig-field-label">Printed Name</div>
+                    <div class="tpp-doc-sig-value">{{documentTargetPrintedName}}</div>
+                    <div class="tpp-doc-sig-field-label">Date Signed</div>
+                    <div class="tpp-doc-sig-value">{{documentTargetSignDate}}</div>
+                </div>
+                <div class="tpp-doc-sig-block">
+                    <div class="tpp-doc-sig-label">Accepted on behalf of the Company</div>
+                    <div class="tpp-doc-sig-field-label">Company</div>
+                    <div class="tpp-doc-sig-value">{{myOrganizationName}}</div>
+                    <div class="tpp-doc-sig-field-label">Address</div>
+                    <div class="tpp-doc-sig-value">{{myOrganizationAddress}}</div>
+                    <div class="tpp-doc-sig-value">{{myOrganizationCity}}, {{myOrganizationStateProvince}} {{myOrganizationZip}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="tpp-doc-footer">
+        <strong>{{myOrganizationName}}</strong>
+        &copy; {{myOrganizationName}}. All rights reserved.
+    </div>
+
+</div>
