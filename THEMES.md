@@ -326,17 +326,22 @@ Added 2026-06-19. Replaces hardcoded `font-family` stacks across the base styles
 | `--lentax-font-serif` | `'Cormorant Garamond', Georgia, serif` | Display / doc / heading serif |
 | `--lentax-font-sans` | `'Inter', 'Helvetica Neue', Arial, sans-serif` | Body / UI sans |
 | `--lentax-font-mono` | `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace` | Code / passkey / number contexts |
+| `--lentax-font-display` | `'Raleway', 'Inter', sans-serif` | Display / brand font (account cards, tooltip, `.vl-shell`, LenBot chat) — added Phase 8 |
 
 All Inter-primary stacks (`'Inter', sans-serif`, `'Inter', Arial, sans-serif`, the `"Inter", "Poppins", …` 3D-letter stack) fold into `--lentax-font-sans` — same first family, so rendering is unchanged (Inter always loads via the `@import`); only dead fallback chains are normalized. The legacy `--vlpd-font-display` / `--vlpd-font-body` indirection tokens were re-pointed to `var(--lentax-font-serif)` / `var(--lentax-font-sans)` (Phase 2a pattern), so the DocGen v1 surface flows through the same themeable tokens. (`--vlpd-font-display` previously listed `"Playfair Display"` as a secondary fallback; Playfair is not loaded by the `@import`, so dropping it is render-neutral.)
 
-**Literals — not tokenized (functional / one-off, like icon fonts):**
+**Display font tokenized (Phase 8, 2026-06-19):** the former Raleway/Segoe one-offs are now `--lentax-font-display`. Phase 7 left them literal because Raleway wasn't loaded by the `@import`; Phase 8 adds Raleway to the `@import` (weights 400/500/600/700, matching Inter) so the default actually renders, then re-points all five sites:
+
+- `'Raleway', sans-serif` ×3 — account-card subtitle, account-card title, tooltip bubble → `var(--lentax-font-display)`.
+- `Raleway, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif` — `.vl-shell` root → `var(--lentax-font-display)` (richer system fallback dropped; Raleway now loads, so primary render is unchanged).
+- `'Segoe UI', sans-serif` — LenBot chat container; a **bare system default**, so folded into `--lentax-font-display`. Intended render change: LenBot chat Segoe UI → Raleway (Default/Coastal/VLP) / Source Sans 3 (Sentinel). On-brand upgrade + now themeable.
+
+**Literals — still not tokenized (functional / one-off, like icon fonts):**
 
 - `"Material Icons"` — icon font: functional glyph mapping, not typography.
-- `'Raleway', sans-serif` and `Raleway, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif` — scattered one-off display font (account cards, tooltip, vl-shell). Not loaded by the `@import` and render-distinct from Inter, so folding would change rendering. Left literal; flagged as a future `--lentax-font-display` candidate if JLW wants it themeable.
-- `'Segoe UI', sans-serif` — single LenBot chat container; system font, render-distinct from Inter. Left literal.
 - `inherit` — CSS keyword, not a family.
 
-Fonts loaded by the top-of-file `@import`: Cormorant Garamond, Inter, Source Sans 3 (the last hoisted for DocGen doc3 and reused by Sentinel in Phase 8).
+Fonts loaded by the top-of-file `@import`: Cormorant Garamond, Inter, Raleway (added Phase 8), Source Sans 3 (the last hoisted for DocGen doc3 and reused by Sentinel in Phase 8).
 
 ## 4. Per-theme palette overrides
 
@@ -377,13 +382,14 @@ Cool coastal re-skin of the TPP brand token surface — teal / ocean-navy / seaf
 | `--lentax-page-bg-image` | `url('https://precious-lily-bbe555.netlify.app/assets/coastal-bg.svg')` (seafoam waves) | Declared in this file |
 | `--lentax-font-serif` | `'Cormorant Garamond', Georgia, serif` (TPP default) | Declared in this file |
 | `--lentax-font-sans` | `'Inter', 'Helvetica Neue', Arial, sans-serif` (TPP default) | Declared in this file |
+| `--lentax-font-display` | `'Raleway', 'Inter', sans-serif` (TPP default) | Declared in this file |
 
 **Loader:** `lentax-tpp-coastal.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-coastal.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
 `<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-coastal.js"></script>`
 
 ### 4.4 `themes/tpp-sentinel.css` — TPP Sentinel (navy/red/cream)
 
-Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream replacing rose/crimson. Same token surface as `tpp-coastal.css`; only values differ. Fonts overridden to Source Sans 3 (headings included — Sentinel has no serif display); Source Sans 3 already loads via the base `@import`, so no import change is needed. Non-brand tokens (semantic state, surfaces, text) fall through to base.
+Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream replacing rose/crimson. Same token surface as `tpp-coastal.css`; only values differ. Fonts overridden to Source Sans 3 (headings and display included — Sentinel has no serif display and no Raleway); Source Sans 3 already loads via the base `@import`, so no import change is needed. Non-brand tokens (semantic state, surfaces, text) fall through to base.
 
 | Token in base | Override in tpp-sentinel | Source |
 |---|---|---|
@@ -396,6 +402,7 @@ Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream r
 | `--lentax-page-bg-image` | `url('https://precious-lily-bbe555.netlify.app/assets/sentinel-bg.svg')` (red/white/blue swoosh) | Declared in this file |
 | `--lentax-font-serif` | `'Source Sans 3', 'Georgia', serif` (overrides TPP default) | Declared in this file |
 | `--lentax-font-sans` | `'Source Sans 3', 'Helvetica Neue', Arial, sans-serif` (overrides TPP default) | Declared in this file |
+| `--lentax-font-display` | `'Source Sans 3', 'Helvetica Neue', Arial, sans-serif` (overrides TPP default — Sentinel's display = its sans identity, no Raleway) | Declared in this file |
 
 **Loader:** `lentax-tpp-sentinel.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-sentinel.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
 `<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-sentinel.js"></script>`

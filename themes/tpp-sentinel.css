@@ -44,12 +44,14 @@
   /* Sentinel page background image — red/white/blue swoosh SVG, renders over the bg color. */
   --lentax-page-bg-image: url('https://precious-lily-bbe555.netlify.app/assets/sentinel-bg.svg');
 
-  /* Font tokens (Phase 7): Sentinel overrides to Source Sans 3 — clean patriotic sans
-     identity; Source Sans 3 for headings too (no serif display). Source Sans 3 already
-     loads via the base @import. Mono stays the base stack (typography-neutral). */
+  /* Font tokens (Phase 7; display added Phase 8): Sentinel overrides to Source Sans 3 —
+     clean patriotic sans identity; Source Sans 3 for headings AND display too (no serif
+     display, no Raleway). Source Sans 3 already loads via the base @import. Mono stays
+     the base stack (typography-neutral). */
   --lentax-font-serif: 'Source Sans 3', 'Georgia', serif;
   --lentax-font-sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
   --lentax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --lentax-font-display: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
 
   /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Sentinel */
   --lentax-chrome-sidebar-bg: #1a1a1a;
