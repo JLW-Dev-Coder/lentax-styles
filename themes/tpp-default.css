@@ -21,6 +21,18 @@
   --lentax-tpp-crimson-muted: #6B5260;
   --lentax-tpp-crimson-muted-alt: #8B7280;
 
+  /* TPP warm accents (champagne / ivory / gold) — Phase 1, canonical TPP literals */
+  --lentax-tpp-champagne: #F5E6D3;
+  --lentax-tpp-champagne-rgb: 245, 230, 211;
+  --lentax-tpp-champagne-deep: #EBD7BE;
+  --lentax-tpp-champagne-deep-rgb: 235, 215, 190;
+  --lentax-tpp-ivory: #FFFAF4;
+  --lentax-tpp-ivory-rgb: 255, 250, 244;
+  --lentax-tpp-gold-leaf: #D4A574;
+  --lentax-tpp-gold-leaf-rgb: 212, 165, 116;
+  --lentax-tpp-gold-bright: #E8C088;
+  --lentax-tpp-gold-bright-rgb: 232, 192, 136;
+
   /* TPP portal page background — crimson-deep, ties to TPP brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 

@@ -23,6 +23,18 @@
   --lentax-tpp-crimson-muted: #5A7A85;
   --lentax-tpp-crimson-muted-alt: #7B98A1;
 
+  /* TPP warm accents (champagne / ivory / gold) — Phase 1, Coastal sand/seafoam analogs */
+  --lentax-tpp-champagne: #D9C2A3;       /* warm sand (Coastal accent-strip sand) */
+  --lentax-tpp-champagne-rgb: 217, 194, 163;
+  --lentax-tpp-champagne-deep: #C9B08C;  /* sand-deep */
+  --lentax-tpp-champagne-deep-rgb: 201, 176, 140;
+  --lentax-tpp-ivory: #F4FAF9;           /* seafoam-tint (matches crimson-tint) */
+  --lentax-tpp-ivory-rgb: 244, 250, 249;
+  --lentax-tpp-gold-leaf: #A88F6F;       /* muted sand-bronze */
+  --lentax-tpp-gold-leaf-rgb: 168, 143, 111;
+  --lentax-tpp-gold-bright: #D9C2A3;     /* warm sand */
+  --lentax-tpp-gold-bright-rgb: 217, 194, 163;
+
   /* TPP portal page background — crimson-deep token (now navy-slate), ties to brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 
