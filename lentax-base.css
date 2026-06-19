@@ -14974,6 +14974,11 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
        the source. No <style> tags, HTML comments, or @import were present.
    ───────────────────────────────────────────────────────────────────── */
 
+   /* Tokenized 2026-06-19 (Phase 4): brand literals re-pointed to themeable
+      --lentax-* (inline var() — §2.20 has selectors outside .sd-flow, so a
+      section-scoped block would leave tokens undefined; :root tokens are
+      scope-safe). Functional/neutral colors left literal. */
+
 /* ─────────────────────────────────────────────────────────────── */
 /*  ONBOARDING CONTENT BLOCK — .vlpd-onboard                       */
 /*  Standalone SD pages (not forms, not LP). TPP brand theme.       */
@@ -14984,13 +14989,13 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   max-width: 720px;
   margin: 0 auto 32px auto;
   padding: 40px 36px 36px 36px;
-  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%);
-  border: 2px dashed #8B1538;
+  background: linear-gradient(180deg, var(--lentax-tpp-ivory) 0%, var(--lentax-tpp-champagne) 100%);
+  border: 2px dashed var(--lentax-tpp-crimson-deep);
   border-radius: 14px;
-  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08);
+  box-shadow: 0 14px 35px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08);
   overflow: hidden;
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  color: #2A1820;
+  color: var(--lentax-tpp-crimson-surface-deep);
 }
 
 .vlpd-onboard-accent {
@@ -15009,14 +15014,14 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #E91E63, #8B1538);
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep));
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   line-height: 1;
-  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.30);
+  box-shadow: 0 4px 14px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.30);
 }
 
 .vlpd-onboard-header-text {
@@ -15030,11 +15035,11 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #E91E63;
+  color: var(--lentax-tpp-crimson-primary);
   margin: 0 0 6px 0;
   padding: 3px 10px;
-  background: #FFFAF4;
-  border: 1px solid rgba(233, 30, 99, 0.35);
+  background: var(--lentax-tpp-ivory);
+  border: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.35);
   border-radius: 999px;
 }
 
@@ -15042,7 +15047,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 26px;
   font-weight: 600;
-  color: #1A0B14;
+  color: var(--lentax-tpp-crimson-surface-darkest);
   margin: 6px 0 0 0;
   line-height: 1.2;
   letter-spacing: -0.3px;
@@ -15053,7 +15058,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 .vlpd-onboard-title em {
   font-style: italic;
   font-weight: 600;
-  background: linear-gradient(120deg, #E91E63 0%, #8B1538 100%);
+  background: linear-gradient(120deg, var(--lentax-tpp-crimson-primary) 0%, var(--lentax-tpp-crimson-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -15065,29 +15070,29 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 .vlpd-onboard-lede {
   font-size: 15px;
   font-weight: 400;
-  color: #6B5260;
+  color: var(--lentax-tpp-crimson-muted);
   line-height: 1.6;
   margin: 0 0 24px 0;
   max-width: 620px;
 }
 
 .vlpd-onboard-expect {
-  background: #FFFAF4;
-  border: 1px solid rgba(139, 21, 56, 0.14);
+  background: var(--lentax-tpp-ivory);
+  border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14);
   border-radius: 14px;
   padding: 22px 24px;
   margin: 0 0 22px 0;
-  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.05);
+  box-shadow: 0 2px 8px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.05);
 }
 
 .vlpd-onboard-expect-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 18px;
   font-weight: 600;
-  color: #1A0B14;
+  color: var(--lentax-tpp-crimson-surface-darkest);
   margin: 0 0 14px 0;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(139, 21, 56, 0.14);
+  border-bottom: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14);
   position: relative;
 }
 
@@ -15098,7 +15103,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   left: 0;
   width: 40px;
   height: 2px;
-  background: linear-gradient(90deg, #E91E63, #8B1538);
+  background: linear-gradient(90deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep));
 }
 
 .vlpd-onboard-list {
@@ -15112,9 +15117,9 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   align-items: flex-start;
   gap: 12px;
   padding: 10px 0;
-  border-bottom: 1px dashed rgba(139, 21, 56, 0.10);
+  border-bottom: 1px dashed rgba(var(--lentax-tpp-crimson-deep-rgb), 0.10);
   font-size: 14px;
-  color: #2A1820;
+  color: var(--lentax-tpp-crimson-surface-deep);
   line-height: 1.5;
 }
 
@@ -15128,7 +15133,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #E91E63, #8B1538);
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep));
   color: #FFFFFF;
   font-size: 11px;
   font-weight: 700;
@@ -15141,7 +15146,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 .vlpd-onboard-cta-text {
   font-size: 14px;
   font-weight: 600;
-  color: #8B1538;
+  color: var(--lentax-tpp-crimson-deep);
   margin: 0;
   letter-spacing: -0.1px;
 }
@@ -15153,11 +15158,11 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   gap: 14px;
   margin: 22px 0 0 0;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #FFF4E5 0%, #FFE5EC 100%);
-  border: 1px solid rgba(212, 165, 116, 0.45);
-  border-left: 4px solid #D4A574;
+  background: linear-gradient(135deg, #FFF4E5 0%, var(--lentax-tpp-crimson-light) 100%);
+  border: 1px solid rgba(var(--lentax-tpp-gold-leaf-rgb), 0.45);
+  border-left: 4px solid var(--lentax-tpp-gold-leaf);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(139, 21, 56, 0.06);
+  box-shadow: 0 2px 8px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.06);
 }
 
 .vlpd-onboard-banner-icon {
@@ -15165,7 +15170,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #D4A574, #8B1538);
+  background: linear-gradient(135deg, var(--lentax-tpp-gold-leaf), var(--lentax-tpp-crimson-deep));
   color: #FFFFFF;
   display: inline-flex;
   align-items: center;
@@ -15175,7 +15180,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 700;
   line-height: 1;
   margin-top: 1px;
-  box-shadow: 0 2px 6px rgba(139, 21, 56, 0.20);
+  box-shadow: 0 2px 6px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.20);
 }
 
 .vlpd-onboard-banner-content {
@@ -15189,7 +15194,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #8B1538;
+  color: var(--lentax-tpp-crimson-deep);
   margin: 0 0 4px 0;
 }
 
@@ -15197,13 +15202,13 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: #2A1820;
+  color: var(--lentax-tpp-crimson-surface-deep);
   line-height: 1.55;
   margin: 0;
 }
 
 .vlpd-onboard-banner-text strong {
-  color: #8B1538;
+  color: var(--lentax-tpp-crimson-deep);
   font-weight: 700;
 }
 
@@ -15247,11 +15252,11 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 /* 2) Appointment block — themed to match form's tu-form-header */
 .sd-flow .appointment-intake-form-wrapper {
-  background: linear-gradient(180deg, #FFFAF4 0%, #F5E6D3 100%) !important;
-  border: 2px dashed #8B1538 !important;
+  background: linear-gradient(180deg, var(--lentax-tpp-ivory) 0%, var(--lentax-tpp-champagne) 100%) !important;
+  border: 2px dashed var(--lentax-tpp-crimson-deep) !important;
   border-radius: 14px !important;
   padding: 28px 32px !important;
-  box-shadow: 0 14px 35px rgba(139, 21, 56, 0.08) !important;
+  box-shadow: 0 14px 35px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08) !important;
 }
 
 .sd-flow .appointment-intake-form-field-block {
@@ -15262,7 +15267,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .appointment-intake-form-wrapper .btn-primary {
-  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
   color: #FFFFFF !important;
   border: none !important;
   border-radius: 999px !important;
@@ -15271,27 +15276,27 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 600 !important;
   font-size: 14px !important;
   letter-spacing: 0.3px !important;
-  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.25) !important;
+  box-shadow: 0 8px 20px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.25) !important;
   transition: all 0.25s ease !important;
 }
 
 .sd-flow .appointment-intake-form-wrapper .btn-primary:hover {
-  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-magenta), var(--lentax-tpp-crimson-maroon)) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.40) !important;
+  box-shadow: 0 12px 28px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.40) !important;
 }
 
 .sd-flow .appointment-intake-form-field-block .p-2.m-2,
 .sd-flow .appointment-intake-form-field-block .p-2.m-md-0:not(:first-child) {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
   font-size: 14px !important;
-  color: #6B5260 !important;
+  color: var(--lentax-tpp-crimson-muted) !important;
 }
 
 /* 3) Flow advance/complete button */
 .sd-flow .flow-buttons.flow-button-continue,
 .sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip) {
-  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
   color: #FFFFFF !important;
   border: none !important;
   border-radius: 999px !important;
@@ -15300,26 +15305,26 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 600 !important;
   font-size: 15px !important;
   letter-spacing: 0.3px !important;
-  box-shadow: 0 10px 24px rgba(233, 30, 99, 0.25) !important;
+  box-shadow: 0 10px 24px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.25) !important;
   transition: all 0.3s ease !important;
   text-transform: none !important;
 }
 
 .sd-flow .flow-buttons.flow-button-continue:hover,
 .sd-flow .flow-advance-wrapper .flow-buttons:not(.flow-button-skip):hover {
-  background: linear-gradient(135deg, #C2185B, #5C0D24) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-magenta), var(--lentax-tpp-crimson-maroon)) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 14px 32px rgba(233, 30, 99, 0.40) !important;
+  box-shadow: 0 14px 32px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.40) !important;
 }
 
 /* 4) Sidebar — TPP dark theme with refined hover/active states */
 .sd-flow .flow-nav-list__container {
-  background: linear-gradient(180deg, #5C0D24, #1A0B14) !important;
+  background: linear-gradient(180deg, var(--lentax-tpp-crimson-maroon), var(--lentax-tpp-crimson-surface-darkest)) !important;
 }
 
 .sd-flow .flow-nav-list li {
   position: relative !important;
-  border-bottom: 1px solid rgba(245, 230, 211, 0.08) !important;
+  border-bottom: 1px solid rgba(var(--lentax-tpp-champagne-rgb), 0.08) !important;
   background: transparent !important;
   transition: background 0.25s ease !important;
   overflow: hidden !important;
@@ -15333,7 +15338,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   left: 0 !important;
   bottom: 0 !important;
   width: 3px !important;
-  background: linear-gradient(180deg, #E91E63, #8B1538, #D4A574) !important;
+  background: linear-gradient(180deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-tpp-gold-leaf)) !important;
   transform: scaleY(0) !important;
   transform-origin: center !important;
   transition: transform 0.25s ease !important;
@@ -15343,20 +15348,20 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
   font-weight: 600 !important;
   font-size: 14px !important;
-  color: rgba(245, 230, 211, 0.75) !important;
+  color: rgba(var(--lentax-tpp-champagne-rgb), 0.75) !important;
   letter-spacing: 0.2px !important;
   background: transparent !important;
   transition: color 0.2s ease !important;
 }
 
 .sd-flow .flow-nav-list li h4 i {
-  color: rgba(245, 230, 211, 0.40) !important;
+  color: rgba(var(--lentax-tpp-champagne-rgb), 0.40) !important;
   transition: color 0.2s ease !important;
 }
 
 /* Hover — subtle crimson tint, accent stripe slides in (NO white background) */
 .sd-flow .flow-nav-list li.can-nav:hover {
-  background: rgba(233, 30, 99, 0.08) !important;
+  background: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.08) !important;
 }
 
 .sd-flow .flow-nav-list li.can-nav:hover::before {
@@ -15364,16 +15369,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .flow-nav-list li.can-nav:hover h4 {
-  color: #F5E6D3 !important;
+  color: var(--lentax-tpp-champagne) !important;
 }
 
 .sd-flow .flow-nav-list li.can-nav:hover h4 i {
-  color: rgba(245, 230, 211, 0.80) !important;
+  color: rgba(var(--lentax-tpp-champagne-rgb), 0.80) !important;
 }
 
 /* Active — slightly stronger tint, full accent stripe, rose icon */
 .sd-flow .flow-nav-list li.active {
-  background: rgba(233, 30, 99, 0.14) !important;
+  background: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.14) !important;
   border-left: none !important;
 }
 
@@ -15382,11 +15387,11 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .flow-nav-list li.active h4 {
-  color: #F5E6D3 !important;
+  color: var(--lentax-tpp-champagne) !important;
 }
 
 .sd-flow .flow-nav-list li.active h4 i {
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
 }
 
 /* Override any inherited white/gray background that SuiteDash injects */
@@ -15400,65 +15405,65 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .flow-nav-list li.can-nav:hover {
-  background-color: rgba(233, 30, 99, 0.08) !important;
+  background-color: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.08) !important;
 }
 
 .sd-flow .flow-nav-list li.active {
-  background-color: rgba(233, 30, 99, 0.14) !important;
+  background-color: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.14) !important;
 }
 
 /* Flow header bar */
 .sd-flow .flow-modal-header {
-  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
-  border-bottom: 1px solid rgba(233, 30, 99, 0.20) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-surface-darkest), var(--lentax-tpp-crimson-maroon)) !important;
+  border-bottom: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.20) !important;
 }
 
 .sd-flow .flow-modal-header .btn {
-  color: rgba(245, 230, 211, 0.75) !important;
+  color: rgba(var(--lentax-tpp-champagne-rgb), 0.75) !important;
 }
 
 .sd-flow .flow-modal-header .btn:hover {
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
 }
 
 .sd-flow .flow-modal-header .close-btn .btn-close-element::before,
 .sd-flow .flow-modal-header .close-btn .btn-close-element::after {
-  background-color: rgba(245, 230, 211, 0.75) !important;
+  background-color: rgba(var(--lentax-tpp-champagne-rgb), 0.75) !important;
 }
 
 /* Flow content area background */
 .sd-flow .flow-wrapper .content {
-  background: #FFFAF4 !important;
+  background: var(--lentax-tpp-ivory) !important;
 }
 
 /* Flow title */
 .sd-flow .flow-header .title h2 {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 600 !important;
-  color: #1A0B14 !important;
+  color: var(--lentax-tpp-crimson-surface-darkest) !important;
   font-size: 24px !important;
   letter-spacing: -0.3px !important;
 }
 
 /* Flow back button */
 .sd-flow .flow-header .back .btn {
-  color: #8B1538 !important;
+  color: var(--lentax-tpp-crimson-deep) !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 600 !important;
 }
 
 .sd-flow .flow-header .back .btn:hover {
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
 }
 
 /* Flow modal background */
 .sd-flow .flow-modal {
-  background: #F5E6D3 !important;
+  background: var(--lentax-tpp-champagne) !important;
 }
 
 @media (max-width: 768px) {
   .sd-flow .flow-nav-list__container {
-    background: linear-gradient(90deg, #5C0D24, #1A0B14) !important;
+    background: linear-gradient(90deg, var(--lentax-tpp-crimson-maroon), var(--lentax-tpp-crimson-surface-darkest)) !important;
   }
   .sd-flow .appointment-intake-form-wrapper {
     padding: 20px 18px !important;
@@ -15479,16 +15484,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 /* Modal shell */
 .sd-flow .add-appointment-form {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
-  background: linear-gradient(135deg, #FFFAF4 0%, #FFF1F5 100%) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-ivory) 0%, var(--lentax-tpp-crimson-tint) 100%) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
 }
 
 /* Modal header */
 .sd-flow .intakeForm-modal-header {
-  background: linear-gradient(135deg, #1A0B14, #5C0D24) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-surface-darkest), var(--lentax-tpp-crimson-maroon)) !important;
   padding: 18px 28px !important;
-  border-bottom: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border-bottom: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.25) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -15498,19 +15503,19 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  color: #F5E6D3 !important;
+  color: var(--lentax-tpp-champagne) !important;
   letter-spacing: -0.2px !important;
   margin: 0 !important;
 }
 
 .sd-flow .intakeForm-modal-close-btn .btn-close-element::before,
 .sd-flow .intakeForm-modal-close-btn .btn-close-element::after {
-  background-color: rgba(245, 230, 211, 0.75) !important;
+  background-color: rgba(var(--lentax-tpp-champagne-rgb), 0.75) !important;
 }
 
 .sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::before,
 .sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::after {
-  background-color: #E91E63 !important;
+  background-color: var(--lentax-tpp-crimson-primary) !important;
 }
 
 /* Modal body */
@@ -15522,10 +15527,10 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 /* Selected appointment type card */
 .sd-flow .appointment-type__item.active .appointment-type__block {
   background: #FFFFFF !important;
-  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.25) !important;
   border-radius: 18px !important;
   padding: 24px !important;
-  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08) !important;
   display: flex !important;
   align-items: flex-start !important;
   gap: 20px !important;
@@ -15542,12 +15547,12 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   display: inline-block !important;
   padding: 3px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, #E91E63, #8B1538, #D4A574) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-tpp-gold-leaf)) !important;
 }
 
 .sd-flow .appointment-type__staff-avatar .default-user-avatar {
-  background: #1A0B14 !important;
-  color: #F5E6D3 !important;
+  background: var(--lentax-tpp-crimson-surface-darkest) !important;
+  color: var(--lentax-tpp-champagne) !important;
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 600 !important;
   font-size: 32px !important;
@@ -15555,15 +15560,15 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border: 2px solid #FFFAF4 !important;
+  border: 2px solid var(--lentax-tpp-ivory) !important;
 }
 
 .sd-flow .appointment-type__staff-avatar img {
   border-radius: 50% !important;
   border: 3px solid transparent !important;
   background:
-    linear-gradient(#FFFAF4, #FFFAF4) padding-box,
-    linear-gradient(135deg, #E91E63, #8B1538, #D4A574) border-box !important;
+    linear-gradient(var(--lentax-tpp-ivory), var(--lentax-tpp-ivory)) padding-box,
+    linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-tpp-gold-leaf)) border-box !important;
 }
 
 .sd-flow .appointment-type__info {
@@ -15575,7 +15580,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  color: #1A0B14 !important;
+  color: var(--lentax-tpp-crimson-surface-darkest) !important;
   letter-spacing: -0.2px !important;
   margin: 0 0 4px 0 !important;
   line-height: 1.25 !important;
@@ -15586,7 +15591,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
   font-size: 13px !important;
   font-weight: 600 !important;
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
   letter-spacing: 0.2px !important;
   margin-bottom: 12px !important;
 }
@@ -15594,7 +15599,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 .sd-flow .appointment-type__description {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
   font-size: 13px !important;
-  color: #6B5260 !important;
+  color: var(--lentax-tpp-crimson-muted) !important;
   line-height: 1.6 !important;
   white-space: pre-line !important;
   margin-bottom: 12px !important;
@@ -15607,15 +15612,15 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 700 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
-  color: #8B1538 !important;
-  background: #FFE5EC !important;
-  border: 1px solid rgba(233, 30, 99, 0.25) !important;
+  color: var(--lentax-tpp-crimson-deep) !important;
+  background: var(--lentax-tpp-crimson-light) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.25) !important;
   border-radius: 999px !important;
   padding: 5px 12px !important;
 }
 
 .sd-flow .appointment-type__duration #appointmentCalendarSlotDurationTime {
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
   font-weight: 700 !important;
 }
 
@@ -15626,22 +15631,22 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 700 !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
   margin: 18px 0 10px 0 !important;
 }
 
 .sd-flow .select2-container--default .select2-selection--single,
 #appointmentTimeZoneSelect .select2-container--default .select2-selection--single {
   background: #FFFFFF !important;
-  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.20) !important;
   border-radius: 12px !important;
   height: 44px !important;
-  box-shadow: 0 1px 3px rgba(139, 21, 56, 0.05) !important;
+  box-shadow: 0 1px 3px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.05) !important;
 }
 
 .sd-flow .select2-container--default .select2-selection__rendered,
 #appointmentTimeZoneSelect .select2-selection__rendered {
-  color: #2A1820 !important;
+  color: var(--lentax-tpp-crimson-surface-deep) !important;
   font-family: 'Inter', sans-serif !important;
   font-size: 14px !important;
   font-weight: 500 !important;
@@ -15656,12 +15661,12 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .select2-container--default .select2-selection__arrow b {
-  border-color: #8B1538 transparent transparent transparent !important;
+  border-color: var(--lentax-tpp-crimson-deep) transparent transparent transparent !important;
 }
 
 /* Calendar pagination header */
 .sd-flow .appointment-schedule-pagination {
-  border-bottom: 1px solid rgba(139, 21, 56, 0.14) !important;
+  border-bottom: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   margin-bottom: 12px !important;
 }
 
@@ -15669,7 +15674,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  color: #1A0B14 !important;
+  color: var(--lentax-tpp-crimson-surface-darkest) !important;
   letter-spacing: -0.2px !important;
   margin: 0 !important;
 }
@@ -15681,9 +15686,9 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-family: 'Inter', sans-serif !important;
   font-size: 13px !important;
   font-weight: 600 !important;
-  color: #8B1538 !important;
+  color: var(--lentax-tpp-crimson-deep) !important;
   background: transparent !important;
-  border: 1px solid rgba(139, 21, 56, 0.25) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.25) !important;
   border-radius: 999px !important;
   padding: 6px 14px !important;
   transition: all 0.2s ease !important;
@@ -15691,7 +15696,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .appointment-schedule-pagination-button:hover {
-  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
   color: #FFFFFF !important;
   border-color: transparent !important;
   text-decoration: none !important;
@@ -15723,7 +15728,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 .sd-flow .appointment-schedule-date-column {
   background: rgba(255, 255, 255, 0.5) !important;
-  border: 1px solid rgba(139, 21, 56, 0.08) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08) !important;
   border-radius: 12px !important;
   padding: 10px 6px !important;
   align-items: stretch !important;
@@ -15737,7 +15742,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
   color: #FFFFFF !important;
-  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
   border-radius: 999px !important;
   padding: 3px 10px !important;
   margin-bottom: 6px !important;
@@ -15746,7 +15751,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 .sd-flow .appointment-schedule-date-column-header {
   padding-bottom: 10px !important;
   margin-bottom: 10px !important;
-  border-bottom: 1px solid rgba(139, 21, 56, 0.10) !important;
+  border-bottom: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.10) !important;
 }
 
 .sd-flow .appointment-date-day-of-week {
@@ -15755,14 +15760,14 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   font-weight: 700 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
-  color: #8B1538 !important;
+  color: var(--lentax-tpp-crimson-deep) !important;
 }
 
 .sd-flow .appointment-date.text-secondary {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  color: #1A0B14 !important;
+  color: var(--lentax-tpp-crimson-surface-darkest) !important;
   line-height: 1 !important;
   margin-top: 2px !important;
 }
@@ -15777,7 +15782,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .sd-flow .appointment-date-no-availability .material-icons.red {
-  color: rgba(139, 21, 56, 0.25) !important;
+  color: rgba(var(--lentax-tpp-crimson-deep-rgb), 0.25) !important;
   font-size: 22px !important;
 }
 
@@ -15791,8 +15796,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   display: block !important;
   width: 100% !important;
   background: #FFFFFF !important;
-  color: #8B1538 !important;
-  border: 1px solid rgba(233, 30, 99, 0.35) !important;
+  color: var(--lentax-tpp-crimson-deep) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.35) !important;
   border-radius: 999px !important;
   padding: 7px 10px !important;
   font-family: 'Inter', sans-serif !important;
@@ -15806,57 +15811,57 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 .sd-flow .appointment-slot-timer:hover,
 .sd-flow .appointment-slot-timer:focus {
-  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
   color: #FFFFFF !important;
   border-color: transparent !important;
   text-decoration: none !important;
-  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.30) !important;
+  box-shadow: 0 4px 12px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.30) !important;
   transform: translateY(-1px) !important;
 }
 
 .sd-flow .appointment-slot-timer.selected,
 .sd-flow .appointment-slot-timer-container.selected .appointment-slot-timer {
-  background: linear-gradient(135deg, #E91E63, #8B1538) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
   color: #FFFFFF !important;
   border-color: transparent !important;
 }
 
 /* Error banner */
 .sd-flow .sd-form-error-banner {
-  background: #FFE5EC !important;
-  border: 1px solid rgba(139, 21, 56, 0.25) !important;
-  color: #8B1538 !important;
+  background: var(--lentax-tpp-crimson-light) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.25) !important;
+  color: var(--lentax-tpp-crimson-deep) !important;
   border-radius: 12px !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 600 !important;
 }
 
 .sd-flow .sd-form-error-banner__action {
-  color: #E91E63 !important;
+  color: var(--lentax-tpp-crimson-primary) !important;
   font-weight: 700 !important;
 }
 
 /* Success message after booking */
 .sd-flow #appointmentCalendarSuccessMessage {
   background: #FFFFFF !important;
-  border: 1px solid rgba(139, 21, 56, 0.20) !important;
+  border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.20) !important;
   border-radius: 16px !important;
   padding: 20px 24px !important;
-  color: #2A1820 !important;
+  color: var(--lentax-tpp-crimson-surface-deep) !important;
   font-family: 'Inter', sans-serif !important;
   font-size: 14px !important;
   line-height: 1.6 !important;
   white-space: pre-line !important;
-  box-shadow: 0 4px 16px rgba(139, 21, 56, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08) !important;
 }
 
 /* Scrollbars inside the modal */
 .sd-flow .ps__scrollbar-y {
-  background-color: rgba(233, 30, 99, 0.40) !important;
+  background-color: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.40) !important;
 }
 
 .sd-flow .ps__scrollbar-x {
-  background-color: rgba(233, 30, 99, 0.40) !important;
+  background-color: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.40) !important;
 }
 
 /* Responsive — appointment modal */
