@@ -119,9 +119,15 @@ before the merge step:
 ### For `lentax-base.css`
 
 ```powershell
-# 1. No HTML <style> tags should ever appear in a .css file
-$styleTags = (Select-String -Path .\lentax-base.css -Pattern "</?style>" -AllMatches).Matches.Count
-if ($styleTags -gt 0) { Write-Host "FAIL: <style> tags in CSS" -ForegroundColor Red; exit 1 }
+# 1. No real HTML <style> tags should ever appear in a .css file (a genuine
+#    porting hazard — the CU source files were <style>-wrapped). The check MUST
+#    strip /* */ comments BEFORE scanning: the DocGen sub-sections legitimately
+#    mention <style>/</style> in documentation prose (e.g. "renders raw <style>
+#    source as visible text"), and those comment mentions are NOT defects.
+$base = [System.IO.File]::ReadAllText("$PWD\lentax-base.css", [System.Text.Encoding]::UTF8)
+$code = [regex]::Replace($base, '/\*[\s\S]*?\*/', '')   # strip comments first
+$styleTags = ([regex]::Matches($code, '</?style>')).Count
+if ($styleTags -gt 0) { Write-Host "FAIL: real <style> tags in CSS" -ForegroundColor Red; exit 1 }
 
 # 2. Brace balance
 $content = Get-Content .\lentax-base.css -Raw
