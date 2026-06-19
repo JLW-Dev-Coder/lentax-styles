@@ -1,0 +1,76 @@
+/* themes/tpp-sentinel.css
+ * TPP Sentinel — patriotic navy/red/cream palette
+ * Loaded after lentax-base.css on TPP "Sentinel" portals via lentax-tpp-sentinel.js.
+ * Re-skins the TPP brand token surface to a patriotic navy/red/cream palette
+ * (signal-red #dc2626 / navy #14213d / cream #F5EFE0 / antique-gold #B08D57).
+ * Same token surface as themes/tpp-coastal.css — only values differ.
+ * Fonts overridden to Source Sans 3 (Phase 7 font tokens): clean patriotic sans
+ * identity — Source Sans 3 for headings too (Sentinel has no serif display).
+ * Source Sans 3 already loads via the base @import — no @import change needed.
+ * Page background: red/white/blue swoosh SVG (assets/sentinel-bg.svg, Phase 6 token).
+ * Source: Sentinel palette + swoosh approved 2026-06-19 (themeability project finale, Phase 8).
+ */
+:root {
+  /* TPP brand tokens re-skinned to Sentinel (mirrors tpp-default.css surface) */
+  --lentax-tpp-crimson-primary: #dc2626;
+  --lentax-tpp-crimson-primary-rgb: 220, 38, 38;
+  --lentax-tpp-crimson-deep: #14213d;
+  --lentax-tpp-crimson-deep-rgb: 20, 33, 61;
+  --lentax-tpp-crimson-maroon: #0F1830;
+  --lentax-tpp-crimson-magenta: #b41d1d;
+  --lentax-tpp-crimson-light: #E7ECF3;
+  --lentax-tpp-crimson-light-rgb: 231, 236, 243;
+  --lentax-tpp-crimson-tint: #F4F6FA;
+  --lentax-tpp-crimson-surface-deep: #1B2A4A;
+  --lentax-tpp-crimson-surface-darkest: #0A1124;
+  --lentax-tpp-crimson-muted: #5A6480;
+  --lentax-tpp-crimson-muted-alt: #7C86A0;
+
+  /* TPP warm accents (champagne / ivory / gold tokens re-skinned to Sentinel cream/gold) — Phase 1 */
+  --lentax-tpp-champagne: #F5EFE0;       /* warm cream surface */
+  --lentax-tpp-champagne-rgb: 245, 239, 224;
+  --lentax-tpp-champagne-deep: #E8DCC2;  /* deeper cream */
+  --lentax-tpp-champagne-deep-rgb: 232, 220, 194;
+  --lentax-tpp-ivory: #FDFBF5;           /* warm ivory */
+  --lentax-tpp-ivory-rgb: 253, 251, 245;
+  --lentax-tpp-gold-leaf: #B08D57;       /* antique gold (cream accent) */
+  --lentax-tpp-gold-leaf-rgb: 176, 141, 87;
+  --lentax-tpp-gold-bright: #C9A227;     /* brighter gold */
+  --lentax-tpp-gold-bright-rgb: 201, 162, 39;
+
+  /* TPP portal page background — crimson-deep token (now navy), ties to brand chrome. */
+  --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
+
+  /* Sentinel page background image — red/white/blue swoosh SVG, renders over the bg color. */
+  --lentax-page-bg-image: url('https://precious-lily-bbe555.netlify.app/assets/sentinel-bg.svg');
+
+  /* Font tokens (Phase 7): Sentinel overrides to Source Sans 3 — clean patriotic sans
+     identity; Source Sans 3 for headings too (no serif display). Source Sans 3 already
+     loads via the base @import. Mono stays the base stack (typography-neutral). */
+  --lentax-font-serif: 'Source Sans 3', 'Georgia', serif;
+  --lentax-font-sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  --lentax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Sentinel */
+  --lentax-chrome-sidebar-bg: #1a1a1a;
+  --lentax-chrome-sidebar-org-pill-bg: #000000;
+  --lentax-chrome-sidebar-text: #ffffff;
+  --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
+  --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
+  --lentax-chrome-sidebar-border: transparent;
+  --lentax-chrome-sidebar-scrollbar-thumb: rgba(20, 33, 61, 0.35);
+  --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(220, 38, 38, 0.50);
+  --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #dc2626, #14213d);
+
+  --lentax-chrome-navbar-bg: #ffffff;
+  --lentax-chrome-navbar-border-bottom: transparent;
+  --lentax-chrome-navbar-icon-color: #686868;
+  --lentax-chrome-navbar-badge-bg: #C40000;
+  --lentax-chrome-navbar-create-btn-bg: #000000;
+  --lentax-chrome-navbar-create-btn-color: #ffffff;
+
+  --lentax-chrome-tabstrip-bg: #1a1a1a;
+  --lentax-chrome-tabstrip-active-bg: #2a2a2a;
+  --lentax-chrome-tabstrip-divider: rgba(255, 255, 255, 0.15);
+  --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
+}
