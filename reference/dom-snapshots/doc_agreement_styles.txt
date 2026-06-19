@@ -1,5 +1,165 @@
 element.style {
 }
+.tpp-doc-header .tpp-doc-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    font-size: 32px;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em;
+    color: var(--tpp-text-on-dark) !important;
+    margin-bottom: 4px;
+}
+.tpp-doc-header .tpp-doc-logo {
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after {
+    box-sizing: border-box;
+}
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after {
+body * {
+    scrollbar-color: var(--sd-bg-offwhite-accent) transparent;
+}
+* {
+    scrollbar-width: thin;
+}
+* {
+*, ::after, ::before {
+*, :after, :before {
+*, ::before, ::after {
+    border-width: 0;
+}
+.wysiwyg-content address, .wysiwyg-content main, .wysiwyg-content section, .wysiwyg-content header, .wysiwyg-content footer, .wysiwyg-content aside, .wysiwyg-content article, .wysiwyg-content pre, .wysiwyg-content div, .wysiwyg-content table, .wysiwyg-content tbody, .wysiwyg-content thead, .wysiwyg-content tfoot, .wysiwyg-content th, .wysiwyg-content tr, .wysiwyg-content td, .wysiwyg-content ul, .wysiwyg-content ol, .wysiwyg-content li, .wysiwyg-content blockquote, .wysiwyg-content p, .wysiwyg-content figure, .wysiwyg-content figcaption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.618;
+    color: #444;
+}
+user agent stylesheet
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.tpp-doc-header {
+    background: linear-gradient(135deg, var(--tpp-crimson-deep) 0%, var(--tpp-noir) 100%) !important;
+    color: var(--tpp-text-on-dark) !important;
+    padding: 40px 48px 36px;
+    position: relative;
+}
+.tpp-doc-header {
+    background: linear-gradient(135deg, var(--tpp-crimson-deep) 0%, var(--tpp-noir) 100%) !important;
+    color: var(--tpp-text-on-dark) !important;
+    padding: 40px 48px 36px;
+    position: relative;
+}
+.tpp-doc, .doc-8879 {
+    --tpp-rose: #E91E63;
+    --tpp-rose-deep: #C2185B;
+    --tpp-crimson: #8B1538;
+    --tpp-crimson-deep: #5C0D24;
+    --tpp-blush: #FFE5EC;
+    --tpp-noir: #1A0B14;
+    --tpp-champagne: #F5E6D3;
+    --tpp-champagne-deep: #EBD7BE;
+    --tpp-ivory: #FFFAF4;
+    --tpp-gold-leaf: #D4A574;
+    --tpp-gold-bright: #E8C088;
+    --tpp-text: #2A1820;
+    --tpp-text-muted: #6B5260;
+    --tpp-text-on-dark: #F5E6D3;
+    --tpp-text-on-rose: #FFFFFF;
+    --tpp-border: rgba(139, 21, 56, 0.14);
+    --tpp-border-strong: rgba(139, 21, 56, 0.30);
+    --tpp-white: #FFFFFF;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+    color: var(--tpp-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--tpp-white);
+}
+.tpp-doc, .doc-8879 {
+    --tpp-rose: #E91E63;
+    --tpp-rose-deep: #C2185B;
+    --tpp-crimson: #8B1538;
+    --tpp-crimson-deep: #5C0D24;
+    --tpp-blush: #FFE5EC;
+    --tpp-noir: #1A0B14;
+    --tpp-champagne: #F5E6D3;
+    --tpp-champagne-deep: #EBD7BE;
+    --tpp-ivory: #FFFAF4;
+    --tpp-gold-leaf: #D4A574;
+    --tpp-gold-bright: #E8C088;
+    --tpp-text: #2A1820;
+    --tpp-text-muted: #6B5260;
+    --tpp-text-on-dark: #F5E6D3;
+    --tpp-text-on-rose: #FFFFFF;
+    --tpp-border: rgba(139, 21, 56, 0.14);
+    --tpp-border-strong: rgba(139, 21, 56, 0.30);
+    --tpp-white: #FFFFFF;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
+    color: var(--tpp-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--tpp-white);
+}
+.wysiwyg-content {
+    padding-left: 26px;
+    padding-right: 26px;
+    padding-top: 10px;
+    padding-bottom: 26px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 1.618;
+}
+.cbe-block-content-text {
+    word-wrap: break-word;
+    background-color: inherit;
+}
+:root body.sidebar-expand, :root body.sidebar-focused {
+    --sd-sidebar-width: 14.375rem;
+}
+body {
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    min-width: 0 !important;
+    padding: 0 0 env(safe-area-inset-bottom) 0 !important;
+    position: relative;
+    color: var(--sd-text-default);
+    font-size: var(--text-base);
+    letter-spacing: 0.00938em;
+    font-weight: 400;
+    line-height: 1.5;
+    z-index: 1;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+@supports (padding-top: env(safe-area-inset-top)) {
+    body {
+        --safe-area-inset-top: env(safe-area-inset-top);
+        height: calc(100% + var(--safe-area-inset-top));
+    }
+}
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.57142857;
+    color: #555;
+    background-color: #f2f4f8;
+}
+body {
+    position: relative;
+    min-height: 100%;
+    color: #5f5f5f;
+    background: #fefefe;
+    line-height: 20.8px;
+    font-size: 13px;
+}
+.font-light, .widget .whead h2, .widget .whead h6, body, button, html, input, select, textarea {
 html.round-mode {
     --sd-radius-mode-edgy: var(--sd-radius-fixed-edgy);
     --sd-radius-mode-sm: var(--sd-radius-fixed-sm);
@@ -733,23 +893,7 @@ Show all properties (60 more)
 Show all properties (106 more)
 }
 :root, :host {
-#suiteDashBody, body, html {
-    background: transparent !important;
-    background-image: none !important;
-}
-#suiteDashBody, body, html {
 html, button, input, select, textarea {
-    font-family: var(--default-font-family) !important;
-    font-weight: normal;
-}
-html {
-    height: -moz-available;
-    height: -webkit-fill-available;
-    height: fill-available;
-    scrollbar-gutter: stable;
-    margin: 0 !important;
-    padding: 0 !important;
-}
 html {
     box-sizing: border-box;
     font-family: sans-serif;
@@ -760,38 +904,19 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 html {
-    font-size: 1em;
-    line-height: 1.4;
-}
 button, html, input, select, textarea {
-    color: #222;
-}
 button, html, input, select, textarea {
 html {
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
 button, html, input, select, textarea {
-    font-family: Inter, sans-serif, Arial, Helvetica, sans-serif !important;
-    font-weight: 300 !important;
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after {
+    box-sizing: border-box;
 }
-.font-light, .widget .whead h2, .widget .whead h6, body, button, html, input, select, textarea {
-* {
-    scrollbar-width: thin;
-}
-* {
-*, ::after, ::before {
-*, :after, :before {
-*, ::before, ::after {
-    border-width: 0;
-}
-html[Attributes Style] {
-    -webkit-locale: "en";
-}
-user agent stylesheet
-:root {
-    view-transition-name: root;
-}
-user agent stylesheet
-html {
-    display: block;
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after {
+    box-sizing: border-box;
 }
 *, ::after, ::before {
     box-sizing: inherit;
@@ -803,6 +928,12 @@ html {
 }
 *, ::before, ::after {
     border-width: 0;
+}
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after {
+    box-sizing: border-box;
+}
+.tpp-doc *, .doc-8879 *, .tpp-doc *::before, .doc-8879 *::before, .tpp-doc *::after, .doc-8879 *::after {
+    box-sizing: border-box;
 }
 *, ::after, ::before {
     box-sizing: inherit;
@@ -847,11 +978,98 @@ html {
     text-shadow: none;
 }
 ::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
+::selection {
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 500;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+    src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmSq17w.woff2) format('woff2');
     unicode-range: U +0460 -052F, U +1C80 -1C8A, U +20B4, U +2DE0 -2DFF, U + A640-A69F, U + FE2E-FE2F;
 }
