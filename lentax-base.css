@@ -14088,23 +14088,26 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 
 .tpp-doc,
 .doc-8879 {
-  --tpp-rose:           #E91E63;
-  --tpp-rose-deep:      #C2185B;
-  --tpp-crimson:        #8B1538;
-  --tpp-crimson-deep:   #5C0D24;
-  --tpp-blush:          #FFE5EC;
-  --tpp-noir:           #1A0B14;
-  --tpp-champagne:      #F5E6D3;
-  --tpp-champagne-deep: #EBD7BE;
-  --tpp-ivory:          #FFFAF4;
-  --tpp-gold-leaf:      #D4A574;
-  --tpp-gold-bright:    #E8C088;
-  --tpp-text:           #2A1820;
-  --tpp-text-muted:     #6B5260;
-  --tpp-text-on-dark:   #F5E6D3;
+  /* --tpp-* re-pointed to themeable --lentax-* tokens — Phase 2b (2026-06-19).
+     Was hardcoded rose literals (un-themeable island). Now inherits the active
+     theme. [§2.16: serves Docs 1 & 2 via .tpp-doc/.doc-8879] */
+  --tpp-rose:           var(--lentax-tpp-crimson-primary);
+  --tpp-rose-deep:      var(--lentax-tpp-crimson-magenta);
+  --tpp-crimson:        var(--lentax-tpp-crimson-deep);
+  --tpp-crimson-deep:   var(--lentax-tpp-crimson-maroon);
+  --tpp-blush:          var(--lentax-tpp-crimson-light);
+  --tpp-noir:           var(--lentax-tpp-crimson-surface-darkest);
+  --tpp-champagne:      var(--lentax-tpp-champagne);
+  --tpp-champagne-deep: var(--lentax-tpp-champagne-deep);
+  --tpp-ivory:          var(--lentax-tpp-ivory);
+  --tpp-gold-leaf:      var(--lentax-tpp-gold-leaf);
+  --tpp-gold-bright:    var(--lentax-tpp-gold-bright);
+  --tpp-text:           var(--lentax-tpp-crimson-surface-deep);
+  --tpp-text-muted:     var(--lentax-tpp-crimson-muted);
+  --tpp-text-on-dark:   var(--lentax-tpp-champagne);
   --tpp-text-on-rose:   #FFFFFF;
-  --tpp-border:         rgba(139, 21, 56, 0.14);
-  --tpp-border-strong:  rgba(139, 21, 56, 0.30);
+  --tpp-border:         rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14);
+  --tpp-border-strong:  rgba(var(--lentax-tpp-crimson-deep-rgb), 0.30);
   --tpp-white:          #FFFFFF;
 
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
@@ -14769,23 +14772,26 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 }
 
 .tu-doc {
-  --tpp-rose:           #E91E63;
-  --tpp-rose-deep:      #C2185B;
-  --tpp-crimson:        #8B1538;
-  --tpp-crimson-deep:   #5C0D24;
-  --tpp-blush:          #FFE5EC;
-  --tpp-noir:           #1A0B14;
-  --tpp-champagne:      #F5E6D3;
-  --tpp-champagne-deep: #EBD7BE;
-  --tpp-ivory:          #FFFAF4;
-  --tpp-gold-leaf:      #D4A574;
-  --tpp-gold-bright:    #E8C088;
-  --tpp-text:           #2A1820;
-  --tpp-text-muted:     #6B5260;
-  --tpp-text-on-dark:   #F5E6D3;
+  /* --tpp-* re-pointed to themeable --lentax-* tokens — Phase 2b (2026-06-19).
+     Was hardcoded rose literals (un-themeable island). Now inherits the active
+     theme. [§2.19: serves Doc 3 via .tu-doc, standalone copy] */
+  --tpp-rose:           var(--lentax-tpp-crimson-primary);
+  --tpp-rose-deep:      var(--lentax-tpp-crimson-magenta);
+  --tpp-crimson:        var(--lentax-tpp-crimson-deep);
+  --tpp-crimson-deep:   var(--lentax-tpp-crimson-maroon);
+  --tpp-blush:          var(--lentax-tpp-crimson-light);
+  --tpp-noir:           var(--lentax-tpp-crimson-surface-darkest);
+  --tpp-champagne:      var(--lentax-tpp-champagne);
+  --tpp-champagne-deep: var(--lentax-tpp-champagne-deep);
+  --tpp-ivory:          var(--lentax-tpp-ivory);
+  --tpp-gold-leaf:      var(--lentax-tpp-gold-leaf);
+  --tpp-gold-bright:    var(--lentax-tpp-gold-bright);
+  --tpp-text:           var(--lentax-tpp-crimson-surface-deep);
+  --tpp-text-muted:     var(--lentax-tpp-crimson-muted);
+  --tpp-text-on-dark:   var(--lentax-tpp-champagne);
   --tpp-text-on-rose:   #FFFFFF;
-  --tpp-border:         rgba(139, 21, 56, 0.14);
-  --tpp-border-strong:  rgba(139, 21, 56, 0.30);
+  --tpp-border:         rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14);
+  --tpp-border-strong:  rgba(var(--lentax-tpp-crimson-deep-rgb), 0.30);
   --tpp-white:          #FFFFFF;
 
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif !important;
