@@ -98,6 +98,9 @@
   /* VLP portal page background — navy surface, ties to VLP nav chrome. */
   --lentax-form-page-bg: var(--lentax-vlp-navy-surface);
 
+  /* VLP has no page background image (unchanged for now). */
+  --lentax-page-bg-image: none;
+
   /* VLP chrome treatment — Option C, branded accent (§2.14) */
   --lentax-chrome-sidebar-bg: var(--lentax-vlp-navy-deep);
   --lentax-chrome-sidebar-org-pill-bg: rgba(249, 115, 22, 0.12);

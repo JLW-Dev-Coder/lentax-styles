@@ -41,6 +41,9 @@
   /* TPP portal page background — crimson-deep token (now navy-slate), ties to brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 
+  /* Coastal page background image — subtle seafoam-wave SVG, renders over the bg color. */
+  --lentax-page-bg-image: url('https://precious-lily-bbe555.netlify.app/assets/coastal-bg.svg');
+
   /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Coastal */
   --lentax-chrome-sidebar-bg: #1a1a1a;
   --lentax-chrome-sidebar-org-pill-bg: #000000;

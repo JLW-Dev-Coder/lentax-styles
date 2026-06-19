@@ -36,6 +36,9 @@
   /* TPP portal page background — crimson-deep, ties to TPP brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 
+  /* TPP Default has no page background image. */
+  --lentax-page-bg-image: none;
+
   /* TPP chrome — preserve current behavior (overridden in Commit 8) */
   --lentax-chrome-sidebar-bg: #1a1a1a;
   --lentax-chrome-sidebar-org-pill-bg: #000000;
