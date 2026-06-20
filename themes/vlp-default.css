@@ -157,3 +157,51 @@
   --lentax-font-serif: 'Source Sans 3', 'Georgia', serif;
   --lentax-font-display: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Dashboard tile cards + navbar create-new fix
+   Added 2026-06-20 — follow-up to e496dfd (Source Sans 3)
+   ───────────────────────────────────────────────────────────────── */
+
+/* Navbar "+" create-new button — glyph visibility (§3.1, Option 1).
+ * The orange fill is INTENTIONAL, not stale: base applies
+ * --lentax-chrome-navbar-create-btn-bg via `nav.navbar a.sd-nav-bar-add-button`
+ * (lentax-base.css ~L12812), and VLP-default re-binds that token to
+ * --lentax-vlp-orange-primary at :root above (line 127). We KEEP the orange
+ * brand accent and force the glyph white so it reads against it.
+ *
+ * Base already sets the <a> color to white and replaces SuiteDash's emoji with
+ * a ::after "+", BUT the live DOM glyph is an inline SVG <use #plus> (which
+ * survives the base's font-size:0), not the ::after. So we target the SVG
+ * directly: `color` drives currentColor (the chevron SVGs use
+ * stroke="currentColor"; the + is the same pattern), and fill/stroke cover
+ * non-currentColor icons. Navbar-scoped (NOT #dashboard-view) and limited to
+ * .sd-nav-bar-add-button so the sidebar-toggle chevron is untouched. */
+body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg,
+body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Dashboard tile cards (§3.2) — white surface + 2px orange brand border.
+ * !important per CLAUDE.md convention (defeats SuiteDash ID-scoped theme
+ * injection). NOTE: the prompt assumed a "clean slate", but base ships an
+ * UNSCOPED `.account-card-wrapper` dark-card rule (lentax-base.css ~L353) and
+ * SuiteDash flattens the wrapper to transparent on the dashboard — so a plain
+ * (1,1,0) rule is not guaranteed to win the cascade. Scoped to #dashboard-view
+ * so generic .account-card-wrapper usage elsewhere in the portal is unaffected.
+ * #ffffff is hardcoded — token candidate (--lentax-vlp-surface), see report §6.4. */
+#dashboard-view .account-card-wrapper {
+  background-color: #ffffff !important;
+  border: 2px solid var(--lentax-vlp-orange-primary) !important;   /* #f97316 */
+  border-radius: 12px !important;
+  padding: 24px 16px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: transform 150ms ease, box-shadow 150ms ease !important;
+}
+
+#dashboard-view .account-card-wrapper:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
