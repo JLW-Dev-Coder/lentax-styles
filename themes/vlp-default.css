@@ -243,3 +243,87 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
 .navbar .navbar-nav > li.top-nav-link > a.ripple svg {
   color: inherit !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Dashboard polish round 4: navy gradient cards, navbar icons,
+   announcement beautification, date hide
+   Added 2026-06-20 — supersedes white-card and navbar overrides
+   from 2d947a3 and d6df5e5. CC-approved spec, applied verbatim.
+   ───────────────────────────────────────────────────────────────── */
+
+/* 1. Card navy gradient */
+#dashboard-view .account-card-wrapper {
+  background: linear-gradient(180deg, #0d1b3e 0%, #1e3a6e 100%) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+#dashboard-view .account-card-wrapper .account-card-title,
+#dashboard-view .account-card-wrapper .account-card-title strong {
+  color: #f97316 !important;
+}
+#dashboard-view .account-card-wrapper h3 {
+  color: #e8edf5 !important;
+}
+#dashboard-view .account-card-wrapper .cbe-block-button-element.btn.btn-primary {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  border-radius: 15px !important;
+}
+
+/* 2. Navbar icons → #686868 */
+body .navbar .navbar-nav li.top-nav-link > a.ripple:not(.sd-nav-bar-add-button) {
+  color: #686868 !important;
+}
+body .navbar .navbar-nav li.top-nav-link.chat > a.ripple {
+  color: #686868 !important;
+}
+body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+}
+
+/* 3. Announcement block beautification */
+#dashboard-view .dashboard-anns__item {
+  background: linear-gradient(135deg, #eef3fc 0%, #ffffff 60%) !important;
+  border-top: 4px solid #f97316 !important;
+  border-left: 4px solid #f97316 !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-radius: 30px !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+#dashboard-view .dashboard-anns__head {
+  padding: 18px 28px 10px !important;
+  border-bottom: 1px solid rgba(13, 27, 62, 0.08) !important;
+}
+#dashboard-view h2.dashboard-anns__title {
+  color: #0d1b3e !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+#dashboard-view h2.dashboard-anns__title::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #f97316;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+#dashboard-view .dashboard-anns__body {
+  padding: 14px 28px 20px !important;
+  color: #3a3a3a !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* 4. Hide announcement date */
+#dashboard-view .dashboard-anns__date {
+  display: none !important;
+}
