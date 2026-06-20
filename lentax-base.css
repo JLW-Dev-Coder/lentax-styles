@@ -167,6 +167,23 @@
   --lentax-overlay-glass-medium: rgba(255, 255, 255, 0.10);
   --lentax-overlay-glass-strong: rgba(255, 255, 255, 0.2);
 
+  /* ===== Form-surface neutrals (TPP form/flow chrome) =====
+     Dedicated neutral channel for the standalone Forms surfaces (§2.3-2.12:
+     .app-form-embed / .extended-form-wrapper / .tu-form*, the appointment flow
+     modal, the onboarding card). Default values = warm parchment/bronze/gold-tan,
+     byte-identical to the former --lentax-vlp-* tokens these selectors used to
+     borrow; the form chrome no longer reaches into the VLP brand palette. Themes
+     rebind this family directly (Coastal -> seafoam/slate, Sentinel -> cool slate).
+     The -rgb companions feed rgba() call sites (THEMES.md hex/rgb sibling model).
+     The --lentax-vlp-* sources remain declared above as brand palette (still
+     consumed by the VLP sidebar accent-strip in themes/vlp-default.css). */
+  --lentax-form-surface-bg: #FFFAF4;             /* form/page surface (was --lentax-vlp-parchment-cream) */
+  --lentax-form-surface-bg-soft: #F5E6D3;        /* secondary surface (was --lentax-vlp-parchment-soft) */
+  --lentax-form-surface-bg-soft-rgb: 245, 230, 211;
+  --lentax-form-surface-accent: #D4A574;         /* footer accent tint (was --lentax-vlp-bronze-light) */
+  --lentax-form-surface-accent-rgb: 212, 165, 116;
+  --lentax-form-surface-accent-strong: #E8C088;  /* heading accent (was --lentax-vlp-gold-tan) */
+
   /* ===== Portal page background (.main-wrapper) ===== */
   /* Page background for portal dashboard views. Default preserves
      SuiteDash's #A6A6A6 gray. Themes override via redeclaration in
@@ -9205,7 +9222,7 @@ padding: 18px 18px 28px 18px;
   max-width: 720px;
   margin: 0 auto 32px auto;
   padding: 40px 36px 36px 36px;
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-soft) 100%);
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg-soft) 100%);
   border: 2px dashed var(--lentax-tpp-crimson-deep);
   border-radius: 14px;
   box-shadow: 0 14px 35px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.08);
@@ -9254,7 +9271,7 @@ padding: 18px 18px 28px 18px;
   color: var(--lentax-tpp-crimson-primary);
   margin: 0 0 6px 0;
   padding: 3px 10px;
-  background: var(--lentax-vlp-parchment-cream);
+  background: var(--lentax-form-surface-bg);
   border: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.35);
   border-radius: 999px;
 }
@@ -9293,7 +9310,7 @@ padding: 18px 18px 28px 18px;
 }
 
 .vlpd-onboard-expect {
-  background: var(--lentax-vlp-parchment-cream);
+  background: var(--lentax-form-surface-bg);
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14);
   border-radius: 14px;
   padding: 22px 24px;
@@ -9375,8 +9392,8 @@ padding: 18px 18px 28px 18px;
   margin: 22px 0 0 0;
   padding: 16px 20px;
   background: linear-gradient(135deg, var(--lentax-vlp-orange-light) 0%, var(--lentax-tpp-crimson-light) 100%);
-  border: 1px solid rgba(var(--lentax-vlp-bronze-light-rgb), 0.45);
-  border-left: 4px solid var(--lentax-vlp-bronze-light);
+  border: 1px solid rgba(var(--lentax-form-surface-accent-rgb), 0.45);
+  border-left: 4px solid var(--lentax-form-surface-accent);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.06);
 }
@@ -9386,7 +9403,7 @@ padding: 18px 18px 28px 18px;
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--lentax-vlp-bronze-light), var(--lentax-tpp-crimson-deep));
+  background: linear-gradient(135deg, var(--lentax-form-surface-accent), var(--lentax-tpp-crimson-deep));
   color: #FFFFFF;
   display: inline-flex;
   align-items: center;
@@ -9718,7 +9735,7 @@ padding: 18px 18px 28px 18px;
 
 /* 2) Appointment block — themed to match form's tu-form-header */
 .sd-flow .appointment-intake-form-wrapper {
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-soft) 100%) !important;
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg-soft) 100%) !important;
   border: 2px dashed var(--lentax-tpp-crimson-deep) !important;
   border-radius: 14px !important;
   padding: 28px 32px !important;
@@ -9790,7 +9807,7 @@ padding: 18px 18px 28px 18px;
 
 .sd-flow .flow-nav-list li {
   position: relative !important;
-  border-bottom: 1px solid rgba(var(--lentax-vlp-parchment-soft-rgb), 0.08) !important;
+  border-bottom: 1px solid rgba(var(--lentax-form-surface-bg-soft-rgb), 0.08) !important;
   background: transparent !important;
   transition: background 0.25s ease !important;
   overflow: hidden !important;
@@ -9804,7 +9821,7 @@ padding: 18px 18px 28px 18px;
   left: 0 !important;
   bottom: 0 !important;
   width: 3px !important;
-  background: linear-gradient(180deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-vlp-bronze-light)) !important;
+  background: linear-gradient(180deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-form-surface-accent)) !important;
   transform: scaleY(0) !important;
   transform-origin: center !important;
   transition: transform 0.25s ease !important;
@@ -9814,14 +9831,14 @@ padding: 18px 18px 28px 18px;
   font-family: var(--lentax-font-sans) !important;
   font-weight: 600 !important;
   font-size: 14px !important;
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
   letter-spacing: 0.2px !important;
   background: transparent !important;
   transition: color 0.2s ease !important;
 }
 
 .sd-flow .flow-nav-list li h4 i {
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.4) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.4) !important;
   transition: color 0.2s ease !important;
 }
 
@@ -9835,11 +9852,11 @@ padding: 18px 18px 28px 18px;
 }
 
 .sd-flow .flow-nav-list li.can-nav:hover h4 {
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
 }
 
 .sd-flow .flow-nav-list li.can-nav:hover h4 i {
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.8) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.8) !important;
 }
 
 /* Active — slightly stronger tint, full accent stripe, rose icon */
@@ -9853,7 +9870,7 @@ padding: 18px 18px 28px 18px;
 }
 
 .sd-flow .flow-nav-list li.active h4 {
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
 }
 
 .sd-flow .flow-nav-list li.active h4 i {
@@ -9885,7 +9902,7 @@ padding: 18px 18px 28px 18px;
 }
 
 .sd-flow .flow-modal-header .btn {
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
 }
 
 .sd-flow .flow-modal-header .btn:hover {
@@ -9894,12 +9911,12 @@ padding: 18px 18px 28px 18px;
 
 .sd-flow .flow-modal-header .close-btn .btn-close-element::before,
 .sd-flow .flow-modal-header .close-btn .btn-close-element::after {
-  background-color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  background-color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
 }
 
 /* Flow content area background */
 .sd-flow .flow-wrapper .content {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
 }
 
 /* Flow title */
@@ -9924,7 +9941,7 @@ padding: 18px 18px 28px 18px;
 
 /* Flow modal background */
 .sd-flow .flow-modal {
-  background: var(--lentax-vlp-parchment-soft) !important;
+  background: var(--lentax-form-surface-bg-soft) !important;
 }
 
 @media (max-width: 768px) {
@@ -9971,7 +9988,7 @@ padding: 18px 18px 28px 18px;
 /* Modal shell */
 .sd-flow .add-appointment-form {
   font-family: var(--lentax-font-sans) !important;
-  background: linear-gradient(135deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-tpp-crimson-tint) 100%) !important;
+  background: linear-gradient(135deg, var(--lentax-form-surface-bg) 0%, var(--lentax-tpp-crimson-tint) 100%) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
 }
@@ -9990,14 +10007,14 @@ padding: 18px 18px 28px 18px;
   font-family: var(--lentax-font-serif) !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
   letter-spacing: -0.2px !important;
   margin: 0 !important;
 }
 
 .sd-flow .intakeForm-modal-close-btn .btn-close-element::before,
 .sd-flow .intakeForm-modal-close-btn .btn-close-element::after {
-  background-color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  background-color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
 }
 
 .sd-flow .intakeForm-modal-close-btn:hover .btn-close-element::before,
@@ -10034,12 +10051,12 @@ padding: 18px 18px 28px 18px;
   display: inline-block !important;
   padding: 3px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-vlp-bronze-light)) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-form-surface-accent)) !important;
 }
 
 .sd-flow .appointment-type__staff-avatar .default-user-avatar {
   background: var(--lentax-tpp-crimson-surface-darkest) !important;
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
   font-family: var(--lentax-font-serif) !important;
   font-weight: 600 !important;
   font-size: 32px !important;
@@ -10047,15 +10064,15 @@ padding: 18px 18px 28px 18px;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border: 2px solid var(--lentax-vlp-parchment-cream) !important;
+  border: 2px solid var(--lentax-form-surface-bg) !important;
 }
 
 .sd-flow .appointment-type__staff-avatar img {
   border-radius: 50% !important;
   border: 3px solid transparent !important;
   background:
-    linear-gradient(var(--lentax-vlp-parchment-cream), var(--lentax-vlp-parchment-cream)) padding-box,
-    linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-vlp-bronze-light)) border-box !important;
+    linear-gradient(var(--lentax-form-surface-bg), var(--lentax-form-surface-bg)) padding-box,
+    linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-form-surface-accent)) border-box !important;
 }
 
 .sd-flow .appointment-type__info {
@@ -10391,7 +10408,7 @@ padding: 18px 18px 28px 18px;
 .app-form-embed #appointmentForm,
 #appointmentForm.add-appointment-form {
   font-family: var(--lentax-font-sans) !important;
-  background: linear-gradient(135deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-tpp-crimson-tint) 100%) !important;
+  background: linear-gradient(135deg, var(--lentax-form-surface-bg) 0%, var(--lentax-tpp-crimson-tint) 100%) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
   box-shadow: 0 20px 60px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.12) !important;
@@ -10414,7 +10431,7 @@ padding: 18px 18px 28px 18px;
   font-family: var(--lentax-font-serif) !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
   letter-spacing: -0.02em !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -10430,7 +10447,7 @@ padding: 18px 18px 28px 18px;
   width: 32px !important;
   height: 32px !important;
   border-radius: 50% !important;
-  border: 1.5px solid rgba(var(--lentax-vlp-parchment-soft-rgb), 0.5) !important;
+  border: 1.5px solid rgba(var(--lentax-form-surface-bg-soft-rgb), 0.5) !important;
   background: transparent !important;
   flex-shrink: 0 !important;
   cursor: pointer !important;
@@ -10448,7 +10465,7 @@ padding: 18px 18px 28px 18px;
 .app-form-embed #appointmentForm .intakeForm-modal-close-btn .btn-close-element::after,
 #appointmentForm .intakeForm-modal-close-btn .btn-close-element::before,
 #appointmentForm .intakeForm-modal-close-btn .btn-close-element::after {
-  background-color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  background-color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
 }
 
 .app-form-embed #appointmentForm .intakeForm-modal-close-btn:hover .btn-close-element::before,
@@ -10507,7 +10524,7 @@ padding: 18px 18px 28px 18px;
 
 .app-form-embed #appointmentForm .appointment-type__block,
 #appointmentForm .appointment-type__block {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-radius: 18px !important;
   padding: 24px !important;
@@ -10530,7 +10547,7 @@ padding: 18px 18px 28px 18px;
 
 .app-form-embed #appointmentForm .appointment-type__item.active .appointment-type__block,
 #appointmentForm .appointment-type__item.active .appointment-type__block {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-primary-rgb), 0.25) !important;
   border-top: 4px solid var(--lentax-tpp-crimson-deep) !important;
   border-radius: 18px !important;
@@ -10551,13 +10568,13 @@ padding: 18px 18px 28px 18px;
   display: inline-block !important;
   padding: 3px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-vlp-bronze-light)) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-form-surface-accent)) !important;
 }
 
 .app-form-embed #appointmentForm .appointment-type__staff-avatar .default-user-avatar,
 #appointmentForm .appointment-type__staff-avatar .default-user-avatar {
   background: var(--lentax-tpp-crimson-surface-darkest) !important;
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
   font-family: var(--lentax-font-serif) !important;
   font-weight: 600 !important;
   font-size: 32px !important;
@@ -10573,7 +10590,7 @@ padding: 18px 18px 28px 18px;
 #appointmentForm .appointment-type__staff-avatar img {
   border-radius: 50% !important;
   border: 3px solid transparent !important;
-  background: linear-gradient(var(--lentax-vlp-parchment-cream), var(--lentax-vlp-parchment-cream)) padding-box,
+  background: linear-gradient(var(--lentax-form-surface-bg), var(--lentax-form-surface-bg)) padding-box,
               linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) border-box !important;
   width: 64px !important;
   height: 64px !important;
@@ -10653,7 +10670,7 @@ padding: 18px 18px 28px 18px;
 
 .app-form-embed #appointmentForm .select2-container--default .select2-selection--single,
 #appointmentForm .select2-container--default .select2-selection--single {
-  background: var(--lentax-vlp-parchment-soft) !important;
+  background: var(--lentax-form-surface-bg-soft) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.2) !important;
   border-radius: 14px !important;
   height: 42px !important;
@@ -10941,7 +10958,7 @@ padding: 18px 18px 28px 18px;
   justify-content: center !important;
   padding: 3px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-vlp-bronze-light)) !important;
+  background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep), var(--lentax-form-surface-accent)) !important;
   width: 70px !important;
   height: 70px !important;
   box-sizing: border-box !important;
@@ -10989,7 +11006,7 @@ padding: 18px 18px 28px 18px;
 /* ===================== STANDALONE FORM PAGE ===================== */
 html.intake-form,
 html.intake-form body {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   font-family: var(--lentax-font-sans) !important;
   -webkit-font-smoothing: antialiased;
 }
@@ -11002,7 +11019,7 @@ html.intake-form body {
 .extended-form-wrapper {
   max-width: 920px !important;
   margin: 0 auto 60px !important;
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-top: 4px solid var(--lentax-tpp-crimson-deep) !important;
   border-radius: 24px !important;
@@ -11113,7 +11130,7 @@ html.intake-form body {
 .app-form-embed input[type="number"],
 .app-form-embed select,
 .app-form-embed textarea {
-  background: var(--lentax-vlp-parchment-soft) !important;
+  background: var(--lentax-form-surface-bg-soft) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-radius: 14px !important;
   padding: 14px 18px !important;
@@ -11130,7 +11147,7 @@ html.intake-form body {
 .extended-form-wrapper .form-control:focus {
   border-color: var(--lentax-tpp-crimson-primary) !important;
   box-shadow: 0 0 0 3px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.12) !important;
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   outline: none !important;
 }
 
@@ -11196,7 +11213,7 @@ html.intake-form body {
 /* ===================== APPOINTMENT BLOCK + CALENDAR ===================== */
 .app-form-embed .appointment-block-wrapper,
 .extended-form-wrapper .appointment-block-wrapper {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   border: 2px dashed rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-radius: 14px !important;
   padding: 28px !important;
@@ -11210,7 +11227,7 @@ html.intake-form body {
 }
 .app-form-embed .book-me-calendar table tr:first-child th {
   background-color: var(--lentax-tpp-crimson-deep) !important;
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
 }
 .app-form-embed .book-me-calendar td.available:hover {
   background-color: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.08) !important;
@@ -11224,7 +11241,7 @@ html.intake-form body {
 /* ===================== FILE UPLOAD FIELD ===================== */
 .app-form-embed .file-upload-field-input,
 .extended-form-wrapper .file-upload-field-input {
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-soft) 100%) !important;
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg-soft) 100%) !important;
   border: 2px dashed rgba(var(--lentax-tpp-crimson-deep-rgb), 0.2) !important;
   border-radius: 14px !important;
   padding: 24px !important;
@@ -11233,7 +11250,7 @@ html.intake-form body {
 .app-form-embed .file-upload-field-input:hover,
 .extended-form-wrapper .file-upload-field-input:hover {
   border-color: var(--lentax-tpp-crimson-deep) !important;
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
 }
 
 /* ===================== SPACING ===================== */
@@ -11270,7 +11287,7 @@ html.intake-form body {
 .app-form-embed .choose-items-wrapper .sd-checkmark-card-item,
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item {
   color: var(--lentax-tpp-crimson-surface-deep) !important;
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-top: none !important;
   border-radius: 24px !important;
@@ -11285,7 +11302,7 @@ html.intake-form body {
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover .scroll-text-wrapper::after,
 .app-form-embed .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .scroll-text-wrapper::after,
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover .scroll-text-wrapper::after {
-  background-image: linear-gradient(90deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-cream) 50%) !important;
+  background-image: linear-gradient(90deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg) 50%) !important;
 }
 
 .app-form-embed .choose-items-wrapper .sd-checkmark-card-item .choose-items-card-title,
@@ -11334,7 +11351,7 @@ html.intake-form body {
 .app-form-embed .choose-items-wrapper .sd-checkmark-card-item:hover,
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item:hover {
   color: var(--lentax-tpp-crimson-surface-deep) !important;
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border-color: rgba(var(--lentax-tpp-crimson-primary-rgb), 0.35) !important;
   box-shadow: 0 20px 50px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   transform: translateY(-3px) !important;
@@ -11350,7 +11367,7 @@ html.intake-form body {
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active,
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item.sd-checkmark-card-item__active:hover {
   color: var(--lentax-tpp-crimson-surface-deep) !important;
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border-color: var(--lentax-tpp-crimson-deep) !important;
   box-shadow: 0 20px 50px rgba(var(--lentax-tpp-crimson-deep-rgb), 0.16) !important;
 }
@@ -11403,7 +11420,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-wrapper .sd-che
 .app-form-embed .choose-items-wrapper .sd-checkmark-card-item .quantity-input input,
 .extended-form-wrapper .choose-items-wrapper .sd-checkmark-card-item .quantity-input input {
   color: var(--lentax-tpp-crimson-surface-darkest) !important;
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border-color: rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-radius: 14px !important;
   font-weight: 700 !important;
@@ -11444,7 +11461,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-wrapper .sd-che
 .extended-form-wrapper .cbe-block-shopping-wrapper .choose-items-summary-wrapper {
   display: block !important;
   visibility: visible !important;
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
   border-top: 4px solid var(--lentax-tpp-crimson-deep) !important;
   border-radius: 24px !important;
@@ -11455,7 +11472,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-wrapper .sd-che
 
 .app-form-embed .choose-items-wrapper .choose-items-summary-wrapper:not(.loader-widget)::before,
 .extended-form-wrapper .choose-items-wrapper .choose-items-summary-wrapper:not(.loader-widget)::before {
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border: none !important;
 }
 
@@ -11615,7 +11632,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   background: linear-gradient(135deg, var(--lentax-tpp-crimson-deep) 0%, var(--lentax-tpp-crimson-maroon) 100%) !important;
   background-color: var(--lentax-tpp-crimson-deep) !important;
   background-image: linear-gradient(135deg, var(--lentax-tpp-crimson-deep) 0%, var(--lentax-tpp-crimson-maroon) 100%) !important;
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
   border: none !important;
   border-color: var(--lentax-tpp-crimson-deep) !important;
   border-radius: 14px !important;
@@ -11657,7 +11674,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 [class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .sdAccordion__title *,
 [class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .ng-binding,
 [class*="extended-form-wrapper"][class*="extended-form-wrapper"] .sdAccordion__toggle .icon-chevron-down {
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
 }
 
 /* Step number circle: rose with white number */
@@ -11687,9 +11704,9 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 .app-form-embed .choose-items-wrapper .sdAccordion__item.active .sdAccordion__head .step-number,
 .extended-form-wrapper .choose-items-wrapper .sdAccordion__item.sdAccordion__item--active .sdAccordion__head .step-number,
 .extended-form-wrapper .choose-items-wrapper .sdAccordion__item.active .sdAccordion__head .step-number {
-  background-color: var(--lentax-vlp-parchment-cream) !important;
-  background: var(--lentax-vlp-parchment-cream) !important;
-  border-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
+  background: var(--lentax-form-surface-bg) !important;
+  border-color: var(--lentax-form-surface-bg) !important;
   color: var(--lentax-tpp-crimson-deep) !important;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
 }
@@ -11697,7 +11714,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 /* Accordion body */
 .app-form-embed .choose-items-wrapper .sdAccordion__item .sdAccordion__body,
 .extended-form-wrapper .choose-items-wrapper .sdAccordion__item .sdAccordion__body {
-  background-color: var(--lentax-vlp-parchment-cream) !important;
+  background-color: var(--lentax-form-surface-bg) !important;
   border: 1px solid var(--lentax-tpp-crimson-deep) !important;
   border-top: none !important;
   border-bottom-left-radius: 14px !important;
@@ -11780,7 +11797,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 .app-form-embed .tu-form-header,
 .extended-form-wrapper .tu-form-header,
 .tu-form-header {
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-soft) 100%) !important;
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg-soft) 100%) !important;
   border: 2px dashed var(--lentax-tpp-crimson-deep) !important;
   border-radius: 14px !important;
   padding: 40px 32px 36px !important;
@@ -11901,7 +11918,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   font-family: var(--lentax-font-sans) !important;
   font-size: 13px !important;
   font-weight: 700 !important;
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   border: 2px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.2) !important;
   color: var(--lentax-tpp-crimson-muted) !important;
   transition: all 0.25s ease !important;
@@ -11920,8 +11937,8 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   position: absolute !important;
   width: 11px !important;
   height: 6px !important;
-  border-left: 2px solid var(--lentax-vlp-parchment-soft) !important;
-  border-bottom: 2px solid var(--lentax-vlp-parchment-soft) !important;
+  border-left: 2px solid var(--lentax-form-surface-bg-soft) !important;
+  border-bottom: 2px solid var(--lentax-form-surface-bg-soft) !important;
   transform: rotate(-45deg) translateY(-1px) !important;
 }
 
@@ -11941,7 +11958,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 
 /* Upcoming: default with explicit confirmation */
 .tu-form-header .tu-progress__step[data-state="upcoming"] .tu-progress__dot {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
   border-color: rgba(var(--lentax-tpp-crimson-deep-rgb), 0.18) !important;
   color: var(--lentax-tpp-crimson-muted-alt) !important;
 }
@@ -11976,7 +11993,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
    PAGE HEADER (standalone form pages)
    ============================================================ */
 .tu-form-page-header {
-  background: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.85) !important;
+  background: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.85) !important;
   backdrop-filter: saturate(140%) blur(12px) !important;
   -webkit-backdrop-filter: saturate(140%) blur(12px) !important;
   border-bottom: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.14) !important;
@@ -12045,7 +12062,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
    ============================================================ */
 .tu-form-page-footer {
   background: linear-gradient(135deg, var(--lentax-tpp-crimson-maroon), var(--lentax-tpp-crimson-surface-darkest)) !important;
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
   margin: 60px 0 0 !important;
   padding: 64px 32px 0 !important;
   position: relative !important;
@@ -12057,7 +12074,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   left: 0 !important;
   right: 0 !important;
   height: 5px !important;
-  background: linear-gradient(90deg, var(--lentax-tpp-crimson-primary), var(--lentax-vlp-gold-tan)) !important;
+  background: linear-gradient(90deg, var(--lentax-tpp-crimson-primary), var(--lentax-form-surface-accent-strong)) !important;
 }
 .tu-form-page-footer__inner {
   max-width: 1100px !important;
@@ -12068,7 +12085,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   padding-bottom: 48px !important;
 }
 .tu-form-page-footer__heading {
-  color: var(--lentax-vlp-parchment-soft) !important;
+  color: var(--lentax-form-surface-bg-soft) !important;
   font-size: 12px !important;
   font-weight: 700 !important;
   letter-spacing: 1.8px !important;
@@ -12084,10 +12101,10 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   left: 0 !important;
   width: 36px !important;
   height: 2px !important;
-  background: linear-gradient(90deg, var(--lentax-tpp-crimson-primary), var(--lentax-vlp-gold-tan)) !important;
+  background: linear-gradient(90deg, var(--lentax-tpp-crimson-primary), var(--lentax-form-surface-accent-strong)) !important;
 }
 .tu-form-page-footer a {
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.75) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.75) !important;
   display: block !important;
   font-size: 14px !important;
   margin-bottom: 8px !important;
@@ -12101,13 +12118,13 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 }
 .tu-form-page-footer__line {
   font-size: 14px !important;
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.85) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.85) !important;
   margin-bottom: 14px !important;
   line-height: 1.5 !important;
 }
 .tu-form-page-footer__line strong {
   display: block !important;
-  color: var(--lentax-vlp-gold-tan) !important;
+  color: var(--lentax-form-surface-accent-strong) !important;
   font-weight: 700 !important;
   font-size: 10px !important;
   letter-spacing: 1.6px !important;
@@ -12122,17 +12139,17 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 .tu-form-page-footer__socials a {
   width: 42px !important;
   height: 42px !important;
-  background: rgba(var(--lentax-vlp-bronze-light-rgb), 0.14) !important;
+  background: rgba(var(--lentax-form-surface-accent-rgb), 0.14) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   margin: 0 !important;
   padding: 0 !important;
-  color: var(--lentax-vlp-gold-tan) !important;
+  color: var(--lentax-form-surface-accent-strong) !important;
   font-weight: 600 !important;
   font-size: 14px !important;
-  border: 1px solid rgba(var(--lentax-vlp-bronze-light-rgb), 0.2) !important;
+  border: 1px solid rgba(var(--lentax-form-surface-accent-rgb), 0.2) !important;
   transition: all 0.3s ease !important;
 }
 .tu-form-page-footer__socials a:hover {
@@ -12144,11 +12161,11 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   box-shadow: 0 8px 20px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.4) !important;
 }
 .tu-form-page-footer__copy {
-  border-top: 1px solid rgba(var(--lentax-vlp-bronze-light-rgb), 0.16) !important;
+  border-top: 1px solid rgba(var(--lentax-form-surface-accent-rgb), 0.16) !important;
   padding: 24px 0 !important;
   text-align: center !important;
   font-size: 12px !important;
-  color: rgba(var(--lentax-vlp-parchment-soft-rgb), 0.55) !important;
+  color: rgba(var(--lentax-form-surface-bg-soft-rgb), 0.55) !important;
 }
 
 
@@ -12190,7 +12207,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 .app-form-embed .appointment-intake-form-field-block,
 .extended-form-wrapper .appointment-intake-form-field-block {
   position: relative !important;
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-soft) 100%) !important;
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg-soft) 100%) !important;
   border: 2px dashed rgba(var(--lentax-tpp-crimson-deep-rgb), 0.3) !important;
   border-radius: 18px !important;
   padding: 28px 32px !important;
@@ -12288,7 +12305,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 .app-form-embed .appointment-intake-form-wrapper[ng-hide="appt.show == 1"]:not(.ng-hide) .appointment-intake-form-field-block:has(h5),
 .app-form-embed .appointment-intake-form-field-block:has(span.ng-binding):has(h5),
 .extended-form-wrapper .appointment-intake-form-field-block:has(span.ng-binding):has(h5) {
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-soft) 100%) !important;
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg-soft) 100%) !important;
   border: 1px solid rgba(var(--lentax-tpp-crimson-deep-rgb), 0.18) !important;
   border-top: 4px solid var(--lentax-tpp-crimson-deep) !important;
   border-radius: 18px !important;
@@ -12313,7 +12330,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   width: 44px !important;
   height: 44px !important;
   background: linear-gradient(135deg, var(--lentax-tpp-crimson-primary), var(--lentax-tpp-crimson-deep)) !important;
-  color: var(--lentax-vlp-parchment-cream) !important;
+  color: var(--lentax-form-surface-bg) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
@@ -12321,7 +12338,7 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   font-size: 22px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
-  box-shadow: 0 6px 16px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.35), 0 0 0 4px var(--lentax-vlp-parchment-cream) !important;
+  box-shadow: 0 6px 16px rgba(var(--lentax-tpp-crimson-primary-rgb), 0.35), 0 0 0 4px var(--lentax-form-surface-bg) !important;
 }
 
 /* "GREAT! Your appointment with Jamie Williams is scheduled!" */
@@ -12636,11 +12653,11 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
 
 /* 5) Flow content area + modal background */
 .sd-flow .flow-wrapper .content {
-  background: linear-gradient(180deg, var(--lentax-vlp-parchment-cream) 0%, var(--lentax-vlp-parchment-cream) 65%, rgba(15, 26, 51, 0.08) 100%) !important;
+  background: linear-gradient(180deg, var(--lentax-form-surface-bg) 0%, var(--lentax-form-surface-bg) 65%, rgba(15, 26, 51, 0.08) 100%) !important;
 }
 
 .sd-flow .flow-modal {
-  background: var(--lentax-vlp-parchment-cream) !important;
+  background: var(--lentax-form-surface-bg) !important;
 }
 
 /* 6) Flow title + back button */
