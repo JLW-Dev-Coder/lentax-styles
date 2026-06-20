@@ -9953,6 +9953,21 @@ padding: 18px 18px 28px 18px;
 /*  Scoped to .sd-flow so it only applies inside the Flow context.  */
 /* ─────────────────────────────────────────────────────────────── */
 
+/* ─────────────────────────────────────────────────────────────────────
+   2.3 — ADD APPOINTMENT MODAL
+   Source: ClickUp Tax Prep — Custom CSS_Forms_v3 (page 80djf-730757)
+   Ported: initial bulk migration into lentax-base.css (696117a, 2026-06-16);
+           retro-attributed 2026-06-19
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .sd-flow .add-appointment-form + .intakeForm-modal-* (the Add
+              Appointment inner modal — calendar grid + time-slot pills),
+              descendant-scoped under .sd-flow (Flow context only).
+   Provenance: net-new appointment/scheduling selectors first introduced in
+               Forms_v3 (absent from Forms_v2). Predates the per-section
+               attribution convention, hence retro-attributed here. Now
+               tokenized to --lentax-*. Comment-only commit; no rule changes.
+   ───────────────────────────────────────────────────────────────────── */
+
 /* Modal shell */
 .sd-flow .add-appointment-form {
   font-family: var(--lentax-font-sans) !important;
@@ -10951,6 +10966,25 @@ padding: 18px 18px 28px 18px;
    Page-level rules (html, body) are scoped with `html.intake-form`
    so they only apply on the standalone form page.
    ============================================================ */
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.4-2.9 — FORM CHROME (LP + STANDALONE)
+   Source: ClickUp Tax Prep — Custom CSS_Forms_v2 (page 80djf-710377)
+   Ported: initial bulk migration into lentax-base.css (696117a, 2026-06-16);
+           retro-attributed 2026-06-19
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .app-form-embed, .extended-form-wrapper (form card in both the
+              standalone /frm/ page and the shortcode-embedded LP context);
+              html.intake-form page scope; .tu-form-header + 8-step progress
+              indicator; standalone page header + footer.
+   Provenance: repo core = Forms_v2. Forms_v3 (page 80djf-730757) is a superset
+               that carries this same chrome verbatim and adds the appointment
+               and scheduling blocks (see 2.3 and 2.10); v2 is cited as the
+               primary source. Predates the per-section attribution convention,
+               hence retro-attributed here. ~98.8% selector parity with the CU
+               source (per the migration audit); now tokenized to --lentax-*.
+               Comment-only commit; no rule changes.
+   ───────────────────────────────────────────────────────────────────── */
 
 /* ===================== STANDALONE FORM PAGE ===================== */
 html.intake-form,
@@ -12129,6 +12163,23 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
    1. Pre-booking scheduler   → "Click to schedule an Appointment"
    2. Post-booking confirmed  → "GREAT! Your appointment with..."
    ============================================================ */
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.10 — APPOINTMENT INTAKE BLOCKS (pre + post booking)
+   Source: ClickUp Tax Prep — Custom CSS_Forms_v3 (page 80djf-730757)
+   Ported: initial bulk migration into lentax-base.css (696117a, 2026-06-16);
+           retro-attributed 2026-06-19
+   Scope: structure only; palette overrides live in theme files
+   Namespace: .appointment-intake-form-wrapper (+ -field-block and confirmation
+              card), scoped under .app-form-embed / .extended-form-wrapper —
+              pre-booking scheduler and post-booking confirmed states.
+   Depends on: 2.4-2.9 — FORM CHROME, which provides the .app-form-embed /
+               .extended-form-wrapper form-card context these blocks nest in.
+   Provenance: net-new appointment/scheduling selectors first introduced in
+               Forms_v3 (absent from Forms_v2), alongside 2.3. Predates the
+               per-section attribution convention, hence retro-attributed here.
+               Now tokenized to --lentax-*. Comment-only commit; no rule changes.
+   ───────────────────────────────────────────────────────────────────── */
 
 /* ===================== SHARED WRAPPER ===================== */
 .app-form-embed .appointment-intake-form-wrapper,

@@ -407,6 +407,14 @@ Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream r
 **Loader:** `lentax-tpp-sentinel.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-sentinel.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
 `<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-sentinel.js"></script>`
 
+### 4.5 TPP + TMP shared variants (product-neutral theme files)
+
+TPP and TMP share the **same three theme variants** — Default, Coastal, Sentinel — and the **same theme CSS files**. The TMP loaders (`lentax-tmp-default.js`, `lentax-tmp-coastal.js`, `lentax-tmp-sentinel.js`) inject `lentax-base.css` + `themes/tpp-{variant}.css`, exactly as the TPP loaders do — there is no separate `themes/tmp-*.css`.
+
+This is safe because the theme files are **product-neutral**: each is a `:root` block of token overrides only (no selectors, no product-scoped rules — see §1 and the subsections above), so the same palette applies cleanly under either product's loader. The product split lives in the loaders (which portal pastes which `lentax-tmp-*` vs `lentax-tpp-*` activation tag), not in the theme CSS.
+
+If TMP ever needs to diverge from TPP on a variant, split that variant then: add `themes/tmp-{variant}.css` and re-point the corresponding `lentax-tmp-{variant}.js` at it. Until that need exists, the shared `themes/tpp-{variant}.css` is the single source of truth for both products' palette.
+
 ## 5. Literals — do not tokenize
 
 The following values stay as literals in `lentax.css` after the Commit 3 sweep. No token is created for them.
