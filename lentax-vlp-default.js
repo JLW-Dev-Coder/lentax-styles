@@ -44,3 +44,21 @@
 // .content-ribbon route-scoped hide removed 2026-06-17 — CSS rule
 // `body.lentax-dashboard .content-ribbon { display: none !important; }` in
 // lentax-base.css is dormant. To re-enable, reintroduce a class toggle here.
+
+/* ─────────────────────────────────────────────────────────────────
+   Portal subpage UI hide: floating stack buttons
+   Hides .floating-stack-item (timer clock, help/ask, GDPR icon) on
+   all portal subpages under /portal/dashboard/view/*.
+   CC-confirmed: buttons sit directly under <body> with no page
+   wrapper, so a CSS-only scope is not possible from a global
+   stylesheet — JS injects a scoped <style> tag conditionally.
+   Added 2026-06-20 — round 6, follow-up to 02c5bbb.
+   ───────────────────────────────────────────────────────────────── */
+(function() {
+  if (window.location.pathname.includes('/portal/dashboard/view')) {
+    var style = document.createElement('style');
+    style.id = 'vlp-floating-bar-hide';
+    style.textContent = '.floating-stack-item { display: none !important; }';
+    document.head.appendChild(style);
+  }
+})();
