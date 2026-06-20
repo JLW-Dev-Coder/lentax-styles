@@ -39,6 +39,16 @@
   --lentax-tpp-gold-bright: #9FCDD6;     /* bright seafoam */
   --lentax-tpp-gold-bright-rgb: 159, 205, 214;
 
+  /* VLP form tokens rebound to Coastal — the standalone form surfaces borrow
+     these --lentax-vlp-* tokens; without rebinding they'd stay warm parchment.
+     Form-set only (6 tokens); flow-modal/onboarding accents deferred. */
+  --lentax-vlp-parchment-cream: #EFF7FB;          /* Coastal crimson-tint form/page surface (was #FFFAF4) */
+  --lentax-vlp-parchment-soft: #DCEEF5;           /* Coastal crimson-light secondary surface (was #F5E6D3) */
+  --lentax-vlp-parchment-soft-rgb: 220, 238, 245;
+  --lentax-vlp-bronze-light: #9FCDD6;             /* Coastal seafoam footer accent tint (was #D4A574) */
+  --lentax-vlp-bronze-light-rgb: 159, 205, 214;
+  --lentax-vlp-gold-tan: #7FA8B5;                 /* Coastal slate-blue for the form heading accent (was #E8C088) */
+
   /* TPP portal page background — crimson-deep token (now navy-slate), ties to brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 
