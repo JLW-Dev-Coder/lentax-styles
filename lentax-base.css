@@ -16793,3 +16793,20 @@ body.branding-theme-mrclean .proposal_content .choose-items-summary__title {
   background-color: transparent !important;
   background-image: none !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.23 — INTAKE-FORM DASHBOARD-VIEW TRANSPARENCY (override)
+   ─────────────────────────────────────────────────────────────────────
+   §2.15 (line 12903) paints #dashboard-view with a champagne gradient
+   stack. When the dashboard hosts an embedded intake form, that gradient
+   covers the §2.13 portal page-bg (navy + Sentinel SVG on .main-wrapper).
+   This override makes #dashboard-view transparent ONLY when SuiteDash
+   has set html.intake-form (i.e., the current view is an intake-form
+   embed), leaving every other dashboard view's cream intact.
+   Specificity (1,1,1) beats §2.15's (1,0,0); both !important.
+   ───────────────────────────────────────────────────────────────────── */
+html.intake-form #dashboard-view {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
