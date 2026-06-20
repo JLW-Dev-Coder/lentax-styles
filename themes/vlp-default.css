@@ -390,3 +390,16 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
     padding-right: 12px !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Portal subpage: hide empty .content-ribbon bar
+   CC-confirmed: .content-ribbon does NOT exist on /dashboard by
+   platform design — it is portal-page-only. Inner .common-back
+   is platform-hidden but the parent ribbon renders as an empty
+   50px sticky white box. Selector is self-scoping; no body-class
+   guard or JS path-check needed.
+   Added 2026-06-20 — round 7, follow-up to 48b1d7f.
+   ───────────────────────────────────────────────────────────────── */
+.content-ribbon {
+  display: none !important;
+}
