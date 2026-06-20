@@ -16774,3 +16774,22 @@ body.branding-theme-mrclean .proposal_content .choose-items-summary__title {
     padding: 24px 20px !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   2.22 — DASHBOARD FLOW-WRAPPER TRANSPARENCY (override)
+   ─────────────────────────────────────────────────────────────────────
+   §2.20 paints .sd-flow .flow-wrapper .content (ivory) and
+   .sd-flow .flow-modal (champagne) globally. The standalone flow modal
+   (rendered under <body> as a uib-modal) needs those cream surfaces; the
+   dashboard-embedded flow does not — it sits inside .main-wrapper, whose
+   §2.13 portal-bg paints navy + Sentinel SVG that should show through.
+   This dashboard-scoped override beats §2.20 at (0,4,0) and leaves the
+   standalone modal cream untouched. The .vlpd-onboard form card keeps
+   its own cream gradient.
+   ───────────────────────────────────────────────────────────────────── */
+.main-wrapper .sd-flow .flow-wrapper .content,
+.main-wrapper .sd-flow .flow-modal {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
