@@ -16776,21 +16776,33 @@ body.branding-theme-mrclean .proposal_content .choose-items-summary__title {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   2.22 — STYLING-OPTIONS DASHBOARD-VIEW TRANSPARENCY (override)
+   2.22 — STYLING-OPTIONS PAGE TRANSPARENCY (override)
    ─────────────────────────────────────────────────────────────────────
-   §2.15 (line 12903) paints #dashboard-view with a champagne gradient
-   stack. When the dashboard renders a styling-options content block
-   (intake forms, multi-step flows hosted as content blocks), that
-   gradient covers the §2.13 portal page-bg (navy + Sentinel SVG on
-   .main-wrapper). This override makes #dashboard-view transparent when
-   <body> carries .page-with-styling-options, leaving every other
-   #dashboard-view context unaffected.
+   On styling-options dashboard pages (intake forms, multi-step flows
+   hosted as content blocks), two layers paint surfaces that cover the
+   §2.13 portal page-bg (navy + Sentinel SVG on .main-wrapper):
+
+     1. #dashboard-view — painted by §2.15 (line 12903) with a champagne
+        gradient stack.
+     2. .app-form-embed / .extended-form-wrapper — painted by the form
+        embed rule with var(--lentax-form-surface-bg) (slate-50 in
+        Sentinel, cream in default theme).
+
+   This override makes both transparent when <body> carries
+   .page-with-styling-options, so the portal page-bg shows through right
+   up to the inner form card (#forms-form-wrapper, which keeps its own
+   surface). Every other context that loads these classes is unaffected.
+
+   The form-embed wrapper retains its border and border-radius (those
+   declarations are on a separate rule that we are NOT overriding) —
+   only the background is killed.
 
    Discriminator confirmed via live DOM diff: .page-with-styling-options
-   is present on <body> on intake-form pages and absent on /files/home
-   (the only differing body class between the two views).
+   is present on <body> on intake-form pages and absent on /files/home.
 
-   Specificity (1,1,1) beats §2.15's (1,0,0); both !important.
+   Specificity: (0,2,1) on .app-form-embed override beats source rule's
+   (0,1,0); (1,1,1) on #dashboard-view beats §2.15's (1,0,0); all
+   !important.
 
    Supersedes two prior no-match overrides:
      - 40b2cac §2.22 (.main-wrapper .sd-flow ...) — .sd-flow does not
@@ -16798,7 +16810,9 @@ body.branding-theme-mrclean .proposal_content .choose-items-summary__title {
      - c31c33f §2.23 (html.intake-form #dashboard-view) — html.intake-form
        is not set by SuiteDash on this DOM (verified via Claude Chrome)
    ───────────────────────────────────────────────────────────────────── */
-body.page-with-styling-options #dashboard-view {
+body.page-with-styling-options #dashboard-view,
+body.page-with-styling-options .app-form-embed,
+body.page-with-styling-options .extended-form-wrapper {
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
