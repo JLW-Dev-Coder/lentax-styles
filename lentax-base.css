@@ -16776,36 +16776,29 @@ body.branding-theme-mrclean .proposal_content .choose-items-summary__title {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   2.22 — DASHBOARD FLOW-WRAPPER TRANSPARENCY (override)
-   ─────────────────────────────────────────────────────────────────────
-   §2.20 paints .sd-flow .flow-wrapper .content (ivory) and
-   .sd-flow .flow-modal (champagne) globally. The standalone flow modal
-   (rendered under <body> as a uib-modal) needs those cream surfaces; the
-   dashboard-embedded flow does not — it sits inside .main-wrapper, whose
-   §2.13 portal-bg paints navy + Sentinel SVG that should show through.
-   This dashboard-scoped override beats §2.20 at (0,4,0) and leaves the
-   standalone modal cream untouched. The .vlpd-onboard form card keeps
-   its own cream gradient.
-   ───────────────────────────────────────────────────────────────────── */
-.main-wrapper .sd-flow .flow-wrapper .content,
-.main-wrapper .sd-flow .flow-modal {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   2.23 — INTAKE-FORM DASHBOARD-VIEW TRANSPARENCY (override)
+   2.22 — STYLING-OPTIONS DASHBOARD-VIEW TRANSPARENCY (override)
    ─────────────────────────────────────────────────────────────────────
    §2.15 (line 12903) paints #dashboard-view with a champagne gradient
-   stack. When the dashboard hosts an embedded intake form, that gradient
-   covers the §2.13 portal page-bg (navy + Sentinel SVG on .main-wrapper).
-   This override makes #dashboard-view transparent ONLY when SuiteDash
-   has set html.intake-form (i.e., the current view is an intake-form
-   embed), leaving every other dashboard view's cream intact.
+   stack. When the dashboard renders a styling-options content block
+   (intake forms, multi-step flows hosted as content blocks), that
+   gradient covers the §2.13 portal page-bg (navy + Sentinel SVG on
+   .main-wrapper). This override makes #dashboard-view transparent when
+   <body> carries .page-with-styling-options, leaving every other
+   #dashboard-view context unaffected.
+
+   Discriminator confirmed via live DOM diff: .page-with-styling-options
+   is present on <body> on intake-form pages and absent on /files/home
+   (the only differing body class between the two views).
+
    Specificity (1,1,1) beats §2.15's (1,0,0); both !important.
+
+   Supersedes two prior no-match overrides:
+     - 40b2cac §2.22 (.main-wrapper .sd-flow ...) — .sd-flow does not
+       exist in this DOM
+     - c31c33f §2.23 (html.intake-form #dashboard-view) — html.intake-form
+       is not set by SuiteDash on this DOM (verified via Claude Chrome)
    ───────────────────────────────────────────────────────────────────── */
-html.intake-form #dashboard-view {
+body.page-with-styling-options #dashboard-view {
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
