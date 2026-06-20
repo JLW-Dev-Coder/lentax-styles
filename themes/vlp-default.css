@@ -132,3 +132,28 @@
   --lentax-chrome-tabstrip-divider: rgba(249, 115, 22, 0.20);
   --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
 }
+
+/* ===== Dashboard typography — Source Sans 3 (dashboard-scoped) =====
+ * VLP-default dashboard font swap. Scoped to #dashboard-view per the
+ * scope guard so ONLY the dashboard view changes typeface — the rest of
+ * the portal keeps the VLP fonts declared in :root above (Cormorant /
+ * Inter / Raleway).
+ *
+ * Re-binds all three font tokens to Source Sans 3 (the same stack used by
+ * themes/tpp-sentinel.css, colors NOT borrowed). base §2.15 declares
+ * --vlpd-font-body: var(--lentax-font-sans) and
+ * --vlpd-font-display: var(--lentax-font-serif) on #dashboard-view, and the
+ * dashboard headings + greeting consume --vlpd-font-display (serif token) —
+ * so serif is overridden too, making the body, headings, and greeting all
+ * render in Source Sans 3 (JLW ruling 2026-06-20: swap headings too).
+ *
+ * Source Sans 3 already loads via the base @import (lentax-base.css line 10)
+ * — no @import added here. This theme file loads after lentax-base.css, so
+ * these #dashboard-view (0,1,0) declarations win the cascade over base's
+ * inherited :root font tokens on the dashboard subtree.
+ * ================================================================ */
+#dashboard-view {
+  --lentax-font-sans: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  --lentax-font-serif: 'Source Sans 3', 'Georgia', serif;
+  --lentax-font-display: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+}
