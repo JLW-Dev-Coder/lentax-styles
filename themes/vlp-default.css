@@ -252,8 +252,16 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
    ───────────────────────────────────────────────────────────────── */
 
 /* 1. Card navy gradient */
+/* Card gradient parity (round 8, 2026-06-20): fixed-height gradient + matching
+   solid fallback produces identical falloff on dashboard and portal cards.
+   400px chosen because both layouts measure ~508–509px tall; gradient completes
+   at 79% of card height, bottom stop #162444 matches background-color exactly,
+   transition at 400px boundary is mathematically seamless (CC live-confirmed). */
 #dashboard-view .account-card-wrapper {
   background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  background-color: #162444 !important;
+  background-size: 100% 400px !important;
+  background-repeat: no-repeat !important;
   border: 2px solid #f97316 !important;
   border-radius: 20px !important;
   overflow: hidden;
@@ -340,6 +348,9 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 /* 1. Card: sidebar-matched dark navy gradient + orange border */
 #client-page-view .account-card-wrapper {
   background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  background-color: #162444 !important;
+  background-size: 100% 400px !important;
+  background-repeat: no-repeat !important;
   border: 2px solid #f97316 !important;
   border-radius: 20px !important;
   padding: 10px 20px 35px !important;
