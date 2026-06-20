@@ -38,6 +38,25 @@
   --lentax-tpp-gold-bright: #C9A227;     /* brighter gold */
   --lentax-tpp-gold-bright-rgb: 201, 162, 39;
 
+  /* VLP-neutral surfaces re-skinned cool — Form set (2026-06-19).
+     The tokenized Forms chrome (lentax-base.css §2.3-2.10: .app-form-embed /
+     .extended-form-wrapper / .tu-form*) borrows these --lentax-vlp-* warm
+     neutrals for the standalone form-page background, card fills, dashed
+     panels, the footer accent tints, and the red-to-gold heading accent.
+     tpp-default leaves them warm (suits rose/crimson); Sentinel rebinds them
+     to cool slate / Sentinel-gold so the form follows the navy/red/cream brand
+     instead of falling through to warm parchment. -rgb companions move with
+     their hex (rgba() call sites consume them). Scope = form set only per the
+     2026-06-19 ruling; the shared parchment tokens also cool the appointment
+     flow modal + onboarding backgrounds (accepted spill — accents there are
+     left for a separate pass). */
+  --lentax-vlp-parchment-cream: #F8FAFC;          /* cool slate-50 form/page surface (was #FFFAF4) */
+  --lentax-vlp-parchment-soft: #E2E8F0;           /* cool slate-200 secondary surface (was #F5E6D3) */
+  --lentax-vlp-parchment-soft-rgb: 226, 232, 240;
+  --lentax-vlp-bronze-light: #CBD5E1;             /* cool slate-300 footer accent tint (was #D4A574) */
+  --lentax-vlp-bronze-light-rgb: 203, 213, 225;
+  --lentax-vlp-gold-tan: #C9A227;                 /* Sentinel gold for the red-to-gold form accent (was #E8C088) */
+
   /* TPP portal page background — crimson-deep token (now navy), ties to brand chrome. */
   --lentax-form-page-bg: var(--lentax-tpp-crimson-deep);
 
