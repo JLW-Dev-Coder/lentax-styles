@@ -253,7 +253,8 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
 
 /* 1. Card navy gradient */
 #dashboard-view .account-card-wrapper {
-  background: linear-gradient(180deg, #0d1b3e 0%, #1e3a6e 100%) !important;
+  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  border: 2px solid #f97316 !important;
   border-radius: 20px !important;
   overflow: hidden;
 }
@@ -326,4 +327,66 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 /* 4. Hide announcement date */
 #dashboard-view .dashboard-anns__date {
   display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Portal subpage styling: #client-page-view
+   Three-card "Choose your next move" page treatment
+   CC-confirmed scope: portal subpages wrapped in #client-page-view
+   Does NOT bleed to #dashboard-view or other portal subpages
+   Added 2026-06-20 — cohesive with dashboard round 4+5
+   ───────────────────────────────────────────────────────────────── */
+
+/* 1. Card: sidebar-matched dark navy gradient + orange border */
+#client-page-view .account-card-wrapper {
+  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 20px !important;
+  padding: 10px 20px 35px !important;
+  overflow: hidden;
+}
+
+/* 2. Title: orange */
+#client-page-view .account-card-wrapper .account-card-title,
+#client-page-view .account-card-wrapper .account-card-title strong {
+  color: #f97316 !important;
+}
+
+/* 3. Body text: off-white */
+#client-page-view .account-card-wrapper h3 {
+  color: #e8edf5 !important;
+}
+
+/* 4. CTA button: orange pill */
+#client-page-view .account-card-wrapper .cbe-block-button-element.btn.btn-primary {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  border-radius: 15px !important;
+}
+
+/* 5. Card row horizontal spacing — desktop */
+#client-page-view {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
+/* 6. Tablet (≤767px): tighter padding + null out SD editor's 50px row margin */
+@media (max-width: 767px) {
+  #client-page-view {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  #client-page-view .cbe-row-wrapper {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* 7. Small mobile (≤576px): minimal inset */
+@media (max-width: 576px) {
+  #client-page-view {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
 }
