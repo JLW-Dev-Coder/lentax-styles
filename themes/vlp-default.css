@@ -195,7 +195,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
 #dashboard-view .account-card-wrapper {
   background-color: #ffffff !important;
   border: 2px solid var(--lentax-vlp-orange-primary) !important;   /* #f97316 */
-  border-radius: 12px !important;
+  border-radius: 20px !important;
   padding: 24px 16px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
   transition: transform 150ms ease, box-shadow 150ms ease !important;
@@ -204,4 +204,42 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
 #dashboard-view .account-card-wrapper:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Dashboard polish round 3: radius bump, announcement, navbar icons
+   Added 2026-06-20 — follow-up to 2d947a3
+   ───────────────────────────────────────────────────────────────── */
+
+/* §3.2 — Announcement card: top + left orange border for a dimensional
+ * lift (borders carry the depth, no shadow). The branding sheet (#72) ships
+ * `border-left: 3px solid #1A1A1A !important` on .dashboard-anns__item; our
+ * full border-left shorthand with !important wins the cascade (specificity
+ * tie, later source order). Right/bottom 1px slate borders removed; radius
+ * 15px → 30px. #ffffff hardcoded — token candidate (--lentax-vlp-surface),
+ * see report §6.4. */
+#dashboard-view .dashboard-anns__item {
+  border-top: 4px solid var(--lentax-vlp-orange-primary) !important;
+  border-left: 4px solid var(--lentax-vlp-orange-primary) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-radius: 30px !important;
+  background-color: #ffffff !important;
+}
+
+/* §3.3 — Top-right navbar icons: darken from platform orange (#f97316,
+ * hardcoded in cross-origin sd.styles/sd.app.Theme) to dark gray matching
+ * the sidebar collapse toggle (rgb(104,104,104) per CC capture). The org
+ * branding overrides only target .list-icon/.material-icons and miss the
+ * a.ripple anchor, so the orange survives — we target a.ripple directly.
+ * Scoped to .navbar .navbar-nav > li.top-nav-link so we don't bleed to
+ * sidebar nav or other ripple anchors. Does NOT match the create-new "+"
+ * button (a.sd-nav-bar-add-button, different classes) — keeps its orange
+ * fill + white glyph from 2d947a3. #686868 hardcoded — token candidate
+ * (--lentax-vlp-navbar-icon-color), see report §6.4. */
+.navbar .navbar-nav > li.top-nav-link > a.ripple {
+  color: #686868 !important;
+}
+.navbar .navbar-nav > li.top-nav-link > a.ripple svg {
+  color: inherit !important;
 }
