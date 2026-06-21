@@ -633,3 +633,107 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view .feature-block-description strong {
   color: #f97316 !important;
 }
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   VLP-DEFAULT ROUND 11 — Part B visual polish additions
+   Append-only. Does NOT modify round 9 or round 10 rules.
+
+   DIAGNOSTIC RESOLUTION:
+   vlp-default.css confirmed loading and active (CORS-blocked from CSSOM
+   enumeration but verified via direct fetch + computed-style probe returning
+   rgb(194, 65, 12) on round 9's article.vl-card rule). Round 9 + 10 rules
+   are live; round 11 ships as pure additive overrides.
+
+   ROUND 9/10 SECTIONS STILL ACTIVE: all of them.
+   ROUND 11 NEW: six visual polish items.
+
+   STABILITY RATIONALE:
+   - #xfb4or6ojbxn is the asset-file ID for the rocket logo SVG, not a
+     CBE block ID. Stable across SD editor saves.
+   - .col-sm-5 .vl-btn--primary disambiguates Checkout Cart from Take A
+     Sneak Peek (.col-sm-7 .vl-btn--primary, round 9). If SD editor save
+     changes column class, re-verify both selectors.
+   - .vl-btn--support .cbe-block-button-element is unique on page.
+   - .vl-card.vl-card doubled-class lifts specificity (0,2,0) to beat
+     round 9's article.vl-card rule (0,1,1) at equal !important level.
+
+   BOOK A DEMO BORDER:
+   The CORS-blocked sd.app.Theme.min.css sets border:2px solid #f97316 on
+   .vl-btn--support .cbe-block-button-element with !important. CSS cannot
+   win this cascade (CC live-tested high-specificity CSS overrides; all
+   lost). The border-color fix ships as a new IIFE in lentax-vlp-default.js
+   (applyDemoBorder). CSS rules below cover bg + color only.
+
+   Added 2026-06-20 - round 11, follow-up to 38c2505.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+
+/* --- 1. HERO ICON: dark navy circle behind rocket logo --- */
+#xfb4or6ojbxn {
+  background: #162444 !important;
+  border-radius: 50% !important;
+  padding: 12px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 2. PAGE BACKGROUND: belt-and-suspenders against FOUC flash ---
+   Round 9 JS section #2 sets .main-wrapper bg white on DOMContentLoaded.
+   On slow Netlify serves, the round 9 CSS rule (.main-wrapper.column1-portal-page
+   { background: #ffffff }) may not load before the platform's dark default
+   renders, causing a visible navy flash. These root-level rules cover the
+   gap by painting html/body white from the moment vlp-default.css parses. */
+
+html,
+body {
+  background: #ffffff !important;
+}
+
+
+/* --- 3. CALLOUT BODY TEXT: repaint #e8edf5 -> #ffffff
+   Raises specificity over round 10A's (1,1,0) rule by adding
+   .feature-block-container to the selector chain (1,2,0). */
+
+#client-page-view .feature-block-container .feature-block-description,
+#client-page-view .feature-block-container .feature-block-description *,
+#client-page-view .feature-block-container .feature-block-border {
+  color: #ffffff !important;
+}
+
+
+/* --- 4. FEATURE CARD RADIUS: 12px -> 15px
+   Doubled-class selector (0,2,0) beats round 9's article.vl-card (0,1,1)
+   at equal !important level. .vl-card has transition:all so the change
+   animates in smoothly on first paint. */
+
+#client-page-view .vl-card.vl-card {
+  border-radius: 15px !important;
+}
+
+
+/* --- 5. CHECKOUT CART: ghost/secondary style
+   Net-new (round 9 has no Checkout Cart rule). .col-sm-5 + .vl-btn--primary
+   uniquely identifies Checkout Cart; .col-sm-7 + .vl-btn--primary is Take
+   A Sneak Peek (round 9). If SD editor changes column widths, re-verify. */
+
+.col-sm-5 .vl-btn--primary .cbe-block-button-element {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #0a1228 !important;
+  border: 2px solid #0a1228 !important;
+  border-color: #0a1228 !important;
+}
+
+.col-sm-5 .vl-btn--primary .cbe-block-button-element:hover {
+  background: #0a1228 !important;
+  background-color: #0a1228 !important;
+  color: #ffffff !important;
+}
+
+
+/* --- 6. BOOK A DEMO: border-color override handled in JS (see applyDemoBorder
+   IIFE in lentax-vlp-default.js). This CSS block intentionally omits border-*
+   declarations for .vl-btn--support; the JS injection is the only path that
+   beats the CORS-blocked SD platform stylesheet. Round 9 already ships bg
+   and color rules for .vl-btn--support; no additions here. */

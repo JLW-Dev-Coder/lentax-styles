@@ -203,3 +203,23 @@
   applyPlanColors();
   setTimeout(applyPlanColors, 400);
 })();
+
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   VLP-default round 11 - Book A Demo border override
+   CORS-blocked sd.app.Theme.min.css sets border:2px solid #f97316 with
+   !important on .vl-btn--support .cbe-block-button-element. CSS-level
+   overrides lose cascade (CC live-tested). Inline style is the only
+   reliable path. Self-retries every 400ms until the Angular template
+   has rendered the button into the DOM.
+   Added 2026-06-20 - round 11, follow-up to 38c2505.
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+(function applyDemoBorder() {
+  var btn = document.querySelector('.vl-btn--support .cbe-block-button-element');
+  if (btn) {
+    btn.style.setProperty('border-color', '#162444', 'important');
+    return;
+  }
+  setTimeout(applyDemoBorder, 400);
+})();
