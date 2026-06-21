@@ -1491,3 +1491,268 @@ body {
                                                       #client-page-view .choose-items-card-price-digits {
                                                         color: #0a1228 !important;
                                                         }
+
+
+/* ===========================================================================
+   VLP-DEFAULT ROUND 20 - Login page CSS (DOCUMENTATION-ONLY in this file)
+   Surface: app.virtuallaunch.pro/site/login (the VLP login page)
+   Append-only. Does NOT modify rounds 1-19.
+
+   IMPORTANT: this CSS does NOT load on the login page from vlp-default.css.
+   The login route is an isolated CSS context - vlp-default.css and the
+   lentax-vlp-default.js FOUC loader are NOT injected on /site/login.
+
+   DELIVERY MECHANISM: JLW pastes this CSS manually into SD admin at
+   Domain Settings -> Customize Login Page Colors & Logo -> Custom CSS field.
+   The field propagates to the served login template after a toggle-cycle
+   + save sequence (CC capability test confirmed).
+
+   THIS COMMIT IS DOCUMENTATION ONLY. The canonical version-controlled copy
+   of the login CSS lives here; the live copy lives in SD's database. Both
+   must be kept in sync manually by JLW when login styling changes.
+
+   SCOPE: body.login (SD stamps .login + .role-guest on body for the
+   unauthenticated sign-in route - confirmed stable, no bleed to portal pages
+   which carry .loggedin or similar post-auth body classes).
+
+   STABILITY:
+   - Yii framework #yw0 form ID NOT used (auto-generated, shifts with render
+     order). Replaced with .form.form-oscar parent class anchor.
+   - No cbe-block-* IDs used.
+   - All anchor classes are SD platform classes (sd-*, .panel-*, .form-*).
+
+   RESPONSIVE WIDTH PATTERN: `min(540px, 100%)` with `max-width: 540px` and
+   `box-sizing: border-box`. Containing-block-relative; safe at all SD
+   breakpoints (1440px desktop, 768px split, 375px mobile). CC verified
+   against SD's mpa-style.css cascade.
+
+   PALETTE:
+   - #0a1228 navy-deep (established)
+   - #f97316 orange-primary (established)
+   - #ffffff white (established)
+   - #e8edf5 off-white (established)
+   - #8b97ad gray-blue (NEW palette entry, JLW-ratified for muted login text)
+
+   JLW-RATIFIED DECISIONS:
+   - Single-stylesheet documentation pattern (round 20 lives in vlp-default.css
+     even though vlp-default.css isn't pulled by the login page)
+   - #8b97ad as new palette entry for muted login text
+   - min(540px, 100%) over min(540px, 90vw) per CC's breakpoint analysis
+   - .form-oscar anchor replaces #yw0 Yii ID
+
+   Added 2026-06-21 - round 20, follow-up to 804b034 (round 19).
+   =========================================================================== */
+
+
+/* --- 1. Google SSO Button - fix white-on-white text + restyle --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login a.sd-google-signin-btn {
+  background-color: #0a1228 !important;
+  color: #ffffff !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 50px !important;
+  font-family: "Source Sans 3", "Open Sans", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 13px 24px !important;
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  letter-spacing: 0.01em !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 2. Login button - full-width pill --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login button.btn-primary-login {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 50px !important;
+  font-family: "Source Sans 3", "Open Sans", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  padding: 13px 24px !important;
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-transform: none !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 3. Remember Me + Login row - stack vertically --- */
+body.login .form-group .col-md-12.d-flex.justify-content-between {
+  flex-direction: column !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+body.login .form-group .rememberMe {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+
+/* --- 4. Having Trouble link --- */
+body.login a.having-trouble {
+  color: #f97316 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+
+/* --- 5. Parens around Having Trouble --- */
+body.login .sd-login-text {
+  color: #8b97ad !important;
+  font-size: 12px !important;
+}
+
+
+/* --- 6. Footer - Start free and get instant access --- */
+body.login .sd-custom-login-text-link a {
+  color: #f97316 !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+
+/* --- 7. Footer - Terms of Service / Privacy Policy --- */
+body.login .panel-footer-group a {
+  color: #8b97ad !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(139, 151, 173, 0.4) !important;
+  padding-bottom: 1px !important;
+}
+
+
+/* --- 8. Left panel - flex column, centered --- */
+body.login .panel.panel-1.login-panel-left {
+  max-width: 46% !important;
+  padding: 48px 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 9. Right panel --- */
+body.login .panel.panel-2.login-panel-right {
+  max-width: 54% !important;
+}
+
+
+/* --- 10. Logo region --- */
+body.login .panel-logo {
+  justify-content: center !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+}
+
+body.login .logo-dark img {
+  width: 300px !important;
+  max-width: 300px !important;
+  height: auto !important;
+}
+
+
+/* --- 11. Panel form row - center the form --- */
+body.login .panel-inner.panel-form.row {
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 0px !important;
+}
+
+
+/* --- 12. Login center column - fixed width --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login .login-center {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  flex: none !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 13. Form oscar --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login .form.form-oscar {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 14. Google SSO wrapper --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login .sd-google-signin-wrapper {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 15. Or divider --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login .sd-google-signin-divider {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  margin: 10px 0 !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 16. Inputs --- */
+/* HARDENED: width 540px -> min(540px, 100%) */
+body.login input.sd-login-email-input,
+body.login input.sd-login-password-input {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  font-size: 15px !important;
+  height: 52px !important;
+  padding: 14px 18px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 17. Form groups --- */
+/* HARDENED: #yw0 replaced with .form-oscar; width 540px -> min(540px, 100%) */
+body.login .form-oscar .form-group.no-gutters {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+
+body.login .form-oscar .form-group .col-md-12 {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 18. Remember Me / Having Trouble row --- */
+body.login .rememberMe {
+  width: 100% !important;
+}
+
+body.login label[for="LoginForm_rememberMe"] {
+  font-size: 14px !important;
+}
