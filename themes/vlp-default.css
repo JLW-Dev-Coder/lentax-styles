@@ -1756,3 +1756,84 @@ body.login .rememberMe {
 body.login label[for="LoginForm_rememberMe"] {
   font-size: 14px !important;
 }
+
+
+/* ===========================================================================
+   VLP-DEFAULT ROUND 21 - Login page input icon prefixes (mail + lock)
+   Surface: app.virtuallaunch.pro/site/login (login page)
+   Append-only. Does NOT modify rounds 1-20.
+
+   IMPORTANT: this CSS does NOT load on the login page from vlp-default.css.
+   Same documentation-only pattern as round 20: the canonical version-
+   controlled copy lives here; JLW pastes the full updated CSS (round 20
+   baseline + round 21 additions) into SD admin -> Domain Settings ->
+   Customize Login Page Colors & Logo -> Custom CSS via the toggle-cycle
+   + Save sequence.
+
+   CHANGES vs ROUND 20:
+   - NEW: section 19 - mail icon prefix on email input (FA fa-envelope, weight 400)
+   - NEW: section 20 - lock icon prefix on password input (FA fa-lock, weight 900)
+   - NEW: section 21 - padding-left bump on both inputs (42px) to clear the glyphs
+
+   ELEMENTS NOT SHIPPED (deferred):
+   - Eye/show-password toggle suffix on password input. SD's Custom CSS field
+     is architecturally JS-incapable (three containment layers verified by CC's
+     sanitizer escape test). Eye toggle requires alternate JS delivery path
+     (investigate alternate SD admin fields - Custom JS / Custom HTML / footer
+     Custom Link - or other injection surfaces in a future round). Backlog.
+   - Password right-padding for eye clearance. Dropped per JLW direction since
+     no eye icon to clear in this round; password input keeps full content area.
+
+   STABILITY:
+   - :has() supported on login route per CC probe (Chromium-equivalent browser).
+   - .col-md-12 parent is position: relative with no overflow clipping (confirmed
+     by CC probe) - pseudo-element icon insertion works without DOM modification.
+   - FA Pro 6.7.2 fully loaded via SD Kit script on login template; \f0e0
+     (envelope, regular weight 400 = 'far') and \f023 (lock, solid weight 900
+     = 'fas') both resolve correctly.
+   - .sd-login-email-input / .sd-login-password-input are stable SD platform
+     classes already targeted by round 20 section 16.
+
+   PALETTE: #8b97ad (round 20 muted gray-blue) for icon color. No new colors.
+
+   Added 2026-06-21 - round 21, follow-up to 1b8566b.
+   =========================================================================== */
+
+
+/* --- 19. Mail prefix icon on email input (FA fa-envelope, regular 400) --- */
+body.login .col-md-12:has(.sd-login-email-input)::before {
+  font-family: "Font Awesome 6 Pro" !important;
+  font-weight: 400 !important;
+  content: "\f0e0" !important;
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #8b97ad !important;
+  font-size: 15px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+
+/* --- 20. Lock prefix icon on password input (FA fa-lock, solid 900) --- */
+body.login .col-md-12:has(.sd-login-password-input)::before {
+  font-family: "Font Awesome 6 Pro" !important;
+  font-weight: 900 !important;
+  content: "\f023" !important;
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #8b97ad !important;
+  font-size: 15px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+
+/* --- 21. Padding-left bump on inputs to clear the prefix glyphs --- */
+body.login input.sd-login-email-input,
+body.login input.sd-login-password-input {
+  padding-left: 42px !important;
+}
