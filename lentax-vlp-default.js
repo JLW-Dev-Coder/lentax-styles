@@ -121,28 +121,8 @@
     el.style.setProperty('border', '2px solid #162444', 'important');
   });
 
-  // 6. Fix callout description text
-  var desc = document.querySelector('.feature-block-description');
-  if (desc) {
-    desc.style.setProperty('color', '#e8edf5', 'important');
-    desc.querySelectorAll('*').forEach(function(el) {
-      el.style.setProperty('color', '#e8edf5', 'important');
-    });
-    desc.querySelectorAll('strong, b').forEach(function(el) {
-      el.style.setProperty('color', '#f97316', 'important');
-    });
-  }
-
-  // 7. Fix ng-non-bindable fee table rows
-  var ngDiv = document.querySelector('[ng-non-bindable]');
-  if (ngDiv) {
-    ngDiv.querySelectorAll('*').forEach(function(el) {
-      var c = window.getComputedStyle(el).color;
-      if (c === 'rgba(255, 255, 255, 0.9)' || c === 'rgb(255, 255, 255)') {
-        el.style.setProperty('color', '#0a1228', 'important');
-      }
-    });
-  }
+  // Sections 6 & 7 replaced in round 10 (SD platform contrast regression).
+  //   See the fixCalloutDescription and fixViewPlansBlock IIFEs at EOF.
 
   // 8. Hero title split injection (DOM mutation — innerHTML span-wrap)
   var title = document.querySelector('h1.vl-hero__title');
@@ -154,4 +134,72 @@
         + '<span class="vlp-title-dark"> \u2014 ' + txt.substring(split + 3) + '</span>';
     }
   }
+})();
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   VLP-default round 10 - Contrast regression fix for explore page (view/169143)
+   Replaces round 9 IIFE sections #6 (callout description) and #7 (View Plans
+   form plan block) due to SD platform update.
+
+   Section #6 issue: round 9 walked .feature-block-description * but did not
+   account for h3/.vl-body elements that have a higher-specificity color rule
+   from vlp-default.css. New version explicitly handles h3 and uses a 400ms
+   delayed re-fire to win AFTER the platform's 300ms color transition settles.
+
+   Section #7 issue: SD added transition:color 0.3s to all form-plan-block
+   elements, so getComputedStyle returned mid-animation values causing the old
+   color-match check to silently bail. Additionally sd.app.min.css now sets
+   rgba(255,255,255,0.9) on the [ng-non-bindable] HOST element directly; the
+   old walker only touched descendants. New version targets the host directly,
+   kills the transition, and walks all descendants unconditionally without a
+   color-equality check (CSS !important rules restore gradient headings via
+   background-clip:text).
+
+   Added 2026-06-20 - round 10, follow-up to de8eb6d.
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+
+/* Replacement for round 9 section #6 */
+(function fixCalloutDescription() {
+  function applyCalloutColors() {
+    document.querySelectorAll(
+      '#client-page-view .feature-block-description *'
+    ).forEach(function (el) {
+      el.style.setProperty('color', '#e8edf5', 'important');
+      el.style.setProperty('transition', 'none', 'important');
+    });
+    // b/strong accent override (runs after the loop to win the cascade)
+    document.querySelectorAll(
+      '#client-page-view .feature-block-description b,' +
+      '#client-page-view .feature-block-description strong'
+    ).forEach(function (el) {
+      el.style.setProperty('color', '#f97316', 'important');
+    });
+  }
+  // Fire immediately + after transition window
+  applyCalloutColors();
+  setTimeout(applyCalloutColors, 400);
+})();
+
+
+/* Replacement for round 9 section #7 */
+(function fixViewPlansBlock() {
+  function applyPlanColors() {
+    var hosts = document.querySelectorAll('#client-page-view [ng-non-bindable]');
+    hosts.forEach(function (host) {
+      // Fix the host element itself
+      host.style.setProperty('color', '#0a1228', 'important');
+      host.style.setProperty('transition', 'none', 'important');
+      // Fix every descendant
+      host.querySelectorAll('*').forEach(function (el) {
+        // Gradient-text headings use -webkit-text-fill-color:transparent so
+        // overriding `color` does not affect their orange gradient rendering.
+        el.style.setProperty('color', '#0a1228', 'important');
+        el.style.setProperty('transition', 'none', 'important');
+      });
+    });
+  }
+  // Fire immediately + after SD transition window (300ms) + safety buffer
+  applyPlanColors();
+  setTimeout(applyPlanColors, 400);
 })();

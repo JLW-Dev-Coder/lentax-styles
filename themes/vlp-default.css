@@ -563,3 +563,73 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view .vl-hero .vl-body {
   color: #0a1228 !important;
 }
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   VLP-DEFAULT ROUND 10 — Contrast regression fix for explore page (view/169143)
+   Append-only — does NOT modify Round 9 rules.
+
+   DOM changes observed since Round 9 (de8eb6d):
+   - SD platform update added `transition: color 0.3s` to ALL elements inside the
+     form plan block, including [ng-non-bindable] itself. This caused R9 JS §7 to
+     read transitioning (in-flight) computed values and silently bail on the recolor.
+   - sd.app.min.css now sets rgba(255,255,255,0.9) on the [ng-non-bindable] HOST
+     element directly (not just its children), so inherited !important from an
+     ancestor cannot override it — only an explicit rule on [ng-non-bindable] can.
+   - For Failure 2: vlp-default.css's #client-page-view h3 rule (specificity 1,0,1)
+     started winning over .feature-block-description (1,1,0) for the h3.vl-body
+     element after the SD sheet-load order changed; adding h3 to the callout
+     selector raises specificity to (1,1,1) and restores the light text.
+
+   Round 9 sections still working: §1-§5 (palette, hero, CTAs, feature cards).
+   Round 9 sections broken: §6 (partially), §7 (transition timing + host element missing).
+
+   Stability rationale:
+   - [ng-non-bindable] is an Angular compiler attribute SD always renders on
+     html-content blocks; it will not be renamed by editor saves.
+   - .feature-block-description is a VLP-authored class; SD regeneration does not
+     touch custom class names in wysiwyg blocks.
+   - Using attribute-selector + class combos (not auto-generated IDs) throughout.
+   Added 2026-06-20 - round 10, follow-up to de8eb6d.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+
+/* --- FAILURE 1 FIX: View Plans column body rows (fee rows, support-option rows) ---
+   Root cause: sd.app.min.css sets rgba(255,255,255,0.9) on [ng-non-bindable]
+   itself; that explicit rule beats inherited color from any ancestor regardless
+   of !important. Fix targets the host element directly, plus all descendants (*),
+   and kills the 0.3s color transition that made R9 JS miss the recolor window.
+   Specificity: #client-page-view (1,0,0) + [ng-non-bindable] (0,1,0) = (1,1,0).
+   SD's rule has no ID, so (1,1,0) + !important wins unconditionally.
+   The * child selector propagates the fix to all anonymous divs and .item-plan-row
+   children without needing their class names (which SD may change).
+   NOTE: gradient-text headings (.item-plan-title / .item-plan-subtitle) are
+   unaffected - they use background-clip:text + -webkit-text-fill-color:transparent
+   for the orange gradient; the CSS `color` property is not what renders them. */
+
+#client-page-view [ng-non-bindable],
+#client-page-view [ng-non-bindable] * {
+  color: #0a1228 !important;
+  transition: none !important;
+}
+
+
+/* --- FAILURE 2 FIX: "What This Feature Controls" callout description text ---
+   Root cause: vlp-default.css R9 ships #client-page-view h3 { color:#0a1228 }
+   at specificity (1,0,1). Inside the navy .feature-block-container (bg:#162444)
+   this makes h3.vl-body invisible. Adding .feature-block-description to the
+   selector chain raises specificity to (1,1,1), outranking (1,0,1) at same
+   !important level, and locks the light text color for all h3/heading variants
+   inside the callout regardless of what class the platform assigns the element.
+   The <b>/<strong> override restores the #f97316 accent for the product name. */
+
+#client-page-view .feature-block-description h3,
+#client-page-view .feature-block-description .vl-body,
+#client-page-view .feature-block-description .feature-block-border h3 {
+  color: #e8edf5 !important;
+}
+
+#client-page-view .feature-block-description b,
+#client-page-view .feature-block-description strong {
+  color: #f97316 !important;
+}
