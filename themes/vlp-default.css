@@ -1463,3 +1463,31 @@ body {
   border-color: #e8edf5 !important;
   background-color: transparent !important;
 }
+
+/* ---------------------------------------------------------------------------
+   VLP-DEFAULT ROUND 19 — Checkout price digits contrast fix (white-card context)
+      Page: view/169144 (Tax Monitor Setup Checkout Cart)
+         Append-only. Does NOT modify rounds 9–18.
+
+            ROOT CAUSE (Round 14 A5): `.choose-items-card-price-digits { color: #e8edf5 !important }`
+               was authored for navy card backgrounds. Round 13 set `.choose-items-select__item
+                  { background: #ffffff }`, making the off-white digits invisible on white.
+
+                     FIX A: Override color to navy #0a1228 — same pattern as Round 16 Fix B
+                        (which did the equivalent for `.form-group label`). Only color is changed;
+                           font-family, font-size, font-weight, white-space, word-break from Round 14
+                              A5/A6 are preserved (not redeclared here, not touched).
+
+                                 SCOPE: #client-page-view per established VLP-default pattern.
+                                    SIBLING COVERAGE: .digitsLEft inherits color from .choose-items-card-price-digits
+                                       (no own rule), so this single override fixes all three pricing cards and the
+                                          .digitsLEft wrapper simultaneously. No separate currency-symbol or cents
+                                             selectors exist; no free/included badges found on these cards.
+                                                SIDEBAR SAFE: .choose-items-summary__amount / __sub-amount / __grand-amount
+                                                   use distinct selectors — unaffected by this rule.
+                                                      --------------------------------------------------------------------------- */
+
+                                                      /* FIX A — Price digits: off-white → navy on white card surface */
+                                                      #client-page-view .choose-items-card-price-digits {
+                                                        color: #0a1228 !important;
+                                                        }
