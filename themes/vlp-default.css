@@ -1343,3 +1343,123 @@ body {
   tr:has(.choose-items-summary__grand-amount) {
   display: none !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 18 — "My Order / Project" widget navy callout treatment
+   Page: view/168981 (Tax Monitor Setup - Ready When You Are)
+   Append-only. Does NOT modify rounds 9-17.
+
+   WIDGET: .dashboard-organize-box.cbe-block-all-tasks2
+   Two stable SD semantic classes; the cbe-block-1780789565157 auto-gen ID
+   is excluded per stable-anchor policy.
+
+   SCOPE: #client-page-view (CC-confirmed descendant via .contains() probe)
+
+   TREATMENT: navy callout-card matching round 9/10 .feature-block-container
+   - Background: #162444 (solid navy, not gradient)
+   - Border: 2px solid #f97316 + 20px radius (established VLP card treatment)
+   - Text: #e8edf5 (off-white) throughout inner regions
+   - Rocket icon: #f97316 (orange, preserved)
+   - Dividers: rgba(249, 115, 22, 0.35) for header-bottom + footer-top
+     (orange tint at 35% to echo accent without full saturation on navy)
+
+   EMPTY-STATE PNG:
+   The .no-results-img is a raster PNG with opaque gray fill areas.
+   brightness(0) invert(1) failed visually (CC live-tested); opacity(0.5)
+   produces the correct ghosted/muted empty-state treatment on navy.
+
+   NOTIFICATION BADGE: red bg + white text already legible on navy context;
+   restated for clarity but functionally unchanged from SD platform default.
+
+   NO JS REQUIRED: standard DOM, no shadow roots, no deferred render.
+   Pure CSS sufficient.
+
+   Added 2026-06-20 - round 18, follow-up to 04a4217.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* 1 - Widget outer card -> navy callout-card style */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 {
+  background-color: #162444 !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* 2 - Header region -> transparent over navy; orange-tinted bottom divider */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__header {
+  background-color: transparent !important;
+  border-bottom-color: rgba(249, 115, 22, 0.35) !important;
+}
+
+/* 3 - Header title text -> off-white */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__header-title {
+  color: #e8edf5 !important;
+}
+
+/* 4 - Rocket icon - preserved orange */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__header-title .fa-rocket-launch {
+  color: #f97316 !important;
+}
+
+/* 5 - Header icon buttons (filter-dropdown, sort-dropdown, refresh)
+       SVG paths inherit from button's color via currentColor */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .filter-button {
+  color: #e8edf5 !important;
+  background-color: transparent !important;
+}
+
+/* 6 - Notification badge number - white on red; already legible, restated */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .display-block-svg-children .ng-binding {
+  color: #ffffff !important;
+}
+
+/* 7 - Content / body region */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__content {
+  background-color: transparent !important;
+  color: #e8edf5 !important;
+}
+
+/* 8 - Empty-state "No Projects" heading */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results h5 {
+  color: #e8edf5 !important;
+}
+
+/* 9 - Empty-state "Nothing to do for now" caption */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results p {
+  color: #e8edf5 !important;
+}
+
+/* 10 - Empty-state placeholder image (raster PNG via <img>);
+        brightness(0)/invert not effective on this source asset;
+        opacity(0.5) produces correct ghost treatment on navy */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results-img {
+  filter: opacity(0.5) !important;
+}
+
+/* 11 - Footer region; orange-tinted top divider */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__footer {
+  background-color: transparent !important;
+  border-top-color: rgba(249, 115, 22, 0.35) !important;
+  color: #e8edf5 !important;
+}
+
+/* 12 - "Showing 0 Results" label + inline SVG arrow */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number {
+  color: #e8edf5 !important;
+}
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number .ng-binding {
+  color: #e8edf5 !important;
+}
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number svg {
+  color: #e8edf5 !important;
+  fill: #e8edf5 !important;
+}
+
+/* 13 - "View All Projects" outline button - upgraded for navy legibility */
+#client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__footer-btn {
+  color: #e8edf5 !important;
+  border-color: #e8edf5 !important;
+  background-color: transparent !important;
+}
