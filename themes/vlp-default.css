@@ -737,3 +737,31 @@ body {
    declarations for .vl-btn--support; the JS injection is the only path that
    beats the CORS-blocked SD platform stylesheet. Round 9 already ships bg
    and color rules for .vl-btn--support; no additions here. */
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   VLP-DEFAULT ROUND 12 — Hero subhead bold recolor
+   Append-only. Does NOT modify round 9, 10, or 11 rules.
+
+   ISSUE: <h2 class="vl-subhead"> renders navy (round 9 rule), but its inner
+   <b>...</b> for the personalized greeting ("Explore freely, [Name]") renders
+   white-on-white, making the greeting invisible. A broader b/strong rule in
+   lentax-base.css or the SD platform sheet is painting hero <b> white.
+
+   FIX: scoped override forcing hero/subhead <b> and <strong> to navy #0a1228,
+   matching their parent paragraph's color.
+
+   Round 11 ships a different b/strong rule scoped to .feature-block-description
+   (orange #f97316 for the callout context). That rule is untouched — this round
+   12 rule applies only inside .vl-subhead / .vl-hero, so there is no cascade
+   conflict with the callout.
+
+   Added 2026-06-20 - round 12, follow-up to 93c205b.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+#client-page-view h2.vl-subhead b,
+#client-page-view h2.vl-subhead strong,
+#client-page-view .vl-hero .vl-subhead b,
+#client-page-view .vl-hero .vl-subhead strong {
+  color: #0a1228 !important;
+}
