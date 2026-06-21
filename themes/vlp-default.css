@@ -1184,3 +1184,51 @@ body {
   white-space: nowrap !important;
   word-break: normal !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 15 — Dashboard tile flat navy + Portal H1/H2 typography
+   Append-only. Does NOT modify rounds 9-14.
+
+   PART A: Dashboard tile background flattened from navy gradient to flat
+   #0a1228 (sidebar-matched chrome). Round 5/8 rules remain in place;
+   round 15 wins via source-order cascade at matching !important.
+   Neutralizes the gradient by re-declaring all four background-*
+   properties: background shorthand (collapses any image), background-image
+   (explicit kill), background-color (flat fill), background-size (default).
+
+   PART B: Portal page (view/168967) H1/H2 typography matches dashboard
+   exactly per CC's live diff. JLW-ratified deviations from VLP palette:
+   - rgb(5, 7, 17) intentionally NOT #0a1228 (5 units darker; dashboard's
+     actual rendered color, JLW chose exact match over palette consistency)
+   - font-family hardcoded "Source Sans 3", Georgia, serif rather than
+     bound to --lentax-font-* token (JLW chose CC's literal spec)
+
+   Added 2026-06-20 - round 15, follow-up to 896a9cd.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* --- PART A: Dashboard tiles - flat navy (sidebar match, gradient killed) --- */
+#dashboard-view .account-card-wrapper {
+  background: #0a1228 !important;
+  background-image: none !important;
+  background-color: #0a1228 !important;
+  background-size: auto !important;
+}
+
+
+/* --- PART B: Portal page H1/H2 typography parity with dashboard --- */
+#client-page-view .card-block h1 {
+  font-family: "Source Sans 3", Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.2px !important;
+  color: rgb(5, 7, 17) !important;
+}
+#client-page-view .card-block h2 {
+  font-family: "Source Sans 3", Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.2px !important;
+  color: rgb(5, 7, 17) !important;
+  margin-top: 24px !important;
+  margin-bottom: 28px !important;
+}
