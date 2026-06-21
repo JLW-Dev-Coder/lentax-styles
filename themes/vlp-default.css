@@ -1068,3 +1068,119 @@ body {
   background-color: #ffffff !important;
   padding: 16px !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 14 — Checkout page amendments (A1-A6)
+   Page: view/169144
+   Mode: Path A - additive overrides on top of round 13 (4cd697f).
+   Round 13's CSS and IIFEs remain in place untouched.
+   Round 14 wins where it re-declares the same property via source-order
+   cascade at matching !important.
+
+   AMENDMENTS:
+   A1 - .sdAccordion__toggle border removed (R13 had 2px orange border)
+   A2 - .sdAccordion__toggle background transparent (R13 had #162444)
+   A3a- h2 adds margin-bottom: 32px
+   A3b- All hover animations removed (toggle, cards, buttons)
+   A4 - same as A3b (consolidated)
+   A5 - Source Sans 3 forced on price/title/summary/label/button text;
+        price digits 22px / 700
+   A6 - white-space:nowrap on price + amount selectors
+
+   JLW-RATIFIED:
+   - Labels off-white #e8edf5 ship as written even on white form backgrounds.
+     If labels disappear on live verify, follow-up round narrows the scope.
+   - Path A: where this round drops a R13 rule entirely (e.g. .step-number,
+     .checkmark-icon__circle, .choose-items-card__label, .confirm-btn,
+     :hover rules), R13's rule stays active. Future consolidation pass.
+
+   Added 2026-06-20 - round 14, follow-up to 4cd697f.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* --- A1+A2: sdAccordion__toggle (border removed, transparent bg) --- */
+#client-page-view .sdAccordion__toggle {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+#client-page-view .sdAccordion__toggle:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* --- A3a: h2 bottom margin --- */
+#client-page-view h2 {
+  margin-bottom: 32px !important;
+}
+
+
+/* --- A3b/A4: Remove all hover animations on checkout interactive elements --- */
+#client-page-view .sdAccordion__item.choose-items-card {
+  transition: none !important;
+}
+#client-page-view .choose-items-select__item {
+  transition: none !important;
+}
+#client-page-view .btn.btn-primary.next-btn,
+#client-page-view .btn.btn-primary.next-btn-last,
+#client-page-view .btn.btn-primary.prev-btn,
+#client-page-view input.btn.btn-primary {
+  transition: none !important;
+}
+#client-page-view .flow-nav-btn {
+  transition: none !important;
+}
+
+
+/* --- A5: Source Sans 3 font-family + price digit weight/size --- */
+#client-page-view .choose-items-card-price-digits {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #e8edf5 !important;
+}
+#client-page-view .choose-items-select__title {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-weight: 600 !important;
+}
+#client-page-view .choose-items-summary-head {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+#client-page-view .form-group label,
+#client-page-view .field-label {
+  color: #e8edf5 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-weight: 600 !important;
+}
+#client-page-view .btn.btn-primary.next-btn,
+#client-page-view input.btn.btn-primary {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+#client-page-view .btn.btn-primary.prev-btn {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- A6: Price + amount no-wrap --- */
+#client-page-view .choose-items-card-price-digits,
+#client-page-view .digitsLEft {
+  white-space: nowrap !important;
+  word-break: normal !important;
+}
+#client-page-view .choose-items-summary__amount,
+#client-page-view .choose-items-summary__sub-amount,
+#client-page-view .choose-items-summary__grand-amount {
+  white-space: nowrap !important;
+  word-break: normal !important;
+}

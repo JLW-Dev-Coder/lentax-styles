@@ -324,3 +324,126 @@
   });
   docObs.observe(document.body, { childList: true, subtree: true });
 })();
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-default round 14 - Checkout page amendments (CC-revised IIFEs)
+   Parallel to round 13's applyCheckoutNavStrip / applySummaryNavy (NOT
+   replacements - both R13 IIFEs remain active per Path A additive policy).
+   These V2 IIFEs apply additional inline-style overrides for amendments
+   A3b/A4/A5/A6 that the R13 IIFEs did not cover.
+
+   applySummaryNavyV2 hoists the MutationObserver to single-setup-on-find
+   pattern (PE correction of CC's draft, which created a fresh observer
+   inside apply() on every retry - up to 30 stacked observers per page
+   load, never disconnecting). The hoisted pattern attaches exactly one
+   observer once the target appears.
+
+   Added 2026-06-20 - round 14, follow-up to 4cd697f.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* IIFE 1: applyCheckoutNavStripV2
+   Active-state styling on .flow-nav-btn.active using class detection
+   (round 13's V1 used :first-child / index-0 inference). Watches for
+   class changes via MutationObserver scoped to .flow-nav-bar so step
+   transitions re-apply automatically. */
+(function applyCheckoutNavStripV2() {
+  'use strict';
+  var MAX_RETRIES = 30;
+  var attempts = 0;
+
+  function apply() {
+    var btns = document.querySelectorAll('#client-page-view .flow-nav-btn');
+    if (!btns.length && attempts < MAX_RETRIES) {
+      attempts++;
+      setTimeout(apply, 400);
+      return;
+    }
+    btns.forEach(function (btn) {
+      if (btn.classList.contains('active')) {
+        btn.style.setProperty('color', '#f97316', 'important');
+        btn.style.setProperty('opacity', '1', 'important');
+        btn.style.setProperty('border-bottom', '2px solid #f97316', 'important');
+        btn.style.setProperty('background', 'transparent', 'important');
+        btn.style.setProperty('background-color', 'transparent', 'important');
+      } else {
+        btn.style.setProperty('background', 'transparent', 'important');
+        btn.style.setProperty('background-color', 'transparent', 'important');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
+
+  // Single MutationObserver attaches once the nav bar is in the DOM,
+  // watches for class changes so step transitions re-apply automatically.
+  function attachObserver() {
+    var bar = document.querySelector('#client-page-view .flow-nav-bar');
+    if (!bar) return false;
+    var mo = new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        if (m.type === 'attributes' && m.attributeName === 'class') {
+          apply();
+        }
+      });
+    });
+    mo.observe(bar, { subtree: true, attributeFilter: ['class'], childList: true });
+    return true;
+  }
+  if (!attachObserver()) {
+    setTimeout(attachObserver, 1200);
+  }
+})();
+
+
+/* IIFE 2: applySummaryNavyV2
+   Sidebar wrapper paint + reversion guard. Same root cause as R13's
+   applySummaryNavy (CORS-blocked widget CSS + transition:all) but with
+   the observer HOISTED to single-setup-on-find. The retry loop only
+   re-runs apply(); the observer is attached exactly once when the
+   target appears, and persists for the page lifetime to catch Angular
+   digest reversions. */
+(function applySummaryNavyV2() {
+  'use strict';
+  var MAX_RETRIES = 30;
+  var attempts = 0;
+  var observerAttached = false;
+
+  function paint(el) {
+    el.style.setProperty('transition', 'none', 'important');
+    el.style.setProperty('background-image', 'linear-gradient(180deg, #0a1228 0%, #162444 100%)', 'important');
+    el.style.setProperty('background-size', '100% 400px', 'important');
+    el.style.setProperty('background-color', '#162444', 'important');
+    el.style.setProperty('background-repeat', 'no-repeat', 'important');
+    el.style.setProperty('border', '2px solid #f97316', 'important');
+    el.style.setProperty('border-radius', '20px', 'important');
+    el.style.setProperty('color', '#e8edf5', 'important');
+  }
+
+  function apply() {
+    var el = document.querySelector('#client-page-view .choose-items-summary-wrapper');
+    if (!el && attempts < MAX_RETRIES) {
+      attempts++;
+      setTimeout(apply, 400);
+      return;
+    }
+    if (!el) return;
+    paint(el);
+    if (!observerAttached) {
+      var mo = new MutationObserver(function () { paint(el); });
+      mo.observe(el, { attributes: true, attributeFilter: ['style'] });
+      observerAttached = true;
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
+})();
