@@ -1232,3 +1232,80 @@ body {
   margin-top: 24px !important;
   margin-bottom: 28px !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 16 — Nav strip cell equality, form label contrast,
+   accordion step card vertical centering
+   Page: view/169144 (Checkout Cart)
+   Append-only. Does NOT modify rounds 13 or 14.
+
+   FIX A: .flow-nav-bar cell equality
+   SD platform CSS (CORS-blocked) sets margin-bottom:4px on .flow-nav-btn > div.
+   That makes the inner div's logical height (51.76 + 4 = 55.76px) slightly
+   exceed the flex content-box (75.74 - 10pad - 10pad = 55.74px), so
+   align-items:center cannot center it - all five cells pin top-aligned.
+   The orange active step exposes this visually; the navy inactive steps hide
+   it in the dark gradient. Also: the inner div had no width constraint and
+   shrank to its longest text line, causing inconsistent horizontal centering
+   across cells. Fix: margin:0 + width:100% on the inner div; min-height
+   floor + re-asserted centering on the cell.
+
+   FIX B: Form field label contrast
+   Round 14 rule `.form-group label, .field-label { color: #e8edf5 }` paints
+   all floating/animated labels off-white - invisible on white form and input
+   backgrounds. This is the materialization of the round 14 sec 6.6 ratified
+   risk. Fix: override to #0a1228 (navy-deep). Also fixes .label-subtext
+   (helper copy under custom fields) which was rendering bronze-copper on white.
+
+   FIX C: Accordion step card title - vertical centering
+   Round 14 A3a: `#client-page-view h2 { margin-bottom: 32px }` bleeds into
+   .sdAccordion__title (which is an h2). Inside the flex .sdAccordion__toggle
+   (align-items:center, padding:12px 18px) that margin shifts the title
+   upward, producing 24px above / 56px below instead of 12px / 12px.
+   Zero it out scoped to the toggle so the A3a rule is otherwise intact.
+
+   Hard constraints honoured: no rounds 13/14 edits, no hover/transition
+   states added, established palette only, !important throughout, stable
+   class anchors only (no auto-generated IDs).
+   Added 2026-06-20 - round 16, follow-up to 9acd7e0.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* --- A-1: Kill SD platform asymmetric margin on inner text wrapper;
+           lock to full cell width so text centers against the cell,
+           not the variable-width text block --- */
+#client-page-view .flow-nav-bar .flow-nav-btn > div {
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+
+
+/* --- A-2: Re-assert flex centering + explicit min-height floor on each cell --- */
+#client-page-view .flow-nav-bar .flow-nav-btn {
+  min-height: 56px !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+/* --- B-1: Form field labels - dark navy on white input/form backgrounds --- */
+#client-page-view .form-group label,
+#client-page-view .field-label {
+  color: #0a1228 !important;
+}
+
+
+/* --- B-2: Helper/subtext copy under custom fields --- */
+#client-page-view .label-subtext {
+  color: #0a1228 !important;
+}
+
+
+/* --- C: Accordion step card title - vertical centering --- */
+#client-page-view .sdAccordion__toggle .sdAccordion__title {
+  margin-bottom: 0 !important;
+}
