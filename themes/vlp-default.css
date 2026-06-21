@@ -1309,3 +1309,37 @@ body {
 #client-page-view .sdAccordion__toggle .sdAccordion__title {
   margin-bottom: 0 !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 17 — Hide orphan "grand-amount" TR in One-Time Charges
+   Page: view/169144 (Checkout Cart)
+   Append-only. Does NOT modify rounds 13-16.
+
+   DIAGNOSIS:
+   SuiteDash renders a static template TR as the final row of the One-Time
+   Charges table. The amount TD carries class `choose-items-summary__grand-amount`
+   (a Grand Total class) and its label TD is empty - no Angular binding, no
+   text. The row is a duplicate of the GRAND TOTAL already shown in the
+   dedicated .choose-items-summary-total section. No information is lost
+   by hiding.
+
+   The TR has no ng-scope attribute (static template, not Angular-bound),
+   so it always renders regardless of cart contents.
+
+   STABILITY:
+   :has() selector supported in all Chromium builds served by SD portal
+   context (Chrome 105+). Selector confirmed unique on this page (1 match);
+   does not touch Subtotal row, Tax Monitor Setup row, or Grand Total row
+   (Grand Total uses DIV.choose-items-summary-total-amount, not the TD
+   carrying __grand-amount class).
+
+   Added 2026-06-20 - round 17, follow-up to 153930d.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+#client-page-view
+  .choose-items-summary__items-wrap
+  tr:has(.choose-items-summary__grand-amount) {
+  display: none !important;
+}
