@@ -414,3 +414,152 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 .content-ribbon {
   display: none !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Tax Monitor Setup explore page (view/169143) styling
+   Scope: #client-page-view (portal subpage, distinct sales/explore mood)
+   Direction: white background, navy callout, dark-orange feature cards
+   Palette: #ffffff | #f97316 | #0a1228 | #162444 | #c2410c | #e8edf5
+   NOTE: must be paired with the JS supplement in lentax-vlp-default.js
+   (platform inline styles + --frm-color-primary require direct element
+   manipulation to defeat specificity. CC live-confirmed and JLW-approved.)
+   Added 2026-06-20 — round 9, follow-up to 4dc0834.
+   ───────────────────────────────────────────────────────────────── */
+
+/* --- Page Background: Full White --- */
+.main-wrapper.column1-portal-page {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+#client-page-view,
+#client-page-view .vl-page,
+#client-page-view .vl-section,
+#client-page-view .vl-hero {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* --- Global Text: Dark Navy --- */
+#client-page-view {
+  color: #0a1228 !important;
+}
+#client-page-view .vl-body,
+#client-page-view .vl-subhead,
+#client-page-view p {
+  color: #0a1228 !important;
+}
+
+/* --- Hero Title Split: Orange + Navy (JS injects span structure) --- */
+#client-page-view .vl-hero__title .vlp-title-orange {
+  color: #f97316 !important;
+}
+#client-page-view .vl-hero__title .vlp-title-dark {
+  color: #0a1228 !important;
+}
+
+/* --- Section Headings --- */
+#client-page-view h2.vl-section-title,
+#client-page-view h2.vl-subhead {
+  color: #0a1228 !important;
+}
+
+/* --- Divider --- */
+#client-page-view hr.vl-divider {
+  border-color: #f97316 !important;
+  opacity: 0.3;
+}
+
+/* --- "What This Feature Controls" Callout Card: Navy --- */
+#client-page-view .feature-block-container {
+  background: #162444 !important;
+  background-color: #162444 !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+}
+#client-page-view .feature-block-description,
+#client-page-view .feature-block-description *,
+#client-page-view .feature-block-container p {
+  color: #e8edf5 !important;
+}
+#client-page-view .feature-block-description strong,
+#client-page-view .feature-block-description b {
+  color: #f97316 !important;
+}
+
+/* --- Feature Cards: Dark Orange, Navy Borders --- */
+#client-page-view article.vl-card {
+  background: #c2410c !important;
+  background-color: #c2410c !important;
+  border: 2.5px solid #162444 !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+}
+#client-page-view article.vl-card h3,
+#client-page-view article.vl-card h4,
+#client-page-view article.vl-card p,
+#client-page-view article.vl-card span {
+  color: #ffffff !important;
+}
+
+/* --- Card Icon Badges: Navy Background + Navy Border --- */
+#client-page-view .vl-card-icon {
+  background: #162444 !important;
+  background-color: #162444 !important;
+  border: 2px solid #162444 !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* --- Plans Form Section: White, Remove Platform Dark Shadows --- */
+#client-page-view #forms-form-wrapper,
+#client-page-view .forms-form-block,
+#client-page-view .app-form-embed,
+#client-page-view .form.form-oscar,
+#client-page-view .form-fields-container,
+#client-page-view .form-group.flow-step-content {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #0a1228 !important;
+}
+#client-page-view .cbe-block-sortable {
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* --- CTA Buttons (hardened selectors — class/position-based, not numeric IDs) ---
+   The vl-btn--* variant suffix comes from item.options.customClass set in the
+   SuiteDash editor by the page author. These survive content-block ID
+   regeneration. CC live-confirmed uniqueness on the page. */
+
+/* Order Processing — was #cbe-block-1780935698206 */
+.vl-btn--ghost .cbe-block-button-element {
+  background: #f97316 !important;
+  color: #ffffff !important;
+  border: 2.5px solid #f97316 !important;
+}
+
+/* Book A Demo — was #cbe-block-1780935698207 */
+.vl-btn--support .cbe-block-button-element {
+  background: #162444 !important;
+  color: #ffffff !important;
+  border: 2.5px solid #f97316 !important;
+}
+
+/* Take A Sneak Peek — was #cbe-block-1780935698208
+   Note: two .vl-btn--primary exist on this page (Checkout Cart in col-sm-5,
+   Take A Sneak Peek in col-sm-7). Column class disambiguates. If column
+   widths are ever changed in the SD editor, this selector must be revisited. */
+.col-sm-7 .vl-btn--primary .cbe-block-button-element {
+  background: #f97316 !important;
+  color: #ffffff !important;
+  border: 2.5px solid #f97316 !important;
+}
+
+/* --- Questions Section --- */
+#client-page-view .vl-hero h2.vl-section-title,
+#client-page-view .vl-hero .vl-body {
+  color: #0a1228 !important;
+}
