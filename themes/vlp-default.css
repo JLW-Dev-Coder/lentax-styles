@@ -765,3 +765,306 @@ body {
 #client-page-view .vl-hero .vl-subhead strong {
   color: #0a1228 !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 13 — Checkout page (view/169144) theme conformance
+   Append-only. Does NOT modify rounds 9-12.
+
+   PAGE: Tax Monitor Setup Checkout Cart
+   SCOPE: #client-page-view (same as explore page rounds 9-12)
+   DIRECTION: A - Full theme conformance (JLW-approved after CC iterated 3)
+
+   JLW-RATIFIED CHOICES:
+   - Broad #client-page-view h1 rule becomes the VLP-default baseline (not
+     scoped to checkout). Kills platform rgba(255,255,255,0.9) paint on all
+     bare h1 elements across portal subpages. Same applies to the h2 :not()
+     chain (defensive against overriding accordion/subhead h2s that should
+     stay light on navy).
+   - applySummaryNavy ships with dual MutationObservers (one on target, one
+     on body for lazy Angular render). Required because Angular digest
+     reverts styles on the SD CORS-blocked .choose-items-summary-wrapper.
+
+   STABILITY RATIONALE:
+   - .flow-nav-bar/.flow-nav-btn: stable SD platform classes for page flow
+     navigation strip.
+   - .sdAccordion__item.choose-items-card/.sdAccordion__head: stable SD
+     widget classes (sd.choose.items.widget.min.js).
+   - .choose-items-summary-wrapper/-body/-head: stable SD widget classes
+     (same bundle as accordion).
+   - .form-group.field_important.embed-group: stable SD "important field"
+     compound class trio.
+   - input.form-control: stable SD form field class.
+   - .btn.btn-primary.next-btn/.prev-btn/.next-btn-last: stable SD checkout
+     step navigation buttons.
+   - .appointment-intake-form-wrapper: stable SD appointment/signature wrapper.
+   - .choose-items-select__item: stable SD pricing item card.
+   - No auto-generated cbe-block-* numeric IDs used anywhere.
+
+   INLINE-STYLE CASCADE FIGHTS (handled in JS, NOT this CSS block):
+   - .flow-nav-btn active step: inline style="background:#2a2a2a;color:#f2f2f2"
+     -> defeated by applyCheckoutNavStrip() IIFE.
+   - .choose-items-summary-wrapper: SD CORS-blocked sheet + transition:all
+     causes persistent cream paint despite !important.
+     -> defeated by applySummaryNavy() IIFE + dual MutationObservers.
+
+   content-ribbon: R7's global .content-ribbon { display:none !important }
+   already handles view/169144. No additional ribbon fix needed.
+
+   Added 2026-06-20 - round 13, follow-up to 3874e0b.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* --- 1. HERO TEXT: Kill platform rgba(255,255,255,0.9) on bare H1/H2 ---
+   BROAD RULES per JLW direction - apply across all #client-page-view pages
+   as the new VLP-default baseline. The h2 :not() chain protects accordion
+   __title, subhead, and vl-section-title H2s that should stay light on navy. */
+#client-page-view h1 {
+  color: #0a1228 !important;
+}
+#client-page-view .wysiwyg-content h2:not(.sdAccordion__title):not(.vl-subhead):not(.vl-section-title),
+#client-page-view .cbe-block-content-text h2:not(.sdAccordion__title):not(.vl-subhead):not(.vl-section-title) {
+  color: #0a1228 !important;
+}
+
+
+/* --- 2. PROGRESS STRIP: .flow-nav-bar ---
+   Five-step flow nav strip above checkout form. Outer container gets navy
+   gradient skin; inactive steps transparent with off-white text; active
+   step (first, "Checkout My Cart") gets orange fill via JS. CSS first-child
+   rule is the fallback if JS doesn't fire. */
+#client-page-view .flow-nav-bar {
+  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  background-color: #162444 !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+#client-page-view .flow-nav-bar .flow-nav-btn {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #e8edf5 !important;
+  border-right: 1px solid rgba(249, 115, 22, 0.25) !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  padding: 10px 8px !important;
+}
+#client-page-view .flow-nav-bar .flow-nav-btn:first-child {
+  background: #f97316 !important;
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+
+/* --- 3. ACCORDION STEP CARDS ---
+   Three collapsible steps: 1 Choose a Pricing Package, 2 Your Details,
+   3 Payment Details. Full VLP navy gradient + 2px orange border + 20px
+   radius treatment matching dashboard/explore cards (round 5/8 pattern). */
+#client-page-view .sdAccordion__item.choose-items-card {
+  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  background-color: #162444 !important;
+  background-size: 100% 400px !important;
+  background-repeat: no-repeat !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  margin-bottom: 12px !important;
+  transition: none !important;
+}
+#client-page-view .sdAccordion__head {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 18px 18px 0 0 !important;
+  color: #e8edf5 !important;
+  transition: none !important;
+}
+#client-page-view .sdAccordion__body {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+#client-page-view .sdAccordion__toggle {
+  background: #162444 !important;
+  background-color: #162444 !important;
+  border: 2px solid #f97316 !important;
+  color: #f97316 !important;
+}
+#client-page-view .step-number {
+  color: #ffffff !important;
+}
+#client-page-view .sdAccordion__title {
+  color: #e8edf5 !important;
+}
+#client-page-view .sdAccordion__title .ng-binding,
+#client-page-view .sdAccordion__head .ng-binding {
+  color: #e8edf5 !important;
+}
+
+
+/* --- 4. SELECT ITEM(S) SUMMARY SIDEBAR ---
+   CSS provides the static target. SD CORS-blocked widget CSS with
+   transition:all visually re-paints cream after load. CSS wins
+   getComputedStyle but compositor uses cached transition start.
+   applySummaryNavy IIFE delivers definitive runtime fix. */
+#client-page-view .choose-items-summary-wrapper {
+  background-image: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
+  background-color: #162444 !important;
+  background-size: 100% 400px !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  transition: none !important;
+}
+#client-page-view .choose-items-summary-body {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: #e8edf5 !important;
+  transition: none !important;
+}
+#client-page-view .choose-items-summary-head {
+  color: #f97316 !important;
+}
+
+
+/* --- 5. FORM FIELDS: Kill peach/pink backgrounds --- */
+#client-page-view input.form-control,
+#client-page-view textarea.form-control,
+#client-page-view select.form-control {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #0a1228 !important;
+  border: 1.5px solid rgba(10, 18, 40, 0.25) !important;
+  border-radius: 8px !important;
+}
+#client-page-view input.form-control:focus,
+#client-page-view textarea.form-control:focus {
+  border-color: #f97316 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15) !important;
+}
+#client-page-view input[type="number"],
+#client-page-view input[type="text"]:not([class]),
+#client-page-view input[type="email"]:not([class]) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+#client-page-view .form-group.field_important.embed-group {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1.5px solid rgba(10, 18, 40, 0.15) !important;
+  border-left: 4px solid #f97316 !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+}
+
+#client-page-view .choose-items-select__item {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 2px solid rgba(10, 18, 40, 0.15) !important;
+  border-radius: 12px !important;
+}
+#client-page-view .choose-items-select__item:hover {
+  border-color: #f97316 !important;
+}
+
+#client-page-view .choose-items-card__label {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(10, 18, 40, 0.15) !important;
+  color: #0a1228 !important;
+}
+
+#client-page-view .choose-items-select__title {
+  color: #0a1228 !important;
+}
+
+#client-page-view .checkmark-icon__circle {
+  background: #162444 !important;
+  background-color: #162444 !important;
+  border: 2px solid #f97316 !important;
+}
+
+
+/* --- 6. CTA BUTTONS --- */
+#client-page-view .btn.btn-primary.next-btn,
+#client-page-view .btn.btn-primary.next-btn-last,
+#client-page-view input.btn.btn-primary {
+  background: #f97316 !important;
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 15px !important;
+}
+#client-page-view .btn.btn-primary.next-btn:hover,
+#client-page-view .btn.btn-primary.next-btn-last:hover,
+#client-page-view input.btn.btn-primary:hover {
+  background: #ea580c !important;
+  background-color: #ea580c !important;
+  border-color: #ea580c !important;
+}
+
+#client-page-view .btn.btn-primary.prev-btn {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #0a1228 !important;
+  border: 2px solid #0a1228 !important;
+  border-radius: 15px !important;
+}
+#client-page-view .btn.btn-primary.prev-btn:hover {
+  background: #0a1228 !important;
+  background-color: #0a1228 !important;
+  color: #ffffff !important;
+}
+
+#client-page-view .card-show-more.btn-link {
+  color: #f97316 !important;
+  background: transparent !important;
+}
+
+#client-page-view .confirm-btn {
+  background: #f97316 !important;
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+}
+
+
+/* --- 7. RECEIPT PREVIEW / eSIGNATURE CARD --- */
+#client-page-view .appointment-intake-form-wrapper {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 2px solid rgba(249, 115, 22, 0.35) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+#client-page-view .appointment-intake-form-field-block {
+  border: none !important;
+}
+#client-page-view .appointment-intake-form-wrapper h4,
+#client-page-view .appointment-intake-form-wrapper p {
+  color: #0a1228 !important;
+}
+
+
+/* --- 8. MISC CONTAINER CLEANUP --- */
+#client-page-view .choose-items-wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+#client-page-view .extended-form-wrapper,
+#client-page-view .app-form-embed {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+#client-page-view .choose-items-block {
+  border-top: 3px solid #f97316 !important;
+  border-radius: 0 0 12px 12px !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  padding: 16px !important;
+}

@@ -223,3 +223,104 @@
   }
   setTimeout(applyDemoBorder, 400);
 })();
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-default round 13 - Checkout page (view/169144) JS supplements
+   Two new IIFEs parallel to applyDemoBorder (round 11), fixCalloutDescription
+   and fixViewPlansBlock (round 10), and vlp-floating-bar-hide (round 6).
+   Added 2026-06-20 - round 13, follow-up to 3874e0b.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* IIFE 1: applyCheckoutNavStrip
+   Defeats SD platform's inline style="width:100%;background:#2a2a2a;color:#f2f2f2"
+   on active .flow-nav-btn (step 1). Platform sets this via AngularJS after DOM
+   ready; CSS !important loses to inline. Retry pattern: immediate fire + 5 retries
+   at 800ms. Scope: #client-page-view .flow-nav-bar (checkout-page-only via class
+   combination). */
+(function applyCheckoutNavStrip() {
+  'use strict';
+  function apply() {
+    var cpv = document.querySelector('#client-page-view');
+    if (!cpv) return;
+    var navBtns = cpv.querySelectorAll('.flow-nav-bar .flow-nav-btn');
+    if (!navBtns.length) return;
+    navBtns.forEach(function (btn, idx) {
+      if (idx === 0) {
+        btn.style.setProperty('background', '#f97316', 'important');
+        btn.style.setProperty('background-color', '#f97316', 'important');
+        btn.style.setProperty('color', '#ffffff', 'important');
+      } else {
+        btn.style.setProperty('background', 'transparent', 'important');
+        btn.style.setProperty('background-color', 'transparent', 'important');
+        btn.style.setProperty('color', '#e8edf5', 'important');
+      }
+    });
+  }
+  apply();
+  var retries = 0;
+  var id = setInterval(function () {
+    apply();
+    retries++;
+    if (retries >= 5) clearInterval(id);
+  }, 800);
+})();
+
+
+/* IIFE 2: applySummaryNavy
+   Defeats SD CORS-blocked sd.choose.items.widget.min.css rule that sets
+   background-color:#fffaf4 on .choose-items-summary-wrapper with transition:all.
+   CSS !important wins getComputedStyle but compositor uses cached transition
+   start value. Fix: separate background-* properties (shorthand collapses
+   under transition race) + kill transitions + animation. MutationObserver
+   prevents Angular digest from reverting. Pattern: R11 applyDemoBorder root
+   cause (CORS cascade + transition) with stronger reversion behavior.
+   JLW-ratified: dual observers (target + body for lazy render). */
+(function applySummaryNavy() {
+  'use strict';
+  function apply() {
+    var cpv = document.querySelector('#client-page-view');
+    if (!cpv) return;
+    var sw = cpv.querySelector('.choose-items-summary-wrapper');
+    var sb = cpv.querySelector('.choose-items-summary-body');
+    var head = cpv.querySelector('.choose-items-summary-head');
+    if (!sw) return;
+    sw.style.setProperty('transition', 'none', 'important');
+    sw.style.setProperty('animation', 'none', 'important');
+    sw.style.setProperty('background-image', 'linear-gradient(180deg, #0a1228 0%, #162444 100%)', 'important');
+    sw.style.setProperty('background-color', '#162444', 'important');
+    sw.style.setProperty('background-size', '100% 400px', 'important');
+    sw.style.setProperty('background-repeat', 'no-repeat', 'important');
+    sw.style.setProperty('background-position', '0 0', 'important');
+    sw.style.setProperty('border', '2px solid #f97316', 'important');
+    sw.style.setProperty('border-radius', '20px', 'important');
+    if (sb) {
+      sb.style.setProperty('transition', 'none', 'important');
+      sb.style.setProperty('background', 'transparent', 'important');
+      sb.style.setProperty('background-color', 'transparent', 'important');
+    }
+    if (head) {
+      head.style.setProperty('color', '#f97316', 'important');
+    }
+  }
+  apply();
+  var retries = 0;
+  var id = setInterval(function () {
+    apply();
+    retries++;
+    if (retries >= 8) clearInterval(id);
+  }, 500);
+  function watchTarget() {
+    var target = document.querySelector('.choose-items-summary-wrapper');
+    if (!target) return;
+    var mo = new MutationObserver(function () { apply(); });
+    mo.observe(target, { attributes: true, attributeFilter: ['style', 'class'] });
+  }
+  watchTarget();
+  var docObs = new MutationObserver(function () {
+    var t = document.querySelector('.choose-items-summary-wrapper');
+    if (t) { watchTarget(); docObs.disconnect(); }
+  });
+  docObs.observe(document.body, { childList: true, subtree: true });
+})();
