@@ -10,16 +10,16 @@
   /* clean role mappings */
   --lentax-tpp-crimson-primary: #f97316;          /* -> orange-primary */
   --lentax-tpp-crimson-primary-rgb: 249, 115, 22; /* -> orange-primary-rgb */
-  --lentax-tpp-crimson-deep: #0A1228;             /* -> navy-deep */
-  --lentax-tpp-crimson-deep-rgb: 10, 18, 40;      /* -> navy-deep-rgb */
+  --lentax-tpp-crimson-deep: var(--vlpd-page-bg);            /* -> navy-deep (#1a1a1a) */
+  --lentax-tpp-crimson-deep-rgb: 26, 26, 26;      /* -> navy-deep-rgb (#1a1a1a) */
   --lentax-tpp-crimson-magenta: #ea580c;          /* deep accent -> orange-dark */
   --lentax-tpp-crimson-light: #F5E6D3;            /* light surface -> parchment-soft */
   --lentax-tpp-crimson-light-rgb: 245, 230, 211;  /* -> parchment-soft-rgb */
   --lentax-tpp-crimson-tint: #FFFAF4;             /* lightest tint -> parchment-cream */
   /* best-effort mappings (no clean VLP analog — Commit-3 Step-5 ruling) */
-  --lentax-tpp-crimson-maroon: #0F1A33;           /* dark rose surface -> navy-surface */
-  --lentax-tpp-crimson-surface-deep: #070a10;     /* near-black rose surface -> navy-void */
-  --lentax-tpp-crimson-surface-darkest: #050711;  /* deepest rose surface -> navy-nearblack */
+  --lentax-tpp-crimson-maroon: var(--vlpd-page-bg-alt);          /* dark rose surface -> navy-surface (#2a2a2a) */
+  --lentax-tpp-crimson-surface-deep: var(--vlpd-page-bg);    /* near-black rose surface -> navy-void (#1a1a1a) */
+  --lentax-tpp-crimson-surface-darkest: var(--vlpd-page-bg); /* deepest rose surface -> navy-nearblack (#1a1a1a) */
   --lentax-tpp-crimson-muted: #b87333;            /* muted mauve text -> bronze-copper */
   --lentax-tpp-crimson-muted-alt: #C7BFB3;        /* muted mauve-gray text -> bronze-tan */
 
@@ -51,16 +51,26 @@
   --lentax-vlp-orange-pantone: #F47B20;
   --lentax-vlp-orange-pantone-rgb: 244, 123, 32;
 
-  /* VLP navy (§3.3) */
-  --lentax-vlp-navy-deep: #0A1228;
-  --lentax-vlp-navy-deep-rgb: 10, 18, 40;
-  --lentax-vlp-navy-mid: #162848;
-  --lentax-vlp-navy-bright: #1e3a8a;
-  --lentax-vlp-navy-slate: #111827;
-  --lentax-vlp-navy-surface: #0F1A33;
-  --lentax-vlp-navy-void: #070a10;
-  --lentax-vlp-navy-nearblack: #050711;
-  --lentax-vlp-navy-royal: #062f6b;
+  /* ===== Monochrome page-bg tokens (palette purge 2026-06-21, sprint §2.4) =====
+     Single source of truth for the VLP dark surface. The VLP navy block below
+     and the SD page-bg override at EOF both resolve through these two tokens. */
+  --vlpd-page-bg: #1a1a1a;
+  --vlpd-page-bg-alt: #2a2a2a;
+
+  /* VLP navy (§3.3) — palette purged to monochrome 2026-06-21.
+     Token NAMES retained for cascade stability (lentax-base.css consumers
+     reference --lentax-vlp-navy-*); each re-points to the two-tone page-bg
+     tokens. Darkest layers -> --vlpd-page-bg (#1a1a1a); mid/accent/surface
+     layers -> --vlpd-page-bg-alt (#2a2a2a). lentax-base.css untouched. */
+  --lentax-vlp-navy-deep: var(--vlpd-page-bg);
+  --lentax-vlp-navy-deep-rgb: 26, 26, 26;
+  --lentax-vlp-navy-mid: var(--vlpd-page-bg-alt);
+  --lentax-vlp-navy-bright: var(--vlpd-page-bg-alt);
+  --lentax-vlp-navy-slate: var(--vlpd-page-bg-alt);
+  --lentax-vlp-navy-surface: var(--vlpd-page-bg-alt);
+  --lentax-vlp-navy-void: var(--vlpd-page-bg);
+  --lentax-vlp-navy-nearblack: var(--vlpd-page-bg);
+  --lentax-vlp-navy-royal: var(--vlpd-page-bg-alt);
 
   /* VLP bronze/parchment (§3.4) */
   --lentax-vlp-bronze-primary: #cd7f32;
@@ -255,11 +265,11 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
 /* Card gradient parity (round 8, 2026-06-20): fixed-height gradient + matching
    solid fallback produces identical falloff on dashboard and portal cards.
    400px chosen because both layouts measure ~508–509px tall; gradient completes
-   at 79% of card height, bottom stop #162444 matches background-color exactly,
+   at 79% of card height, bottom stop #1a1a1a matches background-color exactly,
    transition at 400px boundary is mathematically seamless (CC live-confirmed). */
 #dashboard-view .account-card-wrapper {
-  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
-  background-color: #162444 !important;
+  background: linear-gradient(180deg, var(--vlpd-page-bg) 0%, var(--vlpd-page-bg) 100%) !important;
+  background-color: var(--vlpd-page-bg) !important;
   background-size: 100% 400px !important;
   background-repeat: no-repeat !important;
   border: 2px solid #f97316 !important;
@@ -271,7 +281,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
   color: #f97316 !important;
 }
 #dashboard-view .account-card-wrapper h3 {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 #dashboard-view .account-card-wrapper .cbe-block-button-element.btn.btn-primary {
   background-color: #f97316 !important;
@@ -294,7 +304,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* 3. Announcement block beautification */
 #dashboard-view .dashboard-anns__item {
-  background: linear-gradient(135deg, #eef3fc 0%, #ffffff 60%) !important;
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 60%) !important;
   border-top: 4px solid #f97316 !important;
   border-left: 4px solid #f97316 !important;
   border-right: none !important;
@@ -305,10 +315,10 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 }
 #dashboard-view .dashboard-anns__head {
   padding: 18px 28px 10px !important;
-  border-bottom: 1px solid rgba(13, 27, 62, 0.08) !important;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08) !important;
 }
 #dashboard-view h2.dashboard-anns__title {
-  color: #0d1b3e !important;
+  color: #1a1a1a !important;
   font-size: 18px !important;
   font-weight: 700 !important;
   margin: 0 !important;
@@ -347,8 +357,8 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* 1. Card: sidebar-matched dark navy gradient + orange border */
 #client-page-view .account-card-wrapper {
-  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
-  background-color: #162444 !important;
+  background: linear-gradient(180deg, var(--vlpd-page-bg) 0%, var(--vlpd-page-bg) 100%) !important;
+  background-color: var(--vlpd-page-bg) !important;
   background-size: 100% 400px !important;
   background-repeat: no-repeat !important;
   border: 2px solid #f97316 !important;
@@ -365,7 +375,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* 3. Body text: off-white */
 #client-page-view .account-card-wrapper h3 {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 /* 4. CTA button: orange pill */
@@ -419,7 +429,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
    Tax Monitor Setup explore page (view/169143) styling
    Scope: #client-page-view (portal subpage, distinct sales/explore mood)
    Direction: white background, navy callout, dark-orange feature cards
-   Palette: #ffffff | #f97316 | #0a1228 | #162444 | #c2410c | #e8edf5
+   Palette: #ffffff | #f97316 | #1a1a1a | #1a1a1a | #c2410c | #f5f5f5
    NOTE: must be paired with the JS supplement in lentax-vlp-default.js
    (platform inline styles + --frm-color-primary require direct element
    manipulation to defeat specificity. CC live-confirmed and JLW-approved.)
@@ -441,12 +451,12 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* --- Global Text: Dark Navy --- */
 #client-page-view {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 #client-page-view .vl-body,
 #client-page-view .vl-subhead,
 #client-page-view p {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 /* --- Hero Title Split: Orange + Navy (JS injects span structure) --- */
@@ -454,13 +464,13 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
   color: #f97316 !important;
 }
 #client-page-view .vl-hero__title .vlp-title-dark {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 /* --- Section Headings --- */
 #client-page-view h2.vl-section-title,
 #client-page-view h2.vl-subhead {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 /* --- Divider --- */
@@ -471,15 +481,15 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* --- "What This Feature Controls" Callout Card: Navy --- */
 #client-page-view .feature-block-container {
-  background: #162444 !important;
-  background-color: #162444 !important;
+  background: var(--vlpd-page-bg) !important;
+  background-color: var(--vlpd-page-bg) !important;
   border-radius: 12px !important;
   padding: 24px !important;
 }
 #client-page-view .feature-block-description,
 #client-page-view .feature-block-description *,
 #client-page-view .feature-block-container p {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 #client-page-view .feature-block-description strong,
 #client-page-view .feature-block-description b {
@@ -490,7 +500,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view article.vl-card {
   background: #c2410c !important;
   background-color: #c2410c !important;
-  border: 2.5px solid #162444 !important;
+  border: 2.5px solid #1a1a1a !important;
   border-radius: 12px !important;
   color: #ffffff !important;
 }
@@ -503,9 +513,9 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* --- Card Icon Badges: Navy Background + Navy Border --- */
 #client-page-view .vl-card-icon {
-  background: #162444 !important;
-  background-color: #162444 !important;
-  border: 2px solid #162444 !important;
+  background: var(--vlpd-page-bg) !important;
+  background-color: var(--vlpd-page-bg) !important;
+  border: 2px solid #1a1a1a !important;
   border-radius: 8px !important;
   padding: 10px !important;
   display: inline-flex !important;
@@ -522,7 +532,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view .form-group.flow-step-content {
   background: #ffffff !important;
   background-color: #ffffff !important;
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 #client-page-view .cbe-block-sortable {
   box-shadow: none !important;
@@ -543,7 +553,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* Book A Demo — was #cbe-block-1780935698207 */
 .vl-btn--support .cbe-block-button-element {
-  background: #162444 !important;
+  background: var(--vlpd-page-bg) !important;
   color: #ffffff !important;
   border: 2.5px solid #f97316 !important;
 }
@@ -561,7 +571,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 /* --- Questions Section --- */
 #client-page-view .vl-hero h2.vl-section-title,
 #client-page-view .vl-hero .vl-body {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 
@@ -609,14 +619,14 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 #client-page-view [ng-non-bindable],
 #client-page-view [ng-non-bindable] * {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
   transition: none !important;
 }
 
 
 /* --- FAILURE 2 FIX: "What This Feature Controls" callout description text ---
-   Root cause: vlp-default.css R9 ships #client-page-view h3 { color:#0a1228 }
-   at specificity (1,0,1). Inside the navy .feature-block-container (bg:#162444)
+   Root cause: vlp-default.css R9 ships #client-page-view h3 { color:#1a1a1a }
+   at specificity (1,0,1). Inside the navy .feature-block-container (bg:#1a1a1a)
    this makes h3.vl-body invisible. Adding .feature-block-description to the
    selector chain raises specificity to (1,1,1), outranking (1,0,1) at same
    !important level, and locks the light text color for all h3/heading variants
@@ -626,7 +636,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view .feature-block-description h3,
 #client-page-view .feature-block-description .vl-body,
 #client-page-view .feature-block-description .feature-block-border h3 {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 #client-page-view .feature-block-description b,
@@ -671,7 +681,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* --- 1. HERO ICON: dark navy circle behind rocket logo --- */
 #xfb4or6ojbxn {
-  background: #162444 !important;
+  background: var(--vlpd-page-bg) !important;
   border-radius: 50% !important;
   padding: 12px !important;
   box-sizing: border-box !important;
@@ -691,7 +701,7 @@ body {
 }
 
 
-/* --- 3. CALLOUT BODY TEXT: repaint #e8edf5 -> #ffffff
+/* --- 3. CALLOUT BODY TEXT: repaint #f5f5f5 -> #ffffff
    Raises specificity over round 10A's (1,1,0) rule by adding
    .feature-block-container to the selector chain (1,2,0). */
 
@@ -720,14 +730,14 @@ body {
 .col-sm-5 .vl-btn--primary .cbe-block-button-element {
   background: transparent !important;
   background-color: transparent !important;
-  color: #0a1228 !important;
-  border: 2px solid #0a1228 !important;
-  border-color: #0a1228 !important;
+  color: #1a1a1a !important;
+  border: 2px solid #1a1a1a !important;
+  border-color: #1a1a1a !important;
 }
 
 .col-sm-5 .vl-btn--primary .cbe-block-button-element:hover {
-  background: #0a1228 !important;
-  background-color: #0a1228 !important;
+  background: var(--vlpd-page-bg) !important;
+  background-color: var(--vlpd-page-bg) !important;
   color: #ffffff !important;
 }
 
@@ -748,7 +758,7 @@ body {
    white-on-white, making the greeting invisible. A broader b/strong rule in
    lentax-base.css or the SD platform sheet is painting hero <b> white.
 
-   FIX: scoped override forcing hero/subhead <b> and <strong> to navy #0a1228,
+   FIX: scoped override forcing hero/subhead <b> and <strong> to navy #1a1a1a,
    matching their parent paragraph's color.
 
    Round 11 ships a different b/strong rule scoped to .feature-block-description
@@ -763,7 +773,7 @@ body {
 #client-page-view h2.vl-subhead strong,
 #client-page-view .vl-hero .vl-subhead b,
 #client-page-view .vl-hero .vl-subhead strong {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -819,11 +829,11 @@ body {
    as the new VLP-default baseline. The h2 :not() chain protects accordion
    __title, subhead, and vl-section-title H2s that should stay light on navy. */
 #client-page-view h1 {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 #client-page-view .wysiwyg-content h2:not(.sdAccordion__title):not(.vl-subhead):not(.vl-section-title),
 #client-page-view .cbe-block-content-text h2:not(.sdAccordion__title):not(.vl-subhead):not(.vl-section-title) {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 
@@ -833,8 +843,8 @@ body {
    step (first, "Checkout My Cart") gets orange fill via JS. CSS first-child
    rule is the fallback if JS doesn't fire. */
 #client-page-view .flow-nav-bar {
-  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
-  background-color: #162444 !important;
+  background: linear-gradient(180deg, var(--vlpd-page-bg) 0%, var(--vlpd-page-bg) 100%) !important;
+  background-color: var(--vlpd-page-bg) !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
   border-radius: 12px !important;
@@ -844,7 +854,7 @@ body {
 #client-page-view .flow-nav-bar .flow-nav-btn {
   background: transparent !important;
   background-color: transparent !important;
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
   border-right: 1px solid rgba(249, 115, 22, 0.25) !important;
   font-size: 12px !important;
   text-align: center !important;
@@ -863,8 +873,8 @@ body {
    3 Payment Details. Full VLP navy gradient + 2px orange border + 20px
    radius treatment matching dashboard/explore cards (round 5/8 pattern). */
 #client-page-view .sdAccordion__item.choose-items-card {
-  background: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
-  background-color: #162444 !important;
+  background: linear-gradient(180deg, var(--vlpd-page-bg) 0%, var(--vlpd-page-bg) 100%) !important;
+  background-color: var(--vlpd-page-bg) !important;
   background-size: 100% 400px !important;
   background-repeat: no-repeat !important;
   border: 2px solid #f97316 !important;
@@ -877,7 +887,7 @@ body {
   background: transparent !important;
   background-color: transparent !important;
   border-radius: 18px 18px 0 0 !important;
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
   transition: none !important;
 }
 #client-page-view .sdAccordion__body {
@@ -885,8 +895,8 @@ body {
   background-color: transparent !important;
 }
 #client-page-view .sdAccordion__toggle {
-  background: #162444 !important;
-  background-color: #162444 !important;
+  background: var(--vlpd-page-bg) !important;
+  background-color: var(--vlpd-page-bg) !important;
   border: 2px solid #f97316 !important;
   color: #f97316 !important;
 }
@@ -894,11 +904,11 @@ body {
   color: #ffffff !important;
 }
 #client-page-view .sdAccordion__title {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 #client-page-view .sdAccordion__title .ng-binding,
 #client-page-view .sdAccordion__head .ng-binding {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 
@@ -908,8 +918,8 @@ body {
    getComputedStyle but compositor uses cached transition start.
    applySummaryNavy IIFE delivers definitive runtime fix. */
 #client-page-view .choose-items-summary-wrapper {
-  background-image: linear-gradient(180deg, #0a1228 0%, #162444 100%) !important;
-  background-color: #162444 !important;
+  background-image: linear-gradient(180deg, var(--vlpd-page-bg) 0%, var(--vlpd-page-bg) 100%) !important;
+  background-color: var(--vlpd-page-bg) !important;
   background-size: 100% 400px !important;
   background-repeat: no-repeat !important;
   background-position: 0 0 !important;
@@ -922,7 +932,7 @@ body {
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
   transition: none !important;
 }
 #client-page-view .choose-items-summary-head {
@@ -936,8 +946,8 @@ body {
 #client-page-view select.form-control {
   background: #ffffff !important;
   background-color: #ffffff !important;
-  color: #0a1228 !important;
-  border: 1.5px solid rgba(10, 18, 40, 0.25) !important;
+  color: #1a1a1a !important;
+  border: 1.5px solid rgba(26, 26, 26, 0.25) !important;
   border-radius: 8px !important;
 }
 #client-page-view input.form-control:focus,
@@ -956,7 +966,7 @@ body {
 #client-page-view .form-group.field_important.embed-group {
   background: #ffffff !important;
   background-color: #ffffff !important;
-  border: 1.5px solid rgba(10, 18, 40, 0.15) !important;
+  border: 1.5px solid rgba(26, 26, 26, 0.15) !important;
   border-left: 4px solid #f97316 !important;
   border-radius: 8px !important;
   padding: 12px !important;
@@ -965,7 +975,7 @@ body {
 #client-page-view .choose-items-select__item {
   background: #ffffff !important;
   background-color: #ffffff !important;
-  border: 2px solid rgba(10, 18, 40, 0.15) !important;
+  border: 2px solid rgba(26, 26, 26, 0.15) !important;
   border-radius: 12px !important;
 }
 #client-page-view .choose-items-select__item:hover {
@@ -975,17 +985,17 @@ body {
 #client-page-view .choose-items-card__label {
   background: transparent !important;
   background-color: transparent !important;
-  border: 1px solid rgba(10, 18, 40, 0.15) !important;
-  color: #0a1228 !important;
+  border: 1px solid rgba(26, 26, 26, 0.15) !important;
+  color: #1a1a1a !important;
 }
 
 #client-page-view .choose-items-select__title {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 #client-page-view .checkmark-icon__circle {
-  background: #162444 !important;
-  background-color: #162444 !important;
+  background: var(--vlpd-page-bg) !important;
+  background-color: var(--vlpd-page-bg) !important;
   border: 2px solid #f97316 !important;
 }
 
@@ -1011,13 +1021,13 @@ body {
 #client-page-view .btn.btn-primary.prev-btn {
   background: transparent !important;
   background-color: transparent !important;
-  color: #0a1228 !important;
-  border: 2px solid #0a1228 !important;
+  color: #1a1a1a !important;
+  border: 2px solid #1a1a1a !important;
   border-radius: 15px !important;
 }
 #client-page-view .btn.btn-primary.prev-btn:hover {
-  background: #0a1228 !important;
-  background-color: #0a1228 !important;
+  background: var(--vlpd-page-bg) !important;
+  background-color: var(--vlpd-page-bg) !important;
   color: #ffffff !important;
 }
 
@@ -1047,7 +1057,7 @@ body {
 }
 #client-page-view .appointment-intake-form-wrapper h4,
 #client-page-view .appointment-intake-form-wrapper p {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 
@@ -1089,7 +1099,7 @@ body {
    A6 - white-space:nowrap on price + amount selectors
 
    JLW-RATIFIED:
-   - Labels off-white #e8edf5 ship as written even on white form backgrounds.
+   - Labels off-white #f5f5f5 ship as written even on white form backgrounds.
      If labels disappear on live verify, follow-up round narrows the scope.
    - Path A: where this round drops a R13 rule entirely (e.g. .step-number,
      .checkmark-icon__circle, .choose-items-card__label, .confirm-btn,
@@ -1141,7 +1151,7 @@ body {
   font-family: 'Source Sans 3', sans-serif !important;
   font-size: 22px !important;
   font-weight: 700 !important;
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 #client-page-view .choose-items-select__title {
   font-family: 'Source Sans 3', sans-serif !important;
@@ -1155,7 +1165,7 @@ body {
 }
 #client-page-view .form-group label,
 #client-page-view .field-label {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
   font-family: 'Source Sans 3', sans-serif !important;
   font-weight: 600 !important;
 }
@@ -1191,7 +1201,7 @@ body {
    Append-only. Does NOT modify rounds 9-14.
 
    PART A: Dashboard tile background flattened from navy gradient to flat
-   #0a1228 (sidebar-matched chrome). Round 5/8 rules remain in place;
+   #1a1a1a (sidebar-matched chrome). Round 5/8 rules remain in place;
    round 15 wins via source-order cascade at matching !important.
    Neutralizes the gradient by re-declaring all four background-*
    properties: background shorthand (collapses any image), background-image
@@ -1199,7 +1209,7 @@ body {
 
    PART B: Portal page (view/168967) H1/H2 typography matches dashboard
    exactly per CC's live diff. JLW-ratified deviations from VLP palette:
-   - rgb(5, 7, 17) intentionally NOT #0a1228 (5 units darker; dashboard's
+   - rgb(5, 7, 17) intentionally NOT #1a1a1a (darker than page surface; dashboard's
      actual rendered color, JLW chose exact match over palette consistency)
    - font-family hardcoded "Source Sans 3", Georgia, serif rather than
      bound to --lentax-font-* token (JLW chose CC's literal spec)
@@ -1210,9 +1220,9 @@ body {
 
 /* --- PART A: Dashboard tiles - flat navy (sidebar match, gradient killed) --- */
 #dashboard-view .account-card-wrapper {
-  background: #0a1228 !important;
+  background: var(--vlpd-page-bg) !important;
   background-image: none !important;
-  background-color: #0a1228 !important;
+  background-color: var(--vlpd-page-bg) !important;
   background-size: auto !important;
 }
 
@@ -1252,10 +1262,10 @@ body {
    floor + re-asserted centering on the cell.
 
    FIX B: Form field label contrast
-   Round 14 rule `.form-group label, .field-label { color: #e8edf5 }` paints
+   Round 14 rule `.form-group label, .field-label { color: #f5f5f5 }` paints
    all floating/animated labels off-white - invisible on white form and input
    backgrounds. This is the materialization of the round 14 sec 6.6 ratified
-   risk. Fix: override to #0a1228 (navy-deep). Also fixes .label-subtext
+   risk. Fix: override to #1a1a1a (navy-deep). Also fixes .label-subtext
    (helper copy under custom fields) which was rendering bronze-copper on white.
 
    FIX C: Accordion step card title - vertical centering
@@ -1295,13 +1305,13 @@ body {
 /* --- B-1: Form field labels - dark navy on white input/form backgrounds --- */
 #client-page-view .form-group label,
 #client-page-view .field-label {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 
 /* --- B-2: Helper/subtext copy under custom fields --- */
 #client-page-view .label-subtext {
-  color: #0a1228 !important;
+  color: #1a1a1a !important;
 }
 
 
@@ -1357,9 +1367,9 @@ body {
    SCOPE: #client-page-view (CC-confirmed descendant via .contains() probe)
 
    TREATMENT: navy callout-card matching round 9/10 .feature-block-container
-   - Background: #162444 (solid navy, not gradient)
+   - Background: #1a1a1a (solid navy, not gradient)
    - Border: 2px solid #f97316 + 20px radius (established VLP card treatment)
-   - Text: #e8edf5 (off-white) throughout inner regions
+   - Text: #f5f5f5 (off-white) throughout inner regions
    - Rocket icon: #f97316 (orange, preserved)
    - Dividers: rgba(249, 115, 22, 0.35) for header-bottom + footer-top
      (orange tint at 35% to echo accent without full saturation on navy)
@@ -1381,7 +1391,7 @@ body {
 
 /* 1 - Widget outer card -> navy callout-card style */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 {
-  background-color: #162444 !important;
+  background-color: var(--vlpd-page-bg) !important;
   border: 2px solid #f97316 !important;
   border-radius: 20px !important;
   overflow: hidden !important;
@@ -1395,7 +1405,7 @@ body {
 
 /* 3 - Header title text -> off-white */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__header-title {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 /* 4 - Rocket icon - preserved orange */
@@ -1406,7 +1416,7 @@ body {
 /* 5 - Header icon buttons (filter-dropdown, sort-dropdown, refresh)
        SVG paths inherit from button's color via currentColor */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .filter-button {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
   background-color: transparent !important;
 }
 
@@ -1418,17 +1428,17 @@ body {
 /* 7 - Content / body region */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__content {
   background-color: transparent !important;
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 /* 8 - Empty-state "No Projects" heading */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results h5 {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 /* 9 - Empty-state "Nothing to do for now" caption */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results p {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 /* 10 - Empty-state placeholder image (raster PNG via <img>);
@@ -1442,25 +1452,25 @@ body {
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__footer {
   background-color: transparent !important;
   border-top-color: rgba(249, 115, 22, 0.35) !important;
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 
 /* 12 - "Showing 0 Results" label + inline SVG arrow */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number .ng-binding {
-  color: #e8edf5 !important;
+  color: #f5f5f5 !important;
 }
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number svg {
-  color: #e8edf5 !important;
-  fill: #e8edf5 !important;
+  color: #f5f5f5 !important;
+  fill: #f5f5f5 !important;
 }
 
 /* 13 - "View All Projects" outline button - upgraded for navy legibility */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__footer-btn {
-  color: #e8edf5 !important;
-  border-color: #e8edf5 !important;
+  color: #f5f5f5 !important;
+  border-color: #f5f5f5 !important;
   background-color: transparent !important;
 }
 
@@ -1469,11 +1479,11 @@ body {
       Page: view/169144 (Tax Monitor Setup Checkout Cart)
          Append-only. Does NOT modify rounds 9–18.
 
-            ROOT CAUSE (Round 14 A5): `.choose-items-card-price-digits { color: #e8edf5 !important }`
+            ROOT CAUSE (Round 14 A5): `.choose-items-card-price-digits { color: #f5f5f5 !important }`
                was authored for navy card backgrounds. Round 13 set `.choose-items-select__item
                   { background: #ffffff }`, making the off-white digits invisible on white.
 
-                     FIX A: Override color to navy #0a1228 — same pattern as Round 16 Fix B
+                     FIX A: Override color to navy #1a1a1a — same pattern as Round 16 Fix B
                         (which did the equivalent for `.form-group label`). Only color is changed;
                            font-family, font-size, font-weight, white-space, word-break from Round 14
                               A5/A6 are preserved (not redeclared here, not touched).
@@ -1489,7 +1499,7 @@ body {
 
                                                       /* FIX A — Price digits: off-white → navy on white card surface */
                                                       #client-page-view .choose-items-card-price-digits {
-                                                        color: #0a1228 !important;
+                                                        color: #1a1a1a !important;
                                                         }
 
 
@@ -1890,4 +1900,32 @@ body.login .form-oscar input.sd-login-password-input {
   padding: 14px 18px !important;
   padding-left: 42px !important;
   height: 52px !important;
+}
+
+
+/* ============================================================
+   PORTAL PAGE BACKGROUND — SD page-settings override
+   Added 2026-06-21 — palette purge to monochrome sprint (§2.5)
+   ============================================================
+   SuiteDash "Page Styling Options → Primary Background Color"
+   injects an inline <style> rule on every portal page with
+   !important targeting body / .main-wrapper / .wrapper.
+   That injection lands after our <link> tags in parse order
+   and wins same-specificity !important ties.
+
+   We lift specificity by chaining .page-with-styling-options
+   onto body, beating SD's (0,1,1) selector at (0,2,1) and
+   SD's (0,2,1) wrapper selectors at (0,3,1).
+
+   This makes vlp-default.css the source of truth for portal
+   page-bg color, removing per-view drift caused by individual
+   SD admin settings. No background-image layer is set here:
+   --lentax-page-bg-image resolves empty and the SD injection
+   sets no image either, so the image layer is left untouched.
+   ============================================================ */
+
+body.page-with-styling-options:not(.sd-dark-mode),
+body.page-with-styling-options:not(.sd-dark-mode) .main-wrapper,
+body.page-with-styling-options:not(.sd-dark-mode) .wrapper {
+    background-color: var(--vlpd-page-bg, #1a1a1a) !important;
 }

@@ -77,7 +77,7 @@
 (function() {
   // 1. Set --frm-color-primary to dark navy
   var scope = document.getElementById('client-page-view');
-  if (scope) scope.style.setProperty('--frm-color-primary', '#0a1228', 'important');
+  if (scope) scope.style.setProperty('--frm-color-primary', '#1a1a1a', 'important');
 
   // 2. Fix .main-wrapper white background (platform inline style war)
   var mw = document.querySelector('.main-wrapper.column1-portal-page');
@@ -86,7 +86,7 @@
   // 3. Fix CTA buttons via text-content matching (hardened from numeric IDs)
   var btnSpecs = [
     { text: 'Order Processing',  bg: '#f97316', border: '#f97316' },
-    { text: 'Book A Demo',       bg: '#162444', border: '#f97316' },
+    { text: 'Book A Demo',       bg: '#1a1a1a', border: '#f97316' },
     { text: 'Take A Sneak Peek', bg: '#f97316', border: '#f97316' }
   ];
   var allBtns = document.querySelectorAll('.cbe-block-button-element');
@@ -117,8 +117,8 @@
 
   // 5. Fix card icons
   document.querySelectorAll('.vl-card-icon').forEach(function(el) {
-    el.style.setProperty('background', '#162444', 'important');
-    el.style.setProperty('border', '2px solid #162444', 'important');
+    el.style.setProperty('background', '#1a1a1a', 'important');
+    el.style.setProperty('border', '2px solid #1a1a1a', 'important');
   });
 
   // Sections 6 & 7 replaced in round 10 (SD platform contrast regression).
@@ -165,7 +165,7 @@
     document.querySelectorAll(
       '#client-page-view .feature-block-description *'
     ).forEach(function (el) {
-      el.style.setProperty('color', '#e8edf5', 'important');
+      el.style.setProperty('color', '#f5f5f5', 'important');
       el.style.setProperty('transition', 'none', 'important');
     });
     // b/strong accent override (runs after the loop to win the cascade)
@@ -188,13 +188,13 @@
     var hosts = document.querySelectorAll('#client-page-view [ng-non-bindable]');
     hosts.forEach(function (host) {
       // Fix the host element itself
-      host.style.setProperty('color', '#0a1228', 'important');
+      host.style.setProperty('color', '#1a1a1a', 'important');
       host.style.setProperty('transition', 'none', 'important');
       // Fix every descendant
       host.querySelectorAll('*').forEach(function (el) {
         // Gradient-text headings use -webkit-text-fill-color:transparent so
         // overriding `color` does not affect their orange gradient rendering.
-        el.style.setProperty('color', '#0a1228', 'important');
+        el.style.setProperty('color', '#1a1a1a', 'important');
         el.style.setProperty('transition', 'none', 'important');
       });
     });
@@ -218,7 +218,7 @@
 (function applyDemoBorder() {
   var btn = document.querySelector('.vl-btn--support .cbe-block-button-element');
   if (btn) {
-    btn.style.setProperty('border-color', '#162444', 'important');
+    btn.style.setProperty('border-color', '#1a1a1a', 'important');
     return;
   }
   setTimeout(applyDemoBorder, 400);
@@ -254,7 +254,7 @@
       } else {
         btn.style.setProperty('background', 'transparent', 'important');
         btn.style.setProperty('background-color', 'transparent', 'important');
-        btn.style.setProperty('color', '#e8edf5', 'important');
+        btn.style.setProperty('color', '#f5f5f5', 'important');
       }
     });
   }
@@ -288,8 +288,8 @@
     if (!sw) return;
     sw.style.setProperty('transition', 'none', 'important');
     sw.style.setProperty('animation', 'none', 'important');
-    sw.style.setProperty('background-image', 'linear-gradient(180deg, #0a1228 0%, #162444 100%)', 'important');
-    sw.style.setProperty('background-color', '#162444', 'important');
+    sw.style.setProperty('background-image', 'linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 100%)', 'important');
+    sw.style.setProperty('background-color', '#1a1a1a', 'important');
     sw.style.setProperty('background-size', '100% 400px', 'important');
     sw.style.setProperty('background-repeat', 'no-repeat', 'important');
     sw.style.setProperty('background-position', '0 0', 'important');
@@ -416,13 +416,13 @@
 
   function paint(el) {
     el.style.setProperty('transition', 'none', 'important');
-    el.style.setProperty('background-image', 'linear-gradient(180deg, #0a1228 0%, #162444 100%)', 'important');
+    el.style.setProperty('background-image', 'linear-gradient(180deg, #1a1a1a 0%, #1a1a1a 100%)', 'important');
     el.style.setProperty('background-size', '100% 400px', 'important');
-    el.style.setProperty('background-color', '#162444', 'important');
+    el.style.setProperty('background-color', '#1a1a1a', 'important');
     el.style.setProperty('background-repeat', 'no-repeat', 'important');
     el.style.setProperty('border', '2px solid #f97316', 'important');
     el.style.setProperty('border-radius', '20px', 'important');
-    el.style.setProperty('color', '#e8edf5', 'important');
+    el.style.setProperty('color', '#f5f5f5', 'important');
   }
 
   function apply() {
