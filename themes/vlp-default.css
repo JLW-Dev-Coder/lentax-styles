@@ -2143,3 +2143,31 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     background-image: none !important;
     background-color: #1a1a1a !important;
 }
+
+
+/* =========================================================================
+   ROUND 34 — Dashboard announcement card body paragraph color fix
+   -------------------------------------------------------------------------
+   Surface: /dashboard — .dashboard-anns__item p (course-ready notice body)
+   Problem: Platform-side global rule "#dashboard-view *" at (1,0,1) paints
+            color: rgb(26,26,26) on every dashboard descendant. Round 32's
+            ".dashboard-anns__item p { color:#fff !important }" at (0,1,1)
+            loses the cascade — paragraph renders near-black against the
+            dark dashboard, reading as invisible/cream-tinted.
+   Fix:     Raise selector to #dashboard-view .dashboard-anns__item p at
+            (1,1,1) to beat the platform global by specificity, win on
+            !important + later source order.
+   Anchor:  #dashboard-view .dashboard-anns__item p (ID-scoped paragraph).
+            Round 32's plain-class rule stays in file (harmless, never
+            wins). Rounds 1-33 byte-for-byte preserved.
+   Hazard:  #dashboard-view * is a GLOBAL color override on this surface.
+            Any future text-color rule on any dashboard descendant must
+            anchor with #dashboard-view to clear (1,0,1) specificity.
+            Recorded in dom-class-map.md.
+   Tier:    3 (CC inspection + DevTools Styles panel dump from JLW
+            identified the global colliding selector — outside-repo source).
+   ========================================================================= */
+
+#dashboard-view .dashboard-anns__item p {
+    color: #ffffff !important;
+}
