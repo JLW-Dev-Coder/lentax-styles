@@ -165,7 +165,7 @@
     document.querySelectorAll(
       '#client-page-view .feature-block-description *'
     ).forEach(function (el) {
-      el.style.setProperty('color', '#f5f5f5', 'important');
+      el.style.setProperty('color', '#ffffff', 'important');
       el.style.setProperty('transition', 'none', 'important');
     });
     // b/strong accent override (runs after the loop to win the cascade)
@@ -254,7 +254,7 @@
       } else {
         btn.style.setProperty('background', 'transparent', 'important');
         btn.style.setProperty('background-color', 'transparent', 'important');
-        btn.style.setProperty('color', '#f5f5f5', 'important');
+        btn.style.setProperty('color', '#ffffff', 'important');
       }
     });
   }
@@ -422,7 +422,7 @@
     el.style.setProperty('background-repeat', 'no-repeat', 'important');
     el.style.setProperty('border', '2px solid #f97316', 'important');
     el.style.setProperty('border-radius', '20px', 'important');
-    el.style.setProperty('color', '#f5f5f5', 'important');
+    el.style.setProperty('color', '#ffffff', 'important');
   }
 
   function apply() {

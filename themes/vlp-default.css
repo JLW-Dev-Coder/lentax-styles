@@ -58,8 +58,10 @@
   --vlpd-page-bg-alt: #2a2a2a;
   /* Text color for content inheriting onto the #1a1a1a page bg.
      Used by the PORTAL + DASHBOARD HEADING/TEXT CONTRAST OVERRIDE
-     block at end of file. Round 26. */
-  --vlpd-text-on-dark: #f5f5f5;
+     block at end of file. Round 26 minted at #f5f5f5; round 27
+     flipped to #ffffff per JLW direction (all light text on
+     dark = pure white). */
+  --vlpd-text-on-dark: #ffffff;
 
   /* VLP navy (§3.3) — palette purged to monochrome 2026-06-21.
      Token NAMES retained for cascade stability (lentax-base.css consumers
@@ -285,7 +287,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button svg use {
   color: #f97316 !important;
 }
 #dashboard-view .account-card-wrapper h3 {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 #dashboard-view .account-card-wrapper .cbe-block-button-element.btn.btn-primary {
   background-color: #f97316 !important;
@@ -379,7 +381,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* 3. Body text: off-white */
 #client-page-view .account-card-wrapper h3 {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 /* 4. CTA button: orange pill */
@@ -493,7 +495,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view .feature-block-description,
 #client-page-view .feature-block-description *,
 #client-page-view .feature-block-container p {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 #client-page-view .feature-block-description strong,
 #client-page-view .feature-block-description b {
@@ -640,7 +642,7 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 #client-page-view .feature-block-description h3,
 #client-page-view .feature-block-description .vl-body,
 #client-page-view .feature-block-description .feature-block-border h3 {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 #client-page-view .feature-block-description b,
@@ -858,7 +860,7 @@ body {
 #client-page-view .flow-nav-bar .flow-nav-btn {
   background: transparent !important;
   background-color: transparent !important;
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
   border-right: 1px solid rgba(249, 115, 22, 0.25) !important;
   font-size: 12px !important;
   text-align: center !important;
@@ -891,7 +893,7 @@ body {
   background: transparent !important;
   background-color: transparent !important;
   border-radius: 18px 18px 0 0 !important;
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
   transition: none !important;
 }
 #client-page-view .sdAccordion__body {
@@ -908,11 +910,11 @@ body {
   color: #ffffff !important;
 }
 #client-page-view .sdAccordion__title {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 #client-page-view .sdAccordion__title .ng-binding,
 #client-page-view .sdAccordion__head .ng-binding {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 
@@ -936,7 +938,7 @@ body {
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
   transition: none !important;
 }
 #client-page-view .choose-items-summary-head {
@@ -1155,7 +1157,7 @@ body {
   font-family: 'Source Sans 3', sans-serif !important;
   font-size: 22px !important;
   font-weight: 700 !important;
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 #client-page-view .choose-items-select__title {
   font-family: 'Source Sans 3', sans-serif !important;
@@ -1169,7 +1171,7 @@ body {
 }
 #client-page-view .form-group label,
 #client-page-view .field-label {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
   font-family: 'Source Sans 3', sans-serif !important;
   font-weight: 600 !important;
 }
@@ -1409,7 +1411,7 @@ body {
 
 /* 3 - Header title text -> off-white */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__header-title {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 /* 4 - Rocket icon - preserved orange */
@@ -1420,7 +1422,7 @@ body {
 /* 5 - Header icon buttons (filter-dropdown, sort-dropdown, refresh)
        SVG paths inherit from button's color via currentColor */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .filter-button {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
   background-color: transparent !important;
 }
 
@@ -1432,17 +1434,17 @@ body {
 /* 7 - Content / body region */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__content {
   background-color: transparent !important;
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 /* 8 - Empty-state "No Projects" heading */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results h5 {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 /* 9 - Empty-state "Nothing to do for now" caption */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .no-results p {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 /* 10 - Empty-state placeholder image (raster PNG via <img>);
@@ -1456,25 +1458,25 @@ body {
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__footer {
   background-color: transparent !important;
   border-top-color: rgba(249, 115, 22, 0.35) !important;
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 
 /* 12 - "Showing 0 Results" label + inline SVG arrow */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number .ng-binding {
-  color: #f5f5f5 !important;
+  color: #ffffff !important;
 }
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .tasks-number svg {
-  color: #f5f5f5 !important;
-  fill: #f5f5f5 !important;
+  color: #ffffff !important;
+  fill: #ffffff !important;
 }
 
 /* 13 - "View All Projects" outline button - upgraded for navy legibility */
 #client-page-view .dashboard-organize-box.cbe-block-all-tasks2 .dashboard-organize-box__footer-btn {
-  color: #f5f5f5 !important;
-  border-color: #f5f5f5 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
   background-color: transparent !important;
 }
 
@@ -1887,6 +1889,16 @@ body.login .panel-footer-group a {
    rule; the body.page-with-styling-options chain + the
    #client-page-view ID give (1,1,0,1) with !important, beating
    any platform rule.
+
+   Round 27 extension (2026-06-21): broad clear of SD content-block
+   wrappers (.cbe-content, .content-block-wrapper,
+   .content-block-view-wrapper, .bg-widget, .widget-holder,
+   .columns-form-wrap, .content-wrapper) to transparent — covers
+   views 169143, 169144, 168981, 169141, 169146 which use different
+   SD layout templates than 168967. Round 25 only targeted
+   #client-page-view; these other templates paint a different
+   wrapper white. Transparent (not #1a1a1a) so body remains the
+   single source of truth for page-bg color.
    ============================================================ */
 
 body.page-with-styling-options:not(.sd-dark-mode),
@@ -1894,6 +1906,28 @@ body.page-with-styling-options:not(.sd-dark-mode) .main-wrapper,
 body.page-with-styling-options:not(.sd-dark-mode) .wrapper,
 body.page-with-styling-options:not(.sd-dark-mode) #client-page-view {
     background-color: var(--vlpd-page-bg, #1a1a1a) !important;
+}
+
+/* Round 27 extension: clear ALL SD content-block wrappers to
+   transparent so the body #1a1a1a paints through. Round 25 only
+   targeted #client-page-view, but other portal views use
+   different SD layout templates whose wrappers (.cbe-content,
+   .content-block-wrapper, .bg-widget, .widget-holder,
+   .columns-form-wrap) also paint white from platform CSS.
+
+   Affected views: 169143, 169144, 168981, 169141, 169146.
+
+   Transparent (not #1a1a1a) so the body remains the single
+   source of truth for page-bg color. */
+body.page-with-styling-options:not(.sd-dark-mode) .cbe-content,
+body.page-with-styling-options:not(.sd-dark-mode) .content-block-wrapper,
+body.page-with-styling-options:not(.sd-dark-mode) .content-block-view-wrapper,
+body.page-with-styling-options:not(.sd-dark-mode) .bg-widget,
+body.page-with-styling-options:not(.sd-dark-mode) .widget-holder,
+body.page-with-styling-options:not(.sd-dark-mode) .columns-form-wrap,
+body.page-with-styling-options:not(.sd-dark-mode) .content-wrapper {
+    background-color: transparent !important;
+    background-image: none !important;
 }
 
 
