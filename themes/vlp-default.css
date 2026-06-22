@@ -2085,3 +2085,25 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     -webkit-text-fill-color: #f97316 !important;
     background-image: none !important;
 }
+
+/* =========================================================================
+   ROUND 32 — Dashboard announcement card color fixes
+   -------------------------------------------------------------------------
+   Surface: /dashboard — .dashboard-anns__item (course-ready notice card)
+   Problem: Heading rendered #1a1a1a, body paragraph rendered #000 — both
+            invisible against the dark page background.
+   Fix:     Heading → orange accent. Body paragraph → white.
+   Anchor:  .dashboard-anns__item (container), .dashboard-anns__title
+            (heading), .dashboard-anns__item p (unclassed body paragraph,
+            parent-scoped).
+   Tier:    1 (direct execute from dom-class-map.md after CC confirmed
+            anchors live).
+   ========================================================================= */
+
+.dashboard-anns__title {
+    color: #f97316 !important;
+}
+
+.dashboard-anns__item p {
+    color: #ffffff !important;
+}
