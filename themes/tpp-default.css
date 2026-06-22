@@ -69,3 +69,122 @@
   --lentax-chrome-tabstrip-divider: rgba(255, 255, 255, 0.15);
   --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
 }
+
+/* =========================================================================
+   TPP ROUND 1 — Projects & My Tasks dashboard blocks styling
+   -------------------------------------------------------------------------
+   Surface: TPP portal — Projects + My Tasks dashboard organize-box widgets
+   Source:  CC-in-Chrome live DOM inspection (JLW-led). Anchors captured
+            from the rendered TPP dashboard.
+
+   Surfaces fixed:
+     1. Progress bar (.completionData) — width 18px, left-edge strip
+     2. Row content alignment — flex-start (removes empty gap)
+     3. Block body — lighter blue gradient
+     4. Block header — dark navy gradient
+     5. Block footer — solid dark navy
+     6. Rows — translucent layer + rounded corners + hover lift
+     7. Titles — solid white
+     8. Footer secondary text — soft white (.75 alpha)
+     9. Header action icons — visible on dark (.8 alpha)
+    10. Row action icons — visible on lighter blue, hover bright
+    11. Assignee names — readable (.85 alpha)
+    12. Dot divider — translucent white
+
+   Hazards / notes:
+     - Doubled class prefixes (.dashboard-item.dashboard-item--project,
+       .dashboard-organize-box.dashboard-organize-box) are intentional
+       per CC — raise (0,2,0) to beat theme rules. Ship as-is per JLW ruling.
+     - .dashboard-organize-box affects every dashboard block using that
+       class, not just Projects/My Tasks. CC offered ID-scope option
+       (#cbe-block-1781727774220 Projects / #cbe-block-1781727774224
+       Tasks) but JLW ruled broad class scope. Acknowledged tradeoff:
+       any other organize-box widget on TPP picks up these styles.
+     - Client name red brand accent ("Candy Delight" example) intentionally
+       left as-is per CC/JLW.
+   Tier:    3 (CC-in-Chrome live DOM inspection identified anchors).
+   ========================================================================= */
+
+/* ---- 1. Progress bar width (left-edge strip on each project row) ---- */
+.dashboard-item.dashboard-item--project .completionData {
+    width: 18px !important;
+    flex: 0 0 18px !important;
+}
+
+/* ---- 2. Content alignment (removes large empty gap to the right of the bar) ---- */
+.dashboard-item.dashboard-item--project .dashboard-item__content {
+    align-items: flex-start !important;
+}
+
+/* ---- 3. Block body — lighter blue, gradient deepening toward the bottom ---- */
+.dashboard-organize-box.dashboard-organize-box {
+    background-color: #6b86b8 !important;
+    background-image: linear-gradient(180deg, #718fc2 0%, #6b86b8 55%, #576d99 100%) !important;
+}
+
+/* ---- 4. Header — dark navy with subtle gradient for depth ---- */
+.dashboard-organize-box .dashboard-organize-box__header {
+    background-image: linear-gradient(180deg, #16284a 0%, #1d3357 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---- 5. Footer — dark navy, distinct from body ---- */
+.dashboard-organize-box .dashboard-organize-box__footer {
+    background-image: none !important;
+    background-color: #1b2f54 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---- 6. Rows — subtle translucent layer + rounded corners ---- */
+.dashboard-organize-box .dashboard-item {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border-radius: 8px !important;
+}
+.dashboard-organize-box .dashboard-item:hover {
+    background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* ---- 7. Titles — solid white ---- */
+.dashboard-organize-box .dashboard-organize-box__header-title,
+.dashboard-organize-box .widget-title,
+.dashboard-organize-box .dashboard-item__title,
+.dashboard-organize-box .dashboard-item__title * {
+    color: #ffffff !important;
+}
+
+/* ---- 8. Secondary text (footer) — soft white ---- */
+.dashboard-organize-box .dashboard-organize-box__footer,
+.dashboard-organize-box .dashboard-organize-box__footer * {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* ---- 9. Header action icons — visible on dark background ---- */
+.dashboard-organize-box .dashboard-organize-box__header svg,
+.dashboard-organize-box .dashboard-organize-box__header i {
+    color: rgba(255, 255, 255, 0.8) !important;
+    fill: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ---- 10. Row action icons — visible on the lighter blue background ---- */
+.dashboard-organize-box .contact2-filter__actions .icon,
+.dashboard-organize-box .contact2-filter__actions a,
+.dashboard-organize-box .contact2-filter__actions svg,
+.dashboard-organize-box .contact2-filter__actions i {
+    color: rgba(255, 255, 255, 0.75) !important;
+    fill: rgba(255, 255, 255, 0.75) !important;
+}
+.dashboard-organize-box .contact2-filter__actions .icon:hover,
+.dashboard-organize-box .contact2-filter__actions a:hover svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* ---- 11. Assignee / project leader names — readable on blue ---- */
+.dashboard-organize-box .assignee {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ---- 12. Dot divider between client and assignee ---- */
+.dashboard-organize-box .dot-divider {
+    background-color: rgba(255, 255, 255, 0.45) !important;
+}
