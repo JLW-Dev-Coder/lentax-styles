@@ -1922,10 +1922,21 @@ body.login .form-oscar input.sd-login-password-input {
    SD admin settings. No background-image layer is set here:
    --lentax-page-bg-image resolves empty and the SD injection
    sets no image either, so the image layer is left untouched.
+
+   Round 25 extension (2026-06-21): #client-page-view is a
+   deeper portal wrapper (DOM position [9], between .main-wrapper
+   and the visible content cards) painted white by platform CSS
+   — it has NO inline style, so the round-24 .main-wrapper JS
+   transparent override does not reach it. Added to this same
+   override block to keep portal page-bg consolidated in one
+   rule; the body.page-with-styling-options chain + the
+   #client-page-view ID give (1,1,0,1) with !important, beating
+   any platform rule.
    ============================================================ */
 
 body.page-with-styling-options:not(.sd-dark-mode),
 body.page-with-styling-options:not(.sd-dark-mode) .main-wrapper,
-body.page-with-styling-options:not(.sd-dark-mode) .wrapper {
+body.page-with-styling-options:not(.sd-dark-mode) .wrapper,
+body.page-with-styling-options:not(.sd-dark-mode) #client-page-view {
     background-color: var(--vlpd-page-bg, #1a1a1a) !important;
 }
