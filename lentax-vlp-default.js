@@ -215,13 +215,28 @@
    Added 2026-06-20 - round 11, follow-up to 38c2505.
    ═════════════════════════════════════════════════════════════════════════════ */
 
-(function applyDemoBorder() {
-  var btn = document.querySelector('.vl-btn--support .cbe-block-button-element');
-  if (btn) {
-    btn.style.setProperty('border-color', '#1a1a1a', 'important');
-    return;
-  }
-  setTimeout(applyDemoBorder, 400);
+(function () {
+  // Retry cap (round 30): was polling indefinitely if the target never
+  // rendered. MAX_RETRIES bounds the wait; the counter lives in this outer
+  // closure so it persists across the self-recursive setTimeout calls.
+  // NOTE: the existing structure is setTimeout-recursion (not setInterval),
+  // so the cap warn-and-returns instead of clearInterval(). 60 retries at the
+  // existing 400ms cadence ~= 24s, well past the slowest FOUC load.
+  var MAX_RETRIES = 60;
+  var retries = 0;
+  (function applyDemoBorder() {
+    var btn = document.querySelector('.vl-btn--support .cbe-block-button-element');
+    if (btn) {
+      btn.style.setProperty('border-color', '#1a1a1a', 'important');
+      return;
+    }
+    retries++;
+    if (retries >= MAX_RETRIES) {
+      console.warn('[lentax] applyDemoBorder gave up after ' + MAX_RETRIES + ' retries — target never appeared');
+      return;
+    }
+    setTimeout(applyDemoBorder, 400);
+  })();
 })();
 
 

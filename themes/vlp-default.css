@@ -149,6 +149,28 @@
   --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
 }
 
+/* ============================================================
+   SURFACE MAP — which views consume this file
+   ============================================================
+   This stylesheet is loaded on the VLP-themed SuiteDash portal.
+   Affected surfaces (per dom-class-map.md, HEAD 7d62ee0):
+
+     /dashboard                              — main user dashboard
+     /portal/dashboard/view/168967           — Choose your next move
+     /portal/dashboard/view/169143           — Tax Monitor Setup Explore
+     /portal/dashboard/view/169144           — Tax Monitor Setup Checkout Cart
+     /portal/dashboard/view/168981           — Tax Monitor Ready When You Are
+     /portal/dashboard/view/169141           — Tax Monitor Add-Ons / Branding
+     /portal/dashboard/view/169146           — Tax Monitor Setup Template
+     /site/login                             — VLP login (deferred Surface 8;
+                                                login CSS lives in the LOGIN
+                                                PAGE — LIVE COPY block within
+                                                this file, manual-paste to SD
+                                                admin Custom CSS field)
+
+   For per-class effect lookup: see dom-class-map.md at repo root.
+   ============================================================ */
+
 /* ===== Dashboard typography — Source Sans 3 (dashboard-scoped) =====
  * VLP-default dashboard font swap. Scoped to #dashboard-view per the
  * scope guard so ONLY the dashboard view changes typeface — the rest of
