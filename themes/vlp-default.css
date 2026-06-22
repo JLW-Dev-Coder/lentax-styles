@@ -56,6 +56,10 @@
      and the SD page-bg override at EOF both resolve through these two tokens. */
   --vlpd-page-bg: #1a1a1a;
   --vlpd-page-bg-alt: #2a2a2a;
+  /* Text color for content inheriting onto the #1a1a1a page bg.
+     Used by the PORTAL + DASHBOARD HEADING/TEXT CONTRAST OVERRIDE
+     block at end of file. Round 26. */
+  --vlpd-text-on-dark: #f5f5f5;
 
   /* VLP navy (§3.3) — palette purged to monochrome 2026-06-21.
      Token NAMES retained for cascade stability (lentax-base.css consumers
@@ -1940,3 +1944,56 @@ body.page-with-styling-options:not(.sd-dark-mode) .wrapper,
 body.page-with-styling-options:not(.sd-dark-mode) #client-page-view {
     background-color: var(--vlpd-page-bg, #1a1a1a) !important;
 }
+
+
+/* ============================================================
+   PORTAL + DASHBOARD HEADING/TEXT CONTRAST OVERRIDE
+   ============================================================
+   Round 23 palette purge collapsed page bg to #1a1a1a but left
+   the .styling-options-content wrapper's inherited text color at
+   rgb(26,26,26) — same value. Headings + paragraph text became
+   invisible (dark-on-dark, zero contrast). Affected surfaces:
+   /dashboard (#dashboard-view) and all portal views
+   (#client-page-view).
+
+   This block flips inherited solid text to #f5f5f5 on:
+     - Headings (h1-h6) inside .styling-options-content
+     - .text-animated-waterfall (and its child spans)
+     - Plain <span> and <p> elements whose color is purely
+       inherited (no background-clip: text override)
+
+   Excluded by design:
+     - Elements with background-clip: text (orange gradient spans
+       work because their fill-color is transparent, this rule
+       does not touch them)
+     - .dropdown-card, .dropdown-card-dark (dropdown menus carry
+       their own dark/light theming)
+     - Card interiors that already set their own color via inline
+       style (color: #f5f5f5 from lentax-vlp-default.js)
+     - Announcement banners and any element with explicit bg
+
+   Specificity: body.page-with-styling-options chained with the
+   .styling-options-content + child selector chain gives (0,3,1)
+   per rule, beating the (0,1,0) inherit on the wrapper.
+   ============================================================ */
+
+body.page-with-styling-options .styling-options-content h1,
+body.page-with-styling-options .styling-options-content h2,
+body.page-with-styling-options .styling-options-content h3,
+body.page-with-styling-options .styling-options-content h4,
+body.page-with-styling-options .styling-options-content h5,
+body.page-with-styling-options .styling-options-content h6,
+body.page-with-styling-options .styling-options-content .text-animated-waterfall,
+body.page-with-styling-options .styling-options-content .text-animated-waterfall span,
+body.page-with-styling-options .styling-options-content .wysiwyg-content p,
+body.page-with-styling-options .styling-options-content .wysiwyg-content > span {
+    color: var(--vlpd-text-on-dark, #f5f5f5) !important;
+    -webkit-text-fill-color: var(--vlpd-text-on-dark, #f5f5f5) !important;
+}
+
+/* Preserve gradient-text elements: any descendant span whose
+   background-clip is set to text continues to display its own
+   gradient/color via -webkit-text-fill-color: transparent. The
+   rule above sets fill-color on h1/h2/.text-animated-waterfall,
+   but the orange children override fill-color at higher
+   specificity via their own inline-style or class chain. */
