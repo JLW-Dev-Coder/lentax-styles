@@ -38,6 +38,13 @@ drafting any prompt. The alphabetical class-to-effect reference (bottom of doc) 
   all paint rgb(26,26,26) (a second/third dark painter layer).
 - FOUC loader: portal views (esp. 169144, 168981, 169146, /site/login) show a full-screen
   rocket splash for several seconds before content swaps in (preload-swap loader IIFE).
+- CBE BLOCK ID VOLATILITY (round 35+): the SuiteDash page builder auto-generates
+  `#cbe-block-{timestamp}` IDs (e.g. #cbe-block-1780767441454 = /dashboard greeting block,
+  #cbe-block-1780767441455 = /dashboard card row). Stable as long as those blocks aren't deleted
+  and rebuilt. Rules anchored on CBE IDs (rounds 35+) will SILENTLY lose their anchor if a block
+  is reconstructed. Class-only fallback (.text-animated-waterfall, .account-card-title) risks
+  scope leak to other surfaces using the same CBE classes, so we accept the ID volatility
+  tradeoff. Flag in PR notes if dashboard blocks are touched.
 
 ## Round-25/27/28 override rules currently active in vlp-default.css
 
@@ -666,7 +673,7 @@ None of the above are directly readable via cssRules; all attributions above are
 Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surface tags:
 [dash]=/dashboard, [168967], [169143], [169144], [168981], [169141], [169146]. "all-portal" = the six view/* surfaces.
 
-.account-card-title           → card eyebrow heading wrapper; contains <strong> rgb(249,115,22) orange, 22.4px/700; h2 own color rgb(26,26,26); [dash, 168967]
+.account-card-title           → card eyebrow heading wrapper; contains <strong> rgb(249,115,22) orange, 22.4px/700; h2 own color rgb(26,26,26); round 4 §3 set color/background; round 35 supersedes on /dashboard via #cbe-block-1780767441455 .cbe-block h2.account-card-title { color:#f97316 + -webkit-text-fill-color:#f97316 } at (1,2,1), clears #dashboard-view * (1,0,1); [dash, 168967]
 .bg-widget                    → portal content wrapper; transparent; layout only; [all-portal]
 .button.button-outline        → GHOST/outline button; bg transparent, color rgba(255,255,255,0.9), 1px solid rgba(255,255,255,0.9), radius 6px; [169141]
 .btn                          → base button class (paired w/ .btn-primary); [dash, 168967, 169143]
@@ -680,6 +687,8 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 .cbe-block-sortable           → feature card; 2px solid rgb(249,115,22) border, radius 20px; bg rgb(26,26,26) on [dash] but TRANSPARENT on [168967]; [dash, 168967]
 .cbe-content                  → content-block-editor content wrapper; transparent; [all-portal]
 .cbe-row-wrapper              → content-block row wrapper; transparent; [all-portal]
+#cbe-block-1780767441454      → /dashboard GREETING block ("Good Afternoon, Jamie" / "command center" / "Explore your dashboard" prose); auto-generated CBE id (VOLATILE — changes if block deleted/rebuilt, see Global notes); round 4 §3 originally applied gradient-text (background-clip:text + -webkit-text-fill-color:transparent); round 35 overrides via #cbe-block-1780767441454 .text-animated-waterfall { color:#ffffff + -webkit-text-fill-color:#ffffff + background:none } (1,1,0) → flattened to solid white; if block is ever rebuilt this id changes and the rule silently loses its anchor; [dash]
+#cbe-block-1780767441455      → /dashboard CARD ROW container (Start Here / Office Space / Order Status / Demos & Support + 2 empty spacer blocks); auto-generated CBE id (VOLATILE, same caveat as the greeting block); round 35 anchors card headings orange (h2.account-card-title), sub-text white (.wysiwyg-content h3), + a sequential drop-in (cardDrop keyframe); 6 children total, nth-child(2)-(5) = the four real cards; [dash]
 .choose-items-summary-head    → checkout summary heading ("Your Checkout Totals"); rgb(249,115,22), 20px/700; [169144]
 .choose-items-summary-wrapper → checkout summary PANEL (applySummaryNavyV2); bg rgb(26,26,26) + flat dark linear-gradient, 2px solid rgb(249,115,22), radius 20px; line-item values orange rgb(249,115,22); [169144]
 .client-name                  → injected client-name span in waterfall hero; rgb(245,230,211) on [dash]; EMPTY (renders blank) in admin view on [168967] — placeholder doesn't render for super-admin (real clients see name); [dash, 168967]
@@ -692,7 +701,7 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 .dashboard-anns__date         → announcement date; rgb(0,0,0), 12px/400; [dash]
 .dashboard-anns__item         → announcement card CONTAINER (course-ready notice); bordered card w/ orange accent (top/left); inner .dashboard-anns__head carries a faint border-bottom only (NOT the card border); round 4 §3.3 set #dashboard-view .dashboard-anns__item { background: linear-gradient(135deg,#f5f5f5,#ffffff) } at (1,1,0); round 33 neutralized it with background-image:none + background-color:#1a1a1a at the SAME selector (later source order wins) → now dark #1a1a1a fill; 4px solid rgb(249,115,22), radius 30px; [dash]
 .dashboard-anns__item p       → announcement card body PARAGRAPH (the <p> itself is unclassed, wrapped in <ng-bind-html class="ckeditor-html ng-binding">); one <p> per card; round 32's plain .dashboard-anns__item p { color:#ffffff !important } at (0,1,1) shipped INERT — beaten by #dashboard-view * (1,0,1); round 34 added #dashboard-view .dashboard-anns__item p { color:#ffffff !important } at (1,1,1) as the winning rule → rgb(255,255,255); round 32's plain rule stays in file (harmless); future paragraph styling on this card MUST use the ID-scoped form; [dash]
-.dashboard-anns__title        → announcement card heading (<h2>); round 4 set #dashboard-view h2.dashboard-anns__title to #1a1a1a at (1,1,1); round 32 fix (239ad2d) raised it to #dashboard-view h2.dashboard-anns__title { color:#f97316 !important } at the same (1,1,1), wins on later source order → orange rgb(249,115,22), 18px/700; plain .dashboard-anns__title (0,1,0) is INERT — must use the ID-scoped selector; [dash]
+.dashboard-anns__title        → announcement card heading (<h2>); round 4 set #dashboard-view h2.dashboard-anns__title to #1a1a1a at (1,1,1); round 32 fix (239ad2d) raised it to #dashboard-view h2.dashboard-anns__title { color:#f97316 !important } at the same (1,1,1), wins on later source order; round 35 supersedes both on later source order with #dashboard-view h2.dashboard-anns__title { color:#f97316 + -webkit-text-fill-color:#f97316 } adding text-fill belt-and-suspenders → orange rgb(249,115,22), 18px/700; plain .dashboard-anns__title (0,1,0) is INERT — must use the ID-scoped selector to beat #dashboard-view * (1,0,1); [dash]
 .dashboard-organize-box       → "My Order/Project" panel; bg rgb(26,26,26), 2px solid rgb(249,115,22), radius 20px; [168981]
 .dashboard-page-content       → /dashboard content root (on #dashboard-view); transparent; [dash]
 .dashboard-widget-holder      → SD widget holder; transparent; [dash]
@@ -737,6 +746,8 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 .widget-holder                → portal widget holder; transparent; [all-portal]
 .widget-list                  → /dashboard widget list wrapper; transparent; [dash]
 #wrapper                      → outer PAGE wrapper; bg rgb(26,26,26) (#1a1a1a, --vlpd-page-bg); a primary dark painter; [all]
+.wysiwyg-content h3           → dashboard card SUB-TEXT ("Chart your course toward…" etc., one per card); under the card row only, scope-controlled by the CBE id prefix; round 35 sets #cbe-block-1780767441455 .cbe-block .wysiwyg-content h3 { color:#ffffff + -webkit-text-fill-color:#ffffff } at (1,3,1) → white; [dash]
+@keyframes dotPulse / cardDrop → round-35 animation reference [dash]: dotPulse (2s ease-in-out infinite) drives .dashboard-anns__title::before (the announcement dot); cardDrop (0.55s cubic-bezier) staggers card entrance on #cbe-block-1780767441455 .cbe-block via nth-child(2)-(5) animation-delay; [dash]
 
 --- TOKENS & RAW VALUES (quick lookup) ---
 --vlpd-page-bg        #1a1a1a → rgb(26,26,26)    page + sidebar + dark panels
