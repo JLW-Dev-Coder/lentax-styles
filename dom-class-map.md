@@ -45,6 +45,12 @@ drafting any prompt. The alphabetical class-to-effect reference (bottom of doc) 
   is reconstructed. Class-only fallback (.text-animated-waterfall, .account-card-title) risks
   scope leak to other surfaces using the same CBE classes, so we accept the ID volatility
   tradeoff. Flag in PR notes if dashboard blocks are touched.
+- TPP THEME FILE (round-1+): TPP CSS lives in themes/tpp-default.css — the canonical TPP
+  default theme, injected by lentax-tpp-default.js from
+  precious-lily-bbe555.netlify.app/themes/tpp-default.css (alt TPP themes: tpp-coastal.css /
+  tpp-sentinel.css). First touched by TPP Round 1 (Projects & My Tasks organize-box styling).
+  This doc is VLP-titled but now also carries TPP anchors tagged [TPP]; TPP Round 1 rules live
+  in tpp-default.css, NOT the CORS-blocked vlp-default.css bundle.
 
 ## Round-25/27/28 override rules currently active in vlp-default.css
 
@@ -672,6 +678,7 @@ None of the above are directly readable via cssRules; all attributions above are
 ### Class-to-effect quick reference   ← PE READS THIS FIRST
 Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surface tags:
 [dash]=/dashboard, [168967], [169143], [169144], [168981], [169141], [169146]. "all-portal" = the six view/* surfaces.
+[TPP] = TPP portal surface (Projects/My Tasks organize-box dashboard); styled in themes/tpp-default.css, NOT the CORS-blocked vlp-default.css bundle.
 
 .account-card-title           → card eyebrow heading wrapper; contains <strong> rgb(249,115,22) orange, 22.4px/700; h2 own color rgb(26,26,26); round 4 §3 set color/background; round 35 supersedes on /dashboard via #cbe-block-1780767441455 .cbe-block h2.account-card-title { color:#f97316 + -webkit-text-fill-color:#f97316 } at (1,2,1), clears #dashboard-view * (1,0,1); [dash, 168967]
 .bg-widget                    → portal content wrapper; transparent; layout only; [all-portal]
@@ -689,11 +696,13 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 .cbe-row-wrapper              → content-block row wrapper; transparent; [all-portal]
 #cbe-block-1780767441454      → /dashboard GREETING block ("Good Afternoon, Jamie" / "command center" / "Explore your dashboard" prose); auto-generated CBE id (VOLATILE — changes if block deleted/rebuilt, see Global notes); round 4 §3 originally applied gradient-text (background-clip:text + -webkit-text-fill-color:transparent); round 35 overrides via #cbe-block-1780767441454 .text-animated-waterfall { color:#ffffff + -webkit-text-fill-color:#ffffff + background:none } (1,1,0) → flattened to solid white; if block is ever rebuilt this id changes and the rule silently loses its anchor; [dash]
 #cbe-block-1780767441455      → /dashboard CARD ROW container (Start Here / Office Space / Order Status / Demos & Support + 2 empty spacer blocks); auto-generated CBE id (VOLATILE, same caveat as the greeting block); round 35 anchors card headings orange (h2.account-card-title), sub-text white (.wysiwyg-content h3), + a sequential drop-in (cardDrop keyframe); 6 children total, nth-child(2)-(5) = the four real cards; [dash]
+#cbe-block-1781727774220 / ...224 → TPP — Projects (…220) + My Tasks (…224) dashboard blocks; auto-generated CBE ids captured during TPP Round 1 CC inspection; NOT currently used as anchors (JLW ruled broad .dashboard-organize-box class scope) — recorded for future targeted narrowing; same CBE-ID VOLATILITY caveat as round 35 (id changes if block deleted/rebuilt, see Global notes); [TPP]
 .choose-items-summary-head    → checkout summary heading ("Your Checkout Totals"); rgb(249,115,22), 20px/700; [169144]
 .choose-items-summary-wrapper → checkout summary PANEL (applySummaryNavyV2); bg rgb(26,26,26) + flat dark linear-gradient, 2px solid rgb(249,115,22), radius 20px; line-item values orange rgb(249,115,22); [169144]
 .client-name                  → injected client-name span in waterfall hero; rgb(245,230,211) on [dash]; EMPTY (renders blank) in admin view on [168967] — placeholder doesn't render for super-admin (real clients see name); [dash, 168967]
 .column1-portal-page          → portal main-wrapper variant; transparent (JS); [all-portal]
 .columns-form-wrap            → portal form/column wrapper; transparent; [all-portal]
+.contact2-filter__actions     → TPP — row action-icon container inside organize-box rows; TPP Round 1 sets .icon/a/svg/i to rgba(255,255,255,0.75) (color+fill), hover full #ffffff; tpp-default.css; [TPP]
 .content-block-wrapper        → cbe outer wrapper / also "Have questions" callout container (rgb(26,26,26) text, 14px); transparent bg; [all-portal, 169141]
 .content-wrapper              → SD outer content wrapper; transparent; [all]
 .customRateInput              → checkout custom rate text input; bg rgb(255,255,255), color rgb(34,34,34), no radius; [169144]
@@ -702,7 +711,10 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 .dashboard-anns__item         → announcement card CONTAINER (course-ready notice); bordered card w/ orange accent (top/left); inner .dashboard-anns__head carries a faint border-bottom only (NOT the card border); round 4 §3.3 set #dashboard-view .dashboard-anns__item { background: linear-gradient(135deg,#f5f5f5,#ffffff) } at (1,1,0); round 33 neutralized it with background-image:none + background-color:#1a1a1a at the SAME selector (later source order wins) → now dark #1a1a1a fill; 4px solid rgb(249,115,22), radius 30px; [dash]
 .dashboard-anns__item p       → announcement card body PARAGRAPH (the <p> itself is unclassed, wrapped in <ng-bind-html class="ckeditor-html ng-binding">); one <p> per card; round 32's plain .dashboard-anns__item p { color:#ffffff !important } at (0,1,1) shipped INERT — beaten by #dashboard-view * (1,0,1); round 34 added #dashboard-view .dashboard-anns__item p { color:#ffffff !important } at (1,1,1) as the winning rule → rgb(255,255,255); round 32's plain rule stays in file (harmless); future paragraph styling on this card MUST use the ID-scoped form; [dash]
 .dashboard-anns__title        → announcement card heading (<h2>); round 4 set #dashboard-view h2.dashboard-anns__title to #1a1a1a at (1,1,1); round 32 fix (239ad2d) raised it to #dashboard-view h2.dashboard-anns__title { color:#f97316 !important } at the same (1,1,1), wins on later source order; round 35 supersedes both on later source order with #dashboard-view h2.dashboard-anns__title { color:#f97316 + -webkit-text-fill-color:#f97316 } adding text-fill belt-and-suspenders → orange rgb(249,115,22), 18px/700; plain .dashboard-anns__title (0,1,0) is INERT — must use the ID-scoped selector to beat #dashboard-view * (1,0,1); [dash]
-.dashboard-organize-box       → "My Order/Project" panel; bg rgb(26,26,26), 2px solid rgb(249,115,22), radius 20px; [168981]
+.dashboard-item.dashboard-item--project → TPP — Projects dashboard widget ROW; TPP Round 1 (tpp-default.css) pins progress bar .completionData to width 18px + flex 0 0 18px, and forces .dashboard-item__content align-items:flex-start (closes empty gap right of the bar); DOUBLED class prefix intentional → raises to (0,2,0); [TPP]
+.dashboard-organize-box       → (VLP obs, [168981]) "My Order/Project" panel; bg rgb(26,26,26), 2px solid rgb(249,115,22), radius 20px.  ⚠ CROSS-PRODUCT: TPP Round 1 (tpp-default.css) ALSO styles this class PORTAL-WIDE on TPP — body container for Projects & My Tasks (and ANY other organize-box widget): lighter-blue body gradient #718fc2→#6b86b8→#576d99 (via doubled-class .dashboard-organize-box.dashboard-organize-box, (0,2,0)), translucent rows rgba(255,255,255,0.04) + 8px radius + hover lift (.09), white titles, .75 footer text, .85 assignee, white icons. JLW ruled broad class scope over CBE-ID narrowing (#cbe-block-1781727774220 Projects / ...224 Tasks); side effect = every TPP organize-box widget inherits these; [168981, TPP]
+.dashboard-organize-box__footer → TPP — footer of organize-box widgets; TPP Round 1 solid #1b2f54 (background-image:none beats any gradient), 1px rgba(255,255,255,0.08) top border, all descendant text rgba(255,255,255,0.75); tpp-default.css; [TPP]
+.dashboard-organize-box__header → TPP — header bar of organize-box widgets; TPP Round 1 dark-navy gradient #16284a→#1d3357 + 1px rgba(255,255,255,0.08) border-bottom; child svg/i forced rgba(255,255,255,0.8) (color+fill); tpp-default.css; [TPP]
 .dashboard-page-content       → /dashboard content root (on #dashboard-view); transparent; [dash]
 .dashboard-widget-holder      → SD widget holder; transparent; [dash]
 #dashboard-view               → /dashboard content root id; transparent; [dash]
