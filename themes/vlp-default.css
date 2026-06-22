@@ -1982,3 +1982,76 @@ body.page-with-styling-options .styling-options-content .wysiwyg-content > span 
    rule above sets fill-color on h1/h2/.text-animated-waterfall,
    but the orange children override fill-color at higher
    specificity via their own inline-style or class chain. */
+
+
+/* ============================================================
+   ROUND 29 — vl-* MONOCHROME CONSISTENCY
+   ============================================================
+   The vl-* design system (originally round 9) wrapped portal hero
+   sections in white panels (.vl-page / .vl-hero / .vl-section)
+   with dark text inside, designed for the pre-monochrome navy
+   theme. Round 27's broad-wrapper-clear missed these because they
+   are lentax-owned, not SuiteDash platform.
+
+   Per JLW direction (full monochrome), this block:
+     1. Makes .vl-page / .vl-hero / .vl-section transparent so the
+        body #1a1a1a paints through.
+     2. Flips all vl-* heading/body text to white via the
+        --vlpd-text-on-dark token, so the text remains legible
+        against the now-dark background.
+     3. Targets BOTH spellings of the duplicated vl-* class names
+        (.vl-hero-title hyphen AND .vl-hero__title BEM, same for
+        section-title) so the fix covers all four affected views
+        (169143, 169144's bleed-through, 168981, 169141, 169146).
+     4. Forces waterfall span color to pure white on /dashboard
+        (was cream #F5E6D3) for consistency with view/168967.
+     5. Forces .account-card-title -webkit-text-fill-color to
+        orange on portal views, defeating the background-clip: text
+        white-fill that was making card titles render white instead
+        of the intended orange.
+
+   Scoped to body.page-with-styling-options so login is unaffected.
+   ============================================================ */
+
+/* 3.1.1 — White vl-* containers go transparent */
+body.page-with-styling-options .vl-page,
+body.page-with-styling-options .vl-hero,
+body.page-with-styling-options .vl-section {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* 3.1.2 — vl-* text flips to white (was dark, relied on white parent) */
+body.page-with-styling-options .vl-hero-title,
+body.page-with-styling-options .vl-hero__title,
+body.page-with-styling-options .vl-section-title,
+body.page-with-styling-options .vl-section__title,
+body.page-with-styling-options .vl-subhead,
+body.page-with-styling-options .vl-body,
+body.page-with-styling-options .vl-tour__headline,
+body.page-with-styling-options .vl-tour__subhead,
+body.page-with-styling-options .vl-tour__item,
+body.page-with-styling-options .vl-badge,
+body.page-with-styling-options .item-plan-title {
+    color: var(--vlpd-text-on-dark, #ffffff) !important;
+    -webkit-text-fill-color: var(--vlpd-text-on-dark, #ffffff) !important;
+}
+
+/* 3.1.3 — Waterfall span color to pure white on /dashboard
+   (overrides the cream parchment rule that produced #F5E6D3) */
+body.page-with-styling-options .text-animated-waterfall,
+body.page-with-styling-options .text-animated-waterfall span,
+body.page-with-styling-options .text-animated-waterfall .client-name {
+    color: var(--vlpd-text-on-dark, #ffffff) !important;
+    -webkit-text-fill-color: var(--vlpd-text-on-dark, #ffffff) !important;
+    background-image: none !important;
+}
+
+/* 3.1.4 — Portal card titles render orange (defeat background-clip: text
+   white-fill that was making them paint white instead of #F97316) */
+body.page-with-styling-options #client-page-view .account-card-title,
+body.page-with-styling-options #client-page-view .account-card-title strong {
+    color: #f97316 !important;
+    -webkit-text-fill-color: #f97316 !important;
+    background-image: none !important;
+}
