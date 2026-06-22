@@ -2119,3 +2119,27 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 .dashboard-anns__item p {
     color: #ffffff !important;
 }
+
+/* =========================================================================
+   ROUND 33 — Dashboard announcement card background fix
+   -------------------------------------------------------------------------
+   Surface: /dashboard — .dashboard-anns__item (course-ready notice card)
+   Problem: Round 4 (§3.3 Announcement block beautification) set
+            #dashboard-view .dashboard-anns__item { background: linear-gradient(
+            135deg, #f5f5f5 0%, #ffffff 60%) !important; } at (1,1,0) — paints
+            a white box against the dark dashboard, defeating round 32's
+            orange heading + white body text fixes.
+   Fix:     Match (1,1,0) specificity, win on source order. Clear
+            background-image, set background-color to #1a1a1a so the card
+            blends with the dashboard surface.
+   Anchor:  #dashboard-view .dashboard-anns__item (ID-scoped to tie round 4
+            L335 and beat it via later source order).
+   Tier:    1 (executed after pre-flight specificity grep flagged the
+            collision; PE ruling raised the selector — round 32 post-mortem
+            methodology working as designed).
+   ========================================================================= */
+
+#dashboard-view .dashboard-anns__item {
+    background-image: none !important;
+    background-color: #1a1a1a !important;
+}
