@@ -2091,16 +2091,28 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
    -------------------------------------------------------------------------
    Surface: /dashboard — .dashboard-anns__item (course-ready notice card)
    Problem: Heading rendered #1a1a1a, body paragraph rendered #000 — both
-            invisible against the dark page background.
+            invisible against the dark live card background.
    Fix:     Heading → orange accent. Body paragraph → white.
-   Anchor:  .dashboard-anns__item (container), .dashboard-anns__title
-            (heading), .dashboard-anns__item p (unclassed body paragraph,
-            parent-scoped).
+   Cascade: The heading is already targeted by the round-4 §3.3 rule on
+            selector #dashboard-view h2.dashboard-anns__title (color #1a1a1a),
+            line ~348, specificity (1,1,1) !important. A plain
+            .dashboard-anns__title (0,1,0) loses that tie and renders inert,
+            so this rule re-uses the identical (1,1,1) selector and wins by
+            later source order. (JLW-ratified override of the round-32 prompt's
+            "no scoping wrappers" constraint, which assumed the lower-
+            specificity class would win — it does not.)
+            The body paragraph is a <p> inside .dashboard-anns__body; the
+            round-4 .dashboard-anns__body rule (color #3a3a3a) colors only the
+            wrapper, so the <p> receives it via inheritance — a direct
+            .dashboard-anns__item p (0,1,1) match overrides inheritance and
+            paints white. (JLW confirmed the live card bg is dark, not the
+            light gradient the §3.3 source declares — platform cross-origin
+            CSS overrides it, so white text reads correctly.)
    Tier:    1 (direct execute from dom-class-map.md after CC confirmed
             anchors live).
    ========================================================================= */
 
-.dashboard-anns__title {
+#dashboard-view h2.dashboard-anns__title {
     color: #f97316 !important;
 }
 
