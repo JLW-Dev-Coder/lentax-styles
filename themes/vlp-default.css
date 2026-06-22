@@ -2032,38 +2032,46 @@ body.page-with-styling-options .styling-options-content .wysiwyg-content > span 
         white-fill that was making card titles render white instead
         of the intended orange.
 
-   Scoped to body.page-with-styling-options so login is unaffected.
+   Round 31 re-anchor: original selectors used body.page-with-styling-options
+   (0,2,1) which lost to round-9's #client-page-view .vl-page (1,1,0) on the
+   5 portal views with vl-* containers. Re-anchored under #client-page-view
+   (and #dashboard-view for the waterfall rule which targets the dashboard
+   surface) to win specificity decisively. Login still unaffected — it uses
+   neither ID.
    ============================================================ */
 
 /* 3.1.1 — White vl-* containers go transparent */
-body.page-with-styling-options .vl-page,
-body.page-with-styling-options .vl-hero,
-body.page-with-styling-options .vl-section {
+#client-page-view .vl-page,
+#client-page-view .vl-hero,
+#client-page-view .vl-section {
     background-color: transparent !important;
     background-image: none !important;
 }
 
 /* 3.1.2 — vl-* text flips to white (was dark, relied on white parent) */
-body.page-with-styling-options .vl-hero-title,
-body.page-with-styling-options .vl-hero__title,
-body.page-with-styling-options .vl-section-title,
-body.page-with-styling-options .vl-section__title,
-body.page-with-styling-options .vl-subhead,
-body.page-with-styling-options .vl-body,
-body.page-with-styling-options .vl-tour__headline,
-body.page-with-styling-options .vl-tour__subhead,
-body.page-with-styling-options .vl-tour__item,
-body.page-with-styling-options .vl-badge,
-body.page-with-styling-options .item-plan-title {
+#client-page-view .vl-hero-title,
+#client-page-view .vl-hero__title,
+#client-page-view .vl-section-title,
+#client-page-view .vl-section__title,
+#client-page-view .vl-subhead,
+#client-page-view .vl-body,
+#client-page-view .vl-tour__headline,
+#client-page-view .vl-tour__subhead,
+#client-page-view .vl-tour__item,
+#client-page-view .vl-badge,
+#client-page-view .item-plan-title {
     color: var(--vlpd-text-on-dark, #ffffff) !important;
     -webkit-text-fill-color: var(--vlpd-text-on-dark, #ffffff) !important;
 }
 
 /* 3.1.3 — Waterfall span color to pure white on /dashboard
    (overrides the cream parchment rule that produced #F5E6D3) */
-body.page-with-styling-options .text-animated-waterfall,
-body.page-with-styling-options .text-animated-waterfall span,
-body.page-with-styling-options .text-animated-waterfall .client-name {
+#dashboard-view .text-animated-waterfall,
+#dashboard-view .text-animated-waterfall span,
+#dashboard-view .text-animated-waterfall .client-name,
+#client-page-view .text-animated-waterfall,
+#client-page-view .text-animated-waterfall span,
+#client-page-view .text-animated-waterfall .client-name {
     color: var(--vlpd-text-on-dark, #ffffff) !important;
     -webkit-text-fill-color: var(--vlpd-text-on-dark, #ffffff) !important;
     background-image: none !important;

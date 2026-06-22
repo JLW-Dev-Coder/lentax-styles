@@ -10,7 +10,7 @@ drafting any prompt. The alphabetical class-to-effect reference (bottom of doc) 
 
 - Brand tokens (lentax vlp-default.css :root — values from source bundle, HEAD 718ea30):
     --vlpd-page-bg       = #1a1a1a  -> computes rgb(26, 26, 26)
-    --vlpd-page-bg-alt   = #2a2a2a  -> computes rgb(42, 42, 42)
+    --vlpd-page-bg-alt   = #2a2a2a  -> computes rgb(42, 42, 42)  (consumed by 6 navy-name token re-points from round-23)
     --vlpd-text-on-dark  = #ffffff  -> computes rgb(255, 255, 255)   (round 27/28)
 - Brand orange (primary):     rgb(249, 115, 22)   = #F97316
 - Brand orange (light/kicker): rgba(251, 146, 60, 0.95)  = #FB923C @95%   (Surface 7 only)
@@ -738,7 +738,7 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 
 --- TOKENS & RAW VALUES (quick lookup) ---
 --vlpd-page-bg        #1a1a1a → rgb(26,26,26)    page + sidebar + dark panels
---vlpd-page-bg-alt    #2a2a2a → rgb(42,42,42)    (defined; not observed painting on swept surfaces)
+--vlpd-page-bg-alt    #2a2a2a → rgb(42,42,42)    6 live consumers in vlp-default.css :root (round-23 navy retokenization): --lentax-tpp-crimson-maroon + 5x --lentax-vlp-navy-* re-points. Token IS consumed; the "not observed painting" original note referred to direct DOM painting, but the token paints indirectly via the navy-name tokens.
 --vlpd-text-on-dark   #ffffff → rgb(255,255,255) default content text on dark
 brand orange          #F97316 → rgb(249,115,22)  CTAs, borders, eyebrows, active states, summary heads
 brand orange (light)  #FB923C → rgba(251,146,60,0.95)  vl-section__kicker ONLY [169146]
