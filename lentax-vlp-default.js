@@ -447,3 +447,59 @@
     apply();
   }
 })();
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-default round 24 - Clear SD .main-wrapper white inline override
+   SuiteDash platform JS injects style="background: rgb(255,255,255) !important"
+   onto .main-wrapper on every portal page (views 168967, 168981, 169143,
+   169144), masking the round-23 body-level #1a1a1a page-bg from
+   vlp-default.css. Inline !important beats stylesheet !important per CSS spec
+   regardless of selector specificity, so this is structurally unsolvable from
+   CSS — JS is the only path.
+
+   This IIFE overwrites the inline value in place with 'transparent' !important
+   so the body-level #1a1a1a paints through (keeping vlp-default.css as the
+   single source of truth for the actual page-bg color). A MutationObserver
+   re-applies if SD platform JS resets the attribute later in the page
+   lifecycle. Scoped to body.page-with-styling-options so the login page (which
+   lacks that class) stays untouched. Placed at EOF so the transparent override
+   wins the inline-property race against the round-9 explore-page white-set.
+   Added 2026-06-21 - round 24, follow-up to 7397f45.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function clearMainWrapperWhite() {
+  'use strict';
+  if (!document.body || !document.body.classList.contains('page-with-styling-options')) return;
+  var mainWrapper = document.querySelector('.main-wrapper');
+  if (!mainWrapper) return;
+
+  function clearWhite() {
+    // Use 'transparent' (not #1a1a1a) so the body-level #1a1a1a paints through,
+    // keeping vlp-default.css as the source of truth for the actual color.
+    // Set both shorthand and longhand to cover platform-JS variations.
+    mainWrapper.style.setProperty('background', 'transparent', 'important');
+    mainWrapper.style.setProperty('background-color', 'transparent', 'important');
+  }
+
+  function isTransparent(v) {
+    return !v || v.indexOf('transparent') !== -1 || v.indexOf('rgba(0, 0, 0, 0)') !== -1;
+  }
+
+  // Initial override — overwrite SD's inline white in place.
+  clearWhite();
+
+  // Re-apply if SD platform JS resets .main-wrapper background later. The
+  // guard is self-clearing: when our own setProperty fires the observer the
+  // value is already transparent, so the inner check does nothing (no loop).
+  var mwObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (m) {
+      if (m.attributeName === 'style') {
+        if (!isTransparent(mainWrapper.style.background) ||
+            !isTransparent(mainWrapper.style.backgroundColor)) {
+          clearWhite();
+        }
+      }
+    });
+  });
+  mwObserver.observe(mainWrapper, { attributes: true, attributeFilter: ['style'] });
+})();
