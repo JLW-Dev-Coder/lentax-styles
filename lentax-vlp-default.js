@@ -518,3 +518,69 @@
   });
   mwObserver.observe(mainWrapper, { attributes: true, attributeFilter: ['style'] });
 })();
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-default round 43 - Checkout-form embed .form-oscar dark persistence
+   Paired with the ROUND 43 CSS block in themes/vlp-default.css.
+
+   .form-oscar is the one checkout container with no portable source-CSS
+   path: it has no own ID and the CORS-blocked bundle paints it white with
+   2-ID specificity, which no stylesheet selector can beat. Inline style +
+   a narrow MutationObserver — scoped to the ext root, watching only style-
+   attribute changes on .form-oscar plus childList additions for re-mount —
+   is the only reliable fix. Same root-cause family as round 13's
+   applySummaryNavy (CORS bundle paints over our surface).
+
+   Per CC diagnostic round 3: routine step navigation does NOT wipe the
+   inline style; the observer is defensive for full re-mounts only. If it
+   never fires in production, that is expected.
+   Added 2026-06-24 - round 43, follow-up to 6303328.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function applyFormOscarTransparent() {
+  'use strict';
+  function root() {
+    return document.querySelector('.extended-form-wrapper.choice-step-styling-options');
+  }
+  function fix(r) {
+    if (!r) return;
+    r.querySelectorAll('.form.form-oscar').forEach(function (el) {
+      if (el.style.getPropertyValue('background-color') !== 'transparent') {
+        el.style.setProperty('background-color', 'transparent', 'important');
+      }
+    });
+  }
+  var r = root();
+  fix(r);
+  var queued = false;
+  var obs = new MutationObserver(function (muts) {
+    var hit = false;
+    for (var i = 0; i < muts.length; i++) {
+      var m = muts[i];
+      if (m.type === 'attributes' && m.attributeName === 'style' &&
+          m.target.classList && m.target.classList.contains('form-oscar')) {
+        hit = true;
+        break;
+      }
+      if (m.type === 'childList' && m.addedNodes.length) {
+        hit = true;
+        break;
+      }
+    }
+    if (hit && !queued) {
+      queued = true;
+      requestAnimationFrame(function () {
+        queued = false;
+        fix(root());
+      });
+    }
+  });
+  if (r) {
+    obs.observe(r, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style']
+    });
+  }
+})();
