@@ -227,7 +227,7 @@
   (function applyDemoBorder() {
     var btn = document.querySelector('.vl-btn--support .cbe-block-button-element');
     if (btn) {
-      btn.style.setProperty('border-color', '#1a1a1a', 'important');
+      btn.style.setProperty('border-color', '#888', 'important');
       return;
     }
     retries++;
