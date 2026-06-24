@@ -2265,3 +2265,38 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 #cbe-block-1780767441455 .cbe-block:nth-child(3) { animation-delay: 0.20s; }
 #cbe-block-1780767441455 .cbe-block:nth-child(4) { animation-delay: 0.35s; }
 #cbe-block-1780767441455 .cbe-block:nth-child(5) { animation-delay: 0.50s; }
+
+/* =========================================================================
+   ROUND 36 — Hero greeting white-text override (inner-span cream defeat)
+   -------------------------------------------------------------------------
+   Surface: /dashboard — greeting hero ("Good Afternoon, Jamie" / command
+            center prose / explore your dashboard prose)
+   Source:  CC-in-Chrome live override verification (JLW-led).
+
+   Problem: Round 35's #cbe-block-1780767441454 .text-animated-waterfall *
+            paints white at (1,1,0)/(1,1,1), but inner spans carry an
+            existing higher-specificity cream rule in this same file
+            painting .client-name, .item-instructions-cta, inline font-size
+            spans, and <b> at #f5e6d3 with -webkit-text-fill-color: #f5e6d3.
+            Computed color flips to white but glyphs paint cream because
+            text-fill-color wins over color at paint time (rounds 28/29
+            documented this trap; round 32 hit the same class of failure).
+   Fix:     Target the .cbe-block-content-text wrapper plus the named inner
+            classes + span + <b> with BOTH color AND -webkit-text-fill-color
+            set to #ffffff !important. Beats the cream rule by specificity
+            and source order, defeats text-fill at the same time.
+   Anchor:  .cbe-block-content-text scope + .text-animated-waterfall +
+            named child classes. Portal-wide class scope per CC's draft —
+            any other hero using this combination picks up the white
+            (acceptable; CC verified live).
+   Tier:    3 (CC-in-Chrome live DOM inspection + live override verification).
+   ========================================================================= */
+
+.cbe-block-content-text .text-animated-waterfall,
+.cbe-block-content-text .text-animated-waterfall .client-name,
+.cbe-block-content-text .text-animated-waterfall .item-instructions-cta,
+.cbe-block-content-text .text-animated-waterfall span,
+.cbe-block-content-text .text-animated-waterfall b {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
