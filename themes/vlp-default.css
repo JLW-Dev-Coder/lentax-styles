@@ -2474,3 +2474,175 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 #dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .no-results-img {
     filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%) !important;
 }
+
+/* =========================================================================
+   ROUND 39 — view/169143 (Tax Monitor Setup — Explore It All) consolidation
+   -------------------------------------------------------------------------
+   Surface: VLP /portal/dashboard/view/169143 — View Plans block + supporting
+            buttons, cards, and form-wrapper spacing
+   Source:  JLW + CC-in-Chrome iterative live-styling session + full
+            CC DevTools-equivalent audit + two empirical escalation passes,
+            then RC §2 collision audit (see VIEW-SCOPING below).
+
+   ── VIEW-SCOPING (RC amendment to the CC audit) ──────────────────────────
+   RC's §2 collision grep found view/169143 is ALREADY styled in this file by
+   prior rounds — NOT by a "native/CORS theme" as the original CC audit
+   assumed:
+     - Round 9 (this file, L456-568): white page, dark-orange feature cards
+       (article.vl-card -> #c2410c at (1,1,1)+!important, NOT a CORS rule),
+       white form wrappers.
+     - Round 29/31 (this file, ~L2009-2065): monochrome pass that flips
+       .item-plan-title (and all vl-* headings) to SOLID WHITE at (1,1,0)
+       for on-dark legibility, deliberately across FIVE views
+       (169143, 169144, 168981, 169141, 169146).
+
+   Because Round 29/31's white-heading legibility fix is shared by four OTHER
+   views, and the form-wrapper / .item-plan-title classes recur on the
+   checkout page (169144) and other form pages, the three Round 39 rules that
+   OVERRIDE a prior declaration (#1/#2 wrappers, #3 headings, #8 cards) are
+   narrowed to view/169143 ONLY via a :has() page-level discriminator:
+
+       SCOPE = #client-page-view:has(.feature-block-container, article.vl-card)
+
+   Why this anchor is stable + view-unique:
+     - .feature-block-container ("What This Feature Controls" callout) and
+       article.vl-card (feature-card grid) are VLP-authored content classes
+       created by Round 9 specifically for the 169143 explore page. SD does
+       not regenerate custom wysiwyg class names.
+     - Round 18 (view/168981) reused only the navy-callout TREATMENT on a
+       DIFFERENT widget class (.dashboard-organize-box.cbe-block-all-tasks2),
+       so neither marker leaks onto 168981. Checkout (169144) has neither.
+     - :has() is established-safe in this SD portal context (#client-page-view;
+       Rounds 17/18 already rely on it). Specificity of :has() = its most
+       specific argument = article.vl-card (0,1,1).
+     - No #cbe-block-* page ID used (volatile per stable-anchor policy); no JS
+       touched (Round 9's JS supplement injects no view class to mirror).
+
+   Net-new Round 39 rules (#4 select2 text, #5 dropdown spacing, #6 active
+   View-Plans label, #7 Checkout Cart text, #9 form-embed spacing) have NO
+   prior-rule conflict and ship at plain #client-page-view scope per JLW.
+
+   Surfaces fixed:
+     1. View Plans outer block — 5px orange border, 12px radius, 16px
+        padding, transparent bg, no box-shadow (view-scoped: overrides
+        Round 9's white #forms-form-wrapper)
+     2. White-bg wrappers cleared (.form.form-oscar, .form-fields-container,
+        .form-group.flow-step-content) — view-scoped: overrides Round 9 white
+     3. Heading text-fill restoration — .item-plan-title + .item-plan-subtitle
+        re-enable background-clip: text + transparent text-fill so the
+        underlying CORS-supplied gradient renders through. VIEW-SCOPED so it
+        does NOT undo Round 29/31's solid-white legibility fix on the other
+        four monochrome views.
+     4. Dropdown text color — .select2-selection__rendered -> white
+        (visible field is the select2 span, NOT the native <select>)
+     5. Reduced space below dropdown — .form-group.flow-step-content
+        margin-bottom 6px, padding-bottom 0
+     6. Defensive View Plans button rule — native orange + 15px + white
+        IS provided by a CORS rule today, but at unverified margin. Ship
+        explicit !important to harden against future CORS changes.
+     7. Checkout Cart text color — only non-redundant change on this button
+        (native already has 1px gray border + 15px radius)
+     8. Feature cards background — view-scoped override of Round 9's dark
+        orange #c2410c. Scoped selector spec (1,2,2) beats Round 9's
+        article.vl-card (1,1,1) and Round 11's .vl-card.vl-card (1,2,0) on
+        merit + later source order; no #wrapper headroom selector needed
+        because the predecessor is a known in-file rule, not an unknown CORS
+        source.
+
+   Items dropped after audit (DO NOT add):
+     - #7a Book A Demo button — entirely redundant, native has all of it
+     - #7b Book A Demo wrapper border-zero — native wrapper has no border;
+       the double-border was a session artifact
+     - #6 Checkout Cart border/radius — native has 1px gray + 15px already;
+       only text color ships
+
+   Hazards / notes:
+     - Heading gradient comes from a CORS sheet — Round 39 only restores
+       text-fill transparency, not the gradient itself.
+     - Round 9's PAGE-LEVEL white background (.main-wrapper.column1-portal-page
+       + #client-page-view bg, L468-478) is intentionally LEFT UNTOUCHED —
+       out of scope for this round (View Plans block + form area only). If the
+       whole page should go dark, that is a Round 9 amendment for a later
+       sprint.
+     - vlp-checkout-cart and vlp-book-demo were marker classes CC injected
+       during the session. They do NOT exist in the real DOM. Round 39 uses
+       real stable anchors (.vl-btn--sm for Checkout Cart).
+     - Runbook: if the :has() scope ever stops matching (both markers removed
+       from 169143), the four overridden declarations silently revert to
+       Round 9 / Round 29-31. Re-confirm .feature-block-container /
+       article.vl-card still render on 169143 before debugging elsewhere.
+   Tier:    3 (CC empirical audit + RC §2 collision audit + JLW PE ruling on
+            view-scoping).
+   ========================================================================= */
+
+/* --- 1. View Plans outer block: orange border + padding (view-scoped) --- */
+#client-page-view:has(.feature-block-container, article.vl-card) #forms-form-wrapper {
+    border: 5px solid #f97316 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* --- 2. White-bg wrappers cleared (view-scoped) --- */
+#client-page-view:has(.feature-block-container, article.vl-card) .form.form-oscar {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+#client-page-view:has(.feature-block-container, article.vl-card) .form-fields-container {
+    background-color: transparent !important;
+}
+#client-page-view:has(.feature-block-container, article.vl-card) .form-group.flow-step-content {
+    background-color: transparent !important;
+}
+
+/* --- 3. Heading text-fill restoration (view-scoped: protects Round 29/31
+         white-heading legibility fix on 168981/169141/169146/169144) --- */
+#client-page-view:has(.feature-block-container, article.vl-card) .item-plan-title,
+#client-page-view:has(.feature-block-container, article.vl-card) .item-plan-title b {
+    -webkit-text-fill-color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+#client-page-view:has(.feature-block-container, article.vl-card) .item-plan-subtitle,
+#client-page-view:has(.feature-block-container, article.vl-card) .item-plan-subtitle b {
+    -webkit-text-fill-color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+/* --- 4. Dropdown text color (select2 span) --- */
+#client-page-view .select2-selection__rendered {
+    color: #ffffff !important;
+}
+
+/* --- 5. Reduced space below dropdown --- */
+#client-page-view .form-group.flow-step-content {
+    margin-bottom: 6px !important;
+    padding-bottom: 0 !important;
+}
+
+/* --- 6. Defensive View Plans button rule (harden against CORS regression) --- */
+#client-page-view .form-group.flow-step-content.active > label {
+    background: #f97316 !important;
+    color: #ffffff !important;
+    border-radius: 15px !important;
+}
+
+/* --- 7. Checkout Cart text color (only non-redundant change) --- */
+#client-page-view .vl-btn--sm a.cbe-block-button-element {
+    color: #ffffff !important;
+}
+
+/* --- 8. Feature cards background (view-scoped override of Round 9 #c2410c) --- */
+#client-page-view:has(.feature-block-container, article.vl-card) article.vl-card {
+    background-color: #f97316 !important;
+    background-image: none !important;
+}
+
+/* --- 9. Form-wrapper spacing collapse --- */
+#client-page-view .app-form-embed.app-form-type-update {
+    margin-bottom: 8px !important;
+    padding-bottom: 8px !important;
+}
