@@ -231,3 +231,73 @@
 #dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .no-results-img {
     filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%) !important;
 }
+
+/* =========================================================================
+   TPP SENTINEL ROUND 3 — Row-layout specificity bumps + My Tasks row spacing
+   -------------------------------------------------------------------------
+   Surface: TPP-Sentinel /dashboard — Projects row layout + My Tasks rows
+   Source:  CC empirical specificity verification post-Round-1 deploy
+            (JLW-led).
+
+   Findings:
+     1. Round 1's four row-layout rules at (0,2,0)-class specificity ship
+        inert against SD source rules. CC live-confirmed: plain
+        ".dashboard-item--project .completionData" stays at the source
+        6px value; the same selector with ":not(#a):not(#b)" bumped to
+        (2,2,0) wins (18px verified live).
+     2. Bar width upgraded from 12px to 18px per JLW visual approval.
+     3. My Tasks rows have the same center-float issue as Projects rows.
+        Three new rules tighten gap to 8px and left-align content,
+        scoped to "my-tasks-item .dashboard-item" (NOT bare
+        ".dashboard-item") to avoid colliding with Round 1's row
+        background/border-radius rule.
+
+   Round 1's four row-layout rules stay byte-for-byte in file. Round 3
+   overrides them via later source order at higher specificity. The
+   inert Round 1 rules cause no harm — they just never win.
+
+   Hazards / notes:
+     - <my-tasks-item> is an Angular custom element tag. Stable today,
+       but flag as a volatility watch item like CBE class names — if
+       SuiteDash refactors the task component, the tag could change.
+     - Specificity bumps are now standing technique for any rule on
+       these dashboard blocks (block-level or row-level).
+     - The bare ".dashboard-item__content / __info" Round 1 rules
+       (without :not bumps) are inert but kept for archival continuity.
+       Do NOT delete them in this round.
+   Tier:    2 (CC empirical specificity measurement, single-class color
+            decision from JLW).
+   ========================================================================= */
+
+/* --- Projects progress bar: thick + squared, specificity-bumped --- */
+.dashboard-item--project:not(#a):not(#b) .completionData {
+    width: 18px !important;
+    flex: 0 0 18px !important;
+    border-radius: 4px !important;
+}
+
+/* --- Projects row layout: spacing + left-alignment, specificity-bumped --- */
+.dashboard-item--project:not(#a):not(#b) {
+    gap: 14px !important;
+}
+.dashboard-item--project:not(#a):not(#b) .dashboard-item__content {
+    justify-content: flex-start !important;
+}
+.dashboard-item--project:not(#a):not(#b) .dashboard-item__info {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    flex: 0 1 auto !important;
+}
+
+/* --- My Tasks task-row spacing: tighten gap + left-align --- */
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) my-tasks-item .dashboard-item {
+    gap: 8px !important;
+}
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) my-tasks-item .dashboard-item__content {
+    justify-content: flex-start !important;
+}
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) my-tasks-item .dashboard-item__info {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    flex: 0 1 auto !important;
+}
