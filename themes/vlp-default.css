@@ -2779,3 +2779,185 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     border-radius: 15px !important;
     color: #ffffff !important;
 }
+
+/* ============================================================
+ * ROUND 42 — Checkout-form embed persistent dark theme
+ * Surface: .app-form-embed.app-form-type-checkout
+ * Persists CC injected-CSS work (live fixes 1–5) + gap-closers
+ * for 15+ element classes the inline-only pass was reaching.
+ * Authored as scoped overrides (not in-place edits) for
+ * consistency with bundle-sourced fixes that can only be done
+ * as overrides. Do not migrate to in-place edits without
+ * re-auditing consumers of the affected source rules.
+ * ============================================================ */
+
+/* --- R42.1 Scoped variable overrides (kills cream/parchment surfaces) --- */
+/* Sources: --lentax-* defined in lentax-base.css :root (L22, L180);
+ * --rx-* and --sd-dropdown-bg defined in cloudfront bundles
+ * (sd.app.Redactor.min.css, mpa-style.css). All redefined here at
+ * the embed scope so consumers under this scope resolve to dark. */
+.app-form-embed.app-form-type-checkout,
+.app-form-embed.app-form-type-checkout * {
+  --lentax-form-surface-bg: #1f1f1f !important;
+  --lentax-form-surface-bg-soft: #1f1f1f !important;
+  --lentax-lm-card: #1f1f1f !important;
+  --lentax-parchment-cream: #1f1f1f !important;
+  --lentax-vlp-parchment-cream: #1f1f1f !important;
+  --lentax-tpp-ivory: #1f1f1f !important;
+  --lentax-tpp-ivory-rgb: 31, 31, 31 !important;
+  --lentax-tpp-crimson-tint: #1f1f1f !important;
+  --rx-bg-raised: #1f1f1f !important;
+  --rx-bg-overlay: #1f1f1f !important;
+  --rx-bg-light-accent: #1f1f1f !important;
+  --sd-dropdown-bg: #2a2a2a !important;
+}
+
+/* --- R42.2 Totals card (YOUR CHECKOUT TOTALS) --- */
+/* Cream ::before is painted by mpa-style.css with a 4427-char
+ * ID-scoped selector. Neutralized here by zeroing the ::before
+ * background + setting the wrapper's own bg to dark. */
+.app-form-embed.app-form-type-checkout .choose-items-wrapper .choose-items-summary-wrapper::before {
+  background: transparent !important;
+}
+.app-form-embed.app-form-type-checkout .choose-items-wrapper .choose-items-summary-wrapper {
+  background-color: #1f1f1f !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper .choose-items-summary__section-title,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper .choose-items-summary__items-wrap,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper span,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper p,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper div,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper strong,
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper b {
+  color: #f5f5f5 !important;
+}
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper .choose-items-summary-head {
+  color: #f97316 !important;
+}
+.app-form-embed.app-form-type-checkout .choose-items-summary-wrapper hr {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* --- R42.3 Form panel surface (left column: cart steps card) --- */
+/* Note: vlp-default.css L1102 sets .choose-items-block to a white
+ * background. Overridden here at the embed scope. The padding
+ * declaration there (16px) is the value R42.5 lifts to 32px. */
+.app-form-embed.app-form-type-checkout .choose-items-block,
+.app-form-embed.app-form-type-checkout .choose-items-block .card,
+.app-form-embed.app-form-type-checkout .choose-items-block .card-block,
+.app-form-embed.app-form-type-checkout .choose-items-block .form,
+.app-form-embed.app-form-type-checkout .choose-items-block .form-oscar,
+.app-form-embed.app-form-type-checkout .choose-items-block .form-fields-container,
+.app-form-embed.app-form-type-checkout .choose-items-block .form-group,
+.app-form-embed.app-form-type-checkout .choose-items-block .appointment-intake-form-wrapper,
+.app-form-embed.app-form-type-checkout .choose-items-block .choose-items-select__item {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* --- R42.4 Form panel inputs --- */
+/* The bare-input border-color rule is a gap-closer: CC's inline
+ * pass set border-color on raw <input>/.input elements that no
+ * type-attribute selector reaches. Source rule added explicitly. */
+.app-form-embed.app-form-type-checkout .choose-items-block .form-control,
+.app-form-embed.app-form-type-checkout .choose-items-block input.customRateInput,
+.app-form-embed.app-form-type-checkout .choose-items-block input[type="text"],
+.app-form-embed.app-form-type-checkout .choose-items-block input[type="email"],
+.app-form-embed.app-form-type-checkout .choose-items-block input[type="tel"],
+.app-form-embed.app-form-type-checkout .choose-items-block input[type="number"],
+.app-form-embed.app-form-type-checkout .choose-items-block input,
+.app-form-embed.app-form-type-checkout .choose-items-block input.input,
+.app-form-embed.app-form-type-checkout .choose-items-block textarea,
+.app-form-embed.app-form-type-checkout .choose-items-block select {
+  background-color: #2a2a2a !important;
+  color: #f5f5f5 !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+.app-form-embed.app-form-type-checkout .choose-items-block input::placeholder,
+.app-form-embed.app-form-type-checkout .choose-items-block textarea::placeholder {
+  color: rgba(245, 245, 245, 0.55) !important;
+}
+
+/* --- R42.5 Form panel text + container gap-closers --- */
+/* The container-level selectors (div.div, .card, .card-header,
+ * .card-block, .form-fields-container, .form.form-oscar, .row.form-group,
+ * .sd-oscar-form-errors, .animated-form-label, .field_important,
+ * .col, .contract-block-wrapper, .signature-confirm-icon, h4.m-md-0,
+ * .appointment-intake-form-wrapper) are gap-closers: CC's inline
+ * pass was setting color on these via the dark-text algorithmic
+ * detection, but no stylesheet selector covered them. Enumerated
+ * explicitly so removing the observer doesn't regress them. */
+.app-form-embed.app-form-type-checkout .choose-items-block,
+.app-form-embed.app-form-type-checkout .choose-items-block *,
+.app-form-embed.app-form-type-checkout .choose-items-block label,
+.app-form-embed.app-form-type-checkout .choose-items-block span,
+.app-form-embed.app-form-type-checkout .choose-items-block p,
+.app-form-embed.app-form-type-checkout .choose-items-block div,
+.app-form-embed.app-form-type-checkout .choose-items-block .label-subtext,
+.app-form-embed.app-form-type-checkout .choose-items-block .card,
+.app-form-embed.app-form-type-checkout .choose-items-block .card-header,
+.app-form-embed.app-form-type-checkout .choose-items-block .card-block,
+.app-form-embed.app-form-type-checkout .choose-items-block .form,
+.app-form-embed.app-form-type-checkout .choose-items-block .form-oscar,
+.app-form-embed.app-form-type-checkout .choose-items-block .form-fields-container,
+.app-form-embed.app-form-type-checkout .choose-items-block .form-group,
+.app-form-embed.app-form-type-checkout .choose-items-block .row.form-group,
+.app-form-embed.app-form-type-checkout .choose-items-block .col,
+.app-form-embed.app-form-type-checkout .choose-items-block .animated-form-label,
+.app-form-embed.app-form-type-checkout .choose-items-block .field_important,
+.app-form-embed.app-form-type-checkout .choose-items-block .sd-oscar-form-errors,
+.app-form-embed.app-form-type-checkout .choose-items-block .contract-block-wrapper,
+.app-form-embed.app-form-type-checkout .choose-items-block .signature-confirm-icon,
+.app-form-embed.app-form-type-checkout .choose-items-block .appointment-intake-form-wrapper,
+.app-form-embed.app-form-type-checkout .choose-items-block h4.m-md-0,
+.app-form-embed.app-form-type-checkout .choose-items-block .choose-items-select__item {
+  color: #f0f0f0 !important;
+}
+
+/* --- R42.6 Error banner (sd-form-error-banner) --- */
+/* Explicit gap-closer: CC's inline pass was setting both the
+ * background-color AND color on this element. No stylesheet rule
+ * reached it. Both declared here so the banner stays readable
+ * after the observer is retired. */
+.app-form-embed.app-form-type-checkout .sd-form-error-banner {
+  background-color: #2a2a2a !important;
+  color: #f5f5f5 !important;
+}
+
+/* --- R42.7 Alignment + spacing --- */
+/* .extended-form-wrapper.choice-step-styling-options padding-left
+ * and .choose-items-block justify-content come from mpa-style.css
+ * (cloudfront), not from vlp-default.css. The padding declaration
+ * at vlp-default.css L1097 only sets background:transparent — does
+ * not carry padding-left. The 48px padding is a bundle rule.
+ * Padding-top 32px raises the spacing between the orange bar and
+ * the "Choose a Pricing Package" card from the bundle's 16px. */
+.app-form-embed.app-form-type-checkout .extended-form-wrapper.choice-step-styling-options {
+  padding-left: 0 !important;
+}
+.app-form-embed.app-form-type-checkout .choose-items-block {
+  justify-content: flex-start !important;
+  padding-top: 32px !important;
+}
+
+/* --- R42.8 Agree & Sign card border + orange ::before strip --- */
+/* Wrapper border source: vlp-default.css L1079 declares 2px but
+ * live DOM computed 1.5px — another rule (likely cloudfront)
+ * adjusts border-width. The `border: none` declaration here covers
+ * both cases. ::before strip source: lentax-base.css L12231;
+ * neutralized via content:none + display:none + background:none
+ * (any one would suffice; all three for defense in depth). */
+.app-form-embed.app-form-type-checkout .appointment-intake-form-wrapper {
+  border: none !important;
+}
+.app-form-embed.app-form-type-checkout .appointment-intake-form-field-block::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* ============================================================
+ * END ROUND 42
+ * ============================================================ */
