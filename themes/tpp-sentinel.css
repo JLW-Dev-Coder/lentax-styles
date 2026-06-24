@@ -95,3 +95,111 @@
   --lentax-chrome-tabstrip-divider: rgba(255, 255, 255, 0.15);
   --lentax-chrome-tabstrip-text: rgba(255, 255, 255, 0.9);
 }
+
+/* =========================================================================
+   TPP SENTINEL ROUND 1 — Port of VLP Round 38 (Projects + My Tasks restyle)
+   -------------------------------------------------------------------------
+   Surface: TPP-Sentinel /dashboard — .cbe-block-all-tasks2 (Projects) +
+            .cbe-block-my-tasks2 (My Tasks) blocks
+   Source:  Verbatim port of VLP Round 38 (commit e2bdb04). JLW Option A
+            ruling: ship the VLP blue-on-blue / navy-chrome treatment
+            unchanged into the Sentinel theme. Palette adaptation deferred
+            until CC visual review surfaces clashes against Sentinel's
+            red/navy/cream palette.
+
+   Technique: SD source rules on these blocks are !important at (1,1,0) —
+            ID + class. Per CC empirical measurement (VLP Round 38),
+            ":not(#a):not(#b)" appended to block-class selectors adds (2,0)
+            specificity without matching anything (no element has id "a"
+            or "b"), giving (2,1,0) that beats (1,1,0) !important without
+            hard-coding volatile #cbe-block-{timestamp} IDs.
+
+   Block-level selectors are page-scoped with #dashboard-view to prevent
+   leak onto other surfaces (mirrors VLP Round 38's PE-ratified deviation
+   protecting Round 18's view/168981 navy callout). Row-layout rules
+   (.dashboard-item--project descendants) are not page-scoped — they are
+   project-modifier-bound with no known collision.
+
+   Hazards / notes:
+     - JLW environment loads lentax-tpp-sentinel.js → tpp-sentinel.css.
+       This round ships in the correct file for that loader.
+     - VLP Round 38 remains live in themes/vlp-default.css. Both stand
+       independently via per-theme file partition.
+     - CBE timestamp IDs (#cbe-block-1781727774220 Projects /
+       #cbe-block-1781727774224 Tasks) intentionally NOT used as anchors.
+       Volatile per CBE-ID-volatility rule. Semantic block-type classes
+       (cbe-block-all-tasks2 / cbe-block-my-tasks2) are stable.
+     - .no-results-img scoped tightly under .cbe-block-my-tasks2 — do not
+       globalize (leak risk to other empty-state surfaces).
+     - Filter-based SVG recoloring is browser-dependent and approximate;
+       SVG is two-tone, upper panel stays lighter than tray/check.
+     - Four row-layout rules unverified at stylesheet specificity per CC
+       (rows weren't rendered during verification). Follow-up may add
+       :not() bumps if any ship inert on Sentinel.
+     - Visual clash risk: Sentinel is a red/navy/cream theme. Blue-on-blue
+       blocks may feel disconnected. JLW Option A ruling accepts this
+       risk pending visual review.
+   Tier:    1 (verbatim port of CC-verified VLP Round 38).
+   ========================================================================= */
+
+/* --- Projects progress bar: thick + squared --- */
+.dashboard-item--project .completionData {
+    width: 12px !important;
+    flex: 0 0 12px !important;
+    border-radius: 4px !important;
+}
+
+/* --- Project row layout: spacing + left alignment --- */
+.dashboard-item--project {
+    gap: 14px !important;
+}
+.dashboard-item--project .dashboard-item__content {
+    justify-content: flex-start !important;
+}
+.dashboard-item--project .dashboard-item__info {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    flex: 0 1 auto !important;
+}
+
+/* --- Block body: blue-on-blue gradient (#dashboard-view-scoped) --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b),
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) {
+    background-color: transparent !important;
+    background-image: linear-gradient(180deg, rgb(238, 242, 248) 0%, rgb(219, 228, 242) 100%) !important;
+    border: 1px solid rgba(20, 33, 61, 0.22) !important;
+}
+
+/* --- Dark navy header --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__header,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__header {
+    background-color: transparent !important;
+    background-image: linear-gradient(180deg, rgb(20, 33, 61) 0%, rgb(28, 44, 78) 100%) !important;
+}
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__header *,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__header * {
+    color: rgb(235, 240, 250) !important;
+}
+
+/* --- Dark navy footer (button text preserved via :not()) --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__footer,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__footer {
+    background-color: transparent !important;
+    background-image: linear-gradient(180deg, rgb(28, 44, 78) 0%, rgb(20, 33, 61) 100%) !important;
+}
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__footer *:not([class*="btn"]):not([class*="button"]),
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__footer *:not([class*="btn"]):not([class*="button"]) {
+    color: rgb(200, 210, 228) !important;
+}
+
+/* --- Body rows: soft translucent white panel --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-item,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-item {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+    border-radius: 12px !important;
+}
+
+/* --- My Tasks empty-state icon: recolor to hero navy (filter approximation) --- */
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .no-results-img {
+    filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%) !important;
+}
