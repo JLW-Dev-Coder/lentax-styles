@@ -203,3 +203,31 @@
 #dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .no-results-img {
     filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%) !important;
 }
+
+/* =========================================================================
+   TPP SENTINEL ROUND 2 — Projects empty-state icon recolor to navy
+   -------------------------------------------------------------------------
+   Surface: TPP-Sentinel /dashboard — .cbe-block-all-tasks2 .no-results-img
+   Source:  JLW visual review after Round 1 deploy. My Tasks icon went
+            navy; Projects empty-state icon still rendered beige/cream
+            because Round 1's filter was scoped to .cbe-block-my-tasks2
+            only.
+
+   Fix:     Extend the identical filter to .cbe-block-all-tasks2 using
+            the same #dashboard-view + :not(#a):not(#b) pattern Round 1
+            established.
+
+   Hazards / notes:
+     - Same scope-leak warning as Round 1: .no-results-img is shared
+       across all empty-state surfaces (CRM, Files, etc.). Keep the
+       .cbe-block-all-tasks2 scope tight; do NOT globalize.
+     - Filter math is identical to Round 1 (CC-derived approximation
+       targeting hero navy). Two-tone SVG limitation carries over —
+       upper panel stays lighter than tray/check.
+   Tier:    1 (verbatim port of Round 1 filter to sibling block).
+   ========================================================================= */
+
+/* --- Projects empty-state icon: recolor to hero navy (filter approximation) --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .no-results-img {
+    filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%) !important;
+}
