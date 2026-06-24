@@ -2646,3 +2646,65 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     margin-bottom: 8px !important;
     padding-bottom: 8px !important;
 }
+
+
+/* =========================================================================
+   ROUND 40 — Unify Checkout Cart + Book A Demo button styling (CSS + JS)
+   -------------------------------------------------------------------------
+   Surface: VLP /portal/dashboard/view/169143 — Checkout Cart + Book A Demo
+            buttons under the View Plans section
+   Source:  CC-in-Chrome live diagnosis + RC pre-flight collision audit +
+            JLW visual ruling.
+
+   Goal: Both buttons render gray (#888) border, transparent background,
+         white text, 15px radius — matching the outlined-button style
+         Checkout Cart already has.
+
+   What Round 39 missed (corrected here):
+     - Round 9 (themes/vlp-default.css L583-587) sets .vl-btn--support's
+       background to var(--vlpd-page-bg) = #1a1a1a, painting Book A Demo
+       as a dark filled pill.
+     - Round 11 (lentax-vlp-default.js, applyDemoBorder IIFE) re-asserts
+       border-color: #1a1a1a !important via inline style on a 400ms retry
+       loop, because Round 11 established that CSS-alone loses the border
+       cascade to the SD platform border source.
+     - CC's "stale rgb(26,26,26) reads" during Round 40 v1 diagnosis were
+       the JS loop firing — not stale reads, just continuous re-assertion.
+     - Round 39 #7's "ship nothing on .vl-btn--support" decision was made
+       under the false premise that the dark styling was native/CORS.
+       It's our own code.
+
+   Two-file fix (PE ruling, Option A from RC's stop report):
+     1. CSS (this block): supersede Round 9 with transparent bg, white
+        text, 15px radius. Leave border alone here.
+     2. JS (commit 2 of this branch): change applyDemoBorder's
+        border-color literal from #1a1a1a to #888. JS-inline-!important
+        is the only declaration that beats the SD platform border source.
+
+   Selector note: Round 9's existing rule uses .cbe-block-button-element
+   (no `a` prefix). Round 40 uses a.cbe-block-button-element to match
+   Round 39 #7's anchor and confirm the element is an <a>. Both selectors
+   match the same DOM element; Round 40's added type bumps specificity to
+   (1,2,1), strictly higher than Round 9's (0,2,0).
+
+   Hazards / notes:
+     - Round 9's "border: 2.5px solid #f97316 !important" remains in the
+       file but is irrelevant: applyDemoBorder overrides border-color via
+       JS inline style. The CSS border-style + border-width still apply,
+       but commit 2's JS keeps the color override active.
+     - color: #fff on .vl-btn--sm here is redundant with Round 39 #7 but
+       required on .vl-btn--support against Round 9's already-#fff (also
+       redundant — defensive for future SD changes).
+     - .vl-btn--sm and .vl-btn--support are per-CC-audit page count = 1
+       each on view/169143; broader portal scope is the only known
+       deployment footprint.
+   Tier:    3 (RC pre-flight collision audit identified the root cause;
+            PE Option A ruling).
+   ========================================================================= */
+
+#client-page-view .vl-btn--sm a.cbe-block-button-element,
+#client-page-view .vl-btn--support a.cbe-block-button-element {
+    background-color: transparent !important;
+    border-radius: 15px !important;
+    color: #ffffff !important;
+}
