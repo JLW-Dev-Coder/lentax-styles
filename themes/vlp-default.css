@@ -2708,3 +2708,74 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     border-radius: 15px !important;
     color: #ffffff !important;
 }
+
+/* =========================================================================
+   ROUND 41 — Restore dropped declarations (dropdown bg + Checkout Cart border)
+   -------------------------------------------------------------------------
+   Surface: VLP /portal/dashboard/view/169143 — dropdown + Checkout Cart
+   Source:  CC-in-Chrome live deployed-state diagnosis (no overrides) +
+            JLW visual verification of CC preview.
+
+   Two PE prompt errors corrected here:
+
+     1. Round 39 #4 shipped color:#fff on .select2-selection__rendered
+        but the original CC consolidated stylesheet also called for
+        background-color:transparent on the parent .select2-selection.
+        The bg-transparent rule was dropped from the Round 39 prompt.
+        Deployed result: white text on select2 default white background,
+        making the dropdown appear blank.
+
+     2. Round 40 dropped the "border" declaration from the shared
+        .vl-btn--sm / .vl-btn--support rule because Round 11's precedent
+        said CSS-alone loses the border cascade. That's true for
+        .vl-btn--support (applyDemoBorder IIFE owns its border-color)
+        but not for .vl-btn--sm — Checkout Cart has no JS handler. The
+        border declaration needed to ship on the shared selector; for
+        .vl-btn--support the CSS is harmless (JS overrides it), for
+        .vl-btn--sm the CSS is the only path. Round 40 omitted it on
+        both, leaving Checkout Cart with whatever the CORS theme paints
+        (dark border, not matching Book A Demo's #888).
+
+   Fix:
+     1. .select2-selection background-color:transparent + 1px #555 border
+        (subtle gray border per JLW's earlier preference)
+     2. Restore border:2px solid #888 on the shared .vl-btn--sm /
+        .vl-btn--support rule. Both buttons render gray-bordered;
+        applyDemoBorder still overrides border-color on .vl-btn--support
+        to its own #888 (harmless no-op confirming match).
+
+   Rounds 39 and 40 stay byte-for-byte in file — Round 41 supersedes
+   via later source order at equal-or-higher specificity.
+
+   Hazards / notes:
+     - Round 41 #1 anchors on both .select2-selection and
+       .select2-selection--single because CC's deployed-state read
+       showed the matched element carries both classes; ship both
+       selectors to cover any select2 variant.
+     - The two rules from Round 40 (3-declaration form) coexist with
+       Round 41's 4-declaration form. Round 41 wins on later source
+       order at the same selector specificity. No cascade conflict.
+     - applyDemoBorder JS still fires on .vl-btn--support and sets
+       border-color: #888 inline-!important — Round 41's CSS asserts
+       the same color, so the JS is now a redundancy/insurance
+       (which is fine; Round 11's precedent still holds for the
+       CORS source case).
+   Tier:    2 (CC deployed-state diagnosis identified two PE prompt
+            errors; both fixes verified live by CC preview before ship).
+   ========================================================================= */
+
+/* --- 1. Dropdown: transparent background + subtle gray border --- */
+#client-page-view .select2-selection,
+#client-page-view .select2-selection--single {
+    background-color: transparent !important;
+    border: 1px solid #555 !important;
+}
+
+/* --- 2. Restore border on Checkout Cart + Book A Demo (Round 40 supersede) --- */
+#client-page-view .vl-btn--sm a.cbe-block-button-element,
+#client-page-view .vl-btn--support a.cbe-block-button-element {
+    border: 2px solid #888 !important;
+    background-color: transparent !important;
+    border-radius: 15px !important;
+    color: #ffffff !important;
+}
