@@ -905,7 +905,7 @@ body {
   background-color: var(--vlpd-page-bg) !important;
   background-size: 100% 400px !important;
   background-repeat: no-repeat !important;
-  border: 2px solid #f97316 !important;
+  border: none !important;
   border-radius: 20px !important;
   overflow: hidden !important;
   margin-bottom: 12px !important;
@@ -995,7 +995,6 @@ body {
   background: #ffffff !important;
   background-color: #ffffff !important;
   border: 1.5px solid rgba(26, 26, 26, 0.15) !important;
-  border-left: 4px solid #f97316 !important;
   border-radius: 8px !important;
   padding: 12px !important;
 }
@@ -2960,4 +2959,160 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 
 /* ============================================================
  * END ROUND 42
+ * ============================================================ */
+
+/* ============================================================
+ * ROUND 43 — Checkout-form embed persistent dark theme
+ * (supersedes R42; R42 anchor was 9 levels inside ext, matched nothing)
+ * Anchor: .extended-form-wrapper.choice-step-styling-options
+ * Per CC diagnostic round 3: this is the structural ancestor class
+ * compound on checkout-form embeds. Element-own-IDs used where
+ * bundle out-specifies class-only (.card, .form-fields-container).
+ * .form-oscar handled by the round 43 IIFE in lentax-vlp-default.js
+ * (no portable source selector beats the bundle's 2-ID specificity).
+ * ============================================================ */
+
+/* --- R43.1 Scoped variable overrides --- */
+.extended-form-wrapper.choice-step-styling-options,
+.extended-form-wrapper.choice-step-styling-options * {
+  --lentax-form-surface-bg: #1f1f1f !important;
+  --lentax-form-surface-bg-soft: #1f1f1f !important;
+  --lentax-lm-card: #1f1f1f !important;
+  --lentax-parchment-cream: #1f1f1f !important;
+  --lentax-vlp-parchment-cream: #1f1f1f !important;
+  --lentax-tpp-ivory: #1f1f1f !important;
+  --lentax-tpp-ivory-rgb: 31, 31, 31 !important;
+  --lentax-tpp-crimson-tint: #1f1f1f !important;
+  --rx-bg-raised: #1f1f1f !important;
+  --rx-bg-overlay: #1f1f1f !important;
+  --rx-bg-light-accent: #1f1f1f !important;
+  --sd-dropdown-bg: #2a2a2a !important;
+}
+
+/* --- R43.2 Totals card (YOUR CHECKOUT TOTALS) + ::before cream layer --- */
+.extended-form-wrapper.choice-step-styling-options .choose-items-wrapper .choose-items-summary-wrapper::before {
+  background: transparent !important;
+}
+.extended-form-wrapper.choice-step-styling-options .choose-items-wrapper .choose-items-summary-wrapper {
+  background-color: #1f1f1f !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper .choose-items-summary__section-title,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper .choose-items-summary__items-wrap,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper span,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper p,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper div,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper strong,
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper b {
+  color: #f5f5f5 !important;
+}
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper .choose-items-summary-head {
+  color: #f97316 !important;
+}
+.extended-form-wrapper.choice-step-styling-options .choose-items-summary-wrapper hr {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* --- R43.3 Form panel surface (the choose-items-block + reachable containers) --- */
+.extended-form-wrapper.choice-step-styling-options .choose-items-block,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .form,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .form-group,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .appointment-intake-form-wrapper,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .choose-items-select__item {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* --- R43.3a Element-own-ID anchored containers (bundle out-specifies class-only) --- */
+/* Per CC diagnostic round 1: bundle uses 2-ID specificity for .card and
+ * 1-ID for .form-fields-container. Element-own-IDs are structural (verified
+ * across two checkout forms in CC round 3) so these selectors are portable. */
+#forms-form-wrapper.card,
+#client-page-view #forms-form-wrapper {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+#client-page-view #formFields,
+#client-page-view #formFields.form-fields-container {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* --- R43.4 Form panel inputs --- */
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .form-control,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input.customRateInput,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input[type="text"],
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input[type="email"],
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input[type="tel"],
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input[type="number"],
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input.input,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block textarea,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block select {
+  background-color: #2a2a2a !important;
+  color: #f5f5f5 !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+.extended-form-wrapper.choice-step-styling-options .choose-items-block input::placeholder,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block textarea::placeholder {
+  color: rgba(245, 245, 245, 0.55) !important;
+}
+
+/* --- R43.5 Text + container gap-closers --- */
+.extended-form-wrapper.choice-step-styling-options .choose-items-block,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block *,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block label,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block span,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block p,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block div,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .label-subtext,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .card-header,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .card-block,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .row.form-group,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .col,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .animated-form-label,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .field_important,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .sd-oscar-form-errors,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .contract-block-wrapper,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .signature-confirm-icon,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .appointment-intake-form-wrapper,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block h4.m-md-0,
+.extended-form-wrapper.choice-step-styling-options .choose-items-block .choose-items-select__item {
+  color: #f0f0f0 !important;
+}
+
+/* --- R43.6 Error banner (UNVERIFIED — no error state rendered during diagnostic) --- */
+/* Per CC diagnostic round 3: structural assumption is that errors render
+ * inside ext under .choose-items-block; could not positively verify
+ * containment because no error was on-screen. If an error state surfaces
+ * and the banner regresses, treat as Round 44 fixup. */
+.extended-form-wrapper.choice-step-styling-options .sd-form-error-banner {
+  background-color: #2a2a2a !important;
+  color: #f5f5f5 !important;
+}
+
+/* --- R43.7 Alignment + spacing --- */
+/* The wrapper element IS the anchor; rule applies to .extended-form-wrapper
+ * itself, not a descendant. */
+.extended-form-wrapper.choice-step-styling-options {
+  padding-left: 0 !important;
+}
+.extended-form-wrapper.choice-step-styling-options .choose-items-block {
+  justify-content: flex-start !important;
+  padding-top: 32px !important;
+}
+
+/* --- R43.8 Agree & Sign card border + ::before strip --- */
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-wrapper {
+  border: none !important;
+}
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* ============================================================
+ * END ROUND 43
  * ============================================================ */
