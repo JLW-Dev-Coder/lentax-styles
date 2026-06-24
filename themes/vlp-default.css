@@ -2300,3 +2300,44 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
 }
+
+/* =========================================================================
+   ROUND 37 — Fix --vlpd-text-on-dark variable poisoning at #dashboard-view
+   -------------------------------------------------------------------------
+   Surface: /dashboard — hero greeting cream-tint root cause
+   Source:  CC-in-Chrome variable-poisoning diagnosis + RC investigation
+            (round 37 investigation prompt).
+
+   Root cause: lentax-base.css:12873 (Phase 2a, 2026-06-19) re-points
+            --vlpd-text-on-dark to var(--lentax-tpp-champagne) at the
+            #dashboard-view scope. On VLP, --lentax-tpp-champagne maps
+            to #F5E6D3 (cream). The winning hero rule is round 28/29's
+            3.1.3 block at color: var(--vlpd-text-on-dark, #ffffff) — so
+            it resolves to cream on every dashboard descendant.
+
+   Why rounds 35/36 didn't fix it:
+     - Round 35 literal #ffffff at (1,1,0): wins bare wrapper, ties or
+       loses to 3.1.3's ID-scoped (1,1,1) on inner spans.
+     - Round 36 literal #ffffff at (0,3,0)/(0,2,1): inert against 3.1.3's
+       ID-scoped (1,2,0)/(1,1,1). Was diagnosed against a literal cream
+       rule that doesn't exist — the cream comes from var resolution,
+       not a literal declaration.
+
+   Fix:     Redefine --vlpd-text-on-dark to #ffffff at the #dashboard-view
+            scope with !important, beating the base file's non-important
+            redefinition at the same (1,0,0) specificity. Round 28/29's
+            existing var-based rule then resolves to white without
+            modification. Rounds 35 and 36 stay in file (harmless,
+            defense-in-depth on the bare wrapper case).
+
+   Hazard:  This intentionally diverges VLP's dashboard text-on-dark from
+            the TPP champagne theme inheritance. Phase 2a's re-pointing
+            is correct for TPP; for VLP it's a misfit. Future TPP work
+            using --vlpd-text-on-dark continues to inherit champagne
+            unchanged (this rule is VLP-only via file partition).
+   Tier:    3 (CC variable-poisoning diagnosis + RC root-cause investigation).
+   ========================================================================= */
+
+#dashboard-view {
+    --vlpd-text-on-dark: #ffffff !important;
+}
