@@ -2341,3 +2341,136 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 #dashboard-view {
     --vlpd-text-on-dark: #ffffff !important;
 }
+
+
+/* =========================================================================
+   ROUND 38 — Projects + My Tasks dashboard block restyle (blue-on-blue)
+   -------------------------------------------------------------------------
+   Surface: /dashboard — .cbe-block-all-tasks2 (Projects) +
+            .cbe-block-my-tasks2 (My Tasks) blocks
+   Source:  CC-in-Chrome empirical specificity measurement (JLW-led).
+
+   Technique: SuiteDash source rules on these blocks are !important at
+            (1,1,0) — ID + class. Plain class overrides (0,1,0) and
+            doubled/tripled-class (0,2,0)/(0,3,0) all ship inert. The
+            ":not(#a):not(#b)" pattern adds (2,0) specificity without
+            matching anything (no element has id "a" or "b"), giving
+            (2,1,0) that beats (1,1,0) !important on the block-level
+            selectors without hard-coding the volatile
+            #cbe-block-{timestamp} IDs.
+
+   Verified by CC from stylesheet context (appended last in <head>,
+   mirroring Netlify cascade position): block / header / footer / icon
+   rules all win.
+
+   Surfaces fixed:
+     1. Project progress bar — thick 12px, 4px corner radius
+     2. Project row layout — 14px gap, content left-aligned, info margins
+        cleared (no center-float)
+     3. Block body — soft blue-on-blue gradient
+     4. Block header — dark navy gradient, light text
+     5. Block footer — dark navy gradient, light text (button preserved)
+     6. Body rows — translucent white panel with rounded corners
+     7. My Tasks empty-state icon — recolor to hero navy via CSS filter
+
+   Hazards / notes:
+     - CBE timestamp IDs (#cbe-block-1781727774220 Projects /
+       #cbe-block-1781727774224 Tasks) intentionally NOT used as anchors.
+       Volatile per CC's CBE-ID-volatility rule. Semantic block-type
+       classes (cbe-block-all-tasks2 / cbe-block-my-tasks2) are stable.
+     - Source rules also appear keyed to the timestamp IDs — meaning if
+       admin rebuilds blocks, both the SD source rules AND our overrides
+       continue to work (we anchor on the semantic class; SD anchors on
+       a regenerated ID), but inline ng-style admin-UI overrides would
+       beat any stylesheet. Runbook: if this round goes inert post-deploy,
+       check for an admin-set inline background.
+     - Four row-layout rules (bar width/radius, gap, content justify,
+       info margins) UNVERIFIED at stylesheet specificity per CC — rows
+       were not rendered during CC's verification pass. Ship as drafted;
+       if any go inert post-deploy, follow-up round will add :not(#a):not(#b)
+       to those selectors too.
+     - .no-results-img is shared across multiple empty-state surfaces
+       (Projects, CRM, etc.). Scoped tightly under .cbe-block-my-tasks2
+       to prevent leak. Do NOT globalize.
+     - Filter-based SVG recoloring is browser-dependent and approximate;
+       SVG is two-tone, so upper panel stays lighter than tray/check.
+       True flat-navy would require editing and re-hosting the SVG.
+     - TPP Round 1 (tpp-default.css) styles .dashboard-organize-box
+       descendants under a DIFFERENT theme file. No cross-product
+       collision at deploy because per-theme partition.
+     - Pre-flight grep surfaced a collision with Round 18 (f7ed004): a
+       navy callout card on view/168981 at
+       "#client-page-view .dashboard-organize-box.cbe-block-all-tasks2"
+       (1,2,0). Round 38 as initially drafted at (2,1,0) would have leaked
+       onto that surface and flipped the navy/orange callout to this
+       blue-on-blue treatment. PE ratified RC's catch and scoped every
+       block-level selector to #dashboard-view (mirroring Round 18's
+       #client-page-view pattern). Resulting specificity (3,1,0) still
+       crushes SD source rules at (1,1,0) !important. Row-layout rules
+       (.dashboard-item--project descendants) are not scoped — they are
+       project-modifier-bound and have no Round 18 collision.
+   Tier:    3 (CC-in-Chrome empirical specificity measurement + JLW
+            iterative live-preview refinement).
+   ========================================================================= */
+
+/* --- Projects progress bar: thick + squared --- */
+.dashboard-item--project .completionData {
+    width: 12px !important;
+    flex: 0 0 12px !important;
+    border-radius: 4px !important;
+}
+
+/* --- Project row layout: spacing + left alignment --- */
+.dashboard-item--project {
+    gap: 14px !important;
+}
+.dashboard-item--project .dashboard-item__content {
+    justify-content: flex-start !important;
+}
+.dashboard-item--project .dashboard-item__info {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    flex: 0 1 auto !important;
+}
+
+/* --- Block body: blue-on-blue gradient (specificity-bumped) --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b),
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) {
+    background-color: transparent !important;
+    background-image: linear-gradient(180deg, rgb(238, 242, 248) 0%, rgb(219, 228, 242) 100%) !important;
+    border: 1px solid rgba(20, 33, 61, 0.22) !important;
+}
+
+/* --- Dark navy header --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__header,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__header {
+    background-color: transparent !important;
+    background-image: linear-gradient(180deg, rgb(20, 33, 61) 0%, rgb(28, 44, 78) 100%) !important;
+}
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__header *,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__header * {
+    color: rgb(235, 240, 250) !important;
+}
+
+/* --- Dark navy footer (button text preserved via :not()) --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__footer,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__footer {
+    background-color: transparent !important;
+    background-image: linear-gradient(180deg, rgb(28, 44, 78) 0%, rgb(20, 33, 61) 100%) !important;
+}
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-organize-box__footer *:not([class*="btn"]):not([class*="button"]),
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-organize-box__footer *:not([class*="btn"]):not([class*="button"]) {
+    color: rgb(200, 210, 228) !important;
+}
+
+/* --- Body rows: soft translucent white panel --- */
+#dashboard-view .cbe-block-all-tasks2:not(#a):not(#b) .dashboard-item,
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .dashboard-item {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+    border-radius: 12px !important;
+}
+
+/* --- My Tasks empty-state icon: recolor to hero navy (filter approximation) --- */
+#dashboard-view .cbe-block-my-tasks2:not(#a):not(#b) .no-results-img {
+    filter: brightness(0) saturate(100%) invert(11%) sepia(40%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%) !important;
+}
