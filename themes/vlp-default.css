@@ -3186,3 +3186,25 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 44
  * ============================================================ */
+
+
+/* ============================================================
+ * ROUND 45 — Dark .choose-items-block outer wrapper
+ * Closes the one remaining white surface in the checkout-form
+ * region: the outer .choose-items-block wrapper containing the
+ * entire form card. R43.3 targeted this element at class-only
+ * specificity (0,3,0) and lost to the existing
+ *   #client-page-view .choose-items-block { background:#fff !important }
+ * at vlp-default.css L1100 (specificity 1,2,0).
+ * R45.1 wins at 1,3,0 — verified live by CC.
+ * ============================================================ */
+
+/* --- R45.1 .choose-items-block outer wrapper --- */
+#client-page-view .extended-form-wrapper.choice-step-styling-options .choose-items-block {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* ============================================================
+ * END ROUND 45
+ * ============================================================ */
