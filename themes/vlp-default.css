@@ -3240,3 +3240,36 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 46
  * ============================================================ */
+
+
+/* ============================================================
+ * ROUND 47 — Dark .contract-block in eSignature panel
+ * Closes a state-conditional white surface: the contract/receipt
+ * document preview that renders inside the signature panel after
+ * the user clicks "Agree & Sign" on Step 2. Earlier rounds missed
+ * it because diagnostics were run on the closed-panel state.
+ *
+ * R43 deployed rules at L3076–3081 target .contract-block-wrapper
+ * and .contract-block-content (both at class-only 0,4,0) but
+ * never the bare .contract-block element. The cross-origin theme
+ * rule painting it white is unreadable via cssRules but its win
+ * pattern matches the recurring R43-anchor failure mode: any
+ * #client-page-view-prefixed rule beats class-only chains on the
+ * ID column regardless of class count.
+ *
+ * R47.1 wins at (1,3,0): one ID + three classes
+ * (.extended-form-wrapper, .choice-step-styling-options,
+ * .contract-block). Per CC diagnostic round 7: live-probed,
+ * element turned rgb(31,31,31); contract text renders legibly
+ * because it uses -webkit-text-fill-color:rgb(255,255,255), not
+ * the `color` property. No text-color override needed.
+ * ============================================================ */
+
+#client-page-view .extended-form-wrapper.choice-step-styling-options .contract-block {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* ============================================================
+ * END ROUND 47
+ * ============================================================ */
