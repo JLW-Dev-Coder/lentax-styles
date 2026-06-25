@@ -579,11 +579,21 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
   background-color: transparent !important;
   color: #f97316 !important;
   border: 2.5px solid #f97316 !important;
+  transition: color .18s ease, border-color .18s ease !important;
 }
-/* R51: ghost button hover inverts to solid orange fill */
+/* R51: ghost button hover inverts to solid orange fill · R52: hover simplified — color shift only, no transform, no shadow */
 .vl-btn--ghost .cbe-block-button-element:hover {
-  background: #f97316 !important;
-  color: #ffffff !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fb923c !important;
+  border-color: #fb923c !important;
+}
+/* R52: ghost button :active — deeper orange, no shadow, matches hover convention (color-only differentiation) */
+.vl-btn--ghost .cbe-block-button-element:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #ea7517 !important;
+  border-color: #ea7517 !important;
 }
 
 /* Book A Demo — was #cbe-block-1780935698207 */
