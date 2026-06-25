@@ -3442,3 +3442,30 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 53
  * ============================================================ */
+
+/* ============================================================
+   R54: SD Files widget — empty-state visibility on dark surfaces
+   Widget: .sd-files-viewer-wrapper .no-files-available
+   Issue: <sd-tr> label inherits dark default; SVG .inCourse-file-icon
+          fill is rgb(51,51,51) — both vanish on navy #client-page-view bg.
+   Fix:   Lift label + icon to off-white #f5f5f5 (matches existing empty-state
+          pattern in stylesheet).
+   Scope: Any page rendering this widget — broad fix, not page-keyed.
+   ============================================================ */
+
+/* R54: empty-state label color */
+#client-page-view .no-files-available,
+#client-page-view .no-files-available sd-tr {
+  color: #f5f5f5 !important;
+}
+
+/* R54: empty-state folder SVG fill */
+#client-page-view .no-files-available .inCourse-file-icon,
+#client-page-view .no-files-available .inCourse-file-icon * {
+  fill: #f5f5f5 !important;
+  color: #f5f5f5 !important;
+}
+
+/* ============================================================
+ * END ROUND 54
+ * ============================================================ */
