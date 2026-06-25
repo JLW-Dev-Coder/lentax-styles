@@ -574,9 +574,16 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
 
 /* Order Processing — was #cbe-block-1780935698206 */
 .vl-btn--ghost .cbe-block-button-element {
+  /* R51: corrected from solid-orange (matched primary) to transparent/outline ghost style */
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #f97316 !important;
+  border: 2.5px solid #f97316 !important;
+}
+/* R51: ghost button hover inverts to solid orange fill */
+.vl-btn--ghost .cbe-block-button-element:hover {
   background: #f97316 !important;
   color: #ffffff !important;
-  border: 2.5px solid #f97316 !important;
 }
 
 /* Book A Demo — was #cbe-block-1780935698207 */
