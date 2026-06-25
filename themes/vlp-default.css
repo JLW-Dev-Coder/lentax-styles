@@ -3335,3 +3335,48 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 48
  * ============================================================ */
+
+
+/* ============================================================
+ * ROUND 49 — Material Icons re-assert + signature canvas bg
+ * Closes two gaps surfaced when the eSignature panel is opened:
+ *
+ *   R49.1 — Material Icons <i> elements inside .sd-signature-pad
+ *   (the Type/Sign tab icons "textsms"/"create"/"draw") render
+ *   their ligature text as literal text. Cause: same cross-origin
+ *   platform Inter font-family override as R48.2, but applied to
+ *   Material Icons (which renders by ligature, not ::before
+ *   codepoint). The Material Icons font is loaded and working;
+ *   only font-family resolution is broken. Fix: re-assert the
+ *   Material Icons font on these elements. Note: font-feature-
+ *   settings: "liga" is preserved by inheritance from the
+ *   platform's own .material-icons base rule.
+ *
+ *   R49.2 — Signature <canvas> renders with rgba(255,255,0,0.33)
+ *   background (composites to olive/yellow-green). Cause: cross-
+ *   origin platform !important rule in the sd-signature-pad
+ *   component, not collateral from any R43-R48 rule (verified
+ *   via .matches() and value-grep of theme files). Fix: scoped
+ *   override setting the canvas background to white (matches
+ *   the pad's intended look per probe).
+ *
+ * Scope decision: narrow. R49.1 targets only .sd-signature-pad,
+ * not the full .extended-form-wrapper.choice-step-styling-options
+ * anchor. R48.2's FA scope (.appointment-intake-form-field-block)
+ * is preserved unchanged. If other icons surface elsewhere in the
+ * form, future rounds will extend coverage incrementally.
+ * ============================================================ */
+
+/* --- R49.1 Material Icons font-family re-assert (signature pad) --- */
+.extended-form-wrapper.choice-step-styling-options .sd-signature-pad i.material-icons {
+  font-family: "Material Icons" !important;
+}
+
+/* --- R49.2 Signature canvas background override --- */
+.extended-form-wrapper.choice-step-styling-options .sd-signature-pad .pad-wrapper canvas {
+  background-color: #ffffff !important;
+}
+
+/* ============================================================
+ * END ROUND 49
+ * ============================================================ */
