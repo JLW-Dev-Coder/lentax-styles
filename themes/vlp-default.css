@@ -3116,3 +3116,73 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 43
  * ============================================================ */
+
+/* ============================================================
+ * ROUND 44 — CSS-only completion of R43
+ * Closes four rule-coverage / specificity gaps that left the
+ * form-field region white after R43:
+ *   R44.1 .form-group.field_important.embed-group (white bars)
+ *   R44.2 input.form-control / textarea / select (white inputs)
+ *   R44.3 .form.form-oscar (white form surface)
+ *   R44.4 .appointment-intake-form-wrapper (Agree & Sign light bleed)
+ * Anchor: #client-page-view + .extended-form-wrapper.choice-step-styling-options
+ * All four selectors beat their targets on specificity AND source order
+ * (per CC diagnostic round 4 — live-verified). No JS, no in-place edits.
+ * ============================================================ */
+
+/* --- R44.1 White form-group bars (the .field_important rows) --- */
+/* Target rule: vlp-default.css L992
+ *   #client-page-view .form-group.field_important.embed-group
+ *   { background:#fff !important } at specificity 1,3,0
+ * R44.1 wins at 1,5,0. */
+#client-page-view .extended-form-wrapper.choice-step-styling-options .form-group.field_important.embed-group {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* --- R44.2 White input fields --- */
+/* Target rules: vlp-default.css L968–986
+ *   #client-page-view input.form-control / textarea / select
+ *   { background:#fff !important; color:#1a1a1a !important } at 1,1,1
+ * R44.2 wins at 1,3,1. */
+#client-page-view .extended-form-wrapper.choice-step-styling-options input.form-control,
+#client-page-view .extended-form-wrapper.choice-step-styling-options input[type="text"],
+#client-page-view .extended-form-wrapper.choice-step-styling-options input[type="email"],
+#client-page-view .extended-form-wrapper.choice-step-styling-options input[type="tel"],
+#client-page-view .extended-form-wrapper.choice-step-styling-options input[type="number"],
+#client-page-view .extended-form-wrapper.choice-step-styling-options textarea,
+#client-page-view .extended-form-wrapper.choice-step-styling-options select {
+  background-color: #2a2a2a !important;
+  color: #f5f5f5 !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+#client-page-view .extended-form-wrapper.choice-step-styling-options input::placeholder,
+#client-page-view .extended-form-wrapper.choice-step-styling-options textarea::placeholder {
+  color: rgba(245, 245, 245, 0.55) !important;
+}
+
+/* --- R44.3 White .form.form-oscar (Plans Form Section consumer) --- */
+/* Target rule: vlp-default.css L555–564 (Plans Form Section: White block)
+ *   #client-page-view .form.form-oscar { background:#fff !important } at 1,2,0
+ * R44.3 wins at 1,4,0. R43.JS observer left in place but unused — not
+ * firing on this view (per CC diagnostic round 4); CSS-only is sufficient. */
+#client-page-view .extended-form-wrapper.choice-step-styling-options .form.form-oscar {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+  color: #f0f0f0 !important;
+}
+
+/* --- R44.4 Agree & Sign outer wrapper light bleed --- */
+/* R43.8 set border:none but no background; the outer wrapper surface
+ * remained light, visible as a frame around the inner dark card.
+ * Target rule: vlp-default.css L1071
+ *   #client-page-view .appointment-intake-form-wrapper at 1,1,0
+ * R44.4 wins at 1,3,0. */
+#client-page-view .extended-form-wrapper.choice-step-styling-options .appointment-intake-form-wrapper {
+  background-color: #1f1f1f !important;
+  background-image: none !important;
+}
+
+/* ============================================================
+ * END ROUND 44
+ * ============================================================ */
