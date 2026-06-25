@@ -301,3 +301,174 @@
     margin-right: auto !important;
     flex: 0 1 auto !important;
 }
+
+/* ============================================================
+ * ROUND 50 — TPP dashboard styling persistence
+ * Persists CC's TPP variant dashboard work (cards + banner + row
+ * container) from browser-injected preview to source. Delivery:
+ * <script src=".../lentax-tpp-sentinel.js"> in TPP portal Custom
+ * JS field injects <link> to this file from Netlify origin.
+ *
+ * Anchor: #wrapper #dashboard-view (ID-level specificity to beat
+ * platform and prior-pass rules). #dashboard-view is absent on
+ * non-dashboard routes, so these rules go inert elsewhere.
+ *
+ * All !important required because SuiteDash's theme rules use
+ * !important. -webkit-text-fill-color set on every text rule
+ * because prior pass set a dark text-fill that paints over
+ * `color`. Documented per-section below.
+ * ============================================================ */
+
+/* --- R50.1 Card container (vertical gradient) --- */
+#wrapper #dashboard-view .reporting__block {
+  background: linear-gradient(180deg, #1E2D4D 0%, #142440 100%) !important;
+  background-color: #16294A !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 12px !important;
+  padding: 18px 18px 14px !important;
+  box-shadow: 0 4px 18px rgba(8,14,30,0.35) !important;
+}
+
+/* --- R50.2 Card label (uppercase top-left) --- */
+#wrapper #dashboard-view .reporting__block__title { align-items: center !important; }
+#wrapper #dashboard-view .reporting__block__title__text {
+  color: #8A9BB8 !important;
+  -webkit-text-fill-color: #8A9BB8 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+}
+
+/* --- R50.3 Card number (large value) --- */
+#wrapper #dashboard-view .reporting__block__value__current {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  font-size: 28px !important;
+  font-weight: 500 !important;
+}
+
+/* --- R50.4 Delta line --- */
+/* 4a. Positive trend: light blue + forced unicode arrow (U+2197).
+ * Platform's FA glyph renders blank because font-family resolves
+ * to body font, not Font Awesome — same root cause as VLP R48.2
+ * but here we sidestep by using a unicode glyph in the system font. */
+#wrapper #dashboard-view .reporting__block__value__trend--positive .reporting__block__value__trend__icon::before,
+#wrapper #dashboard-view .reporting__block__value__trend--positive i.fa-arrow-up-right::before {
+  content: "\2197" !important;
+  font-family: "Source Sans 3","Helvetica Neue",Arial,sans-serif !important;
+  font-weight: 600 !important;
+}
+#wrapper #dashboard-view .reporting__block__value__trend--positive,
+#wrapper #dashboard-view .reporting__block__value__trend--positive i {
+  color: #C5D8F0 !important;
+  -webkit-text-fill-color: #C5D8F0 !important;
+  font-size: 12px !important;
+}
+/* 4b. Flat/zero trend: muted grey, keeps the platform's literal bullet. */
+#wrapper #dashboard-view .reporting__block__value__trend--none,
+#wrapper #dashboard-view .reporting__block__value__trend--none i {
+  color: #8A9BB8 !important;
+  -webkit-text-fill-color: #8A9BB8 !important;
+  font-size: 12px !important;
+}
+#wrapper #dashboard-view .reporting__block__progress__value {
+  color: #C5D8F0 !important;
+  -webkit-text-fill-color: #C5D8F0 !important;
+}
+
+/* --- R50.5 Icon chip (top-right) --- */
+#wrapper #dashboard-view .reporting__block__title__icon {
+  background-color: #B41D1D !important;
+  width: 24px !important; height: 24px !important; min-width: 24px !important;
+  border-radius: 6px !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  box-shadow: none !important;
+}
+#wrapper #dashboard-view .reporting__block__title__icon-svg {
+  fill: #FFFFFF !important; color: #FFFFFF !important;
+  width: 13px !important; height: 13px !important;
+}
+
+/* --- R50.6 Progress bar (rows 2 and 3) --- */
+/* Bar is an ApexCharts SVG; CSS `fill` overrides its inline gradient attr. */
+#wrapper #dashboard-view .reporting__block__progress__bar .apexcharts-bar-area {
+  fill: #D4A574 !important;
+}
+#wrapper #dashboard-view .reporting__block__progress__bar .apexcharts-svg rect {
+  fill: rgba(212,165,116,0.15) !important;
+}
+#wrapper #dashboard-view .reporting__block__progress__bar {
+  border-radius: 4px !important;
+  overflow: hidden !important;
+}
+
+/* --- R50.7 VIEW button --- */
+#wrapper #dashboard-view .reporting__block__view-button {
+  color: #C5D8F0 !important;
+  -webkit-text-fill-color: #C5D8F0 !important;
+  border: 1px solid rgba(197,216,240,0.3) !important;
+  border-radius: 6px !important;
+  background-color: transparent !important;
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  letter-spacing: 0.8px !important;
+  padding: 5px 12px !important;
+}
+#wrapper #dashboard-view .reporting__block__view-button:hover {
+  background-color: rgba(197,216,240,0.1) !important;
+}
+
+/* --- R50.8 View-count placeholder (bottom-left eye icon) --- */
+#wrapper #dashboard-view .eye-icon { color: #6E7E9C !important; }
+
+/* --- R50.9 Bottom divider --- */
+#wrapper #dashboard-view .reporting__block__graphics {
+  border-top: 1px solid rgba(255,255,255,0.06) !important;
+  padding-top: 10px !important;
+  margin-top: 8px !important;
+}
+
+/* --- R50.10 Welcome banner (dark navy + crimson accent) --- */
+#dashboard-view .vlpd-welcome {
+  background: linear-gradient(180deg, #1A2B47 0%, #0F1F3D 100%) !important;
+  border-top: 2px solid #DC2626 !important;
+}
+#dashboard-view .vlpd-welcome-title {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+/* "Tax Prep Pro" wordmark — original used gradient text-clip whose dark end
+ * vanishes on navy bg; render solid pink instead. */
+#dashboard-view .vlpd-welcome-title em {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: #E91E63 !important;
+  -webkit-text-fill-color: #E91E63 !important;
+}
+#dashboard-view .vlpd-welcome-lede {
+  color: #8A9BB8 !important;
+  -webkit-text-fill-color: #8A9BB8 !important;
+}
+/* SUPER ADMIN pill — translucent red, readable on dark. */
+#dashboard-view .vlpd-welcome-eyebrow {
+  background: rgba(220,38,38,0.15) !important;
+  color: #F08A8A !important;
+  -webkit-text-fill-color: #F08A8A !important;
+}
+/* .vlpd-welcome-icon (red star badge) intentionally left untouched. */
+
+/* --- R50.11 Row container — remove default cream (#FDFBF5) surface --- */
+/* Lets cards float on the dark dashboard bg. #wrapper scope needed to
+ * beat the platform's box-shadow rule. */
+#wrapper #dashboard-view .reporting__container {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* ============================================================
+ * END ROUND 50
+ * ============================================================ */
