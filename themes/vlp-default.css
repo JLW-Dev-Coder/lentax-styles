@@ -3397,3 +3397,48 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 49
  * ============================================================ */
+
+/* ============================================================
+   R53: Utility classes for hero accent + centered content block
+   - .vl-hero-accent: inline orange accent within hero titles
+       (uses -webkit-text-fill-color to defeat inherited white fill
+        from #client-page-view .vl-hero-title rule at vlp 2080)
+   - .vl-centered-block: reusable wrapper; centers descendants and
+       neutralizes list chrome including ::before pseudo-bullets
+       (defends against base 9186 .vl-page .vl-hero .vl-list li::before)
+   ============================================================ */
+
+/* R53: hero title inline accent — anchored at (1,2,0) to match surface ceiling */
+#client-page-view .vl-hero .vl-hero-accent {
+  color: #f97316 !important;
+  -webkit-text-fill-color: #f97316 !important;
+}
+
+/* R53: centered content block — centers all descendant text */
+.vl-centered-block {
+  text-align: center !important;
+}
+
+/* R53: centered block — neutralize list indent and bullet markers */
+.vl-centered-block ul,
+.vl-centered-block ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* R53: centered block — defensive li reset */
+.vl-centered-block li {
+  list-style: none !important;
+  text-align: center !important;
+  padding-left: 0 !important;
+}
+
+/* R53: centered block — defeat base 9186 ::before pseudo-bullet (in-hero case) */
+.vl-centered-block li::before {
+  content: none !important;
+}
+
+/* ============================================================
+ * END ROUND 53
+ * ============================================================ */
