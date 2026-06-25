@@ -3273,3 +3273,65 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 47
  * ============================================================ */
+
+
+/* ============================================================
+ * ROUND 48 — Field-label transparency + Font Awesome re-assert
+ * Closes two gaps surfaced after R47:
+ *
+ *   R48.1 — Field labels under .animated-form-label render as
+ *   white bars (white text-fill on white background). Cause:
+ *   cross-origin platform rule paints labels white at (0,3,1)
+ *   non-!important. Fix: transparent bg lets the white text-fill
+ *   show against the dark parent (matches working .field_important
+ *   label behavior exactly). No color override needed.
+ *
+ *   R48.2 — Post-sign checkmark in .signature-confirm-icon renders
+ *   as an empty .notdef rectangle. Cause: cross-origin platform
+ *   rule overrides font-family to `Inter` on FA icons inside this
+ *   card; U+F14A has no glyph in Inter. Fix: re-assert Font Awesome
+ *   on FA icons within .appointment-intake-form-field-block. FA 6
+ *   is already loaded and working elsewhere on the page.
+ *
+ * Surface 2 (Stripe payment fields) is architecturally unreachable
+ * from this CSS layer — inside cross-origin Stripe iframes. Not
+ * addressed in R48 by design.
+ *
+ * Neither R48 fix uses the #client-page-view anchor pattern from
+ * R43–R47; the winning rules here aren't #client-page-view-anchored,
+ * so the additional ID would add specificity without purpose.
+ * ============================================================ */
+
+/* --- R48.1 Field-label background transparency --- */
+/* Mirrors the .field_important label behavior (already working).
+ * White -webkit-text-fill-color from the platform paints white text
+ * on the now-transparent label, against the dark parent. */
+.extended-form-wrapper.choice-step-styling-options .form-group.animated-form-label > label {
+  background-color: transparent !important;
+}
+
+/* --- R48.2 Font Awesome font-family re-assert --- */
+/* Scoped broadly to any FA icon within the eSignature card to
+ * defend against future platform-added FA icons in this card.
+ * Both element and ::before need the family because the platform
+ * override applies to both; the ::before is where FA actually
+ * paints the glyph (content: ""). */
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block i.fa-solid,
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block i.fa-solid::before {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro" !important;
+  font-weight: 900 !important;
+}
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block i.fa-regular,
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block i.fa-regular::before {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro" !important;
+  font-weight: 400 !important;
+}
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block i.fa-brands,
+.extended-form-wrapper.choice-step-styling-options .appointment-intake-form-field-block i.fa-brands::before {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+
+/* ============================================================
+ * END ROUND 48
+ * ============================================================ */
