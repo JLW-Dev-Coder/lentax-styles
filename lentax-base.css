@@ -6198,6 +6198,116 @@ vertical-align: middle;
 
 /* END ROUND 56 */
 
+/* ============================================================
+   R58: Inactivate start() CTAs while keeping complete() active
+   Discriminator: the ng-click attribute. The "start" CTA
+   (ng-click ChecklistItem.start(), rendered when item.state ===
+   STATUS_INITIAL — currently Appointments, Live Chat, Messaging
+   Inbox, Support Tickets) goes visual-disabled + pointer-blocked.
+   The "complete"/Yes CTA (ng-click complete(), rendered when state
+   is START/STUCK — currently Overview) keeps R57's orange-active
+   styling. Buttons are state-driven (ng-if on item.state), so this
+   tracks the start() handler wherever it renders, not a fixed row.
+
+   Scope: #client-page-view-anchored, so this applies on client view
+   pages (e.g. view/168983 Get Support) and NOT on the dashboard
+   checklist widget, which renders outside #client-page-view.
+
+   CSS-only caveat: keyboard activation still possible. True
+   inactivation requires Angular template gating (out of repo).
+   JLW-accepted trade-off — matches the pre-R57 visual-disabled look.
+   ============================================================ */
+
+/* R58: visual-inactive treatment for start() CTAs */
+#client-page-view .checklist-actions .button[ng-click*="start()"],
+#client-page-view .checklist-actions-btns-wrap button.button[ng-click*="start()"] {
+  background: rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.25) !important;
+  color: rgba(0, 0, 0, 0.55) !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* R58: nullify R57 hover lift on start() CTAs (defensive) */
+#client-page-view .checklist-actions .button[ng-click*="start()"]:hover,
+#client-page-view .checklist-actions-btns-wrap button.button[ng-click*="start()"]:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  filter: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* R58: also dim the inner span (R57's white text would still show otherwise) */
+#client-page-view .checklist-actions .button[ng-click*="start()"] span,
+#client-page-view .checklist-actions-btns-wrap button.button[ng-click*="start()"] span {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+/* R58: accessibility — flag inactive state to assistive tech.
+   Note: ideal aria-disabled would be set on the element via Angular,
+   but since we can't touch the template, this is the best CSS-level
+   signal. Browsers don't auto-set aria-disabled from pointer-events:none. */
+
+/* ============================================================
+   R58: Header alignment escalation
+   R57 shipped .checklist-title { margin: 0 !important } as a bare
+   selector (0,1,0); the live page still shows a ~16px title↔icon
+   offset. Escalate with the #client-page-view anchor (1,x,x) to win
+   the portal specificity ceiling.
+   ============================================================ */
+
+/* R58: header row vertical centering + tighter top padding */
+#client-page-view .checklist-header {
+  align-items: center !important;
+  padding-top: 6px !important;
+  padding-bottom: 14px !important;
+}
+
+/* R58: title — defeat residual margin-bottom + force tight line-height */
+#client-page-view .checklist-header .checklist-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  align-self: center !important;
+}
+
+/* R58: icon — match title's alignment baseline */
+#client-page-view .checklist-header > svg {
+  align-self: center !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ============================================================
+   R58: Chevron lip-clipping fix
+   Allow vertical overflow on .checklist-item-subtitle-wrap (CC's
+   minimize-blast-radius recommendation — wrap-only first). NOTE:
+   the repo shows the 30px + overflow:hidden is on .see-more-btn
+   (chevron svg is 18px), and .checklist-item-content / -info /
+   __header also carry overflow:hidden — so if the lip is still
+   clipped post-deploy, the content-level override is the R59 step.
+   ============================================================ */
+
+/* R58: chevron wrap — allow vertical overflow so the chevron renders fully */
+#client-page-view .checklist-item-subtitle-wrap {
+  overflow: visible !important;
+}
+
+/* R58: chevron positioning — z-index above subtitle text to prevent paint overlap */
+#client-page-view .see-more-btn {
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+}
+
+/* ============================================================
+ * END ROUND 58
+ * ============================================================ */
+
 /*SD FLOW*/
 .flow-advance-wrapper {
   align-items: stretch;
