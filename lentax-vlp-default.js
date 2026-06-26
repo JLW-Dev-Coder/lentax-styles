@@ -584,3 +584,72 @@
     });
   }
 })();
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-default round 59 - Reveal .content-ribbon subnav when populated
+   (everywhere EXCEPT /view/ pages)
+
+   The ribbon is hidden by R7's GLOBAL rule in themes/vlp-default.css
+   (`.content-ribbon { display:none !important }`) — NOT solely a CORS-blocked
+   platform sheet as first diagnosed. That R7 rule stays as the safety-net
+   default; this IIFE reveals the ribbon only where it carries a real subnav,
+   so document/contract pages (whose ribbon holds only a platform-hidden
+   .common-back back-link) keep R7's clean empty-bar suppression.
+
+   Two gates — BOTH must pass to reveal:
+     (a) not a /portal/dashboard/view/ path (those stay hidden by design), AND
+     (b) the ribbon is populated — a .content-ribbon__left/__right wrapper with
+         children, OR a non-.common-back child that isn't display:none.
+
+   Reveal uses inline `display:flex !important`; an inline !important beats any
+   stylesheet !important (incl. R7's) regardless of specificity — same inline-
+   style override technique as rounds 11/13/24/43. Self-retries (30 x 400ms)
+   because Angular may render / populate the ribbon after page load.
+
+   NOTE on the populated check: when R59 runs, R7 has the ribbon at
+   display:none, so offset/render-based visibility on children is unreliable
+   (a display:none ancestor zeroes them). getComputedStyle(child).display
+   returns the child's OWN computed value (unaffected by ancestor display:none),
+   so it is a safe structural discriminator here.
+
+   Added 2026-06-26 - round 59.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function revealContentRibbon() {
+  'use strict';
+
+  // Gate (a): stay hidden on /portal/dashboard/view/ pages — R7 default stands.
+  if (window.location.pathname.indexOf('/portal/dashboard/view/') !== -1) return;
+
+  // Gate (b): only reveal a ribbon that carries real subnav content. Document/
+  // contract pages hold ONLY a platform-hidden .common-back back-link, so
+  // revealing them would re-introduce R7's empty 50px sticky white bar.
+  function isPopulated(ribbon) {
+    var left  = ribbon.querySelector('.content-ribbon__left');
+    var right = ribbon.querySelector('.content-ribbon__right');
+    if ((left && left.children.length) || (right && right.children.length)) return true;
+    var kids = ribbon.children;
+    for (var i = 0; i < kids.length; i++) {
+      var c = kids[i];
+      if (c.classList && c.classList.contains('common-back')) continue;
+      if (window.getComputedStyle(c).display !== 'none') return true;
+    }
+    return false;
+  }
+
+  function apply() {
+    var ribbon = document.querySelector('.content-ribbon');
+    if (!ribbon) return false;              // not rendered yet — keep retrying
+    if (!isPopulated(ribbon)) return false; // empty back-link bar — leave hidden
+    ribbon.style.setProperty('display', 'flex', 'important');
+    return true;
+  }
+
+  // First-attempt apply; retry pattern matches existing IIFE convention.
+  if (!apply()) {
+    var tries = 0;
+    var id = setInterval(function () {
+      if (apply() || ++tries >= 30) clearInterval(id);
+    }, 400);
+  }
+})();
