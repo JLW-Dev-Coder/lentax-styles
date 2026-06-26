@@ -5923,23 +5923,48 @@ vertical-align: middle;
    inactive action-button look (intentional grey, not a bug).
    ============================================================ */
 
-/* INACTIVE LOOK — main checklist action button */
+/* R57: CTA buttons — orange branded, replaces the R56 inactive-gray look.
+   The persistent orange seen earlier came from a transient WAAPI animation
+   that has since completed/stopped, so the CTA needs explicit CSS now.
+   Restores clickability (pointer-events: auto) + orange brand fill. */
 .checklist-actions .button {
-  background: rgba(0, 0, 0, 0.08) !important;
-  border: 1px solid rgba(0, 0, 0, 0.25) !important;
-  box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.55) !important;
-  cursor: default !important;
+  background: var(--checklist-accent, #f97316) !important;   /* R57: was rgba(0,0,0,0.08) inactive-gray */
+  border: none !important;                                   /* R57: was 1px solid rgba(0,0,0,0.25) */
+  border-radius: 10px !important;                            /* R57 */
+  box-shadow: 0 4px 14px rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.30) !important; /* R57: was none */
+  color: #fff !important;                                    /* R57: was rgba(0,0,0,0.55) */
+  cursor: pointer !important;                                /* R57: was default */
+  font-weight: 700 !important;                               /* R57 */
   margin-right: 6px;
-  pointer-events: none;
+  padding: 10px 20px !important;                             /* R57 */
+  pointer-events: auto !important;                           /* R57: was none */
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease !important; /* R57 */
 }
 
-/* kill interaction states */
-.checklist-actions .button:hover,
-.checklist-actions .button:active {
-  background: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: none !important;
-  transform: none !important;
+/* R57: CTA label text white */
+.checklist-actions .button span {
+  color: #fff !important; /* R57 */
+}
+
+/* R57: CTA hover — lift + brighten (replaces the R56 kill-interaction rule) */
+.checklist-actions .button:hover {
+  box-shadow: 0 6px 18px rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.45) !important; /* R57 */
+  filter: brightness(1.08) !important;                     /* R57 */
+  transform: translateY(-1px) !important;                  /* R57 */
+}
+
+/* R57: suppress white skeleton/shimmer artifacts rendering to the left of the
+   CTAs. No checklist pseudo-elements exist in this repo (verified by grep), so
+   the boxes come from SuiteDash platform CSS (cross-origin); suppress at the
+   highest specificity we can muster and verify live. */
+.checklist-item-title::before,
+.checklist-item-title::after,
+.checklist-item-subtitle::before,
+.checklist-item-subtitle::after {
+  content: none !important;     /* R57 */
+  display: none !important;     /* R57 */
+  background: none !important;  /* R57 */
+  box-shadow: none !important;  /* R57 */
 }
 
 .checklist-item-container.completed {
@@ -5958,13 +5983,13 @@ vertical-align: middle;
 
 .checklist-header {
   align-items: center;
-  border-bottom: 1px solid var(--lentax-border-panel);
+  border-bottom: 1px solid rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.18) !important; /* R57: was var(--lentax-border-panel) gray → orange divider */
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin: 0;
+  margin: 0 0 6px 0 !important;   /* R57: was 0 → 6px bottom */
   overflow: hidden !important;
-  padding: 0 0 15px 0;
+  padding: 16px 18px !important;  /* R57: was 0 0 15px 0 */
 }
 
 .checklist-header,
@@ -6117,12 +6142,12 @@ vertical-align: middle;
   background: none !important;
   color: var(--checklist-accent, #f97316) !important; /* R56: de-leak */
   display: inline-flex;
-  font-size: 25px !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-  margin: 0;
-  padding: 0;
+  font-size: 24px !important;       /* R57: was 25px */
+  font-weight: 800 !important;      /* R57: was 900 */
+  letter-spacing: -0.2px !important; /* R57: was -0.5px */
+  line-height: 1.1 !important;      /* R57 */
+  margin: 0 !important;             /* R57 */
+  padding: 0 !important;            /* R57 defensive */
   text-align: center;
   -webkit-text-fill-color: var(--checklist-accent-dark, #ea580c) !important; /* R56: de-leak */
 }
@@ -6137,7 +6162,7 @@ vertical-align: middle;
   align-items: center;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
+  border-radius: 8px;   /* R57: was 10px */
   color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
   cursor: pointer;
   display: inline-flex;
@@ -6146,7 +6171,7 @@ vertical-align: middle;
   justify-content: center;
   line-height: 1;
   overflow: hidden !important;
-  padding: 0;
+  padding: 6px;   /* R57: was 0 */
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   user-select: none;
 }
