@@ -78,6 +78,17 @@
   --lentax-vlp-orange-pantone: #F47B20;
   --lentax-vlp-orange-pantone-rgb: 244, 123, 32;
 
+  /* ===== R56: product-neutral tokens for the .checklist-* widget =====
+     VLP gets orange via these fallbacks; TPP themes can null or rebind
+     --checklist-accent* WITHOUT touching --lentax-vlp-orange-primary,
+     so the orange no longer leaks into TPP's checklist widget.
+     Mirrors the existing orange token set (solid + -rgb triplet + dark
+     + hover) because the cluster references all four variants. */
+  --checklist-accent: #f97316;              /* R56: ← --lentax-vlp-orange-primary */
+  --checklist-accent-rgb: 249, 115, 22;     /* R56: ← --lentax-vlp-orange-primary-rgb */
+  --checklist-accent-dark: #ea580c;         /* R56: ← --lentax-vlp-orange-dark */
+  --checklist-accent-hover: #fb923c;        /* R56: ← --lentax-vlp-orange-hover */
+
   /* ===== VLP navy (THEMES.md §3.3) ===== */
   --lentax-vlp-navy-deep: #0A1228;
   --lentax-vlp-navy-deep-rgb: 10, 18, 40;
@@ -5885,6 +5896,33 @@ vertical-align: middle;
   padding: 0;
 }
 
+/* ============================================================
+   R56: Checklist widget — bug fixes + orange-leak de-leak
+   (full dark-card aesthetic, approved by JLW 2026-06-25)
+
+   Two coordinated changes, base.css only (no file move):
+   1. Bug fix: every text/icon rule in this cluster shipped
+      color:#000 / fill:#000 — black-on-dark on the portal, where
+      .checklist-item-container has NO background of its own (the
+      prompt's "white pill" premise was false; verified against the
+      repo + dom-snapshots). 15 such declarations were resolved to a
+      dark-card palette: orange accent (header/icons/svg), #f5f5f5
+      titles/body, dim-white secondary text, and a #262626 card with
+      hover-lift on .checklist-item-container.
+   2. De-leak: all 10 var(--lentax-vlp-orange-*) references in this
+      cluster (primary, -rgb, -dark, -hover) rebound to the neutral
+      var(--checklist-accent*, …) tokens defined in :root, so TPP
+      themes can scope-control the orange without touching the VLP
+      brand token.
+
+   Portal-wide widget: this also restyles the dashboard checklist and
+   TPP's checklist (intentional, per JLW). A TPP dark-aesthetic opt-out
+   is a future TPP-theme override.
+
+   NOT changed: structural rules (layout/grid/animations) and the
+   inactive action-button look (intentional grey, not a bug).
+   ============================================================ */
+
 /* INACTIVE LOOK — main checklist action button */
 .checklist-actions .button {
   background: rgba(0, 0, 0, 0.08) !important;
@@ -5906,11 +5944,11 @@ vertical-align: middle;
 
 .checklist-item-container.completed {
   /*background: rgba(249, 115, 22, 0.06) !important;*/
-  border-color: rgba(var(--lentax-vlp-orange-primary-rgb), 0.35) !important;
+  border-color: rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.35) !important; /* R56: de-leak */
 }
 
 .checklist-item-container.completed .status {
-  color: var(--lentax-vlp-orange-primary) !important;
+  color: var(--checklist-accent, #f97316) !important; /* R56: de-leak */
   font-weight: 800;
 }
 
@@ -5931,23 +5969,27 @@ vertical-align: middle;
 
 .checklist-header,
 .checklist-header * {
-  color: #000 !important;
+  color: var(--checklist-accent, #f97316) !important; /* R56: was #000 (black-on-dark) */
 }
 
 .checklist-header svg {
+  background: rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.16) !important; /* R56: badge */
+  border-radius: 10px !important;                /* R56: badge */
+  box-sizing: border-box !important;             /* R56: badge */
   display: inline-block;
-  fill: #000 !important;
-  height: 1.1em;
-  margin: 0 6px 0 0;
+  fill: var(--checklist-accent, #f97316) !important; /* R56: was #000 */
+  height: 36px !important;                        /* R56: badge */
+  margin: 0 18px 0 0 !important;                 /* R56: badge */
+  padding: 0 !important;                          /* R56: badge */
   vertical-align: middle;
-  width: 1.1em;
+  width: 36px !important;                         /* R56: badge */
 }
 
 .checklist-item-collapsing-content {
   animation: checklistFadeIn 300ms ease-out both;
   background: transparent !important;
   border: none;
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 (black-on-dark) */
   grid-column: 1 / -1;
   text-align: left;
   width: 100%;
@@ -5967,8 +6009,8 @@ vertical-align: middle;
 
 .checklist-item-completed-icon {
   align-items: center;
-  background: rgba(var(--lentax-vlp-orange-primary-rgb), 0.1);
-  border: 1px solid rgba(var(--lentax-vlp-orange-primary-rgb), 0.35);
+  background: rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.1); /* R56: de-leak */
+  border: 1px solid rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.35); /* R56: de-leak */
   border-radius: 50%;
   display: flex;
   height: 28px;
@@ -5981,20 +6023,34 @@ vertical-align: middle;
 }
 
 .checklist-item-completed-icon svg {
+  color: var(--checklist-accent, #f97316) !important; /* R56: some SVGs inherit fill from color */
   display: inline-block;
-  fill: #000 !important;
+  fill: var(--checklist-accent, #f97316) !important; /* R56: was #000 */
   height: 18px;
   width: 18px;
 }
 
 .checklist-item-container {
-  color: #000 !important;
+  background: #262626 !important;                          /* R56: dark card (was no bg → black-on-dark) */
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;  /* R56: card edge */
+  border-radius: 16px !important;                          /* R56: card shape */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;   /* R56: card depth */
+  color: #f5f5f5 !important;                               /* R56: was #000 */
+  margin: 14px 0 !important;                               /* R56: row spacing */
   overflow: hidden !important;
-  padding: 0;
+  padding: 6px 10px !important;                            /* R56: was 0 */
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease !important; /* R56 */
+}
+
+/* R56: dark-card hover lift */
+.checklist-item-container:hover {
+  border-color: rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.35) !important; /* R56 */
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4) !important;   /* R56 */
+  transform: translateY(-2px) !important;                 /* R56 */
 }
 
 .checklist-item-content {
-  color: #000 !important;
+  color: #f5f5f5 !important; /* R56: was #000 */
   display: grid;
   gap: 8px;
   grid-template-columns: 1fr auto;
@@ -6004,11 +6060,11 @@ vertical-align: middle;
 
 .checklist-item-description {
   background: transparent !important;
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
 }
 
 .checklist-item-info {
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
   grid-column: 1 / -1;
   height: auto !important;
   max-height: none !important;
@@ -6018,7 +6074,7 @@ vertical-align: middle;
 }
 
 .checklist-item-subtitle {
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
   letter-spacing: 0.2px;
   margin: 0;
   overflow: visible !important;
@@ -6028,7 +6084,7 @@ vertical-align: middle;
 
 .checklist-item-subtitle-wrap {
   align-items: center;
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
   display: flex;
   gap: 6px;
   justify-content: flex-start;
@@ -6037,8 +6093,8 @@ vertical-align: middle;
 }
 
 .checklist-item-title {
-  color: #000 !important;
-  font-weight: 700;
+  color: #f5f5f5 !important; /* R56: was #000 */
+  font-weight: 700; /* R56: already 700 — primary card heading */
   letter-spacing: 0.2px;
   margin: 0;
   overflow: visible !important;
@@ -6048,7 +6104,7 @@ vertical-align: middle;
 
 .checklist-item__header {
   align-items: center;
-  color: #000 !important;
+  color: #f5f5f5 !important; /* R56: was #000 */
   display: flex;
   gap: 8px;
   justify-content: flex-start;
@@ -6059,7 +6115,7 @@ vertical-align: middle;
 .checklist-title {
   align-items: center;
   background: none !important;
-  color: var(--lentax-vlp-orange-primary) !important;
+  color: var(--checklist-accent, #f97316) !important; /* R56: de-leak */
   display: inline-flex;
   font-size: 25px !important;
   font-weight: 900 !important;
@@ -6068,13 +6124,13 @@ vertical-align: middle;
   margin: 0;
   padding: 0;
   text-align: center;
-  -webkit-text-fill-color: var(--lentax-vlp-orange-dark) !important;
+  -webkit-text-fill-color: var(--checklist-accent-dark, #ea580c) !important; /* R56: de-leak */
 }
 
 .checklist-title:hover {
   background: none !important;
-  color: var(--lentax-vlp-orange-hover) !important;
-  -webkit-text-fill-color: var(--lentax-vlp-orange-hover) !important;
+  color: var(--checklist-accent-hover, #fb923c) !important; /* R56: de-leak */
+  -webkit-text-fill-color: var(--checklist-accent-hover, #fb923c) !important; /* R56: de-leak */
 }
 
 .see-more-btn {
@@ -6082,7 +6138,7 @@ vertical-align: middle;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
   cursor: pointer;
   display: inline-flex;
   gap: 6px;
@@ -6096,24 +6152,26 @@ vertical-align: middle;
 }
 
 .see-more-btn:hover {
-  background: rgba(var(--lentax-vlp-orange-primary-rgb), 0.12);
-  border-color: rgba(var(--lentax-vlp-orange-primary-rgb), 0.55);
+  background: rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.12); /* R56: de-leak */
+  border-color: rgba(var(--checklist-accent-rgb, 249, 115, 22), 0.55); /* R56: de-leak */
   transform: translateY(-1px);
 }
 
 .see-more-btn span {
-  color: #000 !important;
+  color: rgba(245, 245, 245, 0.7) !important; /* R56: was #000 */
   display: inline-block;
   letter-spacing: 0.3px;
 }
 
 .see-more-btn svg {
   display: inline-block;
-  fill: #000 !important;
+  fill: var(--checklist-accent, #f97316) !important; /* R56: was #000 */
   height: 18px;
   margin-left: 5px;
   width: 18px;
 }
+
+/* END ROUND 56 */
 
 /*SD FLOW*/
 .flow-advance-wrapper {
