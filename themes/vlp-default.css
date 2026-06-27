@@ -3469,3 +3469,78 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 54
  * ============================================================ */
+
+/* ============================================================
+   R60: View Plans form mobile responsive (view/169143)
+   Surface: app.virtuallaunch.pro/portal/dashboard/view/169143
+            (Tax Monitor Setup Order Processing)
+
+   Root cause: SuiteDash Bootstrap grid clamps the form's column to
+   33.33% (col-md-4) on tablet+. Below 768px the column collapses to
+   col-12, BUT .item-plan-row flex has no flex-shrink/min-width/
+   white-space protection, so labels and values still compete for
+   width at narrow widths and wrap awkwardly ("Tax Monitor / Setup",
+   "Support / Options", etc.).
+
+   Fix: at <=767px, stack .item-plan-row vertically (label full-width
+   on top, value full-width below). Tighten gradient header spacing.
+   Total row keeps side-by-side (short label).
+
+   Scope: view-scoped via :has(.feature-block-container, article.vl-card)
+   matching the existing #forms-form-wrapper orange border rule, so R60
+   only fires on view/169143 (and any other page with the same feature-
+   block-container/vl-card pattern).
+
+   Delivery: this file (themes/vlp-default.css), Netlify-deployed.
+   No login/SD-Admin-field involvement.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* R60: ensure the form's app-form-embed and card fill viewport width
+     once the SuiteDash col-12 collapse takes effect. Defensive only. */
+  #client-page-view:has(.feature-block-container, article.vl-card) .app-form-embed,
+  #client-page-view:has(.feature-block-container, article.vl-card) #forms-form-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* R60: stack .item-plan-row vertically — label on top, value below */
+  #client-page-view:has(.feature-block-container, article.vl-card) .item-plan-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+  }
+
+  /* R60: label and value each take full row width when stacked */
+  #client-page-view:has(.feature-block-container, article.vl-card) .item-plan-row > * {
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  /* R60: tighten gradient header spacing — they no longer need to share
+     rows with values, so reduce top/bottom margin */
+  #client-page-view:has(.feature-block-container, article.vl-card) .item-plan-title,
+  #client-page-view:has(.feature-block-container, article.vl-card) .item-plan-subtitle {
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* R60: total row keeps side-by-side (label short, no wrap risk),
+     but with explicit shrink protection on the value cell */
+  #client-page-view:has(.feature-block-container, article.vl-card) .item-plan-total {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  #client-page-view:has(.feature-block-container, article.vl-card) .item-plan-total > *:last-child {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+}
+
+/* ============================================================
+ * END ROUND 60
+ * ============================================================ */
