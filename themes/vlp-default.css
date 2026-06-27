@@ -3544,3 +3544,44 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 60
  * ============================================================ */
+
+/* ============================================================
+   R61: View Plans form column-clamp release (view/169143)
+
+   R60 fixed row-level squish but missed the column-level clamp.
+   Per CC static-CSS read of sd.styles.old.pack.min.css:
+   - Form column carries col-12 col-sm-5 col-md-4
+   - Bootstrap-4 mobile-first: col-sm-5 fires at min-width:576px,
+     clamping to 41.67% width
+   - Phones reporting CSS viewport in 576-767px band get the
+     41.67% clamp, which is the visible "still squished" state
+     after R60 (form fills 100% of a 41.67% column)
+
+   Fix: at <=767px, override .cbe-block columns to full width.
+   Must override BOTH flex AND max-width — Bootstrap sets both
+   alongside each other, overriding only max-width leaves
+   flex-basis shrinking the column.
+
+   View-scoped via :has(.feature-block-container, article.vl-card)
+   matching R60 + the existing orange border rule.
+
+   Selector .cbe-block[class*="col-"] catches all column variants
+   (col-12/col-sm-*/col-md-*/col-lg-*/col-xl-*) on the surface,
+   per CC's audit of 4 column combos used in the page-builder row.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* R61: release any .cbe-block grid-column clamp to full viewport width.
+     Overrides Bootstrap-4 .col-sm-5 / .col-md-* flex+max-width pair. */
+  #client-page-view:has(.feature-block-container, article.vl-card) .cbe-block[class*="col-"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+}
+
+/* ============================================================
+ * END ROUND 61
+ * ============================================================ */
