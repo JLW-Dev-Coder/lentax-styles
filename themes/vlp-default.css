@@ -3585,3 +3585,99 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 61
  * ============================================================ */
+
+/* ============================================================
+   R62: Defensive blanket mobile overrides — view/169143 form
+
+   R60 + R61 did not fully resolve the View Plans form squish on
+   iPhone Pro Max portrait (CSS viewport 430px). At that width,
+   col-sm-5 and col-md-4 do not fire; col-12 already gives 100%.
+   Something else is clamping the form to ~200px width.
+
+   PE diagnostic chain exhausted. R62 throws blanket overrides at
+   every plausible constraint:
+   - width/max-width/min-width on form-card + every wrapper
+   - padding zeroed (in case padding-consumed width)
+   - margin zeroed (in case margin-consumed width)
+   - flex reset to permissive
+   - transform: none (in case scale was shrinking)
+   - box-sizing border-box for predictable math
+
+   Heavy-handed. JLW visually verifies post-deploy. R63 narrows if
+   side effects emerge.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* R62: row wrapper — zero side margin (defeats inline 50px), zero padding */
+  #client-page-view:has(.feature-block-container, article.vl-card) .cbe-row-wrapper,
+  #client-page-view:has(.feature-block-container, article.vl-card) [id^="cbe-block-"].row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* R62: column — full width, zero padding, no flex shrink */
+  #client-page-view:has(.feature-block-container, article.vl-card) .cbe-block[class*="col-"] {
+    flex: 1 1 100% !important;
+    flex-basis: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  /* R62: app-form-embed — full width, zero internal constraint */
+  #client-page-view:has(.feature-block-container, article.vl-card) .app-form-embed,
+  #client-page-view:has(.feature-block-container, article.vl-card) .app-form-embed.app-form-type-update {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  /* R62: form-wrapper card — full width with sane internal padding for the orange border */
+  #client-page-view:has(.feature-block-container, article.vl-card) #forms-form-wrapper,
+  #client-page-view:has(.feature-block-container, article.vl-card) #forms-form-wrapper.card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  /* R62: card-block and form-oscar — full width */
+  #client-page-view:has(.feature-block-container, article.vl-card) .card-block.forms-form-block,
+  #client-page-view:has(.feature-block-container, article.vl-card) .form.form-oscar,
+  #client-page-view:has(.feature-block-container, article.vl-card) form[id="yw0"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+}
+
+/* ============================================================
+ * END ROUND 62
+ * ============================================================ */
