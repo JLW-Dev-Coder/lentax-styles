@@ -1004,9 +1004,9 @@
   margin-left: 6px;
 }
 
-body.lentax-dashboard .content-ribbon {
-    display: none !important;
-}
+/* R63: deleted dormant rule "body.lentax-dashboard .content-ribbon { display: none !important; }".
+   Per R59 diagnostic, body never carries .lentax-dashboard class on portal pages — rule was inert.
+   Active .content-ribbon hider is themes/vlp-default.css:452 (round 7's global rule). */
 
 /* Copy/Paste Block */
 .copy-paste-block {
