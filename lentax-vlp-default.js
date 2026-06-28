@@ -634,6 +634,17 @@
       if (c.classList && c.classList.contains('common-back')) continue;
       if (window.getComputedStyle(c).display !== 'none') return true;
     }
+
+    // R64: CRM-style ribbons carry a .common-back__right (the record-selector)
+    // inside .common-back; reveal those. Doc/contract pages have a .common-back__left
+    // ("View Document" title) but NO __right, so keying on __right alone reveals CRM
+    // ribbons while doc pages stay suppressed (R7's empty 50px back-bar). Precondition
+    // #2 confirmed all three doc snapshots (doc_8879 / doc_agreement / doc_summary)
+    // contain __left — __left||__right would have re-revealed them; only __right is
+    // unique to CRM.
+    var commonBack = ribbon.querySelector('.common-back');
+    if (commonBack && commonBack.querySelector('.common-back__right')) return true;
+
     return false;
   }
 
