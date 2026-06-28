@@ -1776,6 +1776,11 @@ body.login .logo-dark img {
 
 
 /* --- 11. Panel form row - center the form --- */
+/* R65: .panel-inner.panel-form.row is the INNER form-column wrapper - it lives
+   inside panel-1.login-panel-left and centers the form within that panel. It is
+   NOT the panel-splitting row container. The actual panel-splitting row is
+   .split-container (section 23 below), which flexes the two panels side-by-side
+   and flips to a column on mobile. Don't conflate the two. */
 body.login .panel-inner.panel-form.row {
   justify-content: center !important;
   width: 100% !important;
