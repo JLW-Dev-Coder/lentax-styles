@@ -5889,9 +5889,12 @@ transform: none !important;
 }
 
 /* TM nav buttons — matched to form Submit button (red→navy gradient pill).
-   Scoped under .tm-page so SD content-block buttons elsewhere stay untouched. */
-.tm-page a.cbe-block-button-element,
-.tm-page .cbe-block-button-element.btn-primary {
+   Un-scoped (R3): targets SD content-block buttons site-wide; the buttons live in
+   a separate SD content block with no .tm-page ancestor in the chain. Specificity
+   (0,2,0) beats SD base .btn-primary (0,1,0), so no !important. Accepted blast
+   radius: styles ALL SuiteDash content-block buttons platform-wide. */
+a.cbe-block-button-element,
+.cbe-block-button-element.btn-primary {
   background: var(--tm-accent-gradient);
   border: 0;
   border-radius: 999px;
@@ -5905,8 +5908,8 @@ transform: none !important;
   transition: transform .15s ease, box-shadow .2s ease;
 }
 
-.tm-page a.cbe-block-button-element:hover,
-.tm-page .cbe-block-button-element.btn-primary:hover {
+a.cbe-block-button-element:hover,
+.cbe-block-button-element.btn-primary:hover {
   box-shadow: 0 10px 26px 0 rgba(220, 38, 38, 0.40);
   color: #fff;
   transform: translateY(-2px);
