@@ -5613,6 +5613,15 @@ transform: none !important;
 /* Shared accent gradient — reused by the TM step tracker + How This Works card grid */
 :root {
   --tm-accent-gradient: linear-gradient(135deg, #dc2626, #14213d);
+  --tm-red: #dc2626;
+  --tm-navy: #14213d;
+  --tm-navy-deep: #1b2a4a;
+  --tm-bg: #f4f6fb;
+  --tm-card: #ffffff;
+  --tm-border: #e2e8f3;
+  --tm-text: #1b2a4a;
+  --tm-muted: #5a6480;
+  --tm-radius: 16px;
 }
 
 .tm-flow-step {
@@ -5955,6 +5964,163 @@ transform: none !important;
     padding: 20px 20px 32px;
     border-radius: 16px;
   }
+}
+
+/* ============================================================
+   TM Proposal page — section cards, headings, lists, buttons,
+   progress bar. Targets SD-native markup only — no markup edits.
+   Round: R8 (Option B — targeted !important carve-out on the
+   three rules colliding with the existing modal-port block at
+   lentax-base.css ~16404-16540)
+   ============================================================ */
+
+/* Page frame */
+.content-block-view-wrapper {
+  background: var(--tm-bg);
+  padding: 32px 24px 56px;
+}
+
+/* Section cards */
+.cbe-content .cbe-row-wrapper {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto 22px;
+  background: var(--tm-card);
+  border: 1px solid var(--tm-border);
+  border-radius: var(--tm-radius);
+  box-shadow: 0 6px 22px rgba(20,33,61,.07);
+  overflow: hidden;
+  padding: 34px 34px 30px;
+}
+.cbe-content .cbe-row-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--tm-accent-gradient);
+  border-top-left-radius: var(--tm-radius);
+  border-top-right-radius: var(--tm-radius);
+}
+
+/* Headings (base + h2 underline) */
+.cbe-content h1,
+.cbe-content h2,
+.cbe-content h3 {
+  color: var(--tm-navy);
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.cbe-content h2 {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  font-size: 24px;
+}
+.cbe-content h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 54px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--tm-accent-gradient);
+}
+
+/* COLLISION OVERRIDE #1 — H2 color/weight on proposal page
+   Beats existing .proposal_content .proposal-content-wrapper h2 !important rule
+   (line ~16427) via deeper specificity + !important. */
+.proposal_content .proposal-content-wrapper .cbe-content h2 {
+  color: var(--tm-navy) !important;
+  font-weight: 700 !important;
+}
+
+/* Body text */
+.cbe-content .wysiwyg-content {
+  color: var(--tm-text);
+  line-height: 1.62;
+}
+
+/* COLLISION OVERRIDE #2 — body color/line-height on proposal page
+   Beats existing .proposal_content .proposal-content-wrapper p/ul/ol/li !important
+   rule (line ~16404). Element-level selectors out-specify the bundled selector. */
+.proposal_content .proposal-content-wrapper .cbe-content .wysiwyg-content p,
+.proposal_content .proposal-content-wrapper .cbe-content .wysiwyg-content li {
+  color: var(--tm-text) !important;
+  line-height: 1.62 !important;
+}
+
+/* Bold/strong */
+.cbe-content .wysiwyg-content b,
+.cbe-content .wysiwyg-content strong {
+  color: var(--tm-navy);
+}
+
+/* COLLISION OVERRIDE #3 — bold color on proposal page
+   Beats existing .proposal_content strong, b !important rule (line ~16536). */
+.proposal_content .proposal-content-wrapper .cbe-content .wysiwyg-content b,
+.proposal_content .proposal-content-wrapper .cbe-content .wysiwyg-content strong {
+  color: var(--tm-navy) !important;
+}
+
+/* Lists */
+.cbe-content .wysiwyg-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+.cbe-content .wysiwyg-content ul li {
+  position: relative;
+  padding: 5px 0 5px 26px;
+  margin: 2px 0;
+}
+.cbe-content .wysiwyg-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tm-accent-gradient);
+}
+
+/* Stage pills (centered inline labels) */
+.cbe-content [style*="text-align: center"] b,
+.cbe-content .wysiwyg-content p[style*="center"] b {
+  display: inline-block;
+  background: var(--tm-accent-gradient);
+  color: #fff;
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  font-weight: 700;
+}
+
+/* Proposal buttons */
+.proposal-btn,
+.btn-primary-signature,
+.button-accept {
+  background: var(--tm-accent-gradient);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(220,38,38,.25);
+}
+
+/* Progress bar */
+.cbe-content .cbe-block-progress-single {
+  background: var(--tm-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cbe-content .cbe-block-progress-single > div {
+  border-radius: 999px;
+  background-color: var(--tm-red);
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%,
+                    rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent),
+    var(--tm-accent-gradient);
+  background-size: 28px 28px, 100% 100%;
 }
 
 
