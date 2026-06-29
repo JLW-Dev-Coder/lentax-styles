@@ -472,3 +472,85 @@
 /* ============================================================
  * END ROUND 50
  * ============================================================ */
+
+/* ============================================================
+   TM Intake — How This Works card grid
+   Round: R1 (flow-card grid only; step-tracker deferred)
+   Surface: TM intake form "Tax Monitor Form 1 — Intake Triage"
+   Markup deps: requires .tm-flow-card structure in the form's
+                HTML Content field (separate CC task — SD Admin
+                → Forms → that form → HTML Content)
+   No style-spec exists; proceeding per PE authorization.
+   House style: tpp-sentinel.css is all-!important (R50 header:
+                "All !important required because SuiteDash's theme
+                rules use !important") — applied to every decl below,
+                media-query rules included.
+   Note: step-tracker (.tm-progress-steps/.tm-step*/.tm-flow-step)
+         lives in lentax-base.css §TAX MONITOR SETUP; NOT touched
+         here. The six .tm-flow-* card classes below are net-new
+         (zero repo collision at write time).
+   ============================================================ */
+.tm-flow-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:14px !important;
+  align-items:stretch !important;
+}
+.tm-flow-card{
+  display:flex !important;
+  align-items:flex-start !important;
+  gap:12px !important;
+  padding:16px 16px !important;
+  background:#ffffff !important;
+  border:1px solid #eceef2 !important;
+  border-radius:14px !important;
+  box-shadow:0 1px 2px rgba(16,24,40,.04) !important;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
+  position:relative !important;
+  overflow:hidden !important;
+}
+.tm-flow-card::before{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important; top:0 !important; bottom:0 !important;
+  width:3px !important;
+  background:linear-gradient(180deg,#e3262f,#b3151c) !important;
+  opacity:0 !important;
+  transition:opacity .18s ease !important;
+}
+.tm-flow-card:hover{
+  transform:translateY(-3px) !important;
+  box-shadow:0 10px 24px rgba(16,24,40,.10) !important;
+  border-color:#e3262f33 !important;
+}
+.tm-flow-card:hover::before{ opacity:1 !important; }
+.tm-flow-badge{
+  flex:0 0 auto !important;
+  width:34px !important;
+  height:34px !important;
+  border-radius:999px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-weight:900 !important;
+  font-size:14px !important;
+  color:#fff !important;
+  background:radial-gradient(circle at 50% 35%, #e3262f 0%, #b3151c 100%) !important;
+  box-shadow:0 2px 6px rgba(179,21,28,.40) !important;
+}
+.tm-flow-body{ display:flex !important; flex-direction:column !important; gap:3px !important; }
+.tm-flow-title{
+  font-size:14.5px !important;
+  font-weight:800 !important;
+  color:#1f2430 !important;
+  line-height:1.2 !important;
+}
+.tm-flow-desc{
+  font-size:12.5px !important;
+  font-weight:500 !important;
+  color:#7b828f !important;
+  line-height:1.35 !important;
+}
+@media (max-width:560px){
+  .tm-flow-grid{ grid-template-columns:1fr !important; }
+}
