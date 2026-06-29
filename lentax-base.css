@@ -5609,6 +5609,12 @@ transform: none !important;
 }
 
 /*TAX MONITOR SETUP*/
+
+/* Shared accent gradient — reused by the TM step tracker + How This Works card grid */
+:root {
+  --tm-accent-gradient: linear-gradient(135deg, #dc2626, #14213d);
+}
+
 .tm-flow-step {
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -5656,7 +5662,9 @@ transform: none !important;
 }
 
 .tm-progress {
-  margin-bottom: 18px;
+  margin: 0 auto 8px;
+  max-width: 640px;
+  position: relative;
 }
 
 .tm-progress-fill {
@@ -5666,46 +5674,54 @@ transform: none !important;
 }
 
 .tm-progress-steps {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 14px;
-  text-align: center;
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 
 .tm-progress-track {
-  border-radius: 999px;
-  height: 10px;
-  overflow: hidden;
-  width: 100%;
+  background: #d9dde3;
+  height: 2px;
+  left: 12%;
+  position: absolute;
+  right: 12%;
+  top: 18px;
+  z-index: 0;
 }
 
-.tm-step {
+.tm-progress-steps .tm-step {
   align-items: center;
+  background: transparent;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  justify-content: flex-start;
+  text-align: center;
 }
 
 .tm-step-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 800;
-  margin-top: 6px;
-  text-align: center;
-  width: 100%;
+  color: #8a929c;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
 }
 
 .tm-step-num {
   align-items: center;
-  border-radius: 999px;
-  display: inline-flex;
-  font-size: 13px;
-  font-weight: 900;
-  height: 28px;
+  background: #fff;
+  border: 2px solid #d9dde3;
+  border-radius: 50%;
+  box-sizing: border-box;
+  color: #9aa2ad;
+  display: flex;
+  font-size: 15px;
+  font-weight: 700;
+  height: 36px;
   justify-content: center;
   line-height: 1;
-  width: 28px;
+  transition: all .2s ease;
+  width: 36px;
 }
 
 .tm-step-sep {
@@ -5762,6 +5778,113 @@ transform: none !important;
     justify-content: flex-start;
     overflow-x: auto;
     white-space: nowrap;
+  }
+}
+
+/* Active step state — red→navy gradient circle + accent label */
+.tm-step.active .tm-step-num {
+  background: var(--tm-accent-gradient);
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(20, 33, 61, 0.30);
+  color: #fff;
+}
+
+.tm-step.active .tm-step-label {
+  color: #c62f27;
+}
+
+/* HOW THIS WORKS heading — centered label with red→navy underline accent */
+.tm-flow-heading {
+  color: #1f2733;
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 8px auto 4px;
+  padding-bottom: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.tm-flow-heading::after {
+  background: var(--tm-accent-gradient);
+  border-radius: 3px;
+  bottom: 0;
+  content: "";
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 46px;
+}
+
+/* 2x2 flow-card grid */
+.tm-flow-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 22px auto 8px;
+  max-width: 760px;
+}
+
+.tm-flow-card {
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid #eceef1;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(20, 28, 46, 0.06);
+  display: flex;
+  gap: 14px;
+  padding: 18px 20px;
+  text-align: left;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.tm-flow-card:hover {
+  box-shadow: 0 6px 18px rgba(20, 28, 46, 0.10);
+  transform: translateY(-2px);
+}
+
+.tm-flow-badge {
+  align-items: center;
+  background: var(--tm-accent-gradient);
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(20, 33, 61, 0.30);
+  color: #fff;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 15px;
+  font-weight: 700;
+  height: 34px;
+  justify-content: center;
+  line-height: 1;
+  width: 34px;
+}
+
+.tm-flow-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tm-flow-title {
+  color: #1f2733;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.tm-flow-desc {
+  color: #7c828c;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .tm-flow-grid {
+    grid-template-columns: 1fr;
   }
 }
 
