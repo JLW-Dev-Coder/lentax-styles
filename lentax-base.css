@@ -5888,6 +5888,30 @@ transform: none !important;
   }
 }
 
+/* TM nav buttons — matched to form Submit button (red→navy gradient pill).
+   Scoped under .tm-page so SD content-block buttons elsewhere stay untouched. */
+.tm-page a.cbe-block-button-element,
+.tm-page .cbe-block-button-element.btn-primary {
+  background: var(--tm-accent-gradient);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px 0 rgba(220, 38, 38, 0.30);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 16px 32px;
+  text-transform: none;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+
+.tm-page a.cbe-block-button-element:hover,
+.tm-page .cbe-block-button-element.btn-primary:hover {
+  box-shadow: 0 10px 26px 0 rgba(220, 38, 38, 0.40);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 
 /*SUITEDASH DEFAULT CLASSES*/
 /*SD Progress Bar*/
