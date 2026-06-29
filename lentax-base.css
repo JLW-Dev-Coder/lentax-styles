@@ -5888,13 +5888,14 @@ transform: none !important;
   }
 }
 
-/* TM nav buttons — matched to form Submit button (red→navy gradient pill).
-   Un-scoped (R3): targets SD content-block buttons site-wide; the buttons live in
-   a separate SD content block with no .tm-page ancestor in the chain. Specificity
-   (0,2,0) beats SD base .btn-primary (0,1,0), so no !important. Accepted blast
-   radius: styles ALL SuiteDash content-block buttons platform-wide. */
-a.cbe-block-button-element,
-.cbe-block-button-element.btn-primary {
+/* TM nav buttons — class-gated split (R4). R3 un-scoped the gradient onto ALL
+   SD content-block buttons site-wide; R4 replaces that with two explicit classes
+   so non-TM buttons revert to SD's flat black base. Active/inactive class is
+   assigned server-side. Specificity (0,2,0) beats SD base .btn-primary (0,1,0),
+   so no !important. */
+
+/* ---- TM nav buttons: ACTIVE (current step — matched to form Submit button) ---- */
+a.cbe-block-button-element.tm-btn-active {
   background: var(--tm-accent-gradient);
   border: 0;
   border-radius: 999px;
@@ -5908,11 +5909,34 @@ a.cbe-block-button-element,
   transition: transform .15s ease, box-shadow .2s ease;
 }
 
-a.cbe-block-button-element:hover,
-.cbe-block-button-element.btn-primary:hover {
+a.cbe-block-button-element.tm-btn-active:hover {
   box-shadow: 0 10px 26px 0 rgba(220, 38, 38, 0.40);
   color: #fff;
   transform: translateY(-2px);
+}
+
+/* ---- TM nav buttons: INACTIVE (step not yet reached — non-clickable) ---- */
+a.cbe-block-button-element.tm-btn-inactive {
+  background: #e9ebee;
+  border: 1px solid #dfe2e6;
+  border-radius: 999px;
+  box-shadow: none;
+  color: #aab0b8;
+  cursor: not-allowed;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 16px 32px;
+  pointer-events: none;
+  text-transform: none;
+  transition: none;
+}
+
+a.cbe-block-button-element.tm-btn-inactive:hover {
+  background: #e9ebee;
+  box-shadow: none;
+  color: #aab0b8;
+  transform: none;
 }
 
 
