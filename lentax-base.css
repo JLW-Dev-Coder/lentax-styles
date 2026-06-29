@@ -5895,7 +5895,7 @@ transform: none !important;
    so no !important. */
 
 /* ---- TM nav buttons: ACTIVE (current step — matched to form Submit button) ---- */
-a.cbe-block-button-element.tm-btn-active {
+.tm-btn-active a.cbe-block-button-element {
   background: var(--tm-accent-gradient);
   border: 0;
   border-radius: 999px;
@@ -5909,14 +5909,14 @@ a.cbe-block-button-element.tm-btn-active {
   transition: transform .15s ease, box-shadow .2s ease;
 }
 
-a.cbe-block-button-element.tm-btn-active:hover {
+.tm-btn-active a.cbe-block-button-element:hover {
   box-shadow: 0 10px 26px 0 rgba(220, 38, 38, 0.40);
   color: #fff;
   transform: translateY(-2px);
 }
 
 /* ---- TM nav buttons: INACTIVE (step not yet reached — non-clickable) ---- */
-a.cbe-block-button-element.tm-btn-inactive {
+.tm-btn-inactive a.cbe-block-button-element {
   background: #e9ebee;
   border: 1px solid #dfe2e6;
   border-radius: 999px;
@@ -5932,7 +5932,7 @@ a.cbe-block-button-element.tm-btn-inactive {
   transition: none;
 }
 
-a.cbe-block-button-element.tm-btn-inactive:hover {
+.tm-btn-inactive a.cbe-block-button-element:hover {
   background: #e9ebee;
   box-shadow: none;
   color: #aab0b8;
