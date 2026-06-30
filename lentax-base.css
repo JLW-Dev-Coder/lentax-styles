@@ -17748,10 +17748,17 @@ body.page-with-styling-options .extended-form-wrapper {
 }
 #client-page-view .cbe-row-wrapper.tm-matrix-top { margin-bottom: 24px !important; }
 #client-page-view .cbe-row-wrapper.tm-matrix-bottom { margin-top: 0 !important; }
-#client-page-view .tm-matrix-spacer { display: none !important; }
+/* R23 re-scope: SD Custom CSS Class field injects the class onto
+   .cbe-block-sortable (inner), not the .cbe-block column (outer flex
+   item). Re-scope via :has() so the column itself is hidden. */
+#client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-spacer) {
+  display: none !important;
+}
 
 /* Matrix cells — each tagged column becomes its own card */
-#client-page-view .tm-matrix-cell {
+/* R23 re-scope: target the column wrapping the marker, so
+   calc(50% - 12px) resolves against the row, not the column. */
+#client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell) {
   flex: 0 0 calc(50% - 12px) !important;
   max-width: calc(50% - 12px) !important;
   padding: 28px 32px !important;
@@ -17763,9 +17770,13 @@ body.page-with-styling-options .extended-form-wrapper {
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   cursor: default;
 }
-#client-page-view .tm-matrix-cell.tm-cell-left { margin-right: 12px !important; }
-#client-page-view .tm-matrix-cell.tm-cell-right { margin-left: 12px !important; }
-#client-page-view .tm-matrix-cell:hover {
+#client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-left) {
+  margin-right: 12px !important;
+}
+#client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-right) {
+  margin-left: 12px !important;
+}
+#client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell):hover {
   transform: translateY(-4px);
   border-color: var(--tm-red) !important;
   box-shadow: 0 14px 30px rgba(20,33,61,.16);
