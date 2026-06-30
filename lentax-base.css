@@ -14251,13 +14251,18 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
 /* Spacing between side-by-side panels (Projects + Activity Stream).
    SD nests each .dashboard-organize-box inside a .cbe-block column whose
    row uses .row.no-gutters — kill the no-gutters override for this scope
-   and let the dashboard-organize-box's own margin breathe. */
+   and let the dashboard-organize-box's own margin breathe.
+   R13: scoped with :has(.dashboard-organize-box) so the -8px margin only
+   hits the dashboard panel rows it was built for. Bare
+   #dashboard-view .row.no-gutters bled onto every TM .cbe-row-wrapper
+   (#dashboard-view wraps all portal pages), overriding their
+   `margin: 0 auto` centering and pushing all TM content off-center. */
 #dashboard-view .row.no-gutters > .cbe-block {
   padding-left: 8px !important;
   padding-right: 8px !important;
 }
 
-#dashboard-view .row.no-gutters {
+#dashboard-view .row.no-gutters:has(.dashboard-organize-box) {
   margin-left: -8px !important;
   margin-right: -8px !important;
 }
