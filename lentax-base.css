@@ -6285,15 +6285,18 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 
 #dashboard-view .cbe-content { padding: 8px 4px 24px; }
 
-/* Uniform row symmetry — center every row's columns as a group */
+/* R17 — un-cap rows, spread edge-to-edge, even gaps, no wrap */
+#dashboard-view .cbe-content .cbe-row-wrapper,
 #dashboard-view .cbe-row-wrapper {
-  justify-content: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  max-width: none !important;
+  justify-content: space-between !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  gap: 0 16px !important;
+  flex-wrap: nowrap !important;
 }
 
-/* Three top panels — white cards, 3-across, no wrap.
-   :has() scopes the gap rule to only the row that actually has col-md-4 panels. */
+/* R17 — col-md-4 panels grow to fill, don't cap */
 #dashboard-view .cbe-row-wrapper > .cbe-block.col-12.col-md-4 {
   background: var(--tm-card) !important;
   border: 1px solid var(--tm-border) !important;
@@ -6301,11 +6304,28 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   box-shadow: 0 4px 18px rgba(20,33,61,.06);
   padding: 22px 24px !important;
   margin: 8px 0 !important;
-  flex: 0 0 calc(33.333% - 16px) !important;
-  max-width: calc(33.333% - 16px) !important;
+  flex: 1 1 0 !important;
+  max-width: none !important;
 }
-#dashboard-view .cbe-row-wrapper:has(> .cbe-block.col-md-4) {
-  gap: 0 16px;
+
+/* R17 — extend card styling to Row 2 (col-md-3 + col-md-6) */
+#dashboard-view .cbe-row-wrapper > .cbe-block.col-md-3,
+#dashboard-view .cbe-row-wrapper > .cbe-block.col-md-6 {
+  background: var(--tm-card) !important;
+  border: 1px solid var(--tm-border) !important;
+  border-radius: var(--tm-radius) !important;
+  box-shadow: 0 4px 18px rgba(20,33,61,.06) !important;
+  padding: 22px 24px !important;
+  margin: 8px 0 !important;
+  box-sizing: border-box !important;
+}
+#dashboard-view .cbe-row-wrapper > .cbe-block.col-md-3 {
+  flex: 0 0 calc(25% - 12px) !important;
+  max-width: calc(25% - 12px) !important;
+}
+#dashboard-view .cbe-row-wrapper > .cbe-block.col-md-6 {
+  flex: 0 0 calc(50% - 8px) !important;
+  max-width: calc(50% - 8px) !important;
 }
 
 /* Headings — navy + gradient accent underline */
