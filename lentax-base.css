@@ -5992,15 +5992,6 @@ transform: none !important;
   overflow: hidden;
   padding: 34px 34px 30px;
 }
-.cbe-content .cbe-row-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: var(--tm-accent-gradient);
-  border-top-left-radius: var(--tm-radius);
-  border-top-right-radius: var(--tm-radius);
-}
 
 /* Headings (base + h2 underline) */
 .cbe-content h1,
