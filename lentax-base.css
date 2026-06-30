@@ -6328,6 +6328,18 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   max-width: calc(50% - 8px) !important;
 }
 
+/* R21 — STEP row card treatment (col-xl-3 is unique to this row) */
+#dashboard-view .cbe-row-wrapper:has(> .cbe-block.col-xl-3) {
+  background: var(--tm-card) !important;
+  border: 1px solid var(--tm-border) !important;
+  border-radius: var(--tm-radius) !important;
+  box-shadow: 0 6px 22px rgba(20,33,61,.07) !important;
+  padding: 22px 24px !important;
+  margin: 8px 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
 /* Headings — navy + gradient accent underline */
 #dashboard-view .cbe-block-content-text h1,
 #dashboard-view .cbe-block-content-text h2,
