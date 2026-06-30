@@ -6229,15 +6229,44 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   transform: translateX(-50%) !important;
 }
 
-/* ITEM 5 — Signature buttons white text (Next + Reject)
-   Long ancestor chain + !important required to beat persisted button color rule.
-   Descendant * needed because label sits inside <sd-tr> child. */
-html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.button-accept,
-html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.btn-rejection,
-html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.button-accept *,
-html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.btn-rejection * {
+/* ITEM 5 (R12 — broadened from state-class enumeration to parent-class).
+   Covers .button-accept (Next), .btn-accept (Accept post-signature),
+   .btn-rejection (Reject), and any future SD state class on this button group. */
+html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature * {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
+}
+
+/* ============================================================
+   R12 — Pricing card link-underline + active-card top accent
+   ============================================================ */
+
+/* ITEM 1b — Kill link underline propagating onto pricing-card text.
+   Long ancestor chain required to beat persisted .proposal_content link styles. */
+html body .proposal_content .proposal-content-wrapper .styling-options-content .choose-items-block a.sd-checkmark-card-item__toggle,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .choose-items-block a.sd-checkmark-card-item__toggle * {
+  text-decoration: none !important;
+}
+
+/* ITEM 1c — Thin flush gradient top accent on the ACTIVE pricing card.
+   ::after avoids clipping issues (preserves the SD "TAX MONITOR" flag).
+   border-top-radius:24px matches the SD card's native top corner radius. */
+.choose-items-block .sd-checkmark-card-item.sd-checkmark-card-item__active {
+  position: relative !important;
+}
+.choose-items-block .sd-checkmark-card-item.sd-checkmark-card-item__active::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: var(--tm-accent-gradient) !important;
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 24px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
 }
 
 
