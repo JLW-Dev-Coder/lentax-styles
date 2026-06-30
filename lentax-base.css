@@ -6183,6 +6183,63 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   -webkit-text-fill-color: #fff;
 }
 
+/* ============================================================
+   R11 — Consolidated proposal page fixes
+   ============================================================ */
+
+/* ITEM 1 — Pricing-block cohesion + underline removal
+   Kill the global h2::after underline on the pricing accordion title.
+   Restyle pricing option cards as TM cards w/ gradient-border on selected. */
+.choose-items-block h2.sdAccordion__title::after {
+  content: none !important;
+  display: none !important;
+}
+.choose-items-block .sd-checkmark-card-item {
+  background: var(--tm-card) !important;
+  border: 1px solid var(--tm-border) !important;
+  border-radius: var(--tm-radius) !important;
+  box-shadow: 0 4px 14px rgba(20,33,61,0.06) !important;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease !important;
+}
+.choose-items-block .sd-checkmark-card-item:hover {
+  border-color: var(--tm-navy) !important;
+  box-shadow: 0 10px 26px rgba(20,33,61,0.12) !important;
+}
+.choose-items-block .sd-checkmark-card-item.sd-checkmark-card-item__active {
+  border: 1.5px solid transparent !important;
+  background:
+    linear-gradient(var(--tm-card), var(--tm-card)) padding-box,
+    var(--tm-accent-gradient) border-box !important;
+  box-shadow: 0 12px 30px rgba(20,33,61,0.14) !important;
+}
+.choose-items-block .choose-items-card-title {
+  color: var(--tm-navy) !important;
+  font-weight: 700 !important;
+}
+.choose-items-block .choose-items-card-price-digits {
+  color: var(--tm-navy) !important;
+  font-weight: 700 !important;
+}
+
+/* ITEM 4 — No-space underline centering
+   Coexists with the R9 spaced-variant rule. Both inline-style forms now covered. */
+.cbe-content h2[style*="text-align:center"]::after {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+
+/* ITEM 5 — Signature buttons white text (Next + Reject)
+   Long ancestor chain + !important required to beat persisted button color rule.
+   Descendant * needed because label sits inside <sd-tr> child. */
+html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.button-accept,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.btn-rejection,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.button-accept *,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .btn-primary-signature.btn-rejection * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
 
 /*SUITEDASH DEFAULT CLASSES*/
 /*SD Progress Bar*/
