@@ -6260,6 +6260,25 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   pointer-events: none !important;
 }
 
+/* ============================================================
+   R15 — Phone / SMS (intl-tel-input) field fixes
+   - Lift floating label above country-flag widget (no clipping)
+   - Indent input so typed digits clear the 48px flag widget
+   ============================================================ */
+
+.form-group.animated-form-label.embed-group:has(.iti) label {
+  top: -10px !important;
+  left: 10px !important;
+  font-size: 12px !important;
+  z-index: 4 !important;
+}
+.form-group.animated-form-label.embed-group:has(.iti) .iti {
+  z-index: 1 !important;
+}
+.form-group.animated-form-label.embed-group:has(.iti) .iti input {
+  padding-left: 52px !important;
+}
+
 
 /*SUITEDASH DEFAULT CLASSES*/
 /*SD Progress Bar*/
