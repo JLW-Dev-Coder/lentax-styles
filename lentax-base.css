@@ -6279,6 +6279,90 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   padding-left: 52px !important;
 }
 
+/* ============================================================
+   R16 — TM Dashboard ("Start Here") page styling
+   ============================================================ */
+
+#dashboard-view .cbe-content { padding: 8px 4px 24px; }
+
+/* Uniform row symmetry — center every row's columns as a group */
+#dashboard-view .cbe-row-wrapper {
+  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Three top panels — white cards, 3-across, no wrap.
+   :has() scopes the gap rule to only the row that actually has col-md-4 panels. */
+#dashboard-view .cbe-row-wrapper > .cbe-block.col-12.col-md-4 {
+  background: var(--tm-card) !important;
+  border: 1px solid var(--tm-border) !important;
+  border-radius: var(--tm-radius) !important;
+  box-shadow: 0 4px 18px rgba(20,33,61,.06);
+  padding: 22px 24px !important;
+  margin: 8px 0 !important;
+  flex: 0 0 calc(33.333% - 16px) !important;
+  max-width: calc(33.333% - 16px) !important;
+}
+#dashboard-view .cbe-row-wrapper:has(> .cbe-block.col-md-4) {
+  gap: 0 16px;
+}
+
+/* Headings — navy + gradient accent underline */
+#dashboard-view .cbe-block-content-text h1,
+#dashboard-view .cbe-block-content-text h2,
+#dashboard-view .cbe-block-content-text h3 {
+  color: var(--tm-navy);
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+#dashboard-view .cbe-block-content-text h1 { font-size: 1.6rem; }
+#dashboard-view .cbe-block-content-text h2 {
+  font-size: 1.25rem;
+  padding-bottom: 8px;
+  position: relative;
+}
+#dashboard-view .cbe-block-content-text h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 46px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--tm-accent-gradient);
+}
+
+/* Buttons — gradient pill (primary) */
+#dashboard-view .cbe-block-button a.cbe-block-button-element.btn {
+  background: var(--tm-accent-gradient) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 11px 18px !important;
+  box-shadow: 0 3px 10px rgba(20,33,61,.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+#dashboard-view .cbe-block-button a.cbe-block-button-element.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(20,33,61,.26);
+}
+
+/* Buttons — outline pill (secondary, .button_orange_light modifier) */
+#dashboard-view .cbe-block-button.button_orange_light a.cbe-block-button-element.btn {
+  background: #fff !important;
+  color: var(--tm-navy) !important;
+  border: 1.5px solid var(--tm-border) !important;
+  box-shadow: none !important;
+}
+
+/* Gauge wrapper centering */
+#dashboard-view .cbe-block-progress-donut-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 
 /*SUITEDASH DEFAULT CLASSES*/
 /*SD Progress Bar*/
