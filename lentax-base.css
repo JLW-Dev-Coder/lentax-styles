@@ -6155,6 +6155,34 @@ transform: none !important;
   transform: translateX(-50%);
 }
 
+/* ============================================================
+   R10 — Proposal page legibility fixes
+   ============================================================ */
+
+/* "Important Notice Regarding Acceptance" panel.
+   Persisted .proposal_content modal-port block (lines ~16404-16540)
+   pins text to dark navy, which disappears on the panel's dark gradient bg.
+   Full ancestor chain + !important required to beat that rule. */
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice h1,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice h2,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice h3,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice h4,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice p,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice li,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice b,
+html body .proposal_content .proposal-content-wrapper .styling-options-content .proposal-notice strong {
+  color: #fff !important;
+}
+
+/* Stage 1/2/3 pills — white text on red→navy gradient.
+   -webkit-text-fill-color override required: an existing rule sets it
+   to solid navy, which would otherwise win over plain `color`. */
+.cbe-content h3 b {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
 
 /*SUITEDASH DEFAULT CLASSES*/
 /*SD Progress Bar*/
