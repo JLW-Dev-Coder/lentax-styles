@@ -17633,3 +17633,19 @@ body.page-with-styling-options .extended-form-wrapper {
   background-color: transparent !important;
   background-image: none !important;
 }
+
+/* ============================================================
+   R18 — SD page-builder Row toolbar accessibility fix
+   Default top:-36px floats the bar outside the row's hover zone,
+   so the cursor can't reach it before :hover ends. Reposition
+   inside the row's top edge and keep visible on hover.
+   Builder-only DOM — selectors match nothing in client portal.
+   ============================================================ */
+.cbe-row-wrapper > sd-content-block-editor-control-row > .cbe-control-bar-wrapper.cbe-control-row {
+  top: 0 !important;
+  z-index: 905 !important;
+}
+.cbe-block-wrapper:hover .cbe-control-bar-wrapper.cbe-control-row,
+.cbe-row-wrapper:hover > sd-content-block-editor-control-row > .cbe-control-bar-wrapper.cbe-control-row {
+  visibility: visible !important;
+}
