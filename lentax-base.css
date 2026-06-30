@@ -17649,3 +17649,16 @@ body.page-with-styling-options .extended-form-wrapper {
 .cbe-row-wrapper:hover > sd-content-block-editor-control-row > .cbe-control-bar-wrapper.cbe-control-row {
   visibility: visible !important;
 }
+
+/* ============================================================
+   R19 — Restore FontAwesome family on file-viewer icons
+   SD legacy [class^=icon-] rule (sd.styles.old.pack.min.css)
+   forces font-family:icomoon on .icon-wrapper, which inherits
+   to FA glyphs inside. icomoon claims codepoint range but has
+   no glyph at \f07b, so the folder icon renders blank.
+   ============================================================ */
+.sd-files-viewer-icon i.fa-solid,
+.sd-files-viewer-icon i.fa-solid::before {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
