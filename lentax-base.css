@@ -17678,3 +17678,101 @@ body.page-with-styling-options .extended-form-wrapper {
   font-family: "Font Awesome 6 Pro" !important;
   font-weight: 900 !important;
 }
+
+/* ============================================================
+   R22 — TM Support page styling
+   Page root: #client-page-view (this page; #dashboard-view N/A)
+   Marker classes (.tm-matrix-*, .tm-cell-*) applied by JLW via
+   SD admin Custom CSS Class field on the relevant blocks.
+   ============================================================ */
+
+/* Buttons — gradient pill */
+#client-page-view a.cbe-block-button-element.btn,
+#client-page-view a.cbe-block-button-element.btn-primary {
+  background: var(--tm-accent-gradient) !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 10px 22px !important;
+  font-weight: 600 !important;
+  letter-spacing: .2px;
+  box-shadow: 0 4px 12px rgba(20,33,61,.18);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+#client-page-view a.cbe-block-button-element.btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(220,38,38,.28);
+}
+
+/* Row card baseline */
+#client-page-view .cbe-row-wrapper {
+  background: var(--tm-card) !important;
+  border: 1px solid var(--tm-border) !important;
+  border-radius: var(--tm-radius) !important;
+}
+
+/* Headings */
+#client-page-view h1,
+#client-page-view h2,
+#client-page-view h3 {
+  color: var(--tm-navy) !important;
+}
+#client-page-view h1 {
+  position: relative;
+  padding-bottom: 14px;
+}
+#client-page-view h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--tm-accent-gradient);
+}
+
+/* True 2x2 matrix — neutralize merged-card chrome on tagged rows */
+#client-page-view .cbe-row-wrapper.tm-matrix-top,
+#client-page-view .cbe-row-wrapper.tm-matrix-bottom {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  padding-top: 6px !important;
+}
+#client-page-view .cbe-row-wrapper.tm-matrix-top { margin-bottom: 24px !important; }
+#client-page-view .cbe-row-wrapper.tm-matrix-bottom { margin-top: 0 !important; }
+#client-page-view .tm-matrix-spacer { display: none !important; }
+
+/* Matrix cells — each tagged column becomes its own card */
+#client-page-view .tm-matrix-cell {
+  flex: 0 0 calc(50% - 12px) !important;
+  max-width: calc(50% - 12px) !important;
+  padding: 28px 32px !important;
+  box-sizing: border-box;
+  background: var(--tm-card) !important;
+  border: 1px solid var(--tm-border) !important;
+  border-radius: var(--tm-radius) !important;
+  box-shadow: 0 6px 18px rgba(20,33,61,.07);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  cursor: default;
+}
+#client-page-view .tm-matrix-cell.tm-cell-left { margin-right: 12px !important; }
+#client-page-view .tm-matrix-cell.tm-cell-right { margin-left: 12px !important; }
+#client-page-view .tm-matrix-cell:hover {
+  transform: translateY(-4px);
+  border-color: var(--tm-red) !important;
+  box-shadow: 0 14px 30px rgba(20,33,61,.16);
+}
+
+/* Reveal main-wrapper SVG background */
+#client-page-view .content-block-wrapper.content-block-view-wrapper,
+#client-page-view .cbe-content {
+  background: transparent !important;
+}
