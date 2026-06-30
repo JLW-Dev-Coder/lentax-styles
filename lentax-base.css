@@ -6027,10 +6027,14 @@ transform: none !important;
   background: var(--tm-accent-gradient);
 }
 
-/* COLLISION OVERRIDE #1 — H2 color/weight on proposal page
+/* COLLISION OVERRIDE #1 — H1/H2/H3 color/weight on proposal page.
    Beats existing .proposal_content .proposal-content-wrapper h2 !important rule
-   (line ~16427) via deeper specificity + !important. */
-.proposal_content .proposal-content-wrapper .cbe-content h2 {
+   (line ~16427) via deeper specificity + !important.
+   Extended in R9 to cover h1, h3 (off-spec rendering rgb(10,17,36)/600).
+   H4 deliberately excluded — preserves red accent on "Proposed Amount:". */
+.proposal_content .proposal-content-wrapper .cbe-content h1,
+.proposal_content .proposal-content-wrapper .cbe-content h2,
+.proposal_content .proposal-content-wrapper .cbe-content h3 {
   color: var(--tm-navy) !important;
   font-weight: 700 !important;
 }
@@ -6107,20 +6111,48 @@ transform: none !important;
   box-shadow: 0 4px 14px rgba(220,38,38,.25);
 }
 
-/* Progress bar */
+/* Progress bar — TM gradient stripe over light track.
+   R9: added !important to beat the persisted SD default (orange stripe
+   on gray track). R8's selectors were correct but lost the cascade
+   without !important — fixed in place rather than re-appended. */
 .cbe-content .cbe-block-progress-single {
-  background: var(--tm-border);
-  border-radius: 999px;
+  background: var(--tm-border) !important;
+  border-radius: 999px !important;
   overflow: hidden;
 }
 .cbe-content .cbe-block-progress-single > div {
-  border-radius: 999px;
-  background-color: var(--tm-red);
+  border-radius: 999px !important;
+  background-color: var(--tm-red) !important;
   background-image:
     linear-gradient(45deg, rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%,
                     rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent),
-    var(--tm-accent-gradient);
-  background-size: 28px 28px, 100% 100%;
+    var(--tm-accent-gradient) !important;
+  background-size: 28px 28px, 100% 100% !important;
+}
+
+/* ============================================================
+   R9 — Proposal page follow-up fixes
+   (sidebar buttons + "How It Works" underline centering).
+   Progress-bar !important fix handled in place above; collision
+   override #1 extended to h1/h2/h3 above.
+   ============================================================ */
+
+/* Sidebar buttons — "View/Print PDF" + "Proposals".
+   Needs !important to beat the persisted .proposal-btn rule. */
+.sidebar-buttons .proposal-btn {
+  background: var(--tm-accent-gradient) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 14px rgba(220,38,38,.25) !important;
+}
+
+/* "How It Works" h2 underline — centered.
+   Hook: inline style="text-align: center" (with space) is unique
+   to the "How It Works" heading on the proposal page. */
+.cbe-content h2[style*="text-align: center"]::after {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
