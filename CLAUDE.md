@@ -22,8 +22,8 @@ Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app
 ```
 /
 ├── lentax-base.css                 # Master stylesheet — all products + themes inherit
-├── lentax-tpp-default.js           # TPP per-theme loader (FOUC-preload IIFE)
-├── lentax-vlp-default.js           # VLP per-theme loader (FOUC-preload IIFE)
+├── lentax-install-default.js       # TPP "install" per-theme loader (FOUC-preload IIFE)
+├── lentax-vlp.js                   # VLP per-theme loader (FOUC-preload IIFE)
 ├── themes/
 │   ├── tpp-default.css             # TPP palette overrides
 │   └── vlp-default.css             # VLP palette overrides
@@ -43,8 +43,8 @@ Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app
 | File | Purpose |
 |---|---|
 | `lentax-base.css` | Master stylesheet. All products and themes inherit from it. Sectioned internally (Section 1 = Site, Section 2 = SuiteDash with sub-sections). |
-| `lentax-tpp-default.js` | TPP per-theme loader. FOUC-preload IIFE (`loadLentaxStyles`) that injects `lentax-base.css` + `themes/tpp-default.css` via the preload-swap pattern. Pasted into SuiteDash Custom JS on TPP portals. |
-| `lentax-vlp-default.js` | VLP per-theme loader. Same pattern as the TPP loader but injects `themes/vlp-default.css`. |
+| `lentax-install-default.js` | TPP "install" per-theme loader. FOUC-preload IIFE (`loadLentaxStyles`) that injects `lentax-base.css` + `themes/tpp-default.css` via the preload-swap pattern. Pasted into SuiteDash Custom JS on install portals. Also stamps `body.lentax-install-default` (R24). Coastal/Sentinel variants: `lentax-install-{coastal,sentinel}.js`. |
+| `lentax-vlp.js` | VLP per-theme loader. Same pattern as the install loader but injects `themes/vlp-default.css`; stamps `body.lentax-vlp` (R24). |
 | `themes/*.css` | Per-theme palette overrides (token re-bindings). Loaded SECOND so theme tokens win the cascade over base fallbacks. See `THEMES.md`. |
 | `index.html` | Netlify root — usually unused or minimal. |
 | `lentax-css-pre-migration.snapshot.css` | Historical reference from the Path Y migration. Do NOT delete. |
@@ -63,7 +63,7 @@ Before making any change, read these in full:
 ## JS Ports
 
 Ported behavior JS lives in `js/{name}.js`, one file per source doc.
-Per-theme loaders (`lentax-tpp-default.js`, `lentax-vlp-default.js`) stay
+Per-theme loaders (`lentax-install-default.js`, `lentax-vlp.js`) stay
 at repo root — they are entry points, the JS analog of `lentax-base.css`.
 
 Convention:
@@ -113,7 +113,8 @@ This will be decided at first JS port.
 ## Required Verification Before Merging to Main
 
 Every commit that touches `lentax-base.css` or a per-theme loader
-(`lentax-tpp-default.js`, `lentax-vlp-default.js`) must pass these checks
+(`lentax-install-default.js`, `lentax-vlp.js`, and the other
+`lentax-install-*` / `lentax-tmp-*` loaders) must pass these checks
 before the merge step:
 
 ### For `lentax-base.css`
@@ -158,7 +159,7 @@ foreach ($h in $requiredHeaders) {
 ### For the per-theme loaders (`lentax-*-default.js`)
 
 ```powershell
-foreach ($loader in @(".\lentax-tpp-default.js", ".\lentax-vlp-default.js")) {
+foreach ($loader in @(".\lentax-install-default.js", ".\lentax-install-coastal.js", ".\lentax-install-sentinel.js", ".\lentax-vlp.js", ".\lentax-tmp-default.js", ".\lentax-tmp-coastal.js", ".\lentax-tmp-sentinel.js")) {
   # 1. Syntactic validity
   node --check $loader
   if ($LASTEXITCODE -ne 0) { Write-Host "FAIL: JS syntax error in $loader" -ForegroundColor Red; exit 1 }

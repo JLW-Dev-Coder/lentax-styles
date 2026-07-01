@@ -384,8 +384,8 @@ Cool coastal re-skin of the TPP brand token surface — teal / ocean-navy / seaf
 | `--lentax-font-sans` | `'Inter', 'Helvetica Neue', Arial, sans-serif` (TPP default) | Declared in this file |
 | `--lentax-font-display` | `'Raleway', 'Inter', sans-serif` (TPP default) | Declared in this file |
 
-**Loader:** `lentax-tpp-coastal.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-coastal.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
-`<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-coastal.js"></script>`
+**Loader:** `lentax-install-coastal.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-coastal.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
+`<script src="https://precious-lily-bbe555.netlify.app/lentax-install-coastal.js"></script>`
 
 ### 4.4 `themes/tpp-sentinel.css` — TPP Sentinel (navy/red/cream)
 
@@ -404,14 +404,16 @@ Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream r
 | `--lentax-font-sans` | `'Source Sans 3', 'Helvetica Neue', Arial, sans-serif` (overrides TPP default) | Declared in this file |
 | `--lentax-font-display` | `'Source Sans 3', 'Helvetica Neue', Arial, sans-serif` (overrides TPP default — Sentinel's display = its sans identity, no Raleway) | Declared in this file |
 
-**Loader:** `lentax-tpp-sentinel.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-sentinel.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
-`<script src="https://precious-lily-bbe555.netlify.app/lentax-tpp-sentinel.js"></script>`
+**Loader:** `lentax-install-sentinel.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-sentinel.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
+`<script src="https://precious-lily-bbe555.netlify.app/lentax-install-sentinel.js"></script>`
 
 ### 4.5 TPP + TMP shared variants (product-neutral theme files)
 
 TPP and TMP share the **same three theme variants** — Default, Coastal, Sentinel — and the **same theme CSS files**. The TMP loaders (`lentax-tmp-default.js`, `lentax-tmp-coastal.js`, `lentax-tmp-sentinel.js`) inject `lentax-base.css` + `themes/tpp-{variant}.css`, exactly as the TPP loaders do — there is no separate `themes/tmp-*.css`.
 
-This is safe because the theme files are **product-neutral**: each is a `:root` block of token overrides only (no selectors, no product-scoped rules — see §1 and the subsections above), so the same palette applies cleanly under either product's loader. The product split lives in the loaders (which portal pastes which `lentax-tmp-*` vs `lentax-tpp-*` activation tag), not in the theme CSS.
+This is safe because the theme files are **product-neutral**: each is a `:root` block of token overrides only (no selectors, no product-scoped rules — see §1 and the subsections above), so the same palette applies cleanly under either product's loader. The product split lives in the loaders (which portal pastes which `lentax-tmp-*` vs `lentax-install-*` activation tag), not in the theme CSS.
+
+**Body-class plumbing (R24):** every loader now stamps a distinguishing class on `<body>` on load so `lentax-base.css` rules can be scoped per variant in R25 — `lentax-install-{default,coastal,sentinel}` from the install loaders, `lentax-vlp` from `lentax-vlp.js`, and `lentax-tmp-{default,coastal,sentinel}` from the TMP loaders (TMP plumbed defensively; its status is pending R25 recon).
 
 If TMP ever needs to diverge from TPP on a variant, split that variant then: add `themes/tmp-{variant}.css` and re-point the corresponding `lentax-tmp-{variant}.js` at it. Until that need exists, the shared `themes/tpp-{variant}.css` is the single source of truth for both products' palette.
 

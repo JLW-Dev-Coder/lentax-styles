@@ -4,13 +4,28 @@
  *
  * TMP reuses the shared TPP theme CSS (themes/tpp-sentinel.css) per the
  * TPP+TMP shared-variant architecture — no separate tmp-*.css exists.
- * Functionally identical to lentax-tpp-sentinel.js; only the product label
+ * Functionally identical to lentax-install-sentinel.js; only the product label
  * differs. If TMP later needs its own palette, split the theme CSS then.
  * Ported: 2026-06-19.
  *
  * Pasted into SuiteDash Custom JS on TMP Sentinel portals.
  * For other themes, use the matching lentax-tmp-{theme}.js loader.
  */
+
+// R24: stamp a per-variant class on <body> so lentax-base.css rules can be
+// scoped per variant (see R25). TMP status is unknown — plumbed defensively
+// so R25 recon can revisit. Idempotent — safe if run twice.
+(function () {
+  var cls = 'lentax-tmp-sentinel';
+  if (document.body) {
+    if (!document.body.classList.contains(cls)) document.body.classList.add(cls);
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!document.body.classList.contains(cls)) document.body.classList.add(cls);
+    });
+  }
+})();
+
 (function loadLentaxStyles() {
   var baseUrl  = 'https://precious-lily-bbe555.netlify.app/lentax-base.css';
   var themeUrl = 'https://precious-lily-bbe555.netlify.app/themes/tpp-sentinel.css';
