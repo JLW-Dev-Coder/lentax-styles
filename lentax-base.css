@@ -17803,6 +17803,16 @@ body.page-with-styling-options .extended-form-wrapper {
     flex-wrap: wrap !important;
   }
 
+  /* R28.1 — extend row wrap to #dashboard-view. R17's TM-cluster rule
+     locks nowrap on #dashboard-view .cbe-row-wrapper at (1,2,1) for
+     install variants (post-R25/R26 scoping); this override matches that
+     specificity and covers both VLP and install so dashboard rows stack
+     on mobile. JLW live-check 2026-07-01: two-column rows squeezing
+     "Prepare your install, Jamie" heading to 1 letter per line. */
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper {
+    flex-wrap: wrap !important;
+  }
+
   /* Fix 2 — TM matrix cells stack full-width (2-up -> 1-up). Install-scoped
      only (VLP renders no .tm-matrix surface). Targets the .cbe-block column
      that carries the calc(50% - 12px) lock, matching that rule's selector so
