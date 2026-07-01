@@ -17787,3 +17787,54 @@ body.page-with-styling-options .extended-form-wrapper {
 :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-content {
   background: transparent !important;
 }
+
+/* ==========================================================================
+   R28 — Mobile breakpoints (shared base)
+   Applies to all variants. Per-variant mobile palette tweaks go to R29+.
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  /* Fix 1 — let SD content rows wrap instead of holding a single horizontal
+     row on phone widths. Beats SD-default (and any low-specificity)
+     .cbe-row-wrapper nowrap lock. The install-only #dashboard-view nowrap
+     (higher, ID-scoped specificity) is intentionally NOT overridden here so
+     this stays clear of the deferred dashboard-layout work — see round notes. */
+  .cbe-row-wrapper {
+    flex-wrap: wrap !important;
+  }
+
+  /* Fix 2 — TM matrix cells stack full-width (2-up -> 1-up). Install-scoped
+     only (VLP renders no .tm-matrix surface). Targets the .cbe-block column
+     that carries the calc(50% - 12px) lock, matching that rule's selector so
+     it wins by source order; the 12px side gutters are zeroed so a full-width
+     cell doesn't overflow the row. */
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell) {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+  }
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-left) {
+    margin-right: 0 !important;
+  }
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-right) {
+    margin-left: 0 !important;
+  }
+
+  /* Fix 3 — scale oversized headings + buttons down on phone widths. Values
+     mirror the desktop rules (dashboard headings/buttons, support buttons)
+     cut ~25%. #client-page-view headings carry no base font-size (they
+     inherit SD/theme defaults) so they are deliberately left alone — mobile
+     scaling for those belongs in the theme layer, see round notes. */
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h1 {
+    font-size: 1.2rem !important;
+  }
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h2 {
+    font-size: .94rem !important;
+  }
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-button a.cbe-block-button-element.btn {
+    padding: 8px 14px !important;
+  }
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view a.cbe-block-button-element.btn,
+  :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view a.cbe-block-button-element.btn-primary {
+    padding: 8px 16px !important;
+  }
+}
