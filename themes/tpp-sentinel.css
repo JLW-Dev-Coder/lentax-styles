@@ -1,6 +1,6 @@
 /* themes/tpp-sentinel.css
  * TPP Sentinel — patriotic navy/red/cream palette
- * Loaded after lentax-base.css on TPP "Sentinel" portals via lentax-tpp-sentinel.js.
+ * Loaded after lentax-base.css on TPP "Sentinel" portals via lentax-install-sentinel.js.
  * Re-skins the TPP brand token surface to a patriotic navy/red/cream palette
  * (signal-red #dc2626 / navy #14213d / cream #F5EFE0 / antique-gold #B08D57).
  * Same token surface as themes/tpp-coastal.css — only values differ.
@@ -121,7 +121,7 @@
    project-modifier-bound with no known collision.
 
    Hazards / notes:
-     - JLW environment loads lentax-tpp-sentinel.js → tpp-sentinel.css.
+     - JLW environment loads lentax-install-sentinel.js → tpp-sentinel.css.
        This round ships in the correct file for that loader.
      - VLP Round 38 remains live in themes/vlp-default.css. Both stand
        independently via per-theme file partition.
@@ -306,7 +306,7 @@
  * ROUND 50 — TPP dashboard styling persistence
  * Persists CC's TPP variant dashboard work (cards + banner + row
  * container) from browser-injected preview to source. Delivery:
- * <script src=".../lentax-tpp-sentinel.js"> in TPP portal Custom
+ * <script src=".../lentax-install-sentinel.js"> in TPP portal Custom
  * JS field injects <link> to this file from Netlify origin.
  *
  * Anchor: #wrapper #dashboard-view (ID-level specificity to beat
