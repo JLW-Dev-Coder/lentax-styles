@@ -17848,3 +17848,40 @@ body.page-with-styling-options .extended-form-wrapper {
     padding: 8px 16px !important;
   }
 }
+
+/* ==========================================================================
+   R32.1 — remove red heading underlines
+   Scope: all 4 variants (VLP + 3 install). JLW-directed cleanup 2026-07-01.
+
+   Neutralizes the red→navy (--tm-accent-gradient) accent bar painted by the
+   heading ::after pseudo-elements below. Kills ONLY the fill (background →
+   transparent) — the pseudo-element and the heading's padding-bottom stay,
+   so vertical rhythm is unchanged and the change is fully reversible.
+
+   Sources overridden (all in this file):
+     - .cbe-content h2::after                             (~L6010, proposal/TM card h2)
+     - .tm-flow-heading::after                            (~L5820, "HOW THIS WORKS" flow label)
+     - #dashboard-view .cbe-block-content-text h2::after  (~L6357, dashboard h2)
+     - #client-page-view h1::after                        (~L17726, portal page h1)
+
+   The :is(body.lentax-*) prefix adds (0,1,1) so each override out-specifies
+   (and, with !important, unconditionally beats) its source rule across all
+   four body-class variants.
+
+   OUT OF SCOPE (left intact — flagged for JLW):
+     - red-pill on view/168967 "Choose your next move" — see task report
+       (only CSS candidate is the shared .cbe-content [style*=center] b stage-
+       pill rule at ~L6082, which also styles the proposal Stage 1/2/3 pills;
+       could not confirm the live DOM, so held for PE decision).
+     - DocGen doc section underlines (.tpp-doc-h2::after / .tu-doc-h2::after,
+       rose→crimson) — a separate rendered-document surface, not portal UI.
+     - .choose-items-block active-card ::after top accent (~L6249) — card
+       decoration, not a heading underline.
+   ========================================================================== */
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .cbe-content h2::after,
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tm-flow-heading::after,
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h2::after,
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h1::after {
+  background: transparent !important;
+  background-image: none !important;
+}
