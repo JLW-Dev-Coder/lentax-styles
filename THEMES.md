@@ -407,15 +407,15 @@ Patriotic re-skin of the TPP brand token surface — signal-red / navy / cream r
 **Loader:** `lentax-install-sentinel.js` — preload-swap FOUC loader (injects `lentax-base.css` then `themes/tpp-sentinel.css`); pasted into the portal's SuiteDash Custom JS. Activation tag:
 `<script src="https://precious-lily-bbe555.netlify.app/lentax-install-sentinel.js"></script>`
 
-### 4.5 TPP + TMP shared variants (product-neutral theme files)
+### 4.5 Shared theme variants (product-neutral theme files)
 
-TPP and TMP share the **same three theme variants** — Default, Coastal, Sentinel — and the **same theme CSS files**. The TMP loaders (`lentax-tmp-default.js`, `lentax-tmp-coastal.js`, `lentax-tmp-sentinel.js`) inject `lentax-base.css` + `themes/tpp-{variant}.css`, exactly as the TPP loaders do — there is no separate `themes/tmp-*.css`.
+The three install variants — Default, Coastal, Sentinel — share the **same theme CSS files**. Each `lentax-install-{variant}.js` loader injects `lentax-base.css` + `themes/tpp-{variant}.css` — there is no separate per-variant product theme CSS.
 
-This is safe because the theme files are **product-neutral**: each is a `:root` block of token overrides only (no selectors, no product-scoped rules — see §1 and the subsections above), so the same palette applies cleanly under either product's loader. The product split lives in the loaders (which portal pastes which `lentax-tmp-*` vs `lentax-install-*` activation tag), not in the theme CSS.
+This is safe because the theme files are **product-neutral**: each is a `:root` block of token overrides only (no selectors, no product-scoped rules — see §1 and the subsections above), so the same palette applies cleanly under any loader. The product split lives in the loaders (which portal pastes which `lentax-install-*` vs `lentax-vlp` activation tag), not in the theme CSS.
 
-**Body-class plumbing (R24):** every loader now stamps a distinguishing class on `<body>` on load so `lentax-base.css` rules can be scoped per variant in R25 — `lentax-install-{default,coastal,sentinel}` from the install loaders, `lentax-vlp` from `lentax-vlp.js`, and `lentax-tmp-{default,coastal,sentinel}` from the TMP loaders (TMP plumbed defensively; its status is pending R25 recon).
+**Body-class plumbing (R24):** every loader stamps a distinguishing class on `<body>` on load so `lentax-base.css` rules can be scoped per variant — `lentax-install-{default,coastal,sentinel}` from the install loaders and `lentax-vlp` from `lentax-vlp.js`.
 
-If TMP ever needs to diverge from TPP on a variant, split that variant then: add `themes/tmp-{variant}.css` and re-point the corresponding `lentax-tmp-{variant}.js` at it. Until that need exists, the shared `themes/tpp-{variant}.css` is the single source of truth for both products' palette.
+**TMP fold (R26):** R24 also plumbed a defensive set of TaxMonitor / TMP loaders + body classes while that product's fate was undecided. **R26 retired TMP entirely — folded into the install variants:** the three TMP loaders were deleted and the R25 body-class prefixes in `lentax-base.css` were rewritten from the TMP classes to `lentax-install-*`, so the TaxMonitor (TM) page styling now runs on all three install portals. There is no separate TMP loader, theme file, or body class any longer.
 
 ## 5. Literals — do not tokenize
 

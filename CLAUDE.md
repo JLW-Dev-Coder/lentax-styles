@@ -114,7 +114,7 @@ This will be decided at first JS port.
 
 Every commit that touches `lentax-base.css` or a per-theme loader
 (`lentax-install-default.js`, `lentax-vlp.js`, and the other
-`lentax-install-*` / `lentax-tmp-*` loaders) must pass these checks
+`lentax-install-*` loaders) must pass these checks
 before the merge step:
 
 ### For `lentax-base.css`
@@ -159,7 +159,7 @@ foreach ($h in $requiredHeaders) {
 ### For the per-theme loaders (`lentax-*-default.js`)
 
 ```powershell
-foreach ($loader in @(".\lentax-install-default.js", ".\lentax-install-coastal.js", ".\lentax-install-sentinel.js", ".\lentax-vlp.js", ".\lentax-tmp-default.js", ".\lentax-tmp-coastal.js", ".\lentax-tmp-sentinel.js")) {
+foreach ($loader in @(".\lentax-install-default.js", ".\lentax-install-coastal.js", ".\lentax-install-sentinel.js", ".\lentax-vlp.js")) {
   # 1. Syntactic validity
   node --check $loader
   if ($LASTEXITCODE -ne 0) { Write-Host "FAIL: JS syntax error in $loader" -ForegroundColor Red; exit 1 }

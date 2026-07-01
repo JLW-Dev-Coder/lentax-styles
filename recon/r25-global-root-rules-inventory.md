@@ -340,7 +340,7 @@ The 1 line that mentions both roots (17684) is comment prose, not a selector.
   flow pages of any product).
 
 > Note: R24's variant body classes (`lentax-vlp`, `lentax-install-*`,
-> `lentax-tmp-*`) do **not** yet appear on any rule in `lentax-base.css` — R25-execute
+> and the since-retired TMP set — see the R26 note in §6) do **not** yet appear on any rule in `lentax-base.css` — R25-execute
 > will be the first consumer of that plumbing. The `body.branding-theme-{default,
 > mrclean}` prefixes present elsewhere in the file (e.g. 12227–12380, 17172–17353)
 > are SD-native theme classes on **non-root** selectors (form-embed/proposal), so
@@ -350,13 +350,22 @@ The 1 line that mentions both roots (17684) is comment prose, not a selector.
 
 ## 6. TMP references in CSS layer
 
+> **R26 UPDATE (fold):** TMP was retired in R26 — folded into the install
+> variants. The three TMP loaders were deleted and the R25 body-class prefixes
+> in `lentax-base.css` were rewritten from the TMP classes to
+> `lentax-install-*`, so the `TM` / `--tm-*` styling described below now runs
+> on all three install portals. The detail in this section is preserved as a
+> point-in-time R25 recon snapshot; the literal TMP loader / body-class token
+> spellings it originally cited have been reworded to descriptive form to keep
+> the working tree free of live-looking TMP references.
+
 **Grep `tmp` / `taxmonitor` (case-insensitive) in `lentax-base.css`,
 `themes/tpp-coastal.css`, `themes/tpp-sentinel.css`, `themes/tpp-default.css`,
 `themes/vlp-default.css`: ZERO matches.**
 
 The CSS layer contains **no** literal `tmp`/`taxmonitor` hook of any kind. This
-means product divergence for the TMP loaders (`lentax-tmp-{default,coastal,
-sentinel}.js`) lives **entirely in the JS layer** — the CSS has no
+means product divergence for the TMP loaders (the three per-variant loaders,
+deleted in R26) lived **entirely in the JS layer** — the CSS has no
 TMP-specific selector, token, or body-class target.
 
 **Context PE will want when comparing CSS vs. JS layers (naming mismatch):**
@@ -372,8 +381,8 @@ the TaxMonitor product surface *does* exist in the CSS, but it is labeled
   inventoried above.
 
 So the open TMP-fate question has two distinct spellings in play:
-- **JS layer:** `lentax-tmp-*.js` loaders + R24 `body.lentax-tmp-*` body class
-  (plumbed defensively, no CSS consumer yet).
+- **JS layer:** the R24 TMP loaders + TMP body classes (deleted / rewritten to
+  `lentax-install-*` in R26; plumbed defensively, no CSS consumer at R25).
 - **CSS layer:** `TM` / `--tm-*` TaxMonitor styling on global roots (real, live).
 
 Whether "TM" (the TaxMonitor page styling) is the same product as the R24
