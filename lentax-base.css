@@ -6079,8 +6079,11 @@ transform: none !important;
   background: var(--tm-accent-gradient);
 }
 
-/* Stage pills (centered inline labels) */
-.cbe-content [style*="text-align: center"] b,
+/* Stage pills (centered inline labels) — the primary arm excludes <h1> in
+   R32.2 so it no longer paints incidental <h1><b> patterns on VLP portal
+   pages (e.g. "Choose your next move, Jamie" on view/168967) while keeping
+   the intended proposal <h3>/<p> phase pills. CC-diagnosed 2026-07-01. */
+.cbe-content :not(h1)[style*="text-align: center"] b,
 .cbe-content .wysiwyg-content p[style*="center"] b {
   display: inline-block;
   background: var(--tm-accent-gradient);
@@ -17850,7 +17853,7 @@ body.page-with-styling-options .extended-form-wrapper {
 }
 
 /* ==========================================================================
-   R32.1 — remove red heading underlines
+   R32.1 — remove red heading underlines   (amended by R32.2, 2026-07-01)
    Scope: all 4 variants (VLP + 3 install). JLW-directed cleanup 2026-07-01.
 
    Neutralizes the red→navy (--tm-accent-gradient) accent bar painted by the
@@ -17859,29 +17862,52 @@ body.page-with-styling-options .extended-form-wrapper {
    so vertical rhythm is unchanged and the change is fully reversible.
 
    Sources overridden (all in this file):
-     - .cbe-content h2::after                             (~L6010, proposal/TM card h2)
-     - .tm-flow-heading::after                            (~L5820, "HOW THIS WORKS" flow label)
-     - #dashboard-view .cbe-block-content-text h2::after  (~L6357, dashboard h2)
-     - #client-page-view h1::after                        (~L17726, portal page h1)
+     - .cbe-content h2::after                             (~L6013, proposal/TM card h2)
+     - #dashboard-view .cbe-block-content-text h2::after  (~L6360, dashboard h2)
+     - #client-page-view h1::after                        (~L17729, portal page h1)
+
+   R32.2 (2026-07-01, JLW): .tm-flow-heading::after was REMOVED from this kill
+   list — it's a decorative "HOW THIS WORKS" eyebrow underline JLW wants kept.
+   The DocGen doc-heading underlines were added instead (separate block below).
 
    The :is(body.lentax-*) prefix adds (0,1,1) so each override out-specifies
    (and, with !important, unconditionally beats) its source rule across all
    four body-class variants.
 
-   OUT OF SCOPE (left intact — flagged for JLW):
-     - red-pill on view/168967 "Choose your next move" — see task report
-       (only CSS candidate is the shared .cbe-content [style*=center] b stage-
-       pill rule at ~L6082, which also styles the proposal Stage 1/2/3 pills;
-       could not confirm the live DOM, so held for PE decision).
-     - DocGen doc section underlines (.tpp-doc-h2::after / .tu-doc-h2::after,
-       rose→crimson) — a separate rendered-document surface, not portal UI.
-     - .choose-items-block active-card ::after top accent (~L6249) — card
+   RESOLVED since R32.1:
+     - red-pill on view/168967 "Choose your next move" — fixed at root in R32.2
+       by excluding <h1> from the stage-pill rule at ~L6086 (:not(h1)); no
+       override is needed here.
+
+   STILL OUT OF SCOPE (left intact):
+     - .choose-items-block active-card ::after top accent (~L6252) — card
        decoration, not a heading underline.
    ========================================================================== */
 :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .cbe-content h2::after,
-:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tm-flow-heading::after,
 :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h2::after,
 :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h1::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* ==========================================================================
+   R32.2 — remove DocGen doc-heading underlines   (JLW-directed 2026-07-01)
+
+   The rendered-document h2s (.tpp-doc-h2 ~L15134, .tu-doc-h2 ~L15808) carry a
+   crimson underline in TWO layers: a full-width `border-bottom: 2px solid
+   var(--tpp-border)` (rgba crimson-deep .14) on the heading itself, PLUS a
+   48px rose→crimson `::after` accent tab. JLW: kill the ENTIRE underline, so
+   both layers are neutralized here — the border colour → transparent AND the
+   ::after fill → transparent. The 2px border box, padding-bottom, and the
+   ::after box are all left intact, so vertical rhythm is unchanged and the
+   change is fully reversible.
+   ========================================================================== */
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tpp-doc-h2,
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tu-doc-h2 {
+  border-bottom-color: transparent !important;
+}
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tpp-doc-h2::after,
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tu-doc-h2::after {
   background: transparent !important;
   background-image: none !important;
 }
