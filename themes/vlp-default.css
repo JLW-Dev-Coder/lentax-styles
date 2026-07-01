@@ -3714,3 +3714,72 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
 /* ============================================================
  * END ROUND 62
  * ============================================================ */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   R29 — #client-page-view dark background, un-gated for VLP
+   (Repo-level lentax-styles round series R24→R29 — NOT to be confused with this
+   file's internal "VLP-DEFAULT ROUND 29", which was the vl-* monochrome
+   re-anchor. Two round series coexist here; this header uses the repo series to
+   avoid a marker collision.)
+   Append-only. Does NOT modify rounds 9–13 or the round 25/27 gated override.
+
+   BUG (R29 brief): portal subpages wrapped in #client-page-view render with a
+   WHITE content container on VLP, hiding content (white-on-white).
+
+   ROOT CAUSE: the round-9 explore-page rule
+     #client-page-view { background:#fff !important }   (specificity 1,0,0)
+   is un-scoped, and the round-25/27 override that corrects it to dark is gated
+   on `body.page-with-styling-options`. Portal subpages WITHOUT that SD
+   page-styling body class (per JLW: the actually-broken pages, e.g. the
+   checklist / Support client-view pages) never receive the dark override, so
+   the round-9 white — and SD's platform white default on #client-page-view —
+   wins → white container.
+
+   FIX (mirrors the proven round-25/27 dark override, but gated on the
+   always-present R24 loader class `body.lentax-vlp` instead of
+   `body.page-with-styling-options`, so it fires on EVERY VLP portal subpage):
+     - `body.lentax-vlp:not(.sd-dark-mode) #client-page-view` = (1,2,1) — matches
+       the gated override's specificity, beats round-9 white (1,0,0) and SD's
+       platform default. On styling-options pages the gated (1,2,1) rule sets
+       the same dark value, so there is no visible change there.
+     - Inner SD content-block wrappers cleared to transparent (mirrors round-27)
+       so the dark #client-page-view shows through. Round-27 proves these clears
+       leave the intentional white .vl-hero panels intact (they are not in the
+       list), so mirroring them un-gated is safe.
+
+   SCOPE: VLP-only. TPP install variants carry NO #client-page-view background
+   rule (no round-9 white → no bug), so this stays in vlp-default.css, not the
+   shared base.
+
+   NOT INCLUDED — deferred to R30 "make everything dark" (JLW-directed):
+   darkening the intentional white .vl-hero explore/flow panels (views
+   169143 / 169144 / 168981 / 169141 / 169146). That is a coordinated
+   light→dark TEXT recolor across ~6 JS-coupled sales pages with documented
+   .vl-hero-title / .vl-hero__title class drift and a history of
+   contrast-cascade regressions (rounds 10/11/12/23) — it requires live-DOM
+   verification and ships as its own round. This round darkens ONLY the
+   container, which fully resolves the reported white-box bug with no risk of
+   invisible text.
+
+   Added 2026-07-01 — round 29.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view {
+  background-color: var(--vlpd-page-bg, #1a1a1a) !important;
+}
+
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-content,
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-block-wrapper,
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-block-view-wrapper,
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .bg-widget,
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .widget-holder,
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .columns-form-wrap,
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-wrapper {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* ============================================================
+ * END R29
+ * ============================================================ */
