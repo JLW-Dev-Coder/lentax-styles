@@ -3794,6 +3794,15 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
   background: transparent !important;
 }
 
+/* R29.2 — darken the html canvas on VLP pages. CC-diagnosed: html has
+   an explicit UA white background that suppresses background-propagation
+   from body, so the scroll canvas below the viewport fold shows white
+   on any page whose content exceeds viewport height. :has() scopes this
+   to VLP context only (does not affect install variants). */
+html:has(body.lentax-vlp:not(.sd-dark-mode)) {
+  background-color: rgb(26, 26, 26) !important;
+}
+
 /* ============================================================
  * END R29
  * ============================================================ */
