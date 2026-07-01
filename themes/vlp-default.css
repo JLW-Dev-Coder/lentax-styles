@@ -3803,6 +3803,23 @@ html:has(body.lentax-vlp:not(.sd-dark-mode)) {
   background-color: rgb(26, 26, 26) !important;
 }
 
+/* R29.3 — remove outer card frame + width cap on .cbe-row-wrapper.
+   CC-diagnosed: lentax-base.css paints a 1px solid rgb(226,232,243)
+   border + rgba(20,33,61,0.07) box-shadow + 16px border-radius and
+   caps width at 1180px with 309px side margins, giving VLP pages a
+   floating card look inside the dark canvas. This clears the frame
+   and lets the row fill its container. Matches R29.1's specificity
+   pattern; !important is consistent with R29's convention. */
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
 /* ============================================================
  * END R29
  * ============================================================ */
