@@ -40,14 +40,6 @@
       document.head.appendChild(fallback);
     };
     document.head.appendChild(preload);
-
-    // <noscript> fallback
-    var noscript = document.createElement('noscript');
-    var noscriptLink = document.createElement('link');
-    noscriptLink.rel = 'stylesheet';
-    noscriptLink.href = url;
-    noscript.appendChild(noscriptLink);
-    document.head.appendChild(noscript);
   }
 
   // Load base FIRST (token fallbacks), theme SECOND (token overrides win cascade)
