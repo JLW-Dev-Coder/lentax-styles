@@ -6283,11 +6283,11 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
    R16 — TM Dashboard ("Start Here") page styling
    ============================================================ */
 
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-content { padding: 8px 4px 24px; }
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-content { padding: 8px 4px 24px; }
 
 /* R17 — un-cap rows, spread edge-to-edge, even gaps, no wrap */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-content .cbe-row-wrapper,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-content .cbe-row-wrapper,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper {
   max-width: none !important;
   justify-content: space-between !important;
   margin-left: 0 !important;
@@ -6297,7 +6297,7 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 }
 
 /* R17 — col-md-4 panels grow to fill, don't cap */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-12.col-md-4 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-12.col-md-4 {
   background: var(--tm-card) !important;
   border: 1px solid var(--tm-border) !important;
   border-radius: var(--tm-radius) !important;
@@ -6309,8 +6309,8 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 }
 
 /* R17 — extend card styling to Row 2 (col-md-3 + col-md-6) */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-3,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-6 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-3,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-6 {
   background: var(--tm-card) !important;
   border: 1px solid var(--tm-border) !important;
   border-radius: var(--tm-radius) !important;
@@ -6319,17 +6319,17 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   margin: 8px 0 !important;
   box-sizing: border-box !important;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-3 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-3 {
   flex: 0 0 calc(25% - 12px) !important;
   max-width: calc(25% - 12px) !important;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-6 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-md-6 {
   flex: 0 0 calc(50% - 8px) !important;
   max-width: calc(50% - 8px) !important;
 }
 
 /* R21 — STEP row card treatment (col-xl-3 is unique to this row) */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-row-wrapper:has(> .cbe-block.col-xl-3) {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper:has(> .cbe-block.col-xl-3) {
   background: var(--tm-card) !important;
   border: 1px solid var(--tm-border) !important;
   border-radius: var(--tm-radius) !important;
@@ -6341,20 +6341,20 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 }
 
 /* Headings — navy + gradient accent underline */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-content-text h1,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-content-text h2,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-content-text h3 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h1,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h2,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h3 {
   color: var(--tm-navy);
   font-weight: 700;
   letter-spacing: -.01em;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-content-text h1 { font-size: 1.6rem; }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-content-text h2 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h1 { font-size: 1.6rem; }
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h2 {
   font-size: 1.25rem;
   padding-bottom: 8px;
   position: relative;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-content-text h2::after {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-content-text h2::after {
   content: "";
   position: absolute;
   left: 0;
@@ -6366,7 +6366,7 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 }
 
 /* Buttons — gradient pill (primary) */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-button a.cbe-block-button-element.btn {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-button a.cbe-block-button-element.btn {
   background: var(--tm-accent-gradient) !important;
   border: none !important;
   border-radius: 999px !important;
@@ -6376,13 +6376,13 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   box-shadow: 0 3px 10px rgba(20,33,61,.18);
   transition: transform .12s ease, box-shadow .12s ease;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-button a.cbe-block-button-element.btn:hover {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-button a.cbe-block-button-element.btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(20,33,61,.26);
 }
 
 /* Buttons — outline pill (secondary, .button_orange_light modifier) */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-button.button_orange_light a.cbe-block-button-element.btn {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-button.button_orange_light a.cbe-block-button-element.btn {
   background: #fff !important;
   color: var(--tm-navy) !important;
   border: 1.5px solid var(--tm-border) !important;
@@ -6390,7 +6390,7 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 }
 
 /* Gauge wrapper centering */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #dashboard-view .cbe-block-progress-donut-wrapper {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-block-progress-donut-wrapper {
   display: flex;
   justify-content: center;
 }
@@ -17687,8 +17687,8 @@ body.page-with-styling-options .extended-form-wrapper {
    ============================================================ */
 
 /* Buttons — gradient pill */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view a.cbe-block-button-element.btn,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view a.cbe-block-button-element.btn-primary {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view a.cbe-block-button-element.btn,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view a.cbe-block-button-element.btn-primary {
   background: var(--tm-accent-gradient) !important;
   background-color: transparent !important;
   border: 0 !important;
@@ -17700,30 +17700,30 @@ body.page-with-styling-options .extended-form-wrapper {
   box-shadow: 0 4px 12px rgba(20,33,61,.18);
   transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view a.cbe-block-button-element.btn:hover {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view a.cbe-block-button-element.btn:hover {
   filter: brightness(1.05);
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(220,38,38,.28);
 }
 
 /* Row card baseline */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-row-wrapper {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-row-wrapper {
   background: var(--tm-card) !important;
   border: 1px solid var(--tm-border) !important;
   border-radius: var(--tm-radius) !important;
 }
 
 /* Headings */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view h1,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view h2,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view h3 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h1,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h2,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h3 {
   color: var(--tm-navy) !important;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view h1 {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h1 {
   position: relative;
   padding-bottom: 14px;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view h1::after {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view h1::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -17736,8 +17736,8 @@ body.page-with-styling-options .extended-form-wrapper {
 }
 
 /* True 2x2 matrix — neutralize merged-card chrome on tagged rows */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-top,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-bottom {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-top,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-bottom {
   background: transparent !important;
   border: 0 !important;
   border-radius: 0 !important;
@@ -17746,19 +17746,19 @@ body.page-with-styling-options .extended-form-wrapper {
   overflow: visible !important;
   padding-top: 6px !important;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-top { margin-bottom: 24px !important; }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-bottom { margin-top: 0 !important; }
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-top { margin-bottom: 24px !important; }
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-row-wrapper.tm-matrix-bottom { margin-top: 0 !important; }
 /* R23 re-scope: SD Custom CSS Class field injects the class onto
    .cbe-block-sortable (inner), not the .cbe-block column (outer flex
    item). Re-scope via :has() so the column itself is hidden. */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-spacer) {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-spacer) {
   display: none !important;
 }
 
 /* Matrix cells — each tagged column becomes its own card */
 /* R23 re-scope: target the column wrapping the marker, so
    calc(50% - 12px) resolves against the row, not the column. */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell) {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell) {
   flex: 0 0 calc(50% - 12px) !important;
   max-width: calc(50% - 12px) !important;
   padding: 28px 32px !important;
@@ -17770,20 +17770,20 @@ body.page-with-styling-options .extended-form-wrapper {
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   cursor: default;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-left) {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-left) {
   margin-right: 12px !important;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-right) {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell.tm-cell-right) {
   margin-left: 12px !important;
 }
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell):hover {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-block:has(> .cbe-block-sortable.tm-matrix-cell):hover {
   transform: translateY(-4px);
   border-color: var(--tm-red) !important;
   box-shadow: 0 14px 30px rgba(20,33,61,.16);
 }
 
 /* Reveal main-wrapper SVG background */
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .content-block-wrapper.content-block-view-wrapper,
-:is(body.lentax-tmp-default, body.lentax-tmp-coastal, body.lentax-tmp-sentinel) #client-page-view .cbe-content {
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .content-block-wrapper.content-block-view-wrapper,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-content {
   background: transparent !important;
 }
