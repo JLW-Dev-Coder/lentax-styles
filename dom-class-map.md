@@ -46,7 +46,7 @@ drafting any prompt. The alphabetical class-to-effect reference (bottom of doc) 
   scope leak to other surfaces using the same CBE classes, so we accept the ID volatility
   tradeoff. Flag in PR notes if dashboard blocks are touched.
 - TPP THEME FILE (round-1+): TPP CSS lives in themes/tpp-default.css — the canonical TPP
-  default theme, injected by lentax-tpp-default.js from
+  default theme, injected by lentax-install-default.js from
   precious-lily-bbe555.netlify.app/themes/tpp-default.css (alt TPP themes: tpp-coastal.css /
   tpp-sentinel.css). First touched by TPP Round 1 (Projects & My Tasks organize-box styling).
   This doc is VLP-titled but now also carries TPP anchors tagged [TPP]; TPP Round 1 rules live
@@ -155,7 +155,7 @@ body.page-with-styling-options:not(.sd-dark-mode) .content-wrapper {
      - .dropdown-card, .dropdown-card-dark (dropdown menus carry
        their own dark/light theming)
      - Card interiors that already set their own color via inline
-       style (color: #f5f5f5 from lentax-vlp-default.js)
+       style (color: #f5f5f5 from lentax-vlp.js)
      - Announcement banners and any element with explicit bg
 
    Specificity: body.page-with-styling-options chained with the
@@ -202,7 +202,7 @@ border; cream waterfall hero ("Good Morning, Jamie"); two dark cards w/ orange b
 | body PAINTER | body.header-light.sidebar-dark… | rgb(26, 26, 26) | vlp-default.css | no | CORS-blocked — observed: sets #1a1a1a; overrides readable SD body{white} |
 | #wrapper PAINTER | div#wrapper.wrapper | rgb(26, 26, 26) | vlp-default.css | no | CORS-blocked — observed dark fill |
 | content-wrapper | div.content-wrapper | rgba(0, 0, 0, 0) | — | no | transparent |
-| main-wrapper | div.main-wrapper.dashboard-wrapper.pt-0 | rgba(0, 0, 0, 0) | lentax-vlp-default.js | YES | inline `background-color: transparent` (clearMainWrapperWhite); kills readable SD rule (sheet 52) body:not(.sd-dark-mode) .main-wrapper{rgb(255,255,255)} |
+| main-wrapper | div.main-wrapper.dashboard-wrapper.pt-0 | rgba(0, 0, 0, 0) | lentax-vlp.js | YES | inline `background-color: transparent` (clearMainWrapperWhite); kills readable SD rule (sheet 52) body:not(.sd-dark-mode) .main-wrapper{rgb(255,255,255)} |
 | widget-list / container-fluid / row / col-xl-12 / dashboard-widget-holder | div (SD grid) | rgba(0, 0, 0, 0) | SD | no | all transparent |
 | content root | div#dashboard-view.card-block.styling-options-content.dashboard-page-content | rgba(0, 0, 0, 0) | inline <style> (SD page-settings, sheet 52) | no | transparent (confirmed in READABLE sheet) |
 
