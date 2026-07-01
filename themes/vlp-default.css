@@ -3780,6 +3780,20 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-wrapper {
   background-image: none !important;
 }
 
+/* R29.1 — extend clear to .cbe-row-wrapper (CBE content row).
+   Not caught by R29's original 7-wrapper list; lentax-base sets
+   .cbe-content .cbe-row-wrapper { background: white; } (specificity 0,2,0)
+   which R29's transparent clear on .cbe-content doesn't cascade past
+   (background doesn't inherit — each element computes its own value). This
+   scoped (1,2,1) selector beats it same-property with !important, matching
+   R29's other clears. Scoped version only (no broader .cbe-content
+   .cbe-row-wrapper sweep — deferred unless regressions surface).
+   CC-diagnosed 2026-07-01. */
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
 /* ============================================================
  * END R29
  * ============================================================ */
