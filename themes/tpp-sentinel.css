@@ -73,15 +73,28 @@
   --lentax-font-display: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
 
   /* Chrome — neutral darks kept from default; crimson-carrying tokens re-skinned to Sentinel */
-  --lentax-chrome-sidebar-bg: #1a1a1a;
-  --lentax-chrome-sidebar-org-pill-bg: #000000;
-  --lentax-chrome-sidebar-text: #ffffff;
-  --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
-  --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
-  --lentax-chrome-sidebar-border: transparent;
+  /* R36 sidebar treatment — re-pointed to CC's approved navy trial (was #1a1a1a / #000000 /
+     #ffffff / rgba-white). The --...-active-bg re-point also kills the §2.14 active-item
+     ::after white sheen at the source (Trap 1, rung 1). Values = CC R36-Extract Deliverable 2. */
+  --lentax-chrome-sidebar-bg: #14213d;                 /* sidebar body navy (crimson-deep) */
+  --lentax-chrome-sidebar-org-pill-bg: #0A1124;        /* workspace-switcher row (surface-darkest) */
+  --lentax-chrome-sidebar-text: #e8ecf3;               /* item label, resting */
+  --lentax-chrome-sidebar-hover-bg: #1B2A4A;           /* hover bg tint (surface-deep / mid) */
+  --lentax-chrome-sidebar-active-bg: #1B2A4A;          /* active bg + sheen-kill (surface-deep / mid) */
+  --lentax-chrome-sidebar-border: #0A1124;             /* right divider (surface-darkest) */
   --lentax-chrome-sidebar-scrollbar-thumb: rgba(20, 33, 61, 0.35);
   --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(220, 38, 38, 0.50);
   --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #dc2626, #14213d);
+
+  /* R36 new sidebar tokens (consumed by §2.16 install-variant sidebar cluster in lentax-base.css) */
+  --lentax-chrome-sidebar-rail: #3b5bdb;               /* active rail — JLW-ratified steel-blue (not brand red) */
+  --lentax-chrome-sidebar-rail-hover: #4d6bbf;         /* hover rail */
+  --lentax-chrome-sidebar-icon: #8fa0c0;               /* item icon, resting (SVG fill) */
+  --lentax-chrome-sidebar-icon-active: #8fa9e0;        /* item icon, hover / active */
+  --lentax-chrome-sidebar-label-active: #ffffff;       /* item label, active / submenu-hover (neutral) */
+  --lentax-chrome-sidebar-submenu-label: #c2ccdd;      /* submenu item label, resting (neutral) */
+  --lentax-chrome-sidebar-submenu-bg: #0A1124;         /* submenu container (surface-darkest) */
+  --lentax-chrome-sidebar-logo-bg: #060B1A;            /* logo box (a.navbar-brand) — darkest navy */
 
   --lentax-chrome-navbar-bg: #ffffff;
   --lentax-chrome-navbar-border-bottom: transparent;

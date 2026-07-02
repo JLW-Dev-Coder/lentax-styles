@@ -19,6 +19,26 @@
   }
 })();
 
+// R36 Trap 2: paint the sidebar avatar placeholder to the variant mid-surface.
+// The .default-user-avatar background is not token-fed and no stylesheet rule
+// wins (SuiteDash owns it); an inline !important is the robust fix. Guarded for
+// absence (user-uploaded avatars replace the placeholder); the bounded poll
+// covers SuiteDash's Angular late-render. Client-side cosmetic only — no data.
+(function () {
+  var MID = '#1D5069'; // coastal mid-surface (avatar circle)
+  var tries = 0;
+  function paintAvatar() {
+    var el = document.querySelector('aside.site-sidebar .default-user-avatar');
+    if (el) { el.style.setProperty('background-color', MID, 'important'); return; }
+    if (++tries < 20) setTimeout(paintAvatar, 250); // ~5s max, then stop
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', paintAvatar);
+  } else {
+    paintAvatar();
+  }
+})();
+
 (function loadLentaxStyles() {
   var baseUrl  = 'https://precious-lily-bbe555.netlify.app/lentax-base.css';
   var themeUrl = 'https://precious-lily-bbe555.netlify.app/themes/tpp-coastal.css';
