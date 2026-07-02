@@ -232,6 +232,17 @@
   --lentax-chrome-sidebar-scrollbar-thumb: rgba(255, 255, 255, 0.20);
   --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(255, 255, 255, 0.30);
   --lentax-chrome-sidebar-accent-strip: transparent;
+  /* R36 sidebar-cluster tokens — defensive base fallbacks. Only consumed by the
+     :is(body.lentax-install-*) sidebar cluster (§2.16), and install loaders always
+     inject a theme file, so themes/{tpp-*}.css override every one of these per variant. */
+  --lentax-chrome-sidebar-rail: #3b5bdb;
+  --lentax-chrome-sidebar-rail-hover: #4d6bbf;
+  --lentax-chrome-sidebar-icon: rgba(255, 255, 255, 0.55);
+  --lentax-chrome-sidebar-icon-active: #ffffff;
+  --lentax-chrome-sidebar-label-active: #ffffff;
+  --lentax-chrome-sidebar-submenu-label: rgba(255, 255, 255, 0.75);
+  --lentax-chrome-sidebar-submenu-bg: #000000;
+  --lentax-chrome-sidebar-logo-bg: #111111;
 
   /* Chrome — navbar */
   --lentax-chrome-navbar-bg: #ffffff;
@@ -18068,3 +18079,114 @@ body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.
   justify-content: center !important;
   white-space: normal !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/*  SECTION 2.16 — PORTAL SIDEBAR (R36 — install-variant treatment)         */
+/*  ─────────────────────────────────────────────────────────────────────  */
+/*  Surface: SuiteDash/Oscar portal left sidebar (aside.site-sidebar) on the */
+/*  three install variants. Implements CC's approved live DevTools trial     */
+/*  (sentinel portal, Peppermint Paddy; JLW-approved).                       */
+/*                                                                           */
+/*  Architecture: EXTENDS §2.14 (PORTAL CHROME), which already token-drives  */
+/*  the sidebar body/hover/active/border/labels via --lentax-chrome-sidebar-*.*/
+/*  This cluster adds what §2.14's token set can't express: the per-item     */
+/*  rail (border-left), icon tints, submenu flush + container, the logo box, */
+/*  and the active / submenu label nuances. Surfaces (body/hover/active/     */
+/*  border/org-pill/main-label) come from §2.14 via the R36 token re-points  */
+/*  in each theme file — NOT re-declared here.                               */
+/*                                                                           */
+/*  Scope: :is(body.lentax-install-{default,coastal,sentinel}) per the       */
+/*  R16/R17 shared-cluster convention. Selectors/structure identical across  */
+/*  variants; only the theme tokens differ. Desktop menu only — ul.side-menu */
+/*  excludes the mobile drawer ul#yw2.ml--menu (R36.1 backlog), which        */
+/*  carries .main-side-menu but not .side-menu.                              */
+/*                                                                           */
+/*  Trap 1 (active ::after white sheen) is resolved UPSTREAM in §2.14 by     */
+/*  re-pointing --lentax-chrome-sidebar-active-bg per theme (rung 1) — the   */
+/*  sheen was our own token (rgba white .10) painted by the §2.14 ripple     */
+/*  ::after rule, not an unbeatable SD rule. No ::after rule here. Trap 2     */
+/*  (avatar bg) is not token-fed and is patched in the install loaders.      */
+/*                                                                           */
+/*  !important: every one CC marked REQUIRED is kept. A few extras (resting  */
+/*  gutter/transition, icon fills, submenu labels) carry !important with a   */
+/*  noted reason — CC's trial style tag loaded LAST in the browser so it won */
+/*  on order; in production our Netlify CSS loads before SuiteDash's late    */
+/*  sheets, so !important guarantees the win by specificity+importance.      */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* ---- Sidebar body + right divider (reinforces §2.14 at CC's proven scope) ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar {
+  background-color: var(--lentax-chrome-sidebar-bg) !important;
+  border-right-color: var(--lentax-chrome-sidebar-border) !important;
+}
+
+/* ---- Menu wrapper + workspace-switcher row (stronger scope than §2.14 to beat SD) ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav {
+  background: var(--lentax-chrome-sidebar-bg) !important;
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .mpa-compact-profile {
+  background: var(--lentax-chrome-sidebar-org-pill-bg) !important;
+}
+
+/* ---- Top-level item: neutralize SD's gray li fill so the body color shows ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li {
+  background: transparent !important;
+}
+
+/* ---- Top-level item link: rail gutter + transition (resting) ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple {
+  border-left: 3px solid transparent !important;                        /* reserve 3px rail gutter (noted !important) */
+  transition: background .15s ease, border-color .15s ease !important;
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple svg {
+  fill: var(--lentax-chrome-sidebar-icon) !important;                   /* icon resting (noted !important) */
+}
+
+/* ---- Hover: rail + icon highlight (bg via §2.14 --...-hover-bg) ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple:hover {
+  border-left-color: var(--lentax-chrome-sidebar-rail-hover) !important;   /* REQUIRED (CC) */
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple:hover svg {
+  fill: var(--lentax-chrome-sidebar-icon-active) !important;
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple:hover span.hide-menu {
+  color: var(--lentax-chrome-sidebar-label-active) !important;             /* REQUIRED (CC): hover label #fff, out-specifies §2.14 --...-text */
+}
+
+/* ---- Active item: rail (border-left-color LONGHAND only) + label + icon ---- */
+/*      Active bg comes from §2.14 --...-active-bg (re-pointed per theme).       */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li.current-page > a.ripple,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li.active > a.ripple {
+  border-left-color: var(--lentax-chrome-sidebar-rail) !important;         /* REQUIRED (CC): beats SD injected border-color; longhand only */
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li.current-page > a.ripple span.hide-menu,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li.active > a.ripple span.hide-menu {
+  color: var(--lentax-chrome-sidebar-label-active) !important;             /* REQUIRED (CC): active label, out-specifies §2.14 --...-text */
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li.current-page > a.ripple svg,
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li.active > a.ripple svg {
+  fill: var(--lentax-chrome-sidebar-icon-active) !important;               /* REQUIRED (CC) */
+}
+
+/* ---- Submenu: dark container + flush indent + label ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu .sub-menu {
+  background: var(--lentax-chrome-sidebar-submenu-bg) !important;          /* REQUIRED (CC) */
+  margin-left: 0 !important;                                              /* REQUIRED (CC): flush */
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu .sub-menu > li > a {
+  padding-left: 20px !important;                                          /* REQUIRED (CC) */
+  border-left: 3px solid transparent !important;                          /* gutter (noted !important) */
+  color: var(--lentax-chrome-sidebar-submenu-label) !important;           /* REQUIRED (CC): out-specifies §2.14 sub --...-text */
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu .sub-menu > li > a:hover {
+  border-left-color: var(--lentax-chrome-sidebar-rail-hover) !important;   /* REQUIRED (CC) */
+  background: var(--lentax-chrome-sidebar-bg) !important;                  /* REQUIRED (CC): submenu hover = body color */
+  color: var(--lentax-chrome-sidebar-label-active) !important;            /* submenu hover label (neutral) */
+}
+
+/* ---- Logo box (a.navbar-brand sits in .navbar-header, OUTSIDE aside.site-sidebar) ---- */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .navbar-header a.navbar-brand {
+  background-color: var(--lentax-chrome-sidebar-logo-bg) !important;       /* REQUIRED (CC): beats SD navbar-brand #111; .navbar-header raises specificity so it wins regardless of source order */
+}
+
+/* ═══ END SECTION 2.16 — PORTAL SIDEBAR (R36) ═══ */

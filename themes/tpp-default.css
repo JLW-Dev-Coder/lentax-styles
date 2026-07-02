@@ -47,15 +47,28 @@
   --lentax-font-display: 'Raleway', 'Inter', sans-serif;
 
   /* TPP chrome — preserve current behavior (overridden in Commit 8) */
-  --lentax-chrome-sidebar-bg: #1a1a1a;
-  --lentax-chrome-sidebar-org-pill-bg: #000000;
-  --lentax-chrome-sidebar-text: #ffffff;
-  --lentax-chrome-sidebar-hover-bg: rgba(255, 255, 255, 0.07);
-  --lentax-chrome-sidebar-active-bg: rgba(255, 255, 255, 0.10);
-  --lentax-chrome-sidebar-border: transparent;
+  /* R36 sidebar treatment — deep-rose re-palette of CC's approved sentinel trial (identical
+     structure/selectors; only colors change). The --...-active-bg re-point kills the §2.14
+     active ::after sheen (Trap 1, rung 1). Default ramp = RC proposal (ship unless JLW objects). */
+  --lentax-chrome-sidebar-bg: #2A1820;                 /* sidebar body dark rose (crimson-surface-deep) */
+  --lentax-chrome-sidebar-org-pill-bg: #1A0B14;        /* workspace-switcher row (crimson-surface-darkest) */
+  --lentax-chrome-sidebar-text: #e8ecf3;               /* item label, resting (neutral) */
+  --lentax-chrome-sidebar-hover-bg: #3A2530;           /* hover bg tint (raised rose) */
+  --lentax-chrome-sidebar-active-bg: #3A2530;          /* active bg + sheen-kill (raised rose) */
+  --lentax-chrome-sidebar-border: #1A0B14;             /* right divider (crimson-surface-darkest) */
   --lentax-chrome-sidebar-scrollbar-thumb: rgba(139, 21, 56, 0.35);
   --lentax-chrome-sidebar-scrollbar-thumb-hover: rgba(233, 30, 99, 0.50);
   --lentax-chrome-sidebar-accent-strip: linear-gradient(90deg, #E91E63, #E8C088);
+
+  /* R36 new sidebar tokens (consumed by §2.16 install-variant sidebar cluster in lentax-base.css) */
+  --lentax-chrome-sidebar-rail: #EC4899;               /* active rail — bright rose highlight (crimson family) */
+  --lentax-chrome-sidebar-rail-hover: #F472B6;         /* hover rail */
+  --lentax-chrome-sidebar-icon: #9E8592;               /* item icon, resting (muted mauve-grey) */
+  --lentax-chrome-sidebar-icon-active: #D9A9BC;        /* item icon, hover / active (light rose) */
+  --lentax-chrome-sidebar-label-active: #ffffff;       /* item label, active / submenu-hover (neutral) */
+  --lentax-chrome-sidebar-submenu-label: #c2ccdd;      /* submenu item label, resting (neutral) */
+  --lentax-chrome-sidebar-submenu-bg: #1A0B14;         /* submenu container (crimson-surface-darkest) */
+  --lentax-chrome-sidebar-logo-bg: #120810;            /* logo box (a.navbar-brand) — darkest rose */
 
   --lentax-chrome-navbar-bg: #ffffff;
   --lentax-chrome-navbar-border-bottom: transparent;
