@@ -1639,7 +1639,7 @@ body {
      25 Login card - rounded corners + subtle orange glow            (R34)
      26 "Or" divider - orange lines                                  (R34; R35 class fix)
      27 Remember-me checkbox - orange when checked                   (R34; R35 selector fix)
-     28 Right hero panel - darken + orange edge overlay              (R34)
+     28 Right hero panel - NEUTRALIZED, scrim removed                (R34; R35.2)
      29 Microsoft SSO button - dark fill + orange border            (R35)
      30 Input autofill override - dark inset + white text           (R35)
 
@@ -1677,6 +1677,13 @@ body {
    #F5EFE0 / antique-gold #B08D57 - its dark chrome #1a1a1a and Source Sans 3 font
    already match the login, but the accent diverges orange vs red; no unilateral
    palette change per the R35 directive).
+
+   R35.2 (2026-07-02) neutralized section 28: removed the hero-panel darkening
+   scrim per JLW. The generic stock hero was replaced with the branded VLP space
+   artwork (already dark + on-brand); the R34 scrim now only dimmed the asset
+   (JLW saw a gray overlay). ::before neutralized via content:none; section
+   retained as NEUTRALIZED per the section-25 convention. No other rule paints on
+   .panel-2 / login-panel-right, so the image is fully restored.
    =========================================================================== */
 
 
@@ -2046,24 +2053,25 @@ body.login input#LoginForm_rememberMe:checked + label .sd-login-check-box {
 }
 
 
-/* --- 28. Right hero panel - darken + orange edge overlay --- */
-/* Scrim keeps the hero image from competing with the form: strongest on the
-   card-side (left) edge and fading right, with a faint orange tie-in to the
-   card. pointer-events:none so it never blocks interaction. VERIFY: if the
-   right panel carries foreground content (rare - normally a pure hero image),
-   drop the z-index or remove this overlay. */
+/* --- 28. Right hero panel - NEUTRALIZED (R35.2: scrim removed per JLW) --- */
+/* R35.2 (2026-07-02): scrim removed per JLW - branded hero image needs no
+   darkening. Section 28's ::before painted a darkening gradient + faint orange
+   edge over the hero panel; it was designed for the previous generic stock
+   photo. JLW replaced the hero with the branded VLP space artwork (dark
+   starfield + VLP rocket/wordmark) - already dark and on-brand, so the scrim
+   only dimmed the asset (JLW saw a gray overlay). Fix: neutralize the ::before
+   with content:none - the direct inverse of the content:"" that generated it,
+   so the pseudo-element box is never created (cleaner than display:none, which
+   would still generate the box only to hide it, and inert once there is no
+   surface to paint). position:relative retained but now inert. No other rule
+   paints on .panel-2 / login-panel-right (section 9 sets max-width, section 23
+   sets mobile width - both layout-only), so removing the scrim fully restores
+   the image. */
 body.login .panel.panel-2.login-panel-right {
   position: relative !important;
 }
 body.login .panel.panel-2.login-panel-right::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background:
-    linear-gradient(90deg, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.30) 100%),
-    linear-gradient(90deg, rgba(249, 115, 22, 0.18) 0%, rgba(249, 115, 22, 0) 45%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
+  content: none !important;   /* R35.2: scrim removed per JLW - branded hero image needs no darkening */
 }
 
 
