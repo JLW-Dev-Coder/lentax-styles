@@ -1619,14 +1619,14 @@ body {
      5  Parens around Having-Trouble
      6  Footer - "Start free and get instant access"
      7  Footer - Terms of Service / Privacy Policy
-     8  Left panel - flex column, centered
+     8  Left panel - flex column, centered + dark bg          (R35 fix)
      9  Right panel
      10 Logo region
      11 Panel form row - center the form
      12 Login center column - fixed width
      13 Form oscar
      14 Google SSO wrapper
-     15 "Or" divider
+     15 "Or" divider (width)                                   (R35 class fix)
      16 Inputs (width / font / padding / height)
      17 Form groups
      18 Remember-Me / Having-Trouble row
@@ -1637,9 +1637,11 @@ body {
      23 Mobile/tablet responsive - stack panels + release width clamps
      24 Input focus ring - orange glow on email/password focus       (R34)
      25 Login card - rounded corners + subtle orange glow            (R34)
-     26 "Or" divider - orange lines                                  (R34)
-     27 Remember-me checkbox - orange when checked                   (R34)
+     26 "Or" divider - orange lines                                  (R34; R35 class fix)
+     27 Remember-me checkbox - orange when checked                   (R34; R35 selector fix)
      28 Right hero panel - darken + orange edge overlay              (R34)
+     29 Microsoft SSO button - dark fill + orange border            (R35)
+     30 Input autofill override - dark inset + white text           (R35)
 
    Resynced 2026-06-27 to the live SD field's 23-section linear structure +
    R55 mobile-responsive (section 23). Mirrors the live field EXCEPT section-1's
@@ -1654,6 +1656,27 @@ body {
    JLW). These are NOT yet in the live SD field - re-pasting this whole block
    closes the navy drift above AND ships R34 in a single paste. Sections 26 and
    28 carry inline VERIFY notes (internal DOM not confirmed this round).
+
+   R35 (2026-07-02) login fix round. The R34 paste landed only partially; recon of
+   the served login DOM (_recon/login-dom-r35.html - server-rendered HTML, NOT a JS
+   shell) root-caused every gap:
+     - White left panel = MISSING RULE. The dark surface was delegated to SD admin
+       -> Customize Login Page Colors (still white); no background was ever in the
+       pasted block (section 8 set layout only). Added to section 8 in place.
+     - Divider never landed = CLASS DRIFT. Real class is .sd-social-signin-divider
+       (children .sd-social-signin-divider__line / __text spans), NOT
+       .sd-google-signin-divider. Fixed sections 15 + 26 in place; the flanking
+       lines are background-drawn spans, not borders, so coloured via background.
+     - Microsoft button default white = section 1 only targeted Google. Added
+       section 29 for a.sd-microsoft-signin-btn (mirrors section 1 + hover glow).
+     - Autofill light-blue inputs = added section 30 (-webkit-autofill inset trick).
+     - Remember-me: native #LoginForm_rememberMe input is hidden; the visible box is
+       span.sd-login-check-box in the sibling label. Section 27 corrected to target it.
+   Palette UNCHANGED (#f97316 / #1a1a1a). Sentinel-complement comparison reported to
+   PE as a JLW decision item (Sentinel = signal-red #dc2626 / navy #14213d / cream
+   #F5EFE0 / antique-gold #B08D57 - its dark chrome #1a1a1a and Source Sans 3 font
+   already match the login, but the accent diverges orange vs red; no unilateral
+   palette change per the R35 directive).
    =========================================================================== */
 
 
@@ -1754,8 +1777,19 @@ body.login .panel-footer-group a {
 }
 
 
-/* --- 8. Left panel - flex column, centered --- */
+/* --- 8. Left panel - flex column, centered + dark bg + on-dark text contrast (R35) --- */
+/* R35 diagnosis (login-dom-r35.html:143 - .panel.panel-1.login-panel-left, no inline
+   style): the dark left-panel surface was delegated to SD admin -> Customize Login
+   Page Colors, which is still white, so the dark buttons floated on white. This is a
+   MISSING RULE, not selector drift - section 8 only ever set layout. Added the dark bg
+   here in place (token resolves to #1a1a1a on the login page) rather than stacking a
+   duplicate selector. The two text rules below keep the panel's un-recoloured footer
+   text ("Not a member?") readable now that the panel is dark; the Remember-Me label is
+   handled in section 18. Already-coloured elements (orange links, muted #8b97ad) are
+   unaffected. */
 body.login .panel.panel-1.login-panel-left {
+  background-color: var(--vlpd-page-bg, #1a1a1a) !important;
+  background-image: none !important;
   max-width: 46% !important;
   padding: 48px 40px !important;
   display: flex !important;
@@ -1763,6 +1797,13 @@ body.login .panel.panel-1.login-panel-left {
   justify-content: center !important;
   align-items: center !important;
   box-sizing: border-box !important;
+}
+body.login .login-panel-left .not-a-member-wrapper {
+  color: #8b97ad !important;
+}
+body.login .login-panel-left a.start-now-link {
+  color: #f97316 !important;
+  font-weight: 600 !important;
 }
 
 
@@ -1825,8 +1866,8 @@ body.login .sd-google-signin-wrapper {
 }
 
 
-/* --- 15. Or divider --- */
-body.login .sd-google-signin-divider {
+/* --- 15. Or divider (R35: class corrected sd-google-signin-divider -> sd-social-signin-divider per recon, login-dom-r35.html:163) --- */
+body.login .sd-social-signin-divider {
   width: min(540px, 100%) !important;
   max-width: 540px !important;
   margin: 10px 0 !important;
@@ -1868,6 +1909,7 @@ body.login .rememberMe {
 
 body.login label[for="LoginForm_rememberMe"] {
   font-size: 14px !important;
+  color: #f5f5f5 !important;   /* R35: readable on the now-dark left panel (section 8) */
 }
 
 
@@ -1962,26 +2004,40 @@ body.login .login-center {
 }
 
 
-/* --- 26. "Or" divider - orange lines --- */
-/* The internal node structure of .sd-google-signin-divider was NOT DOM-confirmed
-   this round. This recolours the "or" text (muted) and any child border to a
-   translucent orange. VERIFY visually after paste: if SD draws the flanking
-   lines as background-filled nodes rather than borders, extend this selector. */
-body.login .sd-google-signin-divider {
+/* --- 26. "Or" divider - orange lines (R35: DOM-confirmed) --- */
+/* R35 recon (login-dom-r35.html:163-166): the divider is .sd-social-signin-divider
+   (NOT .sd-google-signin-divider - the class drift is exactly why R34 never landed).
+   Its flanking lines are two <span class="sd-social-signin-divider__line"> nodes drawn
+   via background, and the label is <span class="sd-social-signin-divider__text">or</span>.
+   Colour the lines via background-color (border-color kept as belt-and-suspenders);
+   mute the text. */
+body.login .sd-social-signin-divider__text {
   color: #8b97ad !important;
 }
-body.login .sd-google-signin-divider hr,
-body.login .sd-google-signin-divider span,
-body.login .sd-google-signin-divider > * {
+body.login .sd-social-signin-divider__line {
+  background-color: rgba(249, 115, 22, 0.5) !important;
   border-color: rgba(249, 115, 22, 0.5) !important;
 }
 
 
-/* --- 27. Remember-me checkbox - orange when checked --- */
-/* Checkbox id LoginForm_rememberMe is confirmed by section 18's label[for]. */
+/* --- 27. Remember-me checkbox - orange when checked (R35: target visible box) --- */
+/* R35 recon (login-dom-r35.html:199-203): the native <input id="LoginForm_rememberMe"
+   class="custom-checkbox"> is visually hidden; the VISIBLE box is
+   <span class="sd-login-check-box"> inside the sibling <label>. So accent-color on the
+   native input was inert. Keep it (harmless) and add the visible-box treatment: orange
+   border always, orange fill when the native input is :checked (input:checked + label
+   .sd-login-check-box). VERIFY after paste: mpa-style.css draws the checkmark glyph -
+   if it clashes on orange, revisit its colour. */
 body.login input#LoginForm_rememberMe,
 body.login .rememberMe input[type="checkbox"] {
   accent-color: #f97316 !important;
+}
+body.login .rememberMe .sd-login-check-box {
+  border-color: #f97316 !important;
+}
+body.login input#LoginForm_rememberMe:checked + label .sd-login-check-box {
+  background-color: #f97316 !important;
+  border-color: #f97316 !important;
 }
 
 
@@ -2003,6 +2059,70 @@ body.login .panel.panel-2.login-panel-right::before {
     linear-gradient(90deg, rgba(249, 115, 22, 0.18) 0%, rgba(249, 115, 22, 0) 45%) !important;
   pointer-events: none !important;
   z-index: 1 !important;
+}
+
+
+/* --- 29. Microsoft SSO button - dark fill + orange border (R35) --- */
+/* R35 recon (login-dom-r35.html:158-161): the Microsoft button is
+   <a class="btn sd-microsoft-signin-btn"> inside <div class="sd-microsoft-signin-wrapper">,
+   sibling of the Google pair inside <div class="sd-signin-providers sd-signin-paired">.
+   Section 1 only styled Google, so MS rendered default white. This mirrors section 1's
+   treatment (dark fill, 2px orange border, white text) + a hover glow, widths the MS
+   wrapper like section 14, and stacks the paired container so both pills sit full-width. */
+body.login .sd-signin-providers.sd-signin-paired {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+body.login .sd-microsoft-signin-wrapper {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+body.login a.sd-microsoft-signin-btn {
+  background-color: var(--vlpd-page-bg, #1a1a1a) !important;
+  color: #ffffff !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 50px !important;
+  font-family: "Source Sans 3", "Open Sans", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 13px 24px !important;
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  letter-spacing: 0.01em !important;
+  box-sizing: border-box !important;
+}
+body.login a.sd-microsoft-signin-btn:hover {
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.55) !important;
+}
+
+
+/* --- 30. Input autofill override - dark inset + white text (R35) --- */
+/* R35: browser autofill paints its own light-blue background over the dark inputs
+   (Chromium's -webkit-autofill UA style). The 1000px inset box-shadow trick repaints
+   the field dark; -webkit-text-fill-color keeps the typed value white; the long
+   transition defers the autofill background swap. Anchored at .form-oscar depth (0,3,2)
+   like sections 22/24 so it wins over mpa-style.css. Inputs confirmed
+   login-dom-r35.html:171-187 (sd-login-email-input / sd-login-password-input). */
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill,
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill:hover,
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill:focus,
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill:active,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill:hover,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill:focus,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--vlpd-page-bg, #1a1a1a) inset !important;
+  box-shadow: 0 0 0 1000px var(--vlpd-page-bg, #1a1a1a) inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 
