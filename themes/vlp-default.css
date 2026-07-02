@@ -3823,3 +3823,136 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
 /* ============================================================
  * END R29
  * ============================================================ */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VLP-DEFAULT ROUND 30 — darken SD Tasks widget (match Project widget)
+   Page: view/169330 (Work Request Setup)
+   Append-only. Does NOT modify rounds 9-29.
+
+   PROBLEM: on view/169330 the "My Order / Project" widget renders dark
+   (round-18 treatment) but the sibling Tasks widget below it stayed a white
+   card: white background, gray empty-state icon, dark "Nothing to do for now"
+   text, white "View all My Tasks" button.
+
+   WIDGET: .dashboard-organize-box.cbe-block-my-tasks2
+   Confirmed in reference/dom-snapshots/dash_outerHTML.txt (L2662): the block
+   is <div class="… dashboard-organize-box cbe-block-my-tasks2 card …">, with
+   the SAME inner class family as the Project widget (round 18) — only the
+   block-type modifier differs (my-tasks2 vs all-tasks2). Footer button is
+   .dashboard-organize-box__footer-btn ("View all My Tasks"); empty-state uses
+   .no-results h5 / p / .no-results-img; count row is .tasks-number.
+
+   DISCOVER-THEN-MIRROR: the Project widget is dark via round 18's
+   widget-specific rules (this file, L1436-1519) at
+   "#client-page-view .dashboard-organize-box.cbe-block-all-tasks2". The Tasks
+   widget carries SD's own white card because no rule covered its class family.
+   This block replicates round 18 verbatim, swapping the modifier class.
+
+   SCOPE DECISION: mirror round 18's exact anchor
+   (#client-page-view .dashboard-organize-box.cbe-block-my-tasks2) rather than
+   round 29's body.lentax-vlp:not(.sd-dark-mode) template. Rationale: exact
+   parity with the proven-working sibling on this same page/mode. Round 18 has
+   no dark-mode guard and renders correctly here, and matching its specificity
+   keeps the two widgets in the same cascade tier. VLP-only by virtue of living
+   in vlp-default.css (loaded only on VLP portals) — same as round 18.
+
+   NO COLLISION WITH ROUND 38: round 38's blue-on-blue my-tasks2 treatment is
+   scoped to #dashboard-view (the /dashboard page). This block is
+   #client-page-view (portal view pages), exactly parallel to how round 18
+   coexists with round 38 for the Projects widget.
+
+   No rocket-icon rule (round 18 #4): the Tasks widget header is a plain "My
+   Tasks" title with no .fa-rocket-launch, so that rule would be inert and is
+   omitted. The .filter-button rule covers the actual header (filter + sort)
+   icon buttons present on this widget.
+
+   Added 2026-07-01 — round 30.
+   R30 style-spec check skipped per R25-R33 precedent; JLW authorized deviation.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 1 - Widget outer card -> navy callout-card style */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 {
+  background-color: var(--vlpd-page-bg) !important;
+  border: 2px solid #f97316 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* 2 - Header region -> transparent over navy; orange-tinted bottom divider */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .dashboard-organize-box__header {
+  background-color: transparent !important;
+  border-bottom-color: rgba(249, 115, 22, 0.35) !important;
+}
+
+/* 3 - Header title text -> off-white */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .dashboard-organize-box__header-title {
+  color: #ffffff !important;
+}
+
+/* 4 - Header icon buttons (filter-dropdown, sort-dropdown)
+       SVG paths inherit from button's color via currentColor */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .filter-button {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+/* 5 - Notification / filter-count badge number - white on red; restated */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .display-block-svg-children .ng-binding {
+  color: #ffffff !important;
+}
+
+/* 6 - Content / body region */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .dashboard-organize-box__content {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* 7 - Empty-state "No Tasks" heading */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .no-results h5 {
+  color: #ffffff !important;
+}
+
+/* 8 - Empty-state "Nothing to do for now" caption */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .no-results p {
+  color: #ffffff !important;
+}
+
+/* 9 - Empty-state placeholder image (raster PNG via <img>);
+       opacity(0.5) ghosts the gray icon onto navy (round 18 pattern).
+       Tightly scoped under .cbe-block-my-tasks2 - does NOT globalize
+       (round 38 note: .no-results-img is shared across surfaces). */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .no-results-img {
+  filter: opacity(0.5) !important;
+}
+
+/* 10 - Footer region; orange-tinted top divider */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .dashboard-organize-box__footer {
+  background-color: transparent !important;
+  border-top-color: rgba(249, 115, 22, 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* 11 - "Showing 0 Results" label + inline SVG arrow */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .tasks-number {
+  color: #ffffff !important;
+}
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .tasks-number .ng-binding {
+  color: #ffffff !important;
+}
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .tasks-number svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* 12 - "View all My Tasks" outline button - matches round 18 "View All
+        Projects" (white label + white border + transparent fill) */
+#client-page-view .dashboard-organize-box.cbe-block-my-tasks2 .dashboard-organize-box__footer-btn {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+/* ============================================================
+ * END R30
+ * ============================================================ */
