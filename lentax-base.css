@@ -6289,8 +6289,14 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-content { padding: 8px 4px 24px; }
 
 /* R17 — un-cap rows, spread edge-to-edge, even gaps, no wrap */
-:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-content .cbe-row-wrapper,
-:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper {
+/* R31 (CC-diagnosed 2026-07-01) — added body.lentax-vlp to both :is() lists
+   so the VLP command-center row uncaps too (it was a dead rule on VLP; the
+   1180px cap at ~L5986 held). margin-left/right resets are already present
+   below, so no additions were needed. Mobile interaction: R28.1's wrap
+   override (~L17815, same (1,2,1) specificity, later in source, already lists
+   body.lentax-vlp) still beats this nowrap at <768px. See EOF R31 block. */
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-content .cbe-row-wrapper,
+:is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper {
   max-width: none !important;
   justify-content: space-between !important;
   margin-left: 0 !important;
@@ -17910,4 +17916,78 @@ body.page-with-styling-options .extended-form-wrapper {
 :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) .tu-doc-h2::after {
   background: transparent !important;
   background-image: none !important;
+}
+
+/* ==========================================================================
+   R31 — VLP command-center card layout (desktop)   (CC-diagnosed 2026-07-01)
+
+   The VLP /dashboard command-center row (Start Here / Office Space / Order
+   Status / Demos & Support) rendered squeezed at desktop width. CC mapped the
+   constraint chain:
+     1. Base row cap `.cbe-content .cbe-row-wrapper {max-width:1180px;
+        margin:0 auto 22px}` (~L5986) → 444px auto-centering gutters.
+     2. R17's uncap (~L6292) was scoped install-only → dead rule on VLP.
+        Fix 1 (above) added body.lentax-vlp to R17 so the row now uncaps.
+     3. The row has SIX `col-lg-2` children — 4 content cards + 2 empty CBE
+        editor drop-zone columns flanking them → ~105px text zones (1 word
+        per line).
+     4. Cards are display:block (the legacy `.account-card-wrapper` flex at
+        ~L369 is commented out) → CTA buttons sat at unequal heights.
+     5. `a.cbe-block-button-element.btn` had white-space:nowrap + fixed
+        padding → long labels ("Go to calendar") clipped at the card's
+        overflow:hidden edge.
+
+   This block (VLP-scoped) sizes the 4 content cards to 4-up, collapses the
+   two empty placeholder columns, pins CTAs to card bottoms, and hardens the
+   buttons against label-length overflow. Install portals are untouched
+   (Fix 1's R17 extension already gives them the uncap; these rules are
+   body.lentax-vlp-only).
+
+   Content vs. empty column discriminator: `account-card-wrapper` does not
+   appear in any reference/dom-snapshots capture (the command-center rendered
+   row was not snapshotted; only SuiteDash's ng-template cache confirms the
+   6× col-lg-2 shape). Per the RC prompt's sanctioned fallback, content
+   columns are keyed on the presence of `.cbe-block-items` descendants (the
+   ngRepeat wrapper SD renders for each populated block) and empties on their
+   absence — the two predicates are exact complements.
+
+   Empty-column treatment = `display:none` (not flex-collapse). Rationale:
+   with `justify-content:space-between` + `gap:0 16px` on a nowrap flex row,
+   zero-width-but-present columns would still claim gap slots and skew the
+   4-up math; display:none removes them cleanly so exactly 4 real items lay
+   out at calc(25% - 12px). CBE-EDITOR CAVEAT (for JLW): while this CSS is
+   active, the two hidden drop-zone columns are not visible drop targets in
+   SuiteDash's CBE editor. If that ever blocks editing that row, swap the
+   collapse rule to `flex:0 0 0px; overflow:hidden;` (collapse without
+   removing).
+   ========================================================================== */
+
+/* 4-up content cards at desktop — content columns carry .cbe-block-items */
+body.lentax-vlp #dashboard-view .cbe-row-wrapper > .cbe-block.col-lg-2:has(.cbe-block-items) {
+  flex: 0 0 calc(25% - 12px) !important;
+  max-width: calc(25% - 12px) !important;
+}
+
+/* collapse the two empty CBE drop-zone placeholder columns */
+body.lentax-vlp #dashboard-view .cbe-row-wrapper > .cbe-block.col-lg-2:not(:has(.cbe-block-items)) {
+  display: none !important;
+}
+
+/* equal-height card internals — flex column so the CTA can pin to the bottom */
+body.lentax-vlp #dashboard-view .account-card-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-items:last-child {
+  margin-top: auto !important;
+}
+
+/* full-width CTAs — immune to label-length overflow / clipping */
+body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button {
+  width: 100% !important;
+}
+body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.btn {
+  width: 100% !important;
+  justify-content: center !important;
+  white-space: normal !important;
 }
