@@ -1991,16 +1991,21 @@ body.login .form-oscar input.sd-login-password-input:focus {
 }
 
 
-/* --- 25. Login card - rounded corners + subtle orange glow --- */
-/* The VLP login is a full-bleed two-panel split, NOT a detached floating card,
-   so the glow frames .login-center (the fixed-width form column, section 12) as
-   the closest "card" proxy. NO padding/background is set here on purpose: the
-   column's children are all min(540px, 100%) and already fill it, so adding
-   padding would overflow them (see sections 13-16). The dark surface colour
-   itself comes from SD admin -> Customize Login Page Colors, not this field. */
+/* --- 25. Login card - NEUTRALIZED (R35.1: bg removed per JLW) --- */
+/* R35.1 (2026-07-02): JLW's live check showed .login-center rendering as a
+   distinct near-black rounded card, visually separated from the dark panel bg
+   (section 8). No rule in this LIVE COPY block paints a background on it, so the
+   fill is an SD default (mpa-style.css / Customize Login Page Colors) that our
+   R34 16px radius rounded and our orange glow framed - together reading as an
+   inner card. JLW directive: no visible inner card; form controls must sit
+   directly on the panel bg. Fix: force the column transparent so the section-8
+   panel bg (#1a1a1a) shows through. Glow + radius REMOVED in the same edit:
+   on a transparent container the box-shadow renders as a phantom rounded-rectangle
+   halo (a visible card impression), which contradicts the "no card" ask, and the
+   radius is inert once there is no surface to round. Panel bg (section 8), button
+   fills, and input fills all untouched. */
 body.login .login-center {
-  border-radius: 16px !important;
-  box-shadow: 0 0 32px 0 rgba(249, 115, 22, 0.18) !important;
+  background: transparent !important;   /* R35.1: bg removed per JLW */
 }
 
 
