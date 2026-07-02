@@ -1750,8 +1750,15 @@ color: inherit; /* don't override the special gold/turquoise behavior */
 
 /* Responsive */
 @media screen and (max-width: 768px) {
+  /* R33 (2026-07-01, JLW): un-hide the checkout-family tab strip on mobile.
+     Was `display: none` (nav invisible at 768px and below). Now a wrapping
+     flex row so all 5 tabs (Checkout My Cart / Order Processing / Explore
+     Orders-Projects / Custom Work Orders / Add My Referrer) stay visible and
+     tappable. Buttons keep their base flex:1 / min-width:100px sizing and wrap
+     onto additional rows when they can't fit — visibility only, not a redesign. */
   .flow-nav-bar {
-    display: none;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .flow-nav-bar a {
@@ -6243,9 +6250,15 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   text-decoration: none !important;
 }
 
-/* ITEM 1c — Thin flush gradient top accent on the ACTIVE pricing card.
+/* ITEM 1c — Thin flush accent bar on the ACTIVE pricing card.
    ::after avoids clipping issues (preserves the SD "TAX MONITOR" flag).
-   border-top-radius:24px matches the SD card's native top corner radius. */
+   R33 (2026-07-01, JLW): red->navy --tm-accent-gradient replaced with the
+   theme-primary token — resolves to orange #f97316 on VLP and follows each
+   install variant's own --lentax-tpp-crimson-primary (pink/teal/red). Top
+   corners now round to the card's own --tm-radius (16px) instead of the old
+   hard-coded 24px, so the bar hugs the card's rounded top corners with no
+   pointed ends poking past them (bar is full-width flush; card has no
+   overflow:hidden). Height/position unchanged. */
 .choose-items-block .sd-checkmark-card-item.sd-checkmark-card-item__active {
   position: relative !important;
 }
@@ -6256,9 +6269,8 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   left: 0 !important;
   right: 0 !important;
   height: 3px !important;
-  background: var(--tm-accent-gradient) !important;
-  border-top-left-radius: 24px !important;
-  border-top-right-radius: 24px !important;
+  background: var(--lentax-tpp-crimson-primary, #f97316) !important;
+  border-radius: var(--tm-radius) var(--tm-radius) 0 0 !important;
   z-index: 1 !important;
   pointer-events: none !important;
 }
