@@ -17868,6 +17868,71 @@ body.page-with-styling-options .extended-form-wrapper {
   :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view a.cbe-block-button-element.btn-primary {
     padding: 8px 16px !important;
   }
+
+  /* ─────────────────────────────────────────────────────────────
+     R28.2 — mobile dashboard squeeze   (CC-diagnosed 2026-07-01)
+     R28.1 wrapped the #dashboard-view row correctly, but the squeeze
+     lives deeper: (A) .vlpd-welcome is a nested flex with no flex-wrap;
+     (B) the base row cap max-width:1180px (~L5991) has no media guard;
+     (C) R31's desktop col-lg-2 cards stay 4-up below 768px. All three
+     are fixed here.
+     ───────────────────────────────────────────────────────────── */
+
+  /* R28.2-A — .vlpd-welcome (base ~L13847: display:flex, gap:22px,
+     padding:28px 32px, NO flex-wrap → nowrap). Children found in grep
+     13847-13938: .vlpd-welcome-icon (flex:0 0 auto, fixed 44px circle
+     "graphic") + .vlpd-welcome-body (flex:1 1 auto, min-width:0 — the
+     text block: eyebrow/title/lede). Wrap the container and push the
+     text body to its own full-width line so the icon stacks above it.
+     Only the BODY gets flex-basis:100%; giving it to the icon (the
+     prompt's `> *` template) would override its width:44px !important
+     and blow the circle up to full width — so this targets the named
+     child instead. Override wins: (1,2,0) + !important > base (1,1,0). */
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .vlpd-welcome {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .vlpd-welcome-body {
+    flex-basis: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* R28.2-B — release the desktop max-width:1180px cap + tighten the
+     34px row padding (base .cbe-content .cbe-row-wrapper ~L5991, no media
+     guard, only (0,2,0) w/o !important) on narrow screens. Both
+     #dashboard-view and #client-page-view rows inherit that cap. On VLP
+     #client-page-view the max-width here is a no-op — R29.3
+     (vlp-default.css:3817) already sets max-width:none at (1,3,1) in the
+     later sheet and wins; that is an EQUIVALENT cap release (none ≡ 100%
+     here) with no visual conflict, and R29.3 sets no padding so this
+     rule's padding still applies. The max-width release does real work on
+     the install variants, which have no R29.3. This rule = (1,2,1). */
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper,
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #client-page-view .cbe-row-wrapper {
+    max-width: 100% !important;
+    padding: 20px 16px !important;
+  }
+
+  /* R28.2-C — stack column children full-width at mobile. Broad arm
+     catches unlocked columns; by design it does NOT override R17's
+     install col-md-* locks (~L6321/6343, (1,4,1)) or R31's col-lg-2 cards
+     (both more specific), so install column layout stays deferred per the
+     R28 notes. */
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  /* R28.2-C (cont.) — VLP command-center cards. R31's desktop rule
+     `body.lentax-vlp #dashboard-view .cbe-row-wrapper > .cbe-block.col-lg-2:has(.cbe-block-items)`
+     is (1,5,1) at ~L17978 with no media guard. Merely MATCHING it loses
+     on source order (R31 sits later in the file than this media block),
+     so .col-lg-2 is DOUBLED → (1,6,1) > (1,5,1), winning regardless of
+     order. Cards go 4-up → 1-up at ≤768px. R31's display:none on the two
+     empty drop-zone columns is left intact. */
+  :is(body.lentax-vlp, body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) #dashboard-view .cbe-row-wrapper > .cbe-block.col-lg-2.col-lg-2:has(.cbe-block-items) {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 /* ==========================================================================
