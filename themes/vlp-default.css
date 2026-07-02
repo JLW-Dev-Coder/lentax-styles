@@ -1548,7 +1548,7 @@ body {
 
 
 /* ===========================================================================
-   LOGIN PAGE — LIVE COPY  (rounds 20-22 baseline + R55 mobile responsive)
+   LOGIN PAGE — LIVE COPY  (rounds 20-22 baseline + R55 mobile responsive + R34 polish)
    ===========================================================================
    Surface: app.virtuallaunch.pro/site/login (the VLP login page).
 
@@ -1635,6 +1635,11 @@ body {
      21 Padding-left bump on inputs to clear the prefix glyphs
      22 Specificity override (.form-oscar (0,3,2) beats mpa-style.css)
      23 Mobile/tablet responsive - stack panels + release width clamps
+     24 Input focus ring - orange glow on email/password focus       (R34)
+     25 Login card - rounded corners + subtle orange glow            (R34)
+     26 "Or" divider - orange lines                                  (R34)
+     27 Remember-me checkbox - orange when checked                   (R34)
+     28 Right hero panel - darken + orange edge overlay              (R34)
 
    Resynced 2026-06-27 to the live SD field's 23-section linear structure +
    R55 mobile-responsive (section 23). Mirrors the live field EXCEPT section-1's
@@ -1643,6 +1648,12 @@ body {
    pre-purge navy #0a1228 (known production drift; JLW to close by re-pasting
    this corrected block). Supersedes the round-27 consolidated 11-section
    layout (66b93ac / 804b034 lineage); all functional content preserved.
+
+   R34 (2026-07-02) appended sections 24-28: five polish additions (canonical
+   #f97316 orange + monochrome #1a1a1a, NO new file / NO palette reversal per
+   JLW). These are NOT yet in the live SD field - re-pasting this whole block
+   closes the navy drift above AND ships R34 in a single paste. Sections 26 and
+   28 carry inline VERIFY notes (internal DOM not confirmed this round).
    =========================================================================== */
 
 
@@ -1923,6 +1934,75 @@ body.login .form-oscar input.sd-login-password-input {
     max-width: 100% !important;
     width: 100% !important;
   }
+}
+
+
+/* --- 24. Input focus ring - orange glow on email/password focus --- */
+/* Anchored at .form-oscar depth so the focus ring wins over mpa-style.css
+   the same way section 22 does. Purely additive: mpa-style.css sets no
+   :focus box-shadow, so this is the only orange focus treatment. */
+body.login .form-oscar input.sd-login-email-input:focus,
+body.login .form-oscar input.sd-login-password-input:focus {
+  outline: none !important;
+  border-color: #f97316 !important;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.55) !important;
+}
+
+
+/* --- 25. Login card - rounded corners + subtle orange glow --- */
+/* The VLP login is a full-bleed two-panel split, NOT a detached floating card,
+   so the glow frames .login-center (the fixed-width form column, section 12) as
+   the closest "card" proxy. NO padding/background is set here on purpose: the
+   column's children are all min(540px, 100%) and already fill it, so adding
+   padding would overflow them (see sections 13-16). The dark surface colour
+   itself comes from SD admin -> Customize Login Page Colors, not this field. */
+body.login .login-center {
+  border-radius: 16px !important;
+  box-shadow: 0 0 32px 0 rgba(249, 115, 22, 0.18) !important;
+}
+
+
+/* --- 26. "Or" divider - orange lines --- */
+/* The internal node structure of .sd-google-signin-divider was NOT DOM-confirmed
+   this round. This recolours the "or" text (muted) and any child border to a
+   translucent orange. VERIFY visually after paste: if SD draws the flanking
+   lines as background-filled nodes rather than borders, extend this selector. */
+body.login .sd-google-signin-divider {
+  color: #8b97ad !important;
+}
+body.login .sd-google-signin-divider hr,
+body.login .sd-google-signin-divider span,
+body.login .sd-google-signin-divider > * {
+  border-color: rgba(249, 115, 22, 0.5) !important;
+}
+
+
+/* --- 27. Remember-me checkbox - orange when checked --- */
+/* Checkbox id LoginForm_rememberMe is confirmed by section 18's label[for]. */
+body.login input#LoginForm_rememberMe,
+body.login .rememberMe input[type="checkbox"] {
+  accent-color: #f97316 !important;
+}
+
+
+/* --- 28. Right hero panel - darken + orange edge overlay --- */
+/* Scrim keeps the hero image from competing with the form: strongest on the
+   card-side (left) edge and fading right, with a faint orange tie-in to the
+   card. pointer-events:none so it never blocks interaction. VERIFY: if the
+   right panel carries foreground content (rare - normally a pure hero image),
+   drop the z-index or remove this overlay. */
+body.login .panel.panel-2.login-panel-right {
+  position: relative !important;
+}
+body.login .panel.panel-2.login-panel-right::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.30) 100%),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.18) 0%, rgba(249, 115, 22, 0) 45%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
 }
 
 
