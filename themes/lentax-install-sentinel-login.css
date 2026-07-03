@@ -1,0 +1,570 @@
+/* ===========================================================================
+   SENTINEL LOGIN PAGE — LIVE COPY  (Round 1 — Sentinel variant, initial cut)
+   ===========================================================================
+   Surface: the SuiteDash /site/login page for the Sentinel install variant
+   (portals activated with lentax-install-sentinel.js).
+
+   THIS ENTIRE FILE IS THE CANONICAL SENTINEL LOGIN STYLING SOURCE. Paste
+   verbatim into SuiteDash admin -> Domain Settings -> Customize Login Page
+   Colors & Logo -> Custom CSS field (toggle-cycle + Save to propagate to the
+   served login template). Select from the START of this header through the END
+   boundary at the bottom of this file.
+
+   DOCUMENTATION-ONLY IN THIS FILE: the theme CSS and the lentax-install-sentinel.js
+   FOUC loader are NOT injected on /site/login - it is an isolated CSS context.
+   The canonical version-controlled copy lives here; the live copy lives in SD's
+   database. Both must be kept in sync manually by JLW when login styling changes.
+
+   PAIRED INSTALL SCRIPT: lentax-install-sentinel.js is the JS-driven install
+   partner for the portal chrome; it does NOT reach the login route. This login
+   file is delivered by hand (SD admin paste), same as the VLP login source.
+
+   LITERAL HEXES (Sentinel deviation from the VLP source): because no theme
+   :root is loaded in the SD-admin login context, tokens never resolve. The VLP
+   login source kept var(--vlpd-*) forms for consistency with its own file and
+   relied on the inline fallback to paint. This Sentinel file uses the LITERAL
+   Sentinel hexes directly (no var() indirection) per the PE Q4 ruling - what is
+   written is exactly what paints. Every hex below is a value from the Sentinel
+   palette table (or #ffffff for button glyphs, or an rgba derivative of a
+   palette hex, noted inline).
+
+   SCOPE: body.login (SD stamps .login + .role-guest on the unauthenticated body;
+   confirmed stable, no bleed to portal pages which carry .loggedin post-auth).
+
+   STABILITY (login DOM facts - palette-agnostic, inherited from the shared
+   SD login template the VLP recon mapped in _recon/login-dom-r35.html):
+   - Yii framework #yw0 form ID NOT used (auto-generated, shifts with render
+     order); replaced with the .form.form-oscar parent-class anchor. No
+     cbe-block-* IDs. All anchor classes are SD platform classes (sd-*,
+     .panel-*, .form-*).
+   - :has() supported on the login route per CC probe (Chromium-equivalent).
+     .col-md-12 is position: relative with no overflow clip - ::before icon
+     insertion works without DOM modification.
+   - FA Pro 6.7.2 loaded via SD Kit on the login template: \f0e0 (envelope,
+     'far' weight 400) and \f023 (lock, 'fas' weight 900) both resolve.
+   - RESPONSIVE WIDTH: min(540px, 100%) with max-width: 540px and box-sizing:
+     border-box - containing-block-relative, safe at all SD breakpoints
+     (1440px desktop, 768px split, 375px mobile).
+
+   INPUT SPECIFICITY (established pattern): SD's CORS-blocked mpa-style.css ships
+   `.login .form .form-control { padding: 1rem; height: 40px }` at specificity
+   (0, 3, 0). A bare `body.login input.sd-login-*` anchors at only (0, 2, 2) and
+   LOSES despite !important. Every login INPUT padding/height rule must therefore
+   anchor at `body.login .form-oscar input.sd-login-*` (0, 3, 2) to beat it.
+   Applied in section 22 below.
+
+   PALETTE (Sentinel navy/red/cream — dual-accent, source of truth
+   themes/tpp-sentinel.css :root):
+   - #14213d  navy                     (crimson-deep — dark surface: left panel bg, SSO fill, autofill inset)
+   - #dc2626  signal-red               (crimson-primary — CTA fills, borders, focus rings, checkbox, divider lines)
+   - #B08D57  antique-gold             (gold-leaf — on-dark LINK TEXT only)
+   - #8fa0c0  blue-gray                 (sidebar-icon — muted text, footer T&C, FA prefix glyphs, divider text)
+   - #e8ecf3  cool-white               (sidebar-text — on-dark BODY text: remember-me label, "Not a member?" wrapper)
+   - #ffffff  white                    (button glyph text on filled surfaces; autofill text-fill + caret)
+
+   JLW-RATIFIED DECISIONS (PE rulings Q1-Q4):
+   - Dual-accent identity: red (#dc2626) fills + gold (#B08D57) link text.
+     Sentinel diverges from VLP's mono-accent uniformity by design.
+   - #8fa0c0 (sidebar-icon token) is the muted-text hex - NOT an alpha-derived
+     white. This supersedes the original prompt's §8 alpha-derivation fallback
+     (§8 amendment noted).
+   - #e8ecf3 (sidebar-text token) is on-dark BODY text; pure #ffffff is reserved
+     for button glyphs sitting on filled surfaces (SSO on #14213d, Login on
+     #dc2626) - do NOT swap #e8ecf3 onto button glyphs.
+   - SSO fill matches the panel bg (#14213d outlined-pill look) - strict 1:1 VLP
+     mirror.
+
+   R35 HEADER REFERENCE: the VLP R35 login header summarizes the Sentinel palette
+   as signal-red #dc2626 / navy #14213d / cream #F5EFE0 / antique-gold #B08D57.
+   Phase 1 confirmed that 4-color summary matches the authoritative source
+   (themes/tpp-sentinel.css :root) - ratified. Cream #F5EFE0 is a Sentinel
+   identity color for OTHER surfaces (dashboard tiles); it is deliberately NOT
+   used on the login (Q3 chose #e8ecf3 for on-dark text).
+
+   NO-CARD / NO-SCRIM (inherited from VLP R35.1 / R35.2): section 25 keeps the
+   .login-center transparent (no inner card) and section 28 neutralizes the hero
+   ::before (no darkening scrim). Same reasoning applies to Sentinel - the branded
+   hero needs no scrim and JLW wants form controls sitting directly on the panel bg.
+
+   DEFERRED (backlog): eye / show-password toggle suffix on the password input -
+   SD's Custom CSS field is JS-incapable; needs an alternate JS delivery path.
+
+   SECTION INDEX (mirrors the live SD field's linear numbering):
+     1  Google SSO button - navy fill + red border, white glyph
+     2  Login button - full-width red pill
+     3  Remember-Me + Login row - stack vertically
+     4  Having-Trouble link (gold)
+     5  Parens around Having-Trouble (muted)
+     6  Footer - "Start free and get instant access" (gold)
+     7  Footer - Terms of Service / Privacy Policy (muted)
+     8  Left panel - flex column, centered + navy bg + on-dark text
+     9  Right panel
+     10 Logo region
+     11 Panel form row - center the form
+     12 Login center column - fixed width
+     13 Form oscar
+     14 Google SSO wrapper
+     15 "Or" divider (width)
+     16 Inputs (width / font / padding / height)
+     17 Form groups
+     18 Remember-Me / Having-Trouble row (label on-dark)
+     19 Mail prefix icon on email input (FA fa-envelope, far 400)
+     20 Lock prefix icon on password input (FA fa-lock, fas 900)
+     21 Padding-left bump on inputs to clear the prefix glyphs
+     22 Specificity override (.form-oscar (0,3,2) beats mpa-style.css)
+     23 Mobile/tablet responsive - stack panels + release width clamps
+     24 Input focus ring - red glow on email/password focus
+     25 Login card - NEUTRALIZED (transparent, no inner card)
+     26 "Or" divider - red lines
+     27 Remember-me checkbox - red when checked
+     28 Right hero panel - NEUTRALIZED, scrim removed
+     29 Microsoft SSO button - navy fill + red border, white glyph
+     30 Input autofill override - navy inset + white text
+
+   ROUND 1 (2026-07-03) — Sentinel variant, initial cut. Structural mirror of the
+   VLP login source (themes/vlp-default.css LOGIN PAGE - LIVE COPY, R35.2 baseline:
+   rounds 20-22 + R55 mobile + R34 polish + R35/R35.1/R35.2 fixes). Structure,
+   selectors, specificity anchors, and !important count are byte-identical to the
+   VLP source; ONLY the palette is substituted per the PE Phase 2 role table
+   (VLP orange -> Sentinel red #dc2626 for fills/borders/rings/checkbox/divider/
+   glow; VLP orange -> gold #B08D57 for link text; VLP navy fallback -> Sentinel
+   navy #14213d; VLP muted gray -> #8fa0c0; VLP off-white / the "Not a member?"
+   wrapper -> #e8ecf3 on-dark body text). The DOM recon facts
+   in the per-section notes (class names, :has() behavior, checkbox structure) are
+   the VLP R35 recon of the shared SD login template and carry over unchanged.
+   =========================================================================== */
+
+
+/* --- 1. Google SSO Button - navy fill + red border, white glyph --- */
+/* Mirror of VLP section 1. Navy fill (#14213d) = panel bg for the outlined-pill
+   look (Q4); red border (#dc2626); white glyph text on the filled surface. */
+body.login a.sd-google-signin-btn {
+  background-color: #14213d !important;
+  color: #ffffff !important;
+  border: 2px solid #dc2626 !important;
+  border-radius: 50px !important;
+  font-family: "Source Sans 3", "Open Sans", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 13px 24px !important;
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  letter-spacing: 0.01em !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 2. Login button - full-width red pill --- */
+body.login button.btn-primary-login {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+  border: 2px solid #dc2626 !important;
+  border-radius: 50px !important;
+  font-family: "Source Sans 3", "Open Sans", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  padding: 13px 24px !important;
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-transform: none !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 3. Remember Me + Login row - stack vertically --- */
+body.login .form-group .col-md-12.d-flex.justify-content-between {
+  flex-direction: column !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+body.login .form-group .rememberMe {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+
+/* --- 4. Having Trouble link (gold) --- */
+body.login a.having-trouble {
+  color: #B08D57 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+
+/* --- 5. Parens around Having Trouble (muted) --- */
+body.login .sd-login-text {
+  color: #8fa0c0 !important;
+  font-size: 12px !important;
+}
+
+
+/* --- 6. Footer - Start free and get instant access (gold) --- */
+body.login .sd-custom-login-text-link a {
+  color: #B08D57 !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+
+/* --- 7. Footer - Terms of Service / Privacy Policy (muted) --- */
+body.login .panel-footer-group a {
+  color: #8fa0c0 !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(143, 160, 192, 0.4) !important;   /* #8fa0c0 @ 0.4 */
+  padding-bottom: 1px !important;
+}
+
+
+/* --- 8. Left panel - flex column, centered + navy bg + on-dark text contrast --- */
+/* Mirror of VLP section 8. The dark left-panel surface is set here in place
+   (Sentinel navy #14213d) rather than delegated to SD admin -> Customize Login
+   Page Colors, which is still white. The two text rules below keep the panel's
+   un-recoloured footer text ("Not a member?") readable on the navy panel: per
+   the Q3 ruling that wrapper is on-dark BODY text -> #e8ecf3 (it was the muted
+   gray in the VLP source). The Remember-Me label is handled in section 18. */
+body.login .panel.panel-1.login-panel-left {
+  background-color: #14213d !important;
+  background-image: none !important;
+  max-width: 46% !important;
+  padding: 48px 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+body.login .login-panel-left .not-a-member-wrapper {
+  color: #e8ecf3 !important;
+}
+body.login .login-panel-left a.start-now-link {
+  color: #B08D57 !important;
+  font-weight: 600 !important;
+}
+
+
+/* --- 9. Right panel --- */
+body.login .panel.panel-2.login-panel-right {
+  max-width: 54% !important;
+}
+
+
+/* --- 10. Logo region --- */
+body.login .panel-logo {
+  justify-content: center !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+}
+
+body.login .logo-dark img {
+  width: 300px !important;
+  max-width: 300px !important;
+  height: auto !important;
+}
+
+
+/* --- 11. Panel form row - center the form --- */
+/* .panel-inner.panel-form.row is the INNER form-column wrapper - it lives
+   inside panel-1.login-panel-left and centers the form within that panel. It is
+   NOT the panel-splitting row container. The actual panel-splitting row is
+   .split-container (section 23 below), which flexes the two panels side-by-side
+   and flips to a column on mobile. Don't conflate the two. */
+body.login .panel-inner.panel-form.row {
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 0px !important;
+}
+
+
+/* --- 12. Login center column - fixed width --- */
+body.login .login-center {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  flex: none !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 13. Form oscar --- */
+body.login .form.form-oscar {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 14. Google SSO wrapper --- */
+body.login .sd-google-signin-wrapper {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 15. Or divider (real class .sd-social-signin-divider per recon) --- */
+body.login .sd-social-signin-divider {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  margin: 10px 0 !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 16. Inputs --- */
+body.login input.sd-login-email-input,
+body.login input.sd-login-password-input {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  font-size: 15px !important;
+  height: 52px !important;
+  padding: 14px 18px !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 17. Form groups --- */
+body.login .form-oscar .form-group.no-gutters {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+
+body.login .form-oscar .form-group .col-md-12 {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+
+/* --- 18. Remember Me / Having Trouble row --- */
+body.login .rememberMe {
+  width: 100% !important;
+}
+
+body.login label[for="LoginForm_rememberMe"] {
+  font-size: 14px !important;
+  color: #e8ecf3 !important;   /* on-dark body text, readable on the navy left panel (section 8) */
+}
+
+
+/* --- 19. Mail prefix icon on email input (FA fa-envelope, regular 400) --- */
+body.login .col-md-12:has(.sd-login-email-input)::before {
+  font-family: "Font Awesome 6 Pro" !important;
+  font-weight: 400 !important;
+  content: "\f0e0" !important;
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #8fa0c0 !important;
+  font-size: 15px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+
+/* --- 20. Lock prefix icon on password input (FA fa-lock, solid 900) --- */
+body.login .col-md-12:has(.sd-login-password-input)::before {
+  font-family: "Font Awesome 6 Pro" !important;
+  font-weight: 900 !important;
+  content: "\f023" !important;
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #8fa0c0 !important;
+  font-size: 15px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+
+/* --- 21. Padding-left bump on inputs to clear the prefix glyphs --- */
+body.login input.sd-login-email-input,
+body.login input.sd-login-password-input {
+  padding-left: 42px !important;
+}
+
+
+/* --- 22. Specificity override beating mpa-style.css .login .form .form-control --- */
+body.login .form-oscar input.sd-login-email-input,
+body.login .form-oscar input.sd-login-password-input {
+  padding: 14px 18px !important;
+  padding-left: 42px !important;
+  height: 52px !important;
+}
+
+/* --- 23. Mobile/tablet responsive — stack panels + release width clamps --- */
+@media (max-width: 1024px) {
+  body.login .split-container {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  body.login .panel.panel-1.login-panel-left {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 32px 20px !important;
+    box-sizing: border-box !important;
+  }
+  body.login .panel.panel-2.login-panel-right {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+
+/* --- 24. Input focus ring - red glow on email/password focus --- */
+/* Anchored at .form-oscar depth so the focus ring wins over mpa-style.css
+   the same way section 22 does. Purely additive: mpa-style.css sets no
+   :focus box-shadow, so this is the only focus treatment. */
+body.login .form-oscar input.sd-login-email-input:focus,
+body.login .form-oscar input.sd-login-password-input:focus {
+  outline: none !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.55) !important;   /* #dc2626 @ 0.55 */
+}
+
+
+/* --- 25. Login card - NEUTRALIZED (transparent, no inner card) --- */
+/* Inherited from VLP R35.1: force the column transparent so the section-8 panel
+   bg (#14213d) shows through - no visible inner card, form controls sit directly
+   on the panel bg. Glow + radius intentionally absent (on a transparent container
+   a box-shadow renders as a phantom rounded-rectangle halo, which contradicts the
+   "no card" ask). Panel bg (section 8), button fills, and input fills untouched. */
+body.login .login-center {
+  background: transparent !important;
+}
+
+
+/* --- 26. "Or" divider - red lines (DOM-confirmed) --- */
+/* The divider is .sd-social-signin-divider; its flanking lines are two
+   <span class="sd-social-signin-divider__line"> nodes drawn via background, and
+   the label is <span class="sd-social-signin-divider__text">or</span>. Colour the
+   lines via background-color (border-color kept as belt-and-suspenders); mute the
+   text. */
+body.login .sd-social-signin-divider__text {
+  color: #8fa0c0 !important;
+}
+body.login .sd-social-signin-divider__line {
+  background-color: rgba(220, 38, 38, 0.5) !important;   /* #dc2626 @ 0.5 */
+  border-color: rgba(220, 38, 38, 0.5) !important;       /* #dc2626 @ 0.5 */
+}
+
+
+/* --- 27. Remember-me checkbox - red when checked (target visible box) --- */
+/* The native <input id="LoginForm_rememberMe" class="custom-checkbox"> is visually
+   hidden; the VISIBLE box is <span class="sd-login-check-box"> inside the sibling
+   <label>. So accent-color on the native input is inert. Keep it (harmless) and add
+   the visible-box treatment: red border always, red fill when the native input is
+   :checked (input:checked + label .sd-login-check-box). */
+body.login input#LoginForm_rememberMe,
+body.login .rememberMe input[type="checkbox"] {
+  accent-color: #dc2626 !important;
+}
+body.login .rememberMe .sd-login-check-box {
+  border-color: #dc2626 !important;
+}
+body.login input#LoginForm_rememberMe:checked + label .sd-login-check-box {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+}
+
+
+/* --- 28. Right hero panel - NEUTRALIZED (scrim removed) --- */
+/* Inherited from VLP R35.2: the branded hero image needs no darkening. Neutralize
+   the ::before with content:none - the direct inverse of the content:"" that would
+   generate a scrim, so the pseudo-element box is never created (cleaner than
+   display:none, which would still generate the box only to hide it). position:relative
+   retained but now inert. No other rule paints on .panel-2 / login-panel-right
+   (section 9 sets max-width, section 23 sets mobile width - both layout-only), so the
+   hero image is fully restored. */
+body.login .panel.panel-2.login-panel-right {
+  position: relative !important;
+}
+body.login .panel.panel-2.login-panel-right::before {
+  content: none !important;   /* scrim removed - branded hero image needs no darkening */
+}
+
+
+/* --- 29. Microsoft SSO button - navy fill + red border, white glyph --- */
+/* The Microsoft button is <a class="btn sd-microsoft-signin-btn"> inside
+   <div class="sd-microsoft-signin-wrapper">, sibling of the Google pair inside
+   <div class="sd-signin-providers sd-signin-paired">. Mirrors section 1's treatment
+   (navy fill, 2px red border, white glyph) + a red hover glow, widths the MS wrapper
+   like section 14, and stacks the paired container so both pills sit full-width. */
+body.login .sd-signin-providers.sd-signin-paired {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+body.login .sd-microsoft-signin-wrapper {
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  box-sizing: border-box !important;
+}
+body.login a.sd-microsoft-signin-btn {
+  background-color: #14213d !important;
+  color: #ffffff !important;
+  border: 2px solid #dc2626 !important;
+  border-radius: 50px !important;
+  font-family: "Source Sans 3", "Open Sans", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 13px 24px !important;
+  width: min(540px, 100%) !important;
+  max-width: 540px !important;
+  letter-spacing: 0.01em !important;
+  box-sizing: border-box !important;
+}
+body.login a.sd-microsoft-signin-btn:hover {
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.55) !important;   /* #dc2626 @ 0.55 */
+}
+
+
+/* --- 30. Input autofill override - navy inset + white text --- */
+/* Browser autofill paints its own light-blue background over the dark inputs
+   (Chromium's -webkit-autofill UA style). The 1000px inset box-shadow trick repaints
+   the field navy (#14213d, literal per Q4); -webkit-text-fill-color keeps the typed
+   value white; the long transition defers the autofill background swap. Anchored at
+   .form-oscar depth (0,3,2) like sections 22/24 so it wins over mpa-style.css. */
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill,
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill:hover,
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill:focus,
+body.login .form-oscar input.sd-login-email-input:-webkit-autofill:active,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill:hover,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill:focus,
+body.login .form-oscar input.sd-login-password-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #14213d inset !important;
+  box-shadow: 0 0 0 1000px #14213d inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+
+/* ===========================================================================
+   END SENTINEL LOGIN PAGE — LIVE COPY
+   =========================================================================== */
