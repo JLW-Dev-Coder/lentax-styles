@@ -18081,7 +18081,7 @@ body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.
 }
 
 /* ═══════════════════════════════════════════════════════════════════════ */
-/*  SECTION 2.16 — PORTAL SIDEBAR (R36 — install-variant treatment)         */
+/*  SECTION 2.16 — PORTAL SIDEBAR (R36 base + R37 hover smoothing)           */
 /*  ─────────────────────────────────────────────────────────────────────  */
 /*  Surface: SuiteDash/Oscar portal left sidebar (aside.site-sidebar) on the */
 /*  three install variants. Implements CC's approved live DevTools trial     */
@@ -18112,6 +18112,15 @@ body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.
 /*  noted reason — CC's trial style tag loaded LAST in the browser so it won */
 /*  on order; in production our Netlify CSS loads before SuiteDash's late    */
 /*  sheets, so !important guarantees the win by specificity+importance.      */
+/*                                                                           */
+/*  R37 (hover smoothing): the R36 hover twitch had two causes — (1) an      */
+/*  incomplete transition list (icon svg fill + label color un-eased) and    */
+/*  (2) SD mpa-style.css nudging the anchor padding-left 1em->1.5em (+7.5px   */
+/*  snap) on hover. Fixed by extending the resting-anchor transition to      */
+/*  cover color (bg -> bg-color), adding fill/color transitions on the       */
+/*  icon+label, and PINNING hover padding-left (top-level 1em, submenu 20px) */
+/*  so hover eases color with ZERO positional shift. Submenu pin is          */
+/*  CC-flagged/untrialed — JLW verifies submenu hover post-deploy.           */
 /* ═══════════════════════════════════════════════════════════════════════ */
 
 /* ---- Sidebar body + right divider (reinforces §2.14 at CC's proven scope) ---- */
@@ -18134,9 +18143,14 @@ body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.
 }
 
 /* ---- Top-level item link: rail gutter + transition (resting) ---- */
+/*      R37: transition list extended to cover color (was bg + border-color   */
+/*      only); background -> background-color (compositor-friendlier — only    */
+/*      bg-color changes on hover). Single-sourced here; no duplicate.         */
 :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple {
   border-left: 3px solid transparent !important;                        /* reserve 3px rail gutter (noted !important) */
-  transition: background .15s ease, border-color .15s ease !important;
+  transition: background-color .15s ease,
+              border-color .15s ease,
+              color .15s ease !important;
 }
 :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple svg {
   fill: var(--lentax-chrome-sidebar-icon) !important;                   /* icon resting (noted !important) */
@@ -18168,6 +18182,36 @@ body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.
   fill: var(--lentax-chrome-sidebar-icon-active) !important;               /* REQUIRED (CC) */
 }
 
+/* ---- R37 hover smoothing: icon fill + label color transitions ---- */
+/*      The svg had NO transition (fill snapped) and the label span.hide-menu  */
+/*      inherited SD's `transition: all .25s ease-in-out .125s` (wrong         */
+/*      duration + 125ms delay). Both now ease at 150ms in lockstep with the   */
+/*      bg/rail so hover reads as one motion, not a desync.                    */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple svg {
+  transition: fill .15s ease !important;                                 /* icon fill was snapping (no transition) */
+}
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple span.hide-menu {
+  transition: color .15s ease !important;                                /* beats SD's inherited all .25s ease-in-out .125s */
+}
+
+/* ---- R37 hover padding pins: zero horizontal shift on hover ---- */
+/*      SD mpa-style.css `.sidebar-nav .side-menu li a:first-child:hover`      */
+/*      nudges padding-left 1em -> 1.5em (+7.5px snap) on the top-level anchor  */
+/*      — the measured twitch (R37-Diag2). Pin resting padding so hover eases  */
+/*      color with zero positional movement. Resting top-level padding is SD's */
+/*      1em (neither §2.14 nor §2.16 overrides it); submenu resting is 20px    */
+/*      (§2.16 above). Both pins out-specify SD's rule + carry !important.     */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu > li > a.ripple:first-child:hover {
+  padding-left: 1em !important;                                          /* cancels SD's 1em->1.5em top-level snap */
+}
+/*      Submenu pin: SD `.sub-menu > li > a:first-child:hover` jumps           */
+/*      padding-left 20px -> 8px (-12px). CC-flagged, not live-trialed         */
+/*      (submenus were collapsed during diag); selector omits .ripple to match */
+/*      SD's target structure. JLW verifies submenu hover after deploy.        */
+:is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu .sub-menu > li > a:first-child:hover {
+  padding-left: 20px !important;                                         /* cancels SD's 20px->8px submenu jump */
+}
+
 /* ---- Submenu: dark container + flush indent + label ---- */
 :is(body.lentax-install-default, body.lentax-install-coastal, body.lentax-install-sentinel) aside.site-sidebar .sidebar-nav ul.side-menu .sub-menu {
   background: var(--lentax-chrome-sidebar-submenu-bg) !important;          /* REQUIRED (CC) */
@@ -18189,4 +18233,4 @@ body.lentax-vlp #dashboard-view .account-card-wrapper .cbe-block-button-element.
   background-color: var(--lentax-chrome-sidebar-logo-bg) !important;       /* REQUIRED (CC): beats SD navbar-brand #111; .navbar-header raises specificity so it wins regardless of source order */
 }
 
-/* ═══ END SECTION 2.16 — PORTAL SIDEBAR (R36) ═══ */
+/* ═══ END SECTION 2.16 — PORTAL SIDEBAR (R36 base + R37 hover smoothing) ═══ */
