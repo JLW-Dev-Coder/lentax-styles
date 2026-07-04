@@ -1709,6 +1709,7 @@ body.login a.sd-google-signin-btn {
   letter-spacing: 0.01em !important;
   box-sizing: border-box !important;
 }
+body.login a.sd-google-signin-btn .sd-signin-btn-label { color: #FFFFFF !important; }
 
 
 /* --- 2. Login button - full-width pill --- */
