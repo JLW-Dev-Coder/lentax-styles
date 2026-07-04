@@ -1709,7 +1709,16 @@ body.login a.sd-google-signin-btn {
   letter-spacing: 0.01em !important;
   box-sizing: border-box !important;
 }
-body.login a.sd-google-signin-btn .sd-signin-btn-label { color: #FFFFFF !important; }
+/* SSO button label text - white. The label lives in a nested
+   span.sd-signin-btn-label that mpa-style.css targets directly at
+   (0,1,0). The parent-anchor rules in sections 1 and 29 only set color
+   on the <a>; inherited color loses to the span's own declaration
+   regardless of !important - so target the span directly. Covers both
+   providers. Mirrors the Sentinel login variant 1b fix. */
+body.login a.sd-google-signin-btn .sd-signin-btn-label,
+body.login a.sd-microsoft-signin-btn .sd-signin-btn-label {
+  color: #ffffff !important;
+}
 
 
 /* --- 2. Login button - full-width pill --- */
