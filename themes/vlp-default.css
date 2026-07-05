@@ -4240,3 +4240,24 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
 #dashboard-view .reporting__block__title__icon-svg {
   color: #f97316 !important;
 }
+
+/* --- Dark-skin finish (2026-07-04): row shell + VIEW button + trend icon + progress % --- */
+#dashboard-view .reporting__container {
+  background: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+  box-shadow: none !important;
+}
+#dashboard-view .reporting__block__view-button,
+#dashboard-view .reporting__block__view-button span {
+  color: #f97316 !important;
+  -webkit-text-fill-color: #f97316 !important;
+  border-color: rgba(249,115,22,0.5) !important;
+}
+#dashboard-view .reporting__block__value__trend__icon {
+  font-family: "Font Awesome 6 Pro" !important;
+  font-weight: 900 !important;
+}
+#dashboard-view .reporting__block__progress__value {
+  color: #E0E0E0 !important;
+  -webkit-text-fill-color: #E0E0E0 !important;
+}
