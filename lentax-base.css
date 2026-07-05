@@ -13987,7 +13987,7 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   transition: transform var(--vlpd-dur-base) var(--vlpd-ease-out),
               box-shadow var(--vlpd-dur-base) var(--vlpd-ease-out),
               border-color var(--vlpd-dur-base) ease !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   min-height: 140px !important;
 }
 
