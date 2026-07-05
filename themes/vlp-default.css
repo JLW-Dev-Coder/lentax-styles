@@ -4185,3 +4185,58 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
 /* ============================================================
  * END R30
  * ============================================================ */
+
+
+/* ============================================================
+ * VLP DASHBOARD KPI CARDS - DARK RE-SKIN (2026-07-04)
+ * ------------------------------------------------------------
+ * Scoped VLP-only override for the #dashboard-view .reporting__block
+ * KPI tiles. Base section 2.15.5 renders them on the light ivory
+ * skin (--vlpd-ivory / #FFFAF4); this block moves them to a warm-
+ * charcoal dark panel in VLP's palette (parchment value, bronze
+ * label, orange accent + glyph). It mirrors the exact base 2.15.5
+ * selectors at the SAME specificity and wins the cascade by source
+ * order (vlp-default.css loads after lentax-base.css - see
+ * lentax-vlp.js). Values are literal hex/rgba - no shared --vlpd-*
+ * or --lentax-tpp-* token is repointed, so the blast radius is the
+ * VLP dashboard card only. overflow:hidden (commit 63e386f) is left
+ * intact and NOT re-declared; the accent bar's 3px height + scaleX
+ * hover are inherited from base. TPP dashboards are unaffected -
+ * this file loads on VLP portals only.
+ * ============================================================ */
+
+/* Card - warm-charcoal panel, light-alpha border, soft drop shadow */
+#dashboard-view .reporting__block {
+  background: linear-gradient(180deg, #2a2622 0%, #201d1a 100%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35) !important;
+}
+
+/* Accent top-bar - live gradient that reads on dark (base mid-stop
+   --vlpd-crimson resolves to a dead near-black in the VLP palette).
+   Only the gradient is replaced; sizing + scaleX hover come from base. */
+#dashboard-view .reporting__block::before {
+  background: linear-gradient(90deg, #f97316 0%, #E8A93A 50%, #b87333 100%) !important;
+}
+
+/* Title label - bronze on dark (base sets color + -webkit-text-fill-color) */
+#dashboard-view .reporting__block__title__text {
+  color: #b87333 !important;
+  -webkit-text-fill-color: #b87333 !important;
+}
+
+/* Value number - parchment on dark (base solid-colors it + text-fill) */
+#dashboard-view .reporting__block__value__current {
+  color: #FFFAF4 !important;
+  -webkit-text-fill-color: #FFFAF4 !important;
+}
+
+/* Icon-badge container - dark fill only; base orange border left intact */
+#dashboard-view .reporting__block__title__icon {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* Icon glyph - orange (the svg <use> fills currentColor) */
+#dashboard-view .reporting__block__title__icon-svg {
+  color: #f97316 !important;
+}
