@@ -4207,7 +4207,7 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
 
 /* Card - warm-charcoal panel, light-alpha border, soft drop shadow */
 #dashboard-view .reporting__block {
-  background: linear-gradient(180deg, #2a2622 0%, #201d1a 100%) !important;
+  background: #242424 !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   box-shadow: 0 4px 18px rgba(0,0,0,0.35) !important;
 }
