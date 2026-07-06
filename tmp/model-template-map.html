@@ -1,0 +1,560 @@
+<!-- SuiteDash Portal Page body. Paste into SuiteDash > Portal > Pages. Do not wrap in <html>/<body>. Do not substitute {{myOrganizationOSDItemNameSOP29352}}. -->
+<style>
+/* Only rules that cannot be inline live here: resets, keyframes, focus + reduced-motion gating */
+.tmp-root, .tmp-root * { box-sizing: border-box; }
+.tmp-root button { font-family: inherit; cursor: pointer; }
+.tmp-root button:focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
+.tmp-root a:focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
+@keyframes tmpSlideIn { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes tmpFadeUp  { from { opacity: 0; transform: translateY(8px);  } to { opacity: 1; transform: none; } }
+@keyframes tmpCallout { from { opacity: 0; } to { opacity: 1; } }
+.tmp-screenshot { animation: tmpSlideIn .3s ease-out both; }
+.tmp-text       { animation: tmpFadeUp .3s ease-out both; animation-delay: .06s; }
+.tmp-callout    { animation: tmpCallout .25s ease-out both; }
+/* Client Journey Gantt */
+@keyframes tmpBarIn   { from { transform: scaleX(0); opacity: .35; } to { transform: scaleX(1); opacity: 1; } }
+@keyframes tmpGlabel  { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes tmpGdia    { from { opacity: 0; transform: rotate(45deg) scale(.3); } to { opacity: 1; transform: rotate(45deg) scale(1); } }
+.tmp-gbar   { transform-origin: left center; animation: tmpBarIn .35s ease-out both; }
+.tmp-glabel { animation: tmpGlabel .3s ease-out both; }
+.tmp-gdia   { transform: rotate(45deg); animation: tmpGdia .3s ease-out both; }
+/* Launch slide, 3-layer overlapped mockup */
+@keyframes tmpL1 { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes tmpL2 { from { opacity: 0; transform: translate(26px, 26px) rotate(3deg); } to { opacity: 1; transform: translate(0,0) rotate(3deg); } }
+@keyframes tmpL3 { 0% { opacity: 0; transform: translateY(-30px); } 70% { opacity: 1; transform: translateY(5px); } 100% { opacity: 1; transform: translateY(0); } }
+.tmp-l1 { animation: tmpL1 .25s ease-out both; }
+.tmp-l2 { transform: rotate(3deg); animation: tmpL2 .25s ease-out both; animation-delay: .20s; }
+.tmp-l3 { animation: tmpL3 .20s ease-out .45s both, tmpPulse 2.6s ease-in-out 1.2s infinite; }
+/* gentle orange glow pulse on a slide's key element */
+@keyframes tmpPulse { 0%, 100% { box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 rgba(249,115,22,0); } 50% { box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 24px rgba(249,115,22,0.12); } }
+.tmp-pulse { animation: tmpPulse 2.6s ease-in-out 1.2s infinite; }
+/* DOMSSS / Pipeline / Portal entrances */
+@keyframes tmpCardUp  { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes tmpScaleIn { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+.tmp-domc  { animation: tmpCardUp .3s ease-out both; }
+.tmp-pnode { animation: tmpCardUp .2s ease-out both; }
+.tmp-pline { transform-origin: left center; animation: tmpBarIn .8s ease-out both; }
+.tmp-phub  { animation: tmpScaleIn .3s ease-out both; }
+.tmp-pnode2 { animation: tmpScaleIn .3s ease-out both; }
+@keyframes tmpDetail { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.tmp-detail { animation: tmpDetail .25s ease-out both; }
+/* hover states (ported from the DC runtime style-hover attributes) */
+.tmp-root .tmp-prev:hover { background: #F97316; color: #141414; }
+.tmp-root .tmp-next:hover { background: #EA6A0C; }
+.tmp-root .tmp-domc:hover { transform: translateY(-4px); border-color: #F97316; box-shadow: 0 0 22px rgba(249,115,22,0.14); }
+.tmp-root .tmp-pnode-d:hover .tmp-pcircle { transform: translateY(-3px); box-shadow: 0 0 16px rgba(249,115,22,0.3); }
+.tmp-root .tmp-pnode-o:hover .tmp-pcircle { transform: translateY(-3px); box-shadow: 0 0 16px rgba(184,149,106,0.3); }
+.tmp-root .tmp-pnode2:hover { transform: translateY(-3px); border-color: #F97316; box-shadow: 0 0 18px rgba(249,115,22,0.14); }
+@media (prefers-reduced-motion: reduce) {
+  .tmp-screenshot, .tmp-text, .tmp-callout,
+  .tmp-gbar, .tmp-glabel, .tmp-gdia,
+  .tmp-l1, .tmp-l2, .tmp-l3, .tmp-pulse,
+  .tmp-domc, .tmp-pnode, .tmp-pline, .tmp-phub, .tmp-pnode2, .tmp-detail { animation: none !important; }
+}
+</style>
+
+<div class="tmp-root" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #FAFAF8; background: #0A0A0A; padding: 48px 24px 88px; min-height: 100%; line-height: 1.55;">
+  <div style="max-width: 1120px; margin: 0 auto;">
+
+    <!-- ================= HERO (section 1) ================= -->
+    <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid #2A2A2A;">
+      <div style="max-width: 620px;">
+        <!-- SmartMerge token below renders "Tax Monitor Pro" inside SuiteDash. Do not alter the token text. -->
+        <span style="display: inline-block; font-family: 'SF Mono', Menlo, monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #F97316; background: #141414; border: 1px solid #2A2A2A; padding: 6px 12px; border-radius: 999px;">{{myOrganizationOSDItemNameSOP29352}}</span>
+        <h1 style="font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif; font-weight: 600; font-size: 44px; line-height: 1.1; letter-spacing: -0.01em; margin: 22px 0 14px; text-shadow: 0 2px 12px rgba(249, 115, 22, 0.15);">Model + Template Map</h1>
+        <p style="font-size: 17px; color: #B8B8B0; margin: 0; max-width: 52ch;">Switch views to explore how the system is organized and what ships inside the template.</p>
+      </div>
+      <!-- Existing Lottie embed, kept verbatim. -->
+      <iframe src="https://lottie.host/embed/48591e87-dae7-4b0f-bd95-03195178927c/T9xTM8Dgj8.lottie" title="Tax Monitor Pro animation" style="width: 260px; height: 180px; border: 0; background: transparent; flex: 0 0 auto;" loading="lazy"></iframe>
+    </header>
+
+    <!-- ================= TWO-TAB PRIMARY SWITCHER (section 2) ================= -->
+    <div role="tablist" aria-label="Primary view" style="display: inline-flex; gap: 6px; background: #141414; border: 1px solid #2A2A2A; border-radius: 12px; padding: 5px; margin: 40px 0 26px;">
+      <button type="button" role="tab" data-tmp-tab="model-tour" aria-selected="false" style="border: 1px solid transparent; background: #141414; color: #B8B8B0; padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background .18s ease, color .18s ease;">Model Tour</button>
+      <button type="button" role="tab" data-tmp-tab="template-map" aria-selected="true" style="border: 1px solid #F97316; background: #F97316; color: #141414; padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background .18s ease, color .18s ease;">Template Map</button>
+    </div>
+
+    <!-- Sub-tab strip. Click a chip, or use Left/Right arrow keys, to change step. -->
+    <nav aria-label="Steps" id="tmp-chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px;"></nav>
+
+    <!-- ================= STEPPED CARD (section 3) ================= -->
+    <section style="background: #141414; border: 1px solid #2A2A2A; border-radius: 16px; padding: 40px;">
+      <!-- Card header: step indicator + prev/next -->
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
+        <span id="tmp-steplabel" style="font-family: 'SF Mono', Menlo, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7A7A72; display: inline-block; padding-bottom: 4px; border-bottom: 2px solid #F97316;"></span>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="tmp-prev" data-tmp-nav="prev" aria-label="Previous step" style="border: 1px solid #F97316; background: transparent; color: #F97316; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background .18s ease, color .18s ease;">Previous</button>
+          <button type="button" class="tmp-next" data-tmp-nav="next" aria-label="Next step" style="border: 1px solid #F97316; background: #F97316; color: #141414; padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; transition: background .18s ease;">Next</button>
+        </div>
+      </div>
+
+      <h2 id="tmp-title" style="font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif; font-weight: 600; font-size: 30px; letter-spacing: -0.01em; margin: 8px 0 28px;"></h2>
+
+      <!-- Keyed wrapper: rebuilt on step change so the screenshot slides in and the text cross-fades. -->
+      <div id="tmp-keyed" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;"></div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var ACCENT = '#F97316';
+
+  // ============================================================
+  // 5 MODELS (Model Tour). Captions verbatim from the CD source.
+  // ============================================================
+  var MODELS = [
+    { name: 'Client Journey', slug: 'client-journey', caption: 'The full arc a client travels, from first contact through ongoing service.', items: [] },
+    { name: 'DOMSSS', slug: 'domsss', caption: 'The operating framework the install is organized around.', items: [] },
+    { name: 'Pipeline', slug: 'pipeline', caption: 'The stages a prospect passes through before becoming a client.', items: [] },
+    { name: 'Portal', slug: 'portal', caption: 'What the client sees and does once they are signed in.', items: [] },
+    { name: 'Launch', slug: 'launch', caption: 'How the install goes live for a firm and hands off to daily use.', items: [] }
+  ];
+
+  // ============================================================
+  // 20 MODULES (Template Map). Order + copy preserved from source.
+  // ============================================================
+  var MODULES = [
+    { name: 'Appointments', slug: 'appointments', caption: 'The booking types clients see when they schedule with the firm. Each type routes to the right calendar and confirmation sequence.', items: ['Dedicated Support', 'Onboarding Support'] },
+    { name: 'Auto-Templates', slug: 'auto-templates', caption: 'Prebuilt records that clone into place when a client reaches a stage, so setup is not rebuilt by hand each time.', items: [] },
+    { name: 'Business Sectors', slug: 'business-sectors', caption: 'The practice areas the firm serves, used to segment clients and tailor what each one receives.', items: [] },
+    { name: 'Circles', slug: 'circles', caption: 'Groupings that control which clients see which content and pages inside the portal.', items: [] },
+    { name: 'Content Categories', slug: 'content-categories', caption: 'The filing structure behind portal content, so resources land in the right place for the right audience.', items: [] },
+    { name: 'Custom Fields', slug: 'custom-fields', caption: 'The extra data points TMP records on every client beyond the SuiteDash defaults. They feed auto-templates, filters, and generated documents.', items: ['Entity Type', 'Filing Status', 'Engagement Stage'] },
+    { name: 'Dashes', slug: 'dashes', caption: 'The dashboards each role opens to, framing what a client or staff member sees first.', items: [] },
+    { name: 'Document Generators', slug: 'document-generators', caption: 'Merge templates that build engagement letters and forms from client data on demand.', items: [] },
+    { name: 'Drip Sequences', slug: 'drip-sequences', caption: 'Timed message series that carry a client through onboarding without manual sends.', items: [] },
+    { name: 'Email Marketing', slug: 'email-marketing', caption: 'Broadcast campaigns to client segments for updates and seasonal reminders.', items: [] },
+    { name: 'Flows', slug: 'flows', caption: 'Automations that fire on a trigger to move records, assign work, or notify the team.', items: [] },
+    { name: 'Forms', slug: 'forms', caption: 'Intake and update forms that write straight into the client record.', items: [] },
+    { name: 'Invoice Items', slug: 'invoice-items', caption: 'The reusable line items and service codes the firm bills against.', items: [] },
+    { name: 'Landing Pages', slug: 'landing-pages', caption: 'Public pages that capture leads and route them into the pipeline.', items: [] },
+    { name: 'Menus', slug: 'menus', caption: 'The navigation each portal role sees, ordered around the work they do.', items: [] },
+    { name: 'Platform Branding', slug: 'platform-branding', caption: "The colors, logo, and naming that make the portal read as the firm's own.", items: [] },
+    { name: 'Portal Pages', slug: 'portal-pages', caption: 'The interior pages clients reach once signed in, holding status and resources.', items: [] },
+    { name: 'Projects', slug: 'projects', caption: 'The container that tracks a full engagement from kickoff to close.', items: [] },
+    { name: 'Proposals', slug: 'proposals', caption: 'Scoped offers a prospect can review and accept to become a client.', items: [] },
+    { name: 'Tasks', slug: 'tasks', caption: "Internal work items that move with a client through each phase. Nothing sits waiting in one person's inbox.", items: ['Intake Review', 'Return Prep', 'Signature Follow-up'] }
+  ];
+
+  // ===== DOMSSS: 6 personified pillars (verbatim from source) =====
+  var DOM_PILLARS = [
+    { letter: 'D', name: 'Development', subtitle: 'offers, workflows, assets', tint: '#F97316', purpose: 'Build the repeatable structures your business runs on.', description: 'Development is your creative-technical engine. It shapes your offers, builds your internal systems, and equips every other pillar to do its job.' },
+    { letter: 'O', name: 'Operations', subtitle: 'process, documentation, quality', tint: '#6B8299', purpose: 'Reduce chaos and increase consistency.', description: 'Operations is your internal engine: workflows, compliance, documentation, and quality control. This is where you stop improvising and start scaling.' },
+    { letter: 'M', name: 'Marketing', subtitle: 'visibility, positioning, consistency', tint: '#E8836B', purpose: 'Attract the right people with the right message.', description: 'Marketing is how the world meets your offer. Not shouting, clarity. It fuels Category 1 (Lead Development) and kicks off the motion of your pipelines.' },
+    { letter: 'S', name: 'Sales', subtitle: 'calls, proposals, conversions', tint: '#C9A24B', purpose: 'Turn interest into aligned commitments.', description: 'Sales is guidance, not pressure. Discovery calls, pricing, follow-ups, commitments, the bridge between curiosity and conversion.' },
+    { letter: 'S', name: 'Services', subtitle: 'delivery, fulfillment, outcomes', tint: '#7DA07D', purpose: 'Deliver predictable, high-quality results.', description: 'Services is the real product. Without defining this pillar, you end up doing everything, and resenting all of it.' },
+    { letter: 'S', name: 'Support', subtitle: 'help, communication, retention', tint: '#9B8FC0', purpose: 'Strengthen trust and long-term retention.', description: "Support is relationship maintenance. How clients ask for help, how you resolve issues, and how you prevent friction. It's the quiet pillar that determines loyalty." }
+  ];
+
+  // ===== Pipeline: two 7-phase lineages (verbatim) =====
+  var PIPE_DEALS = [
+    { name: 'Lead Capture & Intake', desc: 'First contact is logged and routed into the system.' },
+    { name: 'Qualify & Segment', desc: 'The lead is sorted by fit and grouped for the right path.' },
+    { name: 'Prospect Discovery Call', desc: 'A conversation to understand needs and confirm alignment.' },
+    { name: 'Offer & Close', desc: 'A scoped offer is presented and the agreement is reached.' },
+    { name: 'Client Onboarding & Setup', desc: 'Access, accounts, and expectations are put in place.' },
+    { name: 'Early Wins & Results', desc: 'The first deliverables land and confidence builds.' },
+    { name: 'Upsell, Referral & Testimonial', desc: 'A satisfied client opens the door to more work and advocacy.' }
+  ];
+  var PIPE_ORDERS = [
+    { name: 'General Info Capture', desc: 'The order details are gathered up front.' },
+    { name: 'Project Fit & Scope Confirmation', desc: 'Scope is confirmed so both sides agree on the work.' },
+    { name: 'Asset Collection & Setup', desc: 'Logins, brand assets, and inputs are collected.' },
+    { name: 'Drafting & Client Review', desc: 'A first pass is built and shared for feedback.' },
+    { name: 'Delivery & Fulfillment', desc: 'The finished work is handed over and put live.' },
+    { name: 'Quality Review & Reporting', desc: 'Output is checked and results are documented.' },
+    { name: 'Support & Exit/Offboarding', desc: 'Follow-up support is offered and the file is closed.' }
+  ];
+
+  // ===== Portal: 5 surfaces arranged radially (pentagon points) =====
+  var PORT_SURFACES = [
+    { name: 'Explore', type: 'compass', tint: '#5C8FA8', x: 50, y: 12, nodeDesc: 'Discover available services and offerings', long: 'Explore is the discovery surface. Clients browse what you offer and understand how each service fits their needs before they commit.' },
+    { name: 'Cart', type: 'cart', tint: '#F97316', x: 88, y: 38, nodeDesc: 'Checkout, invoicing, and payment', long: 'Cart is the transaction surface. Clients check out, view invoices, and complete payment here. It keeps money movement clear and self-serve.' },
+    { name: 'Order', type: 'clipboard', tint: '#7DA07D', x: 73.5, y: 80.7, nodeDesc: 'Active work, status, and deliverables', long: 'Order is the workspace surface. Active projects, current status, and deliverables live here, so a client always knows where things stand.' },
+    { name: 'Support', type: 'chat', tint: '#9B8FC0', x: 26.5, y: 80.7, nodeDesc: 'Ask for help, open tickets, communicate', long: 'Support is the help surface. Clients open tickets, ask questions, and stay in contact, so nothing gets lost between conversations.' },
+    { name: 'Exit', type: 'door', tint: '#8A8A82', x: 11.9, y: 38, nodeDesc: 'Offboard, submit exit survey, archive', long: 'Exit is the offboarding surface. Clients wrap up an engagement, share feedback through a short survey, and archive their records cleanly.' }
+  ];
+
+  // Inline icon SVGs, ported from the CD source icon() React.createElement calls.
+  function icon(type, color) {
+    var open = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="' + color + '" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">';
+    if (type === 'cart') return open + '<path d="M3 4h2l2.2 11h10l1.8-8H6.2"></path><circle cx="9" cy="20" r="1.3" fill="' + color + '" stroke="none"></circle><circle cx="18" cy="20" r="1.3" fill="' + color + '" stroke="none"></circle></svg>';
+    if (type === 'compass') return open + '<circle cx="12" cy="12" r="9"></circle><path d="M12 5.5 L14 12 L12 10.5 L10 12 Z" fill="' + color + '" stroke="none"></path><path d="M12 18.5 L10 12 L12 13.5 L14 12 Z" fill="none"></path></svg>';
+    if (type === 'clipboard') return open + '<rect x="5" y="4" width="14" height="17" rx="2"></rect><rect x="9" y="2.5" width="6" height="3" rx="1"></rect><path d="M8.5 10h7 M8.5 13.5h7 M8.5 17h4"></path></svg>';
+    if (type === 'chat') return open + '<path d="M4 5h16v10h-9l-4 3v-3H4z"></path></svg>';
+    if (type === 'door') return open + '<path d="M6 3h8v18H6"></path><path d="M11 12h8 M16 9l3 3-3 3"></path></svg>';
+    return open + '</svg>';
+  }
+
+  function ganttHTML() {
+    return '<div class="tmp-gantt" style="position: relative; padding: 4px 8px 12px;">'
+      + '<div style="position: relative; height: 22px; margin-bottom: 18px; border-bottom: 1px solid #2A2A2A;"><span style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #B8B8B0; position: absolute; left: 0; top: 0;">Order Timeline</span></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div class="tmp-gbar" style="animation-delay: 0s; position: absolute; left: 0%; width: 12%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .05s; position: absolute; left: 0%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .20s; position: absolute; left: 0%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 1, Identify Taxpayer Type</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 9%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .12s; position: absolute; left: 9%; width: 18%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .17s; position: absolute; left: 9%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .32s; position: absolute; left: 9%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 2, Intake Form</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 24%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .24s; position: absolute; left: 24%; width: 11%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .29s; position: absolute; left: 24%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .44s; position: absolute; left: 24%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 3, Agreement</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 32%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .36s; position: absolute; left: 32%; width: 10%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .41s; position: absolute; left: 32%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .56s; position: absolute; left: 32%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 4, Payment</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 39%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .48s; position: absolute; left: 39%; width: 30%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .53s; position: absolute; left: 39%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .68s; position: absolute; left: 39%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 5, Prep + QA</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 64%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .60s; position: absolute; left: 64%; width: 16%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .65s; position: absolute; left: 64%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .80s; position: absolute; right: 20%; top: 16px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 6, Review + E-Sign</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 77%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .72s; position: absolute; left: 77%; width: 9%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .77s; position: absolute; left: 77%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .92s; position: absolute; right: 14%; top: 16px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 7, File</div></div>'
+      + '<div style="position: relative; height: 52px;"><div style="position: absolute; left: 83%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .84s; position: absolute; left: 83%; width: 15%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .89s; position: absolute; left: 83%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: 1.04s; position: absolute; right: 2%; top: 16px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 8, Deliver + Close</div></div>'
+      + '</div>';
+  }
+
+  function launchHTML() {
+    return '<p style="font-size: 13px; color: #7A7A72; margin: 0 0 16px; padding-left: 12px; border-left: 2px solid #F97316;"><span style="font-weight: 600; color: #FAFAF8;">Example:</span> the moment a client\'s setup goes live, three surfaces confirm it.</p>'
+      + '<div style="position: relative; width: 100%; height: 452px; font-family: -apple-system, \'Segoe UI\', sans-serif;">'
+      + '<div class="tmp-l1" style="position: absolute; left: 0; top: 6px; width: 65%; height: 432px; background: #14161A; border: 1px solid #E5E3DE; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden; display: flex; flex-direction: column; z-index: 1;">'
+      + '<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 8px; height: 24px; background: #0E1013; flex: 0 0 auto;"><span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #F97316;"></span><span style="font-size: 8px; font-weight: 700; color: #F5F5F5;">VirtualLaunch.pro</span></span><span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #33373D;"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: #33373D;"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: #33373D;"></span></span></div>'
+      + '<div style="display: flex; flex: 1; min-height: 0;">'
+      + '<div style="width: 34%; background: #1E2126; padding: 7px 6px; display: flex; flex-direction: column; gap: 5px;"><span style="font-family: \'SF Mono\', Menlo, monospace; font-size: 5.5px; letter-spacing: .08em; color: #F97316;">PEPPERMINT PA...</span><span style="font-size: 6.5px; color: #F97316; font-weight: 600;">Dashboard</span><span style="font-size: 6.5px; color: #9BA0A6;">Start Here</span><span style="font-size: 6.5px; color: #9BA0A6;">Explore It All</span><span style="font-size: 6.5px; color: #9BA0A6;">My Calendar</span><span style="font-size: 6.5px; color: #9BA0A6;">Messaging</span><span style="font-size: 6.5px; color: #9BA0A6;">Office Space</span><span style="font-size: 6.5px; color: #9BA0A6;">Orders / Projects</span><span style="font-size: 6.5px; color: #9BA0A6;">Free Resources</span><span style="font-size: 6.5px; color: #9BA0A6;">Get Support</span></div>'
+      + '<div style="flex: 1; padding: 8px; overflow: hidden; display: flex; flex-direction: column; gap: 6px;">'
+      + '<div style="height: 6px; border-radius: 3px; background: repeating-linear-gradient(45deg, #B91C1C 0 5px, #7F1416 5px 10px);"></div>'
+      + '<div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="display: flex; flex-direction: column; align-items: center; gap: 2px;"><span style="width: 13px; height: 13px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center;">&#10003;</span><span style="font-size: 5px; color: #9BA0A6;">Logged</span></span><span style="display: flex; flex-direction: column; align-items: center; gap: 2px;"><span style="width: 13px; height: 13px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center;">&#10003;</span><span style="font-size: 5px; color: #9BA0A6;">Assets</span></span><span style="display: flex; flex-direction: column; align-items: center; gap: 2px;"><span style="width: 13px; height: 13px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center;">&#10003;</span><span style="font-size: 5px; color: #9BA0A6;">Build</span></span><span style="display: flex; flex-direction: column; align-items: center; gap: 2px;"><span style="width: 13px; height: 13px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center;">&#10003;</span><span style="font-size: 5px; color: #9BA0A6;">Access</span></span><span style="display: flex; flex-direction: column; align-items: center; gap: 2px;"><span style="width: 13px; height: 13px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; font-weight: 700; display: flex; align-items: center; justify-content: center;">5</span><span style="font-size: 5px; color: #F97316;">Launch</span></span></div>'
+      + '<div style="font-size: 11px; font-weight: 700; color: #F5F5F5; margin-top: 2px;">Tax Prep Setup, Launched</div>'
+      + '<div style="background: #B91C1C; color: #fff; font-size: 6.5px; padding: 4px 7px; border-radius: 999px;">Your build has been successfully launched and your invitation sent.</div>'
+      + '<div style="font-size: 6.2px; line-height: 1.6; color: #9BA0A6;">We\'ve assigned a post-build review flow. Access it by clicking <span style="display: inline-block; border: 1px solid #F97316; color: #F97316; border-radius: 3px; padding: 0 3px; font-size: 5.5px;">Needs Attention</span>, book your call, and complete our exit survey. We look forward to guiding your launch and next steps, and to serving you again with another build or upgrades. For special requests, open a <span style="display: inline-block; border: 1px solid #F97316; color: #F97316; border-radius: 3px; padding: 0 3px; font-size: 5.5px;">Work Order</span>.</div>'
+      + '<div style="font-size: 7px; font-weight: 700; color: #F5F5F5; margin-top: 1px;">What\'s Next</div>'
+      + '<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px;"><li style="font-size: 6px; color: #9BA0A6; display: flex; gap: 4px;"><span style="color: #F97316;">&bull;</span><span>Complete your post-build review under <span style="color: #F97316;">Needs Attention</span>.</span></li><li style="font-size: 6px; color: #9BA0A6; display: flex; gap: 4px;"><span style="color: #F97316;">&bull;</span><span>Book your exit/offboarding call and submit the exit survey.</span></li><li style="font-size: 6px; color: #9BA0A6; display: flex; gap: 4px;"><span style="color: #F97316;">&bull;</span><span>Click <span style="color: #F97316;">Work Order</span> for any special requests for upgrades or add-ons.</span></li></ul>'
+      + '<div style="font-size: 6.2px; font-style: italic; color: #7C8288;">Thank you for choosing Virtual Launch Pro. We\'re ready when you are for what\'s next.</div>'
+      + '<div style="margin-top: auto; border: 1px dashed #33373D; border-radius: 5px; padding: 8px; text-align: center;"><div style="font-size: 6.5px; color: #C9CDD2; font-weight: 600;">My Order / Project</div><div style="font-size: 5.5px; color: #6B7178;">Nothing here yet</div></div>'
+      + '</div></div></div>'
+      + '<div class="tmp-l2" style="position: absolute; right: 1%; bottom: 0; width: 42%; background: #14161A; border: 1px solid #E5E3DE; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden; z-index: 2;">'
+      + '<div style="background: #0E1013; text-align: center; padding: 5px 0;"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: #F97316;"></span><span style="font-size: 7.5px; font-weight: 700; color: #F5F5F5;">VirtualLaunch.pro</span></span></div>'
+      + '<div style="padding: 8px;"><div style="display: flex; align-items: center; gap: 5px; margin-bottom: 7px;"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F97316; color: #fff; font-size: 8px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">&#10003;</span><span style="font-size: 7.5px; font-weight: 700; color: #F5F5F5; line-height: 1.3;">Tax Prep Setup, You\'re Live, What To Do Next Checklist</span></div>'
+      + '<div style="display: flex; flex-direction: column;">'
+      + '<div style="display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.07);"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">&#10003;</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 7px; font-weight: 600; color: #F5F5F5;">Access Your Dashboard</span><span style="display: block; font-size: 6px; color: #9BA0A6;">Log in to confirm your Tax Monitor setup is live</span></span><span style="font-size: 6px; color: #fff; background: linear-gradient(180deg, #FB923C, #F97316); padding: 3px 6px; border-radius: 4px; flex: 0 0 auto;">Step 1</span></div>'
+      + '<div style="display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.07);"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">&#10003;</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 7px; font-weight: 600; color: #F5F5F5;">Review Billing Configuration</span><span style="display: block; font-size: 6px; color: #9BA0A6;">Confirm pricing and billing readiness</span></span><span style="font-size: 6px; color: #fff; background: linear-gradient(180deg, #FB923C, #F97316); padding: 3px 6px; border-radius: 4px; flex: 0 0 auto;">Step 2</span></div>'
+      + '<div style="display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.07);"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">&#10003;</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 7px; font-weight: 600; color: #F5F5F5;">Review Branding &amp; Client-Facing Pages</span><span style="display: block; font-size: 6px; color: #9BA0A6;">Confirm logos, language, and client experience</span></span><span style="font-size: 6px; color: #fff; background: linear-gradient(180deg, #FB923C, #F97316); padding: 3px 6px; border-radius: 4px; flex: 0 0 auto;">Step 3</span></div>'
+      + '<div style="display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.07);"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">&#10003;</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 7px; font-weight: 600; color: #F5F5F5;">Prepare Client Communications</span><span style="display: block; font-size: 6px; color: #9BA0A6;">Confirm onboarding and notification messaging</span></span><span style="font-size: 6px; color: #fff; background: linear-gradient(180deg, #FB923C, #F97316); padding: 3px 6px; border-radius: 4px; flex: 0 0 auto;">Step 4</span></div>'
+      + '<div style="display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid rgba(255,255,255,0.07);"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">&#10003;</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-size: 7px; font-weight: 600; color: #F5F5F5;">Start Winning &amp; Serving Clients</span><span style="display: block; font-size: 6px; color: #9BA0A6;">You\'re ready to offer the service to clients</span></span><span style="font-size: 6px; color: #fff; background: linear-gradient(180deg, #FB923C, #F97316); padding: 3px 6px; border-radius: 4px; flex: 0 0 auto;">Step 5</span></div>'
+      + '</div></div></div>'
+      + '<div class="tmp-l3" style="position: absolute; right: 0; top: -6px; width: 30%; background: #FFFFFF; border: 1px solid #E5E3DE; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden; z-index: 3;">'
+      + '<div style="padding: 7px 8px;"><div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 8px; font-weight: 700; color: #1A1A1A;">Notifications</span><span style="font-size: 8px; color: #9A9A9A;">&times;</span></div>'
+      + '<div style="display: flex; gap: 10px; margin: 5px 0; border-bottom: 1px solid #E5E3DE; padding-bottom: 4px;"><span style="font-size: 6.5px; font-weight: 700; color: #4A6B8A;">All</span><span style="font-size: 6.5px; color: #9A9A9A;">Unread</span></div>'
+      + '<div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 5.5px; letter-spacing: .08em; color: #9A9A9A; text-transform: uppercase; margin-bottom: 5px;">Recent</div>'
+      + '<div style="display: flex; gap: 6px;"><span style="width: 18px; height: 18px; border-radius: 50%; background: #F97316; color: #fff; font-size: 7px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">PP</span><span style="min-width: 0;"><span style="display: block; font-size: 6.5px; font-weight: 700; color: #1A1A1A;">Peppermint Paddy</span><span style="display: block; font-size: 6px; color: #3A3A3A;">A Checklist has been assigned to you</span><span style="display: block; font-size: 5.5px; color: #7A7A7A; line-height: 1.5; margin-top: 1px;">\'Tax Prep Setup, You\'re Live, What To Do Next Checklist\' has been assigned to you for completion</span><span style="display: block; font-size: 5.5px; color: #9A9A9A; margin-top: 2px;">4 minutes ago</span></span></div>'
+      + '</div></div>'
+      + '</div>';
+  }
+
+  function domOverlayHTML(sel) {
+    var p = DOM_PILLARS[sel];
+    var grad = 'linear-gradient(160deg, ' + p.tint + '55 0%, #141414 92%)';
+    return '<div class="tmp-detail" style="position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 2px;">'
+      + '<div style="width: 100%; max-width: 460px; background: #141414; border: 1px solid #3A3A3A; border-radius: 12px; box-shadow: 0 24px 50px rgba(0,0,0,0.5); overflow: hidden;">'
+      + '<div style="position: relative; height: 120px; background: ' + grad + ';"><span style="position: absolute; left: 16px; bottom: 8px; font-family: \'SF Mono\', Menlo, monospace; font-size: 42px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1;">' + p.letter + '</span><button type="button" data-tmp-domclose="1" aria-label="Back to all pillars" style="position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); background: rgba(0,0,0,0.35); color: #FAFAF8; font-size: 14px; cursor: pointer;">&times;</button></div>'
+      + '<div style="padding: 20px 22px 24px;"><div style="font-family: Georgia, serif; font-size: 24px; font-weight: 600; color: #FAFAF8;">' + p.name + '</div><div style="font-size: 12px; color: #7A7A72; margin-top: 2px;">' + p.subtitle + '</div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: ' + p.tint + '; margin: 16px 0 6px;">Purpose</div><div style="font-size: 15px; color: #FAFAF8; font-weight: 500;">' + p.purpose + '</div><div style="font-size: 14px; color: #B8B8B0; line-height: 1.6; margin-top: 12px;">' + p.description + '</div></div>'
+      + '</div></div>';
+  }
+
+  function domsssHTML(sel) {
+    var gridOpacity = sel != null ? '0.28' : '1';
+    var gridPointer = sel != null ? 'none' : 'auto';
+    var cards = '';
+    for (var idx = 0; idx < DOM_PILLARS.length; idx++) {
+      var p = DOM_PILLARS[idx];
+      var grad = 'linear-gradient(160deg, ' + p.tint + '3d 0%, #141414 92%)';
+      cards += '<button type="button" data-tmp-dom="' + idx + '" class="tmp-domc" style="animation-delay: ' + (idx * 0.1) + 's; flex: 1 1 140px; min-width: 132px; max-width: 190px; background: #141414; border: 1px solid #2A2A2A; border-radius: 10px; overflow: hidden; padding: 0; text-align: left; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;"><div style="position: relative; height: 116px; background: ' + grad + ';"><svg viewBox="0 0 64 64" width="56" height="56" style="position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%);"><circle cx="32" cy="24" r="12" fill="rgba(255,255,255,0.15)"></circle><path d="M12 60 C12 45, 52 45, 52 60 Z" fill="rgba(255,255,255,0.15)"></path></svg><span style="position: absolute; left: 10px; bottom: 4px; font-family: \'SF Mono\', Menlo, monospace; font-size: 30px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1;">' + p.letter + '</span></div><div style="padding: 12px 12px 14px;"><div style="font-family: Georgia, \'Iowan Old Style\', serif; font-size: 16px; font-weight: 600; color: #FAFAF8;">' + p.name + '</div><div style="font-size: 11px; color: #7A7A72; margin-top: 3px;">' + p.subtitle + '</div></div></button>';
+    }
+    return '<div style="position: relative; min-height: 300px;"><div id="tmp-domgrid" style="display: flex; flex-wrap: wrap; gap: 14px; opacity: ' + gridOpacity + '; pointer-events: ' + gridPointer + '; transition: opacity .35s ease;">' + cards + '</div><div id="tmp-domoverlay">' + (sel != null ? domOverlayHTML(sel) : '') + '</div></div>';
+  }
+
+  function dealDetailBox(open) {
+    if (!open || open[0] !== 'd') return '';
+    var n = PIPE_DEALS[+open.slice(1)];
+    return '<div class="tmp-detail" style="margin-top: 12px; background: #1F1F1F; border: 1px solid #2A2A2A; border-left: 2px solid #F97316; border-radius: 8px; padding: 12px 14px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; color: #F97316; letter-spacing: .06em;">Phase ' + (+open.slice(1) + 1) + ', ' + n.name + '</div><div style="font-size: 13px; color: #B8B8B0; margin-top: 4px;">' + n.desc + '</div></div>';
+  }
+
+  function orderDetailBox(open) {
+    if (!open || open[0] !== 'o') return '';
+    var n = PIPE_ORDERS[+open.slice(1)];
+    return '<div class="tmp-detail" style="margin-top: 12px; background: #1F1F1F; border: 1px solid #2A2A2A; border-left: 2px solid #B8956A; border-radius: 8px; padding: 12px 14px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; color: #B8956A; letter-spacing: .06em;">Phase ' + (+open.slice(1) + 1) + ', ' + n.name + '</div><div style="font-size: 13px; color: #B8B8B0; margin-top: 4px;">' + n.desc + '</div></div>';
+  }
+
+  function pipelineHTML(open) {
+    var deals = '';
+    for (var i = 0; i < PIPE_DEALS.length; i++) {
+      var nd = PIPE_DEALS[i];
+      deals += '<button type="button" data-tmp-pipe="d' + i + '" class="tmp-pnode tmp-pnode-d" aria-pressed="' + (open === 'd' + i ? 'true' : 'false') + '" style="animation-delay: ' + (i * 0.08) + 's; flex: 1 1 0; min-width: 0; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0;"><span class="tmp-pcircle" style="width: 28px; height: 28px; border-radius: 50%; background: #141414; border: 2px solid #F97316; color: #F97316; font-family: \'SF Mono\', Menlo, monospace; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: transform .2s ease, box-shadow .2s ease;">' + (i + 1) + '</span><span style="font-family: Georgia, serif; font-size: 9.5px; line-height: 1.25; color: #B8B8B0; text-align: center;">' + nd.name + '</span></button>';
+    }
+    var orders = '';
+    for (var j = 0; j < PIPE_ORDERS.length; j++) {
+      var no = PIPE_ORDERS[j];
+      orders += '<button type="button" data-tmp-pipe="o' + j + '" class="tmp-pnode tmp-pnode-o" aria-pressed="' + (open === 'o' + j ? 'true' : 'false') + '" style="animation-delay: ' + (1.0 + j * 0.08) + 's; flex: 1 1 0; min-width: 0; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0;"><span class="tmp-pcircle" style="width: 28px; height: 28px; border-radius: 50%; background: #141414; border: 2px solid #B8956A; color: #B8956A; font-family: \'SF Mono\', Menlo, monospace; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: transform .2s ease, box-shadow .2s ease;">' + (j + 1) + '</span><span style="font-family: Georgia, serif; font-size: 9.5px; line-height: 1.25; color: #B8B8B0; text-align: center;">' + no.name + '</span></button>';
+    }
+    return '<p style="font-size: 13px; color: #7A7A72; margin: 0 0 24px; padding-left: 12px; border-left: 2px solid #F97316;">Two parallel pipelines: how a deal moves through your business, and how an order moves through fulfillment.</p>'
+      + '<div style="margin-bottom: 26px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .16em; color: #F97316; margin-bottom: 12px;">DEALS</div><div style="position: relative; padding-top: 4px;"><div class="tmp-pline" style="position: absolute; left: 3%; right: 3%; top: 15px; height: 2px; background: linear-gradient(90deg, #F97316, rgba(249,115,22,0.25)); animation-delay: 0s;"></div><div style="position: relative; display: flex; justify-content: space-between; gap: 4px;">' + deals + '</div></div><div id="tmp-dealdetail">' + dealDetailBox(open) + '</div></div>'
+      + '<div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .16em; color: #B8956A; margin-bottom: 12px;">ORDERS</div><div style="position: relative; padding-top: 4px;"><div class="tmp-pline" style="position: absolute; left: 3%; right: 3%; top: 15px; height: 2px; background: linear-gradient(90deg, #B8956A, rgba(184,149,106,0.25)); animation-delay: 1s;"></div><div style="position: relative; display: flex; justify-content: space-between; gap: 4px;">' + orders + '</div></div><div id="tmp-orderdetail">' + orderDetailBox(open) + '</div></div>';
+  }
+
+  function portalHTML(sel, hover) {
+    var lines = '';
+    for (var i = 0; i < PORT_SURFACES.length; i++) {
+      var s = PORT_SURFACES[i];
+      var on = i === sel || i === hover;
+      lines += '<line data-tmp-line="' + i + '" x1="50" y1="50" x2="' + s.x + '" y2="' + s.y + '" stroke="' + (on ? '#F97316' : '#2A2A2A') + '" stroke-width="' + (on ? 0.7 : 0.4) + '" style="transition: stroke .2s ease;"></line>';
+    }
+    var surfaces = '';
+    for (var k = 0; k < PORT_SURFACES.length; k++) {
+      var su = PORT_SURFACES[k];
+      var isSel = sel === k;
+      var z = isSel ? 6 : 3;
+      var detail = isSel ? '<div class="tmp-detail" style="font-size: 11px; color: #B8B8B0; line-height: 1.5; margin-top: 8px; padding-top: 8px; border-top: 1px solid #2A2A2A; text-align: left;">' + su.long + '</div>' : '';
+      surfaces += '<div data-tmp-pwrap="' + k + '" style="position: absolute; left: ' + su.x + '%; top: ' + su.y + '%; transform: translate(-50%,-50%); z-index: ' + z + '; width: 128px;"><button type="button" data-tmp-port="' + k + '" aria-pressed="' + (isSel ? 'true' : 'false') + '" class="tmp-pnode2" style="animation-delay: ' + (0.3 + k * 0.1) + 's; width: 100%; background: #141414; border: 1px solid #2A2A2A; border-radius: 10px; padding: 10px; cursor: pointer; text-align: center; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;"><span style="display: inline-flex; width: 36px; height: 36px; border-radius: 9px; align-items: center; justify-content: center; background: ' + su.tint + '22; border: 1px solid ' + su.tint + '55;">' + icon(su.type, su.tint) + '</span><div style="font-family: Georgia, serif; font-size: 13.5px; font-weight: 600; color: #FAFAF8; margin-top: 7px;">' + su.name + '</div><div style="font-size: 10px; color: #7A7A72; margin-top: 2px; line-height: 1.3;">' + su.nodeDesc + '</div><div data-tmp-pdetail="' + k + '">' + detail + '</div></button></div>';
+    }
+    var hubLabel = sel != null ? PORT_SURFACES[sel].name : 'Client Portal';
+    return '<div style="position: relative; width: 100%; height: 384px; max-width: 560px; margin: 0 auto;"><svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%;">' + lines + '</svg><div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 4;"><div class="tmp-phub" style="width: 116px; height: 116px; border-radius: 50%; background: #141414; border: 2px solid #F97316; box-shadow: 0 0 26px rgba(249,115,22,0.16); display: flex; align-items: center; justify-content: center; text-align: center;"><span id="tmp-porthub" style="font-family: Georgia, serif; font-size: 15px; font-weight: 600; color: #FAFAF8; padding: 0 10px;">' + hubLabel + '</span></div></div>' + surfaces + '</div>';
+  }
+
+  function moduleSvgHTML(imgPath) {
+    return '<div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">'
+      + '<svg viewBox="0 0 800 500" role="img" aria-label="Representative annotated SuiteDash module screen" style="display: block; width: 100%; height: auto; font-family: -apple-system, \'Segoe UI\', sans-serif;">'
+      + '<rect x="0.5" y="0.5" width="799" height="499" rx="0" fill="#141414" stroke="#2A2A2A"></rect>'
+      + '<rect x="0" y="0" width="160" height="500" fill="#000000"></rect>'
+      + '<circle cx="30" cy="34" r="8" fill="#F97316"></circle>'
+      + '<rect x="46" y="28" width="72" height="12" rx="3" fill="rgba(255,255,255,0.20)"></rect>'
+      + '<rect x="20" y="72"  width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
+      + '<rect x="20" y="106" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
+      + '<rect x="20" y="140" width="120" height="22" rx="5" fill="#F97316"></rect>'
+      + '<rect x="20" y="174" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
+      + '<rect x="20" y="208" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
+      + '<rect x="20" y="242" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
+      + '<rect x="160" y="0" width="640" height="56" fill="#141414"></rect>'
+      + '<line x1="160" y1="56" x2="800" y2="56" stroke="#2A2A2A"></line>'
+      + '<text x="188" y="35" fill="#FAFAF8" font-size="19" font-family="Georgia, serif" font-weight="600">Module Configuration</text>'
+      + '<rect x="160" y="56" width="640" height="444" fill="#0A0A0A"></rect>'
+      + '<rect x="188" y="84" width="352" height="300" rx="8" fill="#141414" stroke="#2A2A2A"></rect>'
+      + '<rect x="212" y="108" width="120" height="11" rx="3" fill="#2A2A2A"></rect>'
+      + '<rect x="212" y="142" width="78"  height="8" rx="2" fill="#3A3A3A"></rect>'
+      + '<rect x="212" y="156" width="300" height="30" rx="5" fill="#1F1F1F" stroke="#2A2A2A"></rect>'
+      + '<rect x="212" y="200" width="90"  height="8" rx="2" fill="#3A3A3A"></rect>'
+      + '<rect x="212" y="214" width="300" height="30" rx="5" fill="#1F1F1F" stroke="#2A2A2A"></rect>'
+      + '<rect x="212" y="258" width="70"  height="8" rx="2" fill="#3A3A3A"></rect>'
+      + '<rect x="212" y="272" width="300" height="30" rx="5" fill="#1F1F1F" stroke="#2A2A2A"></rect>'
+      + '<path d="M492 283 l7 7 l7 -7" fill="none" stroke="#7A7A72" stroke-width="2"></path>'
+      + '<rect x="212" y="330" width="96" height="34" rx="6" fill="#F97316"></rect>'
+      + '<text x="260" y="352" fill="#141414" font-size="13" text-anchor="middle" font-weight="600">Save</text>'
+      + '<rect x="556" y="84" width="220" height="300" rx="8" fill="#141414" stroke="#2A2A2A"></rect>'
+      + '<rect x="576" y="104" width="100" height="10" rx="3" fill="#2A2A2A"></rect>'
+      + '<rect x="576" y="130" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
+      + '<circle cx="590" cy="142" r="4" fill="#B8956A"></circle>'
+      + '<rect x="576" y="164" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
+      + '<circle cx="590" cy="176" r="4" fill="#3A3A3A"></circle>'
+      + '<rect x="576" y="198" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
+      + '<circle cx="590" cy="210" r="4" fill="#3A3A3A"></circle>'
+      + '<rect x="576" y="232" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
+      + '<circle cx="590" cy="244" r="4" fill="#3A3A3A"></circle>'
+      + '<rect x="576" y="266" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
+      + '<circle cx="590" cy="278" r="4" fill="#3A3A3A"></circle>'
+      + '<g class="tmp-callout" style="animation-delay: .30s;"><line x1="362" y1="94" x2="362" y2="154" stroke="#F97316" stroke-width="1.5"></line><circle cx="362" cy="155" r="3.5" fill="#F97316"></circle><rect x="248" y="66" width="196" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="264" cy="80" r="9" fill="#F97316"></circle><text x="264" y="84" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">1</text><text x="280" y="84" fill="#B8B8B0" font-size="11">Auto-generated from intake data</text></g>'
+      + '<g class="tmp-callout" style="animation-delay: .36s;"><line x1="666" y1="94" x2="666" y2="130" stroke="#F97316" stroke-width="1.5"></line><circle cx="666" cy="131" r="3.5" fill="#F97316"></circle><rect x="560" y="66" width="180" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="576" cy="80" r="9" fill="#F97316"></circle><text x="576" y="84" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">2</text><text x="592" y="84" fill="#B8B8B0" font-size="11">Client sees status only</text></g>'
+      + '<g class="tmp-callout" style="animation-delay: .42s;"><line x1="260" y1="406" x2="260" y2="366" stroke="#F97316" stroke-width="1.5"></line><circle cx="260" cy="365" r="3.5" fill="#F97316"></circle><rect x="176" y="406" width="212" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="192" cy="420" r="9" fill="#F97316"></circle><text x="192" y="424" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">3</text><text x="208" y="424" fill="#B8B8B0" font-size="11">Triggers next phase on save</text></g>'
+      + '</svg></div>'
+      + '<p style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; color: #7A7A72; margin: 10px 2px 0;">' + imgPath + '</p>';
+  }
+
+  function run() {
+    var root = document.querySelector('.tmp-root');
+    if (!root) return;
+    if (root.getAttribute('data-tmp-init') === '1') return;
+    root.setAttribute('data-tmp-init', '1');
+
+    var state = { view: 'template-map', tStep: 0, mStep: 0, domSel: null, pipeOpen: null, portSel: null, portHover: null };
+
+    try {
+      var pv = new URLSearchParams(window.location.search).get('view');
+      if (pv === 'model-tour' || pv === 'template-map') state.view = pv;
+    } catch (e) {}
+
+    function isTemplate() { return state.view === 'template-map'; }
+    function list() { return isTemplate() ? MODULES : MODELS; }
+    function stepIndex() { return isTemplate() ? state.tStep : state.mStep; }
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function q(sel) { return root.querySelector(sel); }
+
+    var chipsEl = q('#tmp-chips');
+    var stepLabelEl = q('#tmp-steplabel');
+    var titleEl = q('#tmp-title');
+    var keyedEl = q('#tmp-keyed');
+
+    function shotHTML() {
+      if (!isTemplate()) {
+        var i = state.mStep;
+        if (i === 0) return ganttHTML();
+        if (i === 1) return domsssHTML(state.domSel);
+        if (i === 2) return pipelineHTML(state.pipeOpen);
+        if (i === 3) return portalHTML(state.portSel, state.portHover);
+        if (i === 4) return launchHTML();
+      }
+      var item = list()[Math.min(stepIndex(), list().length - 1)];
+      return moduleSvgHTML('/lentax-styles/tmp/modules/' + (item ? item.slug : '') + '.png');
+    }
+
+    function textHTML() {
+      var item = list()[Math.min(stepIndex(), list().length - 1)];
+      if (!item) return '';
+      var out = '<p style="font-size: 16px; color: #B8B8B0; margin: 0 0 26px; max-width: 44ch;">' + item.caption + '</p>';
+      if (item.items.length > 0) {
+        var lis = '';
+        for (var k = 0; k < item.items.length; k++) {
+          lis += '<li style="display: flex; align-items: baseline; gap: 10px; font-size: 15px; color: #FAFAF8;"><span style="flex: 0 0 auto; width: 5px; height: 5px; border-radius: 50%; background: #B8956A; transform: translateY(-2px);"></span><span>' + item.items[k] + '</span></li>';
+        }
+        out += '<div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #7A7A72; margin-bottom: 12px;">Included in this module</div><ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">' + lis + '</ul></div>';
+      }
+      return out;
+    }
+
+    function updateTabs() {
+      var tabs = root.querySelectorAll('[data-tmp-tab]');
+      for (var i = 0; i < tabs.length; i++) {
+        var el = tabs[i];
+        var active = el.getAttribute('data-tmp-tab') === state.view;
+        el.setAttribute('aria-selected', active ? 'true' : 'false');
+        el.style.border = '1px solid ' + (active ? ACCENT : 'transparent');
+        el.style.background = active ? ACCENT : '#141414';
+        el.style.color = active ? '#141414' : '#B8B8B0';
+      }
+    }
+
+    function render() {
+      var isT = isTemplate();
+      var l = list();
+      var total = l.length;
+      var i = Math.min(stepIndex(), total - 1);
+
+      updateTabs();
+
+      if (chipsEl) {
+        var chips = '';
+        for (var c = 0; c < total; c++) {
+          var active = c === i;
+          chips += '<button type="button" data-tmp-chip="' + c + '" aria-current="' + (active ? 'true' : 'false') + '" style="border: 1px solid ' + (active ? ACCENT : '#2A2A2A') + '; background: ' + (active ? ACCENT : '#141414') + '; color: ' + (active ? '#141414' : '#B8B8B0') + '; font-weight: ' + (active ? '600' : '400') + '; padding: 7px 13px; border-radius: 999px; font-size: 12.5px; transition: background .18s ease, color .18s ease, border-color .18s ease;">' + l[c].name + '</button>';
+        }
+        chipsEl.innerHTML = chips;
+      }
+
+      if (stepLabelEl) stepLabelEl.textContent = (isT ? 'Module' : 'Model') + ' ' + pad(i + 1) + ' of ' + pad(total);
+      if (titleEl) titleEl.textContent = l[i].name;
+
+      if (keyedEl) {
+        keyedEl.innerHTML =
+          '<div class="tmp-screenshot" style="flex: 1 1 460px; min-width: 300px;">' + shotHTML() + '</div>' +
+          '<div class="tmp-text" style="flex: 1 1 300px; min-width: 260px;">' + textHTML() + '</div>';
+      }
+    }
+
+    function setView(v) {
+      state.view = v;
+      try {
+        var u = new URL(window.location.href);
+        u.searchParams.set('view', v);
+        window.history.replaceState({}, '', u);
+      } catch (e) {}
+      render();
+    }
+    function goto(n) {
+      if (isTemplate()) state.tStep = n; else state.mStep = n;
+      render();
+    }
+    function next() { var len = list().length; goto((stepIndex() + 1) % len); }
+    function prev() { var len = list().length; goto((stepIndex() - 1 + len) % len); }
+
+    function domSelect(idx) {
+      state.domSel = idx;
+      var grid = q('#tmp-domgrid');
+      var overlay = q('#tmp-domoverlay');
+      if (grid) { grid.style.opacity = '0.28'; grid.style.pointerEvents = 'none'; }
+      if (overlay) overlay.innerHTML = domOverlayHTML(idx);
+    }
+    function domClose() {
+      state.domSel = null;
+      var grid = q('#tmp-domgrid');
+      var overlay = q('#tmp-domoverlay');
+      if (grid) { grid.style.opacity = '1'; grid.style.pointerEvents = 'auto'; }
+      if (overlay) overlay.innerHTML = '';
+    }
+    function pipeToggle(k) {
+      state.pipeOpen = state.pipeOpen === k ? null : k;
+      var dd = q('#tmp-dealdetail');
+      var od = q('#tmp-orderdetail');
+      if (dd) dd.innerHTML = dealDetailBox(state.pipeOpen);
+      if (od) od.innerHTML = orderDetailBox(state.pipeOpen);
+      var nodes = root.querySelectorAll('[data-tmp-pipe]');
+      for (var i = 0; i < nodes.length; i++) {
+        nodes[i].setAttribute('aria-pressed', nodes[i].getAttribute('data-tmp-pipe') === state.pipeOpen ? 'true' : 'false');
+      }
+    }
+    function updateLines() {
+      var lines = root.querySelectorAll('[data-tmp-line]');
+      for (var i = 0; i < lines.length; i++) {
+        var idx = Number(lines[i].getAttribute('data-tmp-line'));
+        var on = idx === state.portSel || idx === state.portHover;
+        lines[i].setAttribute('stroke', on ? '#F97316' : '#2A2A2A');
+        lines[i].setAttribute('stroke-width', on ? '0.7' : '0.4');
+      }
+    }
+    function portSelect(idx) {
+      state.portSel = state.portSel === idx ? null : idx;
+      var hub = q('#tmp-porthub');
+      if (hub) hub.textContent = state.portSel != null ? PORT_SURFACES[state.portSel].name : 'Client Portal';
+      var wraps = root.querySelectorAll('[data-tmp-pwrap]');
+      for (var i = 0; i < wraps.length; i++) {
+        wraps[i].style.zIndex = Number(wraps[i].getAttribute('data-tmp-pwrap')) === state.portSel ? '6' : '3';
+      }
+      var btns = root.querySelectorAll('[data-tmp-port]');
+      for (var j = 0; j < btns.length; j++) {
+        btns[j].setAttribute('aria-pressed', Number(btns[j].getAttribute('data-tmp-port')) === state.portSel ? 'true' : 'false');
+      }
+      var slots = root.querySelectorAll('[data-tmp-pdetail]');
+      for (var m = 0; m < slots.length; m++) {
+        var si = Number(slots[m].getAttribute('data-tmp-pdetail'));
+        slots[m].innerHTML = si === state.portSel ? '<div class="tmp-detail" style="font-size: 11px; color: #B8B8B0; line-height: 1.5; margin-top: 8px; padding-top: 8px; border-top: 1px solid #2A2A2A; text-align: left;">' + PORT_SURFACES[si].long + '</div>' : '';
+      }
+      updateLines();
+    }
+
+    function onClick(e) {
+      var t = e.target;
+      var tab = t.closest('[data-tmp-tab]');
+      if (tab && root.contains(tab)) { var v = tab.getAttribute('data-tmp-tab'); if (v === 'template-map' || v === 'model-tour') setView(v); return; }
+      var chip = t.closest('[data-tmp-chip]');
+      if (chip && root.contains(chip)) { goto(Number(chip.getAttribute('data-tmp-chip'))); return; }
+      var nav = t.closest('[data-tmp-nav]');
+      if (nav && root.contains(nav)) { if (nav.getAttribute('data-tmp-nav') === 'next') next(); else prev(); return; }
+      var domCloseEl = t.closest('[data-tmp-domclose]');
+      if (domCloseEl && root.contains(domCloseEl)) { domClose(); return; }
+      var domCard = t.closest('[data-tmp-dom]');
+      if (domCard && root.contains(domCard)) { domSelect(Number(domCard.getAttribute('data-tmp-dom'))); return; }
+      var pipe = t.closest('[data-tmp-pipe]');
+      if (pipe && root.contains(pipe)) { pipeToggle(pipe.getAttribute('data-tmp-pipe') || ''); return; }
+      var port = t.closest('[data-tmp-port]');
+      if (port && root.contains(port)) { portSelect(Number(port.getAttribute('data-tmp-port'))); return; }
+    }
+    function onOver(e) {
+      var port = e.target.closest('[data-tmp-port]');
+      if (port && root.contains(port)) { state.portHover = Number(port.getAttribute('data-tmp-port')); updateLines(); }
+    }
+    function onOut(e) {
+      var port = e.target.closest('[data-tmp-port]');
+      if (port && root.contains(port)) { state.portHover = null; updateLines(); }
+    }
+    function onKey(e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+      else if (e.key === 'Escape') { state.domSel = null; state.portSel = null; state.pipeOpen = null; render(); }
+    }
+
+    root.addEventListener('click', onClick);
+    root.addEventListener('mouseover', onOver);
+    root.addEventListener('mouseout', onOut);
+    document.addEventListener('keydown', onKey);
+
+    render();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();
+</script>
