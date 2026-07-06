@@ -1,10 +1,65 @@
 <!-- SuiteDash Portal Page body. Paste into SuiteDash > Portal > Pages. Do not wrap in <html>/<body>. Do not substitute {{myOrganizationOSDItemNameSOP29352}}. -->
 <style>
+/* ── Theme palettes: dark (default) + light, flipped via [data-theme] on .tmp-root ── */
+.tmp-root[data-theme="dark"] {
+  --tmp-bg-page: #0A0A0A;
+  --tmp-bg-surface: #141414;
+  --tmp-bg-elevated: #1F1F1F;
+  --tmp-ink-primary: #FAFAF8;
+  --tmp-ink-secondary: #B8B8B0;
+  --tmp-ink-muted: #7A7A72;
+  --tmp-accent-orange: #F97316;
+  --tmp-accent-gold: #B8956A;
+  --tmp-border-hairline: #2A2A2A;
+  --tmp-border-emphasized: #3A3A3A;
+}
+.tmp-root[data-theme="light"] {
+  --tmp-bg-page: #FAFAF8;
+  --tmp-bg-surface: #FFFFFF;
+  --tmp-bg-elevated: #F5F5F0;
+  --tmp-ink-primary: #1A1A1A;
+  --tmp-ink-secondary: #4A4A4A;
+  --tmp-ink-muted: #7A7A72;
+  --tmp-accent-orange: #F97316;
+  --tmp-accent-gold: #B8956A;
+  --tmp-border-hairline: #E5E3DE;
+  --tmp-border-emphasized: #C9C6C0;
+}
+/* Smooth theme swap; disabled under reduced-motion */
+.tmp-root,
+.tmp-root * { transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease; }
+@media (prefers-reduced-motion: reduce) {
+  .tmp-root,
+  .tmp-root * { transition: none; }
+}
+/* Theme toggle button (top-right of hero) */
+.tmp-theme-toggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tmp-bg-surface);
+  border: 1px solid var(--tmp-border-hairline);
+  border-radius: 999px;
+  color: var(--tmp-ink-primary);
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+.tmp-theme-toggle:hover { border-color: var(--tmp-accent-orange); }
+.tmp-theme-toggle:focus-visible { outline: 2px solid var(--tmp-accent-orange); outline-offset: 2px; }
+.tmp-theme-toggle__icon { width: 20px; height: 20px; }
+.tmp-root[data-theme="dark"] .tmp-theme-toggle__icon--moon { display: none; }
+.tmp-root[data-theme="light"] .tmp-theme-toggle__icon--sun { display: none; }
 /* Only rules that cannot be inline live here: resets, keyframes, focus + reduced-motion gating */
 .tmp-root, .tmp-root * { box-sizing: border-box; }
 .tmp-root button { font-family: inherit; cursor: pointer; }
-.tmp-root button:focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
-.tmp-root a:focus-visible { outline: 2px solid #F97316; outline-offset: 2px; }
+.tmp-root button:focus-visible { outline: 2px solid var(--tmp-accent-orange); outline-offset: 2px; }
+.tmp-root a:focus-visible { outline: 2px solid var(--tmp-accent-orange); outline-offset: 2px; }
 @keyframes tmpSlideIn { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
 @keyframes tmpFadeUp  { from { opacity: 0; transform: translateY(8px);  } to { opacity: 1; transform: none; } }
 @keyframes tmpCallout { from { opacity: 0; } to { opacity: 1; } }
@@ -39,12 +94,12 @@
 @keyframes tmpDetail { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .tmp-detail { animation: tmpDetail .25s ease-out both; }
 /* hover states (ported from the DC runtime style-hover attributes) */
-.tmp-root .tmp-prev:hover { background: #F97316; color: #141414; }
+.tmp-root .tmp-prev:hover { background: var(--tmp-accent-orange); color: #141414; }
 .tmp-root .tmp-next:hover { background: #EA6A0C; }
-.tmp-root .tmp-domc:hover { transform: translateY(-4px); border-color: #F97316; box-shadow: 0 0 22px rgba(249,115,22,0.14); }
+.tmp-root .tmp-domc:hover { transform: translateY(-4px); border-color: var(--tmp-accent-orange); box-shadow: 0 0 22px rgba(249,115,22,0.14); }
 .tmp-root .tmp-pnode-d:hover .tmp-pcircle { transform: translateY(-3px); box-shadow: 0 0 16px rgba(249,115,22,0.3); }
 .tmp-root .tmp-pnode-o:hover .tmp-pcircle { transform: translateY(-3px); box-shadow: 0 0 16px rgba(184,149,106,0.3); }
-.tmp-root .tmp-pnode2:hover { transform: translateY(-3px); border-color: #F97316; box-shadow: 0 0 18px rgba(249,115,22,0.14); }
+.tmp-root .tmp-pnode2:hover { transform: translateY(-3px); border-color: var(--tmp-accent-orange); box-shadow: 0 0 18px rgba(249,115,22,0.14); }
 @media (prefers-reduced-motion: reduce) {
   .tmp-screenshot, .tmp-text, .tmp-callout,
   .tmp-gbar, .tmp-glabel, .tmp-gdia,
@@ -53,38 +108,47 @@
 }
 </style>
 
-<div class="tmp-root" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #FAFAF8; background: #0A0A0A; padding: 48px 24px 88px; min-height: 100%; line-height: 1.55;">
+<div class="tmp-root" data-theme="dark" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--tmp-ink-primary); background: var(--tmp-bg-page); padding: 48px 24px 88px; min-height: 100%; line-height: 1.55;">
   <div style="max-width: 1120px; margin: 0 auto;">
 
     <!-- ================= HERO (section 1) ================= -->
-    <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid #2A2A2A;">
+    <header style="position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid var(--tmp-border-hairline);">
+      <button class="tmp-theme-toggle" type="button" aria-label="Toggle light/dark mode" data-tmp-theme-toggle>
+        <svg class="tmp-theme-toggle__icon tmp-theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="tmp-theme-toggle__icon tmp-theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
       <div style="max-width: 620px;">
         <!-- SmartMerge token below renders "Tax Monitor Pro" inside SuiteDash. Do not alter the token text. -->
-        <span style="display: inline-block; font-family: 'SF Mono', Menlo, monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #F97316; background: #141414; border: 1px solid #2A2A2A; padding: 6px 12px; border-radius: 999px;">{{myOrganizationOSDItemNameSOP29352}}</span>
+        <span style="display: inline-block; font-family: 'SF Mono', Menlo, monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--tmp-accent-orange); background: var(--tmp-bg-surface); border: 1px solid var(--tmp-border-hairline); padding: 6px 12px; border-radius: 999px;">{{myOrganizationOSDItemNameSOP29352}}</span>
         <h1 style="font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif; font-weight: 600; font-size: 44px; line-height: 1.1; letter-spacing: -0.01em; margin: 22px 0 14px; text-shadow: 0 2px 12px rgba(249, 115, 22, 0.15);">Model + Template Map</h1>
-        <p style="font-size: 17px; color: #B8B8B0; margin: 0; max-width: 52ch;">Switch views to explore how the system is organized and what ships inside the template.</p>
+        <p style="font-size: 17px; color: var(--tmp-ink-secondary); margin: 0; max-width: 52ch;">Switch views to explore how the system is organized and what ships inside the template.</p>
       </div>
       <!-- Existing Lottie embed, kept verbatim. -->
       <iframe src="https://lottie.host/embed/48591e87-dae7-4b0f-bd95-03195178927c/T9xTM8Dgj8.lottie" title="Tax Monitor Pro animation" style="width: 260px; height: 180px; border: 0; background: transparent; flex: 0 0 auto;" loading="lazy"></iframe>
     </header>
 
     <!-- ================= TWO-TAB PRIMARY SWITCHER (section 2) ================= -->
-    <div role="tablist" aria-label="Primary view" style="display: inline-flex; gap: 6px; background: #141414; border: 1px solid #2A2A2A; border-radius: 12px; padding: 5px; margin: 40px 0 26px;">
-      <button type="button" role="tab" data-tmp-tab="model-tour" aria-selected="false" style="border: 1px solid transparent; background: #141414; color: #B8B8B0; padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background .18s ease, color .18s ease;">Model Tour</button>
-      <button type="button" role="tab" data-tmp-tab="template-map" aria-selected="true" style="border: 1px solid #F97316; background: #F97316; color: #141414; padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background .18s ease, color .18s ease;">Template Map</button>
+    <div role="tablist" aria-label="Primary view" style="display: inline-flex; gap: 6px; background: var(--tmp-bg-surface); border: 1px solid var(--tmp-border-hairline); border-radius: 12px; padding: 5px; margin: 40px 0 26px;">
+      <button type="button" role="tab" data-tmp-tab="model-tour" aria-selected="false" style="border: 1px solid transparent; background: var(--tmp-bg-surface); color: var(--tmp-ink-secondary); padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background .18s ease, color .18s ease;">Model Tour</button>
+      <button type="button" role="tab" data-tmp-tab="template-map" aria-selected="true" style="border: 1px solid var(--tmp-accent-orange); background: var(--tmp-accent-orange); color: #141414; padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background .18s ease, color .18s ease;">Template Map</button>
     </div>
 
     <!-- Sub-tab strip. Click a chip, or use Left/Right arrow keys, to change step. -->
     <nav aria-label="Steps" id="tmp-chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px;"></nav>
 
     <!-- ================= STEPPED CARD (section 3) ================= -->
-    <section style="background: #141414; border: 1px solid #2A2A2A; border-radius: 16px; padding: 40px;">
+    <section style="background: var(--tmp-bg-surface); border: 1px solid var(--tmp-border-hairline); border-radius: 16px; padding: 40px;">
       <!-- Card header: step indicator + prev/next -->
       <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
-        <span id="tmp-steplabel" style="font-family: 'SF Mono', Menlo, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #7A7A72; display: inline-block; padding-bottom: 4px; border-bottom: 2px solid #F97316;"></span>
+        <span id="tmp-steplabel" style="font-family: 'SF Mono', Menlo, monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--tmp-ink-muted); display: inline-block; padding-bottom: 4px; border-bottom: 2px solid var(--tmp-accent-orange);"></span>
         <div style="display: flex; gap: 8px;">
-          <button type="button" class="tmp-prev" data-tmp-nav="prev" aria-label="Previous step" style="border: 1px solid #F97316; background: transparent; color: #F97316; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background .18s ease, color .18s ease;">Previous</button>
-          <button type="button" class="tmp-next" data-tmp-nav="next" aria-label="Next step" style="border: 1px solid #F97316; background: #F97316; color: #141414; padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; transition: background .18s ease;">Next</button>
+          <button type="button" class="tmp-prev" data-tmp-nav="prev" aria-label="Previous step" style="border: 1px solid var(--tmp-accent-orange); background: transparent; color: var(--tmp-accent-orange); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background .18s ease, color .18s ease;">Previous</button>
+          <button type="button" class="tmp-next" data-tmp-nav="next" aria-label="Next step" style="border: 1px solid var(--tmp-accent-orange); background: var(--tmp-accent-orange); color: #141414; padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; transition: background .18s ease;">Next</button>
         </div>
       </div>
 
@@ -99,7 +163,7 @@
 
 <script>
 (function () {
-  var ACCENT = '#F97316';
+  var ACCENT = 'var(--tmp-accent-orange)';
 
   // ============================================================
   // 5 MODELS (Model Tour). Captions verbatim from the CD source.
@@ -190,20 +254,20 @@
 
   function ganttHTML() {
     return '<div class="tmp-gantt" style="position: relative; padding: 4px 8px 12px;">'
-      + '<div style="position: relative; height: 22px; margin-bottom: 18px; border-bottom: 1px solid #2A2A2A;"><span style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #B8B8B0; position: absolute; left: 0; top: 0;">Order Timeline</span></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div class="tmp-gbar" style="animation-delay: 0s; position: absolute; left: 0%; width: 12%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .05s; position: absolute; left: 0%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .20s; position: absolute; left: 0%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 1, Identify Taxpayer Type</div></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 9%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .12s; position: absolute; left: 9%; width: 18%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .17s; position: absolute; left: 9%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .32s; position: absolute; left: 9%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 2, Intake Form</div></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 24%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .24s; position: absolute; left: 24%; width: 11%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .29s; position: absolute; left: 24%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .44s; position: absolute; left: 24%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 3, Agreement</div></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 32%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .36s; position: absolute; left: 32%; width: 10%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .41s; position: absolute; left: 32%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .56s; position: absolute; left: 32%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 4, Payment</div></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 39%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .48s; position: absolute; left: 39%; width: 30%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .53s; position: absolute; left: 39%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .68s; position: absolute; left: 39%; top: 16px; margin-left: 10px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 5, Prep + QA</div></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 64%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .60s; position: absolute; left: 64%; width: 16%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .65s; position: absolute; left: 64%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .80s; position: absolute; right: 20%; top: 16px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 6, Review + E-Sign</div></div>'
-      + '<div style="position: relative; height: 52px; border-bottom: 1px solid #2A2A2A;"><div style="position: absolute; left: 77%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .72s; position: absolute; left: 77%; width: 9%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .77s; position: absolute; left: 77%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: .92s; position: absolute; right: 14%; top: 16px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 7, File</div></div>'
-      + '<div style="position: relative; height: 52px;"><div style="position: absolute; left: 83%; top: -16px; width: 1px; height: 26px; background: #2A2A2A;"></div><div class="tmp-gbar" style="animation-delay: .84s; position: absolute; left: 83%; width: 15%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .89s; position: absolute; left: 83%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #B8956A; box-shadow: 0 0 0 2px #141414;"></span><div class="tmp-glabel" style="animation-delay: 1.04s; position: absolute; right: 2%; top: 16px; background: #F97316; color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 8, Deliver + Close</div></div>'
+      + '<div style="position: relative; height: 22px; margin-bottom: 18px; border-bottom: 1px solid var(--tmp-border-hairline);"><span style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--tmp-ink-secondary); position: absolute; left: 0; top: 0;">Order Timeline</span></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div class="tmp-gbar" style="animation-delay: 0s; position: absolute; left: 0%; width: 12%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .05s; position: absolute; left: 0%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .20s; position: absolute; left: 0%; top: 16px; margin-left: 10px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 1, Identify Taxpayer Type</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div style="position: absolute; left: 9%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .12s; position: absolute; left: 9%; width: 18%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .17s; position: absolute; left: 9%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .32s; position: absolute; left: 9%; top: 16px; margin-left: 10px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 2, Intake Form</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div style="position: absolute; left: 24%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .24s; position: absolute; left: 24%; width: 11%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .29s; position: absolute; left: 24%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .44s; position: absolute; left: 24%; top: 16px; margin-left: 10px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 3, Agreement</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div style="position: absolute; left: 32%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .36s; position: absolute; left: 32%; width: 10%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .41s; position: absolute; left: 32%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .56s; position: absolute; left: 32%; top: 16px; margin-left: 10px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 4, Payment</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div style="position: absolute; left: 39%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .48s; position: absolute; left: 39%; width: 30%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .53s; position: absolute; left: 39%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .68s; position: absolute; left: 39%; top: 16px; margin-left: 10px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 5, Prep + QA</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div style="position: absolute; left: 64%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .60s; position: absolute; left: 64%; width: 16%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .65s; position: absolute; left: 64%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .80s; position: absolute; right: 20%; top: 16px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 6, Review + E-Sign</div></div>'
+      + '<div style="position: relative; height: 52px; border-bottom: 1px solid var(--tmp-border-hairline);"><div style="position: absolute; left: 77%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .72s; position: absolute; left: 77%; width: 9%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .77s; position: absolute; left: 77%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: .92s; position: absolute; right: 14%; top: 16px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 7, File</div></div>'
+      + '<div style="position: relative; height: 52px;"><div style="position: absolute; left: 83%; top: -16px; width: 1px; height: 26px; background: var(--tmp-border-hairline);"></div><div class="tmp-gbar" style="animation-delay: .84s; position: absolute; left: 83%; width: 15%; top: 10px; height: 32px; background: rgba(249,115,22,0.78); border-radius: 6px;"></div><span class="tmp-glabel" style="animation-delay: .89s; position: absolute; left: 83%; top: 22px; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--tmp-accent-gold); box-shadow: 0 0 0 2px var(--tmp-bg-surface);"></span><div class="tmp-glabel" style="animation-delay: 1.04s; position: absolute; right: 2%; top: 16px; background: var(--tmp-accent-orange); color: #0A0A0A; font-family: Georgia, \'Iowan Old Style\', serif; font-weight: 600; font-size: 12.5px; line-height: 1; padding: 6px 11px; border-radius: 6px; white-space: nowrap; box-shadow: 0 1px 2px rgba(0,0,0,0.45);">Phase 8, Deliver + Close</div></div>'
       + '</div>';
   }
 
   function launchHTML() {
-    return '<p style="font-size: 13px; color: #7A7A72; margin: 0 0 16px; padding-left: 12px; border-left: 2px solid #F97316;"><span style="font-weight: 600; color: #FAFAF8;">Example:</span> the moment a client\'s setup goes live, three surfaces confirm it.</p>'
+    return '<p style="font-size: 13px; color: var(--tmp-ink-muted); margin: 0 0 16px; padding-left: 12px; border-left: 2px solid var(--tmp-accent-orange);"><span style="font-weight: 600; color: var(--tmp-ink-primary);">Example:</span> the moment a client\'s setup goes live, three surfaces confirm it.</p>'
       + '<div style="position: relative; width: 100%; height: 452px; font-family: -apple-system, \'Segoe UI\', sans-serif;">'
       + '<div class="tmp-l1" style="position: absolute; left: 0; top: 6px; width: 65%; height: 432px; background: #14161A; border: 1px solid #E5E3DE; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); overflow: hidden; display: flex; flex-direction: column; z-index: 1;">'
       + '<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 8px; height: 24px; background: #0E1013; flex: 0 0 auto;"><span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #F97316;"></span><span style="font-size: 8px; font-weight: 700; color: #F5F5F5;">VirtualLaunch.pro</span></span><span style="display: flex; gap: 5px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #33373D;"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: #33373D;"></span><span style="width: 7px; height: 7px; border-radius: 50%; background: #33373D;"></span></span></div>'
@@ -241,11 +305,11 @@
 
   function domOverlayHTML(sel) {
     var p = DOM_PILLARS[sel];
-    var grad = 'linear-gradient(160deg, ' + p.tint + '55 0%, #141414 92%)';
+    var grad = 'linear-gradient(160deg, ' + p.tint + '55 0%, var(--tmp-bg-surface) 92%)';
     return '<div class="tmp-detail" style="position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 2px;">'
-      + '<div style="width: 100%; max-width: 460px; background: #141414; border: 1px solid #3A3A3A; border-radius: 12px; box-shadow: 0 24px 50px rgba(0,0,0,0.5); overflow: hidden;">'
-      + '<div style="position: relative; height: 120px; background: ' + grad + ';"><span style="position: absolute; left: 16px; bottom: 8px; font-family: \'SF Mono\', Menlo, monospace; font-size: 42px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1;">' + p.letter + '</span><button type="button" data-tmp-domclose="1" aria-label="Back to all pillars" style="position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); background: rgba(0,0,0,0.35); color: #FAFAF8; font-size: 14px; cursor: pointer;">&times;</button></div>'
-      + '<div style="padding: 20px 22px 24px;"><div style="font-family: Georgia, serif; font-size: 24px; font-weight: 600; color: #FAFAF8;">' + p.name + '</div><div style="font-size: 12px; color: #7A7A72; margin-top: 2px;">' + p.subtitle + '</div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: ' + p.tint + '; margin: 16px 0 6px;">Purpose</div><div style="font-size: 15px; color: #FAFAF8; font-weight: 500;">' + p.purpose + '</div><div style="font-size: 14px; color: #B8B8B0; line-height: 1.6; margin-top: 12px;">' + p.description + '</div></div>'
+      + '<div style="width: 100%; max-width: 460px; background: var(--tmp-bg-surface); border: 1px solid var(--tmp-border-emphasized); border-radius: 12px; box-shadow: 0 24px 50px rgba(0,0,0,0.5); overflow: hidden;">'
+      + '<div style="position: relative; height: 120px; background: ' + grad + ';"><span style="position: absolute; left: 16px; bottom: 8px; font-family: \'SF Mono\', Menlo, monospace; font-size: 42px; font-weight: 700; color: var(--tmp-ink-primary); line-height: 1;">' + p.letter + '</span><button type="button" data-tmp-domclose="1" aria-label="Back to all pillars" style="position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); background: rgba(0,0,0,0.35); color: #FAFAF8; font-size: 14px; cursor: pointer;">&times;</button></div>'
+      + '<div style="padding: 20px 22px 24px;"><div style="font-family: Georgia, serif; font-size: 24px; font-weight: 600; color: var(--tmp-ink-primary);">' + p.name + '</div><div style="font-size: 12px; color: var(--tmp-ink-muted); margin-top: 2px;">' + p.subtitle + '</div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: ' + p.tint + '; margin: 16px 0 6px;">Purpose</div><div style="font-size: 15px; color: var(--tmp-ink-primary); font-weight: 500;">' + p.purpose + '</div><div style="font-size: 14px; color: var(--tmp-ink-secondary); line-height: 1.6; margin-top: 12px;">' + p.description + '</div></div>'
       + '</div></div>';
   }
 
@@ -255,8 +319,8 @@
     var cards = '';
     for (var idx = 0; idx < DOM_PILLARS.length; idx++) {
       var p = DOM_PILLARS[idx];
-      var grad = 'linear-gradient(160deg, ' + p.tint + '3d 0%, #141414 92%)';
-      cards += '<button type="button" data-tmp-dom="' + idx + '" class="tmp-domc" style="animation-delay: ' + (idx * 0.1) + 's; flex: 1 1 140px; min-width: 132px; max-width: 190px; background: #141414; border: 1px solid #2A2A2A; border-radius: 10px; overflow: hidden; padding: 0; text-align: left; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;"><div style="position: relative; height: 116px; background: ' + grad + ';"><svg viewBox="0 0 64 64" width="56" height="56" style="position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%);"><circle cx="32" cy="24" r="12" fill="rgba(255,255,255,0.15)"></circle><path d="M12 60 C12 45, 52 45, 52 60 Z" fill="rgba(255,255,255,0.15)"></path></svg><span style="position: absolute; left: 10px; bottom: 4px; font-family: \'SF Mono\', Menlo, monospace; font-size: 30px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1;">' + p.letter + '</span></div><div style="padding: 12px 12px 14px;"><div style="font-family: Georgia, \'Iowan Old Style\', serif; font-size: 16px; font-weight: 600; color: #FAFAF8;">' + p.name + '</div><div style="font-size: 11px; color: #7A7A72; margin-top: 3px;">' + p.subtitle + '</div></div></button>';
+      var grad = 'linear-gradient(160deg, ' + p.tint + '3d 0%, var(--tmp-bg-surface) 92%)';
+      cards += '<button type="button" data-tmp-dom="' + idx + '" class="tmp-domc" style="animation-delay: ' + (idx * 0.1) + 's; flex: 1 1 140px; min-width: 132px; max-width: 190px; background: var(--tmp-bg-surface); border: 1px solid var(--tmp-border-hairline); border-radius: 10px; overflow: hidden; padding: 0; text-align: left; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;"><div style="position: relative; height: 116px; background: ' + grad + ';"><svg viewBox="0 0 64 64" width="56" height="56" style="position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%);"><circle cx="32" cy="24" r="12" fill="rgba(255,255,255,0.15)"></circle><path d="M12 60 C12 45, 52 45, 52 60 Z" fill="rgba(255,255,255,0.15)"></path></svg><span style="position: absolute; left: 10px; bottom: 4px; font-family: \'SF Mono\', Menlo, monospace; font-size: 30px; font-weight: 700; color: var(--tmp-ink-primary); line-height: 1;">' + p.letter + '</span></div><div style="padding: 12px 12px 14px;"><div style="font-family: Georgia, \'Iowan Old Style\', serif; font-size: 16px; font-weight: 600; color: var(--tmp-ink-primary);">' + p.name + '</div><div style="font-size: 11px; color: var(--tmp-ink-muted); margin-top: 3px;">' + p.subtitle + '</div></div></button>';
     }
     return '<div style="position: relative; min-height: 300px;"><div id="tmp-domgrid" style="display: flex; flex-wrap: wrap; gap: 14px; opacity: ' + gridOpacity + '; pointer-events: ' + gridPointer + '; transition: opacity .35s ease;">' + cards + '</div><div id="tmp-domoverlay">' + (sel != null ? domOverlayHTML(sel) : '') + '</div></div>';
   }
@@ -264,29 +328,29 @@
   function dealDetailBox(open) {
     if (!open || open[0] !== 'd') return '';
     var n = PIPE_DEALS[+open.slice(1)];
-    return '<div class="tmp-detail" style="margin-top: 12px; background: #1F1F1F; border: 1px solid #2A2A2A; border-left: 2px solid #F97316; border-radius: 8px; padding: 12px 14px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; color: #F97316; letter-spacing: .06em;">Phase ' + (+open.slice(1) + 1) + ', ' + n.name + '</div><div style="font-size: 13px; color: #B8B8B0; margin-top: 4px;">' + n.desc + '</div></div>';
+    return '<div class="tmp-detail" style="margin-top: 12px; background: var(--tmp-bg-elevated); border: 1px solid var(--tmp-border-hairline); border-left: 2px solid var(--tmp-accent-orange); border-radius: 8px; padding: 12px 14px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; color: var(--tmp-accent-orange); letter-spacing: .06em;">Phase ' + (+open.slice(1) + 1) + ', ' + n.name + '</div><div style="font-size: 13px; color: var(--tmp-ink-secondary); margin-top: 4px;">' + n.desc + '</div></div>';
   }
 
   function orderDetailBox(open) {
     if (!open || open[0] !== 'o') return '';
     var n = PIPE_ORDERS[+open.slice(1)];
-    return '<div class="tmp-detail" style="margin-top: 12px; background: #1F1F1F; border: 1px solid #2A2A2A; border-left: 2px solid #B8956A; border-radius: 8px; padding: 12px 14px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; color: #B8956A; letter-spacing: .06em;">Phase ' + (+open.slice(1) + 1) + ', ' + n.name + '</div><div style="font-size: 13px; color: #B8B8B0; margin-top: 4px;">' + n.desc + '</div></div>';
+    return '<div class="tmp-detail" style="margin-top: 12px; background: var(--tmp-bg-elevated); border: 1px solid var(--tmp-border-hairline); border-left: 2px solid var(--tmp-accent-gold); border-radius: 8px; padding: 12px 14px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 10px; color: var(--tmp-accent-gold); letter-spacing: .06em;">Phase ' + (+open.slice(1) + 1) + ', ' + n.name + '</div><div style="font-size: 13px; color: var(--tmp-ink-secondary); margin-top: 4px;">' + n.desc + '</div></div>';
   }
 
   function pipelineHTML(open) {
     var deals = '';
     for (var i = 0; i < PIPE_DEALS.length; i++) {
       var nd = PIPE_DEALS[i];
-      deals += '<button type="button" data-tmp-pipe="d' + i + '" class="tmp-pnode tmp-pnode-d" aria-pressed="' + (open === 'd' + i ? 'true' : 'false') + '" style="animation-delay: ' + (i * 0.08) + 's; flex: 1 1 0; min-width: 0; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0;"><span class="tmp-pcircle" style="width: 28px; height: 28px; border-radius: 50%; background: #141414; border: 2px solid #F97316; color: #F97316; font-family: \'SF Mono\', Menlo, monospace; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: transform .2s ease, box-shadow .2s ease;">' + (i + 1) + '</span><span style="font-family: Georgia, serif; font-size: 9.5px; line-height: 1.25; color: #B8B8B0; text-align: center;">' + nd.name + '</span></button>';
+      deals += '<button type="button" data-tmp-pipe="d' + i + '" class="tmp-pnode tmp-pnode-d" aria-pressed="' + (open === 'd' + i ? 'true' : 'false') + '" style="animation-delay: ' + (i * 0.08) + 's; flex: 1 1 0; min-width: 0; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0;"><span class="tmp-pcircle" style="width: 28px; height: 28px; border-radius: 50%; background: var(--tmp-bg-surface); border: 2px solid var(--tmp-accent-orange); color: var(--tmp-accent-orange); font-family: \'SF Mono\', Menlo, monospace; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: transform .2s ease, box-shadow .2s ease;">' + (i + 1) + '</span><span style="font-family: Georgia, serif; font-size: 9.5px; line-height: 1.25; color: var(--tmp-ink-secondary); text-align: center;">' + nd.name + '</span></button>';
     }
     var orders = '';
     for (var j = 0; j < PIPE_ORDERS.length; j++) {
       var no = PIPE_ORDERS[j];
-      orders += '<button type="button" data-tmp-pipe="o' + j + '" class="tmp-pnode tmp-pnode-o" aria-pressed="' + (open === 'o' + j ? 'true' : 'false') + '" style="animation-delay: ' + (1.0 + j * 0.08) + 's; flex: 1 1 0; min-width: 0; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0;"><span class="tmp-pcircle" style="width: 28px; height: 28px; border-radius: 50%; background: #141414; border: 2px solid #B8956A; color: #B8956A; font-family: \'SF Mono\', Menlo, monospace; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: transform .2s ease, box-shadow .2s ease;">' + (j + 1) + '</span><span style="font-family: Georgia, serif; font-size: 9.5px; line-height: 1.25; color: #B8B8B0; text-align: center;">' + no.name + '</span></button>';
+      orders += '<button type="button" data-tmp-pipe="o' + j + '" class="tmp-pnode tmp-pnode-o" aria-pressed="' + (open === 'o' + j ? 'true' : 'false') + '" style="animation-delay: ' + (1.0 + j * 0.08) + 's; flex: 1 1 0; min-width: 0; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0;"><span class="tmp-pcircle" style="width: 28px; height: 28px; border-radius: 50%; background: var(--tmp-bg-surface); border: 2px solid var(--tmp-accent-gold); color: var(--tmp-accent-gold); font-family: \'SF Mono\', Menlo, monospace; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: transform .2s ease, box-shadow .2s ease;">' + (j + 1) + '</span><span style="font-family: Georgia, serif; font-size: 9.5px; line-height: 1.25; color: var(--tmp-ink-secondary); text-align: center;">' + no.name + '</span></button>';
     }
-    return '<p style="font-size: 13px; color: #7A7A72; margin: 0 0 24px; padding-left: 12px; border-left: 2px solid #F97316;">Two parallel pipelines: how a deal moves through your business, and how an order moves through fulfillment.</p>'
-      + '<div style="margin-bottom: 26px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .16em; color: #F97316; margin-bottom: 12px;">DEALS</div><div style="position: relative; padding-top: 4px;"><div class="tmp-pline" style="position: absolute; left: 3%; right: 3%; top: 15px; height: 2px; background: linear-gradient(90deg, #F97316, rgba(249,115,22,0.25)); animation-delay: 0s;"></div><div style="position: relative; display: flex; justify-content: space-between; gap: 4px;">' + deals + '</div></div><div id="tmp-dealdetail">' + dealDetailBox(open) + '</div></div>'
-      + '<div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .16em; color: #B8956A; margin-bottom: 12px;">ORDERS</div><div style="position: relative; padding-top: 4px;"><div class="tmp-pline" style="position: absolute; left: 3%; right: 3%; top: 15px; height: 2px; background: linear-gradient(90deg, #B8956A, rgba(184,149,106,0.25)); animation-delay: 1s;"></div><div style="position: relative; display: flex; justify-content: space-between; gap: 4px;">' + orders + '</div></div><div id="tmp-orderdetail">' + orderDetailBox(open) + '</div></div>';
+    return '<p style="font-size: 13px; color: var(--tmp-ink-muted); margin: 0 0 24px; padding-left: 12px; border-left: 2px solid var(--tmp-accent-orange);">Two parallel pipelines: how a deal moves through your business, and how an order moves through fulfillment.</p>'
+      + '<div style="margin-bottom: 26px;"><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .16em; color: var(--tmp-accent-orange); margin-bottom: 12px;">DEALS</div><div style="position: relative; padding-top: 4px;"><div class="tmp-pline" style="position: absolute; left: 3%; right: 3%; top: 15px; height: 2px; background: linear-gradient(90deg, var(--tmp-accent-orange), rgba(249,115,22,0.25)); animation-delay: 0s;"></div><div style="position: relative; display: flex; justify-content: space-between; gap: 4px;">' + deals + '</div></div><div id="tmp-dealdetail">' + dealDetailBox(open) + '</div></div>'
+      + '<div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .16em; color: var(--tmp-accent-gold); margin-bottom: 12px;">ORDERS</div><div style="position: relative; padding-top: 4px;"><div class="tmp-pline" style="position: absolute; left: 3%; right: 3%; top: 15px; height: 2px; background: linear-gradient(90deg, var(--tmp-accent-gold), rgba(184,149,106,0.25)); animation-delay: 1s;"></div><div style="position: relative; display: flex; justify-content: space-between; gap: 4px;">' + orders + '</div></div><div id="tmp-orderdetail">' + orderDetailBox(open) + '</div></div>';
   }
 
   function portalHTML(sel, hover) {
@@ -301,11 +365,11 @@
       var su = PORT_SURFACES[k];
       var isSel = sel === k;
       var z = isSel ? 6 : 3;
-      var detail = isSel ? '<div class="tmp-detail" style="font-size: 11px; color: #B8B8B0; line-height: 1.5; margin-top: 8px; padding-top: 8px; border-top: 1px solid #2A2A2A; text-align: left;">' + su.long + '</div>' : '';
-      surfaces += '<div data-tmp-pwrap="' + k + '" style="position: absolute; left: ' + su.x + '%; top: ' + su.y + '%; transform: translate(-50%,-50%); z-index: ' + z + '; width: 128px;"><button type="button" data-tmp-port="' + k + '" aria-pressed="' + (isSel ? 'true' : 'false') + '" class="tmp-pnode2" style="animation-delay: ' + (0.3 + k * 0.1) + 's; width: 100%; background: #141414; border: 1px solid #2A2A2A; border-radius: 10px; padding: 10px; cursor: pointer; text-align: center; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;"><span style="display: inline-flex; width: 36px; height: 36px; border-radius: 9px; align-items: center; justify-content: center; background: ' + su.tint + '22; border: 1px solid ' + su.tint + '55;">' + icon(su.type, su.tint) + '</span><div style="font-family: Georgia, serif; font-size: 13.5px; font-weight: 600; color: #FAFAF8; margin-top: 7px;">' + su.name + '</div><div style="font-size: 10px; color: #7A7A72; margin-top: 2px; line-height: 1.3;">' + su.nodeDesc + '</div><div data-tmp-pdetail="' + k + '">' + detail + '</div></button></div>';
+      var detail = isSel ? '<div class="tmp-detail" style="font-size: 11px; color: var(--tmp-ink-secondary); line-height: 1.5; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--tmp-border-hairline); text-align: left;">' + su.long + '</div>' : '';
+      surfaces += '<div data-tmp-pwrap="' + k + '" style="position: absolute; left: ' + su.x + '%; top: ' + su.y + '%; transform: translate(-50%,-50%); z-index: ' + z + '; width: 128px;"><button type="button" data-tmp-port="' + k + '" aria-pressed="' + (isSel ? 'true' : 'false') + '" class="tmp-pnode2" style="animation-delay: ' + (0.3 + k * 0.1) + 's; width: 100%; background: var(--tmp-bg-surface); border: 1px solid var(--tmp-border-hairline); border-radius: 10px; padding: 10px; cursor: pointer; text-align: center; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;"><span style="display: inline-flex; width: 36px; height: 36px; border-radius: 9px; align-items: center; justify-content: center; background: ' + su.tint + '22; border: 1px solid ' + su.tint + '55;">' + icon(su.type, su.tint) + '</span><div style="font-family: Georgia, serif; font-size: 13.5px; font-weight: 600; color: var(--tmp-ink-primary); margin-top: 7px;">' + su.name + '</div><div style="font-size: 10px; color: var(--tmp-ink-muted); margin-top: 2px; line-height: 1.3;">' + su.nodeDesc + '</div><div data-tmp-pdetail="' + k + '">' + detail + '</div></button></div>';
     }
     var hubLabel = sel != null ? PORT_SURFACES[sel].name : 'Client Portal';
-    return '<div style="position: relative; width: 100%; height: 384px; max-width: 560px; margin: 0 auto;"><svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%;">' + lines + '</svg><div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 4;"><div class="tmp-phub" style="width: 116px; height: 116px; border-radius: 50%; background: #141414; border: 2px solid #F97316; box-shadow: 0 0 26px rgba(249,115,22,0.16); display: flex; align-items: center; justify-content: center; text-align: center;"><span id="tmp-porthub" style="font-family: Georgia, serif; font-size: 15px; font-weight: 600; color: #FAFAF8; padding: 0 10px;">' + hubLabel + '</span></div></div>' + surfaces + '</div>';
+    return '<div style="position: relative; width: 100%; height: 384px; max-width: 560px; margin: 0 auto;"><svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%;">' + lines + '</svg><div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 4;"><div class="tmp-phub" style="width: 116px; height: 116px; border-radius: 50%; background: var(--tmp-bg-surface); border: 2px solid var(--tmp-accent-orange); box-shadow: 0 0 26px rgba(249,115,22,0.16); display: flex; align-items: center; justify-content: center; text-align: center;"><span id="tmp-porthub" style="font-family: Georgia, serif; font-size: 15px; font-weight: 600; color: var(--tmp-ink-primary); padding: 0 10px;">' + hubLabel + '</span></div></div>' + surfaces + '</div>';
   }
 
   function moduleSvgHTML(imgPath) {
@@ -352,7 +416,7 @@
       + '<g class="tmp-callout" style="animation-delay: .36s;"><line x1="666" y1="94" x2="666" y2="130" stroke="#F97316" stroke-width="1.5"></line><circle cx="666" cy="131" r="3.5" fill="#F97316"></circle><rect x="560" y="66" width="180" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="576" cy="80" r="9" fill="#F97316"></circle><text x="576" y="84" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">2</text><text x="592" y="84" fill="#B8B8B0" font-size="11">Client sees status only</text></g>'
       + '<g class="tmp-callout" style="animation-delay: .42s;"><line x1="260" y1="406" x2="260" y2="366" stroke="#F97316" stroke-width="1.5"></line><circle cx="260" cy="365" r="3.5" fill="#F97316"></circle><rect x="176" y="406" width="212" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="192" cy="420" r="9" fill="#F97316"></circle><text x="192" y="424" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">3</text><text x="208" y="424" fill="#B8B8B0" font-size="11">Triggers next phase on save</text></g>'
       + '</svg></div>'
-      + '<p style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; color: #7A7A72; margin: 10px 2px 0;">' + imgPath + '</p>';
+      + '<p style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; color: var(--tmp-ink-muted); margin: 10px 2px 0;">' + imgPath + '</p>';
   }
 
   function run() {
@@ -361,11 +425,18 @@
     if (root.getAttribute('data-tmp-init') === '1') return;
     root.setAttribute('data-tmp-init', '1');
 
-    var state = { view: 'template-map', tStep: 0, mStep: 0, domSel: null, pipeOpen: null, portSel: null, portHover: null };
+    var state = { view: 'template-map', theme: 'dark', tStep: 0, mStep: 0, domSel: null, pipeOpen: null, portSel: null, portHover: null };
 
     try {
       var pv = new URLSearchParams(window.location.search).get('view');
       if (pv === 'model-tour' || pv === 'template-map') state.view = pv;
+    } catch (e) {}
+
+    // Initial theme: URL ?theme= wins, then prefers-color-scheme, then dark.
+    try {
+      var pt = new URLSearchParams(window.location.search).get('theme');
+      if (pt === 'dark' || pt === 'light') state.theme = pt;
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) state.theme = 'light';
     } catch (e) {}
 
     function isTemplate() { return state.view === 'template-map'; }
@@ -395,13 +466,13 @@
     function textHTML() {
       var item = list()[Math.min(stepIndex(), list().length - 1)];
       if (!item) return '';
-      var out = '<p style="font-size: 16px; color: #B8B8B0; margin: 0 0 26px; max-width: 44ch;">' + item.caption + '</p>';
+      var out = '<p style="font-size: 16px; color: var(--tmp-ink-secondary); margin: 0 0 26px; max-width: 44ch;">' + item.caption + '</p>';
       if (item.items.length > 0) {
         var lis = '';
         for (var k = 0; k < item.items.length; k++) {
-          lis += '<li style="display: flex; align-items: baseline; gap: 10px; font-size: 15px; color: #FAFAF8;"><span style="flex: 0 0 auto; width: 5px; height: 5px; border-radius: 50%; background: #B8956A; transform: translateY(-2px);"></span><span>' + item.items[k] + '</span></li>';
+          lis += '<li style="display: flex; align-items: baseline; gap: 10px; font-size: 15px; color: var(--tmp-ink-primary);"><span style="flex: 0 0 auto; width: 5px; height: 5px; border-radius: 50%; background: var(--tmp-accent-gold); transform: translateY(-2px);"></span><span>' + item.items[k] + '</span></li>';
         }
-        out += '<div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #7A7A72; margin-bottom: 12px;">Included in this module</div><ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">' + lis + '</ul></div>';
+        out += '<div><div style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--tmp-ink-muted); margin-bottom: 12px;">Included in this module</div><ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">' + lis + '</ul></div>';
       }
       return out;
     }
@@ -413,8 +484,8 @@
         var active = el.getAttribute('data-tmp-tab') === state.view;
         el.setAttribute('aria-selected', active ? 'true' : 'false');
         el.style.border = '1px solid ' + (active ? ACCENT : 'transparent');
-        el.style.background = active ? ACCENT : '#141414';
-        el.style.color = active ? '#141414' : '#B8B8B0';
+        el.style.background = active ? ACCENT : 'var(--tmp-bg-surface)';
+        el.style.color = active ? '#141414' : 'var(--tmp-ink-secondary)';
       }
     }
 
@@ -430,7 +501,7 @@
         var chips = '';
         for (var c = 0; c < total; c++) {
           var active = c === i;
-          chips += '<button type="button" data-tmp-chip="' + c + '" aria-current="' + (active ? 'true' : 'false') + '" style="border: 1px solid ' + (active ? ACCENT : '#2A2A2A') + '; background: ' + (active ? ACCENT : '#141414') + '; color: ' + (active ? '#141414' : '#B8B8B0') + '; font-weight: ' + (active ? '600' : '400') + '; padding: 7px 13px; border-radius: 999px; font-size: 12.5px; transition: background .18s ease, color .18s ease, border-color .18s ease;">' + l[c].name + '</button>';
+          chips += '<button type="button" data-tmp-chip="' + c + '" aria-current="' + (active ? 'true' : 'false') + '" style="border: 1px solid ' + (active ? ACCENT : 'var(--tmp-border-hairline)') + '; background: ' + (active ? ACCENT : 'var(--tmp-bg-surface)') + '; color: ' + (active ? '#141414' : 'var(--tmp-ink-secondary)') + '; font-weight: ' + (active ? '600' : '400') + '; padding: 7px 13px; border-radius: 999px; font-size: 12.5px; transition: background .18s ease, color .18s ease, border-color .18s ease;">' + l[c].name + '</button>';
         }
         chipsEl.innerHTML = chips;
       }
@@ -443,6 +514,20 @@
           '<div class="tmp-screenshot" style="flex: 1 1 460px; min-width: 300px;">' + shotHTML() + '</div>' +
           '<div class="tmp-text" style="flex: 1 1 300px; min-width: 260px;">' + textHTML() + '</div>';
       }
+    }
+
+    function applyTheme() {
+      root.setAttribute('data-theme', state.theme);
+    }
+    function toggleTheme() {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      applyTheme();
+      try {
+        // Preserve the existing ?view= param; only rewrite ?theme=.
+        var u = new URL(window.location.href);
+        u.searchParams.set('theme', state.theme);
+        window.history.replaceState({}, '', u);
+      } catch (e) {}
     }
 
     function setView(v) {
@@ -510,13 +595,15 @@
       var slots = root.querySelectorAll('[data-tmp-pdetail]');
       for (var m = 0; m < slots.length; m++) {
         var si = Number(slots[m].getAttribute('data-tmp-pdetail'));
-        slots[m].innerHTML = si === state.portSel ? '<div class="tmp-detail" style="font-size: 11px; color: #B8B8B0; line-height: 1.5; margin-top: 8px; padding-top: 8px; border-top: 1px solid #2A2A2A; text-align: left;">' + PORT_SURFACES[si].long + '</div>' : '';
+        slots[m].innerHTML = si === state.portSel ? '<div class="tmp-detail" style="font-size: 11px; color: var(--tmp-ink-secondary); line-height: 1.5; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--tmp-border-hairline); text-align: left;">' + PORT_SURFACES[si].long + '</div>' : '';
       }
       updateLines();
     }
 
     function onClick(e) {
       var t = e.target;
+      var themeBtn = t.closest('[data-tmp-theme-toggle]');
+      if (themeBtn && root.contains(themeBtn)) { toggleTheme(); return; }
       var tab = t.closest('[data-tmp-tab]');
       if (tab && root.contains(tab)) { var v = tab.getAttribute('data-tmp-tab'); if (v === 'template-map' || v === 'model-tour') setView(v); return; }
       var chip = t.closest('[data-tmp-chip]');
@@ -551,6 +638,7 @@
     root.addEventListener('mouseout', onOut);
     document.addEventListener('keydown', onKey);
 
+    applyTheme();
     render();
   }
 
