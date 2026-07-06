@@ -12,6 +12,7 @@
   --tmp-accent-gold: #B8956A;
   --tmp-border-hairline: #2A2A2A;
   --tmp-border-emphasized: #3A3A3A;
+  --tmp-heading: #F0EAE0;
 }
 .tmp-root[data-theme="light"] {
   --tmp-bg-page: #FAFAF8;
@@ -24,6 +25,7 @@
   --tmp-accent-gold: #B8956A;
   --tmp-border-hairline: #E5E3DE;
   --tmp-border-emphasized: #C9C6C0;
+  --tmp-heading: #1A1A1A;
 }
 /* Smooth theme swap; disabled under reduced-motion */
 .tmp-root,
@@ -57,6 +59,8 @@
 .tmp-root[data-theme="light"] .tmp-theme-toggle__icon--sun { display: none; }
 /* Only rules that cannot be inline live here: resets, keyframes, focus + reduced-motion gating */
 .tmp-root, .tmp-root * { box-sizing: border-box; }
+/* Fix 3: heading color follows the theme so it stays legible on the dark bg. */
+.tmp-root h1 { color: var(--tmp-heading); }
 .tmp-root button { font-family: inherit; cursor: pointer; }
 .tmp-root button:focus-visible { outline: 2px solid var(--tmp-accent-orange); outline-offset: 2px; }
 .tmp-root a:focus-visible { outline: 2px solid var(--tmp-accent-orange); outline-offset: 2px; }
@@ -73,6 +77,8 @@
 .tmp-gbar   { transform-origin: left center; animation: tmpBarIn .35s ease-out both; }
 .tmp-glabel { animation: tmpGlabel .3s ease-out both; }
 .tmp-gdia   { transform: rotate(45deg); animation: tmpGdia .3s ease-out both; }
+/* Fix 2: hide the dull background bar; the .tmp-glabel pills are the visual buttons. */
+.tmp-gbar   { display: none; }
 /* Launch slide, 3-layer overlapped mockup */
 @keyframes tmpL1 { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
 @keyframes tmpL2 { from { opacity: 0; transform: translate(26px, 26px) rotate(3deg); } to { opacity: 1; transform: translate(0,0) rotate(3deg); } }
@@ -129,7 +135,7 @@
         <p style="font-size: 17px; color: var(--tmp-ink-secondary); margin: 0; max-width: 52ch;">Switch views to explore how the system is organized and what ships inside the template.</p>
       </div>
       <!-- Existing Lottie embed, kept verbatim. -->
-      <iframe src="https://lottie.host/embed/48591e87-dae7-4b0f-bd95-03195178927c/T9xTM8Dgj8.lottie" title="Tax Monitor Pro animation" style="width: 260px; height: 180px; border: 0; background: transparent; flex: 0 0 auto;" loading="lazy"></iframe>
+      <iframe src="https://lottie.host/embed/252e6c34-249d-4514-b60e-9c3c68e0ae51/eqNl0zQiGu.lottie" title="Tax Monitor Pro animation" style="width: 260px; height: 180px; border: 0; background: transparent; flex: 0 0 auto;" loading="lazy"></iframe>
     </header>
 
     <!-- ================= TWO-TAB PRIMARY SWITCHER (section 2) ================= -->
@@ -419,6 +425,78 @@
       + '<p style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; color: var(--tmp-ink-muted); margin: 10px 2px 0;">' + imgPath + '</p>';
   }
 
+  // Fix 4: runtime-drawn rounded elbow connectors for the Order Timeline.
+  // The old static 1px connector divs don't line up once phase-button widths vary
+  // with text length. Measure each pill after mount and draw a rounded elbow SVG
+  // path between consecutive pills; coordinates are taken relative to the gantt
+  // container via getBoundingClientRect() deltas, so the per-row position:relative
+  // offsetParents (gotcha 2) never enter the math.
+  function drawGanttConnectors(container) {
+    var labels = Array.from(container.querySelectorAll('.tmp-glabel'));
+
+    // Gotcha 1: entrance animations offset elements mid-transition. Freeze them so
+    // getBoundingClientRect() returns final, stable coordinates.
+    labels.forEach(function (l) { l.style.animation = 'none'; });
+    container.querySelectorAll('.tmp-gbar').forEach(function (b) { b.style.animation = 'none'; });
+
+    var gRect = container.getBoundingClientRect();
+    var pills = labels.filter(function (l) {
+      return l.classList.contains('tmp-glabel') && (l.getAttribute('style') || '').indexOf('border-radius: 6px') !== -1;
+    });
+
+    // 1. Hide the old straight 1px connector divs and the small dot markers.
+    container.querySelectorAll('div').forEach(function (d) {
+      if ((d.getAttribute('style') || '').indexOf('width: 1px') !== -1) d.style.display = 'none';
+    });
+    labels.filter(function (l) { return (l.getAttribute('style') || '').indexOf('border-radius: 50%') !== -1; })
+      .forEach(function (dot) { dot.style.display = 'none'; });
+
+    // 2. Each button's bottom/top-center relative to the container.
+    var rects = pills.map(function (p) {
+      var r = p.getBoundingClientRect();
+      return {
+        centerX: r.left - gRect.left + r.width / 2,
+        top: r.top - gRect.top,
+        bottom: r.top - gRect.top + r.height
+      };
+    });
+
+    // 3. Rounded elbow path between each consecutive pair.
+    function roundedElbow(x1, y1, x2, y2, r) {
+      var ymid = (y1 + y2) / 2;
+      if (Math.abs(x2 - x1) < 1) return 'M ' + x1 + ' ' + y1 + ' L ' + x2 + ' ' + y2;
+      var sign = x2 > x1 ? 1 : -1;
+      var rr = Math.min(r, Math.abs(x2 - x1) / 2, Math.abs(ymid - y1), Math.abs(y2 - ymid));
+      return 'M ' + x1 + ' ' + y1 + ' L ' + x1 + ' ' + (ymid - rr) + ' Q ' + x1 + ' ' + ymid + ' ' + (x1 + sign * rr) + ' ' + ymid + ' ' +
+             'L ' + (x2 - sign * rr) + ' ' + ymid + ' Q ' + x2 + ' ' + ymid + ' ' + x2 + ' ' + (ymid + rr) + ' L ' + x2 + ' ' + y2;
+    }
+
+    // 4. Remove any prior SVG this function added, then draw fresh.
+    container.querySelectorAll('svg[data-tmp-gantt-connectors]').forEach(function (el) { el.remove(); });
+
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', container.clientWidth);
+    svg.setAttribute('height', container.clientHeight);
+    svg.setAttribute('data-tmp-gantt-connectors', 'true');
+    Object.assign(svg.style, { position: 'absolute', left: '0', top: '0', zIndex: '1', pointerEvents: 'none' });
+
+    for (var i = 0; i < rects.length - 1; i++) {
+      var a = rects[i], b = rects[i + 1];
+      var path = document.createElementNS(svgNS, 'path');
+      path.setAttribute('d', roundedElbow(a.centerX, a.bottom, b.centerX, b.top, 8));
+      path.setAttribute('fill', 'none');
+      // Stroke follows the theme system; hex fallback covers non-var browsers.
+      path.setAttribute('stroke', 'var(--tmp-border-emphasized, #6b6b62)');
+      path.setAttribute('stroke-width', '2');
+      path.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(path);
+    }
+
+    container.style.position = 'relative';
+    container.insertBefore(svg, container.firstChild);
+  }
+
   function run() {
     var root = document.querySelector('.tmp-root');
     if (!root) return;
@@ -449,6 +527,17 @@
     var stepLabelEl = q('#tmp-steplabel');
     var titleEl = q('#tmp-title');
     var keyedEl = q('#tmp-keyed');
+
+    // Fix 4: keep the Gantt elbow connectors in sync with layout.
+    function syncGanttConnectors() {
+      var gantt = root.querySelector('.tmp-gantt');
+      if (gantt) drawGanttConnectors(gantt);
+    }
+    var resizeTimer = null;
+    function onResize() {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(syncGanttConnectors, 150);
+    }
 
     function shotHTML() {
       if (!isTemplate()) {
@@ -514,6 +603,10 @@
           '<div class="tmp-screenshot" style="flex: 1 1 460px; min-width: 300px;">' + shotHTML() + '</div>' +
           '<div class="tmp-text" style="flex: 1 1 300px; min-width: 260px;">' + textHTML() + '</div>';
       }
+
+      // Fix 4: the Client Journey Gantt is (re)mounted here on tab/step change;
+      // redraw its elbow connectors against the fresh layout. No-ops otherwise.
+      syncGanttConnectors();
     }
 
     function applyTheme() {
@@ -522,6 +615,9 @@
     function toggleTheme() {
       state.theme = state.theme === 'dark' ? 'light' : 'dark';
       applyTheme();
+      // Fix 4: connector geometry is layout-stable across a theme swap, but redraw
+      // so the fresh stroke resolves the new --tmp-border-emphasized value.
+      syncGanttConnectors();
       try {
         // Preserve the existing ?view= param; only rewrite ?theme=.
         var u = new URL(window.location.href);
@@ -637,6 +733,7 @@
     root.addEventListener('mouseover', onOver);
     root.addEventListener('mouseout', onOut);
     document.addEventListener('keydown', onKey);
+    window.addEventListener('resize', onResize);
 
     applyTheme();
     render();
