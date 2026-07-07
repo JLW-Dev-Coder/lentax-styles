@@ -115,6 +115,121 @@
   .tmp-l1, .tmp-l2, .tmp-l3, .tmp-pulse,
   .tmp-domc, .tmp-pnode, .tmp-pline, .tmp-phub, .tmp-pnode2, .tmp-detail { animation: none !important; }
 }
+/* ── Lightbox: click a module screenshot to view it fullscreen ── */
+.tmp-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  cursor: zoom-out;
+}
+.tmp-lightbox[data-open="true"] {
+  opacity: 1;
+}
+.tmp-lightbox[hidden] {
+  display: none;
+}
+.tmp-lightbox__img {
+  max-width: min(100%, 1600px);
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+  cursor: default;
+  user-select: none;
+}
+.tmp-lightbox__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--tmp-border-hairline, rgba(255,255,255,0.2));
+  background: rgba(20, 20, 20, 0.8);
+  color: var(--tmp-ink-primary, #FAFAF8);
+  font-size: 28px;
+  line-height: 1;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.tmp-lightbox__close:hover,
+.tmp-lightbox__close:focus-visible {
+  border-color: var(--tmp-accent-orange, #F97316);
+  outline: 2px solid var(--tmp-accent-orange, #F97316);
+  outline-offset: 2px;
+}
+.tmp-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--tmp-border-hairline, rgba(255,255,255,0.2));
+  background: rgba(20, 20, 20, 0.8);
+  color: var(--tmp-ink-primary, #FAFAF8);
+  font-size: 32px;
+  line-height: 1;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.tmp-lightbox__nav--prev { left: 32px; }
+.tmp-lightbox__nav--next { right: 32px; }
+.tmp-lightbox__nav:hover,
+.tmp-lightbox__nav:focus-visible {
+  border-color: var(--tmp-accent-orange, #F97316);
+  outline: 2px solid var(--tmp-accent-orange, #F97316);
+  outline-offset: 2px;
+}
+.tmp-lightbox__nav[hidden] { display: none; }
+.tmp-lightbox__caption {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--tmp-ink-secondary, #B8B8B0);
+  font-size: 14px;
+  padding: 8px 16px;
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 999px;
+  max-width: 80vw;
+  text-align: center;
+}
+/* Make every clickable module image show it can be zoomed */
+.tmp-root [data-tmp-lightbox-trigger] {
+  cursor: zoom-in;
+  transition: transform 200ms ease;
+}
+.tmp-root [data-tmp-lightbox-trigger]:hover {
+  transform: scale(1.02);
+}
+.tmp-root [data-tmp-lightbox-trigger]:focus-visible {
+  outline: 2px solid var(--tmp-accent-orange, #F97316);
+  outline-offset: 4px;
+}
+/* Lock body scroll when open */
+body.tmp-lightbox-open {
+  overflow: hidden;
+}
+/* Reduced-motion: skip enter/exit + hover transitions */
+@media (prefers-reduced-motion: reduce) {
+  .tmp-lightbox { transition: none; }
+  .tmp-root [data-tmp-lightbox-trigger] { transition: none; }
+  .tmp-root [data-tmp-lightbox-trigger]:hover { transform: none; }
+}
 </style>
 
 <div class="tmp-root" data-theme="dark" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--tmp-ink-primary); background: var(--tmp-bg-page); padding: 48px 24px 88px; min-height: 100%; line-height: 1.55;">
@@ -167,6 +282,15 @@
       <div id="tmp-keyed" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;"></div>
     </section>
 
+  </div>
+
+  <!-- ================= LIGHTBOX (single overlay, appended once) ================= -->
+  <div class="tmp-lightbox" data-tmp-lightbox hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Module image viewer">
+    <button class="tmp-lightbox__close" type="button" aria-label="Close viewer" data-tmp-lightbox-close>&times;</button>
+    <button class="tmp-lightbox__nav tmp-lightbox__nav--prev" type="button" aria-label="Previous image" data-tmp-lightbox-prev>&lsaquo;</button>
+    <button class="tmp-lightbox__nav tmp-lightbox__nav--next" type="button" aria-label="Next image" data-tmp-lightbox-next>&rsaquo;</button>
+    <img class="tmp-lightbox__img" data-tmp-lightbox-img alt="" />
+    <div class="tmp-lightbox__caption" data-tmp-lightbox-caption aria-live="polite"></div>
   </div>
 </div>
 
@@ -444,18 +568,18 @@
     if (imgs.length <= 1) {
       var one = imgs[0] || ('tmp/modules/' + slug + '.png');
       return '<div style="border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">'
-        + '<img src="' + TMP_IMG_BASE + one + '" alt="' + name + ' interface" loading="lazy" style="display: block; width: 100%; height: auto;">'
+        + '<img data-tmp-lightbox-trigger data-tmp-lightbox-group="' + slug + '" role="button" tabindex="0" src="' + TMP_IMG_BASE + one + '" alt="' + name + ' interface" loading="lazy" style="display: block; width: 100%; height: auto;">'
         + '</div>';
     }
     var fronts = MODULE_FRONT_LAYERS[imgs.length] || [];
     var pad = MODULE_CASCADE_PAD[imgs.length] || (40 * (imgs.length - 1));
     var html = '<div style="position: relative; padding-bottom: ' + pad + 'px;">'
-      + '<img src="' + TMP_IMG_BASE + imgs[0] + '" alt="' + name + ' overview" loading="lazy" style="display: block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">';
+      + '<img data-tmp-lightbox-trigger data-tmp-lightbox-group="' + slug + '" role="button" tabindex="0" src="' + TMP_IMG_BASE + imgs[0] + '" alt="' + name + ' overview" loading="lazy" style="display: block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">';
     for (var fi = 0; fi < fronts.length; fi++) {
       var f = imgs[fi + 1];
       if (!f) continue;
       var label = fi === fronts.length - 1 ? 'detail view' : 'detail overlay';
-      html += '<img src="' + TMP_IMG_BASE + f + '" alt="' + name + ' ' + label + '" loading="lazy" style="' + fronts[fi] + '">';
+      html += '<img data-tmp-lightbox-trigger data-tmp-lightbox-group="' + slug + '" role="button" tabindex="0" src="' + TMP_IMG_BASE + f + '" alt="' + name + ' ' + label + '" loading="lazy" style="' + fronts[fi] + '">';
     }
     html += '</div>';
     return html;
@@ -733,8 +857,92 @@
       updateLines();
     }
 
+    // ----- Lightbox: click any module screenshot to view it fullscreen -----
+    // Module images are (re)generated by moduleShotHTML on every render, so the
+    // triggers are handled through the delegated onClick/onKey path (which
+    // survives the innerHTML rebuilds). Only the current module's images live in
+    // the DOM, so a group query naturally scopes arrow-nav to that cascade.
+    var lightbox = q('[data-tmp-lightbox]');
+    var lbImg = lightbox ? lightbox.querySelector('[data-tmp-lightbox-img]') : null;
+    var lbCaption = lightbox ? lightbox.querySelector('[data-tmp-lightbox-caption]') : null;
+    var lbClose = lightbox ? lightbox.querySelector('[data-tmp-lightbox-close]') : null;
+    var lbPrev = lightbox ? lightbox.querySelector('[data-tmp-lightbox-prev]') : null;
+    var lbNext = lightbox ? lightbox.querySelector('[data-tmp-lightbox-next]') : null;
+    var lbGroup = [];
+    var lbIndex = 0;
+    var lbLastFocused = null;
+    var lbCloseTimer = null;
+
+    function lbIsOpen() { return !!lightbox && lightbox.hidden === false; }
+    function lbGetGroup(groupName) {
+      return Array.prototype.slice.call(root.querySelectorAll('[data-tmp-lightbox-trigger][data-tmp-lightbox-group="' + groupName + '"]'));
+    }
+    function lbUpdateNav() {
+      var single = lbGroup.length <= 1;
+      if (lbPrev) lbPrev.hidden = single;
+      if (lbNext) lbNext.hidden = single;
+    }
+    function lbRender() {
+      var img = lbGroup[lbIndex];
+      if (!img || !lbImg) return;
+      lbImg.src = img.getAttribute('src') || '';
+      lbImg.alt = img.getAttribute('alt') || '';
+      if (lbCaption) lbCaption.textContent = img.getAttribute('alt') || '';
+    }
+    function lbOpenFrom(trigger) {
+      if (!lightbox) return;
+      if (lbCloseTimer) { clearTimeout(lbCloseTimer); lbCloseTimer = null; }
+      var group = trigger.getAttribute('data-tmp-lightbox-group') || '';
+      lbGroup = lbGetGroup(group);
+      lbIndex = Math.max(0, lbGroup.indexOf(trigger));
+      lbLastFocused = trigger;
+      lbRender();
+      lbUpdateNav();
+      lightbox.hidden = false;
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('tmp-lightbox-open');
+      requestAnimationFrame(function () {
+        lightbox.setAttribute('data-open', 'true');
+        if (lbClose) lbClose.focus();
+      });
+    }
+    function lbCloseView() {
+      if (!lightbox) return;
+      lightbox.removeAttribute('data-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('tmp-lightbox-open');
+      lbCloseTimer = setTimeout(function () {
+        lightbox.hidden = true;
+        if (lbImg) lbImg.src = '';
+        if (lbLastFocused && typeof lbLastFocused.focus === 'function') lbLastFocused.focus();
+        lbCloseTimer = null;
+      }, 200);
+    }
+    function lbNextImg() {
+      if (lbGroup.length <= 1) return;
+      lbIndex = (lbIndex + 1) % lbGroup.length;
+      lbRender();
+    }
+    function lbPrevImg() {
+      if (lbGroup.length <= 1) return;
+      lbIndex = (lbIndex - 1 + lbGroup.length) % lbGroup.length;
+      lbRender();
+    }
+
     function onClick(e) {
       var t = e.target;
+      // Lightbox controls sit above the page; check them before the tab/chip handlers.
+      if (lightbox) {
+        if (t === lightbox) { lbCloseView(); return; }
+        var lbCloseHit = t.closest('[data-tmp-lightbox-close]');
+        if (lbCloseHit && lightbox.contains(lbCloseHit)) { lbCloseView(); return; }
+        var lbPrevHit = t.closest('[data-tmp-lightbox-prev]');
+        if (lbPrevHit && lightbox.contains(lbPrevHit)) { lbPrevImg(); return; }
+        var lbNextHit = t.closest('[data-tmp-lightbox-next]');
+        if (lbNextHit && lightbox.contains(lbNextHit)) { lbNextImg(); return; }
+      }
+      var lbTrigger = t.closest('[data-tmp-lightbox-trigger]');
+      if (lbTrigger && root.contains(lbTrigger)) { e.preventDefault(); lbOpenFrom(lbTrigger); return; }
       var themeBtn = t.closest('[data-tmp-theme-toggle]');
       if (themeBtn && root.contains(themeBtn)) { toggleTheme(); return; }
       var tab = t.closest('[data-tmp-tab]');
@@ -761,6 +969,28 @@
       if (port && root.contains(port)) { state.portHover = null; updateLines(); }
     }
     function onKey(e) {
+      // Lightbox owns the keyboard while open: arrows cycle images, Esc closes,
+      // Tab is trapped on the visible close/prev/next controls.
+      if (lbIsOpen()) {
+        if (e.key === 'Escape') { e.preventDefault(); lbCloseView(); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); lbNextImg(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); lbPrevImg(); }
+        else if (e.key === 'Tab') {
+          var focusables = [lbClose, lbPrev, lbNext].filter(function (el) { return el && !el.hidden; });
+          if (focusables.length === 0) return;
+          var first = focusables[0];
+          var last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+        return;
+      }
+      // Enter/Space on a focused module image opens the lightbox.
+      var at = e.target;
+      if (at && typeof at.closest === 'function') {
+        var trig = at.closest('[data-tmp-lightbox-trigger]');
+        if (trig && root.contains(trig) && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); lbOpenFrom(trig); return; }
+      }
       if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
       else if (e.key === 'Escape') { state.domSel = null; state.portSel = null; state.pipeOpen = null; render(); }
