@@ -378,51 +378,84 @@
     return '<div style="position: relative; width: 100%; height: 384px; max-width: 560px; margin: 0 auto;"><svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%;">' + lines + '</svg><div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 4;"><div class="tmp-phub" style="width: 116px; height: 116px; border-radius: 50%; background: var(--tmp-bg-surface); border: 2px solid var(--tmp-accent-orange); box-shadow: 0 0 26px rgba(249,115,22,0.16); display: flex; align-items: center; justify-content: center; text-align: center;"><span id="tmp-porthub" style="font-family: Georgia, serif; font-size: 15px; font-weight: 600; color: var(--tmp-ink-primary); padding: 0 10px;">' + hubLabel + '</span></div></div>' + surfaces + '</div>';
   }
 
-  function moduleSvgHTML(imgPath) {
-    return '<div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">'
-      + '<svg viewBox="0 0 800 500" role="img" aria-label="Representative annotated SuiteDash module screen" style="display: block; width: 100%; height: auto; font-family: -apple-system, \'Segoe UI\', sans-serif;">'
-      + '<rect x="0.5" y="0.5" width="799" height="499" rx="0" fill="#141414" stroke="#2A2A2A"></rect>'
-      + '<rect x="0" y="0" width="160" height="500" fill="#000000"></rect>'
-      + '<circle cx="30" cy="34" r="8" fill="#F97316"></circle>'
-      + '<rect x="46" y="28" width="72" height="12" rx="3" fill="rgba(255,255,255,0.20)"></rect>'
-      + '<rect x="20" y="72"  width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
-      + '<rect x="20" y="106" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
-      + '<rect x="20" y="140" width="120" height="22" rx="5" fill="#F97316"></rect>'
-      + '<rect x="20" y="174" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
-      + '<rect x="20" y="208" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
-      + '<rect x="20" y="242" width="120" height="22" rx="5" fill="rgba(255,255,255,0.05)"></rect>'
-      + '<rect x="160" y="0" width="640" height="56" fill="#141414"></rect>'
-      + '<line x1="160" y1="56" x2="800" y2="56" stroke="#2A2A2A"></line>'
-      + '<text x="188" y="35" fill="#FAFAF8" font-size="19" font-family="Georgia, serif" font-weight="600">Module Configuration</text>'
-      + '<rect x="160" y="56" width="640" height="444" fill="#0A0A0A"></rect>'
-      + '<rect x="188" y="84" width="352" height="300" rx="8" fill="#141414" stroke="#2A2A2A"></rect>'
-      + '<rect x="212" y="108" width="120" height="11" rx="3" fill="#2A2A2A"></rect>'
-      + '<rect x="212" y="142" width="78"  height="8" rx="2" fill="#3A3A3A"></rect>'
-      + '<rect x="212" y="156" width="300" height="30" rx="5" fill="#1F1F1F" stroke="#2A2A2A"></rect>'
-      + '<rect x="212" y="200" width="90"  height="8" rx="2" fill="#3A3A3A"></rect>'
-      + '<rect x="212" y="214" width="300" height="30" rx="5" fill="#1F1F1F" stroke="#2A2A2A"></rect>'
-      + '<rect x="212" y="258" width="70"  height="8" rx="2" fill="#3A3A3A"></rect>'
-      + '<rect x="212" y="272" width="300" height="30" rx="5" fill="#1F1F1F" stroke="#2A2A2A"></rect>'
-      + '<path d="M492 283 l7 7 l7 -7" fill="none" stroke="#7A7A72" stroke-width="2"></path>'
-      + '<rect x="212" y="330" width="96" height="34" rx="6" fill="#F97316"></rect>'
-      + '<text x="260" y="352" fill="#141414" font-size="13" text-anchor="middle" font-weight="600">Save</text>'
-      + '<rect x="556" y="84" width="220" height="300" rx="8" fill="#141414" stroke="#2A2A2A"></rect>'
-      + '<rect x="576" y="104" width="100" height="10" rx="3" fill="#2A2A2A"></rect>'
-      + '<rect x="576" y="130" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
-      + '<circle cx="590" cy="142" r="4" fill="#B8956A"></circle>'
-      + '<rect x="576" y="164" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
-      + '<circle cx="590" cy="176" r="4" fill="#3A3A3A"></circle>'
-      + '<rect x="576" y="198" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
-      + '<circle cx="590" cy="210" r="4" fill="#3A3A3A"></circle>'
-      + '<rect x="576" y="232" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
-      + '<circle cx="590" cy="244" r="4" fill="#3A3A3A"></circle>'
-      + '<rect x="576" y="266" width="180" height="24" rx="4" fill="#0A0A0A" stroke="#2A2A2A"></rect>'
-      + '<circle cx="590" cy="278" r="4" fill="#3A3A3A"></circle>'
-      + '<g class="tmp-callout" style="animation-delay: .30s;"><line x1="362" y1="94" x2="362" y2="154" stroke="#F97316" stroke-width="1.5"></line><circle cx="362" cy="155" r="3.5" fill="#F97316"></circle><rect x="248" y="66" width="196" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="264" cy="80" r="9" fill="#F97316"></circle><text x="264" y="84" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">1</text><text x="280" y="84" fill="#B8B8B0" font-size="11">Auto-generated from intake data</text></g>'
-      + '<g class="tmp-callout" style="animation-delay: .36s;"><line x1="666" y1="94" x2="666" y2="130" stroke="#F97316" stroke-width="1.5"></line><circle cx="666" cy="131" r="3.5" fill="#F97316"></circle><rect x="560" y="66" width="180" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="576" cy="80" r="9" fill="#F97316"></circle><text x="576" y="84" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">2</text><text x="592" y="84" fill="#B8B8B0" font-size="11">Client sees status only</text></g>'
-      + '<g class="tmp-callout" style="animation-delay: .42s;"><line x1="260" y1="406" x2="260" y2="366" stroke="#F97316" stroke-width="1.5"></line><circle cx="260" cy="365" r="3.5" fill="#F97316"></circle><rect x="176" y="406" width="212" height="28" rx="14" fill="#141414" stroke="#F97316" stroke-width="1.2"></rect><circle cx="192" cy="420" r="9" fill="#F97316"></circle><text x="192" y="424" fill="#141414" font-size="11" text-anchor="middle" font-weight="700">3</text><text x="208" y="424" fill="#B8B8B0" font-size="11">Triggers next phase on save</text></g>'
-      + '</svg></div>'
-      + '<p style="font-family: \'SF Mono\', Menlo, monospace; font-size: 11px; color: var(--tmp-ink-muted); margin: 10px 2px 0;">' + imgPath + '</p>';
+  // Netlify origin that serves the module PNGs (committed in this repo under
+  // tmp/modules/). Absolute so the SuiteDash embed of this markup resolves the
+  // assets from Netlify rather than the SuiteDash host.
+  var TMP_IMG_BASE = 'https://precious-lily-bbe555.netlify.app/';
+
+  // Real screenshot paths (origin-relative) per module slug. Multi-image modules
+  // render as a cascade overlay (see moduleShotHTML). Keyed by slug so the
+  // MODULES data stays untouched; note 'document-generators' maps to doc-gen-*.
+  var MODULE_IMAGES = {
+    'appointments': ['tmp/modules/appointments-list.png', 'tmp/modules/appointments-config.png'],
+    'auto-templates': ['tmp/modules/auto-templates-list.png', 'tmp/modules/auto-templates-trigger.png'],
+    'business-sectors': ['tmp/modules/business-sectors-list.png', 'tmp/modules/business-sectors-modal.png'],
+    'circles': ['tmp/modules/circles-list.png', 'tmp/modules/circles-modal.png'],
+    'content-categories': ['tmp/modules/content-categories-custom-fields.png', 'tmp/modules/content-categories-project-statuses.png', 'tmp/modules/content-categories-task-priorities.png'],
+    'custom-fields': ['tmp/modules/custom-fields-list.png', 'tmp/modules/custom-fields-modal.png'],
+    'dashes': ['tmp/modules/dashes-super-admin.png', 'tmp/modules/dashes-admin-list.png'],
+    'document-generators': ['tmp/modules/doc-gen-service-agreement.png', 'tmp/modules/doc-gen-8879.png', 'tmp/modules/doc-gen-filing-summary.png'],
+    'drip-sequences': ['tmp/modules/drip-sequences-list.png'],
+    'email-marketing': ['tmp/modules/email-marketing-list.png'],
+    'flows': ['tmp/modules/flows-list.png', 'tmp/modules/flows-onboarding.png', 'tmp/modules/flows-exit.png'],
+    'forms': ['tmp/modules/forms-list.png'],
+    'invoice-items': ['tmp/modules/invoice-items-list.png', 'tmp/modules/invoice-items-addons.png'],
+    'landing-pages': ['tmp/modules/landing-pages-book.png', 'tmp/modules/landing-pages-upload.png', 'tmp/modules/landing-pages-file.png'],
+    'menus': ['tmp/modules/menus-staff.png', 'tmp/modules/menus-client.png'],
+    'platform-branding': ['tmp/modules/platform-branding-organization.png', 'tmp/modules/platform-branding-theme.png', 'tmp/modules/platform-branding-email.png'],
+    'portal-pages': ['tmp/modules/portal-pages-step1.png', 'tmp/modules/portal-pages-step2.png', 'tmp/modules/portal-pages-step3.png', 'tmp/modules/portal-pages-step4.png', 'tmp/modules/portal-pages-step5.png'],
+    'projects': ['tmp/modules/projects-list.png', 'tmp/modules/projects-tasks.png'],
+    'proposals': ['tmp/modules/proposals-offer.png', 'tmp/modules/proposals-review.png', 'tmp/modules/proposals-thankyou.png'],
+    'tasks': ['tmp/modules/tasks-list.png']
+  };
+
+  // Inline styles for the absolutely-positioned front (overlay) layers of a
+  // cascade, keyed by the module's image count. The back layer is always the
+  // full-width first image; these style the images stacked over it.
+  var MODULE_FRONT_LAYERS = {
+    2: ['position: absolute; bottom: -20px; right: -20px; width: 65%; height: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-radius: 8px;'],
+    3: [
+      'position: absolute; bottom: -30px; right: -30px; width: 72%; height: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-radius: 8px; transform: rotate(1.5deg);',
+      'position: absolute; bottom: -50px; right: 15%; width: 55%; height: auto; box-shadow: 0 24px 48px rgba(0,0,0,0.5); border-radius: 8px; transform: rotate(-1deg);'
+    ],
+    5: [
+      'position: absolute; z-index: 2; bottom: -20px; right: -20px; width: 60%; height: auto; box-shadow: 0 18px 36px rgba(0,0,0,0.40); border-radius: 8px; transform: rotate(-1.2deg);',
+      'position: absolute; z-index: 3; bottom: -44px; right: -6px; width: 56%; height: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.42); border-radius: 8px; transform: rotate(1deg);',
+      'position: absolute; z-index: 4; bottom: -68px; right: 12%; width: 52%; height: auto; box-shadow: 0 22px 44px rgba(0,0,0,0.46); border-radius: 8px; transform: rotate(-1deg);',
+      'position: absolute; z-index: 5; bottom: -92px; right: 28%; width: 48%; height: auto; box-shadow: 0 26px 52px rgba(0,0,0,0.50); border-radius: 8px; transform: rotate(1.4deg);'
+    ]
+  };
+
+  // Extra bottom padding on the cascade container so the offset front layers
+  // don't clip against following content. Scales with cascade depth.
+  var MODULE_CASCADE_PAD = { 1: 0, 2: 40, 3: 80, 5: 120 };
+
+  // Replaces the former generic annotated-SVG mock. Renders a module's real
+  // screenshot(s): a single framed image, or a cascade overlay — full-width back
+  // layer plus drop-shadowed, slightly-rotated front layers — for modules that
+  // ship multiple screens. Image aspect ratios are preserved (no object-fit crop).
+  function moduleShotHTML(item) {
+    var slug = item ? item.slug : '';
+    var name = item ? item.name : 'Module';
+    var imgs = MODULE_IMAGES[slug] || [];
+    if (imgs.length <= 1) {
+      var one = imgs[0] || ('tmp/modules/' + slug + '.png');
+      return '<div style="border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">'
+        + '<img src="' + TMP_IMG_BASE + one + '" alt="' + name + ' interface" loading="lazy" style="display: block; width: 100%; height: auto;">'
+        + '</div>';
+    }
+    var fronts = MODULE_FRONT_LAYERS[imgs.length] || [];
+    var pad = MODULE_CASCADE_PAD[imgs.length] || (40 * (imgs.length - 1));
+    var html = '<div style="position: relative; padding-bottom: ' + pad + 'px;">'
+      + '<img src="' + TMP_IMG_BASE + imgs[0] + '" alt="' + name + ' overview" loading="lazy" style="display: block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.45);">';
+    for (var fi = 0; fi < fronts.length; fi++) {
+      var f = imgs[fi + 1];
+      if (!f) continue;
+      var label = fi === fronts.length - 1 ? 'detail view' : 'detail overlay';
+      html += '<img src="' + TMP_IMG_BASE + f + '" alt="' + name + ' ' + label + '" loading="lazy" style="' + fronts[fi] + '">';
+    }
+    html += '</div>';
+    return html;
   }
 
   // Fix 4: runtime-drawn rounded elbow connectors for the Order Timeline.
@@ -549,7 +582,7 @@
         if (i === 4) return launchHTML();
       }
       var item = list()[Math.min(stepIndex(), list().length - 1)];
-      return moduleSvgHTML('/lentax-styles/tmp/modules/' + (item ? item.slug : '') + '.png');
+      return moduleShotHTML(item);
     }
 
     function textHTML() {
