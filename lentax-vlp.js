@@ -670,3 +670,205 @@
     }, 400);
   }
 })();
+
+/* R65 -- Book-Me booking-page dark theme, scoped to /frm/wy4ahHxA4zBKadJ4 (DEV-495) */
+(function () {
+  var FRM_PATH = '/frm/wy4ahHxA4zBKadJ4';
+  if (window.location.pathname.indexOf(FRM_PATH) === -1) return;
+
+  var head = document.head || document.documentElement;
+
+  /* 1. Google Fonts (Sora + DM Sans) -- no injection precedent in this file */
+  if (!document.getElementById('vlp-bookme-fonts')) {
+    var fontLink = document.createElement('link');
+    fontLink.id = 'vlp-bookme-fonts';
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap';
+    head.appendChild(fontLink);
+  }
+
+  /* 2. Theme CSS -- R6-style scoped <style> injection */
+  if (!document.getElementById('vlp-bookme-frm-theme')) {
+    var style = document.createElement('style');
+    style.id = 'vlp-bookme-frm-theme';
+    style.textContent = `
+@keyframes vlpBgDrift { 0% { background-position: 50% 0%, 0% 0%; } 50% { background-position: 50% 10%, 100% 100%; } 100% { background-position: 50% 0%, 0% 0%; } }
+@keyframes vlpFadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes vlpFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+html, body, .main-wrapper { background: #0a0a0a !important; margin: 0 !important; padding: 0 !important; }
+body { padding-top: 0 !important; font-family: 'DM Sans', sans-serif !important; }
+
+h1,h2,h3,h4, .book-me__title, .personal-block__name {
+  font-family: 'Sora', sans-serif !important; font-weight: 800 !important; color: #f5f5f5 !important;
+}
+.personal-block__name, .about-me .book-me__title, .sdAccordion__title, h1, h2, h3, h4, .book-me__title {
+  background: none !important; -webkit-text-fill-color: currentColor !important;
+}
+.personal-block__name::after, .book-me__title::after, h1::after, h2::after, h3::after, h4::after {
+  background: #f97316 !important; background-color: #f97316 !important;
+}
+.book-me__title.about-me, .about-me h3, .choose-items-wrapper h2, .choose-items-block h2 {
+  border-bottom: 2px solid #f97316 !important; padding-bottom: 6px; display: inline-block;
+}
+.book-me__text, .appointment-card__description, p { color: #a3a3a3 !important; }
+
+.book-me-form.extended-form-wrapper {
+  max-width: 100% !important; width: 100% !important; margin: 0 !important; padding-top: 0 !important;
+  border-radius: 0 !important; background: #0a0a0a !important; box-shadow: none !important;
+}
+.book-me__container {
+  max-width: 100% !important; width: 100% !important; border-radius: 0 !important; border: none !important;
+  box-shadow: none !important; margin: 0 !important; background: transparent !important;
+}
+.book-me.w-100 { max-width: 100% !important; }
+.book-me__background {
+  border-radius: 0 !important; background-color: #0a0a0a !important;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% 0%, rgba(249,115,22,0.22), transparent 65%),
+    radial-gradient(ellipse 700px 500px at 100% 100%, rgba(249,115,22,0.12), transparent 60%) !important;
+  background-repeat: no-repeat !important;
+  animation: vlpBgDrift 14s ease-in-out infinite;
+}
+.book-me { animation: vlpFadeUp 0.7s ease both; }
+
+.personal-block__avatar {
+  border: 3px solid rgba(249,115,22,0.6) !important; border-radius: 50% !important;
+  animation: vlpFloat 4.5s ease-in-out infinite;
+  box-shadow: 0 0 0 6px rgba(249,115,22,0.08), 0 0 30px rgba(249,115,22,0.35);
+}
+.personal-block__details-wrap {
+  background: #131316 !important; border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 16px !important; box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6);
+}
+.personal-block__position {
+  color: #f97316 !important; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: 0.78em; font-weight: 700 !important;
+}
+.about-me, .choose-items-wrapper, .book-me-calendar, .sdAccordion__item, .appointment-card, .book-me-content {
+  background: #131316 !important; border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 14px !important; transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+.about-me:hover, .choose-items-wrapper:hover, .appointment-card:hover {
+  transform: translateY(-5px) !important; border-color: rgba(249,115,22,0.4) !important;
+  box-shadow: 0 20px 45px -20px rgba(249,115,22,0.3) !important;
+}
+
+.personal-block__btn, .btn-primary, .read-more-btn, .book-me__appointment-slot {
+  background: #f97316 !important; border: none !important; color: #fff !important; border-radius: 999px !important;
+  font-weight: 700 !important; transition: all 0.3s cubic-bezier(.25,.8,.25,1) !important;
+  box-shadow: 0 8px 24px -8px rgba(249,115,22,0.55) !important;
+}
+.personal-block__btn:hover, .btn-primary:hover, .read-more-btn:hover, .book-me__appointment-slot:hover {
+  background: #fb923c !important; transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 14px 30px -8px rgba(249,115,22,0.7) !important;
+}
+
+.sdAccordion__head, .sdAccordion__toggle {
+  background: #131316 !important; border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 14px !important; transition: border-color 0.3s ease !important;
+}
+.sdAccordion__head:hover { border-color: rgba(249,115,22,0.4) !important; }
+.step-number {
+  background: rgba(249,115,22,0.15) !important; color: #f97316 !important;
+  border: 1px solid rgba(249,115,22,0.4) !important; font-weight: 700 !important; box-shadow: none !important;
+}
+
+.book-me-calendar, .uib-datepicker { background: #131316 !important; color: #e5e5e5 !important; }
+.uib-daypicker table th, .uib-daypicker table td { color: #d4d4d4 !important; }
+.uib-daypicker table td button {
+  background: transparent !important; color: #d4d4d4 !important; border-radius: 8px !important; transition: all 0.2s ease !important;
+}
+.uib-daypicker table td button:hover { background: rgba(249,115,22,0.18) !important; color: #fb923c !important; }
+.uib-daypicker table td button.btn-info, .uib-daypicker .btn-info { background: #f97316 !important; color: #fff !important; }
+.uib-daypicker thead, .uib-daypicker thead tr, .uib-daypicker thead th { background: #1a1a1a !important; }
+.uib-daypicker .btn-default, .uib-left.btn-default, .uib-right.btn-default {
+  background: #1a1a1a !important; background-image: none !important; border: none !important;
+}
+.uib-left, .uib-right { color: #f97316 !important; }
+.material-icons, [class*="material-icons"] { font-family: 'Material Icons' !important; }
+
+select, .form-control { background: #131316 !important; color: #e5e5e5 !important; border: 1px solid rgba(255,255,255,0.12) !important; }
+.select2-selection, .select2-container--default .select2-selection--single {
+  background: #131316 !important; border: 1px solid rgba(255,255,255,0.12) !important; border-radius: 10px !important;
+}
+.select2-selection__rendered { color: #e5e5e5 !important; }
+.select2-selection__arrow b { border-color: #f97316 transparent transparent transparent !important; }
+.select2-dropdown { background: #131316 !important; border: 1px solid rgba(255,255,255,0.12) !important; color: #e5e5e5 !important; }
+.select2-results__option { color: #e5e5e5 !important; }
+.select2-results__option--highlighted { background: #f97316 !important; color: #fff !important; }
+
+[class*="appointment-slot"], .book-me-appointment button {
+  background: transparent !important; border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #e5e5e5 !important; border-radius: 10px !important; transition: all 0.25s ease !important;
+}
+[class*="appointment-slot"]:hover { background: #f97316 !important; border-color: #f97316 !important; color: #fff !important; }
+
+::selection { background: #f97316; color: #fff; }
+
+.vlp-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.vlp-reveal.vlp-in { opacity: 1; transform: translateY(0); }
+`;
+    head.appendChild(style);
+  }
+
+  /* 3. JS behaviors -- path-gated, bounded retry for Angular late-render */
+  function applyBookMeJs() {
+    try {
+      document.documentElement.style.setProperty('background', '#0a0a0a', 'important');
+      if (document.body) {
+        document.body.style.setProperty('background', '#0a0a0a', 'important');
+        document.body.style.setProperty('padding-top', '0', 'important');
+      }
+      var mw = document.querySelector('.main-wrapper');
+      if (mw) mw.style.setProperty('background', '#0a0a0a', 'important');
+
+      var scope = document.querySelector('.main-wrapper') || document.body;
+      if (scope) {
+        scope.querySelectorAll('*').forEach(function (el) {
+          if (el.children.length) return;
+          var text = (el.textContent || '').trim();
+          if (!text) return;
+          var m = getComputedStyle(el).color.match(/\d+/g);
+          if (!m) return;
+          var lum = 0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2];
+          if (lum < 90) el.style.setProperty('color', '#e5e5e5', 'important');
+        });
+      }
+
+      document.querySelectorAll('.uib-left, .uib-right, .uib-daypicker .btn-default').forEach(function (el) {
+        el.style.setProperty('background', '#1a1a1a', 'important');
+        el.style.setProperty('background-image', 'none', 'important');
+        el.style.setProperty('border', 'none', 'important');
+        el.style.setProperty('color', '#f97316', 'important');
+      });
+      document.querySelectorAll('.uib-daypicker thead th').forEach(function (el) {
+        el.style.setProperty('background', '#1a1a1a', 'important');
+      });
+
+      var revealSel = '.about-me, .choose-items-wrapper, .personal-block, .sdAccordion__item';
+      document.querySelectorAll(revealSel).forEach(function (t) { t.classList.add('vlp-reveal'); });
+      var checkReveal = function () {
+        document.querySelectorAll(revealSel).forEach(function (t) {
+          if (t.getBoundingClientRect().top < window.innerHeight * 0.92) t.classList.add('vlp-in');
+        });
+      };
+      checkReveal();
+      if (!window.__vlpBookMeReveal) {
+        window.__vlpBookMeReveal = true;
+        window.addEventListener('scroll', checkReveal, { passive: true });
+      }
+    } catch (e) { /* no-op */ }
+  }
+
+  function scheduleBookMeJs() {
+    applyBookMeJs();
+    [300, 800, 1600, 3000].forEach(function (d) { setTimeout(applyBookMeJs, d); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleBookMeJs);
+  } else {
+    scheduleBookMeJs();
+  }
+})();
