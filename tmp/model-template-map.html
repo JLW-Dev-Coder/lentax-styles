@@ -2,7 +2,10 @@
 <style>
 /* ── Theme palettes: dark (default) + light, flipped via [data-theme] on .tmp-root ── */
 .tmp-root[data-theme="dark"] {
-  --tmp-bg-page: #0A0A0A;
+  /* Dark page bg = taxprep homepage hero gradient (ref-css.ts .hero). Held in the
+     var (not a selector rule) because .tmp-root applies it inline as
+     background: var(--tmp-bg-page); dominant stop #2A1020. */
+  --tmp-bg-page: linear-gradient(180deg, #2A1020 0%, #1C0A16 100%);
   --tmp-bg-surface: #141414;
   --tmp-bg-elevated: #1F1F1F;
   --tmp-ink-primary: #FAFAF8;
@@ -543,11 +546,12 @@
       if (pv === 'model-tour' || pv === 'template-map') state.view = pv;
     } catch (e) {}
 
-    // Initial theme: URL ?theme= wins, then prefers-color-scheme, then dark.
+    // Initial theme: URL ?theme= wins, otherwise default to dark unconditionally
+    // (system prefers-color-scheme is intentionally NOT consulted — dark is the
+    // first-paint default; the toggle still lets users switch to light).
     try {
       var pt = new URLSearchParams(window.location.search).get('theme');
       if (pt === 'dark' || pt === 'light') state.theme = pt;
-      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) state.theme = 'light';
     } catch (e) {}
 
     function isTemplate() { return state.view === 'template-map'; }
