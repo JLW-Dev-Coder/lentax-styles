@@ -872,3 +872,64 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
     scheduleBookMeJs();
   }
 })();
+
+/* R66 -- Book-Me sign-block banner + Agree & Sign button, scoped to /frm/wy4ahHxA4zBKadJ4 (DEV-495) */
+(function () {
+  var FRM_PATH = '/frm/wy4ahHxA4zBKadJ4';
+  if (window.location.pathname.indexOf(FRM_PATH) === -1) return;
+
+  var head = document.head || document.documentElement;
+
+  /* 1. Sign-block top banner -- scoped <style>; #vlp-sign-block id is assigned by the JS below */
+  if (!document.getElementById('vlp-signblock-theme')) {
+    var style = document.createElement('style');
+    style.id = 'vlp-signblock-theme';
+    style.textContent = `
+#vlp-sign-block::before{
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 6px !important;
+  background: linear-gradient(90deg, #f97316, #fb923c, #f97316) !important;
+  border-radius: 18px 18px 0 0 !important;
+}
+`;
+    head.appendChild(style);
+  }
+
+  /* 2. Assign the id + style the Agree & Sign button (platform stylesheet needs inline override) */
+  function applySignBlockStyles() {
+    var block = document.querySelector('.appointment-intake-form-field-block');
+    if (block && !block.id) {
+      block.id = 'vlp-sign-block';
+    }
+    var btn = null;
+    var candidates = document.querySelectorAll('input,button');
+    for (var i = 0; i < candidates.length; i++) {
+      var label = (candidates[i].value || candidates[i].textContent || '');
+      if (label.indexOf('Agree & Sign') !== -1) { btn = candidates[i]; break; }
+    }
+    if (btn) {
+      btn.style.setProperty('background', '#f97316', 'important');
+      btn.style.setProperty('background-image', 'none', 'important');
+      btn.style.setProperty('border', '1px solid #c2560f', 'important');
+      btn.style.setProperty('color', '#ffffff', 'important');
+      btn.style.setProperty('box-shadow', '0 4px 14px rgba(249,115,22,0.45)', 'important');
+    }
+  }
+
+  /* 3. Run now + observe -- the sign step renders late in the 13-step form */
+  function startSignBlock() {
+    applySignBlockStyles();
+    var observer = new MutationObserver(applySignBlockStyles);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSignBlock);
+  } else {
+    startSignBlock();
+  }
+})();
