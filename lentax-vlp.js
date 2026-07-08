@@ -673,10 +673,10 @@
 
 /* R65 -- Book-Me booking-page dark theme, scoped to /frm/wy4ahHxA4zBKadJ4 (DEV-495) */
 (function () {
-  var FRM_PATH = '/frm/wy4ahHxA4zBKadJ4';
-  if (window.location.pathname.indexOf(FRM_PATH) === -1) return;
+  function onBookMePage() { return !!document.querySelector('.book-me'); }
 
-  var head = document.head || document.documentElement;
+  function injectAssets() {
+    var head = document.head || document.documentElement;
 
   /* 1. Google Fonts (Sora + DM Sans) -- no injection precedent in this file */
   if (!document.getElementById('vlp-bookme-fonts')) {
@@ -811,8 +811,9 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
 `;
     head.appendChild(style);
   }
+  }
 
-  /* 3. JS behaviors -- path-gated, bounded retry for Angular late-render */
+  /* 3. JS behaviors -- element-gated, bounded retry for Angular late-render */
   function applyBookMeJs() {
     try {
       document.documentElement.style.setProperty('background', '#0a0a0a', 'important');
@@ -861,9 +862,14 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
     } catch (e) { /* no-op */ }
   }
 
-  function scheduleBookMeJs() {
+  function tick() {
+    if (!onBookMePage()) return;
+    injectAssets();
     applyBookMeJs();
-    [300, 800, 1600, 3000].forEach(function (d) { setTimeout(applyBookMeJs, d); });
+  }
+  function scheduleBookMeJs() {
+    tick();
+    [300, 800, 1600, 3000].forEach(function (d) { setTimeout(tick, d); });
   }
 
   if (document.readyState === 'loading') {
@@ -875,8 +881,7 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
 
 /* R66 -- Book-Me sign-block banner + Agree & Sign button, scoped to /frm/wy4ahHxA4zBKadJ4 (DEV-495) */
 (function () {
-  var FRM_PATH = '/frm/wy4ahHxA4zBKadJ4';
-  if (window.location.pathname.indexOf(FRM_PATH) === -1) return;
+  function onBookMePage() { return !!document.querySelector('.book-me'); }
 
   var head = document.head || document.documentElement;
 
@@ -921,15 +926,24 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
     }
   }
 
-  /* 3. Run now + observe -- the sign step renders late in the 13-step form */
+  /* 3. Run now + observe -- element-gated; sign step renders late in the 13-step form */
+  var attached = false;
   function startSignBlock() {
+    if (!onBookMePage()) return;
     applySignBlockStyles();
-    var observer = new MutationObserver(applySignBlockStyles);
-    observer.observe(document.body, { childList: true, subtree: true });
+    if (!attached) {
+      attached = true;
+      var observer = new MutationObserver(applySignBlockStyles);
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+  function scheduleSignBlock() {
+    startSignBlock();
+    [300, 800, 1600, 3000].forEach(function (d) { setTimeout(startSignBlock, d); });
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startSignBlock);
+    document.addEventListener('DOMContentLoaded', scheduleSignBlock);
   } else {
-    startSignBlock();
+    scheduleSignBlock();
   }
 })();
