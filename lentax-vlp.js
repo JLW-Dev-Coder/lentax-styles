@@ -808,6 +808,39 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
 
 .vlp-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .vlp-reveal.vlp-in { opacity: 1; transform: translateY(0); }
+
+/* R67 (DEV-495) -- Your Details + Confirm-and-Pay surface fills.
+   Appended into R65's theme literal (stays .book-me-gated via injectAssets).
+   Fills the intake-form container, checkout-totals card, and the inputs/
+   labels that R65's base selectors did not reach. The totals-card cream is a
+   ::before pseudo (rgb(255,250,244)), so it needs its own ::before rule.
+   Signature <canvas> left untouched pending the ink-color decision (Q4). */
+.app-form-embed, .app-form-type-booking,
+.appointment-intake-form-wrapper, .appointment-intake-form-field-block,
+.contract-block, .choose-items-summary-wrapper, .choose-items-summary-body,
+.sd-form-error-banner, .ribbon-notify__title, .ribbon-notify__list-block {
+  background-color: #131316 !important; background-image: none !important;
+}
+.choose-items-summary-wrapper::before, .choose-items-summary-body::before {
+  background-color: #131316 !important;
+}
+.appointment-intake-form-wrapper input.form-control,
+.appointment-intake-form-wrapper select.form-control,
+.appointment-intake-form-wrapper textarea,
+.app-form-embed input.form-control,
+.app-form-embed select.form-control,
+.app-form-embed textarea,
+input.signature-required {
+  background-color: #131316 !important; color: #e5e5e5 !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+}
+.app-form-embed label, .appointment-intake-form-wrapper label,
+.app-form-embed .text-default, .choose-items-summary-wrapper .text-default,
+.contract-block { color: #e5e5e5 !important; }
+.app-form-embed .nav-link, .app-form-embed .btn.clear,
+.app-form-embed .alert.alert-warning {
+  background-color: #131316 !important; color: #e5e5e5 !important;
+}
 `;
     head.appendChild(style);
   }
