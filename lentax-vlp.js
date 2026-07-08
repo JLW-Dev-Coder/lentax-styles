@@ -809,37 +809,14 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
 .vlp-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .vlp-reveal.vlp-in { opacity: 1; transform: translateY(0); }
 
-/* R67 (DEV-495) -- Your Details + Confirm-and-Pay surface fills.
+/* R67 (DEV-495) -- Confirm-and-Pay totals-card fill.
    Appended into R65's theme literal (stays .book-me-gated via injectAssets).
-   Fills the intake-form container, checkout-totals card, and the inputs/
-   labels that R65's base selectors did not reach. The totals-card cream is a
-   ::before pseudo (rgb(255,250,244)), so it needs its own ::before rule.
-   Signature <canvas> left untouched pending the ink-color decision (Q4). */
-.app-form-embed, .app-form-type-booking,
-.appointment-intake-form-wrapper, .appointment-intake-form-field-block,
-.contract-block, .choose-items-summary-wrapper, .choose-items-summary-body,
-.sd-form-error-banner, .ribbon-notify__title, .ribbon-notify__list-block {
-  background-color: #131316 !important; background-image: none !important;
-}
+   The totals-card cream is a ::before pseudo (rgb(255,250,244)), so it needs
+   its own ::before rule. R67's other surface/input/label/nav fills were
+   superseded by the container-scoped surface-darkening JS pass below and
+   removed. */
 .choose-items-summary-wrapper::before, .choose-items-summary-body::before {
   background-color: #131316 !important;
-}
-.appointment-intake-form-wrapper input.form-control,
-.appointment-intake-form-wrapper select.form-control,
-.appointment-intake-form-wrapper textarea,
-.app-form-embed input.form-control,
-.app-form-embed select.form-control,
-.app-form-embed textarea,
-input.signature-required {
-  background-color: #131316 !important; color: #e5e5e5 !important;
-  border: 1px solid rgba(255,255,255,0.12) !important;
-}
-.app-form-embed label, .appointment-intake-form-wrapper label,
-.app-form-embed .text-default, .choose-items-summary-wrapper .text-default,
-.contract-block { color: #e5e5e5 !important; }
-.app-form-embed .nav-link, .app-form-embed .btn.clear,
-.app-form-embed .alert.alert-warning {
-  background-color: #131316 !important; color: #e5e5e5 !important;
 }
 `;
     head.appendChild(style);
@@ -978,5 +955,94 @@ input.signature-required {
     document.addEventListener('DOMContentLoaded', scheduleSignBlock);
   } else {
     scheduleSignBlock();
+  }
+})();
+
+/* R68 -- Book-Me surface-darkening pass, container-scoped + observer-driven (DEV-495) */
+(function () {
+  var DARK = '#131316';
+  var TXT = '#e5e5e5';
+  var THRESH = 150;
+  var ROOTS = [
+    '.book-me',
+    '.app-form-embed',
+    '.appointment-intake-form-wrapper',
+    '.choose-items-summary-wrapper',
+    '.choose-items-summary-body',
+    '.contract-block',
+    '.sd-form-error-banner',
+    'form.sd-form-submit'
+  ];
+  var SKIP = { IFRAME: 1, IMG: 1, SVG: 1, CANVAS: 1, VIDEO: 1, PATH: 1 };
+
+  function onBookMePage() { return !!document.querySelector('.book-me'); }
+
+  function isHidden(el) {
+    var c = ' ' + (el.className && el.className.toString ? el.className.toString() : '') + ' ';
+    return c.indexOf(' ng-hide ') !== -1;
+  }
+
+  function darkenRoot(root) {
+    if (!root || isHidden(root)) return;
+    var nodes = [root];
+    var kids = root.querySelectorAll('*');
+    for (var i = 0; i < kids.length; i++) nodes.push(kids[i]);
+    for (var j = 0; j < nodes.length; j++) {
+      var el = nodes[j];
+      if (SKIP[el.tagName] || isHidden(el)) continue;
+      var cs = getComputedStyle(el);
+      var m = cs.backgroundColor.match(/[\d.]+/g);
+      if (m && !(m[3] !== undefined && parseFloat(m[3]) === 0)) {
+        var lum = 0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2];
+        if (lum > THRESH) {
+          el.style.setProperty('background-color', DARK, 'important');
+          el.style.setProperty('background-image', 'none', 'important');
+        }
+      }
+      if (!el.children.length && (el.textContent || '').trim()) {
+        var c = cs.color.match(/[\d.]+/g);
+        if (c && (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) < 110) {
+          el.style.setProperty('color', TXT, 'important');
+        }
+      }
+    }
+    var fields = root.querySelectorAll('input, select, textarea');
+    for (var k = 0; k < fields.length; k++) {
+      var f = fields[k];
+      if (f.type === 'checkbox' || f.type === 'radio') continue;
+      f.style.setProperty('background-color', DARK, 'important');
+      f.style.setProperty('color', TXT, 'important');
+      f.style.setProperty('border', '1px solid rgba(255,255,255,0.12)', 'important');
+    }
+  }
+
+  function pass() {
+    if (!onBookMePage()) return;
+    for (var i = 0; i < ROOTS.length; i++) {
+      var found = document.querySelectorAll(ROOTS[i]);
+      for (var j = 0; j < found.length; j++) darkenRoot(found[j]);
+    }
+  }
+
+  var t = null;
+  function debounced() {
+    if (t) clearTimeout(t);
+    t = setTimeout(pass, 150);
+  }
+
+  function start() {
+    if (!onBookMePage()) return;
+    pass();
+    [300, 800, 1600, 3000].forEach(function (d) { setTimeout(pass, d); });
+    if (!window.__vlpSurfaceObs) {
+      window.__vlpSurfaceObs = new MutationObserver(debounced);
+      window.__vlpSurfaceObs.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
   }
 })();
