@@ -1179,6 +1179,11 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     -webkit-box-shadow: inset 0 0 0 1000px #ffffff !important;
     box-shadow: inset 0 0 0 1000px #ffffff !important;
   }
+  #forms-form-wrapper .sd-signature-pad input.form-control:not(:-webkit-autofill) {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+  }
 }
 `;
     (document.head || document.documentElement).appendChild(style);
