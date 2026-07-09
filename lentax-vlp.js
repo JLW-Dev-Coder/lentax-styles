@@ -1010,6 +1010,7 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
     for (var k = 0; k < fields.length; k++) {
       var f = fields[k];
       if (f.type === 'checkbox' || f.type === 'radio') continue;
+      if (f.closest && f.closest('.sd-signature-pad')) continue;
       f.style.setProperty('background-color', DARK, 'important');
       f.style.setProperty('color', TXT, 'important');
       f.style.setProperty('border', '1px solid rgba(255,255,255,0.12)', 'important');
@@ -1045,4 +1046,77 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
   } else {
     start();
   }
+})();
+
+/* R69 -- Book-Me permanent surface fixes (totals card, Agree & Sign, signing modal, signature text, FA icon); CC-verified CSS, .book-me-gated (DEV-495) */
+(function () {
+  function onBookMePage() { return !!document.querySelector('.book-me'); }
+
+  function inject() {
+    if (!onBookMePage()) return false;
+    if (document.getElementById('vlp-bookme-surfaces-css')) return true;
+    var style = document.createElement('style');
+    style.id = 'vlp-bookme-surfaces-css';
+    style.textContent = `
+#FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .book-me .choose-items-summary-wrapper::before {
+  background-color: #131316 !important;
+}
+#FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .book-me .book-me__background-top {
+  background-color: #131316 !important;
+}
+#FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .book-me button.btn.btn-default.btn-sm.pull-left.uib-left::before,
+#FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .book-me button.btn.btn-default.btn-sm.pull-right.uib-right::before {
+  background-color: #131316 !important;
+}
+#FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .book-me span.label-text::after {
+  background-color: #131316 !important;
+}
+#forms-form-wrapper .appointment-intake-form-field-block {
+  background-image: none !important;
+  background-color: #131316 !important;
+}
+#forms-form-wrapper .appointment-intake-form-wrapper {
+  background-color: #131316 !important;
+}
+#forms-form-wrapper .contract-block {
+  background-color: #131316 !important;
+  color: #e5e5e5 !important;
+}
+#forms-form-wrapper div.sd-signature-pad.form.form-oscar {
+  background-color: #131316 !important;
+}
+#forms-form-wrapper .sd-signature-pad .nav-item.nav-link {
+  background-color: #1e1e1e !important;
+  color: #e5e5e5 !important;
+}
+#forms-form-wrapper .sd-signature-pad .nav-item.nav-link.active {
+  background-color: #131316 !important;
+}
+#forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+  caret-color: #1a1a1a !important;
+}
+#forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control::placeholder {
+  color: #6b6b6b !important;
+  -webkit-text-fill-color: #6b6b6b !important;
+}
+#forms-form-wrapper .signature-confirm-icon i.fa-solid.fa-square-check,
+#forms-form-wrapper .signature-confirm-icon i.fa-solid.fa-square-check::before {
+  font-family: "Font Awesome 6 Pro" !important;
+  font-weight: 900 !important;
+}
+#forms-form-wrapper .signature-confirm-icon i.fa-solid.fa-square-check {
+  color: #22c55e !important;
+  font-size: 28px !important;
+}
+`;
+    (document.head || document.documentElement).appendChild(style);
+    return true;
+  }
+
+  if (inject()) return;
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
+  [300, 800, 1600, 3000].forEach(function (d) { setTimeout(inject, d); });
 })();
