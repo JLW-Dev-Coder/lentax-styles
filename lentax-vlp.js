@@ -1114,6 +1114,27 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
   color: #22c55e !important;
   font-size: 28px !important;
 }
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(1) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(2) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(3) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19) {
+  color: #1a1a1a !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+  caret-color: #1a1a1a !important;
+}
+html body #forms-form-wrapper .form-fields-container > .form-group.form-group.form-group:nth-of-type(1) label:not(#____a0):not(#____a1):not(#____a2):not(#____a3):not(#____a4) {
+  color: #f97316 !important;
+  -webkit-text-fill-color: #f97316 !important;
+}
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(2) label:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(3) label:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4) label:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19) {
+  width: fit-content !important;
+  max-width: calc(100% - 20px) !important;
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
 `;
     (document.head || document.documentElement).appendChild(style);
     return true;
