@@ -1171,10 +1171,13 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     -webkit-text-fill-color: #ffffff !important;
     caret-color: #ffffff !important;
   }
-  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    caret-color: #ffffff !important;
+  #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill,
+  #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill:focus,
+  #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill:hover {
+    -webkit-text-fill-color: #1a1a1a !important;
+    caret-color: #1a1a1a !important;
+    -webkit-box-shadow: inset 0 0 0 1000px #ffffff !important;
+    box-shadow: inset 0 0 0 1000px #ffffff !important;
   }
 }
 `;
