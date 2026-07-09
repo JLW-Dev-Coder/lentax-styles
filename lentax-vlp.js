@@ -1135,6 +1135,13 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
+.personal-block__avatar {
+  left: 0 !important;
+  right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+}
 `;
     (document.head || document.documentElement).appendChild(style);
     return true;
