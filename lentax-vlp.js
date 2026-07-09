@@ -1058,6 +1058,9 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
     var style = document.createElement('style');
     style.id = 'vlp-bookme-surfaces-css';
     style.textContent = `
+#FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .choose-items-block {
+  background-color: #131316 !important;
+}
 #FormEmbed_SCJ9ivTRoCYe8JYq634CawF1iQKVVNhDqjaxb5pccYiSrs5BY-extended-form .book-me .choose-items-summary-wrapper::before {
   background-color: #131316 !important;
 }
