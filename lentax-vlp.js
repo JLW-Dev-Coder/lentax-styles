@@ -1097,9 +1097,9 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
 }
 #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control {
   background-color: #ffffff !important;
-  color: #1a1a1a !important;
-  -webkit-text-fill-color: #1a1a1a !important;
-  caret-color: #1a1a1a !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
 }
 #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control::placeholder {
   color: #6b6b6b !important;
@@ -1118,9 +1118,9 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(1
 html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(2) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
 html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(3) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
 html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19) {
-  color: #1a1a1a !important;
-  -webkit-text-fill-color: #1a1a1a !important;
-  caret-color: #1a1a1a !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
 }
 html body #forms-form-wrapper .form-fields-container > .form-group.form-group.form-group:nth-of-type(1) label:not(#____a0):not(#____a1):not(#____a2):not(#____a3):not(#____a4) {
   color: #f97316 !important;
@@ -1163,14 +1163,6 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     height: 120px !important;
     max-width: 60% !important;
   }
-  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(1) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
-  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(2) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
-  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(3) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
-  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19) {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    caret-color: #ffffff !important;
-  }
   #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill,
   #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill:focus,
   #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill:hover {
@@ -1178,11 +1170,6 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     caret-color: #1a1a1a !important;
     -webkit-box-shadow: inset 0 0 0 1000px #ffffff !important;
     box-shadow: inset 0 0 0 1000px #ffffff !important;
-  }
-  #forms-form-wrapper .sd-signature-pad input.form-control:not(:-webkit-autofill) {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    caret-color: #ffffff !important;
   }
 }
 `;
