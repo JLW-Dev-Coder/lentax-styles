@@ -1142,6 +1142,28 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
   margin-right: auto !important;
   float: none !important;
 }
+/* R73 -- mobile (iPhone Safari / WebKit) fixes: dark card + re-seated avatar; desktop untouched */
+@media (max-width: 600px) {
+  .book-me .personal-block,
+  .book-me .personal-block__details-wrap {
+    background: #131316 !important;
+    background-color: #131316 !important;
+    background-image: none !important;
+  }
+  .book-me .personal-block__avatar {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 0 auto -18px auto !important;
+    float: none !important;
+    display: block !important;
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 60% !important;
+  }
+}
 `;
     (document.head || document.documentElement).appendChild(style);
     return true;
