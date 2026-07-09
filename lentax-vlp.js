@@ -1163,6 +1163,19 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     height: 120px !important;
     max-width: 60% !important;
   }
+  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(1) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(2) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(3) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19),
+  html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4) input.form-control:not(#____z0):not(#____z1):not(#____z2):not(#____z3):not(#____z4):not(#____z5):not(#____z6):not(#____z7):not(#____z8):not(#____z9):not(#____z10):not(#____z11):not(#____z12):not(#____z13):not(#____z14):not(#____z15):not(#____z16):not(#____z17):not(#____z18):not(#____z19) {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+  }
+  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+  }
 }
 `;
     (document.head || document.documentElement).appendChild(style);
