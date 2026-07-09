@@ -1163,9 +1163,9 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     height: 120px !important;
     max-width: 60% !important;
   }
-  #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill,
-  #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill:focus,
-  #forms-form-wrapper .sd-signature-pad input.form-control:-webkit-autofill:hover {
+  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill,
+  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:focus,
+  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:hover {
     -webkit-text-fill-color: #1a1a1a !important;
     caret-color: #1a1a1a !important;
     -webkit-box-shadow: inset 0 0 0 1000px #ffffff !important;
