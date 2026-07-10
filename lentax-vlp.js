@@ -1172,6 +1172,18 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     box-shadow: inset 0 0 0 1000px #ffffff !important;
   }
 }
+
+/* ============================================================
+   PORTAL CHROME (NOT the booking form)
+   Gated on body.sidebar-dark. These rules target the portal
+   dashboard/CRM chrome, never the .book-me booking form.
+   Keep booking-form (.book-me) rules ABOVE this divider.
+   ============================================================ */
+/* R81 -- sidebar-collapse chevron visible on the dark top bar (stroke-painted SVG) */
+body.sidebar-dark .sidebar-toggle svg,
+body.sidebar-dark .sidebar-toggle svg path {
+  stroke: #e5e5e5 !important;
+}
 `;
     (document.head || document.documentElement).appendChild(style);
     return true;
