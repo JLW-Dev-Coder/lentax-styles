@@ -1172,18 +1172,6 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     box-shadow: inset 0 0 0 1000px #ffffff !important;
   }
 }
-
-/* ============================================================
-   PORTAL CHROME (NOT the booking form)
-   Gated on body.sidebar-dark. These rules target the portal
-   dashboard/CRM chrome, never the .book-me booking form.
-   Keep booking-form (.book-me) rules ABOVE this divider.
-   ============================================================ */
-/* R81 -- sidebar-collapse chevron visible on the dark top bar (stroke-painted SVG) */
-body.sidebar-dark .sidebar-toggle svg,
-body.sidebar-dark .sidebar-toggle svg path {
-  stroke: #e5e5e5 !important;
-}
 `;
     (document.head || document.documentElement).appendChild(style);
     return true;
@@ -1192,4 +1180,37 @@ body.sidebar-dark .sidebar-toggle svg path {
   if (inject()) return;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
   [300, 800, 1600, 3000].forEach(function (d) { setTimeout(inject, d); });
+})();
+
+/* ============================================================
+   PORTAL CHROME injector (NOT the booking form)
+   Runs independent of .book-me. Injects on portal pages only,
+   gated on body.sidebar-dark. Keep portal-chrome rules here,
+   separate from the .book-me booking-form theme above.
+   ============================================================ */
+/* R82 -- sidebar-collapse chevron visible on the dark portal top bar.
+   The chevron SVG uses stroke="currentColor", so color drives it;
+   stroke is set too as harmless redundancy. */
+(function () {
+  function onDarkPortal() { return document.body && document.body.classList.contains('sidebar-dark'); }
+
+  function injectPortalChrome() {
+    if (!onDarkPortal()) return false;
+    if (document.getElementById('vlp-portal-chrome-css')) return true;
+    var style = document.createElement('style');
+    style.id = 'vlp-portal-chrome-css';
+    style.textContent = `
+body.sidebar-dark .sidebar-toggle svg,
+body.sidebar-dark .sidebar-toggle svg path {
+  color: #e5e5e5 !important;
+  stroke: #e5e5e5 !important;
+}
+`;
+    (document.head || document.documentElement).appendChild(style);
+    return true;
+  }
+
+  if (injectPortalChrome()) return;
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectPortalChrome);
+  [300, 800, 1600].forEach(function (d) { setTimeout(injectPortalChrome, d); });
 })();
