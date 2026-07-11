@@ -884,9 +884,15 @@ body {
 
 /* --- 2. PROGRESS STRIP: .flow-nav-bar ---
    Five-step flow nav strip above checkout form. Outer container gets navy
-   gradient skin; inactive steps transparent with off-white text; active
-   step (first, "Checkout My Cart") gets orange fill via JS. CSS first-child
-   rule is the fallback if JS doesn't fire. */
+   gradient skin; inactive steps transparent with off-white text; the active
+   step gets orange fill.
+   R85 (2026-07-11, ClickUp 86e29uzdq): the active step is whichever button's
+   href matches the current URL — applyCheckoutNavStrip() in lentax-vlp.js adds
+   the `.is-active` class to it, and the rule below is the no-JS fallback that
+   styles that class. Was `:first-child`, which hard-wired the fill to button 0
+   and lit the WRONG step on every page whose active step is not first. If the
+   JS never fires, NO button is highlighted — deliberate: no orange beats wrong
+   orange. */
 #client-page-view .flow-nav-bar {
   background: linear-gradient(180deg, var(--vlpd-page-bg) 0%, var(--vlpd-page-bg) 100%) !important;
   background-color: var(--vlpd-page-bg) !important;
@@ -905,7 +911,7 @@ body {
   text-align: center !important;
   padding: 10px 8px !important;
 }
-#client-page-view .flow-nav-bar .flow-nav-btn:first-child {
+#client-page-view .flow-nav-bar .flow-nav-btn.is-active {
   background: #f97316 !important;
   background-color: #f97316 !important;
   color: #ffffff !important;

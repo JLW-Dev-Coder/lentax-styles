@@ -255,24 +255,62 @@
 
 
 /* IIFE 1: applyCheckoutNavStrip
-   Defeats SD platform's inline style="width:100%;background:#2a2a2a;color:#f2f2f2"
-   on active .flow-nav-btn (step 1). Platform sets this via AngularJS after DOM
-   ready; CSS !important loses to inline. Retry pattern: immediate fire + 5 retries
-   at 800ms. Scope: #client-page-view .flow-nav-bar (checkout-page-only via class
-   combination). */
+   Paints the active-state highlight on the checkout nav strip. Defeats SD
+   platform's inline style="...background:#2a2a2a;color:#f2f2f2" on the active
+   .flow-nav-btn (platform sets it via AngularJS after DOM ready; CSS !important
+   loses to inline).
+
+   R85 (2026-07-11, ClickUp 86e29uzdq): keyed to the CURRENT URL, not DOM index.
+   Was `idx === 0`, which painted button 0 orange on every page — correct only
+   where the active step happened to be first (coincidence), wrong everywhere
+   else. Now a button is active iff its href resolves (same-origin) to
+   location.pathname. href="#" and off-site links (e.g.
+   virtuallaunch.pro/founders-seat) never match; if NOTHING matches, no button
+   is painted orange — a deliberate trade, since wrong orange is worse than no
+   orange. Also toggles an `is-active` class so themes/vlp-default.css has a
+   real CSS hook for the no-JS fallback.
+
+   Retry pattern: immediate fire + 5 retries at 800ms — mechanism unchanged,
+   only the key was wrong. Scope: #client-page-view .flow-nav-bar. */
 (function applyCheckoutNavStrip() {
   'use strict';
+
+  // Normalize a pathname for comparison: strip one trailing slash (but keep
+  // root "/"). Both sides of the compare pass through this so "/foo/" === "/foo".
+  function normPath(p) {
+    return (p.length > 1 && p.charAt(p.length - 1) === '/') ? p.slice(0, -1) : p;
+  }
+
+  // A button is active iff its href resolves, same-origin, to the current page.
+  // href may be relative, "#", empty, or off-site — read the RAW attribute first
+  // to reject hash-only/empty (btn.href would resolve "#" to the current URL and
+  // false-match), then resolve via URL() and require same origin + same path.
+  function isActive(btn) {
+    var raw = btn.getAttribute('href');
+    if (!raw || raw.charAt(0) === '#') return false;
+    var url;
+    try {
+      url = new URL(btn.href, location.origin);
+    } catch (e) {
+      return false;
+    }
+    if (url.origin !== location.origin) return false;   // off-site never matches
+    return normPath(url.pathname) === normPath(location.pathname);
+  }
+
   function apply() {
     var cpv = document.querySelector('#client-page-view');
     if (!cpv) return;
     var navBtns = cpv.querySelectorAll('.flow-nav-bar .flow-nav-btn');
     if (!navBtns.length) return;
-    navBtns.forEach(function (btn, idx) {
-      if (idx === 0) {
+    navBtns.forEach(function (btn) {
+      if (isActive(btn)) {
+        btn.classList.add('is-active');
         btn.style.setProperty('background', '#f97316', 'important');
         btn.style.setProperty('background-color', '#f97316', 'important');
         btn.style.setProperty('color', '#ffffff', 'important');
       } else {
+        btn.classList.remove('is-active');
         btn.style.setProperty('background', 'transparent', 'important');
         btn.style.setProperty('background-color', 'transparent', 'important');
         btn.style.setProperty('color', '#ffffff', 'important');
@@ -348,11 +386,10 @@
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   VLP-default round 14 - Checkout page amendments (CC-revised IIFEs)
-   Parallel to round 13's applyCheckoutNavStrip / applySummaryNavy (NOT
-   replacements - both R13 IIFEs remain active per Path A additive policy).
-   These V2 IIFEs apply additional inline-style overrides for amendments
-   A3b/A4/A5/A6 that the R13 IIFEs did not cover.
+   VLP-default round 14 - Checkout page amendments (CC-revised IIFE)
+   applySummaryNavyV2 parallels round 13's applySummaryNavy (NOT a replacement -
+   both remain active per Path A additive policy) with additional inline-style
+   overrides for amendments A3b/A4/A5/A6 that the R13 IIFE did not cover.
 
    applySummaryNavyV2 hoists the MutationObserver to single-setup-on-find
    pattern (PE correction of CC's draft, which created a fresh observer
@@ -360,69 +397,19 @@
    load, never disconnecting). The hoisted pattern attaches exactly one
    observer once the target appears.
 
+   R85 (2026-07-11, ClickUp 86e29uzdq): the former companion IIFE
+   applyCheckoutNavStripV2 was DELETED. It keyed active-state on a
+   `.flow-nav-btn.active` class that no button ever carries, so its else branch
+   always fired and it never painted anything; its class-only MutationObserver
+   never woke (no class attribute ever changed). Two IIFEs racing to style the
+   same strip is how the index-0 bug survived unseen — the active-state paint
+   now lives solely in R13's applyCheckoutNavStrip, rewritten to key on the URL.
+
    Added 2026-06-20 - round 14, follow-up to 4cd697f.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 
-/* IIFE 1: applyCheckoutNavStripV2
-   Active-state styling on .flow-nav-btn.active using class detection
-   (round 13's V1 used :first-child / index-0 inference). Watches for
-   class changes via MutationObserver scoped to .flow-nav-bar so step
-   transitions re-apply automatically. */
-(function applyCheckoutNavStripV2() {
-  'use strict';
-  var MAX_RETRIES = 30;
-  var attempts = 0;
-
-  function apply() {
-    var btns = document.querySelectorAll('#client-page-view .flow-nav-btn');
-    if (!btns.length && attempts < MAX_RETRIES) {
-      attempts++;
-      setTimeout(apply, 400);
-      return;
-    }
-    btns.forEach(function (btn) {
-      if (btn.classList.contains('active')) {
-        btn.style.setProperty('color', '#f97316', 'important');
-        btn.style.setProperty('opacity', '1', 'important');
-        btn.style.setProperty('border-bottom', '2px solid #f97316', 'important');
-        btn.style.setProperty('background', 'transparent', 'important');
-        btn.style.setProperty('background-color', 'transparent', 'important');
-      } else {
-        btn.style.setProperty('background', 'transparent', 'important');
-        btn.style.setProperty('background-color', 'transparent', 'important');
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', apply);
-  } else {
-    apply();
-  }
-
-  // Single MutationObserver attaches once the nav bar is in the DOM,
-  // watches for class changes so step transitions re-apply automatically.
-  function attachObserver() {
-    var bar = document.querySelector('#client-page-view .flow-nav-bar');
-    if (!bar) return false;
-    var mo = new MutationObserver(function (muts) {
-      muts.forEach(function (m) {
-        if (m.type === 'attributes' && m.attributeName === 'class') {
-          apply();
-        }
-      });
-    });
-    mo.observe(bar, { subtree: true, attributeFilter: ['class'], childList: true });
-    return true;
-  }
-  if (!attachObserver()) {
-    setTimeout(attachObserver, 1200);
-  }
-})();
-
-
-/* IIFE 2: applySummaryNavyV2
+/* applySummaryNavyV2
    Sidebar wrapper paint + reversion guard. Same root cause as R13's
    applySummaryNavy (CORS-blocked widget CSS + transition:all) but with
    the observer HOISTED to single-setup-on-find. The retry loop only
