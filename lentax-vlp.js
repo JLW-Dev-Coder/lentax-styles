@@ -1097,9 +1097,9 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
 }
 #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control {
   background-color: #ffffff !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  caret-color: #ffffff !important;
+  color: #1a1a1a !important;
+  -webkit-text-fill-color: #1a1a1a !important;
+  caret-color: #1a1a1a !important;
 }
 #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control::placeholder {
   color: #6b6b6b !important;
