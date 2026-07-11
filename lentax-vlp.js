@@ -1101,6 +1101,21 @@ select, .form-control { background: #131316 !important; color: #e5e5e5 !importan
   -webkit-text-fill-color: #1a1a1a !important;
   caret-color: #1a1a1a !important;
 }
+/* R84 -- signature-input autofill override, hoisted out of the
+   @media(max-width:600px) block so it applies at every viewport
+   (WebKit autofill can fire on desktop too); :active added to complete
+   the state set. Holds the white field (inset box-shadow) with dark
+   typed text against Chrome's autofill paint. Mirrors the login
+   autofill pattern (themes/vlp-default.css:2136-2146). */
+#forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill,
+#forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:hover,
+#forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:focus,
+#forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:active {
+  -webkit-text-fill-color: #1a1a1a !important;
+  caret-color: #1a1a1a !important;
+  -webkit-box-shadow: inset 0 0 0 1000px #ffffff !important;
+  box-shadow: inset 0 0 0 1000px #ffffff !important;
+}
 #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control::placeholder {
   color: #6b6b6b !important;
   -webkit-text-fill-color: #6b6b6b !important;
@@ -1162,14 +1177,6 @@ html body #forms-form-wrapper .form-fields-container > .form-group:nth-of-type(4
     width: 120px !important;
     height: 120px !important;
     max-width: 60% !important;
-  }
-  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill,
-  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:focus,
-  #forms-form-wrapper .sd-signature-pad input.form-control.form-control.form-control.form-control:-webkit-autofill:hover {
-    -webkit-text-fill-color: #1a1a1a !important;
-    caret-color: #1a1a1a !important;
-    -webkit-box-shadow: inset 0 0 0 1000px #ffffff !important;
-    box-shadow: inset 0 0 0 1000px #ffffff !important;
   }
 }
 `;
