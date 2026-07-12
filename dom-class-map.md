@@ -262,7 +262,7 @@ Top-right icons (search/bell/messages/support/JW) are SD platform chrome, outsid
 
 (.cbe-block-* and .text-animated-waterfall carry inline padding/margin/width/font-size — those are
 SD content-block-editor page-settings, NOT lentax JS.) Other lentax IIFEs (applySummaryNavyV2,
-applyCheckoutNavStripV2, fixViewPlansBlock, fixCalloutDescription, applyDemoBorder) no-op here.
+applyCheckoutNavStrip, fixViewPlansBlock, fixCalloutDescription, applyDemoBorder) no-op here.
 
 ### 1.8 Special / anomalies
 
@@ -407,7 +407,7 @@ Portal pattern: body + #wrapper + #client-page-view all rgb(26,26,26); main-wrap
 ### 4.3 Buttons & CTAs
 | Element | Tag + class | bg / color | border / padding | Notes |
 |---|---|---|---|---|
-| Nav tab (ACTIVE = Checkout My Cart) | a.flow-nav-btn | rgb(249,115,22)/rgb(255,255,255) | 0 / 10px 8px | applyCheckoutNavStripV2 target |
+| Nav tab (ACTIVE = Checkout My Cart) | a.flow-nav-btn | rgb(249,115,22)/rgb(255,255,255) | 0 / 10px 8px | applyCheckoutNavStrip target (active = resolved href matches location.pathname; sets .is-active class) |
 | Nav tab (inactive ×4) | a.flow-nav-btn | rgba(0,0,0,0)/rgb(255,255,255) | 0 / 10px 8px | transparent, white label |
 
 ### 4.4 Cards & containers
@@ -426,7 +426,7 @@ Portal pattern: body + #wrapper + #client-page-view all rgb(26,26,26); main-wrap
 | Element | Inline props | IIFE | Notes |
 |---|---|---|---|
 | div.main-wrapper | background-color transparent | clearMainWrapperWhite | |
-| a.flow-nav-btn (strip) | (strip restyle) | applyCheckoutNavStripV2 | observed: active tab orange fill, strip layout |
+| a.flow-nav-btn (strip) | (strip restyle) | applyCheckoutNavStrip | observed: active tab orange fill, strip layout |
 | div.choose-items-summary-wrapper | (panel restyle) | applySummaryNavyV2 | observed: dark gradient + orange border/heads |
 
 ### 4.8 Special / anomalies
@@ -654,12 +654,12 @@ To change page bg: target body/#wrapper (or the token). To "fix a white flash": 
 |---|---|---|---|---|
 | FOUC preload-swap loader | full page | rocket splash until content ready | all portal views (visible 6–11s) | /dashboard (brief) |
 | clearMainWrapperWhite | .main-wrapper | inline `background-color: transparent` (+ bg-image props → initial) | ALL surfaces (1–7) | none |
-| applyCheckoutNavStripV2 | a.flow-nav-btn strip | active tab orange fill rgb(249,115,22), inactive transparent | view/169144 | others (no .flow-nav-btn) |
+| applyCheckoutNavStrip | a.flow-nav-btn strip | active tab (resolved href = location.pathname) orange fill rgb(249,115,22) + .is-active, inactive transparent | view/169144 | others (no .flow-nav-btn) |
 | applySummaryNavyV2 | .choose-items-summary-wrapper | dark gradient rgb(26,26,26) + 2px orange border + orange heads | view/169144 | others |
 | fixCalloutDescription | .feature-block-border | 4px orange left-border callout | view/169143 (and callout on 169141) | others |
 | fixViewPlansBlock | "View Plans" label/block | grey rgb(166,166,166) label @8px radius (currently disabled-looking) | view/169143 | others |
 | applyDemoBorder | (demo/border target) | not observed firing on swept surfaces | — | 1–7 |
-| applyCheckoutNavStrip / applySummaryNavy (v1) | (legacy) | superseded by V2; not observed | — | 1–7 |
+| applySummaryNavy (v1) | (legacy) | superseded by applySummaryNavyV2; not observed. (applyCheckoutNavStripV2 was DELETED in R85 — its role folded back into the live, URL-keyed applyCheckoutNavStrip) | — | 1–7 |
 | floating-bar-hide | floating bar | hides SD floating bar (no visible bar on swept surfaces) | (global) | — |
 | round-9 explore supplement | explore vl-* blocks | supplemental vl-card/callout styling | view/169143 | others |
 
@@ -721,7 +721,7 @@ Format: .class → effect; key computed values; [surfaces]. Alphabetical. Surfac
 #dashboard-view *             → ⚠ GLOBAL TEXT-COLOR HAZARD — PLATFORM-SIDE, NOT IN REPO; the platform stylesheet paints color: rgb(26,26,26) (= --vlpd-page-bg) on EVERY descendant of #dashboard-view at (1,0,1); cannot be edited (cross-origin); ANY in-repo text-color rule on a dashboard descendant MUST use #dashboard-view <selector> to clear (1,0,1) — plain class selectors at (0,1,x) lose the cascade and render invisible (dark-on-dark) against the dark dashboard; discovered round 34 (DevTools cascade dump); same specificity-inversion family as rounds 29/31/32/33; [dash]
 .feature-block-border         → callout strip (fixCalloutDescription); transparent bg, 4px solid rgb(249,115,22) LEFT border; inner <b> orange rgb(249,115,22) 17px/700, body white; [169143]
 .file-drop                    → file-upload DROPZONE; bg rgb(246,246,246), 2px DASHED rgb(209,209,209), radius 8px; [169141]
-.flow-nav-btn                 → checkout nav-strip tab (applyCheckoutNavStripV2); ACTIVE bg rgb(249,115,22)/white; INACTIVE transparent/white; pad 10px 8px; [169144]
+.flow-nav-btn                 → checkout nav-strip tab (applyCheckoutNavStrip; active = resolved href matches location.pathname, sets .is-active); ACTIVE bg rgb(249,115,22)/white; INACTIVE transparent/white; pad 10px 8px; [169144]
 .form-control                 → select/input; bg rgb(255,255,255), color rgb(26,26,26), 1px rgba(26,26,26,0.25), radius 8px, pad 14px 18px; [169143]
 .header-light                 → body modifier (SD); part of theme body class set; [all]
 .item-instructions-cta        → inline CTA emphasis ("proceed to checkout"); rgb(249,115,22); [169144]
