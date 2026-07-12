@@ -3683,6 +3683,60 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
  * END ROUND 49
  * ============================================================ */
 
+
+/* ============================================================
+ * ROUND 89 (2026-07-12, 86e29uzdq) — Chrome autofill paints
+ * checkout-form inputs yellow
+ *
+ * On the checkout embed (Agree & Sign step,
+ * /portal/dashboard/view/170637) Chrome's -webkit-autofill UA
+ * style repaints the input BACKGROUND yellow while the typed
+ * value stays light (R44.2's #f5f5f5 text-fill survives), so the
+ * autofilled value renders light-on-yellow and is unreadable.
+ * Reproduced on mobile.
+ *
+ * Resting design is CORRECT and unchanged: light text (#f5f5f5)
+ * on a dark field (#2a2a2a) — values read from R44.2 (L3434-3435).
+ * This round touches the AUTOFILL STATE ONLY. It pins the field
+ * back to #2a2a2a via the 1000px inset box-shadow trick (Chrome's
+ * autofill background cannot be overridden with background-color
+ * at any specificity — same idiom as the section-30 login autofill
+ * rule and the R84 Book-Me signature rule) and holds text/caret
+ * light. All four states incl. :active are required — R84's
+ * original bug was omitting :active.
+ *
+ * Anchor: #client-page-view + .extended-form-wrapper
+ * .choice-step-styling-options. NOTE this adds #client-page-view to
+ * the bare R47-R49/R87 anchor DELIBERATELY, and matches R44.2 (the
+ * rule that establishes these inputs' #2a2a2a/#f5f5f5). Reason: the
+ * checkout inputs carry a competing focus glow at L1004-1008
+ *   #client-page-view input.form-control:focus { box-shadow ... }
+ * at specificity (1,2,1). A bare-anchor autofill rule is (0,5,1)
+ * and LOSES the box-shadow property to it in the autofilled+focused
+ * state (ID column wins first), so the yellow would flash back on
+ * focus. The #client-page-view anchor lifts this rule to (1,5,1),
+ * so the inset paint-over wins in every state including :focus.
+ *
+ * Blast radius: input.form-control in the autofill state only —
+ * inputs, never a <canvas>/img/overlay (cf. the R49.2/R87 canvas
+ * lesson). :-webkit-autofill matches only fields Chrome has
+ * autofilled; it cannot reach a non-input element.
+ * ============================================================ */
+#client-page-view .extended-form-wrapper.choice-step-styling-options input.form-control:-webkit-autofill,
+#client-page-view .extended-form-wrapper.choice-step-styling-options input.form-control:-webkit-autofill:hover,
+#client-page-view .extended-form-wrapper.choice-step-styling-options input.form-control:-webkit-autofill:focus,
+#client-page-view .extended-form-wrapper.choice-step-styling-options input.form-control:-webkit-autofill:active {
+  -webkit-text-fill-color: #f5f5f5 !important;
+  caret-color: #f5f5f5 !important;
+  -webkit-box-shadow: inset 0 0 0 1000px #2a2a2a !important;
+  box-shadow: inset 0 0 0 1000px #2a2a2a !important;
+}
+
+/* ============================================================
+ * END ROUND 89
+ * ============================================================ */
+
+
 /* ============================================================
    R53: Utility classes for hero accent + centered content block
    - .vl-hero-accent: inline orange accent within hero titles
