@@ -4292,3 +4292,35 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-block-view-wrapper
   color: #E0E0E0 !important;
   -webkit-text-fill-color: #E0E0E0 !important;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   VLP-DEFAULT R86 — Mobile hamburger visible on the dark top bar
+   Added 2026-07-12 — ClickUp 86e29uzdq
+   ─────────────────────────────────────────────────────────────────
+   The mobile menu toggle renders BLACK on the dark branded top bar,
+   so it is invisible (measured live at 381px, owner-confirmed).
+
+   There are TWO top-bar toggles, not one:
+     - Desktop: <svg> inside .sidebar-toggle (d-none d-md-inline-flex).
+       Made light by the PORTAL CHROME injector in lentax-vlp.js
+       (R81/R82: `body.sidebar-dark .sidebar-toggle svg`). Correct —
+       leave it alone.
+     - Mobile:  <i class="fa-light fa-bars"> inside <a> inside
+       <li class="mobileMenuToggle">. DIFFERENT element type, different
+       class, no <svg> — so the desktop rule cannot reach it and the
+       icon falls back to black. This rule fixes ONLY the mobile <i>.
+
+   Scoping deliberately does NOT use body.sidebar-dark: that class was
+   live-tested and does not govern this bar (the dark colour comes from
+   the client's branding-theme-default2 layer, not sidebar-dark). A
+   sidebar-dark scope would paint the icon light-grey on a WHITE bar for
+   any client running a dark sidebar with a light top bar — same
+   invisible hamburger, new costume. Instead we scope to the bar itself:
+     - body.lentax-vlp   — VLP portals only; cannot leak to TPP installs.
+     - .wrapper.fix-top  — the dark branded top bar (the actual surface
+                           whose colour we are compensating for).
+   #e5e5e5 is the theme's existing light-icon grey — the same value the
+   desktop R81/R82 rule uses (rgb(229,229,229)). Not a new colour. */
+body.lentax-vlp .wrapper.fix-top .mobileMenuToggle a i.fa-bars {
+  color: #e5e5e5 !important;
+}
