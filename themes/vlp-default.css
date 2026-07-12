@@ -4340,10 +4340,25 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-block-view-wrapper
    any client running a dark sidebar with a light top bar — same
    invisible hamburger, new costume. Instead we scope to the bar itself:
      - body.lentax-vlp   — VLP portals only; cannot leak to TPP installs.
-     - .wrapper.fix-top  — the dark branded top bar (the actual surface
-                           whose colour we are compensating for).
+     - .wrapper          — present in EVERY scroll state, so the icon is
+                           light from first paint (see R88 below).
    #e5e5e5 is the theme's existing light-icon grey — the same value the
-   desktop R81/R82 rule uses (rgb(229,229,229)). Not a new colour. */
-body.lentax-vlp .wrapper.fix-top .mobileMenuToggle a i.fa-bars {
+   desktop R81/R82 rule uses (rgb(229,229,229)). Not a new colour.
+
+   R88 (2026-07-12) — removed `.fix-top` from the selector.
+   R86 originally scoped to `.wrapper.fix-top`, believing `.fix-top` was
+   the dark bar's identity. It is not: SuiteDash adds `.fix-top` to
+   `.wrapper` only once the header goes sticky ON SCROLL. On first paint
+   it is absent, so the R86 rule matched nothing and the icon fell back to
+   black — owner-confirmed on a real iPhone (black on load, white after
+   scroll). `.fix-top` was a SCROLL STATE mistaken for a scope hook. The
+   selector was verified in the scrolled state only and shipped as if it
+   were unconditional. `.wrapper` alone is present in every state, so the
+   icon is light from first paint. The white-top-bar concern that
+   motivated `.fix-top` does not apply: VLP is dark-branded by design and
+   `body.lentax-vlp` already prevents this rule reaching any other portal.
+   Edited R86 in place (one element, one rule — a second rule here is the
+   nav-strip trap). */
+body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
   color: #e5e5e5 !important;
 }
