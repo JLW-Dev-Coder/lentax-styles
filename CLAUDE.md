@@ -58,6 +58,20 @@ Before making any change, read these in full:
 - `THEMES.md` — token mapping + the per-theme loader contract.
 - `lentax-base.css` (at minimum the sections you are touching) — the master stylesheet.
 
+### Agent skills — read before writing a selector
+
+Three skills in `.claude/skills/` carry the hard-won detail behind this repo. Read the relevant one before you touch a portal surface — the skills hold the specifics; this file just points at them:
+
+- `suitedash-portal-styling` — before writing ANY selector against a SuiteDash portal surface.
+- `lentax-styles-repo` — what each file does, what is live vs frozen, and how files reach the portals.
+- `suitedash-portal-qa` — before verifying a fix or writing a browser diagnostic.
+
+**The one rule, above all else:**
+
+> **Never write a selector against a SuiteDash surface you have not confirmed in a live browser.**
+
+Seven defects shipped in a single day (2026-07-11) from breaking it — each defensible from the repo, each wrong in the browser.
+
 ---
 
 ## JS Ports
