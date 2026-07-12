@@ -3656,6 +3656,29 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
   background-color: #ffffff !important;
 }
 
+/* --- R87 (2026-07-12, 86e29uzdq) Signature watermark-canvas transparency fix ---
+   REGRESSION introduced by R49.2 above (commit 1a2e222, 2026-06-24): that rule
+   ends in a bare `canvas`, so it paints EVERY <canvas> in .pad-wrapper white.
+   The signature pad stacks TWO canvases inside .pad-wrapper:
+     - canvas 0 (DOM index 0, position:static) — signature_pad binds here; the
+       BLACK drawn signature lives on this bottom canvas.
+     - canvas 1 (DOM index 1, position:absolute, the SECOND canvas) — carries
+       the "Sign Here" watermark and is stacked ON TOP.
+   Whitening the top canvas turned it into an OPAQUE white sheet that occluded
+   the signature on the canvas below, so the client's drawn signature rendered
+   invisible. signature_pad's own backgroundColor is transparent; the white was
+   entirely ours. Fix: restore transparency on the SECOND (watermark) canvas
+   only, so the ink on the canvas beneath shows through. The signing surface
+   stays white — R49.2 still applies to canvas 0, which keeps black ink visible
+   on white even though R69 darkens the surrounding pad container. The watermark
+   survives because it is drawn pixels, not a background. Nothing touches
+   position or z-index: :nth-of-type(2) only scopes the background, it does not
+   restack the canvases. Single-canvas pads are unaffected — :nth-of-type(2)
+   matches nothing there, so they keep R49.2's white surface. */
+.extended-form-wrapper.choice-step-styling-options .sd-signature-pad .pad-wrapper canvas:nth-of-type(2) {
+  background-color: transparent !important;
+}
+
 /* ============================================================
  * END ROUND 49
  * ============================================================ */
