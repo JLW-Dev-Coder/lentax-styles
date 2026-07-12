@@ -4038,7 +4038,14 @@ html:has(body.lentax-vlp:not(.sd-dark-mode)) {
    caps width at 1180px with 309px side margins, giving VLP pages a
    floating card look inside the dark canvas. This clears the frame
    and lets the row fill its container. Matches R29.1's specificity
-   pattern; !important is consistent with R29's convention. */
+   pattern; !important is consistent with R29's convention.
+
+   R29.3a (2026-07-11, ClickUp 86e29uzdq) — zero the dead TOP padding.
+   The base rule `.cbe-content .cbe-row-wrapper { padding:34px 34px 30px }`
+   (lentax-base.css:6011) sized 34px of top padding to sit INSIDE the bordered
+   card this rule removes. With the card gone, that 34px is dead vertical
+   weight pushing VLP content down. Zero padding-top only — the 34px L/R
+   gutters and 30px bottom still serve the now full-bleed row, so they stay. */
 body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
   border: none !important;
   box-shadow: none !important;
@@ -4047,6 +4054,24 @@ body.lentax-vlp:not(.sd-dark-mode) #client-page-view .cbe-row-wrapper {
   margin-left: 0 !important;
   margin-right: 0 !important;
   width: 100% !important;
+  padding-top: 0 !important;        /* R29.3a — dead card top-padding (86e29uzdq) */
+}
+
+/* R29.4 (2026-07-11, ClickUp 86e29uzdq) — zero the dead TOP padding on the
+   outer page frame. The base rule `.content-block-view-wrapper {
+   padding:32px 24px 56px }` (lentax-base.css:5996, unscoped, in the TM
+   Proposal block) leaks onto every VLP portal view. R29 already clears this
+   element's white background (L4003) but left its 32px top padding behind —
+   the same disease as the .cbe-row-wrapper card above: a TM-proposal rule
+   only half-undone on VLP. That 32px stacks on the (now-removed) 34px card
+   top for the ~66px of dead space reported above content on
+   /portal/dashboard/view/169330. Zero padding-top only; 24px L/R + 56px
+   bottom stay. Selector mirrors R29's L4003 clear exactly, so it matches the
+   same portal views and cascade tier (1,3,1 + !important beats the unscoped
+   base). VLP-scoped — the TM proposal page (the base rule's intended target)
+   is untouched. */
+body.lentax-vlp:not(.sd-dark-mode) #client-page-view .content-block-view-wrapper {
+  padding-top: 0 !important;
 }
 
 /* ============================================================
