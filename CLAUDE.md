@@ -41,7 +41,7 @@ Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app
 ├── _redirects                      # Netlify 200-rewrites — keep old root URLs alive (NEVER delete)
 ├── CLAUDE.md                       # This file — operating manual
 ├── index.html                      # Netlify site root — usually unused or minimal
-├── apps/tmp/scratch/               # Scratch directory (disposable; do not assume persistence)
+├── tmp/                            # Working dir — tracked (holds paste-source embed HTML + module screenshots)
 ├── .gitattributes
 └── .gitignore
 ```
@@ -64,7 +64,7 @@ URL, so **the loaders must never be repointed at the new `css/`/`js/` paths.**
 | `_redirects` | Netlify 200-rewrites mapping the old root URLs to the new `css/`/`js/`/`archive/` paths (added in R91). Keeps every portal's hardcoded `<script src>` and the loaders' absolute CSS fetches working after the file move. **NEVER delete** — removing it is a live outage on every portal. |
 | `index.html` | Netlify site root — usually unused or minimal. |
 | `archive/lentax-css-pre-migration.snapshot.css` | Historical reference from the Path Y migration. Do NOT delete. |
-| `apps/tmp/scratch/` | Disposable workspace. Anything here is temporary; do not assume persistence. |
+| `tmp/` | Working dir. Tracked (not gitignored) — holds paste-source embed HTML (e.g. `tmp/model-template-map.html`) and module reference screenshots, so contents persist. Not a disposable scratch dir despite the name. |
 
 ### Required reading at session start
 
@@ -263,6 +263,7 @@ A truncated paste is the #1 historical failure mode in this stack. Always verify
 ### Out-of-scope guardrails (always apply)
 
 - Do NOT modify Netlify build config (`netlify.toml`, env vars, build settings)
+- **Never delete or edit `_redirects` without understanding it.** It 200-rewrites the old root URLs (`/lentax-vlp.js`, `/lentax-base.css`, and the install loaders) to their new `js/` and `css/` homes. The SuiteDash Custom JS on every portal — **including portals that do not exist yet** — hardcodes the old root URLs, so removing a redirect line breaks every portal that references it. The loader must NEVER be repointed at the new paths; the old URLs are permanent by design. (See the R91 note and the `_redirects` row in the Key files table above.)
 - Do NOT add new external script/style references without explicit prompt approval
 - Do NOT touch the SuiteDash Custom CSS textarea or Custom JS field directly — JLW manages those
 - Do NOT delete snapshot files

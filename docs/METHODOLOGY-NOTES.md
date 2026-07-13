@@ -40,6 +40,6 @@ polish at Tier 1 unless a fundamentally new surface appears.
 
 ## Reference
 
-`dom-class-map.md` at repo root is the source of truth for per-class
+`dom-class-map.md` in `docs/` is the source of truth for per-class
 effects. Read it before drafting any prompt. Update it when a sprint
 adds, removes, or changes the visible effect of a class.
