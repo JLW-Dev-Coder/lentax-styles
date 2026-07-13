@@ -67,14 +67,14 @@ Three separate people patched symptoms of the same unscoped block without notici
 
 **This is the fact that breaks grep.**
 
-| Source | Reaches | How |
+| Source (repo path) | Reaches | How |
 |---|---|---|
-| `lentax-vlp.js` | Every VLP portal | A `<script src>` in SD Custom JS → Netlify. Preload-swaps `lentax-base.css` + `themes/vlp-default.css`, **and injects several `<style>` blocks at runtime** (R66, R69, R82) plus DOM-mutating IIFEs. |
-| `lentax-base.css` | All portals | Injected by the loader above. §1 = marketing site, §2 = SuiteDash. |
+| `js/lentax-vlp.js` | Every VLP portal | A `<script src>` in SD Custom JS → Netlify at the URL `/lentax-vlp.js` (a `_redirects` 200-rewrite serves it from `js/`). Preload-swaps `lentax-base.css` + `themes/vlp-default.css`, **and injects several `<style>` blocks at runtime** (R66, R69, R82) plus DOM-mutating IIFEs. |
+| `css/lentax-base.css` | All portals | Injected by the loader above (fetched at the URL `/lentax-base.css`). §1 = marketing site, §2 = SuiteDash. |
 | `themes/vlp-default.css` | VLP portals | Injected by the loader. Palette + portal/checkout/login overrides. |
 | `themes/tpp-*.css` | TPP install portals | Via `lentax-install-*.js` loaders. |
 
-**Some portal CSS lives inside a JS string.** The signature-field rules (R69/R83/R84) and the desktop chevron rules (R81/R82) are in `lentax-vlp.js`, not a stylesheet. **A grep of `*.css` will not find them.** Always grep `*.js` too.
+**Some portal CSS lives inside a JS string.** The signature-field rules (R69/R83/R84) and the desktop chevron rules (R81/R82) are in `js/lentax-vlp.js`, not a stylesheet. **A grep of `*.css` will not find them.** Always grep `*.js` too.
 
 **Top-bar chrome is split across two files** — desktop toggle in `lentax-vlp.js`, mobile toggle in `themes/vlp-default.css`. If you're fixing chrome, check both.
 
