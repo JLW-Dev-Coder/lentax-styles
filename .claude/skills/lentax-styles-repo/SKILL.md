@@ -7,23 +7,29 @@ description: Use when working in the lentax-styles repo — editing CSS or JS, m
 
 ## What ships where
 
-| File | Reaches | How |
+| File (repo path) | Reaches | How |
 |---|---|---|
-| `lentax-vlp.js` | Every VLP portal | A one-line `<script src>` in SuiteDash **Custom JS** points at the Netlify copy. Auto-deploys on push — **no SD re-paste needed.** |
-| `lentax-base.css` | All portals | Preload-swapped by the loader above. §1 = marketing site, §2 = SuiteDash. |
+| `js/lentax-vlp.js` | Every VLP portal | A one-line `<script src>` in SuiteDash **Custom JS** points at the Netlify URL `/lentax-vlp.js` (a `_redirects` 200-rewrite serves it from `js/`). Auto-deploys on push — **no SD re-paste needed.** |
+| `css/lentax-base.css` | All portals | Preload-swapped by the loader above, fetched at the URL `/lentax-base.css`. §1 = marketing site, §2 = SuiteDash. |
 | `themes/vlp-default.css` | VLP portals | Preload-swapped by the loader. Palette + portal/checkout/login overrides. |
 | `themes/tpp-*.css` | TPP install portals | Via `lentax-install-{default,coastal,sentinel}.js` |
 | `themes/lentax-install-sentinel-login.css` | `/site/login` | **Not injected.** Documentation only — manually pasted into SD admin Custom CSS. |
+| `_redirects` | Netlify edge | **200-rewrites that keep the old root URLs alive after R91 moved files into `css/`/`js/`/`archive/`.** `/lentax-base.css` → `/css/…`, `/lentax-vlp.js` → `/js/…`, etc. **Never delete it** — every portal's hardcoded `<script src>` depends on it. |
 | `tracking/posthog-init-vlp.js` | — | **Out of scope. Do not touch.** |
-| `lentax-css-pre-migration.snapshot.css` | — | **Frozen historical snapshot. Do not edit.** It duplicates hundreds of grep hits — exclude it from every search. |
+| `archive/lentax-css-pre-migration.snapshot.css` | — | **Frozen historical snapshot. Do not edit.** It duplicates hundreds of grep hits — exclude it from every search. |
 
-## Root files are live URLs
+## The live URLs are root URLs — and they are permanent
 
-Every file at the repo root is fetched **by path** from Netlify. `lentax-vlp.js` is hardcoded in SD Custom JS on every portal; the loader then fetches `lentax-base.css` and `themes/vlp-default.css` by path.
+**The repo paths moved in R91; the live URLs did not.** The files now live in `css/` and `js/`, but they are still fetched from Netlify at their old **root** URLs:
 
-**Moving a root file breaks every live portal** — app, trial, every TPP install, and every reseller portal that doesn't exist yet. Recovery is a manual SD Custom JS re-paste on each one.
+- `/lentax-vlp.js` is hardcoded in SD Custom JS on every portal.
+- That loader then fetches `/lentax-base.css` and `/themes/vlp-default.css` by absolute path.
 
-**If files must move, a Netlify `_redirects` file with 200-rewrites must land in the SAME COMMIT as the moves.** Never a commit apart.
+A `_redirects` file rewrites those root URLs to the new folders with 200s (`/lentax-base.css` → `/css/lentax-base.css`, `/lentax-vlp.js` → `/js/lentax-vlp.js`, and so on). The old URLs resolve **forever**, on every portal, including reseller portals that don't exist yet — with zero SD re-pastes.
+
+**This is exactly why the loader must never be "tidied" to point at the new paths.** Seeing the file at `css/lentax-base.css` in the repo, it is tempting to repoint the loader at the new `css/` folder. **Don't.** The SD Custom JS on every portal references the root URL; the loader builds an absolute URL from it and must keep fetching `/lentax-base.css`. Repointing the loader at the `css/`/`js/` path — or deleting `_redirects` — is a live outage on every portal, recovered only by a manual SD Custom JS re-paste on each one. **The move made this warning more important, not less.**
+
+**If files must move again, the `_redirects` update must land in the SAME COMMIT as the moves.** Never a commit apart. R91 did this correctly.
 
 `index.html` stays at root — it's the Netlify site root.
 

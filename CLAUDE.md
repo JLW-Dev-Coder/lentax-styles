@@ -2,7 +2,7 @@
 
 **Audience:** RC (Repo Claude, running in Claude Code inside VS Code), and any future AI agent operating on this repo.
 **Maintained by:** JLW
-**Last updated:** 2026-06-18
+**Last updated:** 2026-07-12
 
 This file is the operating manual for autonomous work in `lentax-styles`. Read it in full at the start of every session before making any changes. If a task prompt conflicts with this file, follow this file and flag the conflict in the report.
 
@@ -21,33 +21,49 @@ Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app
 
 ```
 /
-├── lentax-base.css                 # Master stylesheet — all products + themes inherit
-├── lentax-install-default.js       # TPP "install" per-theme loader (FOUC-preload IIFE)
-├── lentax-vlp.js                   # VLP per-theme loader (FOUC-preload IIFE)
+├── css/
+│   └── lentax-base.css             # Master stylesheet — all products + themes inherit
+├── js/
+│   ├── lentax-vlp.js               # VLP per-theme loader (FOUC-preload IIFE)
+│   ├── lentax-install-default.js   # TPP "install" per-theme loader (FOUC-preload IIFE)
+│   ├── lentax-install-coastal.js   # TPP Coastal loader variant
+│   ├── lentax-install-sentinel.js  # TPP Sentinel loader variant
+│   └── doc2-8879.js                # Ported behavior JS, one file per source doc
 ├── themes/
 │   ├── tpp-default.css             # TPP palette overrides
 │   └── vlp-default.css             # VLP palette overrides
-├── js/                             # Ported behavior JS, one file per source doc
-│   └── .gitkeep
-├── THEMES.md                       # Token mapping + loader contract
+├── docs/
+│   ├── THEMES.md                   # Token mapping + loader contract
+│   ├── METHODOLOGY-NOTES.md        # Working-method notes
+│   └── dom-class-map.md            # Live-DOM class → source map (can be stale — verify)
+├── archive/
+│   └── lentax-css-pre-migration.snapshot.css   # Historical snapshot (do not edit/delete)
+├── _redirects                      # Netlify 200-rewrites — keep old root URLs alive (NEVER delete)
 ├── CLAUDE.md                       # This file — operating manual
-├── index.html                      # Netlify root — usually unused or minimal
-├── lentax-css-pre-migration.snapshot.css   # Historical snapshot (do not edit/delete)
+├── index.html                      # Netlify site root — usually unused or minimal
 ├── apps/tmp/scratch/               # Scratch directory (disposable; do not assume persistence)
 ├── .gitattributes
 └── .gitignore
 ```
 
+**R91 moved the CSS/JS/snapshot/docs out of the repo root into `css/`, `js/`,
+`archive/`, and `docs/`. The live Netlify URLs did NOT move** — `_redirects`
+200-rewrites (`/lentax-base.css` → `/css/lentax-base.css`, `/lentax-vlp.js` →
+`/js/lentax-vlp.js`, etc.) keep the old root URLs resolving permanently. The
+SuiteDash Custom JS `<script src>` on every portal still points at the root
+URL, so **the loaders must never be repointed at the new `css/`/`js/` paths.**
+
 ### Key files
 
 | File | Purpose |
 |---|---|
-| `lentax-base.css` | Master stylesheet. All products and themes inherit from it. Sectioned internally (Section 1 = Site, Section 2 = SuiteDash with sub-sections). |
-| `lentax-install-default.js` | TPP "install" per-theme loader. FOUC-preload IIFE (`loadLentaxStyles`) that injects `lentax-base.css` + `themes/tpp-default.css` via the preload-swap pattern. Pasted into SuiteDash Custom JS on install portals. Also stamps `body.lentax-install-default` (R24). Coastal/Sentinel variants: `lentax-install-{coastal,sentinel}.js`. |
-| `lentax-vlp.js` | VLP per-theme loader. Same pattern as the install loader but injects `themes/vlp-default.css`; stamps `body.lentax-vlp` (R24). |
-| `themes/*.css` | Per-theme palette overrides (token re-bindings). Loaded SECOND so theme tokens win the cascade over base fallbacks. See `THEMES.md`. |
-| `index.html` | Netlify root — usually unused or minimal. |
-| `lentax-css-pre-migration.snapshot.css` | Historical reference from the Path Y migration. Do NOT delete. |
+| `css/lentax-base.css` | Master stylesheet. All products and themes inherit from it. Sectioned internally (Section 1 = Site, Section 2 = SuiteDash with sub-sections). Fetched by the loaders at the permanent URL `/lentax-base.css`. |
+| `js/lentax-install-default.js` | TPP "install" per-theme loader. FOUC-preload IIFE (`loadLentaxStyles`) that injects `lentax-base.css` + `themes/tpp-default.css` via the preload-swap pattern. Pasted into SuiteDash Custom JS on install portals. Also stamps `body.lentax-install-default` (R24). Coastal/Sentinel variants: `js/lentax-install-{coastal,sentinel}.js`. |
+| `js/lentax-vlp.js` | VLP per-theme loader. Same pattern as the install loader but injects `themes/vlp-default.css`; stamps `body.lentax-vlp` (R24). |
+| `themes/*.css` | Per-theme palette overrides (token re-bindings). Loaded SECOND so theme tokens win the cascade over base fallbacks. See `docs/THEMES.md`. |
+| `_redirects` | Netlify 200-rewrites mapping the old root URLs to the new `css/`/`js/`/`archive/` paths (added in R91). Keeps every portal's hardcoded `<script src>` and the loaders' absolute CSS fetches working after the file move. **NEVER delete** — removing it is a live outage on every portal. |
+| `index.html` | Netlify site root — usually unused or minimal. |
+| `archive/lentax-css-pre-migration.snapshot.css` | Historical reference from the Path Y migration. Do NOT delete. |
 | `apps/tmp/scratch/` | Disposable workspace. Anything here is temporary; do not assume persistence. |
 
 ### Required reading at session start
@@ -55,8 +71,8 @@ Files in this repo are deployed via Netlify to `precious-lily-bbe555.netlify.app
 Before making any change, read these in full:
 
 - `CLAUDE.md` (this file) — the operating manual.
-- `THEMES.md` — token mapping + the per-theme loader contract.
-- `lentax-base.css` (at minimum the sections you are touching) — the master stylesheet.
+- `docs/THEMES.md` — token mapping + the per-theme loader contract.
+- `css/lentax-base.css` (at minimum the sections you are touching) — the master stylesheet.
 
 ### Agent skills — read before writing a selector
 
@@ -77,8 +93,12 @@ Seven defects shipped in a single day (2026-07-11) from breaking it — each def
 ## JS Ports
 
 Ported behavior JS lives in `js/{name}.js`, one file per source doc.
-Per-theme loaders (`lentax-install-default.js`, `lentax-vlp.js`) stay
-at repo root — they are entry points, the JS analog of `lentax-base.css`.
+Per-theme loaders (`js/lentax-install-default.js`, `js/lentax-vlp.js`) live
+alongside it in `js/` — they are entry points, the JS analog of the master
+stylesheet. R91 moved the loaders here from the repo root; their live Netlify
+URLs are unchanged (`_redirects` rewrites the old root paths), so the SuiteDash
+`<script src>` on every portal keeps working untouched — do NOT repoint it at
+the `js/` path.
 
 Convention:
 - Filename matches the CU source doc (e.g., `js/doc2-8879.js` for
@@ -139,20 +159,20 @@ before the merge step:
 #    strip /* */ comments BEFORE scanning: the DocGen sub-sections legitimately
 #    mention <style>/</style> in documentation prose (e.g. "renders raw <style>
 #    source as visible text"), and those comment mentions are NOT defects.
-$base = [System.IO.File]::ReadAllText("$PWD\lentax-base.css", [System.Text.Encoding]::UTF8)
+$base = [System.IO.File]::ReadAllText("$PWD\css\lentax-base.css", [System.Text.Encoding]::UTF8)
 $code = [regex]::Replace($base, '/\*[\s\S]*?\*/', '')   # strip comments first
 $styleTags = ([regex]::Matches($code, '</?style>')).Count
 if ($styleTags -gt 0) { Write-Host "FAIL: real <style> tags in CSS" -ForegroundColor Red; exit 1 }
 
 # 2. Brace balance
-$content = Get-Content .\lentax-base.css -Raw
+$content = Get-Content .\css\lentax-base.css -Raw
 $open = ([regex]::Matches($content, '\{')).Count
 $close = ([regex]::Matches($content, '\}')).Count
 if ($open -ne $close) { Write-Host "FAIL: Brace mismatch ($open / $close)" -ForegroundColor Red; exit 1 }
 
 # 3. @import statements only at the very top of the file
-$firstNonImportLine = (Get-Content .\lentax-base.css | Select-String -Pattern "^\s*[^@/\s]" | Select-Object -First 1).LineNumber
-$lastImportLine = (Get-Content .\lentax-base.css | Select-String -Pattern "^@import" | Select-Object -Last 1).LineNumber
+$firstNonImportLine = (Get-Content .\css\lentax-base.css | Select-String -Pattern "^\s*[^@/\s]" | Select-Object -First 1).LineNumber
+$lastImportLine = (Get-Content .\css\lentax-base.css | Select-String -Pattern "^@import" | Select-Object -Last 1).LineNumber
 if ($lastImportLine -and $firstNonImportLine -and $lastImportLine -gt $firstNonImportLine) {
   Write-Host "FAIL: @import found after non-import rules" -ForegroundColor Red; exit 1
 }
@@ -164,7 +184,7 @@ $requiredHeaders = @(
   "SECTION 2 — SUITEDASH"
 )
 foreach ($h in $requiredHeaders) {
-  if (-not (Select-String -Path .\lentax-base.css -Pattern $h -SimpleMatch -Quiet)) {
+  if (-not (Select-String -Path .\css\lentax-base.css -Pattern $h -SimpleMatch -Quiet)) {
     Write-Host "FAIL: Missing required header: $h" -ForegroundColor Red; exit 1
   }
 }
@@ -173,7 +193,7 @@ foreach ($h in $requiredHeaders) {
 ### For the per-theme loaders (`lentax-*-default.js`)
 
 ```powershell
-foreach ($loader in @(".\lentax-install-default.js", ".\lentax-install-coastal.js", ".\lentax-install-sentinel.js", ".\lentax-vlp.js")) {
+foreach ($loader in @(".\js\lentax-install-default.js", ".\js\lentax-install-coastal.js", ".\js\lentax-install-sentinel.js", ".\js\lentax-vlp.js")) {
   # 1. Syntactic validity
   node --check $loader
   if ($LASTEXITCODE -ne 0) { Write-Host "FAIL: JS syntax error in $loader" -ForegroundColor Red; exit 1 }
@@ -289,3 +309,4 @@ When stopping: push the branch (don't merge), include "STOPPED" prominently in t
 |---|---|
 | 2026-06-16 | Initial creation. Locks direct-to-main policy. Codifies verification + deploy contract from FOUC and Path Y migrations. |
 | 2026-06-18 | JLW — CLAUDE.md refreshed to match current repo layout (`lentax-base.css` + per-theme loaders + `themes/`; no more `lentax.css` / `lentax.js`). Verification blocks retargeted to current filenames and the real `loadLentaxStyles` FOUC marker. Added `js/` directory + JS Ports convention. |
+| 2026-07-12 | R92 — refreshed the docs R91 invalidated. R91 moved the CSS/JS/snapshot/docs into `css/`, `js/`, `archive/`, `docs/` but forbade content edits, so the docs still cited the old root paths. Retargeted the layout tree, Key files table, required-reading list, JS Ports note, and verification-command paths to the new repo locations; added the `_redirects` row. **Live Netlify URLs are unchanged** — the loaders still fetch `/lentax-base.css` etc.; only repo paths moved. Skills `lentax-styles-repo` and `suitedash-portal-styling` updated in the same commit. Repays R90's rule: a stale doc is worse than none. |
