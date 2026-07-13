@@ -13679,6 +13679,40 @@ body:not(.sd-dark-mode) nav.navbar a.sd-nav-bar-add-button::after {
   line-height: 1 !important;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────
+   R94 — Portal upload block: Select File / Select Files button contrast
+
+   SuiteDash's own bundle paints .button-outline black — text and border —
+   on every file-upload block. On the near-black portal background both
+   Select buttons are effectively invisible.
+
+   NOT our regression: verified live by disabling lentax-base.css and
+   themes/vlp-default.css (individually and together) — the black persisted.
+   Origin is SuiteDash's CORS-blocked cloudfront bundle.
+
+   Scoped to .cbe-block-file-upload (the upload-block container) rather than
+   .button-outline, which is SuiteDash's generic outline-button class and
+   would repaint outline buttons portal-wide, including Get Support.
+
+   Confirmed live 2026-07-13 on /portal/dashboard/view/171078:
+   .cbe-block-file-upload button.button-outline → 2 matches
+   (Select File, Select Files). "Download All" carries no .button-outline
+   and is deliberately untouched.
+
+   Background left transparent — outline style is intentional.
+   ───────────────────────────────────────────────────────────────────────── */
+body.lentax-vlp .cbe-block-file-upload button.button.button-outline,
+body.lentax-vlp .cbe-block-file-upload button.button.button-outline:hover,
+body.lentax-vlp .cbe-block-file-upload button.button.button-outline:focus,
+body.lentax-vlp .cbe-block-file-upload button.button.button-outline:active {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.lentax-vlp .cbe-block-file-upload button.button.button-outline sd-tr {
+  color: #ffffff !important;
+}
+
 /* ─────────────────────────────────────────────────────────────────────
    2.15 — DASHBOARD PAGES (#dashboard-view)
    Source: ClickUp Stack_Dashboards_CSS_v1 (page 80djf-708277)
