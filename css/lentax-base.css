@@ -6944,6 +6944,14 @@ body.lentax-vlp #client-page-view .checklist-header > svg {
   margin-bottom: 0 !important;
 }
 
+/* R97: remove SuiteDash's white background on the checklist widget header;
+   blend into the dark card behind it (.card-body inherits the dark portal,
+   .checklist-card is transparent, .cbe-block-checklist is surface-dark).
+   VLP-scoped, all widths - no-op on desktop (already dark), fixes mobile. */
+body.lentax-vlp .checklist-live .checklist-header {
+  background: transparent !important;
+}
+
 /* ============================================================
    R58: Chevron lip-clipping fix
    Allow vertical overflow on .checklist-item-subtitle-wrap (CC's
