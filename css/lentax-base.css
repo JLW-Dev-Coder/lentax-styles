@@ -13713,6 +13713,18 @@ body.lentax-vlp .cbe-block-file-upload button.button.button-outline sd-tr {
   color: #ffffff !important;
 }
 
+/* R95 - global orange card frame on file upload/download blocks (VLP). Owner-confirmed on view/171078; generalized from page IDs to file-block classes.
+   !important: generalizing from the owner's per-block ID rule (1,0,0) down to
+   these class selectors (0,2,1) loses specificity vs SD's own block padding, so
+   each declaration is forced (matches the R94 neighbor + the repo-wide convention). */
+body.lentax-vlp .cbe-block-file-download,
+body.lentax-vlp .cbe-block-file-upload {
+  border: 2px solid #FF6A1A !important;
+  border-radius: 12px !important;
+  padding: 20px 15px !important;
+  margin-bottom: 24px !important;
+}
+
 /* ─────────────────────────────────────────────────────────────────────
    2.15 — DASHBOARD PAGES (#dashboard-view)
    Source: ClickUp Stack_Dashboards_CSS_v1 (page 80djf-708277)
