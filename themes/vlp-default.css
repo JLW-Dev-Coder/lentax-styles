@@ -506,8 +506,9 @@ body.lentax-vlp .vl-subhead {
   margin-bottom: 0 !important;
 }
 
-/* R99 - remove SuiteDash global h2 margin on checkout hero subheads; .ea-hero-copy subhead is a bare h2 (no .vl-subhead), so R98 doesn't reach it. VLP, cart + order heroes. */
-body.lentax-vlp .ea-hero-copy h2:last-of-type {
+/* R99v2 - checkout hero subhead: beat the embed's #ea-cart-root h2 margin (32px !important, single-ID) with an ID-scoped override. R99 class-only selector (0-3-2) could not win the cascade. Covers cart + order heroes. */
+body.lentax-vlp #ea-cart-root .ea-hero-copy h2:last-of-type,
+body.lentax-vlp #ea-order-root .ea-hero-copy h2:last-of-type {
   margin-bottom: 0 !important;
 }
 
