@@ -501,6 +501,11 @@ body .navbar .navbar-nav li.top-nav-link.create-new > a.sd-nav-bar-add-button {
   color: #1a1a1a !important;
 }
 
+/* R98 - neutralize SuiteDash global h2 margin on hero subheads; .vl-subhead is body copy styled as h2, not a heading. VLP-wide. */
+body.lentax-vlp .vl-subhead {
+  margin-bottom: 0 !important;
+}
+
 /* --- Divider --- */
 #client-page-view hr.vl-divider {
   border-color: #f97316 !important;
