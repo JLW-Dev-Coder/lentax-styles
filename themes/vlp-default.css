@@ -4430,6 +4430,8 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 
 /* =========================================================
    R100 - .vl-wp working-papers / product page pattern
+   R100v2 - card is a flex column; CTA bottom-aligned via auto
+   top margin; title reserves two lines above 540px.
    Surface: app.virtuallaunch.pro portal content pages
    Opt-in: every selector's leftmost compound is .vl-wp on the
    outer <section>. Inert on any page without that class.
@@ -4554,6 +4556,8 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 }
 
 .vl-wp .vl-wp-card {
+    display: flex !important;
+    flex-direction: column !important;
     height: 100% !important;
 
     margin: 0 !important;
@@ -4585,6 +4589,7 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 .vl-wp .vl-wp-card-title {
     margin: 0 0 12px 0 !important;
     padding: 0 !important;
+    min-height: 2.6em !important;
 
     color: #ff9a1f !important;
     -webkit-text-fill-color: #ff9a1f !important;
@@ -4600,7 +4605,7 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 }
 
 .vl-wp .vl-wp-card-desc {
-    margin: 0 !important;
+    margin: 0 0 18px 0 !important;
     padding: 0 !important;
 
     color: #b8b8b8 !important;
@@ -4623,8 +4628,9 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 .vl-wp .vl-wp-card-cta,
 .vl-wp a.vl-wp-card-link .vl-wp-card-cta {
     display: inline-block !important;
+    align-self: flex-start !important;
 
-    margin: 18px 0 0 0 !important;
+    margin: auto 0 0 0 !important;
     padding: 0 !important;
 
     color: #ff5a2c !important;
@@ -4671,6 +4677,21 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 
     .vl-wp .vl-wp-intro {
         font-size: 15px !important;
+    }
+}
+
+
+/* ---------- R100v2
+   Below 540px the auto-fit grid is single-column, so the reserved
+   two-line title height is dead space rather than alignment. The
+   CTA bottom-alignment stays on at every width - it costs nothing
+   when cards are not side by side.
+   ---------- */
+
+@media (max-width: 540px) {
+
+    .vl-wp .vl-wp-card-title {
+        min-height: 0 !important;
     }
 }
 
