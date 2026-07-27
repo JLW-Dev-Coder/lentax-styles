@@ -1208,3 +1208,90 @@ body.sidebar-dark .sidebar-toggle svg path {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectPortalChrome);
   [300, 800, 1600].forEach(function (d) { setTimeout(injectPortalChrome, d); });
 })();
+
+/* R104 — VLP Proposal, migrated from SuiteDash Proposal > Custom JS.
+   1) Scroll-reveal fade-in
+   2) Dark-area text colour fix that survives SuiteDash's injected inline
+      colours AND late-loaded sections. */
+
+/* ---------- 1) Scroll-reveal ---------- */
+(function () {
+  "use strict";
+  var roots = document.querySelectorAll(".vlp-proposal");
+  if (!roots.length) return;
+  roots.forEach(function (root) { root.classList.add("vlp-js"); });
+  var reduce = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var items = document.querySelectorAll(".vlp-proposal .vlp-reveal");
+  if (reduce || !("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("is-in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  items.forEach(function (el) { io.observe(el); });
+})();
+
+/* ---------- 2) Dark-area text colour fix ---------- */
+(function () {
+  "use strict";
+  var MAP = [
+    [".vlp-proposal .vlp-hero h1", "#FFFFFF"],
+    [".vlp-proposal .vlp-hero h1 .accent", "#F8A66A"],
+    [".vlp-proposal .vlp-hero .vlp-sub", "#B9BDC6"],
+    [".vlp-proposal .vlp-hero .vlp-eyebrow", "#F28B4E"],
+    [".vlp-proposal .vlp-hero .vlp-hero-meta", "#9AA0AA"],
+    [".vlp-proposal .vlp-hero .vlp-hero-meta strong", "#E4E7EC"],
+    [".vlp-proposal .vlp-hero .vlp-wordmark", "#F4F1EC"],
+    [".vlp-proposal .vlp-hero .vlp-wordmark .pro", "#F26A21"],
+    [".vlp-proposal .vlp-panel .vlp-panel-h", "#F8A66A"],
+    [".vlp-proposal .vlp-panel .vlp-check li", "#E6E4DF"],
+    [".vlp-proposal .vlp-panel .vlp-check li strong", "#FFFFFF"],
+    [".vlp-proposal .vlp-cta h3", "#FFFFFF"],
+    [".vlp-proposal .vlp-cta p", "#FFF1E7"],
+    [".vlp-proposal .vlp-cta .vlp-down", "#FFFFFF"]
+  ];
+  var observer = null;
+  var debounce = null;
+  function hasProposal() {
+    return !!document.querySelector(".vlp-proposal");
+  }
+  function paint() {
+    if (!hasProposal()) return;
+    if (observer) observer.disconnect();
+    MAP.forEach(function (pair) {
+      document.querySelectorAll(pair[0]).forEach(function (el) {
+        el.style.setProperty("color", pair[1], "important");
+        el.querySelectorAll("*").forEach(function (child) {
+          child.style.setProperty("color", pair[1], "important");
+        });
+      });
+    });
+    if (observer && document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["style", "class"]
+      });
+    }
+  }
+  if ("MutationObserver" in window) {
+    observer = new MutationObserver(function () {
+      clearTimeout(debounce);
+      debounce = setTimeout(paint, 80);
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", paint);
+  } else {
+    paint();
+  }
+  [200, 600, 1500, 3000].forEach(function (ms) { setTimeout(paint, ms); });
+})();
