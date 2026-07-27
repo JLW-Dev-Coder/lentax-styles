@@ -4921,3 +4921,17 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
         font-size: 26px !important;
     }
 }
+
+/* R102 — Proposal surface: release the row-wrapper width cap so proposal
+   columns use the available content width. Scoped via :has() to rows that
+   actually contain a VLP proposal — 2 matches, not the 18 that a bare
+   .cbe-row-wrapper rule would hit. The base 1180px cap and 34px padding are
+   left intact for every other content page; see R28.2-B and the audit in the
+   task thread for the unscoped-base question, which is a separate decision. */
+.cbe-row-wrapper:has(.vlp-proposal) {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
