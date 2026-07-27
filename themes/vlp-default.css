@@ -5154,3 +5154,73 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 .vlp-proposal .vlp-cta p,
 .vlp-proposal .vlp-cta p * { color: #FFF1E7 !important; }
 .vlp-proposal .vlp-cta .vlp-down { color: #FFFFFF !important; }
+
+/* ============================================================
+   R105 — Proposal layout: full-bleed hero, two-column body.
+   Supersedes R103's 760px cap (later source order, same
+   specificity — R103 is deliberately left unedited so this
+   block can be reverted on its own). Content width now comes
+   from the inner grid, so prose keeps a readable measure while
+   the hero and page fill the available width.
+   ============================================================ */
+
+.vlp-proposal {
+  max-width: none;
+  margin: 0 0 28px 0;
+}
+
+.vlp-hero h1 { max-width: 900px; }
+.vlp-hero .vlp-sub { max-width: 640px; }
+
+/* Opt-in two-column body. .vlp-body alone still renders single
+   column, so sections without an aside need no markup change. */
+.vlp-body.vlp-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+.vlp-main { min-width: 0; }
+.vlp-aside { min-width: 0; }
+
+.vlp-main > h2:first-child,
+.vlp-main > .vlp-intro:first-child { margin-top: 0; }
+
+.vlp-aside-card {
+  background: var(--vlp-paper);
+  border: 1px solid var(--vlp-border);
+  border-radius: 8px;
+  padding: 20px 22px;
+}
+.vlp-aside-h {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase;
+  color: var(--vlp-orange-ink); margin: 0 0 14px 0;
+}
+.vlp-steps { list-style: none; margin: 0; padding: 0; counter-reset: vlpstep; }
+.vlp-steps li {
+  font-size: 13.5px; color: #3A3F48; line-height: 1.5;
+  padding: 0 0 12px 26px; position: relative; counter-increment: vlpstep;
+}
+.vlp-steps li:last-child { padding-bottom: 0; }
+.vlp-steps li::before {
+  content: counter(vlpstep); position: absolute; left: 0; top: 0;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--vlp-orange); color: #FFFFFF;
+  font-size: 11px; font-weight: 700; line-height: 18px; text-align: center;
+}
+.vlp-aside-rule { height: 1px; background: var(--vlp-rule); margin: 18px 0; }
+.vlp-meta { margin: 0; }
+.vlp-meta dt {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--vlp-muted); margin: 0 0 3px 0;
+}
+.vlp-meta dd {
+  font-size: 13.5px; color: #2A2E36; margin: 0 0 12px 0; line-height: 1.45;
+}
+.vlp-meta dd:last-child { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .vlp-body.vlp-split { grid-template-columns: 1fr; gap: 28px; }
+  .vlp-hero h1 { max-width: none; }
+  .vlp-hero .vlp-sub { max-width: none; }
+}
