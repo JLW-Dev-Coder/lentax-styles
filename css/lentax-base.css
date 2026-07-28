@@ -6436,48 +6436,42 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
 }
 
 /*SD Primary Button*/
+/* R106 (2026-07-27): de-glow + un-stack. The neon-green halo, pulse animation
+   and column axis date to 31cbc50/224d8da (2025-08-22) and were authored for a
+   tall 360px CTA. The button renders at ~41px on a border-box height, so the
+   column axis pushed the 20px icon out of the top of the box. Row axis, real
+   min-height, neutral paint. Edited in place - this rule already owns the
+   element. Live count at time of change: 1 (Messaging panel header). */
 .btn.btn-primary.btn-block {
   align-items: center;
   background-color: var(--lentax-surface-dark-hover);
-  border: 1px solid var(--lentax-state-success);
+  border: 1px solid transparent;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 255, 0, 0.2);
-  color: var(--lentax-state-success);
+  color: var(--lentax-text-on-dark);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 1.2rem;
   font-weight: 700;
+  gap: 8px;
+  height: auto;
   justify-content: center;
+  line-height: 1;
   margin: 12px auto;
   max-width: 360px;
-  padding: 16px;
+  min-height: 44px;
+  padding: 10px 14px;
   text-align: center;
-  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease,
-              box-shadow 0.4s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+.btn.btn-primary.btn-block > svg {
+  flex: 0 0 auto;
+  margin: 0;
 }
 
 .btn.btn-primary.btn-block:hover {
   background-color: var(--lentax-surface-panel);
-  border-color: var(--lentax-state-success);
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4);
-  color: var(--lentax-state-success);
   transform: translateY(-2px);
-}
-
-.btn.btn-primary.btn-block {
-  animation: button-glow 2.5s infinite ease-in-out;
-}
-
-@keyframes button-glow {
-  0% {
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 35px rgba(0, 255, 0, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.2);
-  }
 }
 
 .btn.btn-link.btn-block {
