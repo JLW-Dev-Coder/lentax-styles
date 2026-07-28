@@ -505,6 +505,96 @@ The test is what the shadow is *for*, not what colour it is. A coloured drop sha
 
 Worked example — `.button-custom-setup` / `-v2` / `.item-btn-cta` carry `rgba(0, 0, 255, 0.2)`. That is a coloured **depth** shadow, not a blue ring on a blue button: **exempt, stays literal.** Applying §5.8 mechanically would have snapped it to `--lentax-state-info` and changed the shadow under three live buttons for no reason.
 
+### 5.9 Collapsed multi-value declarations (the R109 rule)
+
+**Tokenizing two or more distinct values in one declaration onto a single token destroys the effect the distinct values existed to produce.**
+
+A gradient, a shadow ramp, a `text-shadow` stack, a `border` shorthand — each carries several values *because* they differ. Replace them all with one `var()` and the declaration is still valid CSS. It still balances braces, still passes every check in `CLAUDE.md`, and now greps *cleaner* for raw literals than it did before. It just no longer does the thing it was written to do.
+
+**The rule: a declaration carrying multiple distinct values of one hue family is tokenized per-position, or not at all.**
+
+- **Per-position** means each position gets the token matching *its own* value — minting the token where none matches, per §5.8.
+- **Not at all** means the declaration stays literal in full and is logged.
+- What is never allowed is tokenizing every position to whichever single token is nearest and calling the declaration done. That is not tokenization; it is deletion with a `var()` on top.
+
+**Worked example — `.item-instructions-cta-aqua` (`css/lentax-base.css:2950`).**
+
+```css
+/* 696117a^ — a two-stop cyan sweep behind background-clip: text */
+background: linear-gradient(90deg, #00ffcc, #33ffee); /* bright-to-soft aqua gradient */
+
+/* today */
+background: linear-gradient(90deg, var(--lentax-state-success), var(--lentax-state-success));
+```
+
+Both stops mapped onto one token. The gradient is gone — a flat `#00b894` fill sitting behind `background-clip: text`. The trailing `/* bright-to-soft aqua gradient */` comment survived the edit and now describes something the declaration no longer does.
+
+`.item-instructions-highlight` (`:3002`) is the same failure with the evidence left even more plainly in place: its three original stops were annotated `/* magenta base */`, `/* lighter magenta */`, `/* deeper pink */`, and all three comments are still there, now pointing at three copies of `--lentax-tpp-crimson-primary`.
+
+**Why this class hid.** A collapse leaves no literal behind, so every check that looks for literals reports the file as *more* correct after the damage than before. It is only visible by diffing the declaration against its pre-tokenization value. That is why it went uncounted from `696117a` until the R109 sweep.
+
+#### 5.9.1 R109 sweep — full results
+
+Read-only sweep, 2026-07-27. Every declaration in `css/lentax-base.css` and `themes/vlp-default.css` referencing the same `var(--lentax-*)` token two or more times, compared against its counterpart in `696117a^:lentax.css`.
+
+| Scope | Count |
+|---|---|
+| Declarations repeating a `--lentax-*` token — `css/lentax-base.css` | 38 |
+| Declarations repeating a `--lentax-*` token — `themes/vlp-default.css` | 0 |
+| **Genuine collapses** (original carried ≥2 *distinct* values at positions now on one token) | **11** |
+| Legitimate repeats (original already repeated that value, or same `-rgb` token at differing alphas) | 27 |
+
+**The 11 collapses — all in `css/lentax-base.css`, all `background`, all introduced by `696117a`:**
+
+| # | Rule | Line | Original at `696117a^` | Collapsed onto | Effect |
+|---|---|---|---|---|---|
+| 1 | `.account-card-status-active` | 283 | `linear-gradient(90deg, #00b300, #00e65c)` | `--lentax-state-success` ×2 | Gradient destroyed — flat `#00b894` chip |
+| 2 | `.account-card-status-active:hover` | 293 | `linear-gradient(90deg, #00cc00, #00ff70)` | `--lentax-state-success` ×2 | Gradient destroyed; hover now identical to rest state |
+| 3 | `.button-custom-setup` | 899 | `linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255))` | `--lentax-state-info` ×2 | Gradient destroyed — flat `#1e88e5` button |
+| 4 | `.button-custom-setup-v2` | 947 | `linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255))` | `--lentax-state-info` ×2 | Gradient destroyed |
+| 5 | `.feature-name-v2` | 1323 | `linear-gradient(90deg, #f97316 0%, #ff8a3d 50%, #f97316 100%)` | `--lentax-vlp-orange-primary` ×3 | Gradient destroyed — mid sheen stop lost; behind `background-clip: text` |
+| 6 | `.gold-name-v2 h2` | 2121 | `linear-gradient(90deg, #FFD700, #FFA500, #FF8C00)` | `--lentax-vlp-orange-primary` ×2 (stops 2–3) | Degraded 3-stop → 2-stop; behind `background-clip: text` |
+| 7 | `.gold-name-v3 h2` | 2135 | `linear-gradient(90deg, #FFD700, #FFA500, #FF8C00)` | `--lentax-vlp-orange-primary` ×2 (stops 2–3) | As #6. Its `/* gold → orange → dark orange */` comment survives and is now wrong |
+| 8 | `.item-btn-cta` | 2478 | `linear-gradient(135deg, rgb(0, 0, 255), rgb(30, 144, 255))` | `--lentax-state-info` ×2 | Gradient destroyed |
+| 9 | `.item-instructions-cta-aqua` | 2950 | `linear-gradient(90deg, #00ffcc, #33ffee)` | `--lentax-state-success` ×2 | Gradient destroyed; behind `background-clip: text`. §5.9 worked example |
+| 10 | `.item-instructions-highlight` | 3002 | `linear-gradient(90deg, #ff00ff, #ff66ff, #ff00cc)` | `--lentax-tpp-crimson-primary` ×3 | Gradient destroyed; behind `background-clip: text` |
+| 11 | `.item-instructions-highlight:hover, :focus, .active` | 3019 | `linear-gradient(90deg, #ff33ff, #ff99ff, #ff00aa)` | `--lentax-tpp-crimson-primary` ×3 | Gradient destroyed; state now identical to rest state |
+
+**Answering the question that opened the sweep:** `.item-instructions-cta-aqua` and `.account-card-status-active:hover` are **not** the only two. They are 2 of 11.
+
+**The 27 legitimate repeats, for the record** — none is a defect, and none should be "fixed" by a later sweep:
+
+| Kind | Count | Example |
+|---|---|---|
+| Gradient whose original already repeated a stop (the `gold → X → gold` sheen pattern) | 11 | `.flow-cta-msg` (`:1696`) was `#FFD700, #FFA500, #FFD700` |
+| Flat-fill gradient — `linear-gradient(X, X)` used deliberately, usually the `padding-box` / `border-box` gradient-border trick | 6 | `.sd-flow .appointment-type__staff-avatar img` (`:10965`) was `linear-gradient(#FFFAF4, #FFFAF4)` |
+| Same `-rgb` token composed at differing alphas — values still distinct | 3 | `.sidebar-nav-six` (`:3956`), `0.14` and `0.04` |
+| Non-colour geometry tokens, unchanged since before `696117a` | 4 | `.porthole-bg` / `.porthole-hit` mask radii |
+| Rules authored **after** `696117a`, with the token from the start — no pre-image to collapse | 3 | `.proposal_content … .scroll-text-wrapper::after` (`:17175`, `:17209`, `:17230`) |
+
+**Sweep scope and its limits** — stated so the next pass knows what was *not* covered:
+
+- Widened to every `var(--*)` token, not just `--lentax-*`: 53 declarations repeat some token, 15 of them non-`--lentax-*`. All 15 are duration (`--vlpd-dur-*`), easing, radius (`--vlpd-radius-md`, `--tm-radius`), or deliberate flat fills (`--vlpd-page-bg` ×5 in `themes/vlp-default.css`, paired with a `background-size` boundary; `--tm-card` ×2). **No additional colour collapse.**
+- The sweep detects *one token repeated*. It would **not** catch two distinct originals mapped onto two *different* token names that resolve to the same value. Unmeasured.
+- Comparison was by selector + property against `696117a^`. Rules renamed since then would miss; only the three `.proposal_content` rules had no pre-image, and all three are genuine post-`696117a` additions.
+
+#### 5.9.2 Adjacent misassignments — same commit, different defect
+
+Not collapses (the positions still hold distinct values), but introduced by the same pass and recorded together so restoration is scoped once:
+
+| Rule | Line | Original at `696117a^` | Today |
+|---|---|---|---|
+| `.usa-flag-title` | 5467 | `repeating-linear-gradient(to bottom, #b22234 0 9px, #fff 9px 18px)` | `#b22234` → `var(--lentax-state-error)` (`#e53935`) |
+| `.item-instructions-cta-aqua:hover` | 2960 | `linear-gradient(90deg, #33ffee, #66ffdd)` | first stop → `var(--lentax-state-success)`; second still literal |
+
+Both are the Q8 mis-snaps, ruled in §6 Q8. **Note the casing:** the original `.usa-flag-title` value is lowercase `#b22234`. The uppercase `#B22234` cited in Q8 is `--vlpd-danger` (`:13806`) — a different, still-literal site.
+
+### 5.10 Tooling — hex searches in this repo are case-insensitive
+
+**Every hex search over this repo must use a case-insensitive match** (`git grep -i`, `Select-String` — which is case-insensitive by default — or `[regex]` with `(?i)`). This file mixes casing freely: `#FFD700` and `#f97316` sit in the same declaration.
+
+**The incident, recorded once so it is not repeated.** A case-sensitive grep for `#B22234` during the Q8 work reported the value absent from the live CSS. It is present — as `--vlpd-danger: #B22234` at `themes/…`/`css/lentax-base.css:13806`. A false negative on a "did this ship?" question reads as *nothing shipped, carry on*, which was the exact opposite of the truth. Case sensitivity is the difference between finding a live defect and certifying it away.
+
 ## 6. Open questions for Principal
 
 1. **Generic brand indirection layer?** Should `lentax.css` body reference TPP-specific tokens (`--lentax-tpp-crimson-primary`) directly, OR a generic indirection (`--lentax-brand-primary`) that each theme file maps to its product's actual color? Direct = simpler base CSS, theme files redeclare every brand token. Indirection = base CSS uses generic names, theme files map to product palette. Direct is what §4 above assumes.
@@ -565,6 +655,8 @@ Worked example — `.button-custom-setup` / `-v2` / `.item-btn-cta` carry `rgba(
    >
    > `.item-instructions-cta-aqua` is the worse of the two: both stops collapsed onto one token, so the **gradient itself is gone** — a two-stop cyan sweep is now a flat teal fill behind `background-clip: text`.
    >
+   > **Superseded in scope by R109.** That collapse is not a one-off. A full sweep found **11** collapsed declarations from this same commit — see §5.9 for the defect class and §5.9.1 for the complete list. This row is 1 of 11.
+   >
    > Unaffected: `--vlpd-danger: #B22234` (`:13806`) is a separate site and is still literal.
    >
    > **Restoration is NOT authorised by this commit.** Putting a flag red back on a live surface requires knowing where it renders first. Tracked in §6.1.
@@ -581,11 +673,18 @@ The file carries **83 raw `#f97316`** against **8** uses of `--lentax-vlp-orange
 **PARKED — not scheduled: dead token `--lentax-parchment-cream`.**
 Declared at `themes/vlp-default.css:3093` and `:3271` as `#1f1f1f !important`. The name is missing the `-vlp-` infix — the real token is `--lentax-vlp-parchment-cream` (§3.4). It is defined nowhere else and consumed nowhere. Delete **opportunistically**, when something else touches that file. (Verified 2026-07-27.)
 
-**PARKED — needs a browser before it is touched: the Q8 mis-snaps are live.**
-`.usa-flag-title` renders its stripes `#e53935` instead of Old Glory Red, and `.item-instructions-cta-aqua` has lost its gradient entirely (both stops on one token). Reverting either is a rendered change on a live surface, and **nobody has yet confirmed where these two rules render.** Locate the surfaces first, then fix. Do not restore blind — that is how R106 happened. Full detail under Q8 in §6.
+**PARKED — BLOCKED ON PRINCIPAL REVIEW: restoring the 11 collapsed gradients.**
+The R109 sweep (§5.9.1) found **11** collapsed declarations, not the 2 that were known. A restoration was drafted as R110 and **did not ship**: the authorising prompt set a threshold of 8, above which the work needs Principal review before it lands rather than riding inside a hygiene commit. At 11 the gate closed and the sequence stopped after this documentation commit.
+
+What is true today: **all 11 render wrong on live portals**, and have since `696117a`. Every original value is recoverable exactly — `696117a` was a pure-add commit, so `696117a^:lentax.css` holds the pre-tokenization declaration for all 11, and restoration is a revert, not a redesign. Two things are still unknown and are what the review is for: **which surfaces these rules render on** (unconfirmed for every one of the 11 — restoring blind is how R106 happened), and whether the restored values should go back as literals or as per-position tokens under §5.9. Supersedes the narrower Q8 parking note; the two Q8 mis-snaps in §5.9.2 travel with this item.
+
+**PARKED — not scheduled: stray `but` token at `css/lentax-base.css:293`.**
+`.account-card-status-active:hover` reads `background: linear-gradient(…);but` — a stray `but` after the semicolon. The browser discards it as an unknown declaration; the rule's `background` still applies. **It predates tokenization** — the same `;but` is present at `696117a^:lentax.css:72`, so it is original damage, not a `696117a` regression. Harmless in render, one character of noise in the file. Fold into whatever commit next touches that rule — which will be the §5.9.1 restoration, since collapse #2 is this same declaration.
 
 **PARKED — not scheduled: `.blog-flag` has an invalid gradient.**
-`css/lentax-base.css:646` declares `linear-gradient(to right, dark base, orange-gold)`. Neither stop is a colour, so the browser drops the whole declaration and the element renders with no gradient background. Found incidentally during the Q4 confirmation grep. Almost certainly an un-substituted placeholder from a template. Needs a design decision on what the gradient was meant to be — not a mechanical fix.
+`css/lentax-base.css:646` declares `linear-gradient(to right, dark base, orange-gold)`. Neither stop is a colour, so the browser drops the whole declaration and the element renders with no gradient background. Found incidentally during the Q4 confirmation grep. Almost certainly an un-substituted placeholder from a template.
+
+**Confirmed unrecoverable by revert (R109).** The original at `696117a^:lentax.css:425` is byte-identical prose — `linear-gradient(to right, dark base, orange-gold)`. The placeholder was never substituted, so there is no correct earlier value to restore and no value may be invented. Needs a design decision on what the gradient was meant to be — not a mechanical fix.
 
 ## 7. Audit summary
 
