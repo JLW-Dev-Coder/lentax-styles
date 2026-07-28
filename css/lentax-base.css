@@ -6474,6 +6474,9 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   transform: translateY(-2px);
 }
 
+/* R107 (2026-07-27): same column-axis stack overflow as R106, in the
+   destructive twin - layout half only, its red palette is intentional and it
+   never carried a glow. Live count at time of change: 0. */
 .btn.btn-link.btn-block {
   align-items: center;
   background: rgba(255, 0, 0, 0.08);
@@ -6481,15 +6484,24 @@ html body .proposal_content .proposal-content-wrapper .styling-options-content .
   border-radius: 8px;
   color: var(--lentax-state-error-strong);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 1rem;
   font-weight: 600;
+  gap: 8px;
+  height: auto;
   justify-content: center;
+  line-height: 1;
   margin: 12px auto;
   max-width: 360px;
-  padding: 12px 16px;
+  min-height: 44px;
+  padding: 10px 14px;
   text-align: center;
   transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+.btn.btn-link.btn-block > svg {
+  flex: 0 0 auto;
+  margin: 0;
 }
 
 .btn.btn-link.btn-block:hover {
