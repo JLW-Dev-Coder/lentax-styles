@@ -186,9 +186,9 @@
 
 | Original | Snapped to | Justification |
 |---|---|---|
-| `#FFB733` | `--lentax-vlp-gold-amber` | Amber-orange, snap to amber (judgment call — see report) |
+| `#FFBB33` | `--lentax-vlp-gold-amber` | Amber-orange, snap to amber (judgment call — see report) |
 | `#FFFF33` | `--lentax-vlp-gold-yellow` | Bright yellow, snap |
-| `rgb(255, 187, 51)` | `--lentax-vlp-gold-amber` | Amber, snap (= `#FFB733`) |
+| `rgb(255, 187, 51)` | `--lentax-vlp-gold-amber` | Amber, snap (= `#FFBB33`) |
 | `rgb(255, 235, 59)` | `--lentax-vlp-gold-yellow` | Yellow, snap |
 | `rgb(255, 255, 0)` | `--lentax-vlp-gold-yellow` | Pure yellow, snap |
 
@@ -241,6 +241,12 @@
 | `--lentax-state-info-apple` | `#007AFF` | iOS system blue |
 | `--lentax-state-info-light` | `#dbeafe` | Blue-100 info surface |
 | `--lentax-state-info-light-2` | `#93c5fd` | Blue-300 |
+
+> **RULED (2026-07-27) — role, not hue.** Recorded as a general principle, because this recurs whenever a state colour lands near a brand family.
+>
+> **Semantic-state tokens are classified by role, never by hue proximity to a brand family.** A warning that happens to be amber is still a warning.
+>
+> Concretely: `--lentax-state-warning` (`#fbbf24`) stays in this section and does **not** move into the §3.5 gold family, however gold it looks. Moving it would mean a reseller re-skinning gold silently changes warning semantics on every portal. The converse holds too — a brand value does not become a state token because it sits near one on the colour wheel (see Q8 in §6).
 
 **Snapped values:**
 
@@ -452,7 +458,9 @@ All alpha variants of `rgba(0, 0, 0, *)`. Shadows are tuning per-rule, not themi
 
 ### 5.3 Decorative gradients
 
-The audit regex captured only `#hex` and `rgba()`/`rgb()` tokens, so no multi-stop gradient appears as a standalone audit value. The one declared gradient (`--lentax-accent-purple-badge`, §3.6) is already tokenized. No additional literal gradients to list. Principal: confirm no inline gradients need a literal carve-out during the sweep.
+The audit regex captured only `#hex` and `rgba()`/`rgb()` tokens, so no multi-stop gradient appears as a standalone audit value. The one declared gradient (`--lentax-accent-purple-badge`, §3.6) is already tokenized. No additional literal gradients to list.
+
+**RULED (2026-07-27) — no carve-out. Gradient stops are governed by §5.3 plus §5.8, and need no separate list.** A gradient stop is an ordinary colour value: it takes the same path as any other. See Q4 in §6 for the confirmation grep and the known gap it exposed.
 
 ### 5.4 Pure neutrals
 
@@ -486,6 +494,17 @@ Where a literal has no matching token, the resolution is to **mint the token** �
 
 **Consequence for the lists above.** §5 is a list of *values*, not of *rules*. A value that legitimately appears on any list in this section may still be wrong **in place** — check the block it sits in, not just the value.
 
+#### 5.8.1 `box-shadow` — glow/ring vs. depth shadow
+
+**RULED (2026-07-27).** §5.8 as written treats every `box-shadow` in a rule the same way, and that over-fires. A first pass under the rule flagged three violations; one of them was not one. The distinction:
+
+- A `box-shadow` acting as a **glow or ring** — reading as part of the element's own edge — is **in-family** and must match its tokens. R106's halo and a `0 0 0 1px` focus ring both qualify. If the fill is tokenized, the glow must be too; mint the token if none matches.
+- A `box-shadow` acting as **depth or drop shadow** is per-rule tuning, **exempt** under §5.2, and does not need to match the element's fill. Its job is to sit *behind* the element, not to be read as part of it.
+
+The test is what the shadow is *for*, not what colour it is. A coloured drop shadow is still a drop shadow.
+
+Worked example — `.button-custom-setup` / `-v2` / `.item-btn-cta` carry `rgba(0, 0, 255, 0.2)`. That is a coloured **depth** shadow, not a blue ring on a blue button: **exempt, stays literal.** Applying §5.8 mechanically would have snapped it to `--lentax-state-info` and changed the shadow under three live buttons for no reason.
+
 ## 6. Open questions for Principal
 
 1. **Generic brand indirection layer?** Should `lentax.css` body reference TPP-specific tokens (`--lentax-tpp-crimson-primary`) directly, OR a generic indirection (`--lentax-brand-primary`) that each theme file maps to its product's actual color? Direct = simpler base CSS, theme files redeclare every brand token. Indirection = base CSS uses generic names, theme files map to product palette. Direct is what §4 above assumes.
@@ -500,23 +519,73 @@ Where a literal has no matching token, the resolution is to **mint the token** �
 
    `#FF6A1A` and `#ea7517` are drift, not intent. They snap to `--lentax-vlp-orange-primary` **when a commit next touches those rules**. They are **not** swept proactively.
 3. **VLP bronze vs. VLP gold:** are these one family or two? The audit shows both `#cd7f32`/`#b87333` (bronze) and `#FFD700`/`#e0b54c` (gold) — visually distinct, kept as separate token families (§3.4 and §3.5).
+
+   **RULED (2026-07-27) — two families, confirmed. §3.4 and §3.5 stand as written.** Bronze (`#cd7f32`, `#b87333`) and gold (`#FFD700`, `#e0b54c`) are not near-misses of one another; they are distinct hues serving distinct roles. Merging them would force one family to snap and change rendered colour across every portal to buy nothing.
+
 4. **Decorative gradient list:** §5.3 found no standalone gradient values in the audit (regex captured only hex/rgba). Confirm no inline gradients need a literal carve-out.
+
+   **RULED (2026-07-27) — no carve-out.** Gradient stops are governed by existing §5.3 plus §5.8. No separate list is minted. A gradient stop is an ordinary colour value and takes the ordinary path.
+
+   **Known gap, recorded not actioned.** The premise was checked before closing: 283 matching lines across `css/lentax-base.css`, `themes/vlp-default.css`, and `themes/tpp-default.css` (a few carry two gradients; several multi-line gradients match only on their opening line). Gradient stops *do* carry values the hex/rgba audit regex would have missed. This is a gap in the **audit's coverage**, not a defect in the rule, and it does **not** open a new classification pass:
+
+   - **Named colours.** `.porthole-backdrop` (`midnightblue`, `navy`, `black`) and `.video-cta` (`orange`, `darkorange`). `.video-cta` is the one worth knowing about — `orange`/`darkorange` are brand-adjacent, so a future orange sweep will not find them by hex.
+   - **`transparent` as a colour stop.** Widespread (fade-out rules, mask gradients). Literal per §5.4; no action.
+   - **Three-digit hex** (`#fff`, `#000`, `#bbb`, `#777`, `#444`) and **`rgb()`-form** stops (e.g. `rgb(250, 247, 247)`, `rgb(255, 235, 59)`) — inside gradients, below the regex's resolution.
+   - **Unspaced `rgba`** — `rgba(255,255,255,.18)` (one site, `.tm-*` progress stripe).
+   - **`currentColor`** appears nowhere in any gradient. Confirmed clean.
+
+   **Separate defect found while checking, logged not fixed:** `.blog-flag` (`css/lentax-base.css:646`) declares `linear-gradient(to right, dark base, orange-gold)`. `dark base` and `orange-gold` are not colours — the declaration is invalid and the browser drops it, so the element has no gradient background at all. It reads like an un-substituted placeholder. **Not authorised by this commit;** see §6.1.
 5. **Orange/gold glow alpha sets (NEW):** §3.2 and §3.5 list ~37 glow `rgba()` values whose triplets do NOT match the canonical brand RGB (e.g. `rgba(255, 120, 0, *)`, `rgba(255, 200, 0, *)`). Per §8 decision criteria these are NOT silently rounded. Principal: collapse each into a small named glow token, or leave literal?
 
    **RULED (2026-07-27) — closed by the alpha-variant ruling in §3.5 / §3.7.** No named glow-token set is minted up front. Each glow value takes the general path: exact triplet match → `rgba(var(--token-rgb), α)`; no match → literal, **unless** the block it sits in violates §5.8, in which case mint the token. The amber focus ring `rgba(255, 187, 51, 0.6)` is the one value in these sets carrying an individual ruling (§3.5).
 6. **Navy alpha surfaces (NEW):** §3.3 lists ~22 deep blue-black `rgba()` surface tints with many distinct triplets. Consolidate into a small `--lentax-vlp-navy-*-rgb` set, or leave literal as per-surface tuning?
+
+   **RULED (2026-07-27) — closed by the §3.7 alpha-variant ruling.** Same disposition as Q5. **No `--lentax-vlp-navy-*-rgb` set is minted up front.** Each value takes the general path: exact triplet match → `rgba(var(--token-rgb), α)`; no match → stays literal, **unless** its block violates §5.8, in which case mint the token rather than leave the block mixed.
+
 7. **Warning vs. gold overlap (NEW):** `#fbbf24` is mapped to `--lentax-state-warning` (§3.7) but is visually amber and could read as gold. Confirm it stays a semantic-state token, not a gold-family token.
+
+   **RULED (2026-07-27) — stays `--lentax-state-warning`.** It does not move into the gold family. The general principle this rests on is recorded in §3.7 (*role, not hue*), because it will come up again: **semantic-state tokens are classified by role, never by hue proximity to a brand family.** A warning that happens to be amber is still a warning. Moving `#fbbf24` into gold would mean a reseller re-skinning gold silently changes warning semantics on every portal.
+
 8. **`#b22234`, `#33ffee` classification (NEW):** flag-red `#b22234` snapped to error; cyan-green `#33ffee` snapped to success. Both are borderline — confirm or reassign (could be stragglers).
+
+   **RULED (2026-07-27) — both reassigned. Neither is a state colour.** Both snaps were wrong.
+
+   - **`#b22234` is Old Glory Red** — the US flag red. It is a deliberate value, not drift. It is 67 away from `--lentax-state-error-strong` and it is **not** an error colour. **Reclassified as a straggler; belongs literal.**
+   - **`#33ffee` is cyan**, `(51, 255, 238)` — **125** away from `--lentax-state-success` `#00b894`. Calling it success green is the R106 mistake in miniature. **Reclassified into the §5.1 cyan/teal straggler group** alongside `#00cec9`; belongs literal.
+
+   The two "snapped to" rows in the §3.7 table are retained above so the misclassification stays visible in the record; this ruling overrides them.
+
+   > **These snaps shipped. Both are live and mis-rendering today.** Determined 2026-07-27; both were replaced in `696117a` (*"feat(lentax): tokenize base + tpp-default + vlp-default per THEMES.md"*) and neither literal survives in the live CSS.
+   >
+   > | Surface | Rule | Was | Renders now |
+   > |---|---|---|---|
+   > | US flag title | `.usa-flag-title` (`css/lentax-base.css:5467`) | `#b22234` stripe | `var(--lentax-state-error)` = `#e53935` |
+   > | Aqua CTA text | `.item-instructions-cta-aqua` (`:2950`) | `#00ffcc → #33ffee` | `var(--lentax-state-success)` twice = flat `#00b894` |
+   > | Aqua CTA hover | `.item-instructions-cta-aqua:hover` (`:2960`) | `#33ffee → #66ffdd` | `var(--lentax-state-success) → #66ffdd` |
+   >
+   > `.item-instructions-cta-aqua` is the worse of the two: both stops collapsed onto one token, so the **gradient itself is gone** — a two-stop cyan sweep is now a flat teal fill behind `background-clip: text`.
+   >
+   > Unaffected: `--vlpd-danger: #B22234` (`:13806`) is a separate site and is still literal.
+   >
+   > **Restoration is NOT authorised by this commit.** Putting a flag red back on a live surface requires knowing where it renders first. Tracked in §6.1.
+
+   **Note on the audit's reach.** These were missed on the first pass because the live declarations are uppercase (`#B22234`) and the searches were case-sensitive. Search hex case-insensitively.
 
 ### 6.1 Parked — not scheduled
 
-Known debt, logged so it is not rediscovered. **Neither item is authorised work**, and neither is a reason to open a commit on its own.
+Known debt, logged so it is not rediscovered. **No item here is authorised work**, and none is a reason to open a commit on its own.
 
 **PARKED — not scheduled: raw `#f97316` in `themes/vlp-default.css`.**
 The file carries **83 raw `#f97316`** against **8** uses of `--lentax-vlp-orange-primary` — the token that same file defines. All of it is post-`696117a` drift. A theme file full of hard-coded brand hex defeats the theme system for resellers: re-skinning is supposed to be a `:root` edit, and 83 literals do not move. Fixing it is a **separate, deliberate task**, and must use `--lentax-vlp-orange-primary`. (Counts verified against the file 2026-07-27.)
 
 **PARKED — not scheduled: dead token `--lentax-parchment-cream`.**
 Declared at `themes/vlp-default.css:3093` and `:3271` as `#1f1f1f !important`. The name is missing the `-vlp-` infix — the real token is `--lentax-vlp-parchment-cream` (§3.4). It is defined nowhere else and consumed nowhere. Delete **opportunistically**, when something else touches that file. (Verified 2026-07-27.)
+
+**PARKED — needs a browser before it is touched: the Q8 mis-snaps are live.**
+`.usa-flag-title` renders its stripes `#e53935` instead of Old Glory Red, and `.item-instructions-cta-aqua` has lost its gradient entirely (both stops on one token). Reverting either is a rendered change on a live surface, and **nobody has yet confirmed where these two rules render.** Locate the surfaces first, then fix. Do not restore blind — that is how R106 happened. Full detail under Q8 in §6.
+
+**PARKED — not scheduled: `.blog-flag` has an invalid gradient.**
+`css/lentax-base.css:646` declares `linear-gradient(to right, dark base, orange-gold)`. Neither stop is a colour, so the browser drops the whole declaration and the element renders with no gradient background. Found incidentally during the Q4 confirmation grep. Almost certainly an un-substituted placeholder from a template. Needs a design decision on what the gradient was meant to be — not a mechanical fix.
 
 ## 7. Audit summary
 
