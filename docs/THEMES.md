@@ -78,7 +78,7 @@
 | `--lentax-vlp-orange-burnt` | `#C25A0E` | Burnt-orange accent |
 | `--lentax-vlp-orange-amber` | `#E67300` | Dark amber-orange (also `rgb(230, 115, 0)`) |
 | `--lentax-vlp-orange-light` | `#FFF4E5` | Lightest orange tint surface |
-| `--lentax-vlp-orange-pantone` | `#F47B20` | **DISTINCT** — kept separate (see §6 open Q #2); 9 alpha variants |
+| `--lentax-vlp-orange-pantone` | `#F47B20` | **DISTINCT — Pantone print match. Do not sweep into primary.** RULED 2026-07-27, see §6 Q2; 9 alpha variants |
 | `--lentax-vlp-orange-pantone-rgb` | `244, 123, 32` | For alpha composition (matches `#F47B20`) |
 
 **Snapped values:**
@@ -175,6 +175,7 @@
 | `--lentax-vlp-gold-antique` | `#c9a958` | Antique gold |
 | `--lentax-vlp-gold-tan` | `#E8C088` | Light tan-gold |
 | `--lentax-vlp-gold-amber` | `#ffb300` | Amber-600 |
+| `--lentax-vlp-gold-amber-rgb` | `255, 179, 0` | For alpha composition (matches `#ffb300`). **Not yet declared** — minted with the focus-ring snap ruled below |
 | `--lentax-vlp-gold-amber-deep` | `#854d0e` | Deep amber-brown (amber-800) |
 | `--lentax-vlp-gold-yellow` | `#facc15` | Yellow-400 |
 | `--lentax-vlp-gold-yellow-bright` | `#fde047` | Yellow-300 |
@@ -194,6 +195,14 @@
 **Gold/amber glow alpha variants** (decorative glows; Principal: collapse to `--lentax-vlp-gold-primary-rgb` or keep literal):
 
 `rgba(255, 215, 0, 0.1)`, `rgba(255, 215, 0, 0.15)`, `rgba(255, 215, 0, 0.25)`, `rgba(255, 215, 0, 0.3)`, `rgba(255, 215, 0, 0.95)`, `rgba(255, 215, 0, 1)`, `rgba(255, 179, 0, 0.6)`, `rgba(255, 180, 0, 0.7)`, `rgba(255, 187, 51, 0.6)`, `rgba(255, 200, 0, 0.4)`, `rgba(255, 200, 0, 0.8)`, `rgba(255, 200, 50, 0.3)`, `rgba(255, 220, 0, 0.4)`, `rgba(255, 220, 80, 0.5)`, `rgba(230, 184, 0, 0.9)`, `rgba(255, 239, 120, 1)`, `rgba(255, 240, 100, 0.5)`, `rgba(255, 255, 120, 0.6)`
+
+> **RULED (2026-07-27) — alpha-variant tokenization.** Governs this list and §3.7's. Leans on the mixed-family rule in §5.8.
+>
+> - Alpha literal whose RGB **exactly matches** a token → rewrite as `rgba(var(--token-rgb), α)`; mint the `-rgb` companion where missing. In this list that is the `rgba(255, 215, 0, *)` steps → `rgba(var(--lentax-vlp-gold-primary-rgb), α)`.
+> - Alpha literal with **no** token match (`rgba(255, 200, 0, *)`, `rgba(255, 220, 80, 0.5)`, `rgba(230, 184, 0, 0.9)`, and the rest) → **stays literal**, unless it sits in a rule block that violates §5.8, in which case mint the token rather than leave the block mixed.
+> - Purely decorative alpha (black shadows, white highlights) stays literal per §5.2 and §5.7. No change.
+>
+> **Amber focus ring — `rgba(255, 187, 51, 0.6)`.** A *near* match to `--lentax-vlp-gold-amber` (`#ffb300` = `255, 179, 0`), not an exact one — but it is meant to read as one element with the `#ffb300` border it sits beside, so it snaps to the token: `rgba(var(--lentax-vlp-gold-amber-rgb), 0.6)`, with `--lentax-vlp-gold-amber-rgb: 255, 179, 0` minted. **Fold into the next commit that touches that rule — not its own commit.** This is a ruling, not a sweep authorisation.
 
 ### 3.6 Accent purple (cross-product)
 
@@ -268,6 +277,14 @@
 - success/green: `rgba(40, 167, 69, 0.92)`, `rgba(0, 255, 0, 0.2)`, `rgba(0, 255, 0, 0.3)`, `rgba(0, 255, 0, 0.4)`, `rgba(0, 255, 0, 0.5)`, `rgba(0, 255, 0, 0.6)`, `rgba(0, 255, 0, 0.8)`, `rgba(0, 255, 127, 0.15)`, `rgba(0, 255, 127, 0.3)`, `rgba(0, 255, 127, 0.5)`
 - error/red: `rgba(220, 53, 69, 0.92)`, `rgba(255, 0, 0, 0.08)`, `rgba(255, 0, 0, 0.15)`, `rgba(255, 0, 0, 0.3)`, `rgba(255, 0, 0, 0.5)`, `rgba(255, 0, 0, 0.6)`
 - info/blue: `rgba(0, 0, 255, 0.2)`, `rgba(0, 0, 255, 0.3)`, `rgba(0, 0, 255, 0.5)`, `rgba(0, 0, 255, 0.6)`
+
+> **RULED (2026-07-27) — alpha-variant tokenization.** Same ruling as §3.5, recorded here in full so neither section has to be read through the other. Leans on the mixed-family rule in §5.8.
+>
+> - Alpha literal whose RGB **exactly matches** a token → rewrite as `rgba(var(--token-rgb), α)`; mint the `-rgb` companion where missing.
+> - Alpha literal with **no** token match → **stays literal**, unless it sits in a rule block that violates §5.8, in which case mint the token rather than leave the block mixed. Every triplet in the three lists above falls in this class — none of them is `0, 184, 148` (`--lentax-state-success`), `229, 57, 53` (`--lentax-state-error`), or `30, 136, 229` (`--lentax-state-info`).
+> - Purely decorative alpha (black shadows, white highlights) stays literal per §5.2 and §5.7. No change.
+>
+> **Why this list is the dangerous one.** The `rgba(0, 255, 0, *)` steps are the R106 family: pure-green glow layers with no token match, sitting in blocks whose `color` and `border` had already been tokenized to `--lentax-state-success` (`#00b894`). "No token match → stays literal" is correct in isolation and wrong there — §5.8 is what overrides it. Deferring these values in `696117a` was the right call. Leaving the deferral unresolved for fourteen months is what turned it into a visible defect.
 
 ### 3.8 Canonical dark surfaces
 
@@ -457,16 +474,49 @@ The `rgba(255, 255, 255, *)` steps NOT promoted to a §3.9 token are per-rule de
 
 > Note: the seven values promoted in §3.9 (`0.90`, `0.62`, `0.4`/`0.40`, `0.10`, `0.05`, `0.2`/`0.20`) appear in this list too; the §3.9 rows take precedence for those specific steps. All others stay literal.
 
+### 5.8 Mixed-family rule blocks (the R106 rule)
+
+**Within a single rule block, a colour family is either fully tokenized or fully literal. Never mixed.** If any property in a rule uses `var(--lentax-*)`, no sibling property in that rule may use a raw literal of the same hue family.
+
+This is the rule R106 violated: `color` and `border` tokenized to `#00b894`, five `box-shadow` layers left at `#00ff00` — two greens on one button, for fourteen months.
+
+Where a literal has no matching token, the resolution is to **mint the token** — not to leave the block mixed. "Not tokenizable" is a property of a *value*; "mixed" is a property of a *block*, and a block is never allowed to stay that way.
+
+**Scope — same hue family.** A `rgba(0, 0, 0, 0.25)` shadow or a `rgba(255, 255, 255, 0.1)` hairline sitting beside a tokenized brand colour is **not** a mixed block; black and white are not a hue family (§5.2, §5.7). The rule bites when the literal and the token are the same colour trying to read as one element.
+
+**Consequence for the lists above.** §5 is a list of *values*, not of *rules*. A value that legitimately appears on any list in this section may still be wrong **in place** — check the block it sits in, not just the value.
+
 ## 6. Open questions for Principal
 
 1. **Generic brand indirection layer?** Should `lentax.css` body reference TPP-specific tokens (`--lentax-tpp-crimson-primary`) directly, OR a generic indirection (`--lentax-brand-primary`) that each theme file maps to its product's actual color? Direct = simpler base CSS, theme files redeclare every brand token. Indirection = base CSS uses generic names, theme files map to product palette. Direct is what §4 above assumes.
+
+   **RULED (2026-07-27) — direct, and no rename.** §4 stands as written. Renaming the `--lentax-tpp-crimson-*` family to fix a naming smell is a large blast radius for zero rendered change: 13 token names, declared across 5 files (67 declaration sites), consumed at 623 `var()` call sites. Not worth it. Record the hazard instead:
+
+   > `--lentax-tpp-crimson-*` is rebound to VLP orange in `themes/vlp-default.css`. The token name does not describe its value in VLP context. **New VLP rules must use `--lentax-vlp-orange-*`, never the crimson alias**, even where both currently resolve identically. Automated resolvers report the crimson name as the nearest match for `249, 115, 22` and will be wrong.
+
 2. **VLP orange — `#F47B20` vs. `#f97316`:** snap or keep distinct? `#F47B20` appears in 9 alpha variants (`rgba(244, 123, 32, *)`) — significant usage suggesting it's intentional. RC kept distinct (`--lentax-vlp-orange-pantone`) pending ruling.
+
+   **RULED (2026-07-27) — `#f97316` is canonical VLP orange; `#F47B20` stays distinct.** `#F47B20` is the **Pantone print match**. That is why it exists and why it is not drift — recorded here so a later sweep does not "fix" it. It keeps `--lentax-vlp-orange-pantone` and its `-rgb` companion (§3.2).
+
+   `#FF6A1A` and `#ea7517` are drift, not intent. They snap to `--lentax-vlp-orange-primary` **when a commit next touches those rules**. They are **not** swept proactively.
 3. **VLP bronze vs. VLP gold:** are these one family or two? The audit shows both `#cd7f32`/`#b87333` (bronze) and `#FFD700`/`#e0b54c` (gold) — visually distinct, kept as separate token families (§3.4 and §3.5).
 4. **Decorative gradient list:** §5.3 found no standalone gradient values in the audit (regex captured only hex/rgba). Confirm no inline gradients need a literal carve-out.
 5. **Orange/gold glow alpha sets (NEW):** §3.2 and §3.5 list ~37 glow `rgba()` values whose triplets do NOT match the canonical brand RGB (e.g. `rgba(255, 120, 0, *)`, `rgba(255, 200, 0, *)`). Per §8 decision criteria these are NOT silently rounded. Principal: collapse each into a small named glow token, or leave literal?
+
+   **RULED (2026-07-27) — closed by the alpha-variant ruling in §3.5 / §3.7.** No named glow-token set is minted up front. Each glow value takes the general path: exact triplet match → `rgba(var(--token-rgb), α)`; no match → literal, **unless** the block it sits in violates §5.8, in which case mint the token. The amber focus ring `rgba(255, 187, 51, 0.6)` is the one value in these sets carrying an individual ruling (§3.5).
 6. **Navy alpha surfaces (NEW):** §3.3 lists ~22 deep blue-black `rgba()` surface tints with many distinct triplets. Consolidate into a small `--lentax-vlp-navy-*-rgb` set, or leave literal as per-surface tuning?
 7. **Warning vs. gold overlap (NEW):** `#fbbf24` is mapped to `--lentax-state-warning` (§3.7) but is visually amber and could read as gold. Confirm it stays a semantic-state token, not a gold-family token.
 8. **`#b22234`, `#33ffee` classification (NEW):** flag-red `#b22234` snapped to error; cyan-green `#33ffee` snapped to success. Both are borderline — confirm or reassign (could be stragglers).
+
+### 6.1 Parked — not scheduled
+
+Known debt, logged so it is not rediscovered. **Neither item is authorised work**, and neither is a reason to open a commit on its own.
+
+**PARKED — not scheduled: raw `#f97316` in `themes/vlp-default.css`.**
+The file carries **83 raw `#f97316`** against **8** uses of `--lentax-vlp-orange-primary` — the token that same file defines. All of it is post-`696117a` drift. A theme file full of hard-coded brand hex defeats the theme system for resellers: re-skinning is supposed to be a `:root` edit, and 83 literals do not move. Fixing it is a **separate, deliberate task**, and must use `--lentax-vlp-orange-primary`. (Counts verified against the file 2026-07-27.)
+
+**PARKED — not scheduled: dead token `--lentax-parchment-cream`.**
+Declared at `themes/vlp-default.css:3093` and `:3271` as `#1f1f1f !important`. The name is missing the `-vlp-` infix — the real token is `--lentax-vlp-parchment-cream` (§3.4). It is defined nowhere else and consumed nowhere. Delete **opportunistically**, when something else touches that file. (Verified 2026-07-27.)
 
 ## 7. Audit summary
 
