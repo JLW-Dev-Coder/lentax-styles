@@ -5224,3 +5224,38 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
   .vlp-hero h1 { max-width: none; }
   .vlp-hero .vlp-sub { max-width: none; }
 }
+
+/* ===== R111 — Dashboard merged card grid (VLP). Styles the .vlp-dash Embed Block on the Dashboard (#dashboard-view); markup lives in the SD Embed Block. =====
+   COLLISION NOTE: `.vlp-card` is NOT a new class. R103 (line ~5046) already
+   defines a BARE `.vlp-card` for the Proposal phase-cards, despite that block's
+   header claiming every selector is scoped under `.vlp-proposal` (it is not —
+   .vlp-check/.vlp-excl/.vlp-price/.vlp-cta/.vlp-notice are bare too).
+   The `#dashboard-view` re-anchor (1,1,0) beats the bare rule (0,1,0) on every
+   property declared below, INCLUDING the orange `border-left` (the `border`
+   shorthand sets the same longhands). The one property R103 sets that this
+   block would otherwise leave unopposed is `margin-bottom:14px`, which would
+   add 14px on top of the grid `gap` and make row gaps 28px against 14px
+   columns. Hence the explicit `margin:0` on .vlp-card below — that declaration
+   is load-bearing, do not remove it. R103 is deliberately left unedited. ===== */
+#dashboard-view .vlp-dash{--vlp-accent:#ff7a1a;--vlp-accent-soft:rgba(255,122,26,.14);--vlp-card:#1b1b1f;--vlp-card-hover:#232329;--vlp-line:rgba(255,122,26,.35);--vlp-text:#f4f4f6;--vlp-muted:#a2a2ac;max-width:1160px;margin:0 auto;padding:8px 16px 32px;box-sizing:border-box;}
+#dashboard-view .vlp-dash *,#dashboard-view .vlp-dash *::before,#dashboard-view .vlp-dash *::after{box-sizing:border-box;}
+#dashboard-view .vlp-dash__section{margin-top:28px;}
+#dashboard-view .vlp-dash__section-head{display:flex;align-items:baseline;gap:12px;margin:0 4px 14px;}
+#dashboard-view .vlp-dash__section-head h2{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--vlp-accent);margin:0;}
+#dashboard-view .vlp-dash__section-head span{font-size:13px;color:var(--vlp-muted);}
+#dashboard-view .vlp-dash__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px;}
+#dashboard-view .vlp-card{display:flex;flex-direction:column;gap:10px;padding:18px 18px 16px;margin:0;background:var(--vlp-card);border:1px solid var(--vlp-line);border-radius:14px;text-decoration:none;color:var(--vlp-text);transition:transform .15s ease,background .15s ease,border-color .15s ease,box-shadow .15s ease;min-height:150px;}
+#dashboard-view .vlp-card:hover,#dashboard-view .vlp-card:focus-visible{transform:translateY(-3px);background:var(--vlp-card-hover);border-color:var(--vlp-accent);box-shadow:0 8px 24px rgba(0,0,0,.35);outline:none;}
+#dashboard-view .vlp-card:focus-visible{box-shadow:0 0 0 2px var(--vlp-accent);}
+#dashboard-view .vlp-card__icon{width:40px;height:40px;border-radius:10px;background:var(--vlp-accent-soft);display:flex;align-items:center;justify-content:center;flex:none;}
+#dashboard-view .vlp-card__icon svg{width:22px;height:22px;stroke:var(--vlp-accent);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+#dashboard-view .vlp-card__title{font-size:15px;font-weight:700;margin:0;}
+#dashboard-view .vlp-card__desc{font-size:13px;line-height:1.4;color:var(--vlp-muted);margin:0;flex:1;}
+#dashboard-view .vlp-card__cta{font-size:12.5px;font-weight:600;color:var(--vlp-accent);display:inline-flex;align-items:center;gap:6px;margin-top:2px;}
+#dashboard-view .vlp-card__cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+@media (max-width:600px){
+  #dashboard-view .vlp-dash{padding:8px 12px 24px;}
+  #dashboard-view .vlp-dash__grid{grid-template-columns:1fr;gap:12px;}
+  #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;}
+  #dashboard-view .vlp-card__desc{width:100%;}
+}
