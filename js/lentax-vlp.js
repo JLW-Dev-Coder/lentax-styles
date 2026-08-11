@@ -1295,3 +1295,26 @@ body.sidebar-dark .sidebar-toggle svg path {
   }
   [200, 600, 1500, 3000].forEach(function (ms) { setTimeout(paint, ms); });
 })();
+
+/* R116 — Dashboard personalized greeting. Paints #vlp-greeting from the Embed Block's
+   carrier spans; browser-clock fallback for time-of-day. No-ops where #vlp-greeting is
+   absent (every non-dashboard surface). Observer-based to survive the SPA re-render.
+   Styling ships from themes/vlp-default.css (R116). */
+(function () {
+  function clean(v){ if(!v) return ''; v=(''+v).replace(/\u00a0/g,' ').trim(); return (!v || v.indexOf('{{')===0) ? '' : v; }
+  function txt(id){ var el=document.getElementById(id); return clean(el && el.textContent); }
+  function paint(){
+    var g=document.getElementById('vlp-greeting');
+    if(!g || g.getAttribute('data-vlp-painted')==='1') return;
+    var first=txt('vlp-mt-first');
+    var tod=txt('vlp-mt-tod');
+    if(!tod){ var h=new Date().getHours(); tod=(h<12?'Morning':(h<18?'Afternoon':'Evening')); }
+    var s='Good '+tod;
+    if(first){ s+=', <b>'+first.replace(/[<>&]/g,'')+'</b>'; }
+    g.innerHTML=s;
+    g.setAttribute('data-vlp-painted','1');
+    g.removeAttribute('hidden');
+  }
+  paint();
+  try { new MutationObserver(paint).observe(document.documentElement, {childList:true, subtree:true}); } catch(e){}
+})();
