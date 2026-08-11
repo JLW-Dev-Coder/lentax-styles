@@ -5280,3 +5280,9 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
    other embed block on the page stays hidden. Do not simplify this selector by
    dropping :has() — the qualifier is load-bearing. ===== */
 #dashboard-view .cbe-block-embed:has(.vlp-dash){display:block !important;}
+
+/* ===== R113 — Dashboard grid text contrast. .vlp-card__title had no explicit color and inherited; SuiteDash's portal p-color overrode the inherited near-white, so titles rendered dim. Pin title/heading/body colors, scoped to the grid. ID + two classes + !important to beat SD's text rules. ===== */
+#dashboard-view .vlp-dash .vlp-card__title{color:#ffffff !important;}
+#dashboard-view .vlp-dash .vlp-card__desc{color:#c9c9d2 !important;}
+#dashboard-view .vlp-dash .vlp-dash__section-head h2{color:var(--vlp-accent) !important;}
+#dashboard-view .vlp-dash .vlp-dash__section-head span{color:#c9c9d2 !important;}
