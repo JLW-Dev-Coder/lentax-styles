@@ -512,6 +512,20 @@ body.lentax-vlp #ea-order-root .ea-hero-copy h2:last-of-type {
   margin-bottom: 0 !important;
 }
 
+/* R128 (86e2rk1va) — checkout hero copy full-width on mobile.
+   Page-embedded hero markup sets `padding-right:200px` INLINE on .ea-hero-copy
+   to reserve space for the absolute .ea-hero-media lottie. The embed's own
+   @media(max-width:600px){padding-right:0} cannot beat that inline value, so at
+   390px the copy is crushed to ~56px and text runs ~1779px tall (control: 536px).
+   A non-!important inline loses to an !important author rule — same override
+   pattern as R99v2 above. Guarded <=600px: desktop keeps the 200px reserve and
+   the visible lottie, unchanged. Measured client-side at 390px on 171391. */
+@media (max-width: 600px) {
+  body.lentax-vlp .ea-hero-copy {
+    padding-right: 0 !important;
+  }
+}
+
 /* --- Divider --- */
 #client-page-view hr.vl-divider {
   border-color: #f97316 !important;
