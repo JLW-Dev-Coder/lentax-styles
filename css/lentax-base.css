@@ -18060,9 +18060,15 @@ body.page-with-styling-options .extended-form-wrapper {
      display:flex and nobody declares flex-wrap, so it takes the CSS initial
      value `nowrap`. This is a vendor default we have simply never overridden.
 
-     min-width:0 on the children is load-bearing, not belt-and-braces: flex
-     items default to min-width:auto and refuse to shrink below their content
-     size, so wrapping alone would not clear the overhang.
+     R121 — removed min-width:0 from the `> *` arm (CU 86e2rk1va, 2026-08-11).
+     It overrode the flex automatic minimum size and collapsed the first child
+     of every two-child filter row to zero width (measured at 390px on 171073,
+     170918, 169330, 168981, 168980); removing it restores that floor. The
+     earlier note here claimed the declaration was load-bearing for shrink —
+     measurement says otherwise. min-width:0 stays on the CONTAINER arm, where
+     it applies to the wrap as a flex item of its own parent and is not
+     implicated. Note a zero-width input reads as zero overhang, so overflow is
+     NOT the success signal for this rule — measure child widths.
 
      VLP-only by measurement. The install variants were not probed at this
      width, so they are deliberately excluded rather than assumed — adding
@@ -18075,7 +18081,6 @@ body.page-with-styling-options .extended-form-wrapper {
   }
 
   body.lentax-vlp #client-page-view .dashboard-organize-box__filters-inputs-wrap > * {
-    min-width: 0 !important;
     max-width: 100% !important;
   }
 }
