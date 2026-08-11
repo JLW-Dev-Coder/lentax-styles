@@ -5258,6 +5258,27 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
   #dashboard-view .vlp-dash__grid{grid-template-columns:1fr;gap:12px;}
   #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;}
   #dashboard-view .vlp-card__desc{width:100%;}
+  /* ===== R122 (86e2rk1va) — CTA onto its own row. The .vlp-card rule directly above turns
+     the card into a `row wrap` flex container with align-items:center, so .vlp-card__cta
+     (flex 0 1 auto) flows as a row-NEIGHBOUR of .vlp-card__desc instead of below it.
+     MEASURED client-side at 390px (external-user role-client, root #dashboard-view), all 9
+     cards individually: every CTA's vertical range sits INSIDE its description's — card 0
+     desc top -1096 / bottom -865 vs cta top -991 / bottom -968, cta left 201 vs desc left 87.
+     flex-basis:100% forces the CTA onto its own line within the existing wrap behaviour;
+     as the last of the four children it lands at the bottom of the card's content.
+     NOT flex-direction:column on the card — that would also break the icon and title onto
+     separate lines, changing the card's whole composition. Keeping icon/title/desc
+     side-by-side while stacking only the CTA would require an inner wrapper — a DOM change.
+     NO margin-top:auto — in a `row wrap` container that does NOT push a child to the
+     container's bottom, it only affects cross-axis alignment within its own line. It would
+     be a no-op that reads like intent to the next person.
+     BREAKPOINT — deliberately this existing max-width:600px block, NOT a new 768px block:
+     this block is what creates the row-wrap being fixed. Above 600px the card is still
+     flex-direction:column (line ~5247), where the CTA is already on its own line and a
+     percentage flex-basis would resolve against the BLOCK axis — the card is a stretched
+     grid item, so that height is definite and `0 0 100%` would claim the entire card height
+     with flex-shrink:0. Do not widen this guard. ===== */
+  body.lentax-vlp #dashboard-view .vlp-card__cta{flex:0 0 100%;}
 }
 
 /* ===== R112 — Reveal the Embed Block wrapper that hosts the R111 grid. The R111
