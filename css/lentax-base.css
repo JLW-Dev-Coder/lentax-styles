@@ -18027,6 +18027,36 @@ body.page-with-styling-options .extended-form-wrapper {
     flex: 0 0 100% !important;
     max-width: 100% !important;
   }
+
+  /* ─────────────────────────────────────────────────────────────
+     R118 — mobile filter-row wrap   (CU 86e2rk1va, CC-measured 2026-08-11)
+     .dashboard-organize-box__filters-inputs-wrap overflows the viewport by
+     +70 to +97px at 390px on 6 dashboard pages (171773 +88, 171073 +97,
+     170918 +97, 169330 +97, 168981 +70, 168980 +77).
+
+     NOT a repo regression — a grep for the class returns zero hits. The
+     container is SuiteDash's own markup: Bootstrap's .d-flex utility sets
+     display:flex and nobody declares flex-wrap, so it takes the CSS initial
+     value `nowrap`. This is a vendor default we have simply never overridden.
+
+     min-width:0 on the children is load-bearing, not belt-and-braces: flex
+     items default to min-width:auto and refuse to shrink below their content
+     size, so wrapping alone would not clear the overhang.
+
+     VLP-only by measurement. The install variants were not probed at this
+     width, so they are deliberately excluded rather than assumed — adding
+     them would be inventing coverage. Selector is (1,2,1) + !important
+     against an undeclared property, so it wins unconditionally.
+     ───────────────────────────────────────────────────────────── */
+  body.lentax-vlp #dashboard-view .dashboard-organize-box__filters-inputs-wrap {
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+  }
+
+  body.lentax-vlp #dashboard-view .dashboard-organize-box__filters-inputs-wrap > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
 }
 
 /* ==========================================================================
