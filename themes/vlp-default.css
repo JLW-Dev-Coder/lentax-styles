@@ -5293,6 +5293,30 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
      grid item, so that height is definite and `0 0 100%` would claim the entire card height
      with flex-shrink:0. Do not widen this guard. ===== */
   body.lentax-vlp #dashboard-view .vlp-card__cta{flex:0 0 100%;}
+  /* ===== R124 (86e2rk1va) — Equalise the dashboard card heights. MEASURED client-side at
+     390px (external-user role-client, root #dashboard-view), all 9 cards individually
+     after R122 shipped: card width 250 on all 9, left gutter 70 on all 9, right gutter 70
+     on all 9, row gap 12 between every adjacent pair within a section — but height runs
+     177, 177, 177, 202, 202, 228, 228, 236, 262. An 85px spread, tracking description
+     length. That is the ONLY asymmetry in the measurements; widths, gutters and gaps are
+     already uniform and are deliberately left alone.
+     ROWS HERE ARE IMPLICIT — the grid declares grid-template-columns only (line ~5246 for
+     the base, and the 1fr override at the top of this block), never grid-template-rows. So
+     grid-auto-rows is the property that governs them. `1fr` sizes every implicit row to the
+     tallest, and the cards — align-items defaulting to stretch — fill their row.
+     WHY NOT the alternatives: align-items alone does nothing here, because at 1fr each card
+     occupies its own implicit row and there is nothing to stretch against; min-height would
+     be a fixed floor, which is not the same as equal heights and breaks at other content
+     lengths.
+     BREAKPOINT — deliberately this existing max-width:600px block, matching R122/R123.
+     Everything above was measured at 390px. Above 600px the grid is
+     repeat(auto-fill,minmax(232px,1fr)) — a multi-column layout that has NOT been measured,
+     where grid-auto-rows:1fr would equalise across a different row structure. Do not widen
+     this guard.
+     NOT INCLUDED: align-content on .vlp-card to pin the CTA to the bottom of a now-taller
+     card. That is a separate question that depends on what the extra space looks like once
+     the heights are equal, and it gets its own commit after measurement — or none. ===== */
+  body.lentax-vlp #dashboard-view .vlp-dash__grid{grid-auto-rows:1fr;}
 }
 
 /* ===== R112 — Reveal the Embed Block wrapper that hosts the R111 grid. The R111
