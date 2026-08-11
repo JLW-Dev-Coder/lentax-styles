@@ -5256,6 +5256,20 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 @media (max-width:600px){
   #dashboard-view .vlp-dash{padding:8px 12px 24px;}
   #dashboard-view .vlp-dash__grid{grid-template-columns:1fr;gap:12px;}
+  /* ===== R123 (86e2rk1va) — Make the grid's horizontal centering enforced rather than
+     incidental. Measured at 390px (external-user role-client, #dashboard-view): the grid
+     computes justify-content:normal, each card 250px wide, left gutter 70 and right gutter
+     70. That 70/70 symmetry is not declared anywhere — it falls out of the arithmetic.
+     PREMISE CORRECTION to the measurement's reading: the 250px is the USED value of the
+     `1fr` track declared on the line above, not a fixed 250px column. A `1fr` track absorbs
+     all free space, so justify-content has nothing to distribute and this declaration is
+     INERT as the file stands today — the gutters come from #dashboard-view's own ancestors,
+     not from the grid. It is committed as latent-fragility insurance: the moment the track
+     list becomes fixed-width (a px minmax, an auto-fill that resolves to less than the
+     container, a narrower column), the free space appears and centering is already
+     declared instead of silently drifting left. Separate commit from R122 because it fixes
+     a different thing and should be revertable on its own. ===== */
+  body.lentax-vlp #dashboard-view .vlp-dash__grid{justify-content:center;}
   #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;}
   #dashboard-view .vlp-card__desc{width:100%;}
   /* ===== R122 (86e2rk1va) — CTA onto its own row. The .vlp-card rule directly above turns
