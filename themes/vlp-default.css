@@ -5313,3 +5313,11 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 #dashboard-view .vlp-dash .vlp-dash__greeting{margin:2px 4px 22px;font-size:20px;font-weight:600;line-height:1.3;color:rgba(255,255,255,.92)!important;-webkit-text-fill-color:rgba(255,255,255,.92)!important;}
 #dashboard-view .vlp-dash .vlp-dash__greeting b{color:#ff9a1f!important;-webkit-text-fill-color:#ff9a1f!important;font-weight:700!important;}
 #dashboard-view .vlp-dash .vlp-dash__greeting[hidden]{display:none!important;}
+
+/* ===== R117 — Dashboard polish. (1) Section sub-labels render as bare text inheriting SuiteDash's dim color — set color on .vlp-dash__section-head so they read (the h2 keeps its own orange). (2) Trim the residual content-block padding band above the greeting (~94px measured: #dashboard-view 28 + .content-block-wrapper 32 + .cbe-row-wrapper 34). (3) Scale the greeting to the Green Service hero-title size. Scoped to #dashboard-view; the global .main-wrapper header offset is left intact. ===== */
+#dashboard-view{padding-top:8px !important;}
+#dashboard-view .content-block-wrapper{padding-top:0 !important;}
+#dashboard-view .cbe-row-wrapper{padding-top:0 !important;}
+#dashboard-view .vlp-dash .vlp-dash__section-head{color:rgba(255,255,255,.78) !important;}
+#dashboard-view .vlp-dash .vlp-dash__section-head span{color:rgba(255,255,255,.78) !important;}
+#dashboard-view .vlp-dash .vlp-dash__greeting{font-size:clamp(28px,2.5vw,42px) !important;font-weight:700 !important;line-height:1.15;letter-spacing:-.02em;}
