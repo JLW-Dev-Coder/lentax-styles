@@ -5294,3 +5294,17 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 #dashboard-view .vlp-dash .vlp-card__cta{color:#ff5a2c;}
 #dashboard-view .vlp-dash .vlp-dash__section-head h2{font-size:12px;letter-spacing:.12em;}
 #dashboard-view .vlp-dash .vlp-dash__section-head span{color:rgba(255,255,255,.5) !important;}
+
+/* ===== R115 — Dashboard grid polish: larger body text so the grid sits alongside the Green Service (view/171363) + checkout (view/171391) pages — titles 20px, body 16px, CTA/labels 14px, larger icons, roomier cards. Restores the keyboard focus ring R114 flattened; hardens CTA color so SD link color can't win. Mobile guard re-asserts compaction (media queries carry no specificity, so the base override must be restated inside the breakpoint at matching specificity + later source order). Scoped to the grid. ===== */
+#dashboard-view .vlp-dash .vlp-card{padding:22px;min-height:180px;}
+#dashboard-view .vlp-dash .vlp-card__title{font-size:20px;line-height:1.2;}
+#dashboard-view .vlp-dash .vlp-card__desc{font-size:16px;line-height:1.6;}
+#dashboard-view .vlp-dash .vlp-card__cta{font-size:14px;color:#ff5a2c !important;}
+#dashboard-view .vlp-dash .vlp-dash__section-head h2{font-size:14px;}
+#dashboard-view .vlp-dash .vlp-dash__section-head span{font-size:14px;}
+#dashboard-view .vlp-dash .vlp-card__icon{width:48px;height:48px;}
+#dashboard-view .vlp-dash .vlp-card__icon svg{width:26px;height:26px;}
+#dashboard-view .vlp-dash .vlp-card:focus-visible{box-shadow:0 0 0 2px var(--vlp-accent);}
+@media (max-width:600px){
+  #dashboard-view .vlp-dash .vlp-card{min-height:0;padding:16px;}
+}
