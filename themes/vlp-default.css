@@ -5259,3 +5259,24 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
   #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;}
   #dashboard-view .vlp-card__desc{width:100%;}
 }
+
+/* ===== R112 — Reveal the Embed Block wrapper that hosts the R111 grid. The R111
+   .vlp-dash cards render and are styled but collapse to 0x0, because their
+   ancestor .cbe-block-embed computes display:none.
+   PREMISE CORRECTION: that is NOT SuiteDash withholding an unresolved embed. It
+   is OUR OWN rule — css/lentax-base.css §2.15.3 (`#dashboard-view
+   .cbe-block-embed{display:none !important}`), added in dfcd31e when the
+   Stack_Dashboards_CSS_v1 dashboard CSS was ported. Its documented reason still
+   stands: SD Stacks inject embed blocks whose ng-bind-html output renders raw
+   <style>/<script> source as visible text on the dashboard, and that rule hides
+   them on this surface only.
+   Therefore this reveal is deliberately NOT the page-wide
+   `#dashboard-view .cbe-block-embed`. That form is same-specificity (1,1,0) with
+   the base rule and would win only on load order (theme loads second) — and it
+   would win by unhiding EVERY embed block on the dashboard, resurrecting the
+   raw-source artifacts the base rule exists to suppress. The `:has(.vlp-dash)`
+   qualifier raises this to (1,2,0), so it beats the base rule on specificity
+   rather than on order, and reveals ONLY the wrapper containing our grid. Every
+   other embed block on the page stays hidden. Do not simplify this selector by
+   dropping :has() — the qualifier is load-bearing. ===== */
+#dashboard-view .cbe-block-embed:has(.vlp-dash){display:block !important;}
