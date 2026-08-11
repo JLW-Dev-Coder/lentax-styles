@@ -5270,61 +5270,57 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
      declared instead of silently drifting left. Separate commit from R122 because it fixes
      a different thing and should be revertable on its own. ===== */
   body.lentax-vlp #dashboard-view .vlp-dash__grid{justify-content:center;}
-  /* ===== R125 (86e2rk1va) — Anchor the card CTA to the card bottom. Adds ONE declaration —
-     align-content:space-between — to the pre-existing mobile .vlp-card rule directly below;
-     every other declaration in that rule is R111-era and is unchanged.
+  /* ===== R126 (86e2rk1va) — Uniform mobile card layout across ALL 9 cards. Amends this
+     pre-existing mobile .vlp-card rule in place; supersedes R125's align-content, which is
+     REMOVED (it is inert in a non-wrapping column, and a dead declaration that reads like
+     intent is how this rule reached its fifth revision).
+     REQUIREMENT (Owner, all three parts): (1) all 9 cards the same height — they sit in TWO
+     separate .vlp-dash__grid containers, so grid-auto-rows alone cannot cross them; (2)
+     identical internal spacing; (3) identical internal layout, every card stacking icon,
+     title, text, button in the same positions. The Owner has explicitly accepted that the
+     icon no longer sits beside the title — that acceptance is what unblocks
+     flex-direction:column, which R122 and R125 both rejected on composition grounds.
      MEASURED client-side at 390px (external-user role-client, root #dashboard-view), all 9
-     cards individually after R124 shipped: the two .vlp-dash__grid sections are each now
-     internally uniform — cards 0-5 at 262 tall, cards 6-8 at 177, width 250 and gutters
-     70/70 unchanged on all 9. That is the correct and achievable outcome; the two grids are
-     separate containers and row sizing does not cross them. But on the six cards that are
-     all exactly 262 tall, CTA-to-card-bottom runs 22, 22, 26, 16, 26, 19 and desc-to-CTA gap
-     runs 23, 23, 32, 12, 32, 18. Identical card heights, yet a 16-26px spread in where the
-     CTA sits. Cards 6-8 read uniform (16 / 12) only because their content happens to fill
-     177px — coincidence, not anchoring.
-     MECHANISM: the rule below makes the card `display:flex; flex-direction:row;
-     flex-wrap:wrap; align-items:center` with NO align-content. The initial value `normal`
-     behaves as `stretch` on a multi-line flex container, so the height R124 added
-     distributes BETWEEN the flex lines instead of pooling below the last one. Cards with
-     shorter content gain more slack per line, so the CTA floats up by a variable amount.
-     space-between puts the first flex line flush to the content-box top and the last line
-     flush to the bottom. R122 gave .vlp-card__cta `flex:0 0 100%`, so the CTA IS the last
-     line and therefore anchors to the card's bottom padding edge.
-     WHY NOT the alternatives: flex-direction:column would also restack the icon and title
-     and change the card's whole composition — rejected on measurement in R122, still true
-     here. margin-top:auto on the CTA adjusts cross-axis position within its own line in a
-     `row wrap` container, not distance to the container bottom; it would be a no-op that
-     reads like intent. Height, width, gutters, gap and grid-auto-rows are all left alone.
-     ACCEPTED TRADE-OFF: with three flex lines, space-between distributes the slack evenly
-     BETWEEN the lines, so the description may sit lower in the card than it does today. The
-     CTA anchoring is the defect being fixed. If the middle spacing then reads wrong, that is
-     a separate observation with its own measurement and its own commit.
+     cards individually, paint-tested: heights 262 (cards 0-5) and 177 (cards 6-8); card
+     content box 218 wide (250 - 2x16 padding); desc-to-CTA gap swinging 12-42 within
+     section 0 — per-section symmetry only, which was the prior substitution for the
+     requirement, not the requirement.
+     MECHANISM: `column` + `nowrap` gives every card the same stacking order and makes
+     margin-top:auto on the CTA behave as a bottom anchor. `align-items:stretch` lets the
+     title and description occupy the full 218px content width — `center` would centre them
+     horizontally in a column, the wrong axis for this layout. `min-height:262px` is the
+     MEASURED tallest card at 390px; it is a content-derived constant, so RE-MEASURE IT if
+     card copy changes materially. With every card at 262 both grids' 1fr rows resolve to
+     the same height, so R124's grid-auto-rows (below) now equalises all 9, not 6-and-3.
+     COMPANION EDIT — LOAD-BEARING: R115's mobile guard `#dashboard-view .vlp-dash .vlp-card`
+     (line ~5400, its own max-width:600px block) is (1,2,0) and beats this rule's (1,1,0) on
+     min-height; it carries the same 262px. The two move together or the height does nothing.
+     Do NOT escalate specificity here to fight it.
+     SLACK: .vlp-card__desc carries flex:1 (line ~5253), so it absorbs the free space during
+     flex resolution and the CTA's margin-top:auto resolves to 0. Either way the slack pools
+     in exactly ONE place — immediately above the CTA — and the CTA sits on the bottom
+     padding edge. The auto margin is kept as the anchor if that flex:1 ever changes.
      BREAKPOINT — deliberately this existing max-width:600px block, matching R122/R123/R124.
-     Above 600px the card is still flex-direction:column (line ~5247), a single-line flex
-     container where align-content has nothing to distribute. Do not widen this guard. ===== */
-  #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;align-content:space-between;/* R125 */}
+     Above 600px the card is already flex-direction:column (line ~5247) with the CTA on its
+     own line, and the multi-column grid there is unmeasured. Do not widen this guard. ===== */
+  #dashboard-view .vlp-card{min-height:262px;padding:16px;flex-direction:column;flex-wrap:nowrap;align-items:stretch;/* R126 */}
   #dashboard-view .vlp-card__desc{width:100%;}
-  /* ===== R122 (86e2rk1va) — CTA onto its own row. The .vlp-card rule directly above turns
-     the card into a `row wrap` flex container with align-items:center, so .vlp-card__cta
-     (flex 0 1 auto) flows as a row-NEIGHBOUR of .vlp-card__desc instead of below it.
-     MEASURED client-side at 390px (external-user role-client, root #dashboard-view), all 9
-     cards individually: every CTA's vertical range sits INSIDE its description's — card 0
-     desc top -1096 / bottom -865 vs cta top -991 / bottom -968, cta left 201 vs desc left 87.
-     flex-basis:100% forces the CTA onto its own line within the existing wrap behaviour;
-     as the last of the four children it lands at the bottom of the card's content.
-     NOT flex-direction:column on the card — that would also break the icon and title onto
-     separate lines, changing the card's whole composition. Keeping icon/title/desc
-     side-by-side while stacking only the CTA would require an inner wrapper — a DOM change.
-     NO margin-top:auto — in a `row wrap` container that does NOT push a child to the
-     container's bottom, it only affects cross-axis alignment within its own line. It would
-     be a no-op that reads like intent to the next person.
-     BREAKPOINT — deliberately this existing max-width:600px block, NOT a new 768px block:
-     this block is what creates the row-wrap being fixed. Above 600px the card is still
-     flex-direction:column (line ~5247), where the CTA is already on its own line and a
-     percentage flex-basis would resolve against the BLOCK axis — the card is a stretched
-     grid item, so that height is definite and `0 0 100%` would claim the entire card height
-     with flex-shrink:0. Do not widen this guard. ===== */
-  body.lentax-vlp #dashboard-view .vlp-card__cta{flex:0 0 100%;}
+  /* ===== R126 (86e2rk1va) — CTA sizing and bottom anchor. Amends R122's rule in place.
+     R122's `flex:0 0 100%` MUST GO and is not merely redundant: the card above is now a
+     COLUMN container, where a percentage flex-basis resolves against the BLOCK axis. The
+     card is a stretched grid item with a definite height, so `0 0 100%` plus flex-shrink:0
+     would make the CTA claim the entire card height. That is the exact failure R122's own
+     note predicted for widths above 600px; flipping the card to column brings it inside
+     this breakpoint. These two declarations and the flex-direction above are interdependent
+     — every intermediate state is broken, which is why they ship in one commit.
+     MECHANISM: `flex:0 0 auto` sizes the CTA to its own content on the block axis.
+     `margin-top:auto` in a column container pushes it to the bottom and collects ALL slack
+     in one place above it, which is the requirement-2 half of R126 (see the note on the
+     .vlp-card rule above for why .vlp-card__desc's flex:1 gets there first in practice —
+     same visual outcome, and this stays as the anchor if that flex:1 ever changes).
+     BREAKPOINT — deliberately this existing max-width:600px block, matching R122/R123/R124.
+     Above 600px nothing here applies and nothing there needs fixing. ===== */
+  body.lentax-vlp #dashboard-view .vlp-card__cta{flex:0 0 auto;margin-top:auto;/* R126 */}
   /* ===== R124 (86e2rk1va) — Equalise the dashboard card heights. MEASURED client-side at
      390px (external-user role-client, root #dashboard-view), all 9 cards individually
      after R122 shipped: card width 250 on all 9, left gutter 70 on all 9, right gutter 70
@@ -5397,7 +5393,11 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 #dashboard-view .vlp-dash .vlp-card__icon svg{width:26px;height:26px;}
 #dashboard-view .vlp-dash .vlp-card:focus-visible{box-shadow:0 0 0 2px var(--vlp-accent);}
 @media (max-width:600px){
-  #dashboard-view .vlp-dash .vlp-card{min-height:0;padding:16px;}
+  /* ===== R126 (86e2rk1va) — min-height:0 -> 262px. This R115 guard is (1,2,0) and BEATS the
+     R126 mobile .vlp-card rule (1,1,0) at line ~5305 on min-height, so the 262px set there
+     computes to 0 without this edit. Same measured constant, same reason — see the R126 note
+     on that rule. The two are one change: if either reverts, revert both. ===== */
+  #dashboard-view .vlp-dash .vlp-card{min-height:262px;padding:16px;/* R126 */}
 }
 
 /* ===== R116 — Dashboard personalized greeting. Styles #vlp-greeting ("Good <time>, <First>") in the dashboard Embed Block; painted by the R116 IIFE in js/lentax-vlp.js. Scoped to the grid. ===== */
