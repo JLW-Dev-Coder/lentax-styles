@@ -5345,6 +5345,29 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
      card. That is a separate question that depends on what the extra space looks like once
      the heights are equal, and it gets its own commit after measurement — or none. ===== */
   body.lentax-vlp #dashboard-view .vlp-dash__grid{grid-auto-rows:1fr;}
+  /* ===== R127 (86e2rk1va) — Section heading spans the full head row. MEASURED client-side at
+     390px (external-user role-client, root #dashboard-view), both .vlp-dash__section-head
+     containers: the head computes display:flex, flex-direction:row, gap 12px,
+     align-items:baseline, justify-content:normal, box 242 wide x 76 tall. Its sole ELEMENT
+     child is a bare <h2> (class=""), flex:0 1 auto, display:block, computing 69 wide in
+     section 0 and 86 in section 1 — roughly a third of the 242px row.
+     WHY THE HEAD LOOKED LIKE IT HELD TWO CHILDREN: the sub-labels ("Choose your next move",
+     "Manage & get help") were never elements. They are bare TEXT NODES sitting immediately
+     after the <h2> inside .vlp-dash__section-head, which is why a child-element scan finds
+     only the heading. CSS cannot target a bare text node, so the Owner removed both from the
+     SuiteDash content block directly, in this same change window. That removal is what leaves
+     the <h2> as the head's only content and makes filling the row the correct behaviour.
+     CONSEQUENCE WORTH KNOWING: the `.vlp-dash__section-head span` rules elsewhere in this file
+     (lines ~5245, ~5398, ~5406, ~5414, ~5436) match nothing in the current DOM. They are
+     inert, deliberately left untouched by this commit, and are NOT evidence that a sub-label
+     element exists — do not read them as one.
+     SELECTOR: the <h2> carries no class, so it is reachable only through its parent. The child
+     combinator keeps this off any heading nested deeper inside the head.
+     ONE DECLARATION on purpose. No width, no display, no margin. The head's measured 76px
+     height is a separate observation with no measurement behind it yet; nothing here touches it.
+     BREAKPOINT — deliberately this existing max-width:600px block, matching R122/R124/R126.
+     Measured at 390px only. Do not widen this guard. ===== */
+  #dashboard-view .vlp-dash__section-head > h2{flex:1 1 100%;/* R127 */}
 }
 
 /* ===== R112 — Reveal the Embed Block wrapper that hosts the R111 grid. The R111
