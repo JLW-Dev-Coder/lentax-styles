@@ -5270,7 +5270,39 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
      declared instead of silently drifting left. Separate commit from R122 because it fixes
      a different thing and should be revertable on its own. ===== */
   body.lentax-vlp #dashboard-view .vlp-dash__grid{justify-content:center;}
-  #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;}
+  /* ===== R125 (86e2rk1va) — Anchor the card CTA to the card bottom. Adds ONE declaration —
+     align-content:space-between — to the pre-existing mobile .vlp-card rule directly below;
+     every other declaration in that rule is R111-era and is unchanged.
+     MEASURED client-side at 390px (external-user role-client, root #dashboard-view), all 9
+     cards individually after R124 shipped: the two .vlp-dash__grid sections are each now
+     internally uniform — cards 0-5 at 262 tall, cards 6-8 at 177, width 250 and gutters
+     70/70 unchanged on all 9. That is the correct and achievable outcome; the two grids are
+     separate containers and row sizing does not cross them. But on the six cards that are
+     all exactly 262 tall, CTA-to-card-bottom runs 22, 22, 26, 16, 26, 19 and desc-to-CTA gap
+     runs 23, 23, 32, 12, 32, 18. Identical card heights, yet a 16-26px spread in where the
+     CTA sits. Cards 6-8 read uniform (16 / 12) only because their content happens to fill
+     177px — coincidence, not anchoring.
+     MECHANISM: the rule below makes the card `display:flex; flex-direction:row;
+     flex-wrap:wrap; align-items:center` with NO align-content. The initial value `normal`
+     behaves as `stretch` on a multi-line flex container, so the height R124 added
+     distributes BETWEEN the flex lines instead of pooling below the last one. Cards with
+     shorter content gain more slack per line, so the CTA floats up by a variable amount.
+     space-between puts the first flex line flush to the content-box top and the last line
+     flush to the bottom. R122 gave .vlp-card__cta `flex:0 0 100%`, so the CTA IS the last
+     line and therefore anchors to the card's bottom padding edge.
+     WHY NOT the alternatives: flex-direction:column would also restack the icon and title
+     and change the card's whole composition — rejected on measurement in R122, still true
+     here. margin-top:auto on the CTA adjusts cross-axis position within its own line in a
+     `row wrap` container, not distance to the container bottom; it would be a no-op that
+     reads like intent. Height, width, gutters, gap and grid-auto-rows are all left alone.
+     ACCEPTED TRADE-OFF: with three flex lines, space-between distributes the slack evenly
+     BETWEEN the lines, so the description may sit lower in the card than it does today. The
+     CTA anchoring is the defect being fixed. If the middle spacing then reads wrong, that is
+     a separate observation with its own measurement and its own commit.
+     BREAKPOINT — deliberately this existing max-width:600px block, matching R122/R123/R124.
+     Above 600px the card is still flex-direction:column (line ~5247), a single-line flex
+     container where align-content has nothing to distribute. Do not widen this guard. ===== */
+  #dashboard-view .vlp-card{min-height:0;padding:16px;flex-direction:row;flex-wrap:wrap;align-items:center;align-content:space-between;/* R125 */}
   #dashboard-view .vlp-card__desc{width:100%;}
   /* ===== R122 (86e2rk1va) — CTA onto its own row. The .vlp-card rule directly above turns
      the card into a `row wrap` flex container with align-items:center, so .vlp-card__cta
