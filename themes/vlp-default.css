@@ -5286,3 +5286,11 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 #dashboard-view .vlp-dash .vlp-card__desc{color:#c9c9d2 !important;}
 #dashboard-view .vlp-dash .vlp-dash__section-head h2{color:var(--vlp-accent) !important;}
 #dashboard-view .vlp-dash .vlp-dash__section-head span{color:#c9c9d2 !important;}
+
+/* ===== R114 — Dashboard grid adopts the Green Service (#vl-hero, view/171363) design language for one consistent portal look: orange as accent, not a full outline. Translucent panel surface + subtle white border at rest; orange-tint fill/border on hover; accent #ff9a1f and link #ff5a2c lifted from that page's tokens; tighter uppercase eyebrows. Rebinds .vlp-dash tokens (wins over R111 by source order at equal specificity) and overrides the literals R113 pinned (equal specificity + !important, later in source). Scoped to the grid. ===== */
+#dashboard-view .vlp-dash{--vlp-accent:#ff9a1f;--vlp-accent-soft:rgba(255,154,31,.12);--vlp-card:rgba(255,255,255,.03);--vlp-card-hover:rgba(255,154,31,.07);--vlp-line:rgba(255,255,255,.10);}
+#dashboard-view .vlp-dash .vlp-card:hover,#dashboard-view .vlp-dash .vlp-card:focus-visible{border-color:rgba(255,154,31,.45);box-shadow:none;transform:translateY(-2px);}
+#dashboard-view .vlp-dash .vlp-card__desc{color:rgba(255,255,255,.55) !important;}
+#dashboard-view .vlp-dash .vlp-card__cta{color:#ff5a2c;}
+#dashboard-view .vlp-dash .vlp-dash__section-head h2{font-size:12px;letter-spacing:.12em;}
+#dashboard-view .vlp-dash .vlp-dash__section-head span{color:rgba(255,255,255,.5) !important;}
