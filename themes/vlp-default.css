@@ -5308,3 +5308,8 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 @media (max-width:600px){
   #dashboard-view .vlp-dash .vlp-card{min-height:0;padding:16px;}
 }
+
+/* ===== R116 — Dashboard personalized greeting. Styles #vlp-greeting ("Good <time>, <First>") in the dashboard Embed Block; painted by the R116 IIFE in js/lentax-vlp.js. Scoped to the grid. ===== */
+#dashboard-view .vlp-dash .vlp-dash__greeting{margin:2px 4px 22px;font-size:20px;font-weight:600;line-height:1.3;color:rgba(255,255,255,.92)!important;-webkit-text-fill-color:rgba(255,255,255,.92)!important;}
+#dashboard-view .vlp-dash .vlp-dash__greeting b{color:#ff9a1f!important;-webkit-text-fill-color:#ff9a1f!important;font-weight:700!important;}
+#dashboard-view .vlp-dash .vlp-dash__greeting[hidden]{display:none!important;}
