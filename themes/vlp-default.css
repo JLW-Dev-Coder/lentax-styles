@@ -5554,3 +5554,66 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
     flex-shrink: 1 !important;
   }
 }
+
+/* ============================================================
+   R132 (86e2rk1va) — checkout step titles wrap on mobile.
+
+   R130 and R131 cleared the two hard width floors inside the
+   checkout embed. The step titles themselves were still clipped.
+   Measured at a 390px viewport: h2.sdAccordion__title computes
+   white-space:nowrap with overflow:hidden and
+   text-overflow:ellipsis. The title needs ~193px and is given
+   ~108px, so it hard-clips by 95px / 0px / 22px across the three
+   step titles. Nothing trailing is eating the width — the
+   .icon-chevron-down next to it measures 0x0 and consumes
+   nothing.
+
+   Fix: let the title wrap. There is vertical room in the head and
+   no trailing element to reclaim horizontal space from, so a
+   second line is the treatment. white-space:normal does the work;
+   overflow:visible + text-overflow:clip stop the hard clip on the
+   h2 once the text is allowed onto a second line. The child
+   selector carries white-space in case the text span declares its
+   own nowrap rather than inheriting it.
+
+   The title's text lives in an unclassed child span whose only
+   class is Angular's ng-binding, hence the
+   `> span:not(.step-number)` shape rather than a class anchor.
+
+   Attribution (grepped css/ + js/, archive/ excluded): NO lentax
+   rule sets the nowrap, the overflow, or the text-overflow. Every
+   lentax rule touching .sdAccordion__title is cosmetic —
+   css/lentax-base.css:6205 (::after underline removal), :12561
+   and this file's :982 / :985 (color), css/lentax-base.css:12673
+   (font-size, margin, display:flex, align-items) and this file's
+   :1394 (margin-bottom:0). js/lentax-vlp.js:692 sets only
+   background and -webkit-text-fill-color on it. No lentax
+   white-space declaration lands on the title or on any ancestor
+   it could inherit through — the repo's white-space:nowrap rules
+   are all unrelated selectors (.flow-nav-btn, price digits,
+   summary amounts, #dashboard-view tiles). The nowrap therefore
+   comes from SuiteDash's own embed/platform sheet, so this
+   override carries !important to beat it.
+
+   Scoped to #client-page-view; .sdAccordion__title is a
+   form-embed accordion class on checkout/order surfaces. NOT
+   scoped to #ea-cart-root / #ea-order-root — those ancestors were
+   not measured, and a wrong root is a zero-match. Guarded
+   <=767px to match R62/R129/R130/R131's form-embed breakpoint:
+   above it the titles have room and stay single-line.
+
+   The ancestor padding chain (.card-block, .content-block-wrapper,
+   .cbe-row-wrapper, .cbe-block-form, .choose-items-block,
+   .sdAccordion__head, .sdAccordion__toggle) is deliberately NOT
+   touched — 238px of cumulative padding is starving the title,
+   but that is a much broader portal-wide decision and wrapping
+   resolves the visible truncation without it.
+   ============================================================ */
+@media (max-width: 767px) {
+  #client-page-view .sdAccordion__title,
+  #client-page-view .sdAccordion__title > span:not(.step-number) {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+}
