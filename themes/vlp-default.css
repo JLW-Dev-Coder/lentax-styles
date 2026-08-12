@@ -5502,3 +5502,55 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
     width: auto !important;
   }
 }
+
+/* ============================================================
+   R131 (86e2rk1va) — checkout option cards stack one-up on mobile.
+
+   R130 relaxed the summary block's 300px floor. A SECOND hard floor
+   remained on the option cards themselves. Measured at a 390px
+   viewport, identical on 171391 and 171081:
+   .choose-items-select__item computes min-width:280px with
+   flex-shrink:0 and flex-basis:calc(50% - 10px) — a two-column
+   desktop card forced to 280px inside a ~200px container. It
+   overflows by 80px (280 - 200) and is hard-clipped by
+   .sdAccordion.choose-items-steps { overflow-x: hidden }.
+
+   Two locks, not one: min-width:280px sets the floor and
+   flex-shrink:0 forbids the flex algorithm from shrinking the card
+   to fit. Relaxing either alone leaves the card oversized, so both
+   are cleared here. Collapsing the calc(50% - 10px) basis to 100%
+   stacks the cards one per row, which is the readable treatment for
+   option cards at 390px — two ~90px cards per row is the
+   alternative and is worse.
+
+   Attribution (grepped css/ + js/, archive/ excluded): NO lentax
+   rule sets the 280px or the flex. Every lentax rule on
+   .choose-items-select__item is cosmetic — this file's :1050 /
+   :1056 (background, border, radius, hover border-color), :1210
+   (transition:none), :3158 / :3326 (background), :3218 / :3385
+   (color) and :3539 (background). The repo's only `min-width: 280px`
+   is .vl-support-hero__copy (css/lentax-base.css:8998), an unrelated
+   support-hero class, and `calc(50% - 10px)` appears nowhere at all.
+   js/lentax-vlp.js touches only .choose-items-summary-* and
+   .choose-items-block / -wrapper, never the __item geometry. The
+   280px and the flex therefore come from SuiteDash's own embed/
+   platform sheet, so this override carries !important to beat it.
+
+   Scoped to #client-page-view; .choose-items-select__item is a
+   form-embed option-card class that appears on checkout/order
+   surfaces. NOT scoped to #ea-cart-root / #ea-order-root — those
+   ancestors were not measured, and a wrong root is a zero-match.
+   Guarded <=767px to match R62/R129/R130's form-embed breakpoint:
+   above it the two-column layout is intended and is left untouched.
+
+   The .sdAccordion overflow-x:hidden clipper is deliberately NOT
+   touched — once the cards fit their container it is moot.
+   ============================================================ */
+@media (max-width: 767px) {
+  #client-page-view .choose-items-select__item {
+    min-width: 0 !important;
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    flex-shrink: 1 !important;
+  }
+}
