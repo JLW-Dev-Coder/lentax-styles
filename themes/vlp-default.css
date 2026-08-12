@@ -5464,3 +5464,41 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 #dashboard-view .vlp-dash .vlp-dash__section-head{color:rgba(255,255,255,.78) !important;}
 #dashboard-view .vlp-dash .vlp-dash__section-head span{color:rgba(255,255,255,.78) !important;}
 #dashboard-view .vlp-dash .vlp-dash__greeting{font-size:clamp(28px,2.5vw,42px) !important;font-weight:700 !important;line-height:1.15;letter-spacing:-.02em;}
+
+/* ============================================================
+   R130 (86e2rk1va) — checkout summary min-width relaxed on mobile.
+
+   R129 widened the checkout field but left a 46px horizontal clip
+   inside .extended-form-wrapper. Measured at a 390px viewport:
+   .choose-items-summary-block computes min-width:300px; width:300px
+   and .choose-items-summary-wrapper computes width:300px, inside a
+   254px container. The 300px floor cannot resolve, so the panel
+   overflows its container by exactly 46px (300 - 254).
+
+   Attribution (grepped css/ + js/, archive/ excluded): NO lentax rule
+   sets the 300px. Our only rules on these two classes are cosmetic —
+   css/lentax-base.css:12340 (.choose-items-summary-block: display /
+   background / border / padding / box-shadow) and :12350 + this file's
+   :996 / :3122 / :3297 (.choose-items-summary-wrapper: surface, border,
+   radius, padding). The only `min-width: 300px` declarations in the repo
+   are .form-flex-fluid (lentax-base.css:1838) and .tooltip-right
+   (lentax-base.css:4526) — unrelated site classes. The 300px therefore
+   comes from SuiteDash's own embed/platform sheet, so this override
+   carries !important to beat it.
+
+   Scoped to #client-page-view; .choose-items-* are cart/summary classes
+   that appear only on checkout/order surfaces. NOT scoped to
+   #ea-cart-root / #ea-order-root — the summary block's ancestor
+   relationship to those roots was not measured, and a wrong root is a
+   zero-match. Guarded <=767px to match R62/R129's form-embed breakpoint:
+   above that the summary is intended to sit 300px wide beside the form,
+   and that is left untouched.
+   ============================================================ */
+@media (max-width: 767px) {
+  #client-page-view .choose-items-summary-block,
+  #client-page-view .choose-items-summary-wrapper {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: auto !important;
+  }
+}
