@@ -5617,3 +5617,64 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
     text-overflow: clip !important;
   }
 }
+
+/* ============================================================
+   R133 (86e2rk1va) — checkout Back/Next actions stack on mobile.
+
+   R130/R131/R132 cleared the width floors and the title clip
+   inside the checkout embed. The action row itself still
+   overflows. Measured at a 390px viewport:
+   .choose-items-summary-actions computes display:flex;
+   flex-direction:row-reverse; flex-wrap:nowrap;
+   justify-content:space-between; gap:8px with clientWidth 200px.
+   Its two buttons demand 300px (Next Step 169 + Back 123 + 8
+   gap), so 100px spills off the LEFT edge — row-reverse puts the
+   overflow at the left — and .sdAccordion.choose-items-steps
+   { overflow-x: hidden } crops it, leaving ~34px of the Back
+   button visible. On the pay step the primary button alone is
+   229px, so Back is off-screen entirely. No negative margin,
+   transform, or position is involved — pure flex overflow.
+
+   Fix: switch the row to column-reverse so the two buttons stack,
+   and let each child fill the column. DOM order is
+   [primary, back], so column-reverse puts Go Back on top and the
+   primary (Next Step / Complete & Pay) below — the conventional
+   mobile order with the primary action at the bottom. The
+   existing gap:8px becomes an 8px vertical gap;
+   justify-content:space-between is inert in an auto-height
+   column. The full-width children (flex-basis/max-width 100%,
+   min-width 0) are what rescue the pay step, where the 229px
+   primary alone exceeds the 200px column.
+
+   Attribution (grepped css/ + js/, archive/ excluded): NO lentax
+   rule sets this row's flex. `row-reverse` appears NOWHERE in the
+   repo outside archive/. Our only rules mentioning
+   .choose-items-summary-actions are cosmetic and target its child
+   button, not the row — css/lentax-base.css:12618 / :12632 /
+   :12639 (button.next-btn gradient, hover, svg fill).
+   js/lentax-vlp.js never touches the class. The row's
+   flex-direction therefore comes from SuiteDash's own embed/
+   platform sheet, so this override carries !important to beat it.
+
+   Scoped to #client-page-view; .choose-items-summary-actions is a
+   cart/checkout class that appears on checkout/order surfaces.
+   NOT scoped to #ea-cart-root / #ea-order-root — those ancestors
+   were not measured, and a wrong root is a zero-match. Guarded
+   <=767px to match R62/R129/R130/R131/R132's form-embed
+   breakpoint: above it the row has room for side-by-side buttons
+   and is left untouched.
+
+   The .sdAccordion.choose-items-steps overflow-x:hidden clipper
+   is deliberately NOT touched — once the buttons stack and fit,
+   the clipper is inert. Changing it is a separate decision.
+   ============================================================ */
+@media (max-width: 767px) {
+  #client-page-view .choose-items-summary-actions {
+    flex-direction: column-reverse !important;
+  }
+  #client-page-view .choose-items-summary-actions > * {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
