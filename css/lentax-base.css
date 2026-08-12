@@ -13485,7 +13485,17 @@ body.branding-theme-mrclean .extended-form-wrapper .choose-items-summary-wrapper
   border-bottom: 1px solid rgba(var(--lentax-vlp-parchment-warm-rgb), 0.08) !important;
 }
 
-.sd-flow .flow-nav-list li::before {
+/* R136 — scoped to body.lentax-vlp so this wins on SPECIFICITY (0,3,3), not
+   order. Unscoped at (0,2,2) it lost to the later duplicate TPP block's
+   identical selector (:16386), whose middle stop var(--lentax-tpp-crimson-deep)
+   resolves to #1a1a1a under VLP — the same near-black the sidebar backdrop
+   paints, so the active rail's midsection read as invisible/"broken".
+   Both .sd-flow placements (body class vs container) are covered — its DOM
+   position is unconfirmed and a descendant-only form would zero-match if it
+   sits on <body>. TPP/Coastal/Sentinel are untouched: they never match this
+   selector and keep :16386 exactly as-is. */
+body.lentax-vlp .sd-flow .flow-nav-list li::before,
+body.lentax-vlp.sd-flow .flow-nav-list li::before {
   background: linear-gradient(180deg, var(--lentax-vlp-orange-pantone), var(--lentax-vlp-orange-burnt), var(--lentax-vlp-orange-primary)) !important;
 }
 
