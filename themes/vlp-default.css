@@ -4000,9 +4000,24 @@ body.page-with-styling-options #client-page-view .account-card-title strong {
     transform: none !important;
   }
 
-  /* R62: app-form-embed — full width, zero internal constraint */
-  #client-page-view:has(.feature-block-container, article.vl-card) .app-form-embed,
-  #client-page-view:has(.feature-block-container, article.vl-card) .app-form-embed.app-form-type-update {
+  /* R62: app-form-embed — full width, zero internal constraint
+     R129 extension: the gate gains #ea-cart-root / #ea-order-root, and
+     .extended-form-wrapper joins as a target. Checkout pages (171391 order,
+     171081 cart) carry neither .feature-block-container nor article.vl-card,
+     so R62 never fired there and input.form-control measured 128px wide
+     (92px typable) at a 390px viewport. The cause is our own portal-wide
+     rule at css/lentax-base.css:13345 — .app-form-embed, .extended-form-wrapper
+     { margin: 24px 16px !important; padding: 32px 24px !important; } at
+     <=768px: the 16px side margins overflow and clip, the 24px side padding
+     narrows the field. That base rule spans TPP and VLP and is deliberately
+     left untouched; R62's override is the sanctioned mechanism. Both ea-roots
+     are descendants of #client-page-view and exist only on checkout, so no
+     previously-unmatched page starts matching. .extended-form-wrapper carries
+     the same bad margins (58px of the loss) and sits in the field's ancestor
+     chain on both pages. */
+  #client-page-view:has(.feature-block-container, article.vl-card, #ea-cart-root, #ea-order-root) .app-form-embed,
+  #client-page-view:has(.feature-block-container, article.vl-card, #ea-cart-root, #ea-order-root) .app-form-embed.app-form-type-update,
+  #client-page-view:has(.feature-block-container, article.vl-card, #ea-cart-root, #ea-order-root) .extended-form-wrapper {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
