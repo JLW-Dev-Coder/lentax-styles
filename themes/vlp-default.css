@@ -5721,3 +5721,26 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 .sd-flow .checkbox input[type=checkbox]{accent-color:#ff9a1f !important;width:16px !important;height:16px !important;}
 .sd-flow .checkbox .label-text{color:#3f4a5c !important;font-size:14px !important;line-height:1.45 !important;}
 .sd-flow form.form-oscar > span.tooltipBlock{color:#8a6d4b !important;font-size:13px !important;font-style:italic !important;}
+
+/* R137 — Portal: file-download block rows unreadable on the dark client page.
+   SuiteDash paints span.title-label and span.entity-meta rgb(0,0,0); the client
+   page card is rgb(26,26,26). Scoped to the page-builder file-download block on
+   the dark client page so the native Files module (/files/home) is untouched —
+   that surface carries 15 visible .title-label and 12 .entity-meta on a WHITE
+   background, and a global white would render all 27 invisible.
+   Hooks confirmed live 2026-08-17: .client-page (source of the 26,26,26 bg),
+   .cbe-block-file-download (1 match), .browser-wrap (1 match, 12 rows inside).
+   Class tripling wins the specificity fight against SuiteDash's cross-origin
+   bundle, which cannot be read to confirm whether it carries !important.
+   Attribution: not ours — .title-label / .entity-meta / .browser-wrap have zero
+   hits across css/ and js/ (snapshot excluded); the only repo rule touching
+   .cbe-block-file-download is R95 (border/padding only, css/lentax-base.css). */
+.client-page .cbe-block-file-download .browser-wrap span.title-label.title-label.title-label,
+.client-page .cbe-block-file-download .browser-wrap span.title-label.title-label.title-label a {
+  color: #ffffff !important;
+}
+
+.client-page .cbe-block-file-download .browser-wrap span.entity-meta.entity-meta.entity-meta,
+.client-page .cbe-block-file-download .browser-wrap span.entity-meta.entity-meta.entity-meta * {
+  color: #c9c9c9 !important;
+}
