@@ -384,8 +384,34 @@
 
   function applyPhase(phase, forceRender) {
     /* A project with no mappable phase — SuiteDash built-in status — leaves
-       the sidebar on the static view rather than asserting a step. */
-    if (!phase || phase < 1 || phase > 8) {
+       the sidebar on the static view rather than asserting a step.
+
+       The old range test admitted any non-integer in range: 4.5 passed, set
+       livePhase = 4.5, and then paintProgress/paintHint/stepHtml all indexed
+       STEPS[4.5] unguarded and threw. R140 moved applyPhase ahead of the
+       guarded paintProjects, so that throw now takes the rail down before it
+       paints at all - where before it would at least have rendered at 0%.
+
+       Same test paintProjects uses: Number() coercion, integer, 1-7, and the
+       STEPS key must exist. Number() rather than a typeof check for the R140
+       reason - the endpoint's type for phase is pinned nowhere, a string "4"
+       works today, and a strict type test would turn a working case into a
+       silent 0%. Two notions of "valid phase" one hop apart is how the
+       next defect gets written.
+
+       The accepted range stays [1,8] exactly as before - 8 is the completion
+       sentinel, and 9 falls to the static view here just as it did under the
+       old `phase > 8` test. Widening it to >= 8 would have been a behaviour
+       change, and the 8+ sentinel is being pinned on the API side instead. */
+    var phn = Number(phase);
+    var usable = !!phase && phn === Math.floor(phn) &&
+      (phn === 8 || (phn >= 1 && phn <= 7 && !!STEPS[phn]));
+
+    if (!usable) {
+      /* An unusable phase now degrades to the static view instead of
+         throwing, and says so rather than failing silently. The value is the
+         endpoint's own phase field, not client data. */
+      if (phase) console.warn('[green-service] unusable phase value; static view only:', phase);
       livePhase = 0;
       paintProgress();
       paintHint();
@@ -393,10 +419,10 @@
       if (forceRender) render(0);
       return;
     }
-    livePhase = phase;
+    livePhase = phn;
 
     /* 8 means complete — land on Step 7, which is where the close lives. */
-    var landing = (phase >= 8) ? 7 : phase;
+    var landing = (phn >= 8) ? 7 : phn;
 
     if (!userInteracted || forceRender) {
       render(landing);
