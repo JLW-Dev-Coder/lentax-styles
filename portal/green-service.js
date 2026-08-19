@@ -432,16 +432,26 @@
       var svc = p.service || ('Engagement ' + (i + 1));
       var ph = p.phase;
 
+      /* ph arrives straight from the endpoint and is not validated there.
+         STEPS is keyed 1-7, so any truthy value below 8 that is not one of
+         those keys made STEPS[ph] undefined and .pct throw, which took the
+         whole rail down with no trace. An unrecognised phase now falls to
+         the same branch as a missing one. 8 is still the completion
+         sentinel and keeps meaning complete. */
+      var phn = Number(ph);
+      var known = (phn === Math.floor(phn) && phn >= 1 && phn <= 7 && !!STEPS[phn]);
+
       var meta = [];
-      if (ph) meta.push(ph >= 8 ? 'Complete' : 'Step ' + ph + ' of 7');
-      else meta.push('Not started');
+      if (!ph) meta.push('Not started');
+      else if (ph >= 8) meta.push('Complete');
+      else meta.push(known ? 'Step ' + phn + ' of 7' : 'Not started');
 
       var due = shortDate(p.due);
       /* Always show the date when names collide; otherwise it is still
          useful, just less load-bearing. */
       if (due) meta.push(due);
 
-      var pct = !ph ? 0 : (ph >= 8 ? 100 : STEPS[ph].pct);
+      var pct = !ph ? 0 : (ph >= 8 ? 100 : (known ? STEPS[phn].pct : 0));
 
       cards += '<div class="vl-pcard' +
         (i === activeProject ? ' vl-pcard-active' : '') +
@@ -513,13 +523,20 @@
         activeProject = 0;
 
         if (projects.length) {
-          paintProjects();
+          /* The validated consumer runs first; paintProjects reads only
+             projects/activeProject, never anything applyPhase sets. */
           applyPhase(projects[0].phase);
+          paintProjects();
         } else if (d.phase) {
           applyPhase(d.phase);
         }
       })
-      .catch(function () { /* fail silent: the page is fully usable without it */ });
+      .catch(function (err) {
+        /* The page stays fully usable without the endpoint. Log the error
+           only: never the client uid, the query string, or any payload
+           field, because this console is on a client-facing page. */
+        console.warn('[green-service] phase load failed:', err);
+      });
   }
 
   function bind() {
