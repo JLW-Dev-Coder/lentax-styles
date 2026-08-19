@@ -512,8 +512,20 @@
     /* Unresolved merge tag or no client context: stay on the static view. */
     if (!c) return;
 
-    fetch(PHASE_ENDPOINT + '?c=' + encodeURIComponent(c), { credentials: 'omit' })
-      .then(function (r) { return r.ok ? r.json() : null; })
+    /* No timeout meant a hung endpoint left the rail and the phase state
+       unresolved forever: the catch never fires, so the page sat in its
+       initial state with nothing to show that anything had failed. An
+       abort takes the same degraded path as any other failure, and the
+       R140 warn names it AbortError so a timeout is tellable apart.
+       credentials: 'omit' is deliberate - the endpoint does not
+       authenticate by session, so cookies must not go cross-origin. */
+    var ctl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 8000) : 0;
+    var opts = { credentials: 'omit' };
+    if (ctl) opts.signal = ctl.signal;
+
+    fetch(PHASE_ENDPOINT + '?c=' + encodeURIComponent(c), opts)
+      .then(function (r) { clearTimeout(timer); return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d) return;
 
@@ -532,6 +544,7 @@
         }
       })
       .catch(function (err) {
+        clearTimeout(timer);
         /* The page stays fully usable without the endpoint. Log the error
            only: never the client uid, the query string, or any payload
            field, because this console is on a client-facing page. */
