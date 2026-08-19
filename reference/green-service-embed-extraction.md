@@ -1,50 +1,49 @@
 # Green Service Portal App — Extraction Record
 
-**Rev:** R138
+**Rev:** R139 (supersedes R138)
 **Task:** ClickUp `86e2wary1` — VLP — SuiteDash — Client Dashboard Architecture and Worker
 **Date:** 2026-08-19
 **Page:** `https://app.virtuallaunch.pro/portal/dashboard/view/171363`
-**Status:** ⚠️ **PARTIAL CAPTURE — NOT A ROLLBACK SOURCE. NOT SAFE TO SERVE.**
+**Status:** ✅ **COMPLETE AND VERIFIED — safe rollback source, safe to serve.**
 
 ---
 
 ## 1. Read this first
 
-This extraction did **not** get the authored Embed Block source. The operator
-confirmed that the SuiteDash admin editor does not expose it. What we have is a
-**transcription of a chat paste**, and it is deficient in three known ways:
+The source of record is `portal/_source/green-service-embed.raw.html`. It is a
+**byte-exact capture of the live Embed Block**, verified against a character
+count measured in the same browser session. It is the rollback point: pasting
+its contents back into the Embed Block restores the page exactly.
 
-| Deficiency | Evidence | Consequence |
-|---|---|---|
-| **Truncated** | Paste cut at a 50,000-char message ceiling, mid-expression inside `stepHtml()` | ~40% of the script is missing |
-| **Function deficit** | 14 of 24 functions present | The live phase fetch, the render/paint path, event wiring, and init are all absent |
-| **Entity decoding in transit** | `esc()` reads `.replace(/&/g, '&')` — a no-op | The authored source almost certainly has `'&amp;'`; the paste decoded it |
+R138's record — a transcription of a chat paste — is superseded. Its
+`.partial.html` file was deleted in R139 commit 1 rather than kept alongside
+this one; two sources of record is how the wrong one gets used six weeks later.
+Git history preserves it.
 
-`node --check portal/green-service.js` **fails** with `SyntaxError: Unexpected
-end of input` at line 294. That is the truncation, stated by the parser.
+### Why `<style>`/`<script>` `textContent` is authoritative, not a snapshot
 
-**Therefore:**
+This repo forbids committing serialized page DOM. That prohibition is
+**unaffected** by this file, and the distinction is worth stating precisely
+because it is the reason this method is safe:
 
-- ❌ **Do not paste `_source/green-service-embed.partial.html` back into SuiteDash.** It would replace a working page with a broken one.
-- ❌ **Do not apply a `<script src>` stub pointing at `portal/green-service.js`.** The file cannot parse; the entire app would die on load.
-- ❌ **This is not the revert point the task was after.** It does not yet exist.
-- ✅ It *is* a faithful, reviewable record of the complete design system and the first 14 functions, and a correct starting point once the remainder arrives.
+- The prohibition exists because portal chrome carries `data-push-engine-token`
+  — a 207-character credential — in **element attributes**.
+- `<style>` and `<script>` contents are **text nodes**. They cannot carry
+  attributes, so they cannot carry that token.
+- Neither element's content is parsed as HTML, and Angular does not rewrite
+  them. Their `textContent` is byte-identical to what the browser executes.
 
-The paste-back stub (task step B4) was **deliberately not created.** Its only
-function is to activate a file that provably does not parse. It belongs in the
-completion prompt, alongside a JS file that passes `node --check`.
+So this is authored source read back out, not a rendering of a page. The scrub
+in §2 confirms it empirically: zero credential hits, zero UUIDs, zero PII.
 
-### What would complete this
+### Capture method
 
-The remainder of the `<script>`, picked up from where the paste cut:
-
-```js
-banner = '<p class="vl-body" style="margin-bottom:18px;"><b class="vl-hero-accent">' + (who ? esc(who)
-```
-
-through the closing `})();`. Roughly 9–10 KB. Delivered in two chat messages it
-clears the ceiling comfortably. Once merged, re-run the inventories here; the
-function count must reach 24 and `node --check` must pass before any stub ships.
+`textContent` of each element dumped straight to disk — no clipboard, no chat
+relay, no editor round-trip. The capture snippet printed its own character
+counts in the same session, and those figures are the verification target.
+Reassembly, split, and write were performed at the **byte level**
+(`ReadAllBytes`/`WriteAllBytes`), never through a text decode, so no encoding
+round-trip could alter a character.
 
 ---
 
@@ -52,56 +51,91 @@ function count must reach 24 and `node --check` must pass before any stub ships.
 
 | File | Bytes | Chars | Role |
 |---|---:|---:|---|
-| `portal/_source/green-service-embed.partial.html` | 40,559 | 40,460 | Capture baseline (partial) |
-| `portal/green-service.css` | 24,879 | 24,873 | Complete — see §3 |
-| `portal/green-service.js` | 15,654 | 15,561 | **Partial** — 14/24 functions |
+| `portal/_source/green-service-embed.raw.html` | 51,529 | 51,508 | **Source of record / rollback point** |
+| `portal/green-service.css` | 26,650 | 26,644 | Complete |
+| `portal/green-service.js` | 24,845 | 24,830 | Complete — 24/24 functions, parses |
 
-**Split point:** line 876 (`</style>`) / line 877 (`<script>`).
-CSS is lines 2–875. JS is line 878 to EOF. There is **no closing `</script>`** —
-the capture ends before it.
+### Gate 1 — length verification against live measurement
 
-**Losslessness of the split** (the one contract that does hold):
+| Stream | At-capture | Measured | Delta |
+|---|---:|---:|---:|
+| `<style>` | 26,644 | 26,644 | **0** |
+| `<script>` | 24,830 | 24,830 | **0** |
+
+Exact equality — no trailing newline was added by the download. No BOM,
+LF-only line endings (1,201 LF in CSS, 553 in JS), zero CR.
+
+Both figures are also identical to the prior capture session's, so the
+**Embed Block has not been edited in SuiteDash since that session** — dump
+fidelity and source stability are independently confirmed.
+
+### Reassembly shape and delta
+
+Both dumps carry their own leading and trailing newlines — the whitespace
+that sat inside the tags in the live block. So the wrapper is exactly the four
+tags plus two separating newlines, and reassembly reproduces the block byte for
+byte:
 
 ```
-raw   : 40460
-css   : 24873
-js    : 15561
-c+j   : 40434
-delta : 26
-raw.Contains(css) = true
-raw.Contains(js)  = true
+"<style>" + style + "</style>\n<script>" + script + "</script>\n"
 ```
 
-Delta of 26 chars is fully accounted: `<style>\n` (8) + `</style>\n` (9) +
-`<script>\n` (9) = 26. Nothing else was dropped by the split.
+```
+raw   : 51508
+css   : 26644
+js    : 24830
+c+j   : 51474
+delta : 34
+raw.Contains(css) = True
+raw.Contains(js)  = True
+```
 
-**Character parity** (no encoding corruption across the split):
+Delta of 34 accounted character by character:
+`<style>` (7) + `</style>` (8) + `\n` (1) + `<script>` (8) + `</script>` (9) +
+`\n` (1) = **34**. Nothing else.
+
+**This check is non-circular**, unlike R138's. There, `raw.Contains(css)` only
+proved the split was faithful to the transcription — nothing tested the
+transcription against the source. Here the raw file is itself verified against
+an independent live measurement first, so containment inherits that guarantee.
+
+### Character parity
 
 | Char | CSS | JS | Raw | Sum matches |
 |---|---:|---:|---:|:--:|
-| U+2014 em-dash | 3 | 37 | 40 | ✅ |
-| U+00A0 nbsp | 0 | 1 | 1 | ✅ |
-| U+00A7 section | 0 | 6 | 6 | ✅ |
+| U+2014 em-dash | 3 | 7 | 10 | ✅ |
+| U+00B7 middle dot | 0 | 1 | 1 | ✅ |
 
-### Known deviation: escape sequences resolved
+Byte-vs-char deltas reconcile exactly: CSS 3×U+2014 at 3 bytes each = +6
+(26,644 → 26,650); JS 7×U+2014 (+14) plus 1×U+00B7 (+1) = +15
+(24,830 → 24,845).
 
-The authored source writes non-ASCII characters as `\uXXXX` escapes inside JS
-string literals (`—`, `§`, `’`, `·`, `×`, ` `).
-In this capture they are stored as the **literal characters**. This is a
-byte-level difference and a **runtime no-op** — `'—'` and `'—'` are the
-same string to a JS engine, and `/ /g` and `/<NBSP>/g` are the same regex.
-Recorded so a future byte-diff against a real source does not read as damage.
+### `\uXXXX` escapes — R138's "known deviation" resolved
+
+R138 recorded that the authored source writes non-ASCII as `\uXXXX` escapes
+while its capture held literal characters, and flagged it so a future byte-diff
+would not read as damage. **That is now confirmed and corrected.** The real
+source contains 52 escape sequences, preserved here verbatim:
+
+```
+35 x \u2014    6 x \u00a7    4 x \u2019    2 x \u00d7
+ 2 x \u00b7    1 x \u2197    1 x \u2190    1 x \u00a0
+```
+
+R138 counted 37 literal em-dashes in a *truncated* file where this one has 7
+literals plus 35 escapes — the transcription had resolved them. Escapes are
+ground truth and are neither resolved nor re-escaped here.
 
 ### Scrub — clean
 
 ```
-grep -nE 'push-engine|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'  → no output
-grep -nE '@[A-Za-z0-9.-]+\.(com|net|org|pro)|phone patterns'                          → no output
+grep -nE 'push-engine|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'  -> no output
+grep -nE '@[A-Za-z0-9.-]+\.(com|net|org|pro)'                                         -> no output
 ```
 
-No credentials, no resolved UUIDs, no `data-push-engine-token`, no PII. The
-capture references merge-code attribute *names* only. Safe to serve publicly —
-which matters, because Netlify does serve it.
+No credentials, no resolved UUIDs, no `data-push-engine-token`, no PII. Merge-code
+attribute *names* only. Safe to serve publicly — which matters, because Netlify
+does serve it.
 
 ---
 
@@ -109,7 +143,7 @@ which matters, because Netlify does serve it.
 
 Generated from the files, not transcribed.
 
-### `@media` conditions — 4, complete
+### `@media` conditions — 4
 
 ```
 @media (max-width: 1180px)
@@ -118,7 +152,7 @@ Generated from the files, not transcribed.
 @media (max-width: 420px)
 ```
 
-### id selectors — 4, complete
+### id selectors — 4
 
 Raw naive `#`-token scan returns 15 tokens; 11 are hex colour literals
 (`#111111 #252525 #e07a00 #eeeeee #f4f4f4 #f5f5f5 #ff5a2c #ff6a1a #ff7a50
@@ -127,9 +161,6 @@ Raw naive `#`-token scan returns 15 tokens; 11 are hex colour literals
 ```
 #vl-hero  #vl-hero-body  #ea-cart-root  #ea-order-root
 ```
-
-Matches the four ids confirmed by live capture — a strong signal the CSS half
-is complete and faithful.
 
 ### class selectors — 42 unique
 
@@ -145,27 +176,52 @@ is complete and faithful.
 .vl-step-done .vl-step-label .vl-step-num .vl-subhead
 ```
 
-CSS brace balance: **96 open / 96 close** — structurally complete.
+CSS brace balance: **96 open / 96 close.**
 
-### function names — 14 of 24 ❌
-
-Present:
+### function names — 24 of 24 ✅
 
 ```
-accent  attr  clean  clientFirst  clientOrg  esc  list
-overviewBody  overviewLead  overviewTitle  paintGreeting
-shortDate  stepHtml (truncated mid-body)  timeOfDay
+accent  overviewTitle  overviewLead  overviewBody  clean  attr
+clientFirst  clientOrg  timeOfDay  shortDate  esc  paintGreeting
+list  stepHtml  overviewHtml  paintProgress  paintHint  paintSteps
+render  applyPhase  paintProjects  pick  loadPhase  bind
 ```
 
-Missing: **10 functions.** Not enumerable — they lie past the cut. From the
-names referenced by surviving code and the live-capture description, the
-absent set includes at minimum the phase fetch against `PHASE_ENDPOINT`, the
-step render/paint path, the engagement-rail card builder, the click/keyboard
-event wiring, and the init/bootstrap call.
+`node --check portal/green-service.js` — **passes clean.**
+
+JS brace balance by naive regex is 85/83. The imbalance is **not** a defect:
+line 196 contains `v.indexOf('{{')` — two literal braces inside a string
+literal, the unresolved-merge-tag guard. Real balance is 83/83, which is what
+`node --check` confirms. Naive brace counting is reliable for CSS and is not
+for JS; the parser is the authority.
 
 ---
 
-## 4. Delivery chain (confirmed live)
+## 4. Why R138's shortfall went unnoticed — the control that catches it
+
+R138 shipped a CSS file **1,771 characters short of the live source and
+reported it complete.** Every structural inventory in §3 matched at the time:
+42 class selectors, 4 id selectors, 4 `@media`, 96/96 braces.
+
+That is precisely the failure mode: **those counts all survive whitespace loss.**
+An inventory tells you which *things* are present. It cannot tell you that
+formatting between them was dropped, and a CSS file missing 1,771 characters of
+whitespace still declares every selector it ever did. Structural completeness
+and byte completeness are different claims, and R138 proved the first while
+reporting the second.
+
+The JS half failed loudly instead — `node --check` caught a 37% truncation
+immediately — which is why CSS was the half that slipped through. A silent
+check on one half and a loud check on the other is not coverage.
+
+**The control is length verification against a measurement taken at the live
+source.** It is the only check in this document that would have caught R138 on
+the day. Any future re-capture must carry its at-capture character counts, and
+those counts must be compared before anything else is trusted.
+
+---
+
+## 5. Delivery chain (confirmed live)
 
 `precious-lily-bbe555.netlify.app` serves onto this page:
 
@@ -174,19 +230,28 @@ event wiring, and the init/bootstrap call.
 - `themes/vlp-default.css` — VLP palette overrides, loaded second so theme tokens win
 
 The Green Service app currently reaches the page as **inline `<style>` +
-`<script>` in a single SuiteDash Embed Block** — 51,627 chars per live DOM
-capture (26,644 style / 24,830 script). Nothing in this repo serves it yet.
+`<script>` in a single SuiteDash Embed Block** — 51,508 chars (26,644 style /
+24,830 script), matching this capture exactly.
+
+`portal/green-service.embed-stub.html` is committed to swap that inline block
+for two external references. **It is unverified against the SuiteDash
+sanitizer** — whether an Embed Block permits `<script src>` and
+`<link rel=stylesheet>` has never been tested on this surface. If the sanitizer
+strips them, the stub approach is dead and delivery moves into `lentax-vlp.js`
+behind a page check. **Rollback in every case is this record's `.raw.html`
+contents pasted back verbatim** — which is why it was committed before the stub
+existed.
 
 **Live mount box:** `#vl-hero-body.vl-main-inner` measures **831.17px**, zero
 padding, no max-width, at a 2174px viewport.
 
 ---
 
-## 5. Known defects — recorded, NOT fixed
+## 6. Known defects — recorded, NOT fixed
 
 Each is a separate prompt with its own revert boundary.
 
-### 5.1 Duplicate `id="vl-hero"` — confirmed, high impact
+### 6.1 Duplicate `id="vl-hero"` — confirmed, high impact
 
 Two elements share `id="vl-hero"`: one in the markup Text Block, one in the
 layout Text Block. `document.getElementById('vl-hero')` returns the first,
@@ -194,76 +259,138 @@ which carries only `data-client-uid`. So `attr()` misses its attribute branch
 on **every** load and the page runs entirely on the hidden-span `#vl-mt-*`
 fallback. The attribute path is dead code in production.
 
-Visible in the surviving source at `attr()`:
-
 ```js
 var hero = document.getElementById('vl-hero');
 var v = clean(hero && hero.getAttribute(name));   // always empty in production
 ```
 
-### 5.2 `esc()` is a no-op as captured — **verify before anything else**
+### 6.2 `esc()` — R138's no-op was a transit artifact ✅ RESOLVED
+
+R138 found `esc()` performing character-to-itself replacements — zero actual
+escaping — and flagged it as the highest-priority item to verify. **The live
+source escapes correctly.** Verbatim:
 
 ```js
 function esc(v) {
-  return String(v)
-    .replace(/&/g, '&')      // ← replaces & with &
-    .replace(/</g, '<')      // ← replaces < with <
-    .replace(/>/g, '>')
-    .replace(/"/g, '"');
-}
+    return String(v)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
 ```
 
-Every replacement is character-to-itself. If the authored source reads this
-way, `esc()` provides **zero** escaping and every call site is an HTML
-injection path — `clientFirst()`, `clientOrg()`, and `timeOfDay()` all flow
-into `innerHTML` via `paintGreeting()`, and those values originate in
-client-controlled CRM fields.
+R138's version was damaged in the chat relay, which HTML-decoded `'&amp;'` to
+`'&'` and turned a real escaper into a no-op. There is **no XSS exposure** and
+never was. Recorded because the false positive was expensive: a transcription
+can invent a critical security finding as easily as it can hide one.
 
-**Most likely a transit artifact** (`&amp;` → `&` decoded by the chat relay),
-since the author used `\uXXXX` escapes elsewhere specifically to survive
-encoding. But it cannot be confirmed from what we have. **This is the single
-highest-priority item to check against the real source.**
+Residual, minor: `esc()` does not escape `'` (U+0027). Every attribute
+interpolation in the file is double-quoted, so nothing is exploitable today.
+It is a latent gap if a single-quoted attribute is ever introduced.
 
-### 5.3 Unhardened phase fetch
+### 6.3 Unhardened phase fetch — confirmed at the call site
 
-`PHASE_ENDPOINT = "https://api.virtuallaunch.pro/v1/green/portal-phase"` — the
-call site is past the truncation, but live capture confirms no timeout and no
-`AbortController`. A hung request leaves `livePhase = 0` indefinitely; the
-`userInteracted` guard suggests the author already knew the fetch can be slow.
+Now visible in the recovered `loadPhase()`:
 
-### 5.4 Phase endpoint auth posture
+```js
+fetch(PHASE_ENDPOINT + '?c=' + encodeURIComponent(c), { credentials: 'omit' })
+```
 
-`/v1/green/portal-phase` is called from a client-facing page. Whether it
-authenticates the caller, and what it discloses to an unauthenticated one, is
-unreviewed.
+No timeout, no `AbortController`, no `signal`. A hung request leaves
+`livePhase = 0` indefinitely. The `userInteracted` guard suggests the author
+already knew the fetch can be slow. R138 inferred this from live capture; it is
+now confirmed in source.
 
-### 5.5 `§8275-R` — wrong symbol
+### 6.4 Phase endpoint auth posture — sharpened by the recovered call site
 
-`overviewBody()` renders "A COGS workpaper and §8275-R disclosure". 8275-R is
-a **Form**, not a code section. Reads as an error to a tax-literate client, and
+`credentials: 'omit'` means **no cookie, no session, no Authorization header**
+is sent. The endpoint therefore cannot be authenticating the caller by session
+at all. Authorization rests entirely on knowledge of the client uid, passed in
+the query string:
+
+```
+GET https://api.virtuallaunch.pro/v1/green/portal-phase?c=<client-uid>
+```
+
+If that uid is guessable, enumerable, or leaks, the response discloses another
+client's engagement data — service names, phase, due dates, project URLs. R138
+could only record this as "unreviewed" because the call site was past the
+truncation. It is now a concrete question with a concrete shape, and it wants
+a server-side answer, not a client-side patch.
+
+### 6.5 `§8275-R` — wrong symbol
+
+`overviewBody()` renders "A COGS workpaper and §8275-R disclosure". 8275-R is a
+**Form**, not a code section. Reads as an error to a tax-literate client, and
 this is client-facing sales copy. Contrast the same file's correct usage of
 `§280E`, `§471`, `§471(c)` and its correct "Form 8275-R" elsewhere.
 
-### 5.6 Hardcoded cross-portal dashboard ids
+### 6.6 Hardcoded cross-portal dashboard ids
 
 `171391` (Risk Review) and `171081` (next engagement) are baked into `STEPS`
 copy and `overviewBody()`. Not a defect today; a silent-breakage hazard when
 those pages are renumbered.
 
-### 5.7 `livePhase >= 8` magic sentinel
+### 6.7 `livePhase >= 8` magic sentinel
 
 `8` means "complete" against a 7-step model, with no named constant. Works;
 undocumented at the call site.
 
-### 5.8 `stepHtml()` builds HTML by string concatenation
+### 6.8 `stepHtml()` builds HTML by string concatenation
 
-Combined with 5.2, the sanitisation posture of the whole render path needs one
-deliberate review rather than per-site patching.
+With 6.2 resolved this is far less urgent, but the render path still assembles
+markup by concatenation throughout. Worth one deliberate review rather than
+per-site patching.
 
 ---
 
-## 6. Change log
+### New in R139 — revealed by the recovered half
+
+These were not visible in R138's truncated capture.
+
+### 6.9 `paintProjects()` reads `STEPS[ph]` unguarded — endpoint data can throw
+
+`STEPS` is keyed `1`–`7`. `applyPhase()` validates carefully before indexing:
+
+```js
+if (!phase || phase < 1 || phase > 8) { livePhase = 0; /* ... */ return; }
+```
+
+`paintProjects()` does not:
+
+```js
+var pct = !ph ? 0 : (ph >= 8 ? 100 : STEPS[ph].pct);
+```
+
+`ph` comes straight from the endpoint. Any value that is truthy, below 8, and
+not an integer 1–7 — `7.5`, `-1`, `0.5` — makes `STEPS[ph]` `undefined` and
+`.pct` throw a `TypeError`.
+
+The failure is silent and total. `paintProjects()` is called from inside
+`loadPhase()`'s `.then()`, and the chain ends in
+`.catch(function () { /* fail silent */ })`. So one malformed phase value from
+the endpoint kills the entire engagement rail with nothing logged and nothing
+shown. The asymmetry with `applyPhase()` — which is called moments later on the
+same data, and guards — looks unintentional.
+
+### 6.10 `paintProjects()` is the first consumer of endpoint data
+
+Ordering consequence of 6.9, worth stating separately: in `loadPhase()`,
+`paintProjects()` runs **before** `applyPhase()`. The unguarded consumer sees
+the data first, so a bad payload throws before the guarded path ever runs.
+
+**Ruled out during R139 review, recorded so it is not re-investigated:**
+`render()` binds click/keydown listeners on `#vl-back` every call, which looks
+like unbounded listener accumulation. It is not — `#vl-back` is emitted inside
+`stepHtml()`, which `render()` writes into `body.innerHTML` at the top of the
+same call. The node is fresh on every render, so each is bound exactly once.
+
+---
+
+## 7. Change log
 
 | Date | Rev | Change |
 |---|---|---|
-| 2026-08-19 | R138 | Initial partial capture. CSS complete (96/96 braces, 4/4 ids, 4/4 media queries, 42 classes). JS 14/24 functions, does not parse. Stub deliberately withheld. |
+| 2026-08-19 | R138 | Initial partial capture via chat transcription. CSS believed complete; JS 14/24 functions, did not parse. Stub deliberately withheld. |
+| 2026-08-19 | R139 | **Superseded by byte-exact DOM dump.** CSS was in fact 1,771 chars short (§4). Now 26,644/24,830 chars, verified against at-capture measurement, zero delta. JS 24/24 functions, `node --check` passes. `esc()` no-op confirmed a transit artifact, not a real defect (6.2). `\uXXXX` escapes confirmed and preserved. `.partial.html` deleted. Two new defects recorded (6.9, 6.10); one candidate ruled out. Stub shipped. |
