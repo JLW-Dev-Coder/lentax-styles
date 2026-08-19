@@ -510,8 +510,14 @@
   function loadPhase() {
     var c = attr('data-client-uid', 'vl-mt-uid');
 
-    /* Unresolved merge tag or no client context: stay on the static view. */
-    if (!c) return;
+    /* Unresolved merge tag or no client context: stay on the static view.
+       Silent until R143: an empty rail here is a misconfigured portal, not
+       a client with no engagements, and the two were indistinguishable in
+       the console. The uid itself is never logged - only that none resolved. */
+    if (!c) {
+      console.warn('[green-service] no client uid; static view only');
+      return;
+    }
 
     /* No timeout meant a hung endpoint left the rail and the phase state
        unresolved forever: the catch never fires, so the page sat in its
@@ -526,7 +532,17 @@
     if (ctl) opts.signal = ctl.signal;
 
     fetch(PHASE_ENDPOINT + '?c=' + encodeURIComponent(c), opts)
-      .then(function (r) { clearTimeout(timer); return r.ok ? r.json() : null; })
+      .then(function (r) {
+        clearTimeout(timer);
+        /* A 500 or 404 resolves the promise, so the catch never fires and the
+           rail went empty with nothing in the console. Status only: never the
+           body, the URL, or the query string. */
+        if (!r.ok) {
+          console.warn('[green-service] phase endpoint returned', r.status, r.statusText);
+          return null;
+        }
+        return r.json();
+      })
       .then(function (d) {
         if (!d) return;
 
@@ -542,6 +558,11 @@
           paintProjects();
         } else if (d.phase) {
           applyPhase(d.phase);
+        } else {
+          /* Correct behaviour, not a fault: the endpoint answered and this
+             client has nothing to show. Logged so a verifier can tell this
+             branch apart from the failures above. */
+          console.warn('[green-service] no engagements for this client; rail hidden (not an error)');
         }
       })
       .catch(function (err) {
