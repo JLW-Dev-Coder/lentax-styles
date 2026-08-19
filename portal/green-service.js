@@ -27,7 +27,7 @@
       '<div class="vl-list">' +
         '<div class="vl-list-item"><span class="vl-dot"></span><span>An opened matter with defined scope, named years, and named entities.</span></div>' +
         '<div class="vl-list-item"><span class="vl-dot"></span><span>A licensed EA of record \u2014 my PTIN, my signature, my judgment.</span></div>' +
-        '<div class="vl-list-item"><span class="vl-dot"></span><span>A COGS workpaper and \u00a78275-R disclosure that stands on its own.</span></div>' +
+        '<div class="vl-list-item"><span class="vl-dot"></span><span>A COGS workpaper and Form 8275-R disclosure that stands on its own.</span></div>' +
         '<div class="vl-list-item"><span class="vl-dot"></span><span>Every statutory deadline calendared before work begins.</span></div>' +
       '</div>' +
       '<p class="vl-body">Your bookkeeper and your CPA stay yours. I carry the license for the \u00a7280E position and the signature that goes with it.</p>' +
@@ -242,7 +242,8 @@
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   /* crmCompanyName may hold a person's name rather than a company —
