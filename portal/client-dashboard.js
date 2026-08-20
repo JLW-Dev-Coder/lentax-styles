@@ -99,6 +99,22 @@
                           map(Number), so only numbers reach the string.
      Section copy (b.key / b.title / b.lede) is BUCKET_DEFS in this
      file, not payload, and stays unescaped.
+
+   R150 - RENDERING DEFECTS
+     a. ST_LABEL covers five of the eight statuses the API can emit.
+        archive, inactive and template had no entry and no CSS class, so
+        the first archived task would have rendered an unstyled pill
+        labelled "undefined". stLabel now derives a label from the slug
+        and anything ST_LABEL does not own also carries st-other, which
+        the stylesheet gives a muted, settled treatment.
+     b. A malformed urgency_date produced NaN, which failed every
+        comparison in the ladder and landed on "Low" - the least alarming
+        tier. It now renders an explicit, visibly off-ladder "Unknown"
+        and warns once. Genuine absence (null) still reads "Low"; that is
+        a real answer, not a parse failure.
+     c. AV.coordinator was "JW". See the note on AV.
+     d. The client_requests lede claimed "Four items". Live data would
+        contradict it, so the count is gone from the sentence.
    --------------------------------------------------------------------- */
 
 (function () {
@@ -143,14 +159,39 @@
   var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var shortDate = function (iso) { var p = iso.split("-").map(Number); return MON[p[1] - 1] + " " + p[2]; };
 
+  /* One warning per page load, not one per card - five buckets sharing a
+     malformed feed would otherwise print five identical lines. */
+  var urgWarned = false;
+
   function urgPill(iso) {
-    var d = iso ? dayDiff(iso) : null;
     var c, l;
-    if (d === null) { c = "low"; l = "Low"; }
-    else if (d <= 0) { c = "hot"; l = "Hot"; }
-    else if (d <= 2) { c = "high"; l = "High"; }
-    else if (d <= 5) { c = "normal"; l = "Normal"; }
-    else { c = "low"; l = "Low"; }
+    if (!iso) {
+      /* Genuine absence is a real answer, not a parse failure: nothing is
+         scheduled, so Low is honest. Unchanged from R148. */
+      c = "low"; l = "Low";
+    } else {
+      /* A non-string would throw inside dayDiff's split() and take the
+         whole render down, so it is treated as unparseable here rather
+         than reaching it. dayDiff itself is untouched. */
+      var d = (typeof iso === "string") ? dayDiff(iso) : NaN;
+      if (isNaN(d)) {
+        /* R150 - failing quiet in the reassuring direction is the wrong
+           way to fail. NaN fails every comparison in the ladder below and
+           used to fall through to "Low", telling a client their deadlines
+           were relaxed because we could not read a date. Render an
+           explicitly unknown state instead. The date value is never
+           logged - only that one could not be parsed. */
+        if (!urgWarned) {
+          urgWarned = true;
+          console.warn('[vld] unparseable urgency date; urgency shown as unknown');
+        }
+        c = "unknown"; l = "Unknown";
+      }
+      else if (d <= 0) { c = "hot"; l = "Hot"; }
+      else if (d <= 2) { c = "high"; l = "High"; }
+      else if (d <= 5) { c = "normal"; l = "Normal"; }
+      else { c = "low"; l = "Low"; }
+    }
     return '<span class="st st-' + c + '">' + (c === "hot" ? FIRE : "") + l + '</span>';
   }
 
@@ -166,12 +207,44 @@
     { key: "correspondence", title: "Correspondence", k: "Received",
       lede: "Letters, notices and summonses on this matter." },
     { key: "client_requests", title: "What we need from you", k: "Open requests",
-      lede: "Four items. Message or book a call with any question.", ctas: true }
+      lede: "Message or book a call with any question.", ctas: true }
   ];
 
+  /* Five of the eight statuses the API can emit. archive, inactive and
+     template have no entry here on purpose - they are settled states with
+     no copy of their own, and stLabel derives a label for them. */
   var ST_LABEL = { active: "Active", upcoming: "Upcoming", inprogress: "In progress", hold: "On hold", closed: "Closed" };
-  var AV = { coordinator: "JW", client: "YOU" };
+
+  /* R150 - the coordinator avatar is not a person. It used to read "JW",
+     which stamped one operator's initials on every client of every
+     reseller install. No name for the assigned coordinator exists in the
+     payload or in the page, so there is nothing to derive from; the honest
+     answer is a person-agnostic mark. "US" pairs with the client's "YOU"
+     and stays true wherever this bundle is installed. The row already
+     names the side in full via OWN_LABEL. */
+  var AV = { coordinator: "US", client: "YOU" };
   var OWN_LABEL = { coordinator: "Coordinator", client: "You" };
+
+  /* Own-property lookups only. A payload status of "constructor" or
+     "toString" would otherwise hit Object.prototype and render a function
+     body as the pill text. */
+  function owns(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
+
+  /* Status -> CSS class token. Reduced to [a-z0-9-] so an unrecognised
+     value can never smuggle anything into the class attribute, and so the
+     token stays a token however the upstream slug is punctuated. */
+  function stSlug(s) {
+    return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+
+  /* R150 - a status with no ST_LABEL entry used to render the literal
+     string "undefined". Derive a display label from the slug instead:
+     "archive" -> "Archive", "in_review" -> "In review". */
+  function stLabel(s) {
+    if (owns(ST_LABEL, s)) return ST_LABEL[s];
+    var w = stSlug(s).replace(/-/g, " ");
+    return w ? w.charAt(0).toUpperCase() + w.slice(1) : "Unknown";
+  }
 
   function rowHTML(x) {
     /* x.due is payload but cannot carry markup: shortDate and rel both
@@ -185,15 +258,22 @@
        than defaulted: an invented status would be a claim we cannot
        support, and an empty pill would collapse the row grid. If the
        field starts arriving this renders on its own. */
-    var st = x.status
-      ? '<span class="st st-' + esc(String(x.status).replace(/\s/g, "")) + '">' + esc(ST_LABEL[x.status] || x.status) + '</span>'
-      : '';
+    /* An unrecognised status carries st-other as well as its own token, so
+       it renders as a deliberate muted pill rather than an unstyled
+       fragment on the day a task is first archived. */
+    var st = '';
+    if (x.status) {
+      var slug = stSlug(x.status);
+      var cls = owns(ST_LABEL, x.status) ? "st-" + slug
+        : (slug ? "st-" + slug + " st-other" : "st-other");
+      st = '<span class="st ' + esc(cls) + '">' + esc(stLabel(x.status)) + '</span>';
+    }
     return '<a class="row' + (x.label_source === "name" ? " raw" : "") + '" href="#" '
       + 'title="' + esc(x.label) + '">'
       + st
       + '<span class="m"><span class="t">' + esc(x.label) + '</span></span>'
-      + '<span class="own ' + (x.owner === "client" ? "client" : "") + '"><span class="av">' + esc(AV[x.owner] || "") + '</span>'
-      + esc(OWN_LABEL[x.owner] || "") + '</span>' + when + '</a>';
+      + '<span class="own ' + (x.owner === "client" ? "client" : "") + '"><span class="av">' + esc(owns(AV, x.owner) ? AV[x.owner] : "") + '</span>'
+      + esc(owns(OWN_LABEL, x.owner) ? OWN_LABEL[x.owner] : "") + '</span>' + when + '</a>';
   }
 
   var CTAS = '<div class="ctas">'

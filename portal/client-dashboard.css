@@ -145,6 +145,12 @@
 #vld .st-inprogress{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-line)}
 #vld .st-hold{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line)}
 #vld .st-closed{background:var(--neu-bg);color:var(--neu-fg);border-color:var(--neu-line)}
+/* R150 - the three statuses the API emits that the ladder never named.
+   All settled states, so they read muted rather than active. st-other is
+   the catch-all the renderer adds to anything ST_LABEL does not own, so a
+   new upstream status is a deliberate quiet pill, not a bare fragment. */
+#vld .st-archive,#vld .st-inactive,#vld .st-template,#vld .st-other{background:var(--neu-bg);
+  color:var(--neu-fg);border-color:var(--neu-line)}
 /* urgency ladder - summary cards only. Every tier carries its own glyph. */
 #vld .st-hot{background:var(--crit-fill);color:var(--on-crit);border-color:var(--crit-fill);
   font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 12px 5px 9px;
@@ -157,6 +163,13 @@
 #vld .st-normal::before{content:"\25A0";background:none;width:auto;height:auto;border-radius:0;font-size:7px;line-height:1}
 #vld .st-low{background:transparent;color:var(--ink-3);border-color:var(--line);font-weight:650}
 #vld .st-low::before{content:"\25BE";background:none;width:auto;height:auto;border-radius:0;font-size:9px;line-height:1}
+/* R150 - urgency we could not parse. Deliberately NOT a ladder tier: a
+   dashed hairline and a query glyph instead of the solid tier glyphs, so
+   an unreadable date never reads as the reassuring end of the ladder. */
+#vld .st-unknown{background:transparent;color:var(--ink-3);border-color:var(--line-2);
+  border-style:dashed;font-weight:650}
+#vld .st-unknown::before{content:"?";background:none;width:auto;height:auto;border-radius:0;
+  font-size:10px;font-weight:800;line-height:1}
 /* owner - two states only: coordinator | client */
 #vld .own{display:inline-flex;align-items:center;gap:7px;flex:none;font-size:var(--t-label);
   font-weight:650;color:var(--ink-2);background:var(--surface-3);border:1px solid var(--line);
