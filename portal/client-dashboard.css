@@ -1,0 +1,205 @@
+/* ---------------------------------------------------------------------
+   client-dashboard.css
+   Source:     portal/_source/dashboard-fragment.raw.html (R147)
+   Ported:     2026-08-20
+   Scope:      Client dashboard mount fragment - sections, summary cards,
+               ledger rows, pills, density toggle, empty/stale states.
+   Namespace:  #vld and its descendants. Nothing else.
+   Depends on: nothing. Dark only; the portal surface owns the page
+               background. No imported fonts.
+
+   SCOPING NOTE - why this file exists rather than the raw block.
+   The fragment shipped 75 of its 84 rules unscoped, including bare
+   .row, .card, .st, .sec, .own, .when, .more, .k, .v, .n, .t and .m.
+   Live measurement on the target page found .card x1, .row x2 and
+   .btn x13 already present in SuiteDash chrome, so injecting the raw
+   block would repaint portal furniture on every page of every reseller
+   install. Every selector below therefore carries #vld as its leftmost
+   compound - including the universal, link and :focus-visible rules.
+   The nine rules the fragment already scoped to .vld are #vld here too,
+   for one consistent hook and one predictable specificity.
+
+   No importance escalation anywhere. If a SuiteDash rule ever beats one
+   of these we settle it with live DOM evidence, not a pre-emptive flag.
+   --------------------------------------------------------------------- */
+
+#vld{
+  /* type - system stacks, no imported fonts */
+  --ff-ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ff-dis:ui-serif,Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --t-micro:10.5px; --t-label:11.5px; --t-meta:12.5px; --t-body:13.5px; --t-row:14px;
+  --t-h3:19px; --t-h2:11px; --t-num:30px;
+  /* spacing - 4 / 8 / 12 / 16 / 24 / 32 / 48 / 72 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px;
+  --r-sm:8px; --r:14px; --r-pill:999px;
+  --sh:0 1px 0 rgba(255,255,255,.04),0 8px 22px rgba(0,0,0,.50);
+  --sh-2:0 1px 0 rgba(255,255,255,.06),0 18px 44px rgba(0,0,0,.60);
+  --surface:#1E1E1E; --surface-2:#242424; --surface-3:#2A2A2A;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.24);
+  --ink:#F5F1EC; --ink-2:#C3BDB4; --ink-3:#918A81;
+  --accent:#F97316; --accent-ink:#FDBA74; --accent-soft:rgba(249,115,22,.13);
+  --accent-line:rgba(249,115,22,.55); --accent-fill:#F97316; --on-accent:#1A1206;
+  /* functional status - fixed hues, never themed */
+  --good-bg:rgba(46,125,91,.20); --good-fg:#79D6A9; --good-line:rgba(121,214,169,.34);
+  --info-bg:rgba(28,110,180,.20); --info-fg:#8CBEEC; --info-line:rgba(140,190,236,.32);
+  --warn-bg:rgba(199,126,46,.20); --warn-fg:#F3BD73; --warn-line:rgba(243,189,115,.34);
+  --crit-bg:rgba(178,34,52,.24); --crit-fg:#FF9AA0; --crit-line:rgba(255,154,160,.40);
+  --crit-fill:#B22234; --on-crit:#FFF4F4;
+  --neu-bg:rgba(255,255,255,.07); --neu-fg:#ADA69D; --neu-line:rgba(255,255,255,.18);
+  font:var(--t-body)/1.6 var(--ff-ui);color:var(--ink);text-wrap:pretty}
+#vld *{box-sizing:border-box}
+#vld a{color:var(--accent-ink);text-decoration:none}
+#vld a:hover{color:var(--accent)}
+#vld :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+
+/* fragment head - eyebrow + staleness */
+#vld .vld-hd{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);
+  border-bottom:1px solid var(--line);padding-bottom:var(--s3);margin-bottom:var(--s5)}
+#vld .vld-hd h2{margin:0;font:650 var(--t-h2)/1.4 var(--ff-ui);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+#vld .stale{display:none;align-items:center;gap:6px;font-size:var(--t-label);color:var(--ink-3);
+  border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 11px 3px 9px;white-space:nowrap}
+#vld .stale::before{content:"";width:6px;height:6px;border-radius:var(--r-pill);background:var(--warn-fg);flex:none}
+#vld[data-state="stale"] .stale{display:inline-flex}
+
+/* nothing-outstanding banner (whole board empty) */
+#vld .allclear{display:none;border:1px dashed var(--accent-line);border-radius:var(--r);
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));padding:var(--s5);
+  margin-bottom:var(--s5)}
+#vld[data-state="empty"] .allclear{display:block}
+#vld .allclear .t{font:600 var(--t-h3)/1.3 var(--ff-dis);letter-spacing:-.01em}
+#vld .allclear .d{color:var(--ink-2);margin-top:var(--s2);max-width:60ch}
+
+/* ---------- SECTION ---------- */
+#vld .sec{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+  box-shadow:var(--sh);padding:var(--s4);margin-bottom:var(--s5)}
+#vld .sechd{display:flex;gap:var(--s4);align-items:stretch;margin-bottom:var(--s3)}
+#vld .secmeta{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+#vld .secmeta h3{margin:0;font:600 var(--t-h3)/1.3 var(--ff-dis);letter-spacing:-.01em}
+#vld .secmeta .lede{margin:var(--s1) 0 0;color:var(--ink-2);font-size:var(--t-meta);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* summary card - count + urgency, pill pinned bottom via margin-top:auto */
+#vld .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s3) var(--s4);box-shadow:var(--sh);color:inherit;display:flex;
+  flex-direction:column;height:100%;position:relative;overflow:hidden;
+  transition:transform .14s,box-shadow .14s,border-color .14s}
+#vld .card.sum{flex:none;width:196px}
+#vld a.card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--line-2)}
+#vld a.card:active{transform:translateY(1px)}
+#vld .card .k{font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700}
+#vld .card .v{font:600 var(--t-num)/1.05 var(--ff-dis);letter-spacing:-.02em;margin-top:var(--s1)}
+#vld .card .n{font-size:var(--t-meta);color:var(--ink-3);margin-top:var(--s1);line-height:1.5}
+#vld .card .cs{margin-top:auto;padding-top:var(--s3)}
+/* The API sends no note text, so a summary card usually has no .n line.
+   margin-top:auto then has no slack to distribute and the urgency pill
+   sits hard against the count. A fixed gap keeps the deliberate look the
+   note used to buy; when a note is present, auto takes over again. */
+#vld .card.sum .cs{margin-top:var(--s3)}
+#vld .card.sum .n + .cs{margin-top:auto}
+#vld .card.sum:has(.st-hot){border-color:var(--crit-line);box-shadow:var(--sh-2)}
+#vld .card.sum:has(.st-hot)::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--crit-fill)}
+
+/* ---------- ROWS: ledger grammar - flat, hairline, no lift ---------- */
+#vld .rows{display:flex;flex-direction:column;gap:var(--s1)}
+#vld .row{display:flex;gap:var(--s3);align-items:center;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:10px var(--s3);
+  color:inherit;text-decoration:none;transition:background .14s,border-color .14s}
+#vld .row:hover{background:var(--surface-3);border-color:var(--line-2)}
+#vld .row .m{flex:1;min-width:0}
+#vld .row .t{font-size:var(--t-row);font-weight:600;line-height:1.4;letter-spacing:-.005em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* untranslated rows (label_source "name") read as a work queue, not finished copy */
+#vld .row.raw{border-left:2px dotted var(--line-2);padding-left:calc(var(--s3) - 1px)}
+#vld .row.raw .t{font-weight:550;color:var(--ink-2)}
+/* client-owned rows are identifiable from across the page */
+#vld .row:has(.own.client){background:var(--accent-soft);border-color:var(--accent-line);
+  border-left:3px solid var(--accent);padding-left:calc(var(--s3) - 2px)}
+#vld .row:has(.own.client):hover{border-color:var(--accent)}
+
+/* density: 5 rows, then expand. Keeps the last section on-screen at 36 rows. */
+#vld .sec:not(.open) .rows .row:nth-of-type(n+6){display:none}
+#vld .more{display:flex;align-items:center;gap:var(--s2);width:100%;margin-top:var(--s2);
+  font:650 var(--t-label)/1 var(--ff-ui);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);background:transparent;border:1px dashed var(--line-2);
+  border-radius:var(--r-sm);padding:10px var(--s3);cursor:pointer;justify-content:center;
+  transition:border-color .14s,color .14s}
+#vld .more:hover{border-color:var(--accent-line);color:var(--accent-ink)}
+#vld .more::after{content:"\2193";font-size:12px}
+#vld .sec.open .more::after{content:"\2191"}
+#vld .more[hidden]{display:none}
+
+/* empty section */
+#vld .mt{border:1px dashed var(--line-2);border-radius:var(--r-sm);padding:var(--s4);
+  color:var(--ink-3);font-size:var(--t-meta);text-align:center}
+#vld .mt b{display:block;color:var(--ink-2);font:600 15px/1.4 var(--ff-dis);margin-bottom:2px}
+
+/* ---------- PILLS ---------- */
+#vld .st{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-label);font-weight:700;
+  border-radius:var(--r-pill);padding:3px 10px 3px 8px;white-space:nowrap;letter-spacing:.05em;
+  flex:none;text-transform:uppercase;border:1px solid transparent}
+#vld .st::before{content:"";width:6px;height:6px;border-radius:var(--r-pill);background:currentColor;flex:none}
+#vld .st-active{background:var(--good-bg);color:var(--good-fg);border-color:var(--good-line)}
+#vld .st-upcoming{background:var(--info-bg);color:var(--info-fg);border-color:var(--info-line)}
+#vld .st-inprogress{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-line)}
+#vld .st-hold{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line)}
+#vld .st-closed{background:var(--neu-bg);color:var(--neu-fg);border-color:var(--neu-line)}
+/* urgency ladder - summary cards only. Every tier carries its own glyph. */
+#vld .st-hot{background:var(--crit-fill);color:var(--on-crit);border-color:var(--crit-fill);
+  font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 12px 5px 9px;
+  box-shadow:0 0 0 3px var(--crit-bg)}
+#vld .st-hot::before{display:none}
+#vld .st-hot svg{width:12px;height:12px;flex:none}
+#vld .st-high{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line);font-weight:750}
+#vld .st-high::before{content:"\25B2";background:none;width:auto;height:auto;border-radius:0;font-size:8px;line-height:1}
+#vld .st-normal{background:transparent;color:var(--warn-fg);border-color:var(--warn-line)}
+#vld .st-normal::before{content:"\25A0";background:none;width:auto;height:auto;border-radius:0;font-size:7px;line-height:1}
+#vld .st-low{background:transparent;color:var(--ink-3);border-color:var(--line);font-weight:650}
+#vld .st-low::before{content:"\25BE";background:none;width:auto;height:auto;border-radius:0;font-size:9px;line-height:1}
+/* owner - two states only: coordinator | client */
+#vld .own{display:inline-flex;align-items:center;gap:7px;flex:none;font-size:var(--t-label);
+  font-weight:650;color:var(--ink-2);background:var(--surface-3);border:1px solid var(--line);
+  border-radius:var(--r-pill);padding:3px 10px 3px 3px;white-space:nowrap}
+#vld .own .av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  border-radius:var(--r-pill);background:var(--ink-3);color:var(--surface);font-size:9px;font-weight:700}
+#vld .own.client{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent);font-weight:750}
+#vld .own.client .av{background:var(--on-accent);color:var(--accent-fill)}
+#vld .when{font-size:var(--t-meta);color:var(--ink-3);white-space:nowrap;flex:none;
+  font-variant-numeric:tabular-nums;text-align:right;min-width:92px;line-height:1.4}
+#vld .when b{display:block;color:var(--ink);font:600 13.5px/1.3 var(--ff-dis)}
+#vld .when.none{opacity:.7;font-style:italic}
+
+/* CTA pair - equal-height cards in a row */
+#vld .ctas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-top:var(--s3)}
+#vld a.card.cta{border:1px dashed var(--accent-line);
+  background:linear-gradient(180deg,var(--surface-2),var(--surface))}
+#vld a.card.cta .k{color:var(--accent-ink);font-size:var(--t-row);letter-spacing:0;
+  text-transform:none;font-weight:650}
+#vld a.card.cta:hover{border-color:var(--accent)}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:760px){
+  #vld .sechd{flex-direction:column}
+  #vld .card.sum{width:100%}
+  #vld .secmeta .lede{white-space:normal}
+  #vld .ctas{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  #vld .row{flex-wrap:wrap;gap:var(--s2) var(--s3);align-items:flex-start}
+  #vld .row .m{flex:1 0 100%;order:1}
+  #vld .row .st{order:2}
+  #vld .row .own{order:3}
+  #vld .row .when{order:4;min-width:0;margin-left:auto}
+  #vld .row .when b{display:inline;font-size:var(--t-meta);margin-right:6px}
+  #vld .own .av{display:none}
+  #vld .own{padding-left:10px}
+}
+/* The fragment forced this one with an importance flag, which it could
+   afford at ".vld *" because a class selector merely tied .card and won
+   on source order. At "#vld *" the id-plus-class rules outrank it
+   outright, so the id is doubled instead - the same specificity boost
+   this repo already uses for doubled attribute selectors. */
+@media(prefers-reduced-motion:reduce){
+  #vld#vld *{transition:none}
+}

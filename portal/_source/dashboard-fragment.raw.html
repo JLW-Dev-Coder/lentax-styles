@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Client dashboard — mount fragment (831px)</title>
+<style>
+/* =====================================================================
+   PREVIEW SHELL ONLY — everything in this block is scaffolding so the
+   fragment can be judged at its real width. Do NOT paste it into the
+   portal. Ship only the #vld block and the .vld-* stylesheet below.
+   ===================================================================== */
+html{background:#141414}
+body{margin:0;font:15px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:#F5F1EC;background:
+   radial-gradient(1100px 520px at 8% -10%,rgba(249,115,22,.10),transparent 60%),
+   radial-gradient(900px 600px at 100% 12%,rgba(249,115,22,.05),transparent 62%),
+   linear-gradient(180deg,#141414,#171717);min-height:100vh}
+.vl-main{box-sizing:border-box;width:943px;max-width:100%;margin:0 auto;padding:32px 56px 96px}
+@media(max-width:943px){.vl-main{padding:24px 20px 72px}}
+#vl-hero-body{border:1px dashed rgba(255,255,255,.18);border-radius:14px;padding:16px 18px;
+  color:#918A81;font-size:12.5px;margin-bottom:8px}
+#vl-hero-body b{color:#C3BDB4;font-weight:650}
+.shellbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 20px;
+  font-size:11.5px;color:#918A81}
+.shellbar button{font:650 11.5px/1 inherit;color:#C3BDB4;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 13px;cursor:pointer;white-space:nowrap}
+.shellbar button[aria-pressed="true"]{background:#F97316;border-color:#F97316;color:#1A1206}
+.shellbar span.lbl{letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+
+/* =====================================================================
+   SHIPPED STYLESHEET — scoped to .vld so nothing collides with vl-*.
+   Dark only; the portal surface owns the page background.
+   ===================================================================== */
+.vld{
+  /* type — system stacks, no imported fonts */
+  --ff-ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ff-dis:ui-serif,Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --t-micro:10.5px; --t-label:11.5px; --t-meta:12.5px; --t-body:13.5px; --t-row:14px;
+  --t-h3:19px; --t-h2:11px; --t-num:30px;
+  /* spacing — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 72 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px;
+  --r-sm:8px; --r:14px; --r-pill:999px;
+  --sh:0 1px 0 rgba(255,255,255,.04),0 8px 22px rgba(0,0,0,.50);
+  --sh-2:0 1px 0 rgba(255,255,255,.06),0 18px 44px rgba(0,0,0,.60);
+  --surface:#1E1E1E; --surface-2:#242424; --surface-3:#2A2A2A;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.24);
+  --ink:#F5F1EC; --ink-2:#C3BDB4; --ink-3:#918A81;
+  --accent:#F97316; --accent-ink:#FDBA74; --accent-soft:rgba(249,115,22,.13);
+  --accent-line:rgba(249,115,22,.55); --accent-fill:#F97316; --on-accent:#1A1206;
+  /* functional status — fixed hues, never themed */
+  --good-bg:rgba(46,125,91,.20); --good-fg:#79D6A9; --good-line:rgba(121,214,169,.34);
+  --info-bg:rgba(28,110,180,.20); --info-fg:#8CBEEC; --info-line:rgba(140,190,236,.32);
+  --warn-bg:rgba(199,126,46,.20); --warn-fg:#F3BD73; --warn-line:rgba(243,189,115,.34);
+  --crit-bg:rgba(178,34,52,.24); --crit-fg:#FF9AA0; --crit-line:rgba(255,154,160,.40);
+  --crit-fill:#B22234; --on-crit:#FFF4F4;
+  --neu-bg:rgba(255,255,255,.07); --neu-fg:#ADA69D; --neu-line:rgba(255,255,255,.18);
+  font:var(--t-body)/1.6 var(--ff-ui);color:var(--ink);text-wrap:pretty}
+.vld *{box-sizing:border-box}
+.vld a{color:var(--accent-ink);text-decoration:none}
+.vld a:hover{color:var(--accent)}
+.vld :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+
+/* fragment head — eyebrow + staleness */
+.vld-hd{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);
+  border-bottom:1px solid var(--line);padding-bottom:var(--s3);margin-bottom:var(--s5)}
+.vld-hd h2{margin:0;font:650 var(--t-h2)/1.4 var(--ff-ui);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+.stale{display:none;align-items:center;gap:6px;font-size:var(--t-label);color:var(--ink-3);
+  border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 11px 3px 9px;white-space:nowrap}
+.stale::before{content:"";width:6px;height:6px;border-radius:var(--r-pill);background:var(--warn-fg);flex:none}
+.vld[data-state="stale"] .stale{display:inline-flex}
+
+/* nothing-outstanding banner (whole board empty) */
+.allclear{display:none;border:1px dashed var(--accent-line);border-radius:var(--r);
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));padding:var(--s5);
+  margin-bottom:var(--s5)}
+.vld[data-state="empty"] .allclear{display:block}
+.allclear .t{font:600 var(--t-h3)/1.3 var(--ff-dis);letter-spacing:-.01em}
+.allclear .d{color:var(--ink-2);margin-top:var(--s2);max-width:60ch}
+
+/* ---------- SECTION ---------- */
+.sec{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+  box-shadow:var(--sh);padding:var(--s4);margin-bottom:var(--s5)}
+.sechd{display:flex;gap:var(--s4);align-items:stretch;margin-bottom:var(--s3)}
+.secmeta{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.secmeta h3{margin:0;font:600 var(--t-h3)/1.3 var(--ff-dis);letter-spacing:-.01em}
+.secmeta .lede{margin:var(--s1) 0 0;color:var(--ink-2);font-size:var(--t-meta);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* summary card — count + urgency, pill pinned bottom via margin-top:auto */
+.card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s3) var(--s4);box-shadow:var(--sh);color:inherit;display:flex;
+  flex-direction:column;height:100%;position:relative;overflow:hidden;
+  transition:transform .14s,box-shadow .14s,border-color .14s}
+.card.sum{flex:none;width:196px}
+a.card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--line-2)}
+a.card:active{transform:translateY(1px)}
+.card .k{font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700}
+.card .v{font:600 var(--t-num)/1.05 var(--ff-dis);letter-spacing:-.02em;margin-top:var(--s1)}
+.card .n{font-size:var(--t-meta);color:var(--ink-3);margin-top:var(--s1);line-height:1.5}
+.card .cs{margin-top:auto;padding-top:var(--s3)}
+.card.sum:has(.st-hot){border-color:var(--crit-line);box-shadow:var(--sh-2)}
+.card.sum:has(.st-hot)::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--crit-fill)}
+
+/* ---------- ROWS: ledger grammar — flat, hairline, no lift ---------- */
+.rows{display:flex;flex-direction:column;gap:var(--s1)}
+.row{display:flex;gap:var(--s3);align-items:center;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:10px var(--s3);
+  color:inherit;text-decoration:none;transition:background .14s,border-color .14s}
+.row:hover{background:var(--surface-3);border-color:var(--line-2)}
+.row .m{flex:1;min-width:0}
+.row .t{font-size:var(--t-row);font-weight:600;line-height:1.4;letter-spacing:-.005em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* untranslated rows (label_source:"name") read as a work queue, not finished copy */
+.row.raw{border-left:2px dotted var(--line-2);padding-left:calc(var(--s3) - 1px)}
+.row.raw .t{font-weight:550;color:var(--ink-2)}
+/* client-owned rows are identifiable from across the page */
+.row:has(.own.client){background:var(--accent-soft);border-color:var(--accent-line);
+  border-left:3px solid var(--accent);padding-left:calc(var(--s3) - 2px)}
+.row:has(.own.client):hover{border-color:var(--accent)}
+
+/* density: 5 rows, then expand. Keeps the last section on-screen at 36 rows. */
+.sec:not(.open) .rows .row:nth-of-type(n+6){display:none}
+.more{display:flex;align-items:center;gap:var(--s2);width:100%;margin-top:var(--s2);
+  font:650 var(--t-label)/1 var(--ff-ui);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);background:transparent;border:1px dashed var(--line-2);
+  border-radius:var(--r-sm);padding:10px var(--s3);cursor:pointer;justify-content:center;
+  transition:border-color .14s,color .14s}
+.more:hover{border-color:var(--accent-line);color:var(--accent-ink)}
+.more::after{content:"↓";font-size:12px}
+.sec.open .more::after{content:"↑"}
+.more[hidden]{display:none}
+
+/* empty section */
+.mt{border:1px dashed var(--line-2);border-radius:var(--r-sm);padding:var(--s4);
+  color:var(--ink-3);font-size:var(--t-meta);text-align:center}
+.mt b{display:block;color:var(--ink-2);font:600 15px/1.4 var(--ff-dis);margin-bottom:2px}
+
+/* ---------- PILLS ---------- */
+.st{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-label);font-weight:700;
+  border-radius:var(--r-pill);padding:3px 10px 3px 8px;white-space:nowrap;letter-spacing:.05em;
+  flex:none;text-transform:uppercase;border:1px solid transparent}
+.st::before{content:"";width:6px;height:6px;border-radius:var(--r-pill);background:currentColor;flex:none}
+.st-active{background:var(--good-bg);color:var(--good-fg);border-color:var(--good-line)}
+.st-upcoming{background:var(--info-bg);color:var(--info-fg);border-color:var(--info-line)}
+.st-inprogress{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-line)}
+.st-hold{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line)}
+.st-closed{background:var(--neu-bg);color:var(--neu-fg);border-color:var(--neu-line)}
+/* urgency ladder — summary cards only. Every tier carries its own glyph. */
+.st-hot{background:var(--crit-fill);color:var(--on-crit);border-color:var(--crit-fill);
+  font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 12px 5px 9px;
+  box-shadow:0 0 0 3px var(--crit-bg)}
+.st-hot::before{display:none}
+.st-hot svg{width:12px;height:12px;flex:none}
+.st-high{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line);font-weight:750}
+.st-high::before{content:"▲";background:none;width:auto;height:auto;border-radius:0;font-size:8px;line-height:1}
+.st-normal{background:transparent;color:var(--warn-fg);border-color:var(--warn-line)}
+.st-normal::before{content:"■";background:none;width:auto;height:auto;border-radius:0;font-size:7px;line-height:1}
+.st-low{background:transparent;color:var(--ink-3);border-color:var(--line);font-weight:650}
+.st-low::before{content:"▾";background:none;width:auto;height:auto;border-radius:0;font-size:9px;line-height:1}
+/* owner — two states only: coordinator | client */
+.own{display:inline-flex;align-items:center;gap:7px;flex:none;font-size:var(--t-label);
+  font-weight:650;color:var(--ink-2);background:var(--surface-3);border:1px solid var(--line);
+  border-radius:var(--r-pill);padding:3px 10px 3px 3px;white-space:nowrap}
+.own .av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  border-radius:var(--r-pill);background:var(--ink-3);color:var(--surface);font-size:9px;font-weight:700}
+.own.client{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent);font-weight:750}
+.own.client .av{background:var(--on-accent);color:var(--accent-fill)}
+.when{font-size:var(--t-meta);color:var(--ink-3);white-space:nowrap;flex:none;
+  font-variant-numeric:tabular-nums;text-align:right;min-width:92px;line-height:1.4}
+.when b{display:block;color:var(--ink);font:600 13.5px/1.3 var(--ff-dis)}
+.when.none{opacity:.7;font-style:italic}
+
+/* CTA pair — equal-height cards in a row */
+.ctas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-top:var(--s3)}
+a.card.cta{border:1px dashed var(--accent-line);
+  background:linear-gradient(180deg,var(--surface-2),var(--surface))}
+a.card.cta .k{color:var(--accent-ink);font-size:var(--t-row);letter-spacing:0;
+  text-transform:none;font-weight:650}
+a.card.cta:hover{border-color:var(--accent)}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:760px){
+  .sechd{flex-direction:column}
+  .card.sum{width:100%}
+  .secmeta .lede{white-space:normal}
+  .ctas{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .row{flex-wrap:wrap;gap:var(--s2) var(--s3);align-items:flex-start}
+  .row .m{flex:1 0 100%;order:1}
+  .row .st{order:2}.row .own{order:3}
+  .row .when{order:4;min-width:0;margin-left:auto}
+  .row .when b{display:inline;font-size:var(--t-meta);margin-right:6px}
+  .own .av{display:none}
+  .own{padding-left:10px}
+}
+@media(prefers-reduced-motion:reduce){.vld *{transition:none!important}}
+</style></head>
+<body>
+
+<main class="vl-main">
+  <div id="vl-hero-body"><b>#vl-hero-body</b> — portal-owned. Rewritten by the page's own
+    render() on every step click; the dashboard mounts <b>after</b> it, never inside.</div>
+
+  <div class="shellbar">
+    <span class="lbl">Preview only</span>
+    <button data-st="full" aria-pressed="true">Full board</button>
+    <button data-st="empty" aria-pressed="false">Empty</button>
+    <button data-st="stale" aria-pressed="false">Stale cache</button>
+  </div>
+
+  <!-- ============ SHIPPED FRAGMENT STARTS ============ -->
+  <section class="vld" id="vld" data-state="full">
+    <div class="vld-hd">
+      <h2>What's open on your matter</h2>
+      <span class="stale" title="The live source did not answer; this is the last good copy.">Saved copy from 9:12a PT</span>
+    </div>
+    <div class="allclear">
+      <div class="t">Nothing needs you right now.</div>
+      <p class="d">Every request, deadline and document on your matter is closed. We are still
+        working it on our side — you'll see new items here the moment something needs your attention.</p>
+    </div>
+    <div id="vld-secs"></div>
+  </section>
+  <!-- ============ SHIPPED FRAGMENT ENDS ============ -->
+</main>
+
+<script>
+/* ======================================================================
+   HIDDEN RULES — dashboard display logic
+   ----------------------------------------------------------------------
+   BUCKETS (fixed by the API, 1:1, in order)
+     secure_intake · deadlines · work_items · correspondence · client_requests
+     Each bucket: {count, urgency_date, rows[]}
+     Each row:    {task_id, label, label_source, due, owner}  — nothing else.
+   URGENCY LADDER — SUMMARY CARDS ONLY, driven by urgency_date
+     days <= 0  CRITICAL  red fill + fire glyph + halo   "Hot"
+     days 1-2   HIGH      amber fill + ▲                 "High"
+     days 3-5   NORMAL    amber outline + ■              "Normal"
+     days 6+ or no date   muted outline + ▾              "Low"
+     Rows never carry an urgency pill — they already show a ClickUp status
+     and a relative date, and two chips per line compete.
+   RELATIVE TIME
+     Calendar-day arithmetic in the reader's own timezone (NOT elapsed ms —
+     that ran the countdown a day off). future: today / tomorrow / in N days.
+     past: yesterday / N days ago. No due date -> "No due date", muted.
+   OWNER — two reachable values only
+     coordinator = quiet hairline pill.
+     client      = solid accent pill + 3px accent row rail + tinted fill.
+     "3rd Party" is unreachable (no per-row owner field upstream) and is gone.
+   LABELS
+     label_source:"name" is the raw internal task name (currently 99 of 99).
+     Rows clamp to 2 lines and carry a dotted rail + lighter weight so an
+     untranslated row reads as a work queue item, not finished copy.
+   DENSITY
+     5 rows visible per section, then "Show all N". A 36-row section adds
+     ~1200px only on demand, so the fifth section stays reachable.
+   STATES
+     full · empty (per-section empty block + all-clear banner) · stale
+     (quiet saved-copy pill in the fragment head). "Unresolved" renders
+     nothing — the fragment is absent and the portal's own content shows.
+   ====================================================================== */
+const FIRE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2s1.5 3.2-.8 5.6C8.6 10.3 7 12 7 14.6 7 18.1 9.7 21 13 21s5.5-2.6 5.5-6c0-3.4-2.3-5.1-3.4-7.6-.4 1.2-1.2 2-2.2 2.6.6-2.4-.3-5.5-.9-8z"/></svg>';
+const dayDiff = iso => { const [y,m,d]=iso.split("-").map(Number), n=new Date();
+  return Math.round((new Date(y,m-1,d)-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/864e5); };
+const rel = iso => { const d=dayDiff(iso);
+  return d<0 ? (d===-1?"yesterday":Math.abs(d)+" days ago") : d===0?"today":d===1?"tomorrow":"in "+d+" days"; };
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const shortDate = iso => { const [,m,d]=iso.split("-").map(Number); return MON[m-1]+" "+d; };
+function urgPill(iso){
+  const d = iso===null ? null : dayDiff(iso);
+  const [c,l] = d===null?["low","Low"] : d<=0?["hot","Hot"] : d<=2?["high","High"] : d<=5?["normal","Normal"] : ["low","Low"];
+  return '<span class="st st-'+c+'">'+(c==="hot"?FIRE:"")+l+'</span>';
+}
+/* ---- seed data: internal-form labels, placeholder parties ---- */
+const CO="coordinator", CL="client";
+const r=(label,due,owner,status)=>({task_id:"x",label,label_source:"name",due,owner,status:status||"upcoming"});
+const fill=(n,mk)=>Array.from({length:n},(_,i)=>mk(i));
+
+const BUCKETS=[
+ {key:"secure_intake",title:"Secure intake",lede:"Everything you've sent us, and what's still open.",
+  card:{k:"Documents",n:"Across 2 accounts and 8 filings"},urgency_date:null,count:26,
+  rows:[
+   r("Record — 2026-08-13 — Your Bank — Signature Card, Corporate Resolutions & Beneficial Ownership Certification (Produced In Response To Form 6639 Summons, Pages 1–7)","2026-08-13",CO,"active"),
+   r("Record — 2026-08-12 — Your Bank — Monthly Statement Package, Account …2432, January 2024 Through December 2025 (24 Of 24 Received)","2026-08-12",CO,"active"),
+   r("Record — 2026-08-11 — {{Client Name}} — Federal Form 941 Employer's Quarterly Return, 2023 Q3 Through 2025 Q4","2026-08-11",CO,"active"),
+   r("Record — 2026-08-10 — {{Client Name}} — Depository Agreement And Account Opening Disclosures, Account …5925","2026-08-10",CL,"active"),
+   r("Record — 2026-08-09 — {{Client Name}} — Prior-Year Return Transcript Request Authorization","2026-08-09",CO,"active"),
+   ...fill(21,i=>r("Record — 2026-07-"+String(28-Math.floor(i/2)).padStart(2,"0")+" — Your Bank — Deposit Detail Reconciliation Worksheet, Batch "+(i+1)+" Of 24 (Statement Totals Tied To Ledger)","2026-07-"+String(28-Math.floor(i/2)).padStart(2,"0"),CO,"closed"))]},
+
+ {key:"deadlines",title:"Deadlines",lede:"Hard dates. These do not move.",
+  card:{k:"Deadlines",n:"Nearest date drives the flag"},urgency_date:"2026-08-19",count:7,
+  rows:[
+   r("Deadline — 2026-08-19 — IRS — Petition To Quash Window Closes (Twenty Days From Summons Notice)","2026-08-19",CO,"inprogress"),
+   r("Deadline — 2026-08-20 — {{Client Name}} — Representation Documents Must Be On File Before The Examination Window Opens","2026-08-20",CL,"upcoming"),
+   r("Deadline — 2026-08-22 — IRS — May Begin Examining Summoned Bank Records (§7609 23-Day Mark)","2026-08-22",CO,"upcoming"),
+   r("Deadline — 2026-09-01 — Your Bank — Summons Appearance And Production, 9:00a PT","2026-09-01",CO,"upcoming"),
+   r("Deadline — 2026-09-15 — IRS — Quarterly Estimated Payment Due For The Current Tax Year","2026-09-15",CL,"upcoming"),
+   r("Deadline — 2026-10-15 — IRS — Extended Return Filing Deadline For The 2025 Tax Year","2026-10-15",CO,"upcoming"),
+   r("Deadline — 2026-11-02 — {{Client Name}} — Annual Records Retention Review And Sign-Off","2026-11-02",CL,"upcoming")]},
+
+ {key:"work_items",title:"Work items",lede:"What we're doing. Nothing here is waiting on you.",
+  card:{k:"Work items",n:"31 in progress, 5 on hold"},urgency_date:"2026-08-22",count:36,
+  rows:[
+   r("Work Item — 2026-08-18 — {{Client Name}} — Draft Petition To Quash Third-Party Summons And Supporting Declaration For Filing","2026-08-18",CO,"inprogress"),
+   r("Work Item — 2026-08-18 — {{Client Name}} — Reconcile Gross Receipts Per Bank Deposits Against Reported Receipts, 2023 Through 2025","2026-08-20",CO,"inprogress"),
+   r("Work Item — 2026-08-17 — {{Client Name}} — Cost Of Goods Sold Allocation Review Under §280E Including Inventory Absorption Method","2026-08-24",CO,"inprogress"),
+   r("Work Item — 2026-08-17 — {{Client Name}} — Penalty Abatement Exposure Memo, Failure To Deposit And Failure To Pay","2026-08-26",CO,"hold"),
+   r("Work Item — 2026-08-16 — IRS — Request Complete Account Transcripts For All Open Periods","2026-08-21",CO,"inprogress"),
+   ...fill(31,i=>r("Work Item — 2026-08-"+String(15-Math.floor(i/4)).padStart(2,"0")+" — {{Client Name}} — Categorize Statement Transactions To Chart Of Accounts, Month "+(i+1)+" Of 24, And Flag Owner Draws For Review","2026-08-"+String(23+(i%6)).padStart(2,"0"),CO,i%7===0?"hold":"inprogress"))]},
+
+ {key:"correspondence",title:"Correspondence",lede:"Letters, notices and summonses on this matter.",
+  card:{k:"Received",n:"2 summonses, 2 letters, 0 notices"},urgency_date:"2026-08-25",count:26,
+  rows:[
+   r("Summons — 2026-07-30 — IRS — Form 6639 Financial Records Summons Served On Your Bank For Accounts …2432 And …5925","2026-07-30",CO,"active"),
+   r("Letter — 2026-08-13 — Your Bank — Notice Of Records Produced To The Revenue Officer With Itemized Page Index","2026-08-13",CO,"active"),
+   r("Letter — 2026-08-06 — IRS — Third-Party Contact Notice Under §7602(c) Identifying The Financial Institution","2026-08-06",CO,"active"),
+   r("Summons — 2026-07-30 — IRS — Duplicate Service Copy Retained For The Petition Record","2026-07-30",CO,"closed"),
+   r("Letter — 2026-08-25 — {{Client Name}} — Draft Response Letter To The Revenue Officer, Awaiting Your Review Before It Is Sent","2026-08-25",CL,"upcoming"),
+   ...fill(21,i=>r("Correspondence — 2026-06-"+String(27-i).padStart(2,"0")+" — Your Bank — Routine Account Notice, Item "+(i+1)+" (Filed To The Matter Record, No Action Required)","2026-06-"+String(27-i).padStart(2,"0"),CO,"closed"))]},
+
+ {key:"client_requests",title:"What we need from you",lede:"Four items. Message or book a call with any question.",
+  card:{k:"Open requests",n:"3 done, 1 still open"},urgency_date:null,count:4,
+  rows:[
+   r("Client Request — 2026-08-10 — {{Client Name}} — Accounts And Portal Access (Next Steps Item 1, Completed 2026-08-17)","2026-08-17",CL,"active"),
+   r("Client Request — 2026-08-10 — {{Client Name}} — Diagnostic Payment (Next Steps Item 2, Completed 2026-08-17)","2026-08-17",CL,"active"),
+   r("Client Request — 2026-08-10 — {{Client Name}} — Power Of Attorney Form 2848 Signed Page Received, Being Finalized And Filed With The IRS (Next Steps Item 3)","2026-08-18",CL,"active"),
+   r("Client Request — 2026-08-10 — {{Client Name}} — Bank Contact And Document Tracking: Forward Anything Your Bank Sends The Revenue Officer (Next Steps Item 5)",null,CL,"upcoming")],
+  ctas:true}
+];
+const ST_LABEL={active:"Active",upcoming:"Upcoming",inprogress:"In progress",hold:"On hold",closed:"Closed"};
+const AV={coordinator:"JW",client:"YOU"};
+const OWN_LABEL={coordinator:"Coordinator",client:"You"};
+
+function rowHTML(x){
+  const when = x.due
+    ? '<span class="when"><b>'+shortDate(x.due)+'</b>'+rel(x.due)+'</span>'
+    : '<span class="when none">No due date</span>';
+  return '<a class="row'+(x.label_source==="name"?" raw":"")+'" href="#" '
+    +'title="'+x.label.replace(/"/g,"&quot;")+'">'
+    +'<span class="st st-'+x.status.replace(/\s/g,"")+'">'+ST_LABEL[x.status]+'</span>'
+    +'<span class="m"><span class="t">'+x.label+'</span></span>'
+    +'<span class="own '+(x.owner==="client"?"client":"")+'"><span class="av">'+AV[x.owner]+'</span>'
+    +OWN_LABEL[x.owner]+'</span>'+when+'</a>';
+}
+const CTAS='<div class="ctas">'
+ +'<a class="card cta" href="#"><div class="k">Book a call →</div>'
+ +'<div class="n">Thirty minutes with your coordinator, video or phone. Pick any open slot.</div></a>'
+ +'<a class="card cta" href="#"><div class="k">Message us →</div>'
+ +'<div class="n">Secure messaging inside your portal. Quicker than email for a short question.</div></a></div>';
+
+function render(state){
+  const empty = state==="empty";
+  document.getElementById("vld").dataset.state = state;
+  document.getElementById("vld-secs").innerHTML = BUCKETS.map(b=>{
+    const rows = empty?[]:b.rows, count = empty?0:b.count;
+    const body = rows.length
+      ? '<div class="rows">'+rows.map(rowHTML).join("")+'</div>'
+        + (rows.length>5 ? '<button class="more" type="button">Show all '+rows.length+'</button>' : '')
+      : '<div class="mt"><b>Nothing outstanding</b>We\'ll add items here as they come up.</div>';
+    return '<section class="sec" data-bucket="'+b.key+'">'
+      +'<div class="sechd"><div class="secmeta"><h3>'+b.title+'</h3><p class="lede">'+b.lede+'</p></div>'
+      +'<div class="card sum"><div class="k">'+b.card.k+'</div><div class="v">'+count+'</div>'
+      +'<div class="n">'+(empty?"Nothing open right now":b.card.n)+'</div>'
+      +'<div class="cs">'+urgPill(empty?null:b.urgency_date)+'</div></div></div>'
+      +body+(b.ctas&&!empty?CTAS:"")+'</section>';
+  }).join("");
+}
+document.addEventListener("click",e=>{
+  const more=e.target.closest(".more");
+  if(more){ const sec=more.closest(".sec"), open=sec.classList.toggle("open");
+    const n=sec.querySelectorAll(".row").length;
+    more.textContent = open?"Show fewer":"Show all "+n; return; }
+  const b=e.target.closest(".shellbar button");
+  if(b){ document.querySelectorAll(".shellbar button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    render(b.dataset.st); }
+  if(e.target.closest('.vld a[href="#"]')) e.preventDefault();
+});
+render("full");
+</script>
+</body></html>
