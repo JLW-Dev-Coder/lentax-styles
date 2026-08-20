@@ -3,6 +3,8 @@
    Source:     portal/_source/dashboard-fragment.raw.html (R147)
    Ported:     2026-08-20
    Updated:    2026-08-20 (R148) - seed data replaced with a live fetch
+               2026-08-20 (R149) - every payload value that reaches HTML
+               is escaped. See esc() and the R149 note below.
    Scope:      Renders the client dashboard into #vld-secs - five buckets,
                summary cards with the urgency ladder, ledger rows, the
                five-row density toggle, and the empty / stale states.
@@ -78,6 +80,25 @@
      Diagnostics are [vld]-prefixed and deliberately thin: this console
      is on a client-facing page, so no line here ever carries the uid,
      the assembled URL, the query string, or any payload field.
+
+   R149 - ESCAPING
+     R148 wired the renderer to live data, which turned an inert string
+     concat into a stored-XSS sink: row labels are real ClickUp task
+     names, and client_requests rows can carry text a client submitted.
+     Every value that reaches innerHTML from the response now goes
+     through esc(). The full list, and where each lands:
+       row.label       -> title attribute and the .t span
+       row.status      -> the st-* class token and the pill text
+       row.owner       -> only via AV[] / OWN_LABEL[] lookups, whose
+                          values are literals in this file; escaped
+                          anyway so the rule needs no exception
+       card.label      -> b.k, the summary card's .k
+       card.count      -> b.count, the .v (type-guarded to a number)
+       card.note       -> b.note, the .n
+       row.due         -> NOT escaped. shortDate/rel parse it with
+                          map(Number), so only numbers reach the string.
+     Section copy (b.key / b.title / b.lede) is BUCKET_DEFS in this
+     file, not payload, and stays unescaped.
    --------------------------------------------------------------------- */
 
 (function () {
@@ -86,6 +107,26 @@
   var FIRE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
     '<path d="M12 2s1.5 3.2-.8 5.6C8.6 10.3 7 12 7 14.6 7 18.1 9.7 21 13 21s5.5-2.6 5.5-6' +
     'c0-3.4-2.3-5.1-3.4-7.6-.4 1.2-1.2 2-2.2 2.6.6-2.4-.3-5.5-.9-8z"/></svg>';
+
+  /* R149 - HTML escaping.
+     Copied verbatim from esc() in portal/green-service.js. The two MUST
+     stay byte-identical: there is no module system on these portal pages
+     (each bundle is a standalone IIFE pasted into a Custom JS field), so
+     the only way to share it is to duplicate it. If you change one, change
+     the other in the same commit. Order matters - & is replaced first so
+     the entities the later passes emit are never double-escaped.
+     Every value that reaches HTML from the endpoint response goes through
+     this. Live ClickUp task names and client-submitted request text both
+     land in rowHTML, so an unescaped interpolation here is stored XSS on a
+     client-facing page. */
+  function esc(v) {
+    return String(v)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   /* Calendar-day arithmetic in the reader's own timezone. Constructed
      local dates, never elapsed milliseconds - elapsed ms ran the
@@ -133,6 +174,10 @@
   var OWN_LABEL = { coordinator: "Coordinator", client: "You" };
 
   function rowHTML(x) {
+    /* x.due is payload but cannot carry markup: shortDate and rel both
+       run it through split("-").map(Number), so only numbers (or NaN /
+       undefined) ever reach the string. Escaping it would suggest the
+       string is attacker-shaped when it is arithmetic. */
     var when = x.due
       ? '<span class="when"><b>' + shortDate(x.due) + '</b>' + rel(x.due) + '</span>'
       : '<span class="when none">No due date</span>';
@@ -141,14 +186,14 @@
        support, and an empty pill would collapse the row grid. If the
        field starts arriving this renders on its own. */
     var st = x.status
-      ? '<span class="st st-' + String(x.status).replace(/\s/g, "") + '">' + (ST_LABEL[x.status] || x.status) + '</span>'
+      ? '<span class="st st-' + esc(String(x.status).replace(/\s/g, "")) + '">' + esc(ST_LABEL[x.status] || x.status) + '</span>'
       : '';
     return '<a class="row' + (x.label_source === "name" ? " raw" : "") + '" href="#" '
-      + 'title="' + String(x.label).replace(/"/g, "&quot;") + '">'
+      + 'title="' + esc(x.label) + '">'
       + st
-      + '<span class="m"><span class="t">' + x.label + '</span></span>'
-      + '<span class="own ' + (x.owner === "client" ? "client" : "") + '"><span class="av">' + (AV[x.owner] || "") + '</span>'
-      + (OWN_LABEL[x.owner] || "") + '</span>' + when + '</a>';
+      + '<span class="m"><span class="t">' + esc(x.label) + '</span></span>'
+      + '<span class="own ' + (x.owner === "client" ? "client" : "") + '"><span class="av">' + esc(AV[x.owner] || "") + '</span>'
+      + esc(OWN_LABEL[x.owner] || "") + '</span>' + when + '</a>';
   }
 
   var CTAS = '<div class="ctas">'
@@ -179,10 +224,16 @@
          invented; the CSS keeps the card looking deliberate without it.
          The empty state keeps its own note. */
       var note = empty ? "Nothing open right now" : b.note;
+      /* b.key, b.title and b.lede are BUCKET_DEFS literals in this file,
+         never payload - the API sends no section copy. b.k, b.count and
+         b.note ARE payload-backed (card.label / card.count / card.note),
+         so they are escaped even where a type guard already makes them
+         safe: the invariant worth having is "nothing from the response
+         reaches innerHTML without esc()", checkable by grep. */
       return '<section class="sec" data-bucket="' + b.key + '">'
         + '<div class="sechd"><div class="secmeta"><h3>' + b.title + '</h3><p class="lede">' + b.lede + '</p></div>'
-        + '<div class="card sum"><div class="k">' + b.k + '</div><div class="v">' + b.count + '</div>'
-        + (note ? '<div class="n">' + note + '</div>' : '')
+        + '<div class="card sum"><div class="k">' + esc(b.k) + '</div><div class="v">' + esc(b.count) + '</div>'
+        + (note ? '<div class="n">' + esc(note) + '</div>' : '')
         + '<div class="cs">' + urgPill(empty ? null : b.urgency_date) + '</div></div></div>'
         + body + (b.ctas && !empty ? CTAS : '') + '</section>';
     }).join("");
