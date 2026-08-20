@@ -97,6 +97,8 @@
        card.note       -> b.note, the .n
        row.due         -> NOT escaped. shortDate/rel parse it with
                           map(Number), so only numbers reach the string.
+                          R151 additionally gates it on isCalendarDate,
+                          so only a real date is ever formatted at all.
      Section copy (b.key / b.title / b.lede) is BUCKET_DEFS in this
      file, not payload, and stays unescaped.
 
@@ -115,6 +117,11 @@
      c. AV.coordinator was "JW". See the note on AV.
      d. The client_requests lede claimed "Four items". Live data would
         contradict it, so the count is gone from the sentence.
+
+   R151 - THE DUE-DATE GUARD
+     rowHTML formatted row.due with no validity check. A malformed value
+     did not fail loudly; it failed plausibly. See isCalendarDate and the
+     `when` branch in rowHTML - both carry the measured cases.
    --------------------------------------------------------------------- */
 
 (function () {
@@ -158,6 +165,29 @@
   };
   var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var shortDate = function (iso) { var p = iso.split("-").map(Number); return MON[p[1] - 1] + " " + p[2]; };
+
+  /* R151 - a due date must be readable BEFORE it is formatted. shortDate
+     and rel both do split("-").map(Number) with no validity check, so
+     garbage used to reach the row as garbage. Measured:
+       "not-a-date"  ->  <b>undefined NaN</b> in NaN days
+       "2026-08"     ->  <b>Aug undefined</b> in NaN days
+       "2026-13-01"  ->  <b>undefined 1</b> in 134 days
+     The third is the dangerous one. Month 13 rolls forward into the next
+     year and yields a confident, plausible, WRONG relative date - not
+     visible garbage a reader would discount, but a deadline they would
+     act on. A regex alone passes it, so the shape test is paired with a
+     round-trip: construct the local date and confirm every part survives
+     unchanged. That is what rejects month 13, day 32 and 30 February. */
+  function isCalendarDate(iso) {
+    if (typeof iso !== "string" || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(iso)) return false;
+    var p = iso.split("-").map(Number), dt = new Date(p[0], p[1] - 1, p[2]);
+    return dt.getFullYear() === p[0] && dt.getMonth() === p[1] - 1 && dt.getDate() === p[2];
+  }
+
+  /* One warning per page load, not one per row - a malformed feed would
+     otherwise print a line for every row it touched. Same idiom as
+     urgWarned below. */
+  var dueWarned = false;
 
   /* One warning per page load, not one per card - five buckets sharing a
      malformed feed would otherwise print five identical lines. */
@@ -250,10 +280,28 @@
     /* x.due is payload but cannot carry markup: shortDate and rel both
        run it through split("-").map(Number), so only numbers (or NaN /
        undefined) ever reach the string. Escaping it would suggest the
-       string is attacker-shaped when it is arithmetic. */
-    var when = x.due
-      ? '<span class="when"><b>' + shortDate(x.due) + '</b>' + rel(x.due) + '</span>'
-      : '<span class="when none">No due date</span>';
+       string is attacker-shaped when it is arithmetic.
+       R151 - this is the only site where due is formatted. Three ways in:
+         genuine absence (null / undefined / "") keeps "No due date". That
+           is a real answer - nothing is scheduled - not a parse failure.
+         unreadable renders the SAME visible unknown state, never a
+           guessed month name and never a day count, because a date we
+           cannot read must never render as one we can.
+         a real calendar date formats exactly as before.
+       The value itself is never logged: it is payload data tied to a
+       client, and this console is on a client-facing page. */
+    var when;
+    if (!x.due) {
+      when = '<span class="when none">No due date</span>';
+    } else if (!isCalendarDate(x.due)) {
+      if (!dueWarned) {
+        dueWarned = true;
+        console.warn('[vld] unreadable due date; row shown with no due date');
+      }
+      when = '<span class="when none">No due date</span>';
+    } else {
+      when = '<span class="when"><b>' + shortDate(x.due) + '</b>' + rel(x.due) + '</span>';
+    }
     /* The API sends no status field. The pill is omitted entirely rather
        than defaulted: an invented status would be a claim we cannot
        support, and an empty pill would collapse the row grid. If the
