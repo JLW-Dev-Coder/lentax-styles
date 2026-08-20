@@ -2,6 +2,7 @@
    client-dashboard.js
    Source:     portal/_source/dashboard-fragment.raw.html (R147)
    Ported:     2026-08-20
+   Updated:    2026-08-20 (R148) - seed data replaced with a live fetch
    Scope:      Renders the client dashboard into #vld-secs - five buckets,
                summary cards with the urgency ladder, ledger rows, the
                five-row density toggle, and the empty / stale states.
@@ -55,16 +56,40 @@
         chrome that happens to use the same class name.
      4. Nothing here is referenced by any loader or markup yet. Mounting
         is a separate step after live verification.
+
+   R148 - THE DATA PATH
+     The fragment's hardcoded BUCKETS array is gone. BUCKET_DEFS below
+     keeps only what the API does not send: bucket order, section title,
+     lede, the default card label, and which bucket carries the CTA pair.
+     Everything else - count, urgency_date and rows - comes from the
+     endpoint. The renderer itself is unchanged.
+
+     Two fields the fragment expects that the API does not send:
+       row.status  - omitted entirely rather than defaulted. See rowHTML.
+       card note   - omitted entirely rather than invented. See render.
+     Both are written so that if the field starts arriving it renders on
+     its own, with no further change here.
+
+     One request, no polling, no retry, no interval, no storage. The uid
+     is resolved exactly as green-service.js resolves it, through the
+     same two-source attribute-then-text-node shape, because SuiteDash
+     resolves merge tags in text nodes more reliably than in attributes.
+
+     Diagnostics are [vld]-prefixed and deliberately thin: this console
+     is on a client-facing page, so no line here ever carries the uid,
+     the assembled URL, the query string, or any payload field.
    --------------------------------------------------------------------- */
 
 (function () {
+  var DASHBOARD_ENDPOINT = "https://api.virtuallaunch.pro/v1/green/portal-dashboard";
+
   var FIRE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
     '<path d="M12 2s1.5 3.2-.8 5.6C8.6 10.3 7 12 7 14.6 7 18.1 9.7 21 13 21s5.5-2.6 5.5-6' +
     'c0-3.4-2.3-5.1-3.4-7.6-.4 1.2-1.2 2-2.2 2.6.6-2.4-.3-5.5-.9-8z"/></svg>';
 
   /* Calendar-day arithmetic in the reader's own timezone. Constructed
      local dates, never elapsed milliseconds - elapsed ms ran the
-     countdown a day off across a DST boundary. Do not rewrite. */
+     countdown a day off. Do not rewrite. */
   var dayDiff = function (iso) {
     var p = iso.split("-").map(Number), y = p[0], m = p[1], d = p[2], n = new Date();
     return Math.round((new Date(y, m - 1, d) - new Date(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
@@ -78,7 +103,7 @@
   var shortDate = function (iso) { var p = iso.split("-").map(Number); return MON[p[1] - 1] + " " + p[2]; };
 
   function urgPill(iso) {
-    var d = (iso === null || iso === undefined) ? null : dayDiff(iso);
+    var d = iso ? dayDiff(iso) : null;
     var c, l;
     if (d === null) { c = "low"; l = "Low"; }
     else if (d <= 0) { c = "hot"; l = "Hot"; }
@@ -88,85 +113,19 @@
     return '<span class="st st-' + c + '">' + (c === "hot" ? FIRE : "") + l + '</span>';
   }
 
-  /* ---- seed data: internal-form labels, placeholder parties ---- */
-  var CO = "coordinator", CL = "client";
-  var r = function (label, due, owner, status) {
-    return { task_id: "x", label: label, label_source: "name", due: due, owner: owner, status: status || "upcoming" };
-  };
-  var fill = function (n, mk) { return Array.from({ length: n }, function (_, i) { return mk(i); }); };
-
-  var BUCKETS = [
-    {
-      key: "secure_intake", title: "Secure intake", lede: "Everything you've sent us, and what's still open.",
-      card: { k: "Documents", n: "Across 2 accounts and 8 filings" }, urgency_date: null, count: 26,
-      rows: [
-        r("Record — 2026-08-13 — Your Bank — Signature Card, Corporate Resolutions & Beneficial Ownership Certification (Produced In Response To Form 6639 Summons, Pages 1–7)", "2026-08-13", CO, "active"),
-        r("Record — 2026-08-12 — Your Bank — Monthly Statement Package, Account …2432, January 2024 Through December 2025 (24 Of 24 Received)", "2026-08-12", CO, "active"),
-        r("Record — 2026-08-11 — {{Client Name}} — Federal Form 941 Employer's Quarterly Return, 2023 Q3 Through 2025 Q4", "2026-08-11", CO, "active"),
-        r("Record — 2026-08-10 — {{Client Name}} — Depository Agreement And Account Opening Disclosures, Account …5925", "2026-08-10", CL, "active"),
-        r("Record — 2026-08-09 — {{Client Name}} — Prior-Year Return Transcript Request Authorization", "2026-08-09", CO, "active")
-      ].concat(fill(21, function (i) {
-        var day = String(28 - Math.floor(i / 2)).padStart(2, "0");
-        return r("Record — 2026-07-" + day + " — Your Bank — Deposit Detail Reconciliation Worksheet, Batch " + (i + 1) + " Of 24 (Statement Totals Tied To Ledger)", "2026-07-" + day, CO, "closed");
-      }))
-    },
-
-    {
-      key: "deadlines", title: "Deadlines", lede: "Hard dates. These do not move.",
-      card: { k: "Deadlines", n: "Nearest date drives the flag" }, urgency_date: "2026-08-19", count: 7,
-      rows: [
-        r("Deadline — 2026-08-19 — IRS — Petition To Quash Window Closes (Twenty Days From Summons Notice)", "2026-08-19", CO, "inprogress"),
-        r("Deadline — 2026-08-20 — {{Client Name}} — Representation Documents Must Be On File Before The Examination Window Opens", "2026-08-20", CL, "upcoming"),
-        r("Deadline — 2026-08-22 — IRS — May Begin Examining Summoned Bank Records (§7609 23-Day Mark)", "2026-08-22", CO, "upcoming"),
-        r("Deadline — 2026-09-01 — Your Bank — Summons Appearance And Production, 9:00a PT", "2026-09-01", CO, "upcoming"),
-        r("Deadline — 2026-09-15 — IRS — Quarterly Estimated Payment Due For The Current Tax Year", "2026-09-15", CL, "upcoming"),
-        r("Deadline — 2026-10-15 — IRS — Extended Return Filing Deadline For The 2025 Tax Year", "2026-10-15", CO, "upcoming"),
-        r("Deadline — 2026-11-02 — {{Client Name}} — Annual Records Retention Review And Sign-Off", "2026-11-02", CL, "upcoming")
-      ]
-    },
-
-    {
-      key: "work_items", title: "Work items", lede: "What we're doing. Nothing here is waiting on you.",
-      card: { k: "Work items", n: "31 in progress, 5 on hold" }, urgency_date: "2026-08-22", count: 36,
-      rows: [
-        r("Work Item — 2026-08-18 — {{Client Name}} — Draft Petition To Quash Third-Party Summons And Supporting Declaration For Filing", "2026-08-18", CO, "inprogress"),
-        r("Work Item — 2026-08-18 — {{Client Name}} — Reconcile Gross Receipts Per Bank Deposits Against Reported Receipts, 2023 Through 2025", "2026-08-20", CO, "inprogress"),
-        r("Work Item — 2026-08-17 — {{Client Name}} — Cost Of Goods Sold Allocation Review Under §280E Including Inventory Absorption Method", "2026-08-24", CO, "inprogress"),
-        r("Work Item — 2026-08-17 — {{Client Name}} — Penalty Abatement Exposure Memo, Failure To Deposit And Failure To Pay", "2026-08-26", CO, "hold"),
-        r("Work Item — 2026-08-16 — IRS — Request Complete Account Transcripts For All Open Periods", "2026-08-21", CO, "inprogress")
-      ].concat(fill(31, function (i) {
-        var day = String(15 - Math.floor(i / 4)).padStart(2, "0");
-        var due = String(23 + (i % 6)).padStart(2, "0");
-        return r("Work Item — 2026-08-" + day + " — {{Client Name}} — Categorize Statement Transactions To Chart Of Accounts, Month " + (i + 1) + " Of 24, And Flag Owner Draws For Review", "2026-08-" + due, CO, i % 7 === 0 ? "hold" : "inprogress");
-      }))
-    },
-
-    {
-      key: "correspondence", title: "Correspondence", lede: "Letters, notices and summonses on this matter.",
-      card: { k: "Received", n: "2 summonses, 2 letters, 0 notices" }, urgency_date: "2026-08-25", count: 26,
-      rows: [
-        r("Summons — 2026-07-30 — IRS — Form 6639 Financial Records Summons Served On Your Bank For Accounts …2432 And …5925", "2026-07-30", CO, "active"),
-        r("Letter — 2026-08-13 — Your Bank — Notice Of Records Produced To The Revenue Officer With Itemized Page Index", "2026-08-13", CO, "active"),
-        r("Letter — 2026-08-06 — IRS — Third-Party Contact Notice Under §7602(c) Identifying The Financial Institution", "2026-08-06", CO, "active"),
-        r("Summons — 2026-07-30 — IRS — Duplicate Service Copy Retained For The Petition Record", "2026-07-30", CO, "closed"),
-        r("Letter — 2026-08-25 — {{Client Name}} — Draft Response Letter To The Revenue Officer, Awaiting Your Review Before It Is Sent", "2026-08-25", CL, "upcoming")
-      ].concat(fill(21, function (i) {
-        var day = String(27 - i).padStart(2, "0");
-        return r("Correspondence — 2026-06-" + day + " — Your Bank — Routine Account Notice, Item " + (i + 1) + " (Filed To The Matter Record, No Action Required)", "2026-06-" + day, CO, "closed");
-      }))
-    },
-
-    {
-      key: "client_requests", title: "What we need from you", lede: "Four items. Message or book a call with any question.",
-      card: { k: "Open requests", n: "3 done, 1 still open" }, urgency_date: null, count: 4,
-      rows: [
-        r("Client Request — 2026-08-10 — {{Client Name}} — Accounts And Portal Access (Next Steps Item 1, Completed 2026-08-17)", "2026-08-17", CL, "active"),
-        r("Client Request — 2026-08-10 — {{Client Name}} — Diagnostic Payment (Next Steps Item 2, Completed 2026-08-17)", "2026-08-17", CL, "active"),
-        r("Client Request — 2026-08-10 — {{Client Name}} — Power Of Attorney Form 2848 Signed Page Received, Being Finalized And Filed With The IRS (Next Steps Item 3)", "2026-08-18", CL, "active"),
-        r("Client Request — 2026-08-10 — {{Client Name}} — Bank Contact And Document Tracking: Forward Anything Your Bank Sends The Revenue Officer (Next Steps Item 5)", null, CL, "upcoming")
-      ],
-      ctas: true
-    }
+  /* Bucket order, titles and ledes are the fragment's own, preserved
+     verbatim. The API sends no section copy, only counts and rows. */
+  var BUCKET_DEFS = [
+    { key: "secure_intake", title: "Secure intake", k: "Documents",
+      lede: "Everything you've sent us, and what's still open." },
+    { key: "deadlines", title: "Deadlines", k: "Deadlines",
+      lede: "Hard dates. These do not move." },
+    { key: "work_items", title: "Work items", k: "Work items",
+      lede: "What we're doing. Nothing here is waiting on you." },
+    { key: "correspondence", title: "Correspondence", k: "Received",
+      lede: "Letters, notices and summonses on this matter." },
+    { key: "client_requests", title: "What we need from you", k: "Open requests",
+      lede: "Four items. Message or book a call with any question.", ctas: true }
   ];
 
   var ST_LABEL = { active: "Active", upcoming: "Upcoming", inprogress: "In progress", hold: "On hold", closed: "Closed" };
@@ -177,14 +136,15 @@
     var when = x.due
       ? '<span class="when"><b>' + shortDate(x.due) + '</b>' + rel(x.due) + '</span>'
       : '<span class="when none">No due date</span>';
-    /* The status pill is omitted entirely when the row carries no status.
-       An empty pill would collapse the row grid, and a default would be an
-       invention. When the field starts arriving this renders on its own. */
+    /* The API sends no status field. The pill is omitted entirely rather
+       than defaulted: an invented status would be a claim we cannot
+       support, and an empty pill would collapse the row grid. If the
+       field starts arriving this renders on its own. */
     var st = x.status
-      ? '<span class="st st-' + x.status.replace(/\s/g, "") + '">' + (ST_LABEL[x.status] || x.status) + '</span>'
+      ? '<span class="st st-' + String(x.status).replace(/\s/g, "") + '">' + (ST_LABEL[x.status] || x.status) + '</span>'
       : '';
     return '<a class="row' + (x.label_source === "name" ? " raw" : "") + '" href="#" '
-      + 'title="' + x.label.replace(/"/g, "&quot;") + '">'
+      + 'title="' + String(x.label).replace(/"/g, "&quot;") + '">'
       + st
       + '<span class="m"><span class="t">' + x.label + '</span></span>'
       + '<span class="own ' + (x.owner === "client" ? "client" : "") + '"><span class="av">' + (AV[x.owner] || "") + '</span>'
@@ -197,7 +157,9 @@
     + '<a class="card cta" href="#"><div class="k">Message us →</div>'
     + '<div class="n">Secure messaging inside your portal. Quicker than email for a short question.</div></a></div>';
 
-  function render(state) {
+  /* buckets: one entry per BUCKET_DEFS entry, already merged with the
+     response. state: "full" | "empty" | "stale". */
+  function render(state, buckets) {
     var empty = state === "empty";
     var root = document.getElementById("vld");
     var secs = document.getElementById("vld-secs");
@@ -205,18 +167,21 @@
     if (!root || !secs) return;
 
     root.dataset.state = state;
-    secs.innerHTML = BUCKETS.map(function (b) {
-      var rows = empty ? [] : b.rows, count = empty ? 0 : b.count;
+    secs.innerHTML = buckets.map(function (b) {
+      var rows = b.rows || [];
       var body = rows.length
         ? '<div class="rows">' + rows.map(rowHTML).join("") + '</div>'
           + (rows.length > 5 ? '<button class="more" type="button">Show all ' + rows.length + '</button>' : '')
         : '<div class="mt"><b>Nothing outstanding</b>We\'ll add items here as they come up.</div>';
-      /* The note line is omitted when there is no text for it. The empty
-         state keeps its own note. */
-      var note = empty ? "Nothing open right now" : (b.card && b.card.n);
+      /* The API sends no note text for the summary card, and the
+         fragment's notes were hand-written strings that are not derivable
+         from count and urgency_date. The line is omitted rather than
+         invented; the CSS keeps the card looking deliberate without it.
+         The empty state keeps its own note. */
+      var note = empty ? "Nothing open right now" : b.note;
       return '<section class="sec" data-bucket="' + b.key + '">'
         + '<div class="sechd"><div class="secmeta"><h3>' + b.title + '</h3><p class="lede">' + b.lede + '</p></div>'
-        + '<div class="card sum"><div class="k">' + b.card.k + '</div><div class="v">' + count + '</div>'
+        + '<div class="card sum"><div class="k">' + b.k + '</div><div class="v">' + b.count + '</div>'
         + (note ? '<div class="n">' + note + '</div>' : '')
         + '<div class="cs">' + urgPill(empty ? null : b.urgency_date) + '</div></div></div>'
         + body + (b.ctas && !empty ? CTAS : '') + '</section>';
@@ -226,6 +191,129 @@
        and the portal's own content stays in place. Reveal only once there
        is something to show. */
     root.hidden = false;
+  }
+
+  /* Merge tags arrive as DOM attributes, never as JS string literals -
+     an apostrophe in a name would break a literal, and an unresolved tag
+     would render as {{...}}. Same shape as green-service.js. */
+  function clean(v) {
+    if (!v) return '';
+    v = String(v).replace(/ /g, ' ').trim();
+    if (!v || v.indexOf('{{') === 0) return '';
+    return v;
+  }
+
+  /* Two sources, because SuiteDash resolves merge tags in text nodes more
+     reliably than in attributes. Attribute first, hidden span second.
+     Whichever the page supports, one of them lands. Identical to
+     green-service.js: the uid must resolve the same way in both bundles
+     or the two views would disagree about who the reader is. */
+  function attr(name, fallbackId) {
+    var hero = document.getElementById('vl-hero');
+    var v = clean(hero && hero.getAttribute(name));
+    if (v) return v;
+
+    if (fallbackId) {
+      var el = document.getElementById(fallbackId);
+      v = clean(el && el.textContent);
+      if (v) return v;
+    }
+    return '';
+  }
+
+  function buildBuckets(d) {
+    var byId = {};
+    var cards = (d && d.cards) || [];
+    for (var i = 0; i < cards.length; i++) {
+      if (cards[i] && cards[i].id) byId[cards[i].id] = cards[i];
+    }
+    var rowsByBucket = (d && d.rows) || {};
+
+    return BUCKET_DEFS.map(function (def) {
+      var card = byId[def.key] || {};
+      var rows = rowsByBucket[def.key] || [];
+      return {
+        key: def.key,
+        title: def.title,
+        lede: def.lede,
+        ctas: def.ctas,
+        /* The card label is data when the endpoint sends it; the static
+           label is the fallback, not an override. */
+        k: card.label || def.k,
+        count: (typeof card.count === "number") ? card.count : rows.length,
+        urgency_date: card.urgency_date || null,
+        /* No note data exists upstream. Present so the omission in
+           render() is one named field rather than a silent gap. */
+        note: card.note || "",
+        rows: rows
+      };
+    });
+  }
+
+  function loadDashboard() {
+    if (!document.getElementById("vld")) return;
+
+    var c = attr('data-client-uid', 'vl-mt-uid');
+
+    /* Unresolved merge tag or no client context: render nothing and leave
+       the portal's own content in place. The uid itself is never logged -
+       only that none resolved. */
+    if (!c) {
+      console.warn('[vld] no client uid; dashboard not rendered');
+      return;
+    }
+
+    /* No timeout would leave a hung endpoint unresolved forever: the catch
+       never fires, so the fragment sits hidden with nothing to show that
+       anything failed. An abort takes the same degraded path as any other
+       failure, and the error name makes a timeout tellable apart.
+       credentials: 'omit' is deliberate - the endpoint does not
+       authenticate by session, so cookies must not go cross-origin. */
+    var ctl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 8000) : 0;
+    var opts = { credentials: 'omit' };
+    if (ctl) opts.signal = ctl.signal;
+
+    fetch(DASHBOARD_ENDPOINT + '?c=' + encodeURIComponent(c), opts)
+      .then(function (r) {
+        clearTimeout(timer);
+        /* A 500 or 404 resolves the promise, so the catch never fires and
+           the fragment would stay hidden with nothing in the console.
+           Status only: never the body, the URL, or the query string. */
+        if (!r.ok) {
+          console.warn('[vld] dashboard endpoint returned', r.status, r.statusText);
+          return null;
+        }
+        return r.json();
+      })
+      .then(function (d) {
+        if (!d) return;
+
+        /* An error envelope arrives with a 200. Only the error code is
+           logged - never the message, which can quote payload values. */
+        if (d.error) {
+          console.warn('[vld] dashboard endpoint reported error code:', d.error);
+          return;
+        }
+
+        var buckets = buildBuckets(d);
+
+        var total = 0;
+        for (var i = 0; i < buckets.length; i++) {
+          total += buckets[i].count + buckets[i].rows.length;
+        }
+
+        var state = total === 0 ? "empty" : (d.stale ? "stale" : "full");
+        render(state, buckets);
+      })
+      .catch(function (err) {
+        clearTimeout(timer);
+        /* The portal stays fully usable without the endpoint. Log the
+           error only: never the client uid, the query string, or any
+           payload field, because this console is on a client-facing
+           page. */
+        console.warn('[vld] dashboard load failed:', err);
+      });
   }
 
   document.addEventListener("click", function (e) {
@@ -244,11 +332,9 @@
     if (e.target.closest('#vld a[href="#"]')) e.preventDefault();
   });
 
-  function bind() { render("full"); }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bind);
+    document.addEventListener('DOMContentLoaded', loadDashboard);
   } else {
-    bind();
+    loadDashboard();
   }
 })();
