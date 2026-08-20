@@ -122,6 +122,13 @@
      rowHTML formatted row.due with no validity check. A malformed value
      did not fail loudly; it failed plausibly. See isCalendarDate and the
      `when` branch in rowHTML - both carry the measured cases.
+
+   R152 - THE SAVED-COPY STAMP
+     The stale pill read a bare "Saved copy" because R148 removed a
+     fabricated "Saved copy from 9:12a PT" - the time was invented and
+     the zone was wrong for every client outside it. The envelope carries
+     a real generated_at, so the pill now carries a real time. See
+     stampTime and the stamp block in render().
    --------------------------------------------------------------------- */
 
 (function () {
@@ -188,6 +195,24 @@
      otherwise print a line for every row it touched. Same idiom as
      urgWarned below. */
   var dueWarned = false;
+
+  /* R152 - the saved-copy stamp. R148 deleted a hardcoded "9:12a PT":
+     the time was fabricated and the zone abbreviation was wrong for any
+     client outside it, which is why none is hardcoded here.
+     toLocaleTimeString with an empty locale list uses the BROWSER's own
+     locale and zone - the reader's, the only zone we can state truthfully
+     from a static bundle served to every reseller install.
+     String input only, deliberately: new Date(null) is the epoch and
+     new Date(0) is a real time, so a nullish or numeric envelope field
+     would otherwise stamp a confident wrong hour on the pill. Anything
+     unparseable returns "" and the caller falls back to the bare pill
+     rather than printing "Invalid Date" on a client-facing page. */
+  function stampTime(v) {
+    if (typeof v !== "string" || !v) return "";
+    var dt = new Date(v);
+    if (isNaN(dt.getTime())) return "";
+    return dt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  }
 
   /* One warning per page load, not one per card - five buckets sharing a
      malformed feed would otherwise print five identical lines. */
@@ -331,8 +356,9 @@
     + '<div class="n">Secure messaging inside your portal. Quicker than email for a short question.</div></a></div>';
 
   /* buckets: one entry per BUCKET_DEFS entry, already merged with the
-     response. state: "full" | "empty" | "stale". */
-  function render(state, buckets) {
+     response. state: "full" | "empty" | "stale". generatedAt is the
+     envelope's generated_at, read only in the stale state. */
+  function render(state, buckets, generatedAt) {
     var empty = state === "empty";
     var root = document.getElementById("vld");
     var secs = document.getElementById("vld-secs");
@@ -365,6 +391,21 @@
         + '<div class="cs">' + urgPill(empty ? null : b.urgency_date) + '</div></div></div>'
         + body + (b.ctas && !empty ? CTAS : '') + '</section>';
     }).join("");
+
+    /* R152 - the stale pill's time. Only the stale state carries one; a
+       fresh response is current by definition and shows no timestamp, so
+       the pill is reset to bare copy in every other state rather than
+       left holding a stamp from an earlier render. The CSS hides .stale
+       outside data-state="stale" regardless - this keeps the text honest
+       underneath that. Written with textContent, so the one envelope
+       value that reaches the fragment head never touches innerHTML and
+       needs no esc(); stampTime returns "" for anything it cannot read,
+       which lands on the same bare pill R148 left behind. */
+    var stamp = root.querySelector(".stale");
+    if (stamp) {
+      var t = (state === "stale") ? stampTime(generatedAt) : "";
+      stamp.textContent = t ? "Saved copy \u00b7 " + t : "Saved copy";
+    }
 
     /* The container ships hidden so an unresolved fragment renders nothing
        and the portal's own content stays in place. Reveal only once there
@@ -483,7 +524,7 @@
         }
 
         var state = total === 0 ? "empty" : (d.stale ? "stale" : "full");
-        render(state, buckets);
+        render(state, buckets, d.generated_at);
       })
       .catch(function (err) {
         clearTimeout(timer);
