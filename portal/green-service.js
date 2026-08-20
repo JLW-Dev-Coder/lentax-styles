@@ -226,13 +226,25 @@
   }
 
   /* '2026-08-27' -> 'due Aug 27'. Parsed as UTC noon so a timezone
-     offset can never shift the day backwards. */
+     offset can never shift the day backwards.
+
+     R145: a value this could not parse used to vanish with nothing in the
+     console - the due date simply stopped appearing on the rail, and a
+     dropped date was indistinguishable from a date the endpoint never
+     sent. It now says which one happened. Ordinary absence (null,
+     undefined, '') stays quiet, exactly as R144 keeps quiet for a falsy
+     phase. The value itself is never logged: a due date belongs to a
+     client. The accepted formats are unchanged - a leading YYYY-MM-DD,
+     which an ISO datetime also satisfies. What the endpoint actually
+     emits is still unobserved; see the R145 note in the report. */
   function shortDate(iso) {
-    if (!iso || typeof iso !== 'string') return '';
-    var m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/);
-    if (!m) return '';
-    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12));
-    if (isNaN(d.getTime())) return '';
+    if (!iso) return '';
+    var m = (typeof iso === 'string') ? iso.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
+    var d = m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12)) : null;
+    if (!d || isNaN(d.getTime())) {
+      console.warn('[green-service] unparseable due value; date omitted');
+      return '';
+    }
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     return 'due ' + months[d.getUTCMonth()] + ' ' + d.getUTCDate();
   }
