@@ -235,8 +235,20 @@
      undefined, '') stays quiet, exactly as R144 keeps quiet for a falsy
      phase. The value itself is never logged: a due date belongs to a
      client. The accepted formats are unchanged - a leading YYYY-MM-DD,
-     which an ISO datetime also satisfies. What the endpoint actually
-     emits is still unobserved; see the R145 note in the report. */
+     which an ISO datetime also satisfies.
+
+     R146: observed. Every due value the endpoints emit is a bare
+     YYYY-MM-DD - ten characters, no time part, no zone suffix - across
+     all 3 projects on portal-phase and all 99 rows on portal-dashboard,
+     on both live clients, with zero non-conforming values and zero
+     nulls. The pattern above matches that exactly on its three groups,
+     and the Date.UTC(y, m, d, 12) path lands the instant at noon UTC,
+     far enough from either midnight that no reader's offset can move
+     the calendar day. So the ISO-datetime tolerance is headroom rather
+     than a path anything takes today, and the warn branch has never
+     fired in production. Both stay: the shape is the endpoint's to
+     change, and R145 exists so that a change shows up in the console
+     instead of as a silently missing date. */
   function shortDate(iso) {
     if (!iso) return '';
     var m = (typeof iso === 'string') ? iso.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
