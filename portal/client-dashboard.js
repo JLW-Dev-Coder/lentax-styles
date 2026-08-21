@@ -123,6 +123,16 @@
      did not fail loudly; it failed plausibly. See isCalendarDate and the
      `when` branch in rowHTML - both carry the measured cases.
 
+   R154 - THE URGENCY ROLLOVER GAP
+     R150 stopped a malformed urgency_date from failing quiet to "Low",
+     but only for values that produced NaN. A value that parses and is
+     not a real calendar date still ran the ladder: "2026-02-30" landed
+     on the loudest tier the dashboard has and "2026-13-01" on the
+     quietest. urgPill now gates dayDiff on isCalendarDate - R151's
+     helper, unchanged - so anything unreadable takes R150's existing
+     st-unknown path. Absence still reads "Low"; a real date is
+     unaffected at every tier.
+
    R152 - THE SAVED-COPY STAMP
      The stale pill read a bare "Saved copy" because R148 removed a
      fabricated "Saved copy from 9:12a PT" - the time was invented and
@@ -225,10 +235,24 @@
          scheduled, so Low is honest. Unchanged from R148. */
       c = "low"; l = "Low";
     } else {
-      /* A non-string would throw inside dayDiff's split() and take the
-         whole render down, so it is treated as unparseable here rather
-         than reaching it. dayDiff itself is untouched. */
-      var d = (typeof iso === "string") ? dayDiff(iso) : NaN;
+      /* R154 - the same guard as R151's `when` branch, one function
+         over, deliberately the same helper and the same philosophy.
+         R150 closed the NaN path, but a value that PARSES and is not a
+         real calendar date still ran the ladder. Measured 2026-08-20:
+           "2026-02-30"  ->  st-hot, fire glyph and halo - the loudest
+                             state the dashboard has, from a date we
+                             cannot read. On a tax engagement that tells
+                             a client something is due today when
+                             nothing is.
+           "2026-13-01"  ->  st-low - month 13 rolls into 2027-01-01 and
+                             reads as the calmest tier.
+         Wrong in both directions; the alarming one is the worse one.
+         isCalendarDate does the shape test AND the round-trip, so 30
+         February and month 13 are rejected the same way. It also covers
+         the non-string case that used to be tested here - a non-string
+         would throw inside dayDiff's split() and take the whole render
+         down, so it never reaches it. dayDiff itself is untouched. */
+      var d = isCalendarDate(iso) ? dayDiff(iso) : NaN;
       if (isNaN(d)) {
         /* R150 - failing quiet in the reassuring direction is the wrong
            way to fail. NaN fails every comparison in the ladder below and
