@@ -123,6 +123,17 @@
      did not fail loudly; it failed plausibly. See isCalendarDate and the
      `when` branch in rowHTML - both carry the measured cases.
 
+   R155 - WHAT THE CONSOLE IS ALLOWED TO CARRY
+     Two warnings could print payload. The catch logged the error object,
+     whose message quotes a non-JSON response body on a SyntaxError and
+     the full endpoint URL - query string and client uid - on a network
+     TypeError; it now logs err.name, which is the timeout-vs-network
+     distinction R148 wanted and nothing more. The error-envelope branch
+     logged d.error verbatim; the value is now dropped entirely rather
+     than clamped, because no clamp can tell a short error code from a
+     short client uid. r.status and r.statusText stay - HTTP metadata,
+     not payload.
+
    R154 - THE URGENCY ROLLOVER GAP
      R150 stopped a malformed urgency_date from failing quiet to "Low",
      but only for values that produced NaN. A value that parses and is
@@ -533,10 +544,19 @@
       .then(function (d) {
         if (!d) return;
 
-        /* An error envelope arrives with a 200. Only the error code is
-           logged - never the message, which can quote payload values. */
+        /* An error envelope arrives with a 200. R155 - the VALUE is no
+           longer logged. It is meant to be a short code, but nothing in
+           this file or on the wire constrains what the endpoint puts
+           there; measured with a prose value it printed the client uid
+           and the full endpoint URL. A length-and-charset clamp was the
+           alternative and was rejected: a client uid is itself short and
+           [A-Za-z0-9-], so any clamp loose enough to pass a real error
+           code is loose enough to pass a uid. Nothing here can tell them
+           apart, so nothing from the envelope is printed. The branch is
+           still distinguishable by its own text, and the value is one
+           click away in the Network tab, where a body belongs. */
         if (d.error) {
-          console.warn('[vld] dashboard endpoint reported error code:', d.error);
+          console.warn('[vld] dashboard endpoint reported an error envelope');
           return;
         }
 
@@ -552,11 +572,18 @@
       })
       .catch(function (err) {
         clearTimeout(timer);
-        /* The portal stays fully usable without the endpoint. Log the
-           error only: never the client uid, the query string, or any
-           payload field, because this console is on a client-facing
-           page. */
-        console.warn('[vld] dashboard load failed:', err);
+        /* The portal stays fully usable without the endpoint. R155 - the
+           NAME only, never the error object. An error MESSAGE is not ours
+           to print: measured, the object carried
+             non-JSON 200  ->  SyntaxError: Unexpected token '<',
+                               "<html><hea"... is not valid JSON
+             network fail  ->  TypeError: Failed to fetch <the full
+                               endpoint URL, query string and uid included>
+           - a response body and a client uid, on a client-facing console.
+           The name is the part R148 actually wanted: AbortError for a
+           timeout, TypeError for a network failure. The fallback covers a
+           thrown non-Error, which has no name to read. */
+        console.warn('[vld] dashboard load failed:', (err && err.name) || 'Error');
       });
   }
 
