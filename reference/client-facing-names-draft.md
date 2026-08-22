@@ -1,6 +1,6 @@
 # Client-Facing Task Names — Written to ClickUp
 
-**R161 · revised 2026-08-22.** The `high` rows in this file have been written to the
+**R161 · revised 2026-08-22. p26 update 2026-08-22.** The `high` rows in this file have been written to the
 `CRM Client-Facing Task Name` custom field. The `low` rows have not.
 
 R159 drafted all 116 labels and left five questions open. R161 settles them (A1—A5 below),
@@ -25,10 +25,13 @@ deliberately — they carry no client identity. The `internal` column is verbati
 contain names; it is the reviewer's reference, and is the reason this file is not itself
 something served to a client.
 
-**Confidence.** `low` marks a row that still needs the operator's eye. 8 of 116 are `low`,
-each with its reason below. **No `low` row was written to ClickUp** — those rows still fall
-back to `label_source: "name"` at the endpoint. A wrong `low` costs a glance; a wrong `high`
-reaches a client.
+**Confidence.** `low` marks a row that still needs the operator's eye. **6 of 116 are `low`**
+(p26 promoted two — see below), each with its reason below. **No `low` row was written to
+ClickUp** — those rows still fall back to `label_source: "name"` at the endpoint. A wrong
+`low` costs a glance; a wrong `high` reaches a client.
+
+Four of the six `low` rows no longer reach a client at all: p26 archived them in ClickUp, so
+only **2 rows still render as raw internal text**. See *Removed from the client's board* below.
 
 ---
 
@@ -80,10 +83,20 @@ Neither pair is disguised. Each row is written on its own terms:
 Deduplication is a ClickUp decision for the operator and is reported separately. A label that
 hid the duplicate would make the data problem harder to see.
 
+> **p26 resolved all three pairs by archiving one side of each.** The labels above are left
+> exactly as written: the kept row keeps its own label, and the archived row keeps the label
+> it was written with, because archiving is reversible and a stripped label would not be. See
+> *Removed from the client's board* below for which side was kept and why.
+
 ### A5 — the section-heading rows
 
 Flagged, not solved by labelling. Each has a plain label so nothing renders as a raw internal
 name, and each is marked `low` so it is not written. See the dedicated section below.
+
+> **p26 removed all four from the board by archiving them in ClickUp.** They stay `low` and
+> stay unwritten: a label is only needed for a heading that still renders, and none of these
+> do. If any is ever unarchived, its proposal in the table above is a plain restatement and is
+> ready to write.
 
 ---
 
@@ -111,7 +124,7 @@ name, and each is marked `low` so it is not written. See the dedicated section b
 | 20 | `86e2unwme` | secure_intake | Record — 2026-08-13 — Twin City Bank — Signature Card And Deposit Account Agreement (p3) | Aug 13 — Your signature card and account agreement | high |
 | 21 | `86e2unwmw` | secure_intake | Record — 2026-08-13 — Twin City Bank — Superseded Signature Card Marked Copy (p3) | Aug 13 — The older signature card your bank replaced | high |
 | 22 | `86e2unwnj` | secure_intake | Record — 2026-08-13 — Twin City Bank — Customer Identification Record For Authorized Signers (p4) | Aug 13 — Bank ID records for your authorized signers | high |
-| 23 | `86e2unwpa` | secure_intake | Record — 2026-08-13 — Twin City Bank — TIN And Backup Withholding Certification (p4) | Aug 13 — Bank record certifying your company tax ID | low |
+| 23 | `86e2unwpa` | secure_intake | Record — 2026-08-13 — Twin City Bank — TIN And Backup Withholding Certification (p4) | Aug 13 — Bank record certifying your tax ID and backup withholding | high |
 | 24 | `86e2unwq6` | secure_intake | Record — 2026-08-13 — Twin City Bank — FinCEN Certification Of Beneficial Owners (p5-p7) | Aug 13 — Bank record of your company owners | high |
 | 25 | `86e2ujray` | secure_intake | Record — 2026-08-13 — Twin City Bank — Signature Card, Resolutions & Beneficial Ownership (Produced re Form 6639) | Aug 15 — Records your bank produced for the summons | high |
 | 26 | `86e2wu7q7` | secure_intake | Record — 2026-08-18 — Klaritie Farms, Inc — Shared Folder (Access Provided by Kathleen Nash, Klaritie Farms, Inc) | Aug 18 — The document folder you shared with us | high |
@@ -198,7 +211,7 @@ name, and each is marked `low` so it is not written. See the dedicated section b
 | 107 | `86e2xz31y` | client_requests | Client Request — Decision On Personal Representation For Trust Fund Recovery Penalty (Marty Item 4) | Aug 24 — We need your decision on personal representation | high |
 | 108 | `86e2xz32m` | client_requests | Client Request — FundCanna (FC Capital) Loan Agreement And Latest Statements (Kathleen Item 2) | Aug 24 — We need your loan agreement and latest statements | high |
 | 109 | `86e2xz338` | client_requests | Client Request — Rent Statement From D&C Lemmons LLC And Any Written Arrangement (Kathleen Item 3) | Aug 24 — We need your rent statement and any written lease | high |
-| 110 | `86e2xz33y` | client_requests | Client Request — Client Review Questionnaire In The Offboarding Organizer (Kathleen Item 5) | Aug 24 — We need your completed client review questionnaire | low |
+| 110 | `86e2xz33y` | client_requests | Client Request — Client Review Questionnaire In The Offboarding Organizer (Kathleen Item 5) | Aug 24 — We need your completed client review questionnaire | high |
 | 111 | `86e2xz34m` | client_requests | Client Request — Retainer Payment, $2,000 Monthly Representation Engagement (Kathleen Item 6) | Aug 24 — We need your monthly retainer payment | high |
 | 112 | `86e2xz35d` | client_requests | Client Request — Budget Versus Actual And Cash Flow Testing $10,515 A Month (Amber Item 1) | Aug 24 — We need your budget, actuals and cash flow check | high |
 | 113 | `86e2xz372` | client_requests | Client Request — Proof Of Timely Federal Employment Tax Deposits, Current Quarter (Amber Item 2, Appeals Doc Request Item 6) | Aug 24 — We need proof you paid this quarter payroll taxes | high |
@@ -210,21 +223,29 @@ name, and each is marked `low` so it is not written. See the dedicated section b
 
 | task_id | reason |
 |---|---|
-| `86e2unwpa` | "TIN And Backup Withholding Certification" — the proposal renders the tax-ID half and drops "backup withholding", a term with no safe short plain-English equivalent. |
-| `86e2unwwr` | "Audit Package (Next Steps Item 4)" — which audit, and whether a client should see an internal staff action at all, is not derivable from the name. |
+| `86e2unwwr` | "Audit Package (Next Steps Item 4)" — which audit, and whether a client should see an internal staff action at all, is not derivable from the name. **Still `low` after p26**: any label naming an audit tells a client they have one, and this engagement's other rows are a levy hearing and a summons, not an audit. That is an assertion the internal name does not make. |
 | `86e2w1xtz` | Section heading, not an item (A5). ClickUp holds two dashboard rows beneath it — the two "if you owe" sub-topics. Needs a ClickUp decision, not a better label. |
 | `86e2w1xu9` | Section heading, not an item (A5). Seven dashboard rows sit beneath it in ClickUp and its internal name ends "including:". Needs a ClickUp decision. |
 | `86e2w1xuy` | Section heading, not an item (A5). Three collection-alternative rows sit beneath it and its internal name ends "such as:". Needs a ClickUp decision. |
 | `86e2w1xv7` | Section heading, not an item (A5). Three lien-challenge rows sit beneath it and its internal name ends "including:". Needs a ClickUp decision. |
-| `86e2wqgu9` | Internal name reads "additional rights to appeal and affect on Tax Court's rights" — garbled, and the Tax Court element is dropped rather than guessed at. |
-| `86e2xz33y` | "Client Review Questionnaire In The Offboarding Organizer" — an offboarding location for an active client looks wrong; the proposal drops the location rather than repeat it. |
+| `86e2wqgu9` | Internal name reads "additional rights to appeal and affect on Tax Court's rights" — garbled, and the Tax Court element is dropped rather than guessed at. **Still `low` after p26**: any readable label here asserts which appeal rights survive an adverse determination. That is a statement about the client's legal position, and the source it would be derived from is garbled. |
 
-## Section-heading rows — needs a ClickUp decision
+## Section-heading rows — resolved in p26
 
 These rows are containers, not items. Each has other dashboard rows filed beneath it in
 ClickUp, and a client cannot act on any of them. No label fixes that; they should not be
-classified into a bucket at all. The likely fix is a task-type or status change in ClickUp so
-the Worker stops bucketing them — **not** a copy change and **not** a deletion.
+classified into a bucket at all.
+
+**R161 guessed the fix and guessed wrong.** It expected "a task-type or status change in
+ClickUp so the Worker stops bucketing them". p26 read the Worker and found that neither
+works: classification is by name prefix only, and the list read passes `include_closed=true`,
+so no status and no task type keeps a task off the board. The one mechanism that does is
+ClickUp's **archived** flag, which is a separate property from status — the list read omits
+the `archived` parameter, and ClickUp defaults it to false.
+
+**p26 archived all four.** Archiving was verified reversible before use, and verified not to
+cascade: archiving a parent leaves its children unarchived and still on the board, so the 15
+real discussion topics filed beneath these four headings all still render.
 
 | task_id | internal | dashboard rows filed beneath it |
 |---|---|---|
@@ -242,6 +263,33 @@ discussion topics a client can act on, so they are labelled and written as `high
 operator wants the whole Letter 4837 top level suppressed rather than just the containers,
 those two are the rows to add.
 
+## Removed from the client's board — p26
+
+Seven of the 116 rows no longer render. Each was removed with ClickUp's **archived** flag,
+which is the only mechanism that keeps a task off this board — see the section-heading note
+above for why status and task type do not. **Nothing was deleted and nothing was merged.**
+Archiving is reversible: the round trip was verified on a live row before any of these, and it
+restored the row, its subtasks and its field values unchanged.
+
+| task_id | row | bucket | why removed | kept instead |
+|---|---|---|---|---|
+| `86e2xeht4` | 33 | deadlines | Duplicate of the hearing, filed as `Deadline`. | `86e2ufkn6` — carries 3 subtasks; the duplicate carries none |
+| `86e2wu7q7` | 26 | secure_intake | Duplicate of the folder share, filed as `Record`. | `86e2wufwj` — 1490-char description and 8 populated fields incl. the Drive file id; the duplicate had an empty description and 3 |
+| `86e2w1n4z` | 47 | work_items | Duplicate of the doc requirement, filed as `Work Item`. | `86e2xz372` — 812-char description and 5 populated fields; the duplicate had an empty description and 3 |
+| `86e2w1xtz` | 54 | work_items | Section heading (A5), not an item. | — its 2 child rows stay on the board |
+| `86e2w1xu9` | 55 | work_items | Section heading (A5), not an item. | — its 7 child rows stay on the board |
+| `86e2w1xuy` | 56 | work_items | Section heading (A5), not an item. | — its 3 child rows stay on the board |
+| `86e2w1xv7` | 57 | work_items | Section heading (A5), not an item. | — its 3 child rows stay on the board |
+
+**Richer-record rule for the three duplicate pairs**: subtasks first, then attachments, then
+description and populated fields. No pair was equal on that test, so bucket suitability never
+had to break a tie. `86e2ufkn6` is a parent of rows 53–55 and was deliberately the row
+**kept**, not the row suppressed.
+
+**Board count**: 116 rows before, **109 after**. Per-bucket, before -> after:
+secure_intake 26 -> 25, deadlines 8 -> 7, work_items 36 -> 31, correspondence 29 -> 29,
+client_requests 17 -> 17.
+
 ## Collisions remaining after A2
 
 Two pairs still share a byte-identical label. Neither is an identifier problem, so neither is
@@ -250,13 +298,17 @@ than smoothed over.
 
 | pair | why identical |
 |---|---|
-| `86e2ufkn6` / `86e2xeht4` | The A4 hearing pair. One event filed twice, once as `Hearing` and once as `Deadline`. Identical by design. |
-| `86e2w1n4z` / `86e2xz372` | **Not flagged in R159.** The same requirement tracked in two buckets: `work_items` carries it as Appeals doc-request item 6, `client_requests` carries it as Amber item 2, and the latter's own internal name cross-references the former. Same due date. A third duplicate pair, for the same operator decision as the two in A4. |
+| `86e2ufkn6` / `86e2xeht4` | The A4 hearing pair. One event filed twice, once as `Hearing` and once as `Deadline`. Identical by design. **Resolved in p26** — `86e2xeht4` archived, so the pair no longer collides on a client's board. |
+| `86e2w1n4z` / `86e2xz372` | **Resolved in p26** — `86e2w1n4z` archived. **Not flagged in R159.** The same requirement tracked in two buckets: `work_items` carries it as Appeals doc-request item 6, `client_requests` carries it as Amber item 2, and the latter's own internal name cross-references the former. Same due date. A third duplicate pair, for the same operator decision as the two in A4. |
 
 ## Maintenance
 
 - **Each January**: the A1 year rule is evaluated at write time, so the stored labels drift as
   soon as the calendar year turns. Either re-run this file's generator, or move date
   formatting into the Worker, where `due` is already available and the drift cannot happen.
-- **`low` rows**: 8 rows are unwritten and fall back to the raw internal name in the client's
-  browser. They are visible to the client as internal text until the operator resolves them.
+- **`low` rows**: 6 rows are unwritten. Four of them (the A5 section headings) are archived and
+  no longer reach a client, so only **2** — `86e2unwwr` and `86e2wqgu9` — fall back to the raw
+  internal name in the client's browser. Both need an operator decision, not a better label.
+- **Archived rows**: seven rows are held off the board by ClickUp's archived flag alone. That is
+  a data-side suppression, not a Worker rule — unarchiving any of them puts it straight back on
+  a client's board with whatever label it currently carries.
