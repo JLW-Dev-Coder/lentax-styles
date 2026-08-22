@@ -4,3 +4,11 @@
 /lentax-install-coastal.js              /js/lentax-install-coastal.js                   200
 /lentax-install-sentinel.js             /js/lentax-install-sentinel.js                  200
 /lentax-css-pre-migration.snapshot.css  /archive/lentax-css-pre-migration.snapshot.css  200
+
+# ── R162: block internal artefacts from being served publicly ──────────────
+# reference/ and portal/_source/ are internal working artefacts. Nothing is
+# fetched from either at runtime — the live bundles are served from /portal/*,
+# which stays public. The `!` (force) flag is load-bearing: without it Netlify
+# serves the existing static file and ignores the rule.
+/reference/*       /404.html  404!
+/portal/_source/*  /404.html  404!
