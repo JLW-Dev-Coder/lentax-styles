@@ -46,6 +46,14 @@
     1: {
       pct: 14,
       short: 'General Info Capture',
+      /* label/desc are the sidebar tab; short is the prose name the hint
+         and the step banner use. R160 folded the sidebar strings in here
+         rather than leaving a second copy in the scaffold builder -
+         'short' is the longer form and never fitted the 210px column.
+         The raw '&' in labels 2 and 3 is deliberate: esc() re-encodes it,
+         which is what the Text Block's hand-written &amp; used to do. */
+      label: 'General Info',
+      desc: 'Capture the details',
       title: 'Step 1 \u2014 ' + accent('General Info Capture'),
       lead: 'We open the matter and capture exactly who and what we\u2019re representing.',
       sub: 'Taxpayer identity, entity structure, license type, tax years, and every notice received \u2014 enough to confirm this is a matter I can take. <b>This is the phase that needs you.</b>',
@@ -65,6 +73,8 @@
     2: {
       pct: 28,
       short: 'Project Fit & Scope Confirmation',
+      label: 'Fit & Scope',
+      desc: 'Confirm the scope',
       title: 'Step 2 \u2014 ' + accent('Project Fit &amp; Scope'),
       lead: 'We lock exactly which years, which entities, and which positions are in play.',
       sub: 'Scope, disclosure posture, and every statutory deadline are fixed in writing before a single record is requested.',
@@ -83,6 +93,8 @@
     3: {
       pct: 43,
       short: 'Asset Collection & Setup',
+      label: 'Assets & Setup',
+      desc: 'Collect and set up',
       title: 'Step 3 \u2014 ' + accent('Asset Collection &amp; Setup'),
       lead: 'We assemble the evidence base and put the authorization on file.',
       sub: 'Returns, books, transcripts, and the executed Form 2848 \u2014 reconciled and organized into the working file. This phase is internal.',
@@ -101,6 +113,8 @@
     4: {
       pct: 57,
       short: 'Drafting & Client Review',
+      label: 'Drafting',
+      desc: 'Build the position',
       title: 'Step 4 \u2014 ' + accent('Drafting &amp; Client Review'),
       lead: 'We build the workpaper and the disclosure. <b>You only need to look at it if I ask you to.</b>',
       sub: 'COGS allocation, the \u00a7471 position, and the disclosure that protects it \u2014 reviewed before anything carries my signature. Most of this phase runs without you.',
@@ -119,6 +133,8 @@
     5: {
       pct: 71,
       short: 'Delivery & Fulfillment',
+      label: 'Delivery',
+      desc: 'Sign and submit',
       title: 'Step 5 \u2014 ' + accent('Delivery &amp; Fulfillment'),
       lead: 'Approved work gets signed, filed, and put in front of the IRS.',
       sub: 'The return is signed and filed, or the case is submitted \u2014 protest, CDP request, notice response, or offer package.',
@@ -136,6 +152,8 @@
     6: {
       pct: 85,
       short: 'Quality Review & Reporting',
+      label: 'Quality Review',
+      desc: 'Verify and report',
       title: 'Step 6 \u2014 ' + accent('Quality Review &amp; Reporting'),
       lead: 'We verify the filing landed and the clocks are where we think they are.',
       sub: 'Acceptance confirmed, CAF posted, statutes recorded, and a written report of exactly what was filed and why.',
@@ -153,6 +171,8 @@
     7: {
       pct: 100,
       short: 'Exit/Offboarding Support',
+      label: 'Offboarding',
+      desc: 'Close the engagement',
       title: 'Step 7 \u2014 ' + accent('Exit/Offboarding Support'),
       lead: 'The work is done. <b>One short flow, and then we close things out together.</b>',
       sub: 'An exit survey is assigned to your portal, the exit call is opened for booking, and we decide together whether the authorization stays live.',
@@ -170,6 +190,116 @@
       close: 'The 2848 is never withdrawn while an appeal window is open. Ready for the next one? <a href="https://app.virtuallaunch.pro/portal/dashboard/view/171081" class="vl-cta-link">Open the next engagement</a> \u2014 or move to <b>Standing Representation</b>, if you prefer not opening them one at a time.'
     }
   };
+
+  /* ================================================================
+     R160 - THE SCAFFOLD
+
+     The SuiteDash layout Text Block used to carry this whole tree by
+     hand. It now carries exactly one element:
+
+       <div id="vl-hero" data-client-uid="{{clientUID}}"
+            data-company-uid="{{crmCompanyUID}}"
+            data-client-first="{{clientFirstName}}"
+            data-client-org="{{crmCompanyName}}"></div>
+
+     That element cannot move into JS. Merge codes resolve only inside a
+     Text Block - in an Embed Block they render as the literal
+     {{clientUID}} - so it stays as the identity carrier and the mount
+     point, and it is the whole remaining SuiteDash surface. Everything
+     under it is built here, so a layout change ships from this repo
+     instead of from a paste into the portal.
+
+     ORDERING. This runs synchronously at parse time, before any fetch.
+     client-dashboard.js is a plain script in the same Embed Block that
+     parses after this file and queries #vld; building the scaffold here
+     means #vld exists before that file is even requested. Both files
+     also defer to DOMContentLoaded when readyState is 'loading', and
+     this one registers its listener first, so the ordering holds on
+     that path too - bind() rebuilds before loadDashboard() runs. The
+     guard below makes the second call free.
+     ================================================================ */
+
+  /* Committed at portal/client-dashboard.markup.html and kept identical
+     to it. Hidden and empty on arrival - client-dashboard.js owns
+     everything inside #vld-secs and flips the hidden attribute. */
+  var VLD_MARKUP =
+    '<section id="vld" data-state="full" hidden>' +
+      '<div class="vld-hd">' +
+        '<h2>What&rsquo;s open on your matter</h2>' +
+        '<span class="stale" title="The live source did not answer; this is the last good copy.">Saved copy</span>' +
+      '</div>' +
+      '<div class="allclear">' +
+        '<div class="t">Nothing needs you right now.</div>' +
+        '<p class="d">Every request, deadline and document on your matter is closed. We are still ' +
+          'working it on our side &mdash; you will see new items here the moment something needs your attention.</p>' +
+      '</div>' +
+      '<div id="vld-secs"></div>' +
+    '</section>';
+
+  /* Every interpolated value goes through esc(), including the file
+     literals in STEPS. The rule is "nothing reaches innerHTML without
+     esc()" so that it stays grep-checkable; labels 2 and 3 carry a raw
+     '&' and are the case that proves it. */
+  function stepTab(n) {
+    var s = STEPS[n];
+    return '<div class="vl-step" data-step="' + esc(n) + '" role="tab" aria-selected="false">' +
+        '<span class="vl-step-num">' + esc(n) + '</span>' +
+        '<span class="vl-step-content">' +
+          '<span class="vl-step-label">' + esc(s.label) + '</span>' +
+          '<span class="vl-step-description">' + esc(s.desc) + '</span>' +
+        '</span>' +
+      '</div>';
+  }
+
+  function buildScaffold() {
+    var hero = document.getElementById('vl-hero');
+
+    /* Not parsed yet. bind() calls this again on DOMContentLoaded. */
+    if (!hero) return;
+
+    /* Idempotent. A second build would duplicate every id in the tree,
+       and getElementById would start answering with the wrong node -
+       the exact failure the old duplicate #vl-hero used to cause. */
+    if (document.getElementById('vl-progress')) return;
+
+    var tabs = '';
+    for (var n = 1; n <= 7; n++) tabs += stepTab(n);
+
+    /* The eyebrow was {{myOrganizationOSDItemNameSOP29357}} in the Text
+       Block. A merge code cannot resolve from here, and ITEM_NAME is
+       the value it resolved to. */
+    hero.innerHTML =
+      '<div class="vl-page">' +
+        '<div class="vl-layout">' +
+          '<aside class="vl-sidebar">' +
+            '<div class="vl-sidebar-header">' +
+              '<span class="vl-sidebar-eyebrow">' + esc(ITEM_NAME) + '</span>' +
+              '<h2 class="vl-sidebar-title">How It Works</h2>' +
+            '</div>' +
+            '<div class="vl-progress-steps vl-progress-steps-7" id="vl-progress" role="tablist" aria-label="Engagement steps">' +
+              tabs +
+            '</div>' +
+            '<div class="vl-sidebar-progress">' +
+              '<p class="vl-hint" id="vl-hint">Select a step to view the engagement process.</p>' +
+              '<div class="vl-progress-bar" id="vl-bar" aria-hidden="true">' +
+                '<div class="vl-progress-bar-fill" id="vl-progress-fill"></div>' +
+              '</div>' +
+            '</div>' +
+          '</aside>' +
+          /* #vld is a sibling AFTER #vl-hero-body, not a child of it:
+             render() overwrites #vl-hero-body.innerHTML on every step
+             click, which would destroy the dashboard on first click. */
+          '<main class="vl-main">' +
+            '<p class="vl-greeting" id="vl-greeting" hidden></p>' +
+            '<div class="vl-main-inner" id="vl-hero-body"></div>' +
+            VLD_MARKUP +
+          '</main>' +
+          '<aside class="vl-rail" id="vl-projects" hidden></aside>' +
+        '</div>' +
+      '</div>';
+  }
+
+  buildScaffold();
 
   /* Where the engagement actually is. 0 = not yet known, 8 = complete. */
   var livePhase = 0;
@@ -197,7 +327,18 @@
 
   /* Two sources, because SuiteDash resolves merge tags in text nodes
      more reliably than in attributes. Attribute first, hidden span
-     second. Whichever the page supports, one of them lands. */
+     second. Whichever the page supports, one of them lands.
+
+     R160: the attribute path is now the live one. The old Text Block
+     shipped a second #vl-hero, so getElementById could return the wrong
+     node and the attribute read was effectively dead - the #vl-mt-*
+     spans carried every value. The collapsed block has one #vl-hero
+     with all four attributes on it, so the first branch answers.
+
+     The span branch stays and is expected to miss: null from
+     getElementById feeds clean() and returns '', so it costs one lookup
+     and degrades cleanly. Synthesising replacement spans would rebuild
+     the exact mechanism the collapse removed. */
   function attr(name, fallbackId) {
     var hero = document.getElementById('vl-hero');
     var v = clean(hero && hero.getAttribute(name));
@@ -623,6 +764,13 @@
   }
 
   function bind() {
+    /* Covers the case where #vl-hero had not parsed when this file did -
+       scripts moved into <head>, or the Embed Block placed above the
+       Text Block. A no-op on the normal path, where the parse-time call
+       already built it. This runs before client-dashboard.js's own
+       DOMContentLoaded handler, which registers second. */
+    buildScaffold();
+
     var steps = document.querySelectorAll('#vl-progress .vl-step');
     for (var i = 0; i < steps.length; i++) {
       (function (el) {
