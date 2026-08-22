@@ -361,7 +361,7 @@
     } else if (current) {
       hint.innerHTML = 'Step ' + current + ' of 7. Click another step, or go back to the overview.';
     } else {
-      hint.innerHTML = 'Click any step above to see what happens and what I need from you.';
+      hint.innerHTML = 'Select any step to see what happens and what I need from you.';
     }
   }
 

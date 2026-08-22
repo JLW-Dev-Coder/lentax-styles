@@ -748,10 +748,16 @@
 }
 
 
-/* Orange title accent */
+/* Orange title accent.
+   The class is doubled deliberately. stepHtml() emits the step banner as
+   <b class="vl-hero-accent"> inside a .vl-body paragraph, where
+   #vl-hero .vl-body b (1,1,1) outranked a single #vl-hero .vl-hero-accent
+   (1,1,0) and painted the banner white. Doubling lifts this rule to (1,2,0),
+   which wins the class column without an added importance flag and still
+   matches only elements carrying vl-hero-accent. R158. */
 
 #vl-hero .vl-hero-title .vl-hero-accent,
-#vl-hero .vl-hero-accent {
+#vl-hero .vl-hero-accent.vl-hero-accent {
     color: #ff6a1a !important;
     -webkit-text-fill-color: #ff6a1a !important;
 
