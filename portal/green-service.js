@@ -497,8 +497,8 @@
     if (livePhase >= 8) {
       hint.innerHTML = '<b>This engagement is complete.</b> Click any step to revisit what happened there.';
     } else if (livePhase) {
-      hint.innerHTML = 'Your engagement is at <b>Step ' + livePhase +
-        ' \u2014 ' + STEPS[livePhase].short + '</b>. Click any step to see what happens there.';
+      hint.innerHTML = 'Your engagement is at <b>Step ' + esc(livePhase) +
+        ' \u2014 ' + esc(STEPS[livePhase].short) + '</b>. Click any step to see what happens there.';
     } else if (current) {
       hint.innerHTML = 'Step ' + current + ' of 7. Click another step, or go back to the overview.';
     } else {
