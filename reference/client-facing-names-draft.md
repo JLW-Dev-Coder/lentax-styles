@@ -1,48 +1,105 @@
-# Client-Facing Task Names — Draft for Review
+# Client-Facing Task Names — Written to ClickUp
 
-**R159 · drafted 2026-08-22 · REVIEW ONLY — nothing here has been written to ClickUp.**
+**R161 · revised 2026-08-22.** The `high` rows in this file have been written to the
+`CRM Client-Facing Task Name` custom field. The `low` rows have not.
 
-Every row the client dashboard serves currently renders `label_source: "name"`, so the client
-reads the raw internal task title. This file proposes a plain-language sentence for each one.
-It is a proposal only: no custom field was written, and no internal task name was changed.
-The internal name stays the system of record.
+R159 drafted all 116 labels and left five questions open. R161 settles them (A1—A5 below),
+revises the affected rows, and writes every `high` proposal to ClickUp custom field
+`5595efa8-2de5-44a6-b03b-75bc24cbd1e6`. No internal task name was changed — the internal
+name stays the system of record, and this file's `internal` column is a verbatim copy of it.
 
 **Scope.** All 116 rows returned by `/v1/green/portal-dashboard` for the one populated client
-board, across the five buckets. The p16 prompt anticipated 102 rows; the live endpoint returns
-116, so this file covers 116.
+board, across the five buckets.
 
-**Conventions applied.** Lead with the due date as `Mmm D`, then an em dash, then the sentence.
-Plain language; no statute citations; form numbers only where a client would recognise them
+**Conventions applied.** Lead with the due date, then an em dash, then the sentence. Plain
+language; no statute citations; form numbers only where a client would recognise them
 (Form 941, Form 2848, Form 433-B). Second person for anything requiring the client, third
 person for anything that does not. Under 70 characters. Hedged verbs are preserved — the
 internal "may begin" becomes "can begin", never "will begin".
 
 **No names.** No client, company, staff, bank, lender, landlord or IRS-officer name appears in
-any proposed label, and no account number or dollar figure. This file is committed to a repo
-that Netlify serves publicly. Where the internal name embeds one, the proposal substitutes a
-neutral phrase ("your bank", "your CFO", "your prior firm", "your landlord"). A generated
-guard asserts this over every proposal before the file is written. Task ids are retained
+any proposed label, no account number in full, and no dollar figure. A masked last-four
+(`…2432`) is permitted, and only in the masked form — see A2. A generated 26-term guard
+asserts this over every proposal before the file is written. Task ids are retained
 deliberately — they carry no client identity. The `internal` column is verbatim and does
-contain names; it is the reviewer's reference, and is the reason this file is a draft rather
-than something served to a client.
+contain names; it is the reviewer's reference, and is the reason this file is not itself
+something served to a client.
 
-**Confidence.** `low` marks a row whose internal name needed interpretation that could not be
-made safely from the text alone. 10 of 116 are `low`, each with its reason below. A wrong `low`
-costs a glance; a wrong `high` reaches a client.
+**Confidence.** `low` marks a row that still needs the operator's eye. 8 of 116 are `low`,
+each with its reason below. **No `low` row was written to ClickUp** — those rows still fall
+back to `label_source: "name"` at the endpoint. A wrong `low` costs a glance; a wrong `high`
+reaches a client.
+
+---
+
+## Decisions applied (A1—A5)
+
+### A1 — year-less dates
+
+A date in the current year renders `Mmm D`; a date in any other year renders `Mmm D, YYYY`.
+Twelve rows gained a year. The comparison is against the current year **at write time**
+(2026), not render time, because these are stored strings rather than derived ones.
+
+> **This needs revisiting each January.** On 1 January 2027 every `Mmm D` label written in
+> 2026 becomes a year-less label for a prior year, and the twelve `Mmm D, YYYY` labels stop
+> matching the rule that produced them. That is the cost of storing a formatted date instead
+> of deriving it at render time from the row's `due` value, which the endpoint already
+> returns. Deriving it in the Worker would retire this maintenance item permanently.
+
+Both years are load-bearing where a quarter's filing falls in the following calendar year —
+`Jan 31, 2024 — Form 941 payroll return, 2023 Q4` is not a redundancy.
+
+### A2 — the indistinguishable bank items
+
+Five bank work items read identically once the account identifier was withheld. Each now
+carries the masked last four digits of its account. The client owns the account, a masked
+last-four is standard on client-facing tax correspondence, and it is not a credential. The
+alternative — a client with two accounts unable to tell which item is which, and sending the
+wrong statements — is worse than the identifier.
+
+All five collisions are resolved. See the collision section below for what remains.
+
+### A3 — `86e2ujray`'s date disagreement
+
+Its due date is 2026-08-15; the date inside its own name is 2026-08-13. The label leads with
+the due date: the client acts on when something is due. The two differ by two days, so the
+produced date is not also mentioned. The row is no longer `low`.
+
+### A4 — the duplicate-event pairs
+
+`86e2xeht4` / `86e2ufkn6` and `86e2wu7q7` / `86e2wufwj` are the same events recorded twice.
+Neither pair is disguised. Each row is written on its own terms:
+
+- The hearing pair is one event filed once as `Hearing` and once as `Deadline`, with the same
+  date, time and officer. Both rows get the **same label, byte for byte**. That is the
+  truthful rendering of duplicated source data.
+- The folder-share pair is one event recorded as a `Record` in `secure_intake` and as an
+  `Email` in `correspondence`. Each label names what its own row actually is, so the pair
+  reads as two views of one event rather than as two unrelated events.
+
+Deduplication is a ClickUp decision for the operator and is reported separately. A label that
+hid the duplicate would make the data problem harder to see.
+
+### A5 — the section-heading rows
+
+Flagged, not solved by labelling. Each has a plain label so nothing renders as a raw internal
+name, and each is marked `low` so it is not written. See the dedicated section below.
+
+---
 
 | # | task_id | bucket | internal | proposed | confidence |
 |---|---|---|---|---|---|
-| 1 | `86e2wuffy` | secure_intake | Filing — 2023-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q1 (Not A Summons Period) | Apr 30 — Form 941 payroll return, 2023 Q1 (not in the summons) | high |
-| 2 | `86e2wufhy` | secure_intake | Filing — 2023-07-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q2 (Not A Summons Period) | Jul 31 — Form 941 payroll return, 2023 Q2 (not in the summons) | high |
-| 3 | `86e2uk7b2` | secure_intake | Filing — 2023-10-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q3 (Period At Issue Per Summons) | Oct 31 — Form 941 payroll return, 2023 Q3 (in the summons) | high |
-| 4 | `86e2ug862` | secure_intake | Filing — 2024-01-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q4 (Period At Issue Per Summons) | Jan 31 — Form 941 payroll return, 2023 Q4 (in the summons) | high |
-| 5 | `86e2uk7c9` | secure_intake | Filing — 2024-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q1 (Period At Issue Per Summons) | Apr 30 — Form 941 payroll return, 2024 Q1 (in the summons) | high |
-| 6 | `86e2uk7ct` | secure_intake | Filing — 2024-07-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q2 (Period At Issue Per Summons) | Jul 31 — Form 941 payroll return, 2024 Q2 (in the summons) | high |
-| 7 | `86e2uk7dq` | secure_intake | Filing — 2024-10-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q3 (Period At Issue Per Summons) | Oct 31 — Form 941 payroll return, 2024 Q3 (in the summons) | high |
-| 8 | `86e2wtdud` | secure_intake | Filing — 2025-01-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q4 (Not A Summons Period) | Jan 31 — Form 941 payroll return, 2024 Q4 (not in the summons) | high |
-| 9 | `86e2uk7f1` | secure_intake | Filing — 2025-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q1 (Period At Issue Per Summons) | Apr 30 — Form 941 payroll return, 2025 Q1 (in the summons) | high |
-| 10 | `86e2wtdwt` | secure_intake | Filing — 2025-07-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q2 (Not A Summons Period) | Jul 31 — Form 941 payroll return, 2025 Q2 (not in the summons) | high |
-| 11 | `86e2ukzn9` | secure_intake | Filing — 2025-10-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q3 (Period At Issue Per Summons) | Oct 31 — Form 941 payroll return, 2025 Q3 (in the summons) | high |
+| 1 | `86e2wuffy` | secure_intake | Filing — 2023-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q1 (Not A Summons Period) | Apr 30, 2023 — Form 941 payroll return, 2023 Q1 (not in the summons) | high |
+| 2 | `86e2wufhy` | secure_intake | Filing — 2023-07-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q2 (Not A Summons Period) | Jul 31, 2023 — Form 941 payroll return, 2023 Q2 (not in the summons) | high |
+| 3 | `86e2uk7b2` | secure_intake | Filing — 2023-10-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q3 (Period At Issue Per Summons) | Oct 31, 2023 — Form 941 payroll return, 2023 Q3 (in the summons) | high |
+| 4 | `86e2ug862` | secure_intake | Filing — 2024-01-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2023 Q4 (Period At Issue Per Summons) | Jan 31, 2024 — Form 941 payroll return, 2023 Q4 (in the summons) | high |
+| 5 | `86e2uk7c9` | secure_intake | Filing — 2024-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q1 (Period At Issue Per Summons) | Apr 30, 2024 — Form 941 payroll return, 2024 Q1 (in the summons) | high |
+| 6 | `86e2uk7ct` | secure_intake | Filing — 2024-07-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q2 (Period At Issue Per Summons) | Jul 31, 2024 — Form 941 payroll return, 2024 Q2 (in the summons) | high |
+| 7 | `86e2uk7dq` | secure_intake | Filing — 2024-10-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q3 (Period At Issue Per Summons) | Oct 31, 2024 — Form 941 payroll return, 2024 Q3 (in the summons) | high |
+| 8 | `86e2wtdud` | secure_intake | Filing — 2025-01-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2024 Q4 (Not A Summons Period) | Jan 31, 2025 — Form 941 payroll return, 2024 Q4 (not in the summons) | high |
+| 9 | `86e2uk7f1` | secure_intake | Filing — 2025-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q1 (Period At Issue Per Summons) | Apr 30, 2025 — Form 941 payroll return, 2025 Q1 (in the summons) | high |
+| 10 | `86e2wtdwt` | secure_intake | Filing — 2025-07-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q2 (Not A Summons Period) | Jul 31, 2025 — Form 941 payroll return, 2025 Q2 (not in the summons) | high |
+| 11 | `86e2ukzn9` | secure_intake | Filing — 2025-10-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q3 (Period At Issue Per Summons) | Oct 31, 2025 — Form 941 payroll return, 2025 Q3 (in the summons) | high |
 | 12 | `86e2uk7gj` | secure_intake | Filing — 2026-01-31 — Form 941 (Employer's Quarterly Federal Tax Return), 2025 Q4 (Period At Issue Per Summons) | Jan 31 — Form 941 payroll return, 2025 Q4 (in the summons) | high |
 | 13 | `86e2wtdzg` | secure_intake | Filing — 2026-04-30 — Form 941 (Employer's Quarterly Federal Tax Return), 2026 Q1 (Not A Summons Period) | Apr 30 — Form 941 payroll return, 2026 Q1 (not in the summons) | high |
 | 14 | `86e2ufkpv` | secure_intake | Summons — 2026-07-30 — IRS — 3rd Party Summons To Twin City Bank, 941 Records (Form 6639 rev. 3-2020) | Jul 30 — The IRS summons sent to your bank for payroll records | high |
@@ -56,8 +113,8 @@ costs a glance; a wrong `high` reaches a client.
 | 22 | `86e2unwnj` | secure_intake | Record — 2026-08-13 — Twin City Bank — Customer Identification Record For Authorized Signers (p4) | Aug 13 — Bank ID records for your authorized signers | high |
 | 23 | `86e2unwpa` | secure_intake | Record — 2026-08-13 — Twin City Bank — TIN And Backup Withholding Certification (p4) | Aug 13 — Bank record certifying your company tax ID | low |
 | 24 | `86e2unwq6` | secure_intake | Record — 2026-08-13 — Twin City Bank — FinCEN Certification Of Beneficial Owners (p5-p7) | Aug 13 — Bank record of your company owners | high |
-| 25 | `86e2ujray` | secure_intake | Record — 2026-08-13 — Twin City Bank — Signature Card, Resolutions & Beneficial Ownership (Produced re Form 6639) | Aug 15 — Records your bank produced for the summons | low |
-| 26 | `86e2wu7q7` | secure_intake | Record — 2026-08-18 — Klaritie Farms, Inc — Shared Folder (Access Provided by Kathleen Nash, Klaritie Farms, Inc) | Aug 18 — You shared your document folder with us | high |
+| 25 | `86e2ujray` | secure_intake | Record — 2026-08-13 — Twin City Bank — Signature Card, Resolutions & Beneficial Ownership (Produced re Form 6639) | Aug 15 — Records your bank produced for the summons | high |
+| 26 | `86e2wu7q7` | secure_intake | Record — 2026-08-18 — Klaritie Farms, Inc — Shared Folder (Access Provided by Kathleen Nash, Klaritie Farms, Inc) | Aug 18 — The document folder you shared with us | high |
 | 27 | `86e2ufkgt` | deadlines | Deadline — 2026-08-19 — Petition To Quash Window Closes (re Twin City Bank Summons) | Aug 19 — Last day to challenge the bank summons in court | high |
 | 28 | `86e2ufkhr` | deadlines | Deadline — 2026-08-22 — IRS May Begin Examining Summoned Bank Records (re Twin City Bank Summons) (§7609 23-Day Mark) | Aug 22 — The IRS can begin reading your bank records | high |
 | 29 | `86e2ufkjn` | deadlines | Deadline — 2026-08-24 — Request Alternate CDP Conference Format (Letter 4837) | Aug 24 — Last day to ask for a different hearing format | high |
@@ -65,14 +122,14 @@ costs a glance; a wrong `high` reaches a client.
 | 31 | `86e2ufkm2` | deadlines | Deadline — 2026-09-01 — Twin City Bank Summons Appearance / Production, 9:00a PT (RO John Hegi) | Sep 1 — Your bank must hand over the records, 9:00am PT | high |
 | 32 | `86e2ufkn6` | deadlines | Hearing — 2026-09-08 — IRS — CDP Levy Hearing, Telephone 9:00a PT (Robert Strickle, Appeals Officer, Letter 4837) | Sep 8 — Your IRS levy hearing by phone, 9:00am PT | high |
 | 33 | `86e2xeht4` | deadlines | Deadline — 2026-09-08 — IRS — CDP Levy Hearing, Telephone 9:00a PT (Robert Strickle, Appeals Officer, Letter 4837) | Sep 8 — Your IRS levy hearing by phone, 9:00am PT | high |
-| 34 | `86e2ug72x` | deadlines | Deadline — 2027-03-31 — WA Annual Report / Registration Renewal Due (UBI 603484845) | Mar 31 — Your Washington annual business renewal is due | high |
+| 34 | `86e2ug72x` | deadlines | Deadline — 2027-03-31 — WA Annual Report / Registration Renewal Due (UBI 603484845) | Mar 31, 2027 — Your Washington annual business renewal is due | high |
 | 35 | `86e2unwwr` | work_items | Staff Action — Audit Package (Next Steps Item 4) | Aug 10 — We are preparing your audit package | low |
-| 36 | `86e2upjnf` | work_items | Work Item — 2026-08-13 — Twin City Bank — Bank Statements, Three Period Ranges (Item 1, Acct …2432) | Aug 13 — Bank statements for three periods, one account | low |
-| 37 | `86e2upjnj` | work_items | Work Item — 2026-08-13 — Twin City Bank — Signature Card, Resolution & Beneficial Ownership (Item 2, Acct …2432) | Aug 13 — Signature card and ownership records for one account | low |
-| 38 | `86e2upjnz` | work_items | Work Item — 2026-08-13 — Twin City Bank — Cancelled Checks, 5 Per Month, Three Period Ranges (Item 3, Acct …2432) | Aug 13 — Cancelled checks, five per month for three periods | low |
+| 36 | `86e2upjnf` | work_items | Work Item — 2026-08-13 — Twin City Bank — Bank Statements, Three Period Ranges (Item 1, Acct …2432) | Aug 13 — Bank statements for three periods, account …2432 | high |
+| 37 | `86e2upjnj` | work_items | Work Item — 2026-08-13 — Twin City Bank — Signature Card, Resolution & Beneficial Ownership (Item 2, Acct …2432) | Aug 13 — Signature card and ownership records for account …2432 | high |
+| 38 | `86e2upjnz` | work_items | Work Item — 2026-08-13 — Twin City Bank — Cancelled Checks, 5 Per Month, Three Period Ranges (Item 3, Acct …2432) | Aug 13 — Cancelled checks, five per month, account …2432 | high |
 | 39 | `86e2upjpq` | work_items | Work Item — 2026-08-13 — Twin City Bank — Loan Applications, Bank Marked NA (Item 4, Acct …2432) (Not Applicable) | Aug 13 — Loan applications: your bank had none to send | high |
-| 40 | `86e2upjq6` | work_items | Work Item — 2026-08-13 — Twin City Bank — Bank Statements, Three Period Ranges (Item 5, Acct …5925) | Aug 13 — Bank statements for three periods, one account | low |
-| 41 | `86e2upjqh` | work_items | Work Item — 2026-08-13 — Twin City Bank — Signature Card, Resolution & Beneficial Ownership (Item 6, Acct …5925) | Aug 13 — Signature card and ownership records for one account | low |
+| 40 | `86e2upjq6` | work_items | Work Item — 2026-08-13 — Twin City Bank — Bank Statements, Three Period Ranges (Item 5, Acct …5925) | Aug 13 — Bank statements for three periods, account …5925 | high |
+| 41 | `86e2upjqh` | work_items | Work Item — 2026-08-13 — Twin City Bank — Signature Card, Resolution & Beneficial Ownership (Item 6, Acct …5925) | Aug 13 — Signature card and ownership records for account …5925 | high |
 | 42 | `86e2w1n3f` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Doc Request — Bank statements for the last six months | Aug 24 — We need your bank statements for the last six months | high |
 | 43 | `86e2w1n3n` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Doc Request — Completed Form 433-B, Collection Information Statement for Businesses | Aug 24 — We need your completed Form 433-B statement | high |
 | 44 | `86e2w1n42` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Doc Request — Installment agreement proposal | Aug 24 — We need your proposed payment plan | high |
@@ -85,10 +142,10 @@ costs a glance; a wrong `high` reaches a client.
 | 51 | `86e2ujy4u` | work_items | Work Item — 2026-07-30 — IRS — 3rd Party Summons To Twin City Bank — Cancelled Checks, 5 Per Month, Fronts Only (Form 6639 rev. 3-2020 Part C) | Sep 1 — Your bank must produce cancelled check fronts | high |
 | 52 | `86e2ujy5n` | work_items | Work Item — 2026-07-30 — IRS — 3rd Party Summons To Twin City Bank — Loan Applications, Agreements & Corporate Financial Statements (Form 6639 rev. 3-2020 Part C) | Sep 1 — Your bank must produce loan and financial records | high |
 | 53 | `86e2w1xtr` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Whether the IRS met all the requirements of any applicable law or administrative procedure. | Sep 8 — Hearing topic: whether the IRS followed the rules | high |
-| 54 | `86e2w1xtz` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Whether you owe the amount due | Sep 8 — Hearing topic: whether you owe the amount | high |
-| 55 | `86e2w1xu9` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Any relevant issues you wish to discuss, including: | Sep 8 — Hearing topic: anything else you want to raise | high |
-| 56 | `86e2w1xuy` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Collection alternatives to levy, such as: | Sep 8 — Hearing topic: alternatives to a levy | high |
-| 57 | `86e2w1xv7` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Challenges to the appropriateness of collection action, including: | Sep 8 — Hearing topic: challenging how the IRS is collecting | high |
+| 54 | `86e2w1xtz` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Whether you owe the amount due | Sep 8 — Hearing topic: whether you owe the amount | low |
+| 55 | `86e2w1xu9` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Any relevant issues you wish to discuss, including: | Sep 8 — Hearing topic: anything else you want to raise | low |
+| 56 | `86e2w1xuy` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Collection alternatives to levy, such as: | Sep 8 — Hearing topic: alternatives to a levy | low |
+| 57 | `86e2w1xv7` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Challenges to the appropriateness of collection action, including: | Sep 8 — Hearing topic: challenging how the IRS is collecting | low |
 | 58 | `86e2w1xvf` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Spousal defenses, when applicable. | Sep 8 — Hearing topic: spousal relief, if it applies | high |
 | 59 | `86e2w2mk1` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Collection alternative — Full payment of liability | Sep 8 — Hearing topic: paying the balance in full | high |
 | 60 | `86e2w2mqr` | work_items | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Collection alternative — Installment agreement | Sep 8 — Hearing topic: paying in monthly installments | high |
@@ -124,7 +181,7 @@ costs a glance; a wrong `high` reaches a client.
 | 90 | `86e2w3846` | correspondence | Email — 2026-08-18 — Jamie Williams — Re: IRS Form 2848 (Leave Title Blank; Folder, Prior Reps, Check Register) | Aug 18 — We answered your Form 2848 question | high |
 | 91 | `86e2w38fv` | correspondence | Email — 2026-08-18 — Kathleen Nash — Re: IRS Form 2848 (2848 Signed And Uploaded; Prior Reps, QBO/QBD Split) | Aug 18 — You uploaded the signed Form 2848 | high |
 | 92 | `86e2w38tb` | correspondence | Email — 2026-08-18 — Jamie Williams — Re: IRS Form 2848 (Access And 2848 Confirmed; Stay Close, Portal Integrations) | Aug 18 — We confirmed your access and Form 2848 | high |
-| 93 | `86e2wufwj` | correspondence | Email — 2026-08-18 — Kathleen Nash — Folder Shared With You: "Klaritie Farms" (Google Drive Access Granted) | Aug 18 — You shared your document folder with us | high |
+| 93 | `86e2wufwj` | correspondence | Email — 2026-08-18 — Kathleen Nash — Folder Shared With You: "Klaritie Farms" (Google Drive Access Granted) | Aug 18 — Your email sharing the document folder with us | high |
 | 94 | `86e2wn26v` | correspondence | Message — 2026-08-19 — Jamie Williams — Form 2848 Submitted To CAF, Executed Copy Delivered (SuiteDash Portal) | Aug 19 — We filed your Form 2848 and sent you a copy | high |
 | 95 | `86e2wntzm` | correspondence | Email — 2026-08-19 — Kathleen Nash — Fwd: Virtual Launch Pro: New Private Message (How To Reply In Portal) | Aug 19 — You asked how to reply inside the portal | high |
 | 96 | `86e2wnu89` | correspondence | Email — 2026-08-19 — Jamie Williams — Re: Virtual Launch Pro: New Private Message (Use Outreach & Support Team Inbox) | Aug 19 — We showed you which inbox to use | high |
@@ -154,28 +211,52 @@ costs a glance; a wrong `high` reaches a client.
 | task_id | reason |
 |---|---|
 | `86e2unwpa` | "TIN And Backup Withholding Certification" — the proposal renders the tax-ID half and drops "backup withholding", a term with no safe short plain-English equivalent. |
-| `86e2ujray` | The row's due date (2026-08-15) and the date inside its own name (2026-08-13) disagree. The proposal leads with the due date; which one the client should see is an operator call. |
 | `86e2unwwr` | "Audit Package (Next Steps Item 4)" — which audit, and whether a client should see an internal staff action at all, is not derivable from the name. |
-| `86e2upjnf` | Wording collides with the other account's bank-statement item once the account identifier is removed. |
-| `86e2upjnj` | Wording collides with the other account's signature-card item once the account identifier is removed. |
-| `86e2upjnz` | Belongs to one specific account; the account identifier is withheld, so the label cannot distinguish it from its twin. |
-| `86e2upjq6` | Same as above — two accounts, and the proposal cannot say which without naming the account. |
-| `86e2upjqh` | Distinguishing this from its twin on the other account needs the account identifier, which is deliberately withheld from a client-facing label. |
+| `86e2w1xtz` | Section heading, not an item (A5). ClickUp holds two dashboard rows beneath it — the two "if you owe" sub-topics. Needs a ClickUp decision, not a better label. |
+| `86e2w1xu9` | Section heading, not an item (A5). Seven dashboard rows sit beneath it in ClickUp and its internal name ends "including:". Needs a ClickUp decision. |
+| `86e2w1xuy` | Section heading, not an item (A5). Three collection-alternative rows sit beneath it and its internal name ends "such as:". Needs a ClickUp decision. |
+| `86e2w1xv7` | Section heading, not an item (A5). Three lien-challenge rows sit beneath it and its internal name ends "including:". Needs a ClickUp decision. |
 | `86e2wqgu9` | Internal name reads "additional rights to appeal and affect on Tax Court's rights" — garbled, and the Tax Court element is dropped rather than guessed at. |
 | `86e2xz33y` | "Client Review Questionnaire In The Offboarding Organizer" — an offboarding location for an active client looks wrong; the proposal drops the location rather than repeat it. |
 
-## Open questions for the reviewer
+## Section-heading rows — needs a ClickUp decision
 
-1. **`Mmm D` carries no year.** Thirteen Form 941 rows span 2023–2026 and several share a day
-   (`Apr 30`, `Jul 31`, `Oct 31`, `Jan 31`). The quarter in the sentence disambiguates them, but
-   if the dashboard ever sorts or groups by the rendered label the year will need to appear.
-2. **`86e2xeht4` and `86e2ufkn6` are the same event** — one filed as "Deadline —", one as
-   "Hearing —", same date, same time, same officer. They get identical proposals. The
-   duplication is in the source data, not in the drafting.
-3. **`86e2wu7q7` and `86e2wufwj` describe the same folder share** in two different buckets
-   (secure_intake and correspondence) and likewise get identical proposals.
-4. **Six `Hearing topic:` rows are section headings, not items** — their internal names end in
-   "including:" or "such as:". They are drafted as topics; if the dashboard cannot nest them
-   they may read as redundant beside the items beneath them.
-5. **Seven rows are internal work** — one `Staff Action` (`86e2unwwr`) and six bank work items.
-   Whether these belong on a client-facing board at all is a product decision, not a copy one.
+These rows are containers, not items. Each has other dashboard rows filed beneath it in
+ClickUp, and a client cannot act on any of them. No label fixes that; they should not be
+classified into a bucket at all. The likely fix is a task-type or status change in ClickUp so
+the Worker stops bucketing them — **not** a copy change and **not** a deletion.
+
+| task_id | internal | dashboard rows filed beneath it |
+|---|---|---|
+| `86e2w1xtz` | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Whether you owe the amount due | 2 (rows 65, 66) |
+| `86e2w1xu9` | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Any relevant issues you wish to discuss, including: | 7 (rows 56, 57, 58, 67, 68, 69, 70) |
+| `86e2w1xuy` | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Collection alternatives to levy, such as: | 3 (rows 59, 60, 61) |
+| `86e2w1xv7` | Work Item — 2026-08-10 — IRS — CDP Levy Hearing: Discussion Item — Challenges to the appropriateness of collection action, including: | 3 (rows 62, 63, 64) |
+
+**This is four rows, not the six the R161 prompt anticipated.** The test applied was
+containment: does this row have other rows of the same 116 filed beneath it in ClickUp? Four
+rows pass it. Two further rows were considered and excluded — `86e2w1xtr` ("Whether the IRS
+met all the requirements...") and `86e2w1xvf` ("Spousal defenses, when applicable."). Both are
+peers of the four in the Letter 4837 issue list, and both are childless leaves: they are real
+discussion topics a client can act on, so they are labelled and written as `high`. If the
+operator wants the whole Letter 4837 top level suppressed rather than just the containers,
+those two are the rows to add.
+
+## Collisions remaining after A2
+
+Two pairs still share a byte-identical label. Neither is an identifier problem, so neither is
+solved by A2's masked last-four; both are duplicated source data, and both are reported rather
+than smoothed over.
+
+| pair | why identical |
+|---|---|
+| `86e2ufkn6` / `86e2xeht4` | The A4 hearing pair. One event filed twice, once as `Hearing` and once as `Deadline`. Identical by design. |
+| `86e2w1n4z` / `86e2xz372` | **Not flagged in R159.** The same requirement tracked in two buckets: `work_items` carries it as Appeals doc-request item 6, `client_requests` carries it as Amber item 2, and the latter's own internal name cross-references the former. Same due date. A third duplicate pair, for the same operator decision as the two in A4. |
+
+## Maintenance
+
+- **Each January**: the A1 year rule is evaluated at write time, so the stored labels drift as
+  soon as the calendar year turns. Either re-run this file's generator, or move date
+  formatting into the Worker, where `due` is already available and the drift cannot happen.
+- **`low` rows**: 8 rows are unwritten and fall back to the raw internal name in the client's
+  browser. They are visible to the client as internal text until the operator resolves them.
