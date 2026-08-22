@@ -7,37 +7,35 @@
     return '<span class="vl-hero-accent">' + s + '</span>';
   }
 
+  /* The greeting in #vl-greeting already carries the client's first name and
+     company, so the hero title must not restate either. R156. */
   function overviewTitle() {
-    var org = clientOrg();
-    return (org ? esc(org) : ITEM_NAME) + ' \u2014 ' + accent('Ready To Move');
+    return ITEM_NAME + ' \u2014 ' + accent('Your Engagement');
   }
 
+  /* Only phases 1-7 name a stage. 0 = not yet known and 8 = complete both
+     return '' rather than assert a step that would be wrong; the same
+     STEPS[livePhase] guard applyPhase uses, so a non-integer phase drops the
+     line instead of indexing STEPS and throwing. */
   function overviewLead() {
-    var first = clientFirst();
-    return first
-      ? esc(first) + ', here are the <b>seven steps from open matter to filed and closed.</b> This page maps how your engagement is scoped, disclosed, executed, and handed back.'
-      : '<b>Seven steps from open matter to filed and closed.</b> This page maps how your engagement is scoped, disclosed, executed, and handed back.';
+    var s = (livePhase && livePhase < 8) ? STEPS[livePhase] : null;
+    if (!s) return '';
+    return '<h2 class="vl-subhead"><b>You\u2019re at Step ' + esc(livePhase) +
+      ' \u2014 ' + accent(esc(s.short)) + '.</b></h2>';
   }
 
+  /* R156 replaced ~900px of pre-checkout sales copy with a welcome. This
+     renders to a client who has already bought: no pricing, no tier, no
+     checkout. The separate-engagement line survives because it is the one
+     thing in the old block a current client still needs to know. */
   function overviewBody() {
-    return '<h2 class="vl-subhead">' + overviewLead() + '</h2>' +
-      '<h2 class="vl-subhead" style="margin-top:20px;">Need representation for your personal return or another entity? Each is a separate engagement with its own scope, its own deadlines, and its own progress bar in <b>My Order / Project</b> below.</h2>' +
-      '<hr class="vl-divider">' +
-      '<h2 class="vl-section-title">What You Get After Checkout</h2>' +
-      '<div class="vl-list">' +
-        '<div class="vl-list-item"><span class="vl-dot"></span><span>An opened matter with defined scope, named years, and named entities.</span></div>' +
-        '<div class="vl-list-item"><span class="vl-dot"></span><span>A licensed EA of record \u2014 my PTIN, my signature, my judgment.</span></div>' +
-        '<div class="vl-list-item"><span class="vl-dot"></span><span>A COGS workpaper and Form 8275-R disclosure that stands on its own.</span></div>' +
-        '<div class="vl-list-item"><span class="vl-dot"></span><span>Every statutory deadline calendared before work begins.</span></div>' +
-      '</div>' +
-      '<p class="vl-body">Your bookkeeper and your CPA stay yours. I carry the license for the \u00a7280E position and the signature that goes with it.</p>' +
-      '<hr class="vl-divider">' +
-      '<h2 class="vl-section-title">What I Can and Cannot Promise</h2>' +
-      '<p class="vl-body">The IRS has not issued guidance on retroactive \u00a7280E relief, so nobody can promise you a number \u2014 and I would be wary of anyone who does. What I can do is show you what I think is defensible, explain the reasoning, and put it in writing. Fixed scope, fixed price, honest odds.</p>' +
-      '<hr class="vl-divider">' +
-      '<h2 class="vl-section-title">Not Sure Which Tier?</h2>' +
-      '<p class="vl-body">Start with a <a href="https://app.virtuallaunch.pro/portal/dashboard/view/171391" class="vl-cta-link"><strong>Risk Review</strong></a>. I scope your exposure and put it in writing \u2014 what\u2019s defensible, what isn\u2019t, and what I\u2019d put my name on. It credits in full toward your first engagement.</p>' +
-      '<p class="vl-body">If the matter escalates into a full exam, Appeals, or collections, that is scoped and priced separately \u2014 so a fixed fee never rides on open-ended risk.</p>';
+    var lead = overviewLead();
+    return lead +
+      '<h2 class="vl-subhead"' + (lead ? ' style="margin-top:20px;"' : '') + '>' +
+        'Everything open on your matter is below: documents, deadlines, and anything that needs you.' +
+      '</h2>' +
+      '<p class="vl-body">Select any step to see what happens at that stage.</p>' +
+      '<p class="vl-body">Need representation for your personal return or another entity? Each is a separate engagement with its own scope, its own deadlines, and its own progress bar.</p>';
   }
 
   /* Client action is required in two phases only: 1 (intake flows) and
