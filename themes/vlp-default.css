@@ -5744,3 +5744,196 @@ body.lentax-vlp .wrapper .mobileMenuToggle a i.fa-bars {
 .client-page .cbe-block-file-download .browser-wrap span.entity-meta.entity-meta.entity-meta * {
   color: #c9c9c9 !important;
 }
+
+/* ==========================================================================
+   R165 — FileRequest fulfillment page (URL /f/request/…) — dark restyle
+   Scope hook: body.file-request-body (verified in rendered DOM 2026-08-26).
+   Every selector below carries the hook; nothing here reaches other pages.
+   Source: CC live-DOM export, re-verified from clean reload at 2174/1440/390,
+   plus two approved follow-ups (icon +25%, header group centered).
+   ========================================================================== */
+
+/* --- design tokens (scoped) ------------------------------------------- */
+body.file-request-body{
+  --vl-bg:#141010;
+  --vl-surface:#1e1917;
+  --vl-surface-2:#241d19;
+  --vl-border:rgba(255,255,255,.07);
+  --vl-border-strong:rgba(255,255,255,.12);
+  --vl-text:#ece6e1;
+  --vl-text-muted:#a49a92;
+  --vl-heading:#ffffff;
+  --vl-accent:#f97316;
+  --vl-accent-soft:rgba(249,115,22,.13);
+  --vl-radius:14px;
+  --vl-font:"Poppins","Montserrat","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+
+/* --- document / scroll owner ------------------------------------------ */
+/* literal colour, not var(): tokens live on , so var() is
+   unresolvable on  and computes to initial (black). */
+html:has(body.file-request-body){
+  color:#ece6e1;
+  height:auto; min-height:100%;
+  overflow-x:hidden; overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(249,115,22,.55) transparent;
+}
+html:has(body.file-request-body)::-webkit-scrollbar{width:10px;height:10px}
+html:has(body.file-request-body)::-webkit-scrollbar-track{background:transparent}
+html:has(body.file-request-body)::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.14) content-box;
+  border:2px solid transparent; border-radius:999px;
+}
+html:has(body.file-request-body)::-webkit-scrollbar-thumb:hover{background:rgba(249,115,22,.65) content-box}
+html:has(body.file-request-body)::-webkit-scrollbar-corner{background:transparent}
+
+body.file-request-body{
+  background:var(--vl-bg) !important;   /* required: an earlier body background in this file is !important */
+  color:var(--vl-text);
+  -webkit-font-smoothing:antialiased;
+  height:auto; min-height:100%;
+  overflow-x:hidden; overflow-y:auto;   /* SuiteDash sets body overflow:hidden */
+}
+body.file-request-body ::selection{background:rgba(249,115,22,.35)}
+body.file-request-body .pace .pace-progress{background:var(--vl-accent)}
+body.file-request-body #wrapper,
+body.file-request-body .content-wrapper{background:transparent;height:auto;overflow:visible}
+body.file-request-body #wrapper{min-height:100vh}
+body.file-request-body .content-wrapper{min-height:0}
+
+/* --- outer card: page width owner ------------------------------------- */
+body.file-request-body .file-request-fulfillment{
+  position:static; inset:auto; height:auto; max-height:none; overflow:visible;
+  max-width:1088px;              /* 1280px − 15% */
+  margin:56px auto 72px;
+  padding:0 32px;
+  text-align:left;
+}
+
+/* --- card surface ----------------------------------------------------- */
+body.file-request-body .fulfillment-inner{
+  width:auto; max-width:none; margin:0;
+  padding:52px 56px 56px;
+  background:linear-gradient(180deg,var(--vl-surface-2) 0%,var(--vl-surface) 100%);
+  border:1px solid var(--vl-border);
+  border-radius:var(--vl-radius);
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+  text-align:left;
+}
+body.file-request-body .file-staging{height:auto;overflow:visible;text-align:left}
+
+/* --- header group: deadline / requesting / title / wrote label are CENTERED.
+   Their ancestors above declare text-align:left; these four win by document
+   order at equal specificity, so they must stay positioned after them. -- */
+/* --- deadline line ---------------------------------------------------- */
+body.file-request-body p.deadline{
+  display:block; width:auto; max-width:none;
+  margin:0 0 30px; padding:0;
+  background:none; border:0; border-radius:0; box-shadow:none;
+  font-size:12.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:#ffb37a; text-align:center;
+}
+@media (min-width:700px){ body.file-request-body p.deadline{white-space:nowrap} }
+
+/* --- "is requesting" line --------------------------------------------- */
+body.file-request-body p.tagline{
+  margin:0 0 12px;
+  font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--vl-text-muted); text-align:center;
+}
+body.file-request-body p.tagline strong{color:var(--vl-accent);font-weight:700}
+
+/* --- title ------------------------------------------------------------ */
+/* font-size deliberately omitted: mpa-style.css pins it at 30px !important */
+body.file-request-body h2.title{
+  margin:0 0 38px;
+  line-height:1.18; font-weight:700; letter-spacing:-.02em;
+  color:var(--vl-heading); text-align:center;
+}
+
+/* --- "wrote" label ---------------------------------------------------- */
+body.file-request-body .custom-message>span{
+  display:block; margin:0 0 16px;
+  font-size:12.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--vl-text-muted); text-align:center;
+}
+
+/* --- inner panel ------------------------------------------------------ */
+body.file-request-body blockquote.blockquote{
+  margin:0; padding:34px 38px;
+  background:rgba(255,255,255,.03);
+  border:0;
+  border-radius:0 10px 10px 0;
+  font-size:16px; line-height:1.7;
+  color:var(--vl-text); text-align:left;
+}
+body.file-request-body blockquote.blockquote p{margin:0 0 24px}
+body.file-request-body blockquote.blockquote p:last-child{margin-bottom:0}
+body.file-request-body blockquote.blockquote p:empty{display:none}
+body.file-request-body .fulfillment-inner blockquote.blockquote br{display:none}
+body.file-request-body blockquote.blockquote strong{
+  display:block; margin:0 0 12px;
+  font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--vl-accent);
+}
+body.file-request-body blockquote.blockquote ul{list-style:none;margin:14px 0 24px;padding-left:18px}
+body.file-request-body blockquote.blockquote li{position:relative;padding:6px 0 6px 16px;color:var(--vl-text)}
+body.file-request-body blockquote.blockquote li::before{
+  content:""; position:absolute; left:0; top:15px;
+  width:5px; height:5px; border-radius:50%; background:var(--vl-accent);
+}
+/* month grid — multi-column, gap lives on this parent */
+body.file-request-body blockquote.blockquote ul ul{
+  margin:14px 0 0;
+  column-count:3; column-gap:36px; row-gap:4px;
+  max-width:620px;
+}
+body.file-request-body blockquote.blockquote ul ul li{break-inside:avoid;font-size:15px;color:var(--vl-text-muted)}
+body.file-request-body blockquote.blockquote ul ul li::before{
+  top:14px; width:5px; height:5px;
+  background:transparent; border:1px solid var(--vl-text-muted);
+}
+
+/* --- Choose Files block ----------------------------------------------- */
+body.file-request-body .file-stage{
+  margin-top:40px; padding:46px 24px 42px;
+  background:rgba(255,255,255,.02);
+  border:1px dashed var(--vl-border-strong);
+  border-radius:12px;
+  transition:border-color .2s, background .2s;
+}
+body.file-request-body .file-stage,
+body.file-request-body .file-stage *,
+body.file-request-body .btn-list{text-align:center}
+body.file-request-body .file-stage:hover{border-color:rgba(249,115,22,.5);background:rgba(249,115,22,.04)}
+body.file-request-body .file-stage .file-icon svg{max-width:120px;height:auto;opacity:.9}  /* 120px = 96px + 25% */
+body.file-request-body .btn-list{margin-top:24px}
+body.file-request-body .btn-primary{
+  padding:14px 34px; border:0; border-radius:8px;
+  font-family:var(--vl-font); font-size:15px; font-weight:600; letter-spacing:.01em;
+  color:#fff;
+  background:linear-gradient(180deg,#fb8c2e 0%,#f97316 100%);
+  box-shadow:0 6px 18px rgba(249,115,22,.32);
+  transition:transform .15s, box-shadow .15s, filter .15s;
+}
+body.file-request-body .btn-primary:hover,
+body.file-request-body .btn-primary:focus{
+  filter:brightness(1.07); transform:translateY(-1px);
+  box-shadow:0 10px 24px rgba(249,115,22,.42); color:#fff;
+}
+body.file-request-body .btn-primary:active{transform:translateY(0)}
+
+/* --- responsive ------------------------------------------------------- */
+@media (max-width:1000px){
+  body.file-request-body blockquote.blockquote ul ul{column-count:2}
+  body.file-request-body .fulfillment-inner{padding:34px 28px 38px}
+}
+@media (max-width:620px){
+  body.file-request-body blockquote.blockquote ul ul{column-count:1}
+}
+@media (max-width:600px){
+  body.file-request-body .file-request-fulfillment{padding:0 16px;margin:32px auto 48px}
+  body.file-request-body .fulfillment-inner{padding:28px 22px 32px}
+  body.file-request-body blockquote.blockquote{padding:22px 18px}
+}
