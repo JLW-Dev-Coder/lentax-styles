@@ -1318,3 +1318,80 @@ body.sidebar-dark .sidebar-toggle svg path {
   paint();
   try { new MutationObserver(paint).observe(document.documentElement, {childList:true, subtree:true}); } catch(e){}
 })();
+
+/* R166 — FileRequest expired state: build the message card.
+   Scope: body.file-request-body only. Leaves the h4 and its sd-tr translation
+   element in the DOM (h4 hidden via .lx-fr-orig). Styles: R166 in themes/vlp-default.css. */
+(function () {
+  var MARK = 'data-lx-fr-card';
+  var TRIES_MS = 60000;
+
+  function build() {
+    if (!document.body || !document.body.classList.contains('file-request-body')) { return true; }
+    if (document.querySelector('[' + MARK + ']')) { return true; }
+    var h4 = document.querySelector('.content-wrapper h4');
+    if (!h4) { return false; }
+    var sd = h4.querySelector('sd-tr[uid="FILE_REQUEST_HAS_EXPIRED"]');
+    if (!sd) { return false; }
+
+    var href = '/files/home';
+    var anchor = sd.querySelector('a[href]');
+    if (anchor) {
+      href = anchor.getAttribute('href');
+    } else {
+      var m = sd.textContent.match(/https?:\/\/[^\s\]<>"']+/);
+      if (m) {
+        try {
+          var u = new URL(m[0], location.origin);
+          if (u.origin === location.origin) { href = u.pathname + u.search; }
+        } catch (e) {}
+      }
+    }
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      n.className = cls;
+      if (text != null) { n.textContent = text; }
+      return n;
+    }
+
+    var wrap = el('div', 'lx-fr');
+    wrap.setAttribute(MARK, '1');
+    var card  = el('div', 'lx-fr-card');
+    var icon  = el('div', 'lx-fr-icon', '\u23F1');
+    icon.setAttribute('aria-hidden', 'true');
+    var title = el('h1', 'lx-fr-title', 'File request has expired');
+    var lead  = el('p',  'lx-fr-lead',  'This upload link is no longer active. You can still send your documents from the main document upload page.');
+    var btn   = el('a',  'lx-fr-btn',   'Go to document upload');
+    btn.setAttribute('href', href);
+    var small = el('p',  'lx-fr-url',   new URL(href, location.origin).href);
+    card.appendChild(icon);
+    card.appendChild(title);
+    card.appendChild(lead);
+    card.appendChild(btn);
+    card.appendChild(small);
+    wrap.appendChild(card);
+
+    h4.classList.add('lx-fr-orig');
+    h4.parentNode.insertBefore(wrap, h4.nextSibling);
+    return true;
+  }
+
+  function start() {
+    if (build()) { return; }
+    if (typeof MutationObserver !== 'function') { return; }
+    var done = false;
+    var mo = new MutationObserver(function () {
+      if (done) { return; }
+      if (build()) { done = true; mo.disconnect(); }
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+    setTimeout(function () { if (!done) { done = true; mo.disconnect(); } }, TRIES_MS);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+})();

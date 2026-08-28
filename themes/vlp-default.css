@@ -5770,8 +5770,8 @@ body.file-request-body{
 }
 
 /* --- document / scroll owner ------------------------------------------ */
-/* literal colour, not var(): tokens live on , so var() is
-   unresolvable on  and computes to initial (black). */
+/* literal colour, not var(): tokens live on <body>, so var() is
+   unresolvable on <html> and computes to initial (black). */
 html:has(body.file-request-body){
   color:#ece6e1;
   height:auto; min-height:100%;
@@ -5936,4 +5936,83 @@ body.file-request-body .btn-primary:active{transform:translateY(0)}
   body.file-request-body .file-request-fulfillment{padding:0 16px;margin:32px auto 48px}
   body.file-request-body .fulfillment-inner{padding:28px 22px 32px}
   body.file-request-body blockquote.blockquote{padding:22px 18px}
+}
+
+/* ==========================================================================
+   R166 — FileRequest expired state (URL /f/request/…) — message card
+   Scope hook: body.file-request-body (verified in rendered DOM 2026-08-28,
+   expired state). The .lx-fr-* elements are created by the R166 IIFE in the
+   loader; .lx-fr-orig is added by that IIFE to the original h4, which stays
+   in the DOM so the sd-tr translation element is untouched.
+   .content-wrapper is display:flex in a SuiteDash bundle; block wins here at
+   (0,2,1) with no !important (verified computed display:block on the live page).
+   Source: CC clean-reload export 2026-08-28, measured at 2174 live, 1440 and
+   390 in same-origin iframes. Zero !important by test.
+   ========================================================================== */
+body.file-request-body .content-wrapper { display: block; }
+body.file-request-body .lx-fr-orig { display: none; }
+body.file-request-body .lx-fr {
+  box-sizing: border-box;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 96px 24px 48px;
+  text-align: center;
+  font-family: inherit;
+}
+body.file-request-body .lx-fr-card {
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(236, 230, 225, 0.12);
+  border-radius: 14px;
+  padding: 40px 32px 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+body.file-request-body .lx-fr-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(230, 162, 60, 0.12);
+  border: 1px solid rgba(230, 162, 60, 0.35);
+  font-size: 30px; line-height: 1;
+  color: #e6a23c;
+}
+body.file-request-body .lx-fr-title {
+  margin: 0 0 12px;
+  font-size: 22px; font-weight: 600; line-height: 1.3;
+  letter-spacing: 0.2px;
+  color: rgb(236, 230, 225);
+}
+body.file-request-body .lx-fr-lead {
+  margin: 0 0 28px;
+  font-size: 15px; font-weight: 400; line-height: 1.6;
+  color: rgba(236, 230, 225, 0.66);
+}
+body.file-request-body .lx-fr-btn {
+  display: inline-block;
+  padding: 11px 22px;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 14px; font-weight: 600; line-height: 1.2;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+body.file-request-body .lx-fr-btn:hover,
+body.file-request-body .lx-fr-btn:focus {
+  background: #2f6fd8; color: #ffffff; transform: translateY(-1px);
+}
+body.file-request-body .lx-fr-btn:focus-visible {
+  outline: 2px solid #9ec5fe; outline-offset: 2px;
+}
+body.file-request-body .lx-fr-url {
+  margin: 16px 0 0;
+  font-size: 12px; line-height: 1.5;
+  color: rgba(236, 230, 225, 0.38);
+  word-break: break-all;
+}
+@media (max-width: 640px) {
+  body.file-request-body .lx-fr { padding: 56px 16px 40px; }
+  body.file-request-body .lx-fr-card { padding: 28px 20px 26px; }
+  body.file-request-body .lx-fr-title { font-size: 20px; }
 }
