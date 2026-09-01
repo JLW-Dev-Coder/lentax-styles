@@ -1250,18 +1250,23 @@
 
 /* ---- phase strip ---- */
 
-/* auto-fit rather than the mockup's fixed 7 / 4 / 2 columns. The
-   mockup's strip spans a 1040px page; this one lives in the middle
-   column of a three-column grid, which is roughly 515px once the
-   rail and the padding are taken out - seven cards there would be
-   about 62px each and the phase names would not fit. auto-fit lets
-   the strip take as many columns as the column can actually carry,
-   at whatever width the layout hands it, without this file
-   asserting a measurement nobody has confirmed in a browser. */
+/* Seven columns, one per step, as the mockup has it. p28 used
+   auto-fit because the middle column could not carry seven cards
+   holding the prose step names ("Project Fit & Scope Confirmation")
+   - but auto-fit then rewrapped the strip at every width, so the
+   step a reader was looking at moved rows as the window changed.
+   p31 fixed the columns and shortened the text instead: the cards
+   render STEPS[n].label, the same short form the 210px sidebar
+   column already carries, with the prose name on title=.
+   minmax(0, 1fr) rather than 1fr because a grid track's auto
+   minimum is its content, and a long label would otherwise push
+   the strip wider than the column and scroll the page sideways.
+   Below 700px the layout is one column and the strip goes one card
+   per row - see MOBILE. */
 #vl-hero #vl-projsec .vl-phases {
     display: grid !important;
 
-    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)) !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
 
     align-items: stretch !important;
 
@@ -1583,6 +1588,13 @@
         padding: 15px !important;
     }
 
+    /* .vl-layout is display:block from here down, so the strip is at
+       full viewport width - but seven columns of it would be about
+       85px each at 700px and under 45px at 320px. One card per row. */
+    #vl-hero #vl-projsec .vl-phases {
+        grid-template-columns: 1fr !important;
+    }
+
     #vl-hero #vl-projsec .vl-proj-name {
         font-size: 16px !important;
     }
@@ -1612,11 +1624,10 @@
             10px !important;
     }
 
-    /* Below 420px auto-fit's 112px track plus the gap can still fit
-       two columns in a viewport that has no room for them. Pin it. */
-    #vl-hero #vl-projsec .vl-phases {
-        grid-template-columns: 1fr !important;
-    }
+    /* The .vl-phases pin that used to live here is gone: it existed
+       because auto-fit could still fit two 112px tracks below 420px,
+       and the 700px rule now pins the strip to one column for every
+       width beneath it. Nothing to re-state. */
 
     #vl-hero #vl-projsec .vl-proj {
         padding: 13px !important;
