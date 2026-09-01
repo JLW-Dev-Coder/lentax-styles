@@ -292,6 +292,14 @@
           '<main class="vl-main">' +
             '<p class="vl-greeting" id="vl-greeting" hidden></p>' +
             '<div class="vl-main-inner" id="vl-hero-body"></div>' +
+            /* Same reason as #vld below: a sibling AFTER #vl-hero-body,
+               never a child. render() rewrites #vl-hero-body.innerHTML on
+               every step click, and a Projects section built inside it
+               would be destroyed - along with its listeners - the first
+               time the reader touched the stepper. Ships hidden and
+               empty; paintProjectsSection() fills it, and a client with
+               no engagements never sees a heading. */
+            '<section id="vl-projsec" hidden></section>' +
             VLD_MARKUP +
           '</main>' +
           '<aside class="vl-rail" id="vl-projects" hidden></aside>' +
@@ -307,6 +315,12 @@
   /* Every engagement this contact holds, and which one is on screen. */
   var projects = [];
   var activeProject = 0;
+
+  /* Projects section only: whether the reader has asked to see the
+     completed engagements the section collapses by default. Never
+     touched by selection - switching projects must not re-collapse a
+     list the reader deliberately opened. */
+  var projectsExpanded = false;
 
   /* Which step the reader is looking at. 0 = overview. */
   var current = 0;
@@ -545,6 +559,25 @@
     }
   }
 
+  /* The phase guard, in one place. Returns the usable phase number, or 0
+     - the same sentinel livePhase already uses for "not known".
+
+     This was applyPhase()'s inline test verbatim; p28 needed the identical
+     question answered for the Projects section and a second copy is how
+     R151/R154 got written. Number() coercion rather than a typeof check
+     for the R140 reason: the endpoint's type for phase is pinned nowhere,
+     a string "4" works today, and a strict type test would turn a working
+     case into a silent 0%. NaN fails the Math.floor test on its own.
+
+     The accepted range is [1,8]; 8 is the completion sentinel and 9 falls
+     to the static view, exactly as before. */
+  function usablePhase(phase) {
+    var phn = Number(phase);
+    var ok = !!phase && phn === Math.floor(phn) &&
+      (phn === 8 || (phn >= 1 && phn <= 7 && !!STEPS[phn]));
+    return ok ? phn : 0;
+  }
+
   function applyPhase(phase, forceRender) {
     /* A project with no mappable phase — SuiteDash built-in status — leaves
        the sidebar on the static view rather than asserting a step.
@@ -555,22 +588,14 @@
        guarded paintProjects, so that throw now takes the rail down before it
        paints at all - where before it would at least have rendered at 0%.
 
-       Same test paintProjects uses: Number() coercion, integer, 1-7, and the
-       STEPS key must exist. Number() rather than a typeof check for the R140
-       reason - the endpoint's type for phase is pinned nowhere, a string "4"
-       works today, and a strict type test would turn a working case into a
-       silent 0%. Two notions of "valid phase" one hop apart is how the
-       next defect gets written.
+       The test itself now lives in usablePhase() above - p28 moved it there
+       so the Projects section asks the identical question rather than
+       carrying a second copy. Two notions of "valid phase" one hop apart is
+       how the next defect gets written. Behaviour is unchanged: the same
+       expression, the same [1,8] range, the same 0 sentinel. */
+    var phn = usablePhase(phase);
 
-       The accepted range stays [1,8] exactly as before - 8 is the completion
-       sentinel, and 9 falls to the static view here just as it did under the
-       old `phase > 8` test. Widening it to >= 8 would have been a behaviour
-       change, and the 8+ sentinel is being pinned on the API side instead. */
-    var phn = Number(phase);
-    var usable = !!phase && phn === Math.floor(phn) &&
-      (phn === 8 || (phn >= 1 && phn <= 7 && !!STEPS[phn]));
-
-    if (!usable) {
+    if (!phn) {
       /* An unusable phase now degrades to the static view instead of
          throwing, and says so rather than failing silently. The value is the
          endpoint's own phase field, not client data. */
@@ -596,6 +621,26 @@
     paintHint();
     paintSteps();
     if (current) render(current);
+  }
+
+  /* THE SELECTION. The rail and the Projects section are two renderings of
+     one value, activeProject, and the only way they stay agreed is that
+     neither of them owns it. This was paintProjects()'s per-card pick()
+     closure; p28 lifted it out unchanged so the section can call the same
+     path instead of reimplementing it. Both views repaint here, so a click
+     in either place updates both - plus the hero and the stepper, via
+     applyPhase.
+
+     The projects[idx] guard is new and cheap: idx comes from our own
+     data-project attribute today, but a stale node after a repaint would
+     otherwise throw on .phase and take the rail down with it. */
+  function selectProject(idx) {
+    if (idx === activeProject || !projects[idx]) return;
+    activeProject = idx;
+    userInteracted = false;   /* switching engagements resets the view */
+    paintProjects();
+    paintProjectsSection();
+    applyPhase(projects[idx].phase, true);
   }
 
   function paintProjects() {
@@ -670,13 +715,7 @@
       (function (card) {
         var idx = parseInt(card.getAttribute('data-project'), 10);
 
-        function pick() {
-          if (idx === activeProject) return;
-          activeProject = idx;
-          userInteracted = false;   /* switching engagements resets the view */
-          paintProjects();
-          applyPhase(projects[idx].phase, true);
-        }
+        function pick() { selectProject(idx); }
 
         card.addEventListener('click', function (e) {
           /* Let the portal link do its own job. */
@@ -693,6 +732,178 @@
           }
         });
       })(nodes[k]);
+    }
+  }
+
+  /* ================================================================
+     p28 - THE PROJECTS SECTION
+
+     Every engagement, each with its own seven-phase strip. The rail
+     answers "which one am I looking at"; this answers "where does each
+     one actually stand". Same array, same activeProject, same pick path
+     - see selectProject().
+
+     Phase names come from STEPS, one copy. The mockup carried its own
+     PHASES constant and a per-phase ClickUp task id; importing either
+     would have created a second list to keep in step with the stepper.
+     ref ("ORD-1041") and opened ("Aug 10, 2026") are in the mockup and
+     not in the payload, so they are omitted rather than invented - all
+     three are Worker additions for later. Phase cards render as plain
+     elements, not dead links.
+     ================================================================ */
+
+  /* The seven card states for one project. phn 0 - a real engagement with
+     no mapped phase - is not an error and not zero: nothing is asserted,
+     so every card reads Upcoming. phn 8 puts every card below it, which
+     is all seven, in the closed state. */
+  function phaseStates(phase) {
+    var phn = usablePhase(phase);
+    var out = [];
+    for (var n = 1; n <= 7; n++) {
+      if (!phn || n > phn) out.push('upcoming');
+      else if (n === phn) out.push('inprogress');
+      else out.push('closed');
+    }
+    return out;
+  }
+
+  /* "Complete" is read off the rendered strip rather than tested against a
+     number, which is what makes the collapse rule literally true for both
+     of its forms: at phase 8, and at any phase whose strip closes all
+     seven. If the mapping ever changes, the collapse follows it. */
+  function allClosed(states) {
+    for (var i = 0; i < states.length; i++) {
+      if (states[i] !== 'closed') return false;
+    }
+    return true;
+  }
+
+  var PHASE_LABEL = { closed: 'Closed', inprogress: 'In Progress', upcoming: 'Upcoming' };
+
+  function phaseStripHtml(states) {
+    var out = '<div class="vl-phases">';
+    for (var n = 1; n <= 7; n++) {
+      var st = states[n - 1];
+      out += '<div class="vl-phase vl-phase-' + st + '">' +
+          '<div class="vl-phase-p">Phase ' + esc(n) + '</div>' +
+          '<div class="vl-phase-n">' + esc(STEPS[n].short) + '</div>' +
+          '<div class="vl-phase-ps"><span class="vl-pst vl-pst-' + st + '">' +
+            esc(PHASE_LABEL[st]) + '</span></div>' +
+        '</div>';
+    }
+    return out + '</div>';
+  }
+
+  function paintProjectsSection() {
+    var el = document.getElementById('vl-projsec');
+    if (!el) return;
+
+    /* No engagements: no section at all, not an empty heading. Same shape
+       as the rail's own empty branch. */
+    if (!projects || !projects.length) {
+      el.setAttribute('hidden', '');
+      el.innerHTML = '';
+      return;
+    }
+
+    var blocks = '';
+    var collapsible = 0;
+
+    for (var i = 0; i < projects.length; i++) {
+      var p = projects[i] || {};
+      var states = phaseStates(p.phase);
+      var phn = usablePhase(p.phase);
+      var done = allClosed(states);
+      var isActive = (i === activeProject);
+
+      /* Never collapse the selected project, complete or not. A reader who
+         clicks into a finished engagement and watches it disappear will
+         think the page broke. */
+      if (done && !isActive) collapsible++;
+      if (done && !isActive && !projectsExpanded) continue;
+
+      var svc = p.service || ('Engagement ' + (i + 1));
+
+      var meta = [];
+      if (!phn) meta.push('Not started');
+      else if (phn >= 8) meta.push('Complete');
+      else meta.push('Phase ' + phn + ' of 7');
+      var due = shortDate(p.due);
+      if (due) meta.push(due);
+      var metaText = meta.join(' · ');
+
+      /* The .proj block is the control, matching the rail's cards exactly:
+         role=button, tabindex=0, Enter and Space. aria-pressed is the one
+         addition - "selected among a set" is what this state is, and the
+         class alone never reached a screen reader. aria-label keeps the
+         announcement to the project rather than to all seven phase cards
+         its contents would otherwise concatenate into. */
+      blocks += '<div class="vl-proj' + (isActive ? ' vl-proj-active' : '') +
+          (done ? ' vl-proj-done' : '') +
+          '" data-project="' + i + '" role="button" tabindex="0"' +
+          ' aria-pressed="' + (isActive ? 'true' : 'false') + '"' +
+          ' aria-label="' + esc(svc + ' — ' + metaText) + '">' +
+        '<div class="vl-proj-hd">' +
+          '<span class="vl-proj-name">' + esc(svc) + '</span>' +
+          '<span class="vl-proj-meta">' + esc(metaText) + '</span>' +
+        '</div>' +
+        (p.label ? '<p class="vl-proj-lede">' + esc(p.label) + '</p>' : '') +
+        phaseStripHtml(states) +
+        '</div>';
+    }
+
+    /* A toggle that does nothing is worse than none. It appears only when
+       something is genuinely collapsible, and that count is computed over
+       every project, not over the ones that survived the loop - so the
+       control does not vanish the moment the reader expands the list. */
+    var toggle = '';
+    if (collapsible > 0) {
+      toggle = '<button type="button" class="vl-projsec-toggle"' +
+        ' aria-expanded="' + (projectsExpanded ? 'true' : 'false') + '">' +
+        (projectsExpanded ? 'Show fewer' : 'Show all ' + esc(projects.length) + ' projects') +
+        '</button>';
+    }
+
+    el.innerHTML =
+      '<h2 class="vl-projsec-title">' +
+        (projects.length > 1 ? 'Your Projects' : 'Your Project') +
+      '</h2>' +
+      /* Always visible, and deliberately not a title tooltip: this is the
+         sentence that answers "where did my project go?", and a tooltip is
+         invisible on touch and unreachable by keyboard. */
+      '<p class="vl-projsec-note">Completed projects are archived and drop off this list.</p>' +
+      '<div class="vl-projsec-list">' + blocks + '</div>' +
+      toggle;
+    el.removeAttribute('hidden');
+
+    var nodes = el.querySelectorAll('.vl-proj');
+    for (var k = 0; k < nodes.length; k++) {
+      (function (block) {
+        var idx = parseInt(block.getAttribute('data-project'), 10);
+
+        function pick() { selectProject(idx); }
+
+        block.addEventListener('click', pick);
+        block.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            pick();
+          }
+        });
+      })(nodes[k]);
+    }
+
+    var tog = el.querySelector('.vl-projsec-toggle');
+    if (tog) {
+      tog.addEventListener('click', function () {
+        projectsExpanded = !projectsExpanded;
+        paintProjectsSection();
+        /* Focus dies with the node this repaint replaces. Put it back on
+           the control the reader just pressed, or a keyboard reader is
+           returned to the top of the document. */
+        var next = document.querySelector('#vl-projsec .vl-projsec-toggle');
+        if (next && next.focus) next.focus();
+      });
     }
   }
 
@@ -745,6 +956,7 @@
              projects/activeProject, never anything applyPhase sets. */
           applyPhase(projects[0].phase);
           paintProjects();
+          paintProjectsSection();
         } else if (d.phase) {
           applyPhase(d.phase);
         } else {
