@@ -1250,23 +1250,27 @@
 
 /* ---- phase strip ---- */
 
-/* Seven columns, one per step, as the mockup has it. p28 used
-   auto-fit because the middle column could not carry seven cards
-   holding the prose step names ("Project Fit & Scope Confirmation")
-   - but auto-fit then rewrapped the strip at every width, so the
-   step a reader was looking at moved rows as the window changed.
-   p31 fixed the columns and shortened the text instead: the cards
-   render STEPS[n].label, the same short form the 210px sidebar
-   column already carries, with the prose name on title=.
-   minmax(0, 1fr) rather than 1fr because a grid track's auto
-   minimum is its content, and a long label would otherwise push
-   the strip wider than the column and scroll the page sideways.
-   Below 700px the layout is one column and the strip goes one card
-   per row - see MOBILE. */
+/* Still auto-fit, but the floor drops 112px -> 96px, which is what
+   buys the seven columns the mockup has. The live middle column
+   measures ~910px, leaving 760px of strip once .vl-main's 56px
+   padding and .vl-proj's 18px come out: a 112px floor fits six
+   tracks there, a 96px floor fits seven at ~102px each.
+
+   A fixed repeat(7, ...) was tried in p31 and rejected. It is only
+   correct at one width - at 512px it gives 45px cards, which
+   break-word chops "Offboarding" into fragments and the nowrap
+   state pill spills out of. auto-fit degrades instead: seven
+   columns where there is room, three to six where there is not,
+   wrapping to a second row rather than shredding the text. It also
+   needs no measurement to stay correct, which a fixed count does.
+
+   The cards carry STEPS[n].label, the short sidebar form, with the
+   prose STEPS[n].short on title= - p28's prose names never fitted
+   a column this narrow and were what forced the 112px floor. */
 #vl-hero #vl-projsec .vl-phases {
     display: grid !important;
 
-    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)) !important;
 
     align-items: stretch !important;
 
@@ -1588,13 +1592,6 @@
         padding: 15px !important;
     }
 
-    /* .vl-layout is display:block from here down, so the strip is at
-       full viewport width - but seven columns of it would be about
-       85px each at 700px and under 45px at 320px. One card per row. */
-    #vl-hero #vl-projsec .vl-phases {
-        grid-template-columns: 1fr !important;
-    }
-
     #vl-hero #vl-projsec .vl-proj-name {
         font-size: 16px !important;
     }
@@ -1624,10 +1621,12 @@
             10px !important;
     }
 
-    /* The .vl-phases pin that used to live here is gone: it existed
-       because auto-fit could still fit two 112px tracks below 420px,
-       and the 700px rule now pins the strip to one column for every
-       width beneath it. Nothing to re-state. */
+    /* Below 420px auto-fit's track plus the gap can still fit two
+       columns in a viewport that has no room for them, and the 96px
+       floor p31 dropped it to only makes that likelier. Pin it. */
+    #vl-hero #vl-projsec .vl-phases {
+        grid-template-columns: 1fr !important;
+    }
 
     #vl-hero #vl-projsec .vl-proj {
         padding: 13px !important;
