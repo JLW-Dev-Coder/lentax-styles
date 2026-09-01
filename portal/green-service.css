@@ -1250,18 +1250,27 @@
 
 /* ---- phase strip ---- */
 
-/* auto-fit rather than the mockup's fixed 7 / 4 / 2 columns. The
-   mockup's strip spans a 1040px page; this one lives in the middle
-   column of a three-column grid, which is roughly 515px once the
-   rail and the padding are taken out - seven cards there would be
-   about 62px each and the phase names would not fit. auto-fit lets
-   the strip take as many columns as the column can actually carry,
-   at whatever width the layout hands it, without this file
-   asserting a measurement nobody has confirmed in a browser. */
+/* Still auto-fit, but the floor drops 112px -> 96px, which is what
+   buys the seven columns the mockup has. The live middle column
+   measures ~910px, leaving 760px of strip once .vl-main's 56px
+   padding and .vl-proj's 18px come out: a 112px floor fits six
+   tracks there, a 96px floor fits seven at ~102px each.
+
+   A fixed repeat(7, ...) was tried in p31 and rejected. It is only
+   correct at one width - at 512px it gives 45px cards, which
+   break-word chops "Offboarding" into fragments and the nowrap
+   state pill spills out of. auto-fit degrades instead: seven
+   columns where there is room, three to six where there is not,
+   wrapping to a second row rather than shredding the text. It also
+   needs no measurement to stay correct, which a fixed count does.
+
+   The cards carry STEPS[n].label, the short sidebar form, with the
+   prose STEPS[n].short on title= - p28's prose names never fitted
+   a column this narrow and were what forced the 112px floor. */
 #vl-hero #vl-projsec .vl-phases {
     display: grid !important;
 
-    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)) !important;
 
     align-items: stretch !important;
 
@@ -1612,8 +1621,9 @@
             10px !important;
     }
 
-    /* Below 420px auto-fit's 112px track plus the gap can still fit
-       two columns in a viewport that has no room for them. Pin it. */
+    /* Below 420px auto-fit's track plus the gap can still fit two
+       columns in a viewport that has no room for them, and the 96px
+       floor p31 dropped it to only makes that likelier. Pin it. */
     #vl-hero #vl-projsec .vl-phases {
         grid-template-columns: 1fr !important;
     }

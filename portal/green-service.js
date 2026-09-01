@@ -316,10 +316,11 @@
   var projects = [];
   var activeProject = 0;
 
-  /* Projects section only: whether the reader has asked to see the
-     completed engagements the section collapses by default. Never
-     touched by selection - switching projects must not re-collapse a
-     list the reader deliberately opened. */
+  /* Projects section only: whether the reader has asked to see every
+     engagement rather than the selected one. p31 made the section show
+     one engagement at a time, so this now returns to false on any
+     selection - picking a card is the reader saying "just this one".
+     The rail never reads it; the rail always lists everything. */
   var projectsExpanded = false;
 
   /* Which step the reader is looking at. 0 = overview. */
@@ -635,7 +636,23 @@
      data-project attribute today, but a stale node after a repaint would
      otherwise throw on .phase and take the rail down with it. */
   function selectProject(idx) {
-    if (idx === activeProject || !projects[idx]) return;
+    if (!projects[idx]) return;
+
+    /* p31: a selection always returns the section to one engagement, and
+       it is the one just picked - so the expanded list can never collapse
+       away from under the reader's own click. Re-picking the engagement
+       already selected is a legitimate way to collapse the list, which is
+       why the "already active" short-circuit no longer returns before
+       clearing the flag; it only skips the work that would change
+       nothing. */
+    var wasExpanded = projectsExpanded;
+    projectsExpanded = false;
+
+    if (idx === activeProject) {
+      if (wasExpanded) paintProjectsSection();
+      return;
+    }
+
     activeProject = idx;
     userInteracted = false;   /* switching engagements resets the view */
     paintProjects();
@@ -736,12 +753,15 @@
   }
 
   /* ================================================================
-     p28 - THE PROJECTS SECTION
+     p28 - THE PROJECTS SECTION  (p31: one engagement at a time)
 
-     Every engagement, each with its own seven-phase strip. The rail
-     answers "which one am I looking at"; this answers "where does each
-     one actually stand". Same array, same activeProject, same pick path
-     - see selectProject().
+     The selected engagement and its seven-phase strip. The rail answers
+     "which ones do I have"; this answers "where does the one I am
+     looking at actually stand". p28 stacked every engagement here, which
+     put three names and twenty-one cards on screen for a reader who was
+     asking about one of them; p31 made the rail the list and this the
+     detail. The toggle still opens the full set. Same array, same
+     activeProject, same pick path - see selectProject().
 
      Phase names come from STEPS, one copy. The mockup carried its own
      PHASES constant and a per-phase ClickUp task id; importing either
@@ -784,9 +804,16 @@
     var out = '<div class="vl-phases">';
     for (var n = 1; n <= 7; n++) {
       var st = states[n - 1];
-      out += '<div class="vl-phase vl-phase-' + st + '">' +
+      /* .label, not .short. The strip is seven fixed columns since p31,
+         and .short is the prose form ("Project Fit & Scope Confirmation")
+         that never fitted one. .label is the sidebar's own short form,
+         already sized for a 210px column. The prose name stays reachable
+         on title= rather than being truncated or restated as a third
+         list of step names. */
+      out += '<div class="vl-phase vl-phase-' + st + '"' +
+          ' title="' + esc(STEPS[n].short) + '">' +
           '<div class="vl-phase-p">Phase ' + esc(n) + '</div>' +
-          '<div class="vl-phase-n">' + esc(STEPS[n].short) + '</div>' +
+          '<div class="vl-phase-n">' + esc(STEPS[n].label) + '</div>' +
           '<div class="vl-phase-ps"><span class="vl-pst vl-pst-' + st + '">' +
             esc(PHASE_LABEL[st]) + '</span></div>' +
         '</div>';
@@ -807,20 +834,21 @@
     }
 
     var blocks = '';
-    var collapsible = 0;
 
     for (var i = 0; i < projects.length; i++) {
+      var isActive = (i === activeProject);
+
+      /* p31: collapsed shows the selected engagement and nothing else;
+         expanded shows all of them. The selected one is in both sets, so
+         it can never be the one that disappears - including when it is
+         complete. A reader who clicks into a finished engagement and
+         watches it vanish will think the page broke. */
+      if (!projectsExpanded && !isActive) continue;
+
       var p = projects[i] || {};
       var states = phaseStates(p.phase);
       var phn = usablePhase(p.phase);
       var done = allClosed(states);
-      var isActive = (i === activeProject);
-
-      /* Never collapse the selected project, complete or not. A reader who
-         clicks into a finished engagement and watches it disappear will
-         think the page broke. */
-      if (done && !isActive) collapsible++;
-      if (done && !isActive && !projectsExpanded) continue;
 
       var svc = p.service || ('Engagement ' + (i + 1));
 
@@ -852,15 +880,15 @@
         '</div>';
     }
 
-    /* A toggle that does nothing is worse than none. It appears only when
-       something is genuinely collapsible, and that count is computed over
-       every project, not over the ones that survived the loop - so the
-       control does not vanish the moment the reader expands the list. */
+    /* A toggle that does nothing is worse than none. With one engagement
+       there is nothing to expand to, so no control renders. The test is
+       the length of the array, never the length of the loop's output -
+       otherwise the control would vanish the moment the reader used it. */
     var toggle = '';
-    if (collapsible > 0) {
+    if (projects.length > 1) {
       toggle = '<button type="button" class="vl-projsec-toggle"' +
         ' aria-expanded="' + (projectsExpanded ? 'true' : 'false') + '">' +
-        (projectsExpanded ? 'Show fewer' : 'Show all ' + esc(projects.length) + ' projects') +
+        (projectsExpanded ? 'Show fewer' : 'Show all ' + esc(projects.length) + ' engagements') +
         '</button>';
     }
 
