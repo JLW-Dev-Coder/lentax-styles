@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Klaritie Farms — Client Dashboard</title>
+<style>
+/* ---------- TOKENS ------------------------------------------------------
+   Light = :root. Dark = [data-theme="dark"] on <html> (ships as dark).
+   Remove the attribute to render light. No markup forks, no new requests. */
+:root{
+  /* type */
+  --ff-ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --ff-dis:ui-serif,Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --t-micro:10.5px; --t-label:11.5px; --t-meta:12.5px; --t-body:13.5px; --t-ui:15px;
+  --t-row:14.5px; --t-h3:19px; --t-h2:11px; --t-h1:29px; --t-num:31px;
+  /* spacing scale — 4 / 8 / 12 / 16 / 24 / 32 / 48 / 72 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px;
+  /* geometry */
+  --r-sm:8px; --r:14px; --r-pill:999px;
+  --sh:0 1px 2px rgba(26,26,26,.05),0 6px 18px rgba(154,74,6,.05);
+  --sh-2:0 2px 4px rgba(26,26,26,.06),0 16px 40px rgba(154,74,6,.10);
+  /* surfaces + ink */
+  --bg:#F4F0E9; --surface:#FFFAF4; --surface-2:#F8F2E9; --surface-3:#EFE8DD;
+  --line:rgba(26,22,18,.12); --line-2:rgba(26,22,18,.26);
+  --ink:#1A1714; --ink-2:#4C463E; --ink-3:#7C7369;
+  /* brand */
+  --accent:#F97316; --accent-ink:#9A4A06; --accent-soft:#FCEBDB; --accent-line:rgba(249,115,22,.42);
+  --on-accent:#FFFFFF; --accent-fill:#A8500A;
+  /* status pairs (fixed hues, never themed away) */
+  --good-bg:#E3F1E9; --good-fg:#1F6B4C; --good-line:rgba(31,107,76,.28);
+  --info-bg:#E3EDF8; --info-fg:#1B5486; --info-line:rgba(27,84,134,.26);
+  --warn-bg:#F9EFD9; --warn-fg:#7E5510; --warn-line:rgba(126,85,16,.28);
+  --crit-bg:#F7E3E4; --crit-fg:#8F1F29; --crit-line:rgba(143,31,41,.30);
+  --crit-fill:#8F1F29; --on-crit:#FFF7F7;
+  --neu-bg:#EDE8E0; --neu-fg:#5B554D; --neu-line:rgba(91,85,77,.24);
+  --vio-bg:#EBE7F5; --vio-fg:#4A3E77; --vio-line:rgba(74,62,119,.24);
+}
+[data-theme="dark"]{
+  --bg:#141414; --surface:#1E1E1E; --surface-2:#242424; --surface-3:#2A2A2A;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.24);
+  --ink:#F5F1EC; --ink-2:#C3BDB4; --ink-3:#918A81;
+  --accent:#F97316; --accent-ink:#FDBA74; --accent-soft:rgba(249,115,22,.14); --accent-line:rgba(249,115,22,.55);
+  --on-accent:#1A1206; --accent-fill:#F97316;
+  --sh:0 1px 0 rgba(255,255,255,.04),0 8px 22px rgba(0,0,0,.50);
+  --sh-2:0 1px 0 rgba(255,255,255,.06),0 18px 44px rgba(0,0,0,.60);
+  --good-bg:rgba(46,125,91,.20); --good-fg:#79D6A9; --good-line:rgba(121,214,169,.34);
+  --info-bg:rgba(28,110,180,.20); --info-fg:#8CBEEC; --info-line:rgba(140,190,236,.32);
+  --warn-bg:rgba(199,126,46,.20); --warn-fg:#F3BD73; --warn-line:rgba(243,189,115,.34);
+  --crit-bg:rgba(178,34,52,.24); --crit-fg:#FF9AA0; --crit-line:rgba(255,154,160,.40);
+  --crit-fill:#B22234; --on-crit:#FFF4F4;
+  --neu-bg:rgba(255,255,255,.07); --neu-fg:#ADA69D; --neu-line:rgba(255,255,255,.18);
+  --vio-bg:rgba(123,97,255,.20); --vio-fg:#B6A6FF; --vio-line:rgba(182,166,255,.32);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:var(--t-ui)/1.6 var(--ff-ui);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+[data-theme="dark"] body{background:
+  radial-gradient(1100px 520px at 8% -10%,rgba(249,115,22,.10),transparent 60%),
+  radial-gradient(900px 600px at 100% 12%,rgba(249,115,22,.05),transparent 62%),
+  linear-gradient(180deg,#141414,#171717)}
+a{color:var(--accent-ink)} a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+.wrap{max-width:1040px;margin:0 auto;padding:var(--s7) var(--s5) var(--s8)}
+
+/* ---------- masthead + coordinator ---------- */
+.mast{border-bottom:1px solid var(--line);padding-bottom:var(--s5);margin-bottom:var(--s2);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s5);flex-wrap:wrap}
+.mast h1{margin:0;font:600 var(--t-h1)/1.15 var(--ff-dis);letter-spacing:-.02em}
+.mast .s{margin:var(--s3) 0 0;color:var(--ink-2);font-size:var(--t-body);max-width:68ch;line-height:1.65}
+.mast .s a{color:var(--accent-ink);font-weight:600;text-underline-offset:3px}
+.mast .who{text-align:right;font-size:var(--t-meta);color:var(--ink-3);line-height:1.5}
+h3[id]{scroll-margin-top:var(--s5)}
+h2{font:650 var(--t-h2)/1.4 var(--ff-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  margin:var(--s7) 0 var(--s2);display:flex;align-items:center;gap:var(--s3)}
+h2::after{content:"";height:1px;flex:1;background:var(--line)}
+h3{font:600 var(--t-h3)/1.3 var(--ff-dis);letter-spacing:-.01em;margin:var(--s6) 0 var(--s1)}
+h3:first-of-type{margin-top:var(--s4)}
+.lede{color:var(--ink-2);font-size:var(--t-body);margin:0 0 var(--s4);max-width:64ch;line-height:1.6}
+.lede.wide{max-width:none}
+.body{border-left:1px solid var(--line);padding-left:var(--s5);margin-left:2px}
+/* HIERARCHY: the action-items subsection carries the accent rail */
+.body:has(#actions){border-left:2px solid var(--accent-line)}
+.body:has(#actions) h3#actions{font-size:22px;color:var(--ink)}
+
+.coord{display:flex;justify-content:space-between;align-items:center;gap:var(--s5);flex-wrap:wrap;
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--line);
+  border-radius:var(--r);padding:var(--s5);box-shadow:var(--sh);margin:var(--s5) 0 var(--s1);
+  position:relative;overflow:hidden}
+.coord::before{content:"";position:absolute;inset:0 0 auto;height:3px;
+  background:linear-gradient(90deg,var(--accent),#E0B54C)}
+.coord .cl{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:650}
+.coord .cn{font:600 18px/1.3 var(--ff-dis);letter-spacing:-.01em;margin-top:var(--s1)}
+.coord .cg{margin:var(--s2) 0 0;font-size:var(--t-body);color:var(--ink-2)}
+.coord .ca{display:flex;gap:var(--s3);flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);font-size:var(--t-body);
+  font-weight:650;border-radius:var(--r-pill);padding:10px 20px;text-decoration:none;
+  border:1px solid var(--line-2);color:var(--ink);background:var(--surface);white-space:nowrap;
+  transition:transform .14s,border-color .14s,box-shadow .14s}
+.btn:hover{border-color:var(--accent-line);transform:translateY(-2px);box-shadow:var(--sh)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.06)}
+.tech{margin:var(--s3) 0 0;font-size:var(--t-meta);color:var(--ink-3)}
+.tech a{color:var(--ink-2);text-underline-offset:3px}
+
+/* ---------- ROWS: ledger grammar — flat, tabular, hairline, no lift ---------- */
+.row{display:flex;gap:var(--s4);align-items:flex-start;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-sm);padding:var(--s3) var(--s4);
+  margin-bottom:var(--s1);box-shadow:none;text-decoration:none;color:inherit;
+  position:relative;transition:background .14s,border-color .14s}
+.row:hover{background:var(--surface-2);border-color:var(--line-2)}
+.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row .m{flex:1;min-width:0}
+.row .t{font-size:var(--t-row);font-weight:600;line-height:1.45;letter-spacing:-.005em}
+.row .d{font-size:var(--t-meta);color:var(--ink-3);margin-top:var(--s1);line-height:1.55}
+/* OWNER: a Client row is unmistakable — accent rail, tinted fill, filled pill */
+.row:has(.own.client){background:var(--accent-soft);border-color:var(--accent-line);
+  border-left:3px solid var(--accent);padding-left:calc(var(--s4) - 2px)}
+.row:has(.own.client):hover{border-color:var(--accent)}
+
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:var(--t-label);font-weight:650;
+  border-radius:var(--r-pill);padding:3px 10px;white-space:nowrap;flex:none}
+
+/* ---------- STATUS CHIPS ---------- */
+.st{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-label);font-weight:700;
+  border-radius:var(--r-pill);padding:3px 11px 3px 9px;white-space:nowrap;letter-spacing:.05em;
+  flex:none;text-transform:uppercase;border:1px solid transparent}
+.st::before{content:"";width:6px;height:6px;border-radius:var(--r-pill);background:currentColor;flex:none}
+.st-active{background:var(--good-bg);color:var(--good-fg);border-color:var(--good-line)}
+.st-upcoming{background:var(--info-bg);color:var(--info-fg);border-color:var(--info-line)}
+.st-inprogress{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent-line)}
+.st-hold{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line)}
+.st-archive{background:var(--neu-bg);color:var(--neu-fg);border-color:var(--neu-line)}
+.st-inactive{background:var(--crit-bg);color:var(--crit-fg);border-color:var(--crit-line)}
+.st-template{background:var(--vio-bg);color:var(--vio-fg);border-color:var(--vio-line)}
+.st-closed{background:var(--neu-bg);color:var(--neu-fg);border-color:var(--neu-line)}
+
+/* ---------- URGENCY LADDER — four rungs, weight+shape+glyph, not colour alone ---------- */
+.st-hot{background:var(--crit-fill);color:var(--on-crit);border-color:var(--crit-fill);
+  font-size:12px;font-weight:800;letter-spacing:.08em;padding:5px 13px 5px 10px;
+  box-shadow:0 0 0 3px var(--crit-bg)}
+.st-hot::before{display:none}
+.st-hot svg{width:12px;height:12px;flex:none;margin-right:-1px}
+.st-high{background:var(--warn-bg);color:var(--warn-fg);border-color:var(--warn-line);
+  font-size:11.5px;font-weight:750;padding:4px 12px 4px 9px}
+.st-high::before{content:"▲";background:none;width:auto;height:auto;border-radius:0;font-size:8px;line-height:1}
+.st-normal{background:transparent;color:var(--warn-fg);border-color:var(--warn-line);font-weight:700}
+.st-normal::before{content:"■";background:none;width:auto;height:auto;border-radius:0;font-size:7px;line-height:1}
+.st-low{background:transparent;color:var(--ink-3);border-color:var(--line);font-weight:650;letter-spacing:.06em}
+.st-low::before{content:"▾";background:none;width:auto;height:auto;border-radius:0;font-size:9px;line-height:1}
+
+.when{font-size:var(--t-meta);color:var(--ink-3);white-space:nowrap;flex:none;
+  font-variant-numeric:tabular-nums;text-align:right;min-width:98px;line-height:1.5}
+.when b{display:block;color:var(--ink);font:600 14px/1.3 var(--ff-dis);letter-spacing:0}
+.when.none{color:var(--ink-3);opacity:.7;font-style:italic}
+
+/* ---------- CARDS: data grammar — raised, serif numerals, top hairline ---------- */
+.cards{display:grid;gap:var(--s5) var(--s3);grid-template-columns:repeat(3,1fr);margin:var(--s4) 0 var(--s3)}
+.cards.two{grid-template-columns:repeat(2,1fr)}
+.cards.four{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s4);box-shadow:var(--sh);text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;height:100%;position:relative;overflow:hidden;
+  transition:transform .14s,box-shadow .14s,border-color .14s}
+a.card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--line-2)}
+a.card:active{transform:translateY(1px)}
+.card .k{font-size:var(--t-meta);color:var(--ink-2);margin-bottom:var(--s1)}
+.card .v{font:600 24px/1.1 var(--ff-dis);letter-spacing:-.02em}
+.card .n{font-size:var(--t-meta);color:var(--ink-3);margin-top:var(--s1);line-height:1.5}
+.card.link .k{font-size:var(--t-row);font-weight:650;color:var(--ink);margin-bottom:var(--s1)}
+.card.off{opacity:.5;background:var(--surface-2);border-style:dashed}
+a.card.cnt .cs{margin-top:auto;padding-top:var(--s3)}
+a.card.cnt .k{font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+a.card.cnt .v{font-size:var(--t-num);line-height:1.05;margin-top:var(--s1)}
+a.card.cnt .n{margin-top:var(--s2)}
+a.card.cnt .n b{color:var(--ink-2);font-weight:650}
+/* a card whose urgency resolved to Critical raises its own edge */
+a.card.cnt:has(.st-hot){border-color:var(--crit-line);box-shadow:var(--sh-2)}
+a.card.cnt:has(.st-hot)::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--crit-fill)}
+.note{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s3) var(--s4);font-size:var(--t-body);color:var(--ink-2);line-height:1.6;margin:var(--s3) 0}
+a.card.cta{border:1px dashed var(--accent-line);
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));padding:var(--s4)}
+a.card.cta .k{color:var(--accent-ink)}
+a.card.cta:hover{border-color:var(--accent)}
+a.card.cta .n{font-size:var(--t-meta)}
+
+/* ---------- PHASE STRIP ---------- */
+.phases{display:grid;gap:var(--s2);grid-template-columns:repeat(7,1fr);
+  margin:var(--s3) 0 var(--s1);align-items:stretch;counter-reset:ph}
+a.phase{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--line);
+  border-radius:var(--r-sm);padding:var(--s3);box-shadow:none;text-decoration:none;color:var(--ink-3);
+  display:flex;flex-direction:column;height:100%;transition:transform .14s,border-color .14s,color .14s;
+  counter-increment:ph}
+a.phase:hover{border-color:var(--line-2);border-top-color:var(--accent);transform:translateY(-2px);color:var(--ink-2)}
+a.phase .p{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase;
+  display:flex;align-items:center;gap:var(--s2);min-width:0}
+a.phase .p::before{content:counter(ph);flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:var(--r-pill);border:1px solid var(--line-2);
+  font:700 11px/1 var(--ff-ui);letter-spacing:0;color:var(--ink-3);background:transparent}
+a.phase:hover .p::before{border-color:var(--accent-line);color:var(--ink-2)}
+a.phase .n{font-size:var(--t-meta);font-weight:600;line-height:1.35;margin-top:var(--s1);color:inherit}
+a.phase .ps{margin-top:auto;padding-top:var(--s3)}
+a.phase .st{font-size:9.5px;padding:2px 8px 2px 6px;letter-spacing:.06em}
+/* current phase: the only lit box in the strip */
+a.phase:has(.st-inprogress){background:var(--surface);border-color:var(--accent-line);
+  border-top:3px solid var(--accent);color:var(--ink);box-shadow:var(--sh-2)}
+a.phase:has(.st-inprogress) .p{color:var(--accent-ink)}
+a.phase:has(.st-inprogress) .p::before{background:var(--accent-fill);border-color:var(--accent-fill);
+  color:var(--on-accent);width:26px;height:26px;font-size:12px}
+a.phase:has(.st-inprogress) .n{font-size:var(--t-body)}
+/* upcoming phases recede without disappearing */
+a.phase:has(.st-upcoming){border-style:dashed;border-top-style:solid}
+
+footer{margin-top:var(--s7);padding-top:var(--s5);border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:var(--t-meta);line-height:1.65}
+
+/* ---------- RESPONSIVE — 1100 / 880 / 560 / 375 ---------- */
+@media(max-width:900px){
+  .cards,.cards.four{grid-template-columns:repeat(2,1fr)}
+  .phases{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:760px){
+  .wrap{padding:var(--s6) var(--s4) var(--s7)}
+  .cards,.cards.two,.cards.four{grid-template-columns:1fr}
+  .body{padding-left:var(--s4)}
+  .own .av{display:none}
+  .own{padding-left:11px}
+}
+@media(max-width:640px){
+  .row{flex-wrap:wrap;gap:var(--s2) var(--s3)}
+  .row .m{flex:1 0 100%;order:1}
+  .row .st{order:2}
+  .row .own{order:3}
+  .row .when{order:4;min-width:0;margin-left:auto;text-align:right}
+  .row .when b{display:inline;font-size:var(--t-meta);margin-right:6px}
+}
+@media(max-width:600px){
+  .phases{grid-template-columns:repeat(2,1fr)}
+  .mast h1{font-size:24px}
+  h3{font-size:17px}
+  .coord{padding:var(--s4)}
+  .coord .ca{width:100%}
+  .coord .ca .btn{flex:1}
+}
+@media(max-width:400px){
+  .wrap{padding:var(--s5) var(--s3) var(--s6)}
+  a.card.cnt .v{font-size:26px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- OWNER PILLS ---------- */
+.own{display:inline-flex;align-items:center;gap:7px;flex:none;font-size:var(--t-label);font-weight:650;
+  color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-pill);
+  padding:3px 11px 3px 3px;white-space:nowrap;letter-spacing:.01em}
+.own .av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  border-radius:var(--r-pill);background:var(--ink-3);color:var(--surface);font-size:9px;font-weight:700;
+  letter-spacing:.02em}
+.own.client{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent);font-weight:750}
+.own.client .av{background:var(--on-accent);color:var(--accent-fill)}
+.own.third{border-style:dashed;border-color:var(--line-2);background:transparent}
+.own.third .av{background:transparent;color:var(--ink-3);border:1px dashed var(--line-2);
+  font-size:9px;width:auto;padding:0 8px;letter-spacing:.03em}
+
+/* ---------- MULTI-PROJECT ---------- */
+.proj{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+  box-shadow:var(--sh);padding:var(--s4);margin-bottom:var(--s3)}
+.proj.current{border-color:var(--accent-line);box-shadow:var(--sh-2)}
+.projhd{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);flex-wrap:wrap}
+.projhd h4{margin:0;font:600 17px/1.3 var(--ff-dis);letter-spacing:-.01em}
+.projhd .meta{font-size:var(--t-meta);color:var(--ink-3);display:flex;align-items:center;gap:var(--s3)}
+.projhd .meta b{color:var(--ink-2);font-weight:650}
+.proj .plede{margin:var(--s1) 0 0;font-size:var(--t-meta);color:var(--ink-3)}
+.proj .phases{margin-top:var(--s3)}
+.proj.done .phases{opacity:.62}
+</style></head>
+<body><div class="wrap">
+
+<div class="mast">
+  <div><h1>Klaritie Farms, Inc.</h1>
+    <p class="s">Your dashboard view for the Green Service projects and orders. It’s where everything
+      stands, and what we may need from you. <a href="#actions">Click here</a> to go directly to your
+      action items section.</p></div>
+</div>
+
+<div class="coord">
+  <div class="ci">
+    <div class="cl">Your coordinator</div>
+    <div class="cn">Jamie L Williams, EA, CB, OTC</div>
+    <p class="cg">Hey {{Client Name}} — reach out anytime, Mon–Fri 9a–6p PT.</p>
+  </div>
+  <div class="ca">
+    <a class="btn primary" href="https://app.virtuallaunch.pro/message/inbox" target="_blank" rel="noopener">Message</a>
+    <a class="btn" href="tel:+16195042915">619-504-2915</a>
+  </div>
+</div>
+<p class="tech">Tech issues? <a href="https://app.virtuallaunch.pro/support" target="_blank" rel="noopener">Submit a ticket</a>.</p>
+
+<h2>Projects / Orders</h2>
+<div class="body">
+<h3 style="margin-top:18px">Three projects open on your account</h3>
+<p class="lede">Each project runs the same seven phases from intake to offboarding. Every phase opens its own record.</p>
+<div id="projects"></div>
+</div>
+
+<h2 style="margin-top:44px">Client Intake &amp; Communications</h2>
+<div class="body">
+
+<h3>Secure Intake</h3>
+<p class="lede">Everything you've sent, and where to send the rest.</p>
+<div class="cards">
+  <div class="card"><div class="k">Bank accounts on file</div><div class="v">2</div>
+    <div class="n">…2432 and …5925, both open</div></div>
+  <div class="card"><div class="k">IRS filings logged (941, returns, etc)</div><div class="v">8</div>
+    <div class="n">2023 Q3 through 2025 Q4</div></div>
+  <div class="card"><div class="k">Statements received</div><div class="v">24 of 24</div>
+    <div class="n">Every month ties to the bank's own totals</div></div>
+</div>
+<a class="row" href="https://app.clickup.com/t/86e2ujray" target="_blank" rel="noopener"><div class="m">
+  <div class="t">Record — 2026-08-13 — Twin City Bank — Signature Card, Resolutions &amp; Beneficial Ownership (Produced re Form 6639)</div>
+  <div class="d">Six documents across pages 1–7. Page 2 is a blank reverse.</div></div>
+  <span class="st st-active">Active</span></a>
+
+<!-- ===========================================================
+     HIDDEN RULES — dashboard display logic (reference)
+     -----------------------------------------------------------
+     URGENCY LADDER  (driven by data-urg="YYYY-MM-DD" on a card;
+                      no date => Low)
+       days = calendar days from today to the driver date
+         days <= 0   CRITICAL  red     fire SVG   "Hot"        due today or past due
+         days 1-2    HIGH      orange  no icon    "High"       inside 48 hours
+         days 3-5    NORMAL    yellow  no icon    "Normal"     3-5 days out
+         days 6+     LOW       blue    no icon    "Low"        as scheduled
+       SUMMARY CARDS ONLY. The pill renders at the bottom of the card,
+         below the note line, replacing any static status chip.
+       Task rows never carry an urgency pill - they already show their
+         ClickUp status, and the relative date line under the due date
+         communicates timing on its own.
+     RELATIVE TIME
+       Every dated node prints the relative line under the date:
+         future -> "in N days" / "tomorrow" / "today"
+         past   -> "yesterday" / "N days ago"
+       Computed at page load in the reader's own timezone.
+       No due date -> "No due date", muted.
+     OWNER PILL
+       Coordinator = internal (accent avatar)
+       Client      = client action required (grey avatar)
+       3rd Party   = bank, IRS, or other outside party ("Other")
+     -----------------------------------------------------------
+     VISUAL RULES (CSS only; no markup forks)
+       THEMING
+         Light = :root, dark = [data-theme="dark"] on <html>.
+         Dark is the shipping theme (the attribute is set). Remove the
+         attribute to get light. Every colour is a token.
+       URGENCY LADDER READS AS A LADDER, NOT FOUR CHIPS
+         Critical = solid red fill + white type + fire SVG + halo ring.
+         High     = filled amber tint + up-triangle glyph.
+         Normal   = outline only + amber type + square glyph.
+         Low      = outline only + muted type + down-caret glyph.
+         Every tier carries its own GLYPH, so the tier survives
+         greyscale and colour-blind rendering (WCAG 1.4.1).
+       CARDS VS ROWS - different grammar, not just different size
+         Cards = raised, 14px radius, uppercase micro label, serif
+                 numeral, hover lifts 3px.
+         Rows  = flat, 8px radius, hairline, ledger-like; hover tints
+                 the fill instead of lifting.
+       OWNER PILLS
+         Client     = SOLID accent pill + 3px accent left rail on the
+                      whole row (.row:has(.own.client)).
+         Coordinator= quiet hairline pill, solid avatar.
+         3rd Party  = dashed pill + dashed avatar.
+       PHASE STRIP
+         Numbered step dots (1-7) mirror the portal sidebar stepper;
+         the In Progress phase is the only lit box - filled orange dot,
+         3px accent top edge, raised shadow. Upcoming phases stay
+         dashed and recede. 7 columns, 4 at <=900px, 2 at <=600px.
+       HIERARCHY
+         The action-items subsection (.body:has(#actions)) carries a 2px
+         accent rail and a larger heading; other rails are 1px hairlines.
+       SPACING SCALE
+         4 / 8 / 12 / 16 / 24 / 32 / 48 / 72 as --s1..--s8.
+       RESPONSIVE
+         <=640px a row wraps: title takes the full first line, then
+         status / owner / date share the second line.
+     =========================================================== -->
+<h3>Missing Items &amp; Follow-Up</h3>
+<p class="lede wide">The open list of work items and deadlines in the order it matters. Dates are hard dates.</p>
+<div class="cards">
+  <a class="card cnt" href="https://app.clickup.com/t/86e2ufkgt" target="_blank" rel="noopener">
+    <div class="k">Deadlines</div><div class="v">3</div>
+    <div class="n">Most recent <span data-cd="2026-08-19"></span>.</div>
+    <div class="cs" data-urg="2026-08-19"></div></a>
+  <a class="card cnt" href="https://app.clickup.com/t/86e2ujy4u" target="_blank" rel="noopener">
+    <div class="k">Work Items</div><div class="v">25</div>
+    <div class="n">These items require special attention and management.</div>
+    <div class="cs" data-urg="2026-08-22"></div></a>
+  <a class="card cnt" href="https://app.clickup.com/t/86e2w72j5" target="_blank" rel="noopener">
+    <div class="k">Phase 1 Workflow</div><div class="v">5</div>
+    <div class="n">Capture General Info — intake received, review, missing details, escalate.</div>
+    <div class="cs" data-urg="2026-09-01"></div></a>
+</div>
+
+<a class="row" href="https://app.clickup.com/t/86e2ufkgt" target="_blank" rel="noopener">
+  <span class="st st-upcoming">Upcoming</span><div class="m">
+  <div class="t">Deadline — 2026-08-19 — IRS — Petition To Quash Window Closes (re Twin City Bank Summons)</div>
+  <div class="d">Twenty days from the summons notice.</div></div><span class="own"><span class="av">JW</span>Coordinator</span>
+  <span class="when" data-cd="2026-08-19"><b>Aug 19</b></span></a>
+<a class="row" href="https://app.clickup.com/t/86e2ufkhr" target="_blank" rel="noopener">
+  <span class="st st-upcoming">Upcoming</span><div class="m">
+  <div class="t">Deadline — 2026-08-22 — IRS — May Begin Examining Summoned Bank Records (§7609 23-Day Mark)</div>
+  <div class="d">The 23-day mark. We want representation on file first.</div></div><span class="own"><span class="av">JW</span>Coordinator</span>
+  <span class="when" data-cd="2026-08-22"><b>Aug 22</b></span></a>
+<a class="row" href="https://app.clickup.com/t/86e2ufkm2" target="_blank" rel="noopener">
+  <span class="st st-upcoming">Upcoming</span><div class="m">
+  <div class="t">Deadline — 2026-09-01 — Twin City Bank — Summons Appearance / Production, 9:00a PT (RO John Hegi)</div>
+  <div class="d">The date the bank must produce to the Revenue Officer.</div></div><span class="own third"><span class="av">Other</span>3rd Party</span>
+  <span class="when" data-cd="2026-09-01"><b>Sep 1</b></span></a>
+<h3>Client Correspondence</h3>
+<p class="lede">Letters and notices received on this matter.</p>
+<div class="cards">
+  <a class="card cnt" href="https://app.clickup.com/t/86e2ufkrk" target="_blank" rel="noopener">
+    <div class="k">Summons</div>
+    <div class="v">2</div>
+    <div class="n">Last summons was <b>July 30, 2026</b></div></a>
+  <a class="card cnt" href="https://app.clickup.com/t/86e2ujraf" target="_blank" rel="noopener">
+    <div class="k">Letters</div>
+    <div class="v">2</div>
+    <div class="n">Last letter was <b>August 13, 2026</b></div></a>
+  <a class="card cnt" href="https://app.clickup.com/t/86e2ufkrk" target="_blank" rel="noopener">
+    <div class="k">Notices</div>
+    <div class="v">0</div>
+    <div class="n">Last notice not applicable<br>No IRS notices logged on this matter yet.</div></a>
+</div>
+
+<h3 id="actions">Client Requests &amp; Approvals</h3>
+<p class="lede wide">These are action items you need to take. Have any questions — book a call or message me.</p>
+<a class="row" href="https://app.clickup.com/t/86e2unwu8" target="_blank" rel="noopener">
+  <span class="st st-active">Active</span><div class="m">
+  <div class="t">Client Request — 2026-08-10 — Klaritie Farms — Accounts And Portal Access (Next Steps Item 1, Completed 2026-08-17)</div></div><span class="own client"><span class="av">KF</span>Client</span>
+  <span class="when" data-cd="2026-08-17"><b>Aug 17</b></span></a>
+<a class="row" href="https://app.clickup.com/t/86e2unwvb" target="_blank" rel="noopener">
+  <span class="st st-active">Active</span><div class="m">
+  <div class="t">Client Request — 2026-08-10 — Klaritie Farms — Diagnostic Payment (Next Steps Item 2, Completed 2026-08-17)</div></div><span class="own client"><span class="av">KF</span>Client</span>
+  <span class="when" data-cd="2026-08-17"><b>Aug 17</b></span></a>
+<a class="row" href="https://app.clickup.com/t/86e2unww8" target="_blank" rel="noopener">
+  <span class="st st-active">Active</span><div class="m">
+  <div class="t">Client Request — 2026-08-10 — Klaritie Farms — Power Of Attorney Form 2848 (Next Steps Item 3, Completed 2026-08-18)</div>
+  <div class="d">Signed page received. Being finalized and filed with the IRS.</div></div><span class="own client"><span class="av">KF</span>Client</span>
+  <span class="when" data-cd="2026-08-18"><b>Aug 18</b></span></a>
+<a class="row" href="https://app.clickup.com/t/86e2unwy9" target="_blank" rel="noopener">
+  <span class="st st-upcoming">Upcoming</span><div class="m">
+  <div class="t">Client Request — 2026-08-10 — Klaritie Farms — Twin City Bank Contact And Document Tracking (Next Steps Item 5)</div>
+  <div class="d">Keep us posted on anything the bank sends the Revenue Officer.</div></div><span class="own client"><span class="av">KF</span>Client</span>
+  <span class="when none">No due date</span></a>
+<div class="cards two">
+  <a class="card link cta" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1ik2d14jZ5K8eu5WHl2n2dge0SSdvdrFr70ChmjldTXZ2xzAAABxU8nkkgOQB5DESPKMQnG31O?es=1&amp;hl=en" target="_blank" rel="noopener">
+    <div class="k">Book a call →</div>
+    <div class="n">30 minutes with Jamie, video or phone. Pick any open slot — no back-and-forth.</div></a>
+  <a class="card link cta" href="https://app.virtuallaunch.pro/message/inbox" target="_blank" rel="noopener">
+    <div class="k">Message me →</div>
+    <div class="n">Secure messaging inside your portal. Quicker than email for a short question.</div></a>
+</div>
+
+</div>
+
+</div>
+<script>
+const PHASES=["General Info Capture","Project Fit &amp; Scope Confirmation","Asset Collection &amp; Setup",
+"Drafting &amp; Client Review","Delivery &amp; Fulfillment","Quality Review &amp; Reporting","Exit/Offboarding Support"];
+// current = the phase In Progress; anything before it is Closed, after it Upcoming.
+const PROJECTS=[
+ {name:"Green Service — 280E Risk Review",ref:"ORD-1041",current:1,opened:"Aug 10, 2026",
+  note:"Representation and summons response. The active matter.",ids:["86e2w72j3","86e2w72j4","86e2w72j6","86e2w72jc","86e2w72jm","86e2w72jy","86e2w72kf"]},
+ {name:"Bookkeeping Rebuild — 2023–2025",ref:"ORD-1042",current:3,opened:"Jul 22, 2026",
+  note:"Statements categorized to a §280E-aware chart, then reconciled.",ids:["86e2w73a1","86e2w73a2","86e2w73a3","86e2w73a4","86e2w73a5","86e2w73a6","86e2w73a7"]},
+ {name:"Entity &amp; Payroll Cleanup",ref:"ORD-1038",current:7,opened:"May 04, 2026",
+  note:"Closing out. Final reporting delivered, offboarding in progress.",ids:["86e2w74b1","86e2w74b2","86e2w74b3","86e2w74b4","86e2w74b5","86e2w74b6","86e2w74b7"]}
+];
+document.getElementById("projects").innerHTML = PROJECTS.map(p=>{
+  const strip = PHASES.map((name,i)=>{
+    const n=i+1, state = n<p.current?"closed":n===p.current?"inprogress":"upcoming";
+    const label = state==="closed"?"Closed":state==="inprogress"?"In Progress":"Upcoming";
+    return `<a class="phase" href="https://app.clickup.com/t/${p.ids[i]}" target="_blank" rel="noopener">
+      <div class="p">Phase ${n}</div><div class="n">${name}</div>
+      <div class="ps"><span class="st st-${state}">${label}</span></div></a>`;
+  }).join("");
+  return `<div class="proj ${p.current===1?"current":""}${p.current===7?" done":""}">
+    <div class="projhd"><h4>${p.name}</h4>
+      <div class="meta"><span>${p.ref}</span><span>Opened <b>${p.opened}</b></span>
+        <span>Phase <b>${p.current} of 7</b></span></div></div>
+    <p class="plede">${p.note}</p>
+    <div class="phases">${strip}</div></div>`;
+}).join("");
+const FIRE=`<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2s1.5 3.2-.8 5.6C8.6 10.3 7 12 7 14.6 7 18.1 9.7 21 13 21s5.5-2.6 5.5-6c0-3.4-2.3-5.1-3.4-7.6-.4 1.2-1.2 2-2.2 2.6.6-2.4-.3-5.5-.9-8z"/></svg>`;
+// HIDDEN RULE — urgency ladder: <=0 Critical, 1-2 High, 3-5 Normal, 6+ Low
+function urgTier(days){
+  if(days===null) return ["low","Low"];
+  if(days<=0) return ["hot","Hot"];
+  if(days<=2) return ["high","High"];
+  if(days<=5) return ["normal","Normal"];
+  return ["low","Low"];
+}
+function urgPill(days){
+  const [c,label]=urgTier(days);
+  return `<span class="st st-${c}">${c==="hot"?FIRE:""}${label}</span>`;
+}
+function daysTo(iso){
+  const [y,m,dd]=iso.split("-").map(Number);
+  const now=new Date();
+  return Math.round((new Date(y,m-1,dd)-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/86400000);
+}
+document.querySelectorAll("[data-urg]").forEach(el=>{
+  el.innerHTML=urgPill(el.dataset.urg?daysTo(el.dataset.urg):null);
+});
+document.querySelectorAll("[data-cd]").forEach(el=>{
+  // compare calendar days in the reader's own timezone, not elapsed milliseconds
+  const [y,m,dd]=el.dataset.cd.split("-").map(Number);
+  const target=new Date(y,m-1,dd);
+  const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const days=Math.round((target-today)/86400000);
+  const t=days<0?(days===-1?"yesterday":`${Math.abs(days)} days ago`)
+        :days===0?"today":days===1?"tomorrow":`in ${days} days`;
+  el.insertAdjacentHTML("beforeend",t);
+});
+</script>
+</body></html>

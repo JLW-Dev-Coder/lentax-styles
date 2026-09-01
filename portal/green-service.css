@@ -1054,6 +1054,400 @@
 
 
 /* =========================================================
+   PROJECTS SECTION  (p28)
+   Sits in the main column between #vl-hero-body and #vld.
+   One block per engagement, each carrying its own seven-phase
+   strip. The block is the control: clicking it selects that
+   project, and the rail's active card follows.
+
+   SCOPING. The mockup used bare .proj / .phase / .phases / .st /
+   .n / .p / .ps / .meta. Those are not safe here - .card, .row
+   and .btn were measured live on this page at 1, 2 and 13
+   instances, so the page demonstrably reuses short generic
+   names. Every class below is vl- prefixed AND anchored under
+   #vl-hero, which is this file's existing idiom (.vl-pcard,
+   .vl-rail) rather than the mockup's.
+
+   IMPORTANCE. !important throughout, matching the 428 existing
+   occurrences in this file. The #vld bundle deliberately uses
+   none; mixing the two idioms inside one stylesheet is how a
+   later reader stops being able to predict which rule wins.
+   ========================================================= */
+
+#vl-hero #vl-projsec {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 40px 0 0 0 !important;
+    padding: 0 !important;
+}
+
+#vl-hero #vl-projsec[hidden] {
+    display: none !important;
+}
+
+#vl-hero #vl-projsec .vl-projsec-title {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 0 12px 0 !important;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+    color: #ff9a1f !important;
+    -webkit-text-fill-color: #ff9a1f !important;
+
+    font-size: 11px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+
+    text-align: left !important;
+}
+
+/* The archive note. Always rendered, never a title tooltip - a
+   tooltip is invisible on touch and unreachable by keyboard, and
+   this is the line that answers "where did my project go?". */
+#vl-hero #vl-projsec .vl-projsec-note {
+    display: block !important;
+
+    margin: 10px 0 0 0 !important;
+    padding: 0 !important;
+
+    color: rgba(255, 255, 255, 0.48) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.48) !important;
+
+    font-size: 12px !important;
+    font-weight: 400 !important;
+
+    line-height: 1.5 !important;
+}
+
+#vl-hero #vl-projsec .vl-projsec-list {
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 14px !important;
+
+    margin: 18px 0 0 0 !important;
+    padding: 0 !important;
+}
+
+
+/* ---- project block (the control) ---- */
+
+#vl-hero #vl-projsec .vl-proj {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 18px !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-radius: 16px !important;
+
+    background: rgba(255, 255, 255, 0.03) !important;
+
+    cursor: pointer !important;
+
+    text-align: left !important;
+
+    transition:
+        background 160ms ease,
+        border-color 160ms ease !important;
+}
+
+#vl-hero #vl-projsec .vl-proj:hover {
+    border-color: rgba(255, 154, 31, 0.45) !important;
+    background: rgba(255, 154, 31, 0.05) !important;
+}
+
+#vl-hero #vl-projsec .vl-proj:focus-visible {
+    outline: 2px solid #ff9a1f !important;
+    outline-offset: 2px !important;
+}
+
+#vl-hero #vl-projsec .vl-proj-active {
+    border-color: #ff9a1f !important;
+    background: rgba(255, 154, 31, 0.09) !important;
+}
+
+/* A completed engagement recedes, but stays legible - it is only
+   ever on screen because it is the one the reader selected, or
+   because they asked to see it. */
+#vl-hero #vl-projsec .vl-proj-done .vl-phases {
+    opacity: 0.62 !important;
+}
+
+#vl-hero #vl-projsec .vl-proj-hd {
+    display: flex !important;
+    flex-wrap: wrap !important;
+
+    align-items: baseline !important;
+    justify-content: space-between !important;
+
+    gap: 6px 14px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#vl-hero #vl-projsec .vl-proj-name {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: rgba(255, 255, 255, 0.92) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.92) !important;
+
+    font-size: 17px !important;
+    font-weight: 700 !important;
+
+    line-height: 1.3 !important;
+    letter-spacing: -0.01em !important;
+}
+
+#vl-hero #vl-projsec .vl-proj-active .vl-proj-name {
+    color: #ff9a1f !important;
+    -webkit-text-fill-color: #ff9a1f !important;
+}
+
+#vl-hero #vl-projsec .vl-proj-meta {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: rgba(255, 255, 255, 0.48) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.48) !important;
+
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+
+    letter-spacing: 0.04em !important;
+    line-height: 1.4 !important;
+
+    white-space: nowrap !important;
+}
+
+#vl-hero #vl-projsec .vl-proj-lede {
+    display: block !important;
+
+    margin: 6px 0 0 0 !important;
+    padding: 0 !important;
+
+    color: rgba(255, 255, 255, 0.48) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.48) !important;
+
+    font-size: 12.5px !important;
+    font-weight: 400 !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* ---- phase strip ---- */
+
+/* auto-fit rather than the mockup's fixed 7 / 4 / 2 columns. The
+   mockup's strip spans a 1040px page; this one lives in the middle
+   column of a three-column grid, which is roughly 515px once the
+   rail and the padding are taken out - seven cards there would be
+   about 62px each and the phase names would not fit. auto-fit lets
+   the strip take as many columns as the column can actually carry,
+   at whatever width the layout hands it, without this file
+   asserting a measurement nobody has confirmed in a browser. */
+#vl-hero #vl-projsec .vl-phases {
+    display: grid !important;
+
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)) !important;
+
+    align-items: stretch !important;
+
+    gap: 8px !important;
+
+    margin: 16px 0 0 0 !important;
+    padding: 0 !important;
+}
+
+#vl-hero #vl-projsec .vl-phase {
+    display: flex !important;
+    flex-direction: column !important;
+
+    min-width: 0 !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 11px 10px !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-top: 3px solid rgba(255, 255, 255, 0.10) !important;
+    border-radius: 10px !important;
+
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Upcoming recedes without disappearing. */
+#vl-hero #vl-projsec .vl-phase-upcoming {
+    border-style: dashed !important;
+    border-top-style: solid !important;
+}
+
+/* The current phase is the only lit box in the strip. */
+#vl-hero #vl-projsec .vl-phase-inprogress {
+    border-color: rgba(255, 154, 31, 0.55) !important;
+    border-top-color: #ff9a1f !important;
+
+    background: rgba(255, 154, 31, 0.10) !important;
+}
+
+#vl-hero #vl-projsec .vl-phase-p {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: rgba(255, 255, 255, 0.48) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.48) !important;
+
+    font-size: 9.5px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.10em !important;
+    text-transform: uppercase !important;
+
+    line-height: 1.3 !important;
+}
+
+#vl-hero #vl-projsec .vl-phase-inprogress .vl-phase-p {
+    color: #ff9a1f !important;
+    -webkit-text-fill-color: #ff9a1f !important;
+}
+
+#vl-hero #vl-projsec .vl-phase-n {
+    display: block !important;
+
+    margin: 5px 0 0 0 !important;
+
+    color: rgba(255, 255, 255, 0.62) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.62) !important;
+
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.35 !important;
+
+    overflow-wrap: break-word !important;
+}
+
+#vl-hero #vl-projsec .vl-phase-inprogress .vl-phase-n {
+    color: rgba(255, 255, 255, 0.92) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+#vl-hero #vl-projsec .vl-phase-ps {
+    display: block !important;
+
+    margin: auto 0 0 0 !important;
+    padding: 12px 0 0 0 !important;
+}
+
+
+/* ---- state pill ---- */
+
+/* Each state carries its own fill, border style and weight, not
+   only a hue, so the three stay tellable apart in greyscale. */
+#vl-hero #vl-projsec .vl-pst {
+    display: inline-block !important;
+
+    margin: 0 !important;
+    padding: 2px 8px !important;
+
+    border: 1px solid transparent !important;
+    border-radius: 999px !important;
+
+    font-size: 9.5px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+
+    white-space: nowrap !important;
+}
+
+#vl-hero #vl-projsec .vl-pst-closed {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+
+    color: rgba(255, 255, 255, 0.55) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+#vl-hero #vl-projsec .vl-pst-inprogress {
+    background: #ff9a1f !important;
+    border-color: #ff9a1f !important;
+
+    color: #1a1206 !important;
+    -webkit-text-fill-color: #1a1206 !important;
+}
+
+#vl-hero #vl-projsec .vl-pst-upcoming {
+    background: transparent !important;
+    border-color: rgba(140, 190, 236, 0.32) !important;
+
+    color: #8cbeec !important;
+    -webkit-text-fill-color: #8cbeec !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* ---- show all / show fewer ---- */
+
+/* A real <button>, so it is focusable and answers Enter and Space
+   without this file reimplementing either. Rendered only when
+   something is actually collapsible. */
+#vl-hero #vl-projsec .vl-projsec-toggle {
+    display: inline-block !important;
+
+    margin: 14px 0 0 0 !important;
+    padding: 7px 16px !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 999px !important;
+
+    background: transparent !important;
+
+    color: rgba(255, 255, 255, 0.68) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.68) !important;
+
+    font-family: inherit !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.06em !important;
+
+    cursor: pointer !important;
+
+    transition:
+        border-color 160ms ease,
+        color 160ms ease !important;
+}
+
+#vl-hero #vl-projsec .vl-projsec-toggle:hover {
+    border-color: rgba(255, 154, 31, 0.55) !important;
+
+    color: #ff9a1f !important;
+    -webkit-text-fill-color: #ff9a1f !important;
+}
+
+#vl-hero #vl-projsec .vl-projsec-toggle:focus-visible {
+    outline: 2px solid #ff9a1f !important;
+    outline-offset: 2px !important;
+}
+
+
+/* =========================================================
    TABLET
    ========================================================= */
 
@@ -1180,6 +1574,23 @@
     #vl-hero #vl-hero-body .vl-subhead {
         font-size: 16px !important;
     }
+
+    #vl-hero #vl-projsec {
+        margin-top: 28px !important;
+    }
+
+    #vl-hero #vl-projsec .vl-proj {
+        padding: 15px !important;
+    }
+
+    #vl-hero #vl-projsec .vl-proj-name {
+        font-size: 16px !important;
+    }
+
+    /* The meta line stops sharing the header row with the name. */
+    #vl-hero #vl-projsec .vl-proj-meta {
+        white-space: normal !important;
+    }
 }
 
 
@@ -1199,6 +1610,16 @@
             10px
             28px
             10px !important;
+    }
+
+    /* Below 420px auto-fit's 112px track plus the gap can still fit
+       two columns in a viewport that has no room for them. Pin it. */
+    #vl-hero #vl-projsec .vl-phases {
+        grid-template-columns: 1fr !important;
+    }
+
+    #vl-hero #vl-projsec .vl-proj {
+        padding: 13px !important;
     }
 }
 
