@@ -56,7 +56,7 @@
       desc: 'Capture the details',
       title: 'Step 1 \u2014 ' + accent('General Info Capture'),
       lead: 'We open the matter and capture exactly who and what we\u2019re representing.',
-      sub: 'Taxpayer identity, entity structure, license type, tax years, and every notice received \u2014 enough to confirm this is a matter I can take. <b>This is the phase that needs you.</b>',
+      sub: 'Taxpayer identity, entity structure, license type, tax years, and every notice received \u2014 enough to confirm this is a matter I can take. <b>This is the step that needs you.</b>',
       we: [
         'Your engagement is logged and a matter is opened.',
         'Entity structure and plant-touching status are mapped.',
@@ -97,18 +97,18 @@
       desc: 'Collect and set up',
       title: 'Step 3 \u2014 ' + accent('Asset Collection &amp; Setup'),
       lead: 'We assemble the evidence base and put the authorization on file.',
-      sub: 'Returns, books, transcripts, and the executed Form 2848 \u2014 reconciled and organized into the working file. This phase is internal.',
+      sub: 'Returns, books, transcripts, and the executed Form 2848 \u2014 reconciled and organized into the working file. This step is internal.',
       we: [
         'The signed <b>Form 2848</b> is filed and transcripts are pulled.',
         'Everything you sent in Step 1 is reconciled against the locked scope.',
         'Workpapers, schedules, and the COGS model are set up against your chart of accounts.'
       ],
       you: [
-        '<b>Nothing.</b> This phase runs entirely on what you already sent.',
+        '<b>Nothing.</b> This step runs entirely on what you already sent.',
         'If a record is missing, unreadable, or contradicts another, I assign a flow and notify you \u2014 the team checks in until it is resolved.',
         'No news here means the assembly is going fine.'
       ],
-      close: 'If this phase runs long, it is usually because one record is still outstanding. We will chase it down with you rather than let it sit.'
+      close: 'If this step runs long, it is usually because one record is still outstanding. We will chase it down with you rather than let it sit.'
     },
     4: {
       pct: 57,
@@ -117,7 +117,7 @@
       desc: 'Build the position',
       title: 'Step 4 \u2014 ' + accent('Drafting &amp; Client Review'),
       lead: 'We build the workpaper and the disclosure. <b>You only need to look at it if I ask you to.</b>',
-      sub: 'COGS allocation, the \u00a7471 position, and the disclosure that protects it \u2014 reviewed before anything carries my signature. Most of this phase runs without you.',
+      sub: 'COGS allocation, the \u00a7471 position, and the disclosure that protects it \u2014 reviewed before anything carries my signature. Most of this step runs without you.',
       we: [
         'COGS / \u00a7471 workpaper assembled against the records you provided.',
         '<b>Form 8275-R disclosure drafted</b> for any contrary position. This is not optional.',
@@ -894,9 +894,15 @@
     }
 
     el.innerHTML =
-      '<h2 class="vl-projsec-title">' +
-        (projects.length > 1 ? 'Your Engagements' : 'Your Engagement') +
-      '</h2>' +
+      /* R170: the section heading names a role, not the noun. Once p29
+         unified on "engagement", this h2 and .vl-rail-title read the
+         same words on the same screen. The rail IS the list of
+         engagements and keeps that name; this section says where the
+         selected one stands, so it says so. No singular/plural branch:
+         "Your progress" is true for one engagement or several, and
+         unlike a second "Your Engagements" it does not imply a second
+         list. Do not rename the class - the selector is load-bearing. */
+      '<h2 class="vl-projsec-title">Your progress</h2>' +
       /* Always visible, and deliberately not a title tooltip: this is the
          sentence that answers "where did my engagement go?", and a tooltip
          is invisible on touch and unreachable by keyboard.
