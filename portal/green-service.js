@@ -804,15 +804,16 @@
     var out = '<div class="vl-phases">';
     for (var n = 1; n <= 7; n++) {
       var st = states[n - 1];
-      /* .label, not .short. The strip is seven fixed columns since p31,
-         and .short is the prose form ("Project Fit & Scope Confirmation")
-         that never fitted one. .label is the sidebar's own short form,
+      /* .label, not .short. p31 dropped the strip's auto-fit floor to
+         96px to buy seven columns at the live width, and .short is the
+         prose form ("Project Fit & Scope Confirmation") that no column
+         that narrow ever fitted. .label is the sidebar's own short form,
          already sized for a 210px column. The prose name stays reachable
          on title= rather than being truncated or restated as a third
          list of step names. */
       out += '<div class="vl-phase vl-phase-' + st + '"' +
           ' title="' + esc(STEPS[n].short) + '">' +
-          '<div class="vl-phase-p">Phase ' + esc(n) + '</div>' +
+          '<div class="vl-phase-p">Step ' + esc(n) + '</div>' +
           '<div class="vl-phase-n">' + esc(STEPS[n].label) + '</div>' +
           '<div class="vl-phase-ps"><span class="vl-pst vl-pst-' + st + '">' +
             esc(PHASE_LABEL[st]) + '</span></div>' +
@@ -855,7 +856,7 @@
       var meta = [];
       if (!phn) meta.push('Not started');
       else if (phn >= 8) meta.push('Complete');
-      else meta.push('Phase ' + phn + ' of 7');
+      else meta.push('Step ' + phn + ' of 7');
       var due = shortDate(p.due);
       if (due) meta.push(due);
       var metaText = meta.join(' · ');
@@ -894,12 +895,22 @@
 
     el.innerHTML =
       '<h2 class="vl-projsec-title">' +
-        (projects.length > 1 ? 'Your Projects' : 'Your Project') +
+        (projects.length > 1 ? 'Your Engagements' : 'Your Engagement') +
       '</h2>' +
       /* Always visible, and deliberately not a title tooltip: this is the
-         sentence that answers "where did my project go?", and a tooltip is
-         invisible on touch and unreachable by keyboard. */
-      '<p class="vl-projsec-note">Completed projects are archived and drop off this list.</p>' +
+         sentence that answers "where did my engagement go?", and a tooltip
+         is invisible on touch and unreachable by keyboard.
+
+         p29 rewrote it. The old wording - "Completed projects are archived
+         and drop off this list" - was written for p28, where the section
+         stacked every engagement and collapsed the completed ones. It read
+         as an explanation of that collapse. Since p31 the section shows one
+         engagement at a time and the collapse follows selection, not
+         completion, so the sentence has to describe the only disappearance
+         that is still real: the upstream archive. One line, no second
+         sentence - a reader who has not lost anything should not have to
+         read a paragraph about it. */
+      '<p class="vl-projsec-note">Completed engagements are archived and stop appearing here.</p>' +
       '<div class="vl-projsec-list">' + blocks + '</div>' +
       toggle;
     el.removeAttribute('hidden');
