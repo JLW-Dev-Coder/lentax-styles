@@ -205,6 +205,8 @@ foreach ($loader in @(".\js\lentax-install-default.js", ".\js\lentax-install-coa
 }
 ```
 
+For the portal bundles (`portal/green-service.js`, `portal/client-dashboard.js`), also run the committed render harness — `node test/portal-harness.mjs` — which boots each file against a DOM shim and asserts what it renders; it is not a substitute for confirming a selector in a live browser.
+
 If ANY check fails, do not commit. Either fix the issue and re-run, or STOP and flag in the report.
 
 ---
