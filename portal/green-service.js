@@ -694,6 +694,26 @@
       var known = (phn === Math.floor(phn) && phn >= 1 && phn <= 7 && !!STEPS[phn]);
 
       var meta = [];
+
+      /* R173: the company, FIRST, because it qualifies the service name
+         directly above it and nothing else on the card does. A client
+         holding engagements under two of his own entities read two cards
+         that differed only by a due date - the rail said what each
+         engagement was and never whose it was.
+
+         Into the existing meta register rather than a line of its own:
+         the card is not restructured, and the company reads as one more
+         fact about the engagement alongside its step and its date. The
+         whole joined string goes through esc() below, as it already did.
+
+         Absent means ABSENT. The endpoint omits the key when it could not
+         resolve a company - an order can link a contact rather than a
+         company - so nothing is pushed, the separator does not appear,
+         and the line is exactly what it was before. No placeholder, no
+         em dash, no "Unknown": a card that says nothing about its company
+         is correct here, and one that says "Unknown" is not. */
+      if (p.company) meta.push(p.company);
+
       if (!ph) meta.push('Not started');
       else if (ph >= 8) meta.push('Complete');
       else meta.push(known ? 'Step ' + phn + ' of 7' : 'Not started');
@@ -854,6 +874,19 @@
       var svc = p.service || ('Engagement ' + (i + 1));
 
       var meta = [];
+
+      /* R173: the same value in the same register as the rail card's, and
+         deliberately built the same way - the rail and this section are two
+         renderings of one array, and a company shown in one and not the
+         other would be the disagreement p28 exists to avoid.
+
+         metaText feeds the aria-label below as well as the visible line, so
+         a screen-reader user is handed the same disambiguation a sighted one
+         gets, from one string rather than two that could drift apart. Both
+         are escaped through esc(). Absent renders nothing, exactly as in the
+         rail. */
+      if (p.company) meta.push(p.company);
+
       if (!phn) meta.push('Not started');
       else if (phn >= 8) meta.push('Complete');
       else meta.push('Step ' + phn + ' of 7');

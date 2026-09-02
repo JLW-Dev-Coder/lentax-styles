@@ -1079,7 +1079,29 @@
 
     width: 100% !important;
 
-    margin: 40px 0 0 0 !important;
+    /* R173: a TRAILING margin, where there was none. The "Show all N
+       engagements" toggle is the last thing in this section and sat hard
+       against "What's open on your matter" below it, so the toggle read as
+       the heading's control rather than as this section's own - two
+       sections with nothing between them read as one.
+
+       40px, the value already on the leading edge of this same rule. The
+       section is then separated from what follows it by exactly what
+       separates it from what precedes it, which is the reason to reuse the
+       number rather than pick a new one: the gap above and the gap below
+       are the same gap, and a second value would assert a difference that
+       is not there.
+
+       ON THIS RULE, NOT ON #vld. The board below belongs to
+       client-dashboard.css, which is deliberately !important-free and
+       scoped; reaching into it from this file would couple the two
+       bundles in exactly the way both were written to avoid, and a later
+       reader would have to know about this file to explain a margin
+       there. A section owns the space it holds open after itself.
+
+       The tablet breakpoint's margin-top: 28px still wins over this
+       shorthand - it is later in the file - and only touches the top. */
+    margin: 40px 0 40px 0 !important;
     padding: 0 !important;
 }
 

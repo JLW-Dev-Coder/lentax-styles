@@ -459,6 +459,165 @@ async function vocabulary() {
 }
 
 /* ───────────────────────────────────────────────────────────────────────
+   SECTION 4b — THE COMPANY NAME  (R173, p33 Part B)
+
+   A client holding engagements across two of his own companies read two
+   near-identical cards: the rail and the progress section named only the
+   service, so "Green Service" under one entity and "Green Service" under
+   another were told apart by a due date, if at all. `company` is an
+   OPTIONAL field on each project in the phase payload, and these assert
+   the three things that can go wrong with an optional field on a
+   client-facing surface:
+
+     * PRESENT — it reaches BOTH surfaces, and the block's aria-label, so
+       a screen-reader user gets the same disambiguation a sighted one
+       does. One surface without the other is the disagreement the single
+       activeProject exists to prevent.
+     * ABSENT — nothing renders. Not a placeholder, not an em dash, not
+       "Unknown", and no orphaned separator. Proven by DIFFERENCE rather
+       than by pattern: the absent render must be byte-identical to the
+       present one with the company and its separator removed, which is
+       the only form of "shifts no layout" a DOM shim can actually assert.
+     * HOSTILE — the value is payload-derived and reaches innerHTML. It
+       must be inert in the visible text AND inside the aria-label
+       attribute, which is the easier of the two to get wrong: an
+       unescaped value there breaks out of the attribute rather than out
+       of the element.
+   ─────────────────────────────────────────────────────────────────────── */
+
+async function companyName() {
+  const CO = 'Northgate Holdings LLC';
+  const withCo = [{ service: 'Green Service', phase: 3, due: '2026-10-01', company: CO }];
+  const noCo = [{ service: 'Green Service', phase: 3, due: '2026-10-01' }];
+
+  const w = await boot({ projects: withCo });
+  const n = await boot({ projects: noCo });
+
+  /* --- present, both surfaces --------------------------------------- */
+
+  ok('CO1 present: the rail card meta names the company, then the step and the date',
+    /vl-pcard-meta">Northgate Holdings LLC · Step 3 of 7 · due Oct 1</.test(w.rail.innerHTML),
+    (w.rail.innerHTML.match(/vl-pcard-meta">[^<]*/) || ['(no meta)'])[0]);
+
+  ok('CO2 present: the progress block meta reads the same register',
+    /vl-proj-meta">Northgate Holdings LLC · Step 3 of 7 · due Oct 1</.test(w.sec.innerHTML),
+    (w.sec.innerHTML.match(/vl-proj-meta">[^<]*/) || ['(no meta)'])[0]);
+
+  /* The two surfaces must not merely both mention it — they must say the
+     same thing, because they are two renderings of one array. */
+  const railMeta = (w.rail.innerHTML.match(/vl-pcard-meta">([^<]*)</) || [])[1];
+  const secMeta = (w.sec.innerHTML.match(/vl-proj-meta">([^<]*)</) || [])[1];
+  ok('CO3 present: rail and section carry the identical meta string',
+    !!railMeta && railMeta === secMeta, JSON.stringify([railMeta, secMeta]));
+
+  const label = w.sec.querySelector('.vl-proj').getAttribute('aria-label');
+  ok('CO4 present: aria-label carries the company alongside the service and the step',
+    label === 'Green Service — Northgate Holdings LLC · Step 3 of 7 · due Oct 1',
+    JSON.stringify(label));
+
+  /* --- absent: nothing renders, and nothing moves -------------------- */
+
+  ok('CO5 absent: the rail meta is the step and the date alone, with no leading separator',
+    /vl-pcard-meta">Step 3 of 7 · due Oct 1</.test(n.rail.innerHTML),
+    (n.rail.innerHTML.match(/vl-pcard-meta">[^<]*/) || ['(no meta)'])[0]);
+
+  ok('CO6 absent: the progress block meta likewise',
+    /vl-proj-meta">Step 3 of 7 · due Oct 1</.test(n.sec.innerHTML),
+    (n.sec.innerHTML.match(/vl-proj-meta">[^<]*/) || ['(no meta)'])[0]);
+
+  ok('CO7 absent: aria-label is the service and the step, no empty segment',
+    n.sec.querySelector('.vl-proj').getAttribute('aria-label') === 'Green Service — Step 3 of 7 · due Oct 1',
+    JSON.stringify(n.sec.querySelector('.vl-proj').getAttribute('aria-label')));
+
+  /* THE LAYOUT ASSERTION, and the reason it is a difference and not a
+     pattern. Removing the company and its separator from the present
+     render must reproduce the absent render EXACTLY — same elements,
+     same classes, same attributes, same order. Anything the optional
+     field added to the STRUCTURE rather than to that one string shows up
+     here as a mismatch, and no list of "must not contain" patterns could
+     have caught it. */
+  ok('CO8 absent: the rail differs from the present case ONLY by the company and its separator',
+    w.rail.innerHTML.split(CO + ' · ').join('') === n.rail.innerHTML,
+    'structural difference beyond the meta string');
+
+  ok('CO9 absent: the progress section likewise',
+    w.sec.innerHTML.split(CO + ' · ').join('') === n.sec.innerHTML,
+    'structural difference beyond the meta string');
+
+  ok('CO10 absent: no placeholder anywhere — no "Unknown", no orphaned separator',
+    !/Unknown/i.test(n.rail.innerHTML + n.sec.innerHTML)
+    && !/">\s*·/.test(n.rail.innerHTML + n.sec.innerHTML)
+    && !/·\s*·/.test(n.rail.innerHTML + n.sec.innerHTML),
+    'placeholder or empty segment rendered');
+
+  /* --- the two-company case this whole change exists for ------------- */
+
+  /* Two engagements under one company and a third under another, the
+     shape that made the cards unreadable. Expanded, so all three blocks
+     render and the section can be read against the rail. */
+  const MIX = [
+    { service: 'Green Service', phase: 3, due: '2026-10-01', company: 'Northgate Holdings LLC' },
+    { service: 'Green Service', phase: 1, due: '2026-11-02', company: 'Northgate Holdings LLC' },
+    { service: 'Green Service', phase: 5, due: '2026-12-03', company: 'Redmond Partners LP' }
+  ];
+  const m = await boot({ projects: MIX });
+  m.sec.querySelector('.vl-projsec-toggle').dispatch('click');
+
+  const railMetas = (m.rail.innerHTML.match(/vl-pcard-meta">([^<]*)</g) || []);
+  ok('CO11 two companies: three rail cards, each naming its own company',
+    railMetas.length === 3
+    && railMetas.filter((x) => /Northgate Holdings LLC/.test(x)).length === 2
+    && railMetas.filter((x) => /Redmond Partners LP/.test(x)).length === 1,
+    JSON.stringify(railMetas));
+
+  ok('CO12 two companies: the two sharing one carry the IDENTICAL company string',
+    (railMetas[0].match(/">([^·]*)·/) || [])[1] === (railMetas[1].match(/">([^·]*)·/) || [])[1],
+    JSON.stringify(railMetas.slice(0, 2)));
+
+  const secBlocks = m.sec.innerHTML.match(/vl-proj-meta">([^<]*)</g) || [];
+  ok('CO13 two companies: the progress section names each block’s own company too',
+    secBlocks.length === 3
+    && secBlocks.filter((x) => /Northgate Holdings LLC/.test(x)).length === 2
+    && secBlocks.filter((x) => /Redmond Partners LP/.test(x)).length === 1,
+    JSON.stringify(secBlocks));
+
+  /* --- hostile ------------------------------------------------------- */
+
+  /* Payload-derived and bound for innerHTML. esc() is the only thing
+     between it and the page. */
+  const XSS = '<img src=x onerror=alert(1)>';
+  const ESCAPED = '&lt;img src=x onerror=alert(1)&gt;';
+  const x = await boot({ projects: [{ service: 'Green Service', phase: 3, due: '2026-10-01', company: XSS }] });
+
+  for (const [where, html] of [['rail', x.rail.innerHTML], ['progress section', x.sec.innerHTML]]) {
+    ok('CO14 hostile: no raw <img reaches the ' + where,
+      !/<img/i.test(html), (html.match(/.{0,50}<img.{0,30}/i) || [''])[0]);
+    ok('CO15 hostile: the ' + where + ' carries it as escaped text',
+      html.includes(ESCAPED), (html.match(/vl-p[\w-]*meta">[^<]*/) || ['(no meta)'])[0]);
+  }
+
+  /* The shim builds its element list by parsing the HTML the file wrote,
+     so an <img> that survived escaping would be a real node here. */
+  ok('CO16 hostile: no IMG element exists in either surface',
+    x.rail.querySelectorAll('img').length === 0 && x.sec.querySelectorAll('img').length === 0,
+    'an img node was parsed out of the rendered markup');
+
+  /* THE ATTRIBUTE IS THE HARDER HALF. An unescaped value here needs no
+     tag at all to break out — a bare " ends the attribute and everything
+     after it is parsed as markup. The shim's attribute regex stops at the
+     first unescaped quote exactly as a browser does, so an aria-label
+     that comes back whole and escaped is evidence the value could not
+     have escaped its own attribute. */
+  const xLabel = x.sec.querySelector('.vl-proj').getAttribute('aria-label');
+  ok('CO17 hostile: aria-label carries the escaped value whole',
+    xLabel === 'Green Service — ' + ESCAPED + ' · Step 3 of 7 · due Oct 1',
+    JSON.stringify(xLabel));
+  ok('CO18 hostile: aria-label contains no raw < or "',
+    typeof xLabel === 'string' && !/[<"]/.test(xLabel), JSON.stringify(xLabel));
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
    SECTION 5 — PART A'S FIVE OUTCOMES  (portal/client-dashboard.js)
 
    The defect p30 Part A fixes: #vld shipped hidden and was revealed only
@@ -669,6 +828,7 @@ async function partAOutcomes() {
 const SUITES = [
   ['p31 render states', p31States],
   ['vocabulary', vocabulary],
+  ['company name', companyName],
   ["part A's five outcomes", partAOutcomes]
 ];
 
