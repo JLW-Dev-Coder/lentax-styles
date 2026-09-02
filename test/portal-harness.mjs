@@ -2,11 +2,14 @@
 
 /* ═══════════════════════════════════════════════════════════════════════
    PORTAL RENDER HARNESS — portal/green-service.js
+                          — portal/client-dashboard.js
 
    Source:      p31 (R168) render states; committed at p30-amendment/R171
-   Scope:       Boots the real green-service.js IIFE against a hand-rolled
-                DOM shim and asserts what it renders in each state.
-   Namespace:   #vl-hero and everything the file builds inside it.
+                p30 Part A outcomes added at R172
+   Scope:       Boots the real portal IIFEs against a hand-rolled DOM shim
+                and asserts what each renders in each state.
+   Namespace:   #vl-hero and everything green-service builds inside it;
+                #vld and #vld-secs for the dashboard.
    Depends on:  node only. No npm install, no test runner, no package.json.
 
    WHY THIS FILE IS IN THE REPO
@@ -85,6 +88,25 @@ function createDom() {
     }
 
     _classes() { return (this.attributes['class'] || '').split(/\s+/).filter(Boolean); }
+
+    /* client-dashboard.js reads and writes both of these; green-service.js
+       uses set/removeAttribute instead and is unaffected. Both are backed
+       by the ATTRIBUTE rather than by a private field on purpose: in the
+       browser `el.hidden = false` clears the attribute, so a plain property
+       would let a test read hidden === false on a node the parser had
+       marked hidden and nothing had ever corrected. */
+    get hidden() { return Object.prototype.hasOwnProperty.call(this.attributes, 'hidden'); }
+    set hidden(v) { if (v) this.attributes.hidden = ''; else delete this.attributes.hidden; }
+
+    get dataset() {
+      const self = this;
+      const key = (k) => 'data-' + String(k).replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
+      return new Proxy({}, {
+        get: (_, k) => self.attributes[key(k)],
+        set: (_, k, v) => { self.attributes[key(k)] = String(v); return true; },
+        has: (_, k) => Object.prototype.hasOwnProperty.call(self.attributes, key(k))
+      });
+    }
 
     getAttribute(n) { return Object.prototype.hasOwnProperty.call(this.attributes, n) ? this.attributes[n] : null; }
     setAttribute(n, v) { this.attributes[n] = String(v); }
@@ -437,23 +459,217 @@ async function vocabulary() {
 }
 
 /* ───────────────────────────────────────────────────────────────────────
-   SECTION 5 — PART A'S FIVE OUTCOMES
+   SECTION 5 — PART A'S FIVE OUTCOMES  (portal/client-dashboard.js)
 
-   NOT YET WRITTEN. The p30 amendment asked for these alongside Part A's
-   own work, but Part A's spec has not reached this session, and five
-   invented outcomes would be worse than none: they would read as
-   coverage in every later round.
+   The defect p30 Part A fixes: #vld shipped hidden and was revealed only
+   on the fetch's success path. Measured cold that fetch took 4,608 ms,
+   and once 7,948 ms, so the page ended after the hero with an empty gap
+   for the whole window — and all four failure paths left it hidden for
+   good, explained only in a console no client reads.
 
-   Add them here as a fifth function, registered in SUITES below.
+   Every assertion below is about ONE invariant, in two halves:
+
+     * never an empty visible region — #vld carries readable text from
+       before the request is issued onwards, and
+     * never hidden after the fetch settles — no path may put the
+       hidden attribute back.
+
+   WHAT THE FETCH-TIME SNAPSHOT IS FOR. The stub records what #vld looked
+   like at the instant fetch() was called. That is the only way to prove
+   the reveal happens BEFORE the request rather than after it, which is
+   the entire fix; asserting the settled state alone would pass a build
+   that still revealed only on success.
+
+   WHAT THE ABORT OUTCOME DOES AND DOES NOT PROVE. It rejects with a real
+   AbortError, so it drives the same .catch branch the 8000 ms timeout
+   drives, and proves what the client is left looking at. It does NOT
+   prove the timer fires: that is eight seconds of wall clock, and a shim
+   that compressed it would be asserting against a clock it invented. The
+   timer's existence is checked separately, against the source.
    ─────────────────────────────────────────────────────────────────────── */
 
-const PART_A_OUTCOMES_PENDING = 5;
+const DASH_TARGET = path.join(HERE, '..', 'portal', 'client-dashboard.js');
+const DASH_SRC = fs.readFileSync(DASH_TARGET, 'utf8');
+const DASH_MARKUP = fs.readFileSync(
+  path.join(HERE, '..', 'portal', 'client-dashboard.markup.html'), 'utf8');
+
+/* The five outcomes, by name. An unrecognised one throws rather than
+   quietly taking the success path: a mistyped outcome that passed would
+   be a green test for a state nobody ran. */
+function dashFetch(outcome, snap) {
+  return function () {
+    snap();
+    if (outcome === 'abort') {
+      const e = new Error('The operation was aborted.');
+      e.name = 'AbortError';
+      return Promise.reject(e);
+    }
+    if (outcome === 'status') {
+      return Promise.resolve({ ok: false, status: 503, statusText: 'Service Unavailable' });
+    }
+    if (outcome !== 'success' && outcome !== 'envelope') {
+      throw new Error('harness: unknown Part A outcome "' + outcome + '"');
+    }
+    const body = (outcome === 'envelope')
+      ? { v: 7, generated_at: null, phase: null, error: 'unresolved_client' }
+      : {
+        v: 7, generated_at: '2026-09-01T12:00:00Z', stale: false,
+        phase: { current: 6, total: 7, label: 'Review' },
+        cards: [{ id: 'deadlines', label: 'Deadlines', count: 1, urgency_date: '2026-09-30' }],
+        rows: {
+          deadlines: [{
+            task_id: 't1', label: 'File the extension', label_source: 'name',
+            due: '2026-09-30', owner: 'coordinator', status: 'in progress'
+          }]
+        }
+      };
+    return Promise.resolve({ ok: true, status: 200, statusText: 'OK', json: () => Promise.resolve(body) });
+  };
+}
+
+const flat = (el) => (el ? el.innerHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() : '');
+
+/* Same shim, and the same "run the shipped bytes unmodified" rule as
+   boot(). The scaffold is the committed markup FILE rather than a copy of
+   it, so a fragment edit that broke the container shows up here.
+
+   THE ONE THING THIS SHIM DOES NOT REACH: querySelectorAll is scoped to
+   nodes parsed from the element it is called on, and #vld is parsed from
+   #vl-hero — so render()'s root.querySelector('.stale') finds nothing
+   here and the saved-copy stamp is never exercised. That is R152's
+   surface, not Part A's, and no assertion below depends on it. */
+function bootDash(outcome, opts = {}) {
+  const dom = createDom();
+  const { document, root } = dom;
+
+  root.attributes['data-client-uid'] = opts.uid !== undefined ? opts.uid : 'uid-test';
+  root.innerHTML = DASH_MARKUP;
+
+  const seen = [];
+  const snap = () => {
+    const v = document.getElementById('vld');
+    seen.push({
+      hidden: !!(v && v.hidden),
+      state: v && v.dataset.state,
+      text: flat(document.getElementById('vld-secs'))
+    });
+  };
+
+  const warns = [];
+  const sandbox = {
+    document,
+    console: { warn: (...a) => warns.push(a.join(' ')), log: () => {}, error: () => {} },
+    setTimeout, clearTimeout,
+    AbortController,
+    Promise, Date, Number, Math, JSON, String, Array, Object, RegExp, Error,
+    encodeURIComponent, parseInt, parseFloat, isNaN,
+    fetch: dashFetch(outcome, snap)
+  };
+  sandbox.window = sandbox;
+  sandbox.globalThis = sandbox;
+  vm.createContext(sandbox);
+  vm.runInContext(DASH_SRC, sandbox, { filename: 'client-dashboard.js' });
+
+  return new Promise((res) => setTimeout(() => {
+    const vld = document.getElementById('vld');
+    res({
+      document, vld, warns,
+      atFetch: seen[0] || null,
+      hidden: !!(vld && vld.hidden),
+      state: vld && vld.dataset.state,
+      text: flat(document.getElementById('vld-secs'))
+    });
+  }, 0));
+}
+
+/* Copy asserted by substring, not by equality: the wording is allowed to
+   be edited, the promise it makes is not. */
+const LOADING_COPY = /Loading what.s open on your matter/;
+const FAILED_COPY = /We couldn.t load this right now/;
+
+async function partAOutcomes() {
+  const RUNS = {};
+  for (const outcome of ['success', 'no-uid', 'status', 'envelope', 'abort']) {
+    RUNS[outcome] = (outcome === 'no-uid')
+      ? await bootDash('success', { uid: '' })
+      : await bootDash(outcome);
+  }
+
+  /* The invariant, asserted identically for all five before anything
+     outcome-specific is looked at. */
+  for (const [outcome, r] of Object.entries(RUNS)) {
+    ok('A[' + outcome + ']: #vld is not hidden once the fetch has settled', !r.hidden, 'hidden');
+    ok('A[' + outcome + ']: #vld is not an empty visible region', r.text.length > 0, '(empty)');
+  }
+
+  /* 1 — SUCCESS. The placeholder is up before the request goes out, and
+     the board replaces it; the loading line must not survive the swap. */
+  const s = RUNS.success;
+  ok('A[success]: #vld was already revealed when fetch was called',
+    !!s.atFetch && s.atFetch.hidden === false, JSON.stringify(s.atFetch));
+  ok('A[success]: the placeholder was the visible text at fetch time',
+    !!s.atFetch && LOADING_COPY.test(s.atFetch.text), s.atFetch && s.atFetch.text);
+  ok('A[success]: data-state was "loading" at fetch time',
+    !!s.atFetch && s.atFetch.state === 'loading', s.atFetch && s.atFetch.state);
+  ok('A[success]: the board replaced the placeholder', s.state === 'full', s.state);
+  ok('A[success]: no loading copy left on screen', !LOADING_COPY.test(s.text), s.text.slice(0, 120));
+  ok('A[success]: the row rendered', /File the extension/.test(s.text), s.text.slice(0, 120));
+
+  /* 2 — NO CLIENT UID. fetch is never reached, so there is no snapshot:
+     the reveal has to have happened before the uid was even read. */
+  const u = RUNS['no-uid'];
+  ok('A[no-uid]: fetch was never issued', u.atFetch === null, JSON.stringify(u.atFetch));
+  ok('A[no-uid]: the failure message is visible', FAILED_COPY.test(u.text), u.text);
+  ok('A[no-uid]: data-state is "error"', u.state === 'error', u.state);
+  ok('A[no-uid]: the diagnostic warn is still emitted',
+    u.warns.some((w) => /no client uid/.test(w)), JSON.stringify(u.warns));
+
+  /* 3 — NON-OK STATUS. A 503 RESOLVES the promise, so the catch never
+     fires; this is the path that used to leave the fragment hidden with
+     the status in the console and nothing at all on the page. */
+  const n = RUNS.status;
+  ok('A[status]: the placeholder was up before the 503 came back',
+    !!n.atFetch && n.atFetch.hidden === false && LOADING_COPY.test(n.atFetch.text),
+    JSON.stringify(n.atFetch));
+  ok('A[status]: the failure message is visible', FAILED_COPY.test(n.text), n.text);
+  ok('A[status]: data-state is "error"', n.state === 'error', n.state);
+  ok('A[status]: the status is warned, never shown',
+    n.warns.some((w) => /returned 503/.test(w)) && !/503/.test(n.text), JSON.stringify(n.warns));
+
+  /* 4 — ERROR ENVELOPE. A 200 carrying an error key. */
+  const e = RUNS.envelope;
+  ok('A[envelope]: the failure message is visible', FAILED_COPY.test(e.text), e.text);
+  ok('A[envelope]: data-state is "error"', e.state === 'error', e.state);
+  ok('A[envelope]: the envelope is warned without its value',
+    e.warns.some((w) => /reported an error envelope/.test(w))
+    && !e.warns.some((w) => /unresolved_client/.test(w)), JSON.stringify(e.warns));
+  ok('A[envelope]: the error code never reaches the client',
+    !/unresolved_client/.test(e.text), e.text);
+
+  /* 5 — ABORT. See the note above on what this does and does not prove. */
+  const a = RUNS.abort;
+  ok('A[abort]: the failure message is visible', FAILED_COPY.test(a.text), a.text);
+  ok('A[abort]: data-state is "error"', a.state === 'error', a.state);
+  ok('A[abort]: the error NAME is warned and nothing else',
+    a.warns.some((w) => /load failed: AbortError/.test(w)), JSON.stringify(a.warns));
+  ok('A[abort]: the source still arms an 8000 ms abort',
+    /ctl\.abort\(\);?\s*\},\s*8000\)/.test(DASH_SRC),
+    'the 8000 ms AbortController timer is gone or was rewritten');
+
+  /* No path may put #vld back. Checked against the BYTES as well as the
+     behaviour: a re-hide that ran before the fetch settled would satisfy
+     every assertion above and still ship the defect. */
+  ok('A: nothing in the file sets .hidden back to true',
+    !/\.hidden\s*=\s*(?:true|1)\b/.test(DASH_SRC),
+    (DASH_SRC.match(/.{0,60}\.hidden\s*=\s*(?:true|1)\b.{0,40}/) || [''])[0]);
+}
 
 /* ─── runner ─────────────────────────────────────────────────────────── */
 
 const SUITES = [
   ['p31 render states', p31States],
-  ['vocabulary', vocabulary]
+  ['vocabulary', vocabulary],
+  ["part A's five outcomes", partAOutcomes]
 ];
 
 const RED = '\x1b[31m', GREEN = '\x1b[32m', DIM = '\x1b[2m', OFF = '\x1b[0m';
@@ -474,10 +690,8 @@ for (const name of passed) console.log('  ' + GREEN + 'ok  ' + OFF + name);
 for (const f of failed) console.log('  ' + RED + 'FAIL' + OFF + ' ' + f.name + (f.detail ? '\n       got: ' + f.detail : ''));
 
 console.log('');
-console.log('target: ' + path.relative(process.cwd(), TARGET));
-if (PART_A_OUTCOMES_PENDING) {
-  console.log(DIM + 'note:   ' + PART_A_OUTCOMES_PENDING + " Part A outcomes are NOT covered — see SECTION 5." + OFF);
-}
+console.log('targets: ' + path.relative(process.cwd(), TARGET));
+console.log('         ' + path.relative(process.cwd(), DASH_TARGET));
 if (failed.length) {
   console.log(RED + 'FAILED ' + failed.length + ' of ' + (passed.length + failed.length) + OFF);
   process.exit(1);

@@ -12,3 +12,9 @@
 # serves the existing static file and ignores the rule.
 /reference/*       /404.html  404!
 /portal/_source/*  /404.html  404!
+
+# ── R172: the harness is an internal artefact too ──────────────────────────
+# test/portal-harness.mjs was served at 200 while its two siblings above were
+# already blocked. Nothing fetches it at runtime; it is a developer tool that
+# names live endpoints and internal ids. Same force flag, same reason.
+/test/*            /404.html  404!

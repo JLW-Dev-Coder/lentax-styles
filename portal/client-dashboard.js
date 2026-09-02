@@ -5,6 +5,8 @@
    Updated:    2026-08-20 (R148) - seed data replaced with a live fetch
                2026-08-20 (R149) - every payload value that reaches HTML
                is escaped. See esc() and the R149 note below.
+               2026-09-01 (R172) - #vld is revealed before the fetch and
+               is never hidden again. See the R172 note below.
    Scope:      Renders the client dashboard into #vld-secs - five buckets,
                summary cards with the urgency ladder, ledger rows, the
                five-row density toggle, and the empty / stale states.
@@ -143,6 +145,19 @@
      helper, unchanged - so anything unreadable takes R150's existing
      st-unknown path. Absence still reads "Low"; a real date is
      unaffected at every tier.
+
+   R172 - THE BLANK WINDOW (p30 Part A)
+     Measured on the live page, the portal-dashboard fetch took 4,608 ms
+     cold and 7,948 ms on an earlier load. #vld ships hidden and was
+     revealed only on the success path, so for that whole window the page
+     ended after the hero with an empty gap, and all four failure paths
+     left it hidden permanently with the explanation in a console no
+     client reads. That is what was reported as "the dashboard isn't
+     rendering": it rendered, eventually.
+     #vld is now revealed before the fetch with a quiet placeholder, and
+     every failure replaces that placeholder with one visible line. See
+     notice() and the two states it serves. No timeout beyond the
+     existing 8000 ms abort, and no retry.
 
    R152 - THE SAVED-COPY STAMP
      The stale pill read a bare "Saved copy" because R148 removed a
@@ -505,16 +520,67 @@
     });
   }
 
+  /* R172 - THE TWO STATES THAT ARE NOT A BOARD.
+
+     Both reuse .mt, the muted block the empty bucket already renders, so
+     this cost no CSS and added no animation. A spinner or a skeleton
+     shimmer would be the only animation in the bundle, and one case does
+     not earn an animation vocabulary.
+
+     data-state="loading" and "error" are new values on an attribute the
+     stylesheet only ever matches POSITIVELY - .allclear on "empty", the
+     .stale pill on "stale". Both new states therefore render the head,
+     the message, and neither of those two, with no rule written for them.
+
+     head and line are literals in this file and never payload, which is
+     why they reach innerHTML without esc(). Keep it that way: the R149
+     invariant is "nothing from the response reaches innerHTML without
+     esc()", and it stays checkable by grep only while no caller passes a
+     response value in here.
+
+     notice() REVEALS; IT NEVER HIDES. Nothing on any path below may set
+     root.hidden back to true. A visible line beats a silent gap, and the
+     silent gap is the whole defect. */
+  function notice(state, head, line) {
+    var root = document.getElementById("vld");
+    var secs = document.getElementById("vld-secs");
+    if (!root || !secs) return;
+    root.dataset.state = state;
+    secs.innerHTML = '<div class="mt"><b>' + head + '</b>' + line + '</div>';
+    root.hidden = false;
+  }
+
+  function loading() {
+    notice("loading", "One moment", "Loading what's open on your matter…");
+  }
+
+  /* One line, no error code and no HTTP status: none of the four failures
+     is one a client can act on differently, and the distinction is still
+     in the console for us. */
+  function failed() {
+    notice("error", "Not available just now",
+      "We couldn't load this right now. It'll be here next time you visit, "
+      + "or message us if it persists.");
+  }
+
   function loadDashboard() {
     if (!document.getElementById("vld")) return;
 
+    /* Revealed BEFORE the fetch, not after it. Up to eight seconds pass
+       between this line and any of the five outcomes, and for that whole
+       window this placeholder is the page's only answer. */
+    loading();
+
     var c = attr('data-client-uid', 'vl-mt-uid');
 
-    /* Unresolved merge tag or no client context: render nothing and leave
-       the portal's own content in place. The uid itself is never logged -
-       only that none resolved. */
+    /* Unresolved merge tag or no client context. The uid itself is never
+       logged - only that none resolved. R172: this used to return with
+       the fragment still hidden, which a reader cannot tell apart from a
+       page that never carried a dashboard at all. It now shows the same
+       visible message as the other three failures. */
     if (!c) {
       console.warn('[vld] no client uid; dashboard not rendered');
+      failed();
       return;
     }
 
@@ -542,7 +608,14 @@
         return r.json();
       })
       .then(function (d) {
-        if (!d) return;
+        /* null arrives from the non-ok branch above, and would also
+           arrive from a 200 whose body is literally null. Both are the
+           same fact to a client: there is no board. R172 - this used to
+           return with the fragment hidden. */
+        if (!d) {
+          failed();
+          return;
+        }
 
         /* An error envelope arrives with a 200. R155 - the VALUE is no
            longer logged. It is meant to be a short code, but nothing in
@@ -557,6 +630,7 @@
            click away in the Network tab, where a body belongs. */
         if (d.error) {
           console.warn('[vld] dashboard endpoint reported an error envelope');
+          failed();
           return;
         }
 
@@ -584,6 +658,7 @@
            timeout, TypeError for a network failure. The fallback covers a
            thrown non-Error, which has no name to read. */
         console.warn('[vld] dashboard load failed:', (err && err.name) || 'Error');
+        failed();
       });
   }
 
