@@ -14084,6 +14084,35 @@ body.lentax-vlp .cbe-block-file-upload {
   min-height: 140px !important;
 }
 
+/* ==========================================================================
+   ROUND 176 (R176): dashboard metric value clip, all portals
+   SuiteDash fixes .reporting__container rows at 140px, .reporting__block at
+   140px, .reporting__block__value at ~20-22px and .reporting__block__value__current
+   at ~10px, each with overflow:hidden, which clips the main value.
+   Release only those heights and the two inner overflow clips.
+   Card overflow:hidden (63e386f, accent-bar corner clip) and min-height:140px
+   (dfcd31e) above are intentionally kept.
+   Height release moved here from R174 (themes/vlp-default.css), which never
+   reached portals on other themes (Tax Prep Pro / tpp-sentinel).
+   Browser-confirmed 2026-10-28 on the Tax Prep Pro dashboard, all 10 cards.
+   ========================================================================== */
+#dashboard-view .reporting__container {
+  grid-template-rows: none !important;
+  grid-auto-rows: auto !important;
+}
+#dashboard-view .reporting__block {
+  height: auto !important;
+}
+#dashboard-view .reporting__block .reporting__block__value {
+  height: auto !important;
+  overflow: visible !important;
+}
+#dashboard-view .reporting__block .reporting__block__value__current {
+  height: auto !important;
+  overflow: visible !important;
+}
+/* END ROUND 176 */
+
 #dashboard-view .reporting__block::before {
   content: "" !important;
   position: absolute !important;

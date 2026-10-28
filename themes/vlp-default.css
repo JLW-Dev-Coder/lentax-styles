@@ -6025,7 +6025,6 @@ body.file-request-body .lx-fr-url {
    (63e386f accent-bar corner clip) and base min-height are kept.
    ClickUp 86e29uzdq.
    ========================================================================== */
-.reporting__container{grid-template-rows:none!important;grid-auto-rows:auto!important}
-.reporting__container .reporting__block{height:auto!important}
-.reporting__block .reporting__block__value{height:auto!important;overflow:visible!important;align-items:baseline}
-.reporting__block .reporting__block__value__current{height:auto!important;overflow:visible!important;line-height:1.1!important}
+.reporting__block .reporting__block__value{align-items:baseline}
+.reporting__block .reporting__block__value__current{line-height:1.1!important}
+/* R174 height release moved to css/lentax-base.css as ROUND 176. These two lines are VLP typography only. */
