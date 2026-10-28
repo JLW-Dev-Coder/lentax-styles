@@ -6016,3 +6016,16 @@ body.file-request-body .lx-fr-url {
   body.file-request-body .lx-fr-card { padding: 28px 20px 26px; }
   body.file-request-body .lx-fr-title { font-size: 20px; }
 }
+
+/* ==========================================================================
+   R174 — Dashboard metric cards (URL /dashboard) — value clip
+   36px value (.reporting__block__value__current) was clipped by SuiteDash
+   fixed 140px grid rows, fixed card height and a 20px overflow-hidden value
+   wrapper. Release the heights so cards grow to fit. Card overflow:hidden
+   (63e386f accent-bar corner clip) and base min-height are kept.
+   ClickUp 86e29uzdq.
+   ========================================================================== */
+.reporting__container{grid-template-rows:none!important;grid-auto-rows:auto!important}
+.reporting__container .reporting__block{height:auto!important}
+.reporting__block .reporting__block__value{height:auto!important;overflow:visible!important;align-items:baseline}
+.reporting__block .reporting__block__value__current{height:auto!important;overflow:visible!important;line-height:1.1!important}
