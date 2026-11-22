@@ -6028,23 +6028,23 @@ body.file-request-body .lx-fr-url {
 .reporting__block .reporting__block__value{align-items:baseline}
 .reporting__block .reporting__block__value__current{line-height:1.1!important}
 /* R174 height release moved to css/lentax-base.css as ROUND 176. These two lines are VLP typography only. */
-/* R177 Start Here dashboard: welcome hero, audience split panels (Tax Pro / Taxpayer), eyebrow pills, jump buttons. Task 86e29uzdq. */
-.vlp-dash .vlp-dash__hero{background:rgba(18,14,12,.78);border:1px solid rgba(255,138,51,.28);border-radius:16px;padding:32px 36px;margin:0 0 44px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);max-width:1120px}
-.vlp-dash .vlp-dash__hero .vlp-dash__greeting{margin:0}
-.vlp-dash .vlp-dash__sub{font-size:19px;line-height:1.55;color:rgba(255,255,255,.85);margin:10px 0 0;max-width:680px}
-.vlp-dash .vlp-dash__jumps{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.vlp-dash .vlp-dash__jump{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:17px;font-weight:600;text-decoration:none;transition:transform .15s ease,background .15s ease}
-.vlp-dash .vlp-dash__jump:hover{transform:translateY(-1px)}
-.vlp-dash .vlp-dash__jump--primary{background:#ff7a1a;color:#1a120c}
-.vlp-dash .vlp-dash__jump--primary:hover{background:#ff8f3d}
-.vlp-dash .vlp-dash__jump--ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
-.vlp-dash .vlp-dash__jump--ghost:hover{border-color:#ff8a33;color:#ff8a33}
-.vlp-dash .vlp-dash__section--split{background:rgba(18,14,12,.6);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 28px 32px;margin:0 0 36px;max-width:1120px;scroll-margin-top:96px}
-.vlp-dash .vlp-dash__eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#ff8a33;background:rgba(255,138,51,.12);border:1px solid rgba(255,138,51,.35);border-radius:999px;padding:4px 12px;margin-bottom:10px}
-.vlp-dash .vlp-dash__section--split .vlp-dash__section-head h2{font-size:26px;letter-spacing:0;text-transform:none;margin:0}
-.vlp-dash .vlp-dash__lead{font-size:17px;line-height:1.5;color:rgba(255,255,255,.75);margin:6px 0 22px;max-width:680px}
+/* R177 Start Here dashboard: welcome hero, audience split panels (Tax Pro / Taxpayer), eyebrow pills, jump buttons. Scoped to #dashboard-view to beat R111 to R127 and the #dashboard-view * colour override. Task 86e29uzdq. */
+#dashboard-view .vlp-dash .vlp-dash__hero{background:rgba(18,14,12,.78);border:1px solid rgba(255,138,51,.28);border-radius:16px;padding:32px 36px;margin:0 0 44px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);max-width:1120px;box-sizing:border-box}
+#dashboard-view .vlp-dash .vlp-dash__hero .vlp-dash__greeting{margin:0 !important}
+#dashboard-view .vlp-dash .vlp-dash__sub{font-size:19px;line-height:1.55;color:rgba(255,255,255,.85) !important;margin:10px 0 0;max-width:680px}
+#dashboard-view .vlp-dash .vlp-dash__jumps{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+#dashboard-view .vlp-dash .vlp-dash__jump{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;min-height:44px;box-sizing:border-box;border-radius:10px;font-size:17px;font-weight:600;text-decoration:none !important;transition:transform .15s ease,background .15s ease}
+#dashboard-view .vlp-dash .vlp-dash__jump:hover{transform:translateY(-1px)}
+#dashboard-view .vlp-dash .vlp-dash__jump--primary,#dashboard-view .vlp-dash .vlp-dash__jump--primary:visited{background:#ff7a1a !important;color:#1a120c !important;border:1px solid #ff7a1a}
+#dashboard-view .vlp-dash .vlp-dash__jump--primary:hover{background:#ff8f3d !important;color:#1a120c !important}
+#dashboard-view .vlp-dash .vlp-dash__jump--ghost,#dashboard-view .vlp-dash .vlp-dash__jump--ghost:visited{background:transparent !important;color:#ffffff !important;border:1px solid rgba(255,255,255,.35)}
+#dashboard-view .vlp-dash .vlp-dash__jump--ghost:hover{border-color:#ff8a33;color:#ff8a33 !important}
+#dashboard-view .vlp-dash .vlp-dash__section.vlp-dash__section--split{background:rgba(18,14,12,.6);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 28px 32px;margin:0 0 36px !important;max-width:1120px;box-sizing:border-box;scroll-margin-top:96px}
+#dashboard-view .vlp-dash .vlp-dash__eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#ff8a33 !important;background:rgba(255,138,51,.12);border:1px solid rgba(255,138,51,.35);border-radius:999px;padding:4px 12px;margin-bottom:10px}
+#dashboard-view .vlp-dash .vlp-dash__section--split .vlp-dash__section-head h2{font-size:26px !important;letter-spacing:0 !important;text-transform:none !important;font-weight:600;margin:0 !important;color:#ffffff !important}
+#dashboard-view .vlp-dash .vlp-dash__lead{font-size:17px;line-height:1.5;color:rgba(255,255,255,.75) !important;margin:6px 0 22px;max-width:680px}
 @media (max-width:640px){
-  .vlp-dash .vlp-dash__hero{padding:24px 20px}
-  .vlp-dash .vlp-dash__section--split{padding:22px 16px 24px}
-  .vlp-dash .vlp-dash__jump{width:100%;justify-content:center}
+  #dashboard-view .vlp-dash .vlp-dash__hero{padding:24px 20px}
+  #dashboard-view .vlp-dash .vlp-dash__section.vlp-dash__section--split{padding:22px 16px 24px}
+  #dashboard-view .vlp-dash .vlp-dash__jump{width:100%;justify-content:center}
 }
