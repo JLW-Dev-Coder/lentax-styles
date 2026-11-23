@@ -6073,3 +6073,7 @@ body.file-request-body .lx-fr-url {
 @media (max-width:560px){
   #dashboard-view .vlp-dash a.vlp-card.vlp-card--wide{flex-direction:column !important}
 }
+/* R179 Start Here cards: restore bottom border against lentax-base #dashboard-view a{border-bottom:0 !important}. Bottom edge restates each state's own top border. Task 86e423epk. */
+#dashboard-view .vlp-dash a.vlp-card,#dashboard-view .vlp-dash a.vlp-card:link,#dashboard-view .vlp-dash a.vlp-card:visited{border-bottom:1px solid var(--vlp-line) !important}
+#dashboard-view .vlp-dash a.vlp-card:hover{border-bottom:1px solid rgba(255,154,31,.45) !important}
+#dashboard-view .vlp-dash a.vlp-card:focus-visible{border-bottom:1px solid rgba(255,154,31,.45) !important}
